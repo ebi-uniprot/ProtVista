@@ -5,7 +5,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/ebi-github/biojs-vis-proteinFeaturesViewer.svg)](https://coveralls.io/r/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
 [![NPM version](https://badge-me.herokuapp.com/api/npm/biojs-vis-proteinFeaturesViewer.png)](http://badges.enytc.com/for/npm/biojs-vis-proteinFeaturesViewer)
 
-> this is a test
+> This is an ongoing project on a pretty early stage, please be aware that this is under development, not ready to be use yet!
 
 ## Getting Started
 Install the module with: `npm install biojs-vis-proteinFeaturesViewer`
