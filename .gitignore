@@ -1,0 +1,10 @@
+node_modules/
+.idea/
+.log
+.DS_Store
+build
+coverage/lcov
+.info
+.coveralls.yml
+
+*.iml

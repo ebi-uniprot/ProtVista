@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Mocha Test Runner</title>
+		<link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+	</head>
+	<body>
+		<b>Warning</b>: You need to run `gulp test-dom` to recompile your unit tests for the browser. You can also use `gulp watch` for automatic recompilation.
+		<div id="mocha"></div>
+		<script src="../node_modules/mocha/mocha.js"></script>
+		<script>mocha.setup('bdd')</script>
+		<script src="../build/test.js"></script>
+		<script>
+if (window.mochaPhantomJS) {
+	mochaPhantomJS.run();
+} else {
+	mocha.run();
+}
+		</script>
+	</body>
+</html>
