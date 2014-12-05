@@ -73,8 +73,7 @@ img.clickable {
   margin-right: 5px;
   height: $height;
   width: $width;
-  background: url(../images/Biojs.ProteinFTViewer.png) no-repeat top left;
-  background-position: $x 0;
+  background: url(../images/Biojs.ProteinFTViewer.png) no-repeat $x 0;
   border:0;
 }
 .spriteZoomIn {
