@@ -70,7 +70,8 @@
     "snippets": [
       "snippets"
     ],
-    "first": "simple_example"
+    "first": "simple_example",
+    "second": "proteinFTViewer_test"
   },
   "keywords": [
     "test",
