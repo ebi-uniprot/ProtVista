@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "biojs-events": "0.0.4",
-    "d3": "^3.4.13"
+    "d3": "^3.4.13",
+    "jquery": "^2.1.1"
   },
   "devDependencies": {
     "biojs-sniper": "^0.0.4",

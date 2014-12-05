@@ -1,0 +1,302 @@
+/**
+* Variables
+*/
+//Fonts, text colors, and background colors
+$tooltipColor: #FFFFFF;
+$titlesFont: "Helvetica neue", Helvetica, Arial, sans-serif;
+$accessionColor: #095C83;
+$identifierColor: #1F698D;
+$categoryTitleBackground: #82b7cb;
+$categoryTitleBackgroundNoCollapsible: #cde2ec; //#95BDD0;
+$categoryFeaturesDarkBackground: #EBF7FA;//#eef7fa;
+$categoryFeaturesLightBackground: #F5FBFC;
+$categoryFeaturesLightOpacity: 1; /*use transparency only for testing, otherwise it will clashed with features transparency*/
+$typeTitleBackground: #A6C9DB;
+$typeFeaturesDarkBackground: #EAF6F9;
+$typeFeaturesLightBackground: white;
+$categoryFontColor: #073e65;
+$subcategoryFontColor: #076e9f;
+//FTtype colors
+$moleculeProcessing: chain #CC9933, transit #009966, init_met #996633, propep #99CCCC, peptide #006699, signal #CC0033;
+$structural:turn #CCCCCC, strand #FFCC00, helix #FF0066, crosslink #0571AF, disulfid #23B14D;
+$domains: region #FF6600, coiled #FF9966, motif #663399, repeat #9900FF, ca_bind #FF3399, dna_bind #009933, domain #9999FF, zn_fing #990066, np_bind #FF9900;
+$sites: metal #009900, site #660033, binding #006699, act_site #FF6666;
+$ptm_variant: mod_res #000066, lipid #99CC33, carbohyd #CC3366, variant #006666;
+$sequence: compbias #FF3366, mutagen #FF9900, conflict #6633CC, non_cons #FF0033, non_ter #339933, unsure #33FF00, non_std #330066;
+$topology: topo_dom #CC0000, transmem #CC00CC, intramem #0000CC;
+
+$ftTypes: join($moleculeProcessing, $structural);
+$ftTypes: join($ftTypes, $domains);
+$ftTypes: join($ftTypes, $sites);
+$ftTypes: join($ftTypes, $ptm_variant);
+$ftTypes: join($ftTypes, $sequence);
+$ftTypes: join($ftTypes, $topology);
+
+/**
+* Miscellaneous
+*/
+div.tooltip {
+  color: $tooltipColor;
+  position: absolute;
+  text-align: left;
+  max-width: 210px;
+  height: auto;
+  padding: 8px;
+  font: 10px sans-serif;
+  background: rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+div.dialog {
+  position: absolute;
+  text-align: left;
+  max-width: 300px;
+  min-width: 150px;
+  height: auto;
+  padding: 8px;
+  font: 10px sans-serif;
+  border: 1px solid;
+  background-color: whitesmoke;
+}
+.clickable {
+  cursor: pointer;
+  cursor: hand;
+}
+img.clickable {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+}
+
+@mixin spriteImage($height, $width, $x) {
+  margin-left: 5px;
+  margin-right: 5px;
+  height: $height;
+  width: $width;
+  background: url(../images/Biojs.ProteinFTViewer.png) no-repeat top left;
+  background-position: $x 0;
+  border:0;
+}
+.spriteZoomIn {
+  @include spriteImage(24px, 24px, 0px);
+}
+.spriteZoomOut {
+  @include spriteImage(24px, 24px, -24px);
+}
+.spriteMoveLeft {
+  @include spriteImage(24px, 17px, -48px);
+}
+.spriteMoveRight {
+  @include spriteImage(24px, 17px, -65px);
+}
+.spriteOpenAll {
+  @include spriteImage(24px, 24px, -82px);
+}
+.spriteCloseAll {
+  @include spriteImage(24px, 24px, -106px);
+}
+.spriteSettings {
+  @include spriteImage(24px, 24px, -131px);
+}
+.spriteHelp {
+  @include spriteImage(24px, 24px, -155px);
+}
+.spriteCloseX {
+  @include spriteImage(10px, 10px, -180px);
+  float: right;
+}
+.draggable {
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+.draggable:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+.zoomable {
+  cursor: zoom-in;
+}
+/**
+*  Controls: accession and identifier, zoom buttons
+*/
+div.control {
+  display: table;
+  text-align: left;
+}
+div.row {
+  display: table-row;
+}
+div.cell {
+  display: table-cell;
+}
+div.left {
+  float: left;
+  margin-right: 0px;
+  margin-left: 5px;
+}
+div.right {
+  float: right;
+  margin-right: 10px;
+  margin-left: 0px;
+}
+@mixin protId($size, $weight, $color) {
+  font-family: $titlesFont;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  vertical-align: top;
+  text-align: right;
+  padding: 5px;
+}
+div.accession {
+  @include protId(24px, normal, $accessionColor);
+}
+div.identifier {
+  @include protId(18px, lighter, $identifierColor);
+}
+
+/**
+* Controls: Ruler and axis
+*/
+.axis text {
+  font: 10px sans-serif;
+}
+.axis .minor line {
+  stroke-opacity: 0.5;
+}
+.axis .minor text {
+  opacity: 0;
+}
+.axis path {
+  fill: grey;
+  stroke: #000;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+  opacity: 0.1;
+}
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.axis text {
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+.axis path, .axis line {
+  fill: black;
+  stroke: black;
+  shape-rendering: crispEdges;
+  stroke-width: 1px;
+}
+.rulerLabel {
+  fill: blue;
+  font: 10px sans-serif;
+}
+.rulerDragger {
+  fill: #d9f9d2;
+  stroke: #42e01e;
+  opacity: 0.7;
+  stroke-width: 2;
+}
+
+/**
+* Controls: amino acids sequence
+*/
+.aminoAcid {
+  font-family: $titlesFont;
+  font-size: 11px;
+  cursor: default;
+}
+.seqContainer {
+}
+.seqSVG {
+}
+.seqSVGGroup {
+  background-color: goldenrod;
+}
+
+/*
+* Categories and types
+*/
+//Category
+div.category {
+  clear: left;
+  display: table-row;
+}
+//Category and type titles
+@mixin titles($fontSize, $fontWeight, $background, $fontColor) {
+  font-family: $titlesFont;
+  margin-right: 1px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding: 5px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  background-color: $background;
+  color: $fontColor;
+}
+div.categoryTitle {
+  @include titles(11px, bold, $categoryTitleBackground, $categoryFontColor);
+}
+div.categoryTitleNoCollapsible {
+  @include titles(11px, bold, $categoryTitleBackgroundNoCollapsible, $subcategoryFontColor);
+  //white-space: pre;
+  margin-left: 10px;
+}
+div.typeTitle {
+  @include titles(11px, normal, $typeTitleBackground, $categoryFontColor);
+}
+//Category and type feature containers
+@mixin featureContainer ($background, $opacity:1.0) {
+  background-color: $background;
+  display: inline-block;
+  opacity: $opacity;
+}
+div.categoryFeatures {
+  margin-bottom: 1px;
+  margin-top: 1px;
+}
+div.categoryFeaturesDark { //will alternate
+  @include featureContainer($categoryFeaturesDarkBackground);
+}
+div.categoryFeaturesLight { //will alternate
+  @include featureContainer($categoryFeaturesLightBackground, $categoryFeaturesLightOpacity);
+}
+div.typeFeaturesDark { //will alternate with white
+  @include featureContainer($typeFeaturesDarkBackground);
+}
+div.typeFeaturesClear { //will alternate with white
+  @include featureContainer($typeFeaturesLightBackground);
+}
+
+/*
+* Features and SVG paths
+*/
+svg{
+  overflow: hidden;
+}
+.categoryFeatures svg{
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+path.categoryFeatures {
+  stroke-width: 1px;
+  stroke: black;
+  fill: black;
+}
+//@mixin ftTypes-colors() {
+@each $elem in $ftTypes {
+  $type: nth($elem,1);
+  $color: nth($elem,2);
+  .categoryFeatures path.#{$type} {
+    stroke: #{$color};
+    fill: $color;
+  }
+}
+//}
+// @include ftTypes-colors;
