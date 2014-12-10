@@ -155,17 +155,6 @@ var ptms = {
     category: "Post translational modification",
     types: [
         {
-            type: "ACT_SITE", label: "Site", cvid: "SO:0000SSS",
-            locations: [
-                {
-                    locationType: "POSITION",
-                    features: [
-                        { ftid: "site-1", description: "site-1-desc", begin: 2, end: 3}
-                    ]
-                }
-            ]
-        },
-        {
             type: "CARBOHYD", label: "Glycosylation", cvid: "MOD:00693",
             locations: [
                 {
@@ -201,7 +190,7 @@ var model = {
     accession: "P00000",
     identifier: "P0_human",
     sequence: sequence,
-    categories: [domainsAndSites, structural, ptms, topo]
+    categories: [domainsAndSites, structural, topo, ptms]
     //sequence: p51587.sequence,
     //categories: p51587.categories
 };
