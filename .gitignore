@@ -4,5 +4,9 @@ node_modules/
 coverage/lcov
 .info
 .coveralls.yml
-
+.sass-cache/
+.project
+config.rb
+npm-debug.log
+*.css
 *.iml
