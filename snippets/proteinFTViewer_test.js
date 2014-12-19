@@ -1,4 +1,3 @@
-var target = "target";
 var sequence = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijk"
     + "lmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef"
     + "ghijklmnopqrstuvwxyz";
@@ -197,7 +196,7 @@ var model = {
 
 var biojs_proteinFTViewer = require("biojs-vis-proteinFeaturesViewer");
 var instance = new biojs_proteinFTViewer({
-    target: "target",
+    element: document.getElementById("target"),
     useTooltips: true,
     width: 1200,
     featuresModel: model,
