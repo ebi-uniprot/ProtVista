@@ -35,7 +35,7 @@ $ftTypes: join($ftTypes, $topology);
 /**
 * Miscellaneous
 */
-div.tooltip {
+div.up_pftv_tooltip {
   color: $tooltipColor;
   position: absolute;
   text-align: left;
@@ -46,7 +46,7 @@ div.tooltip {
   background: rgba(0,0,0,0.8);
   pointer-events: none;
 }
-div.dialog {
+div.up_pftv_dialog {
   position: absolute;
   text-align: left;
   max-width: 300px;
@@ -57,11 +57,11 @@ div.dialog {
   border: 1px solid;
   background-color: whitesmoke;
 }
-.clickable {
+.up_pftv_clickable {
   cursor: pointer;
   cursor: hand;
 }
-img.clickable {
+img.up_pftv_clickable {
   margin-left: 5px;
   margin-right: 5px;
   width: 24px;
@@ -76,66 +76,66 @@ img.clickable {
   background: url(../images/Biojs.ProteinFTViewer.png) no-repeat $x 0;
   border:0;
 }
-.spriteZoomIn {
+.up_pftv_spriteZoomIn {
   @include spriteImage(24px, 24px, 0px);
 }
-.spriteZoomOut {
+.up_pftv_spriteZoomOut {
   @include spriteImage(24px, 24px, -24px);
 }
-.spriteMoveLeft {
+.up_pftv_spriteMoveLeft {
   @include spriteImage(24px, 17px, -48px);
 }
-.spriteMoveRight {
+.up_pftv_spriteMoveRight {
   @include spriteImage(24px, 17px, -65px);
 }
-.spriteOpenAll {
+.up_pftv_spriteOpenAll {
   @include spriteImage(24px, 24px, -82px);
 }
-.spriteCloseAll {
+.up_pftv_spriteCloseAll {
   @include spriteImage(24px, 24px, -106px);
 }
-.spriteSettings {
+.up_pftv_spriteSettings {
   @include spriteImage(24px, 24px, -131px);
 }
-.spriteHelp {
+.up_pftv_spriteHelp {
   @include spriteImage(24px, 24px, -155px);
 }
-.spriteCloseX {
+.up_pftv_spriteCloseX {
   @include spriteImage(10px, 10px, -180px);
   float: right;
 }
-.draggable {
+.up_pftv_draggable {
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
 }
-.draggable:active {
+.up_pftv_draggable:active {
   cursor: grabbing;
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;
 }
-.zoomable {
+.up_pftv_zoomable {
   cursor: zoom-in;
 }
 /**
 *  Controls: accession and identifier, zoom buttons
 */
-div.control {
+div.up_pftv_control {
   display: table;
   text-align: left;
 }
-div.row {
+div.up_pftv_row {
   display: table-row;
 }
-div.cell {
+div.up_pftv_cell {
   display: table-cell;
 }
-div.left {
+div.up_pftv_left {
   float: left;
   margin-right: 0px;
   margin-left: 5px;
 }
-div.right {
+div.up_pftv_right {
   float: right;
   margin-right: 10px;
   margin-left: 0px;
@@ -149,10 +149,10 @@ div.right {
   text-align: right;
   padding: 5px;
 }
-div.accession {
+div.up_pftv_accession {
   @include protId(24px, normal, $accessionColor);
 }
-div.identifier {
+div.up_pftv_identifier {
   @include protId(18px, lighter, $identifierColor);
 }
 
@@ -190,11 +190,11 @@ div.identifier {
   shape-rendering: crispEdges;
   stroke-width: 1px;
 }
-.rulerLabel {
+.up_pftv_rulerLabel {
   fill: blue;
   font: 10px sans-serif;
 }
-.rulerDragger {
+.up_pftv_rulerDragger {
   fill: #d9f9d2;
   stroke: #42e01e;
   opacity: 0.7;
@@ -204,16 +204,16 @@ div.identifier {
 /**
 * Controls: amino acids sequence
 */
-.aminoAcid {
+.up_pftv_aminoAcid {
   font-family: $titlesFont;
   font-size: 11px;
   cursor: default;
 }
-.seqContainer {
+.up_pftv_seqContainer {
 }
-.seqSVG {
+.up_pftv_seqSVG {
 }
-.seqSVGGroup {
+.up_pftv_seqSVGGroup {
   background-color: goldenrod;
 }
 
@@ -221,7 +221,7 @@ div.identifier {
 * Categories and types
 */
 //Category
-div.category {
+div.up_pftv_category {
   clear: left;
   display: table-row;
 }
@@ -239,15 +239,15 @@ div.category {
   background-color: $background;
   color: $fontColor;
 }
-div.categoryTitle {
+div.up_pftv_categoryTitle {
   @include titles(11px, bold, $categoryTitleBackground, $categoryFontColor);
 }
-div.categoryTitleNoCollapsible {
+div.up_pftv_categoryTitleNoCollapsible {
   @include titles(11px, bold, $categoryTitleBackgroundNoCollapsible, $subcategoryFontColor);
   //white-space: pre;
   margin-left: 10px;
 }
-div.typeTitle {
+div.up_pftv_typeTitle {
   @include titles(11px, normal, $typeTitleBackground, $categoryFontColor);
 }
 //Category and type feature containers
@@ -256,20 +256,20 @@ div.typeTitle {
   display: inline-block;
   opacity: $opacity;
 }
-div.categoryFeatures {
+div.up_pftv_categoryFeatures {
   margin-bottom: 1px;
   margin-top: 1px;
 }
-div.categoryFeaturesDark { //will alternate
+div.up_pftv_categoryFeaturesDark { //will alternate
   @include featureContainer($categoryFeaturesDarkBackground);
 }
-div.categoryFeaturesLight { //will alternate
+div.up_pftv_categoryFeaturesLight { //will alternate
   @include featureContainer($categoryFeaturesLightBackground, $categoryFeaturesLightOpacity);
 }
-div.typeFeaturesDark { //will alternate with white
+div.up_pftv_typeFeaturesDark { //will alternate with white
   @include featureContainer($typeFeaturesDarkBackground);
 }
-div.typeFeaturesClear { //will alternate with white
+div.up_pftv_typeFeaturesClear { //will alternate with white
   @include featureContainer($typeFeaturesLightBackground);
 }
 
@@ -279,11 +279,11 @@ div.typeFeaturesClear { //will alternate with white
 svg{
   overflow: hidden;
 }
-.categoryFeatures svg{
+.up_pftv_categoryFeatures svg{
   margin-bottom: 0px;
   margin-top: 0px;
 }
-path.categoryFeatures {
+path.up_pftv_categoryFeatures {
   stroke-width: 1px;
   stroke: black;
   fill: black;
@@ -292,7 +292,7 @@ path.categoryFeatures {
 @each $elem in $ftTypes {
   $type: nth($elem,1);
   $color: nth($elem,2);
-  .categoryFeatures path.#{$type} {
+  .up_pftv_categoryFeatures path.up_pftv_#{$type} {
     stroke: #{$color};
     fill: $color;
   }
