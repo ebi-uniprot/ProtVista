@@ -94,14 +94,17 @@ img.up_pftv_clickable {
 .up_pftv_spriteCloseAll {
   @include spriteImage(24px, 24px, -106px);
 }
-.up_pftv_spriteSettings {
+.up_pftv_spriteFilter {
   @include spriteImage(24px, 24px, -131px);
 }
-.up_pftv_spriteHelp {
+.up_pftv_spriteSettings {
   @include spriteImage(24px, 24px, -155px);
 }
+.up_pftv_spriteHelp {
+  @include spriteImage(24px, 24px, -180px);
+}
 .up_pftv_spriteCloseX {
-  @include spriteImage(10px, 10px, -180px);
+  @include spriteImage(10px, 10px, -205px);
   float: right;
 }
 .up_pftv_draggable {
