@@ -107,7 +107,18 @@ var structural = {
                 {
                     locationType: "CONTINUOUS",
                     features: [
-                        { ftid: "turn-1", description: "turn-1-desc", begin: 8, end: 59}
+                        {
+                            ftid: "turn-1", description: "turn-1-desc", begin: 8, end: 59,
+                            evidence: {type: "ECO:0000218", source: {ref: "23"}}
+                        },
+                        {
+                            ftid: "turn-2", description: "turn-2-desc", begin: 18, end: 69,
+                            evidence: {type: "ECO:0000203", source: {dbReferenceType: "MIM", dbReferenceId: "123"}}
+                        },
+                        {
+                            ftid: "turn-3", description: "turn-3-desc", begin: 28, end: 79,
+                            evidence: {type: "ECO:0000203", source: {dbReferenceType: "MIM", dbReferenceId: "123"}}
+                        }
                     ]
                 }
             ]
