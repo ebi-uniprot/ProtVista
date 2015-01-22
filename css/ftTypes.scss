@@ -305,3 +305,19 @@ path.up_pftv_categoryFeatures {
 }
 //}
 // @include ftTypes-colors;
+
+.up_pftv_categoryFeatures path.up_pftv_damaging {
+  stroke: #D7191C;
+  fill: #D7191C; }
+
+.up_pftv_categoryFeatures path.up_pftv_mixed {
+  stroke: #FDAE61;
+  fill: #FDAE61; }
+
+.up_pftv_categoryFeatures path.up_pftv_benign {
+  stroke: #2C7BB6;
+  fill: #2C7BB6; }
+
+.up_pftv_categoryFeatures path.up_pftv_no_prediction {
+  stroke: black;
+  fill: black; }
