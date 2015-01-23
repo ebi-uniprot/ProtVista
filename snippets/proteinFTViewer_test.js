@@ -1,6 +1,10 @@
 var sequence = "abcdefghikklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijk"
     + "lmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef"
     + "ghijklmnopqrstuvwxyz";
+
+//test with variants
+sequence = var_j3kp33.sequence;
+
 var domainsAndSites = {
     category: "Domains and sites",
     types: [
@@ -199,7 +203,7 @@ var topo = {
 var variants = {
     "category": "Variants",
     "type": "NATURAL_VARIANT",
-    "variants": [
+    /*"variants": [
         {"id":"J3KP33_variant754","sourceIds":["COSM44191"],"position":5,"wild_type":"Q","mutation":"*","frequency":0.0,"polyphenPrediction":"-","polyphenScore":0.0,"siftPrediction":"-","siftScore":0.0,"somaticStatus":1,"consequenceTypes":"stop gained","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579900G>A"}
         ,{"id":"J3KP33_variant769","sourceIds":["COSM45588"],"position":5,"wild_type":"Q","mutation":"H","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.025,"siftPrediction":"deleterious","siftScore":0.05,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579898C>A"}
         ,{"id":"J3KP33_variant133","sourceIds":["COSM45800"],"position":7,"wild_type":"D","mutation":"H","frequency":0.0,"polyphenPrediction":"probably damaging","polyphenScore":0.974,"siftPrediction":"deleterious","siftScore":0.01,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579894C>G"}
@@ -216,7 +220,8 @@ var variants = {
         ,{"id":"J3KP33_variant973","sourceIds":["COSM44483"],"position":37,"wild_type":"S","mutation":"T","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.02,"siftPrediction":"tolerated","siftScore":0.45,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579578A>T"}
         ,{"id":"J3KP33_variant755","sourceIds":["COSM236889","COSM236890","COSM46286"],"position":38,"wild_type":"Q","mutation":"*","frequency":0.0,"polyphenPrediction":"-","polyphenScore":0.0,"siftPrediction":"-","siftScore":0.0,"somaticStatus":1,"consequenceTypes":"stop gained","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579575G>A"}
         ,{"id":"J3KP33_variant784","sourceIds":["COSM307330"],"position":38,"wild_type":"Q","mutation":"L","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.082,"siftPrediction":"tolerated","siftScore":0.27,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579574T>A"}
-    ]
+    ] */
+    "variants": var_j3kp33.variants
 };
 var model = {
     accession: "P00000",
