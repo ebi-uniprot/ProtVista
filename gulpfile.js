@@ -22,8 +22,10 @@ var uglify = require('gulp-uglify');
 
 // testing
 var mocha = require('gulp-mocha'); 
-var mochaPhantomJS = require('gulp-mocha-phantomjs'); 
+var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
+//SASS
+var sass = require('gulp-sass');
 
 // code style 
 var jshint = require('gulp-jshint');//remove
@@ -88,7 +90,11 @@ gulp.task('build-test',['init'], function() {
     .pipe(gulp.dest(buildDir));
 });
 
-
+gulp.task('sass', function () {
+    gulp.src('./css/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('./css'));
+});
 
 gulp.task('test-watch', function() {
    gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js'], function() {
