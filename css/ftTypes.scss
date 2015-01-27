@@ -215,6 +215,13 @@ div.up_pftv_identifier {
   font-size: 11px;
   cursor: default;
 }
+.up_pftv_mutatedAA {
+  font-family: $titlesFont;
+  font-size: 11px;
+  cursor: default;
+  stroke: none;
+  fill: white;
+}
 .up_pftv_seqContainer {
 }
 .up_pftv_seqSVG {
