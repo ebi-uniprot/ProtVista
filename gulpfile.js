@@ -102,10 +102,6 @@ gulp.task('test-watch', function() {
    });
 });
 
-
-
-
-
 // will remove everything in build
 gulp.task('clean', function(cb) {
   del([buildDir], cb);
@@ -114,7 +110,7 @@ gulp.task('clean', function(cb) {
 // just makes sure that the build dir exists
 gulp.task('init', ['clean'], function() {
   mkdirp(buildDir, function (err) {
-    if (err) console.error(err)
+    if (err) console.error(err);
   });
 });
 
@@ -181,4 +177,21 @@ gulp.task('watch', function() {
       util.log("Refreshed:", message);
   });
   return rebundle();
+});
+
+//category viewer module
+var outputFileCat = "pftv-aux-proteinCategoryFTViewer";
+gulp.task('init-cat', function(cb) {
+    del([buildDir + '/' + outputFileCat + '.js'], cb);
+    mkdirp(buildDir, function (err) {
+        if (err) console.error(err);
+    });
+});
+gulp.task('build-browser-cat', ['init-cat'], function() {
+    var b = browserify({debug: true, hasExports: true});
+    b.add('./lib/' + outputFileCat + '.js', {expose: outputFileCat });
+    return b.bundle()
+        .pipe(source(outputFileCat + ".js"))
+        .pipe(chmod(644))
+        .pipe(gulp.dest(buildDir));
 });
