@@ -221,8 +221,16 @@ var variants = {
         ,{"id":"J3KP33_variant755","sourceIds":["COSM236889","COSM236890","COSM46286"],"position":38,"wild_type":"Q","mutation":"*","frequency":0.0,"polyphenPrediction":"-","polyphenScore":0.0,"siftPrediction":"-","siftScore":0.0,"somaticStatus":1,"consequenceTypes":"stop gained","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579575G>A"}
         ,{"id":"J3KP33_variant784","sourceIds":["COSM307330"],"position":38,"wild_type":"Q","mutation":"L","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.082,"siftPrediction":"tolerated","siftScore":0.27,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579574T>A"}
     ]
-    //"variants": var_j3kp33.variants
 };
+variants.variants = var_j3kp33.variants;
+/*var vars = [];
+var avar;
+for (avar in var_j3kp33.variants) {
+    if (var_j3kp33.variants[avar].consequenceTypes.indexOf("stop gained") !== -1) {
+        vars.push(var_j3kp33.variants[avar]);
+    }
+}
+variants.variants = vars;*/
 var model = {
     accession: "P00000",
     identifier: "P0_human",
@@ -238,5 +246,5 @@ var instance = new pftv_aux_proteinCategoryFTViewer({
     ,useTooltips: true
     ,collapsible: true
     ,sequence: model.sequence
-    ,category: model.categories[4]
+    ,category: model.categories[1]
 });
