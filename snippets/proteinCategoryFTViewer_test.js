@@ -223,14 +223,6 @@ var variants = {
     ]
 };
 variants.variants = var_j3kp33.variants;
-/*var vars = [];
-var avar;
-for (avar in var_j3kp33.variants) {
-    if (var_j3kp33.variants[avar].consequenceTypes.indexOf("stop gained") !== -1) {
-        vars.push(var_j3kp33.variants[avar]);
-    }
-}
-variants.variants = vars;*/
 var model = {
     accession: "P00000",
     identifier: "P0_human",
@@ -242,9 +234,10 @@ var model = {
 
 var pftv_aux_proteinCategoryFTViewer = require("pftv-aux-proteinCategoryFTViewer");
 var instance = new pftv_aux_proteinCategoryFTViewer({
-    element: document.getElementById("target")
-    ,useTooltips: true
+    //element: document.getElementById("target")
+    //,
+    useTooltips: true
     ,collapsible: true
     ,sequence: model.sequence
-    ,category: model.categories[4]
+    ,category: model.categories[1]
 });

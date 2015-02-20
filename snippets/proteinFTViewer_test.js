@@ -233,8 +233,10 @@ var model = {
 };
 
 var biojs_proteinFTViewer = require("biojs-vis-proteinFeaturesViewer");
+//d3.select("body").append("div");
 var instance = new biojs_proteinFTViewer({
     element: document.getElementById("target"),
+    //element: document.getElementsByTagName("div")[0],
     useTooltips: true,
     width: 1200,
     featuresModel: model,
