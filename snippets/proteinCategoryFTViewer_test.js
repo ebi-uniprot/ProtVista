@@ -214,7 +214,7 @@ var variants = {
         ,{"id":"J3KP33_variant987","sourceIds":["COSM220785","COSM220786","COSM220787","COSM220788"],"position":18,"wild_type":"T","mutation":"A","frequency":0.0,"polyphenPrediction":"possibly damaging","polyphenScore":0.866,"siftPrediction":"deleterious","siftScore":0.01,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579861T>C"}
         ,{"id":"J3KP33_variant714","sourceIds":["COSM1167900","COSM1167901","COSM1167902","COSM1167903"],"position":27,"wild_type":"P","mutation":"S","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.148,"siftPrediction":"tolerated","siftScore":0.27,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579717G>A"}
         ,{"id":"J3KP33_variant1097","sourceIds":["COSM45360","rs201753350"],"position":31,"wild_type":"V","mutation":"I","frequency":0.0018,"polyphenPrediction":"benign","polyphenScore":0.01,"siftPrediction":"tolerated","siftScore":0.35,"somaticStatus":0,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579705C>T"}
-        ,{"id":"J3KP33_variant972","sourceIds":["COSM45129"],"position":33,"wild_type":"S","mutation":"T","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.013,"siftPrediction":"tolerated","siftScore":0.31,"somaticStatus":1,"consequenceTypes":"missense variant,splice_region_variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579590A>T"}
+        ,{"id":"J3KP33_variant972","sourceIds":["COSM45129"],"position":33,"wild_type":"S","mutation":"T","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.013,"siftPrediction":"tolerated","siftScore":0.31,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579590A>T"}
         ,{"id":"J3KP33_variant661","sourceIds":["COSM43672"],"position":34,"wild_type":"P","mutation":"L","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.003,"siftPrediction":"tolerated","siftScore":0.07,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579586G>A"}
         ,{"id":"J3KP33_variant483","sourceIds":["COSM45193","COSM46160"],"position":35,"wild_type":"L","mutation":"F","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.363,"siftPrediction":"tolerated","siftScore":0.71,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579582C>A"}
         ,{"id":"J3KP33_variant973","sourceIds":["COSM44483"],"position":37,"wild_type":"S","mutation":"T","frequency":0.0,"polyphenPrediction":"benign","polyphenScore":0.02,"siftPrediction":"tolerated","siftScore":0.45,"somaticStatus":1,"consequenceTypes":"missense variant","cytogeneticBand":"17p13.1","genomicLocation":"17:g.7579578A>T"}
@@ -239,5 +239,5 @@ var instance = new pftv_aux_proteinCategoryFTViewer({
     useTooltips: true
     ,collapsible: true
     ,sequence: model.sequence
-    ,category: model.categories[1]
+    ,category: model.categories[4]
 });
