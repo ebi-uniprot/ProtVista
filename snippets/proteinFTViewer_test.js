@@ -240,5 +240,31 @@ var instance = new biojs_proteinFTViewer({
     useTooltips: true,
     width: 1200,
     featuresModel: model,
-    transparency: 0.7
+    transparency: 0.4
+});
+instance.on("categoryOpen", function(obj) {
+
+});
+instance.on("categoryClose", function(obj) {
+
+});
+instance.on("featureClicked", function(obj) {
+    console.log("featureClicked");
+    console.log(obj);
+});
+instance.on("featureOn", function (obj) {
+    console.log("featureOn");
+    console.log(obj);
+});
+instance.on("featureOff", function(obj) {
+    console.log("featureOff");
+    console.log(obj);
+});
+instance.on("featureSelected", function(obj) {
+    console.log("featureSelected");
+    console.log(obj);
+});
+instance.on("featureUnselected", function(obj) {
+    console.log("featureUnselected");
+    console.log(obj);
 });
