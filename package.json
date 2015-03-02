@@ -22,7 +22,7 @@
   ],
   "main": "lib/biojs-vis-proteinFeaturesViewer",
   "scripts": {
-    "test": "gulp",
+    "test": "gulp test",
     "build": "gulp build",
     "build-browser": "gulp build-browser",
     "build-browser-min": "gulp build-browser-gzip",
