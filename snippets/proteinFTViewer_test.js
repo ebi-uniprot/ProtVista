@@ -224,12 +224,14 @@ var variants = {
     "variants": var_j3kp33.variants
 };
 var model = {
-    accession: "P00000",
-    identifier: "P0_human",
-    sequence: sequence,
-    categories: [domainsAndSites, structural, topo, ptms, variants] //
-    //sequence: p51587.sequence,
-    //categories: p51587.categories
+    //accession: "P00000",
+    //identifier: "P0_human",
+    //sequence: sequence,
+    //categories: [domainsAndSites, structural, topo, ptms, variants] //
+    accession: p05067.accession,
+    identifier: p05067.entryName,
+    sequence: p05067.sequence,
+    categories: p05067.categories
 };
 
 var biojs_proteinFTViewer = require("biojs-vis-proteinFeaturesViewer");
