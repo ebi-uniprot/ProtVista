@@ -54,7 +54,6 @@ gulp.task('build', ['build-browser', 'build-browser-gzip']);
 gulp.task('default', ['test',  'build']);
 
 
-
 gulp.task('lint', function() {
     return gulp.src('./lib/*.js')
         .pipe(jshint())
@@ -116,7 +115,7 @@ gulp.task('init', ['clean'], function() {
 
 // browserify debug
 gulp.task('build-browser',['init'], function() {
-  var b = browserify({debug: true,hasExports: true});
+  var b = browserify({debug: true, hasExports: true});
   exposeBundles(b);
   return b.bundle()
     .pipe(source(outputFile + ".js"))
@@ -192,6 +191,25 @@ gulp.task('build-browser-cat', ['init-cat'], function() {
     b.add('./lib/' + outputFileCat + '.js', {expose: outputFileCat });
     return b.bundle()
         .pipe(source(outputFileCat + ".js"))
+        .pipe(chmod(644))
+        .pipe(gulp.dest(buildDir));
+});
+
+//category layout module
+var reactify = require('reactify');
+var outputFileCatLayout = "categoryTypeTrack";
+gulp.task('init-cat-layout', function(cb) {
+    del([buildDir + '/' + outputFileCatLayout + '.js'], cb);
+    mkdirp(buildDir, function (err) {
+        if (err) console.error(err);
+    });
+});
+gulp.task('build-browser-catLayout', ['init-cat-layout'], function() {
+    var b = browserify({debug: true, hasExports: true});
+    b.add(['./lib/categoryTypeTrack.jsx'], {expose: outputFileCatLayout });
+    b.transform(reactify);
+    return b.bundle()
+        .pipe(source(outputFileCatLayout + ".js"))
         .pipe(chmod(644))
         .pipe(gulp.dest(buildDir));
 });

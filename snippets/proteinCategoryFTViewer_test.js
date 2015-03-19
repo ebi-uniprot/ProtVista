@@ -234,10 +234,9 @@ var model = {
 
 var pftv_aux_proteinCategoryFTViewer = require("pftv-aux-proteinCategoryFTViewer");
 var instance = new pftv_aux_proteinCategoryFTViewer({
-    //element: document.getElementById("target")
-    //,
+    element: document.getElementById("target"),
     useTooltips: true
     ,collapsible: true
     ,sequence: model.sequence
-    ,category: model.categories[1]
+    ,category: model.categories[1]//.types[0]
 });

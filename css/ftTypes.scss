@@ -35,6 +35,11 @@ $ftTypes: join($ftTypes, $topology);
 /**
 * Miscellaneous
 */
+div.up_pftv_hiddenContainer {
+  position: absolute;
+  z-index: -1;
+  opacity: 0.0000001;
+}
 div.up_pftv_tooltip {
   color: $tooltipColor;
   position: absolute;
@@ -241,9 +246,7 @@ div.up_pftv_category {
 //Category and type titles
 @mixin titles($fontSize, $fontWeight, $background, $fontColor) {
   font-family: $titlesFont;
-  margin-right: 1px;
-  margin-top: 1px;
-  margin-bottom: 1px;
+  margin: 1px;
   padding: 5px;
   display: inline-block;
   vertical-align: top;
@@ -254,11 +257,13 @@ div.up_pftv_category {
 }
 div.up_pftv_categoryTitle {
   @include titles(11px, bold, $categoryTitleBackground, $categoryFontColor);
+  width: 150px;
 }
 div.up_pftv_categoryTitleNoCollapsible {
   @include titles(11px, bold, $categoryTitleBackgroundNoCollapsible, $subcategoryFontColor);
   //white-space: pre;
   margin-left: 10px;
+  width: 140px;
 }
 div.up_pftv_typeTitle {
   @include titles(11px, normal, $typeTitleBackground, $categoryFontColor);
@@ -270,8 +275,8 @@ div.up_pftv_typeTitle {
   opacity: $opacity;
 }
 div.up_pftv_categoryFeatures {
-  margin-bottom: 1px;
-  margin-top: 1px;
+  margin: 1px;
+  padding: 5px;
 }
 div.up_pftv_categoryFeaturesDark { //will alternate
   @include featureContainer($categoryFeaturesDarkBackground);
