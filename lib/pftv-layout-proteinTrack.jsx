@@ -93,13 +93,15 @@ var
                                     <svg index="0" width="1050" height="39">
                                         <g transform="translate(0,0)">
                                             <path
-                                                id="up_pftv_bond-1_index_0" class="up_pftv_bridge up_pftv_disulfid"
+                                                id="up_pftv_bond-1_index_0" className="up_pftv_bridge up_pftv_disulfid"
                                                 d="M49.16326530612245 39 L 49.16326530612245 24 L 82.29154518950438 24 L 82.29154518950438 39 L 79.27988338192421 39 L 79.27988338192421 25 L 52.17492711370262 25 L 52.17492711370262 39 Z">
                                             </path>
                                             <path
                                                 d=" M 8.505830903790088 39 L 8.505830903790088 39 L 8.505830903790088 19 L 8.505830903790088 19L5.505830903790088,14L8.505830903790088,13L11.505830903790088,14 L 8.505830903790088 19 L 8.505830903790088 19 L 8.505830903790088 39 Z"
-                                                id="up_pftv_init-met-0_index_0" class="up_pftv_position up_pftv_init_met">
+                                                id="up_pftv_init-met-0_index_0" className="up_pftv_position up_pftv_init_met">
                                             </path>
+                                            <path d=" M 1038.49416909621 39 L 1038.49416909621 39 L 1038.49416909621 19 L 1038.49416909621 19L1035.49416909621,19L1038.49416909621,13L1041.49416909621,13 L 1038.49416909621 19 L 1038.49416909621 19 L 1038.49416909621 39 Z"
+                                                id="up_pftv_non-ter-0_index_0" className="up_pftv_position up_pftv_non_ter"></path>
                                         </g>
                                     </svg>
                                 </div>
