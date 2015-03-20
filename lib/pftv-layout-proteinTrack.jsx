@@ -71,7 +71,7 @@ var
                     )
                 ;
                 console.log(wrapperId);
-                var allTypesWrapperId = wrapperId + _ALL_TYPES_WRAPPER;
+                var allTypesWrapperId = wrapperId + _SEPARATOR + _ALL_TYPES_WRAPPER;
                 console.log(allTypesWrapperId);
                 var catTypes;
                 if (this.props.isTrackCategory === true) {

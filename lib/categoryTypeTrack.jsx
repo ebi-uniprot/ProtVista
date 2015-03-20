@@ -30,16 +30,29 @@ var
         React.render(
             <ProteinTrack
                 {...options}
-                //trackId={options.trackId}
-                //trackIndex={options.trackIndex}
-                //catWrapperId={options.catWrapperId}
-                //allTypesWrapperId={options.allTypesWrapperId}
-                //collapsible={options.collapsible}
-                //dark={options.dark}
-                //featuresStyle={options.featuresStyle}
             />,
             options.element
         );
+        var wrapperId = options.wrapperSeedId + "_category_" + options.categoryIndex +
+                    (options.isTrackCategory === true
+                        ?  ""
+                        : "_type_" + options.typeIndex
+                    )
+                ;
+        console.log(wrapperId);
+        //add attributes outside React: ok
+        d3.select("#" + wrapperId).classed("newclass", true);
+        //add non-standard attributes outside React: ok
+        d3.select("#" + wrapperId).attr("index", "index_0");
+        d3.selectAll("svg").attr("height", "50px");
+        d3.selectAll("path").remove();
+        d3.select("g").selectAll("path").data([1])
+        	.enter().append("path")
+        	.attr("id", "up_pftv_bond-1_index_0")
+        	.classed("up_pftv_bridge up_pftv_disulfid", true)
+        	.attr("d", "M49.16326530612245 39 L 49.16326530612245 24 L 82.29154518950438 24 L 82.29154518950438 39 L 79.27988338192421 39 L 79.27988338192421 25 L 52.17492711370262 25 L 52.17492711370262 39 Z")
+    	;
+    	d3.select("#" + wrapperId).append("div");
         /*
         var dummyObject = d3.select("body").append("div")
             .classed("up_pftv_hiddenContainer", true)
