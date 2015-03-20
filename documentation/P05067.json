@@ -1,0 +1,1094 @@
+{
+    "accession" : "P05067",
+    "entryName" : "A4_HUMAN",
+    "sequence" : "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDSDPSGTKTCIDTKEGILQYCQEVYPELQITNVVEANQPVTIQNWCKRGRKQCKTHPHFVIPYRCLVGEFVSDALLVPDKCKFLHQERMDVCETHLHWHTVAKETCSEKSTNLHDYGMLLPCGIDKFRGVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDKVVEVAEEEEVAEVEEEEADDDEDDEDGDEVEEEAEEPYEEATERTTSIATTTTTTTESVEEVVREVCSEQAETGPCRAMISRWYFDVTEGKCAPFFYGGCGGNRNNFDTEEYCMAVCGSAMSQSLLKTTQEPLARDPVKLPTTAASTPDAVDKYLETPGDENEHAHFQKAKERLEAKHRERMSQVMREWEEAERQAKNLPKADKKAVIQHFQEKVESLEQEAANERQQLVETHMARVEAMLNDRRRLALENYITALQAVPPRPRHVFNMLKKYVRAEQKDRQHTLKHFEHVRMVDPKKAAQIRSQVMTHLRVIYERMNQSLSLLYNVPAVAEEIQDEVDELLQKEQNYSDDVLANMISEPRISYGNDALMPSLTETKTTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDARPAADRGLTTRPGSGLTNIKTEEISEVKMDAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIATVIVITLVMLKKKQYTSIHHGVVEVDAAVTPEERHLSKMQQNGYENPTYKFFEQMQN",
+    "categories" : [{
+        "category" : "Molecule processing",
+        "types" : [{
+            "type" : "SIGNAL",
+            "label" : "signal peptide",
+            "cvId" : "SO:0000418",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "SIGNAL_0",
+                    "description" : "",
+                    "begin" : 1,
+                    "end" : 17,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "PEPTIDE",
+            "label" : "peptide",
+            "cvId" : "SO:0001064",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "PEPTIDE_0",
+                    "internalId" : "PRO_0000000095",
+                    "description" : "P3(42)",
+                    "begin" : 688,
+                    "end" : 713,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "PEPTIDE_1",
+                    "internalId" : "PRO_0000000096",
+                    "description" : "P3(40)",
+                    "begin" : 688,
+                    "end" : 711,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "CHAIN",
+            "label" : "chain",
+            "cvId" : "SO:0000419",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "CHAIN_0",
+                    "internalId" : "PRO_0000000088",
+                    "description" : "Amyloid beta A4 protein",
+                    "begin" : 18,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_1",
+                    "internalId" : "PRO_0000000089",
+                    "description" : "Soluble APP-alpha",
+                    "begin" : 18,
+                    "end" : 687,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_2",
+                    "internalId" : "PRO_0000000090",
+                    "description" : "Soluble APP-beta",
+                    "begin" : 18,
+                    "end" : 671,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_3",
+                    "internalId" : "PRO_0000381966",
+                    "description" : "N-APP",
+                    "begin" : 18,
+                    "end" : 286,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_4",
+                    "internalId" : "PRO_0000000091",
+                    "description" : "C99",
+                    "begin" : 672,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_5",
+                    "internalId" : "PRO_0000000092",
+                    "description" : "Beta-amyloid protein 42",
+                    "begin" : 672,
+                    "end" : 713,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_6",
+                    "internalId" : "PRO_0000000093",
+                    "description" : "Beta-amyloid protein 40",
+                    "begin" : 672,
+                    "end" : 711,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_7",
+                    "internalId" : "PRO_0000000094",
+                    "description" : "C83",
+                    "begin" : 688,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_8",
+                    "internalId" : "PRO_0000384574",
+                    "description" : "C80",
+                    "begin" : 691,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_9",
+                    "internalId" : "PRO_0000000097",
+                    "description" : "Gamma-secretase C-terminal fragment 59",
+                    "begin" : 712,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_10",
+                    "internalId" : "PRO_0000000098",
+                    "description" : "Gamma-secretase C-terminal fragment 57",
+                    "begin" : 714,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_11",
+                    "internalId" : "PRO_0000000099",
+                    "description" : "Gamma-secretase C-terminal fragment 50",
+                    "begin" : 721,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CHAIN_12",
+                    "internalId" : "PRO_0000000100",
+                    "description" : "C31",
+                    "begin" : 740,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }]
+            }]
+        }]
+    }, {
+        "category" : "Structural features",
+        "types" : [{
+            "type" : "DISULFID",
+            "label" : "disulfide bond",
+            "cvId" : "MOD:00689",
+            "locations" : [{
+                "locationType" : "BRIDGE",
+                "features" : [{
+                    "ftId" : "DISULFID_0",
+                    "description" : "",
+                    "begin" : 38,
+                    "end" : 62,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "DISULFID_1",
+                    "description" : "",
+                    "begin" : 73,
+                    "end" : 117,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "DISULFID_2",
+                    "description" : "",
+                    "begin" : 98,
+                    "end" : 105,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "DISULFID_3",
+                    "description" : "",
+                    "begin" : 133,
+                    "end" : 187,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "DISULFID_4",
+                    "description" : "",
+                    "begin" : 144,
+                    "end" : 174,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "DISULFID_5",
+                    "description" : "",
+                    "begin" : 158,
+                    "end" : 186,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "DISULFID_6",
+                    "description" : "",
+                    "begin" : 291,
+                    "end" : 341,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "DISULFID_7",
+                    "description" : "",
+                    "begin" : 300,
+                    "end" : 324,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "DISULFID_8",
+                    "description" : "",
+                    "begin" : 316,
+                    "end" : 337,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "HELIX",
+            "label" : "helix",
+            "cvId" : "SO:0001117",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "HELIX_0",
+                    "begin" : 66,
+                    "end" : 76,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_1",
+                    "begin" : 100,
+                    "end" : 102,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_2",
+                    "begin" : 147,
+                    "end" : 160,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_3",
+                    "begin" : 288,
+                    "end" : 292,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_4",
+                    "begin" : 334,
+                    "end" : 341,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_5",
+                    "begin" : 374,
+                    "end" : 380,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_6",
+                    "begin" : 389,
+                    "end" : 418,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_7",
+                    "begin" : 425,
+                    "end" : 480,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_8",
+                    "begin" : 487,
+                    "end" : 518,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_9",
+                    "begin" : 520,
+                    "end" : 546,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_10",
+                    "begin" : 547,
+                    "end" : 550,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_11",
+                    "begin" : 552,
+                    "end" : 566,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_12",
+                    "begin" : 673,
+                    "end" : 675,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_13",
+                    "begin" : 695,
+                    "end" : 697,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "HELIX_14",
+                    "begin" : 744,
+                    "end" : 754,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "TURN",
+            "label" : "turn",
+            "cvId" : "SO:0001128",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "TURN_0",
+                    "begin" : 47,
+                    "end" : 49,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "TURN_1",
+                    "begin" : 175,
+                    "end" : 177,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "TURN_2",
+                    "begin" : 311,
+                    "end" : 314,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "STRAND",
+            "label" : "strand",
+            "cvId" : "SO:0001111",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "STRAND_0",
+                    "begin" : 33,
+                    "end" : 35,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_1",
+                    "begin" : 43,
+                    "end" : 45,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_2",
+                    "begin" : 52,
+                    "end" : 54,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_3",
+                    "begin" : 82,
+                    "end" : 87,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_4",
+                    "begin" : 92,
+                    "end" : 96,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_5",
+                    "begin" : 97,
+                    "end" : 99,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_6",
+                    "begin" : 103,
+                    "end" : 106,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_7",
+                    "begin" : 110,
+                    "end" : 112,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_8",
+                    "begin" : 115,
+                    "end" : 119,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_9",
+                    "begin" : 134,
+                    "end" : 139,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_10",
+                    "begin" : 163,
+                    "end" : 174,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_11",
+                    "begin" : 178,
+                    "end" : 188,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_12",
+                    "begin" : 299,
+                    "end" : 301,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_13",
+                    "begin" : 304,
+                    "end" : 310,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_14",
+                    "begin" : 315,
+                    "end" : 321,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_15",
+                    "begin" : 323,
+                    "end" : 325,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_16",
+                    "begin" : 331,
+                    "end" : 333,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_17",
+                    "begin" : 421,
+                    "end" : 423,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_18",
+                    "begin" : 482,
+                    "end" : 484,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_19",
+                    "begin" : 679,
+                    "end" : 682,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_20",
+                    "begin" : 683,
+                    "end" : 685,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_21",
+                    "begin" : 688,
+                    "end" : 691,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_22",
+                    "begin" : 698,
+                    "end" : 700,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_23",
+                    "begin" : 702,
+                    "end" : 705,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_24",
+                    "begin" : 707,
+                    "end" : 712,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_25",
+                    "begin" : 755,
+                    "end" : 758,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "STRAND_26",
+                    "begin" : 763,
+                    "end" : 765,
+                    "status" : "Experimental"
+                }]
+            }]
+        }]
+    }, {
+        "category" : "Domains and sites",
+        "types" : [{
+            "type" : "SITE",
+            "label" : "site",
+            "cvId" : "SO:0000839",
+            "locations" : [{
+                "locationType" : "POSITION",
+                "features" : [{
+                    "ftId" : "SITE_0",
+                    "description" : "Required for Cu(2+) reduction",
+                    "begin" : 144,
+                    "end" : 144,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_1",
+                    "description" : "Reactive bond",
+                    "begin" : 301,
+                    "end" : 302,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_2",
+                    "description" : "Cleavage; by beta-secretase",
+                    "begin" : 671,
+                    "end" : 672,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_3",
+                    "description" : "Cleavage; by caspase-6; when associated with variant 670-N-L-671",
+                    "begin" : 672,
+                    "end" : 673,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_4",
+                    "description" : "Cleavage; by alpha-secretase",
+                    "begin" : 687,
+                    "end" : 688,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_5",
+                    "description" : "Cleavage; by theta-secretase",
+                    "begin" : 690,
+                    "end" : 691,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_6",
+                    "description" : "Implicated in free radical propagation",
+                    "begin" : 704,
+                    "end" : 704,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_7",
+                    "description" : "Susceptible to oxidation",
+                    "begin" : 706,
+                    "end" : 706,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_8",
+                    "description" : "Cleavage; by gamma-secretase; site 1",
+                    "begin" : 711,
+                    "end" : 712,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_9",
+                    "description" : "Cleavage; by gamma-secretase; site 2",
+                    "begin" : 713,
+                    "end" : 714,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_10",
+                    "description" : "Cleavage; by gamma-secretase; site 3",
+                    "begin" : 720,
+                    "end" : 721,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "SITE_11",
+                    "description" : "Cleavage; by caspase-6, caspase-8 or caspase-9",
+                    "begin" : 739,
+                    "end" : 740,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "MOTIF",
+            "label" : "short sequence motif",
+            "cvId" : "SO:0001067",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "MOTIF_0",
+                    "description" : "Basolateral sorting signal",
+                    "begin" : 724,
+                    "end" : 734,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MOTIF_1",
+                    "description" : "NPXY motif; contains endocytosis signal",
+                    "begin" : 759,
+                    "end" : 762,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "REGION",
+            "label" : "region of interest",
+            "cvId" : "SO:0000001",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "REGION_0",
+                    "description" : "Heparin-binding",
+                    "begin" : 96,
+                    "end" : 110,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "REGION_1",
+                    "description" : "Zinc-binding",
+                    "begin" : 181,
+                    "end" : 188,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "REGION_2",
+                    "description" : "Heparin-binding",
+                    "begin" : 391,
+                    "end" : 423,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "REGION_3",
+                    "description" : "Heparin-binding",
+                    "begin" : 491,
+                    "end" : 522,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "REGION_4",
+                    "description" : "Collagen-binding",
+                    "begin" : 523,
+                    "end" : 540,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "REGION_5",
+                    "description" : "Interaction with G(o)-alpha",
+                    "begin" : 732,
+                    "end" : 751,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "DOMAIN",
+            "label" : "domain",
+            "cvId" : "SO:0000417",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "DOMAIN_0",
+                    "description" : "BPTI/Kunitz inhibitor",
+                    "begin" : 291,
+                    "end" : 341,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "METAL",
+            "label" : "metal ion-binding site",
+            "cvId" : "SO:0001092",
+            "locations" : [{
+                "locationType" : "POSITION",
+                "features" : [{
+                    "ftId" : "METAL_0",
+                    "description" : "Copper 1",
+                    "begin" : 147,
+                    "end" : 147,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "METAL_1",
+                    "description" : "Copper 1",
+                    "begin" : 151,
+                    "end" : 151,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "METAL_2",
+                    "description" : "Copper 1",
+                    "begin" : 168,
+                    "end" : 168,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "METAL_3",
+                    "description" : "Copper or zinc 2",
+                    "begin" : 677,
+                    "end" : 677,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "METAL_4",
+                    "description" : "Copper or zinc 2",
+                    "begin" : 681,
+                    "end" : 681,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "METAL_5",
+                    "description" : "Copper or zinc 2",
+                    "begin" : 684,
+                    "end" : 684,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "METAL_6",
+                    "description" : "Copper or zinc 2",
+                    "begin" : 685,
+                    "end" : 685,
+                    "status" : "Experimental"
+                }]
+            }]
+        }]
+    }, {
+        "category" : "Post translational modifications",
+        "types" : [{
+            "type" : "CARBOHYD",
+            "label" : "glycosylation site",
+            "cvId" : "MOD:00693",
+            "locations" : [{
+                "locationType" : "POSITION",
+                "features" : [{
+                    "ftId" : "CARBOHYD_0",
+                    "description" : "",
+                    "begin" : 542,
+                    "end" : 542,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_1",
+                    "description" : "",
+                    "begin" : 571,
+                    "end" : 571,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_2",
+                    "description" : "",
+                    "begin" : 614,
+                    "end" : 614,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_3",
+                    "description" : "",
+                    "begin" : 623,
+                    "end" : 623,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_4",
+                    "description" : "",
+                    "begin" : 628,
+                    "end" : 628,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_5",
+                    "description" : "",
+                    "begin" : 633,
+                    "end" : 633,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_6",
+                    "description" : "",
+                    "begin" : 651,
+                    "end" : 651,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_7",
+                    "description" : "",
+                    "begin" : 652,
+                    "end" : 652,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_8",
+                    "description" : "in L-APP isoforms",
+                    "begin" : 656,
+                    "end" : 656,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_9",
+                    "description" : "",
+                    "begin" : 659,
+                    "end" : 659,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_10",
+                    "description" : "",
+                    "begin" : 663,
+                    "end" : 663,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_11",
+                    "description" : "",
+                    "begin" : 667,
+                    "end" : 667,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_12",
+                    "description" : "",
+                    "begin" : 679,
+                    "end" : 679,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CARBOHYD_13",
+                    "description" : "",
+                    "begin" : 697,
+                    "end" : 697,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "MOD_RES",
+            "label" : "modified residue",
+            "cvId" : "SO:0001089",
+            "locations" : [{
+                "locationType" : "POSITION",
+                "features" : [{
+                    "ftId" : "MOD_RES_0",
+                    "description" : "Phosphoserine; by CK2",
+                    "begin" : 198,
+                    "end" : 198,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MOD_RES_1",
+                    "description" : "Phosphoserine; by CK1",
+                    "begin" : 206,
+                    "end" : 206,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MOD_RES_2",
+                    "description" : "Phosphothreonine",
+                    "begin" : 729,
+                    "end" : 729,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MOD_RES_3",
+                    "description" : "Phosphoserine; by APP-kinase I",
+                    "begin" : 730,
+                    "end" : 730,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MOD_RES_4",
+                    "description" : "Phosphothreonine; by CDK5 and MAPK10",
+                    "begin" : 743,
+                    "end" : 743,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MOD_RES_5",
+                    "description" : "Phosphotyrosine",
+                    "begin" : 757,
+                    "end" : 757,
+                    "status" : "Experimental"
+                }]
+            }]
+        }]
+    }, {
+        "category" : "Sequence information",
+        "types" : [{
+            "type" : "COMPBIAS",
+            "label" : "compositionally biased region",
+            "cvId" : "SO:0001066",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "COMPBIAS_0",
+                    "description" : "Asp/Glu-rich (acidic)",
+                    "begin" : 230,
+                    "end" : 260,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "COMPBIAS_1",
+                    "description" : "Poly-Thr",
+                    "begin" : 274,
+                    "end" : 280,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "CONFLICT",
+            "label" : "sequence conflict",
+            "cvId" : "SO:0001085",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "CONFLICT_0",
+                    "description" : "",
+                    "begin" : 15,
+                    "end" : 16,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CONFLICT_1",
+                    "description" : "",
+                    "begin" : 647,
+                    "end" : 647,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CONFLICT_2",
+                    "description" : "",
+                    "begin" : 724,
+                    "end" : 724,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CONFLICT_3",
+                    "description" : "",
+                    "begin" : 731,
+                    "end" : 731,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "CONFLICT_4",
+                    "description" : "",
+                    "begin" : 757,
+                    "end" : 757,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "MUTAGEN",
+            "label" : "mutagenesis site",
+            "cvId" : "SO:0001148",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "MUTAGEN_0",
+                    "begin" : 99,
+                    "end" : 102,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_1",
+                    "begin" : 137,
+                    "end" : 137,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_2",
+                    "begin" : 141,
+                    "end" : 141,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_3",
+                    "begin" : 144,
+                    "end" : 144,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_4",
+                    "begin" : 147,
+                    "end" : 149,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_5",
+                    "begin" : 147,
+                    "end" : 147,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_6",
+                    "begin" : 147,
+                    "end" : 147,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_7",
+                    "begin" : 147,
+                    "end" : 147,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_8",
+                    "begin" : 151,
+                    "end" : 151,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_9",
+                    "begin" : 151,
+                    "end" : 151,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_10",
+                    "begin" : 198,
+                    "end" : 198,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_11",
+                    "begin" : 206,
+                    "end" : 206,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_12",
+                    "begin" : 499,
+                    "end" : 499,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_13",
+                    "begin" : 503,
+                    "end" : 503,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_14",
+                    "begin" : 656,
+                    "end" : 656,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_15",
+                    "begin" : 676,
+                    "end" : 676,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_16",
+                    "begin" : 681,
+                    "end" : 681,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_17",
+                    "begin" : 684,
+                    "end" : 684,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_18",
+                    "begin" : 704,
+                    "end" : 704,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_19",
+                    "begin" : 706,
+                    "end" : 706,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_20",
+                    "begin" : 706,
+                    "end" : 706,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_21",
+                    "begin" : 717,
+                    "end" : 717,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_22",
+                    "begin" : 717,
+                    "end" : 717,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_23",
+                    "begin" : 717,
+                    "end" : 717,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_24",
+                    "begin" : 717,
+                    "end" : 717,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_25",
+                    "begin" : 728,
+                    "end" : 728,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_26",
+                    "begin" : 739,
+                    "end" : 739,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_27",
+                    "begin" : 739,
+                    "end" : 739,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_28",
+                    "begin" : 743,
+                    "end" : 743,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_29",
+                    "begin" : 743,
+                    "end" : 743,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_30",
+                    "begin" : 756,
+                    "end" : 756,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_31",
+                    "begin" : 757,
+                    "end" : 757,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_32",
+                    "begin" : 757,
+                    "end" : 757,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_33",
+                    "begin" : 759,
+                    "end" : 759,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_34",
+                    "begin" : 760,
+                    "end" : 760,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "MUTAGEN_35",
+                    "begin" : 762,
+                    "end" : 762,
+                    "status" : "Experimental"
+                }]
+            }]
+        }]
+    }, {
+        "category" : "Topology",
+        "types" : [{
+            "type" : "TOPO_DOM",
+            "label" : "topological domain",
+            "cvId" : "SO:0001072",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "TOPO_DOM_0",
+                    "description" : "Extracellular",
+                    "begin" : 18,
+                    "end" : 699,
+                    "status" : "Experimental"
+                }, {
+                    "ftId" : "TOPO_DOM_1",
+                    "description" : "Cytoplasmic",
+                    "begin" : 724,
+                    "end" : 770,
+                    "status" : "Experimental"
+                }]
+            }]
+        }, {
+            "type" : "TRANSMEM",
+            "label" : "transmembrane region",
+            "cvId" : "SO:0001077",
+            "locations" : [{
+                "locationType" : "CONTINUOUS",
+                "features" : [{
+                    "ftId" : "TRANSMEM_0",
+                    "description" : "Helical",
+                    "begin" : 700,
+                    "end" : 723,
+                    "status" : "Experimental"
+                }]
+            }]
+        }]
+    }]
+}

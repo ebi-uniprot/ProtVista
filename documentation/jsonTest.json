@@ -1,0 +1,168 @@
+{
+    "accession": "P00000",
+    "entryName": "P0_human",
+    "sequence": "abcdefghikklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+    "categories": [
+		{
+		    "category": "Domains and sites",
+		    "types": [
+		        {
+		            "type": "ACT_SITE", "label": "Active site", "cvId": "SO:0000417",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { "ftId": "act-site-1", "description": "act-site-1-desc", "begin": 5, "end":6}
+		                        ,{ "ftId": "act-site-2", "description": "act-site-2-desc", "begin": 10, "end": 10}
+		                        ,{ "ftId": "act-site-3", "description": "act-site-3-desc", "begin": 170, "end": 170}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "SITE", "label": "Site", "cvId": "SO:0000SSS",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { "ftId": "site-1", "description": "site-1-desc", "begin": 20, "end":20}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "METAL", "label": "Metal", "cvId": "SO:0000MMM",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { "ftId": "metal-1", "description": "metal-1-desc", "begin": 30, "end":30}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "BINDING", "label": "Binding", "cvId": "SO:0000BBB",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { "ftId": "binding-1", "description": "binding-1-desc", "begin": 40, "end":41}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "LIPID", "label": "Lipid", "cvId": "SO:0000LLL",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { "ftId": "lipid-1", "description": "lipid-1-desc", "begin": 50, "end":50}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "NON_STD", "label": "Non standard", "cvId": "SO:0000NNN",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { "ftId": "non-std-1", "description": "non-std-1-desc", "begin": 60, "end":60}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "CA_BIND", "label": "Calcium binding", "cvId": "SO:0001080",
+		            "locations": [
+		                {
+		                    "locationType": "CONTINUOUS",
+		                    "features": [
+		                        { "ftId": "ca_bind-1", "description": "ca_bind-1-desc", "begin": 7, "end": 14},
+		                        { "ftId": "ca_bind-2", "description": "ca_bind-2-desc", "begin": 38, "end": 45}
+		                    ]
+		                }
+		            ]
+		        }
+		    ]
+		}, {
+		    "category": "Structural features - Seq info",
+		    "types": [
+		        {
+		            "type": "DISULFID", "label": "Disulfide bond", "cvId": "MOD:00689",
+		            "locations": [
+		                {
+		                    "locationType": "BRIDGE",
+		                    "features": [
+		                        { "ftId": "bond-1", "description": "bond-1-desc", "begin": 15, "end": 25}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "TURN", "label": "turn", "cvId": "SO:0001128",
+		            "locations": [
+		                {
+		                    "locationType": "CONTINUOUS",
+		                    "features": [
+		                        {
+		                            "ftId": "turn-1", "description": "turn-1-desc", "begin": 8, "end": 59,
+		                            "evidence": [{"type": "ECO:0000218", "source": {"ref": "23"}}]
+		                        },
+		                        {
+		                            "ftId": "turn-2", "description": "turn-2-desc", "begin": 18, "end": 69,
+		                            "evidence": [{"type": "ECO:0000203", "source": {"dbReferenceType": "MIM", "dbReferenceId": "123"}}]
+		                        },
+		                        {
+		                            "ftId": "turn-3", "description": "turn-3-desc", "begin": 28, "end": 79,
+		                            "evidence": [{"type": "ECO:0000203", "source": {"dbReferenceType": "MIM", "dbReferenceId": "123"}}]
+		                        }
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "NON_TER", "label": "Non terminal residue", "cvId": "NA",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        {"ftId": "non-ter-0", "description": "non-ter-0-desc", "internalId": "internal ID", "begin": 170, "end": 170}
+		                    ]
+		                }
+		            ]
+		
+		        },
+		        {
+		            "type": "NON_CONS", "label": "Non consecutive residue", "cvId": "NA",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { "ftId": "non-cons-0", "description": "non-cons-0-desc", "begin": 21, "end": 21}
+		                        ,{ "ftId": "non-cons-2", "description": "non-cons-1-desc", "begin": 170, "end": 170}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            "type": "INIT_MET", "label": "Removed initiator methionine", "cvId": "NA",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { "ftId": "init-met-0", "description": "init-met-0-desc", "begin": 1, "end": 1}
+		                    ]
+		                }
+		            ]
+		        }
+		    ]
+		}, {
+		    "category": "Topological",
+		    "types": [ ]
+
+		}
+	]
+}

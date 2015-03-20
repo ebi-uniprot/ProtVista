@@ -105,10 +105,12 @@
           "type": "string"
         },
         "begin": {
-          "type": "integer"
+          "type": "integer",
+          "minimum": 1
         },
         "end": {
-          "type": "integer"
+          "type": "integer",
+          "minimum": 1
         },
         "status": {
           "type": "string"
