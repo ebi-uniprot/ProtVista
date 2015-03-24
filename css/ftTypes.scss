@@ -246,7 +246,7 @@ div.up_pftv_category {
 //Category and type titles
 @mixin titles($fontSize, $fontWeight, $background, $fontColor) {
   font-family: $titlesFont;
-  margin: 1px;
+  margin: 0px 1px 1px 1px;
   padding: 5px;
   display: inline-block;
   vertical-align: top;
@@ -275,7 +275,7 @@ div.up_pftv_typeTitle {
   opacity: $opacity;
 }
 div.up_pftv_categoryFeatures {
-  margin: 1px;
+  margin: 0px 1px 1px 1px;
   padding: 5px;
 }
 div.up_pftv_categoryFeaturesDark { //will alternate

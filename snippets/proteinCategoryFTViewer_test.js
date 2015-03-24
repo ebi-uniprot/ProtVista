@@ -234,5 +234,5 @@ var instance = new pftv_aux_proteinCategoryFTViewer({
     useTooltips: true
     ,collapsible: true
     ,sequence: model.sequence
-    ,"category": model.categories[1]//.types[0]
+    ,category: model.categories[1]//.types[0]
 });

@@ -44,7 +44,7 @@ var
         d3.select("#" + wrapperId).classed("newclass", true);
         //add non-standard attributes outside React: ok
         d3.select("#" + wrapperId).attr("index", "index_0");
-        d3.selectAll("svg").attr("height", "50px");
+        //d3.selectAll("svg").attr("height", "50px");
         d3.selectAll("path").remove();
         d3.select("g").selectAll("path").data([1])
         	.enter().append("path")
@@ -53,6 +53,16 @@ var
         	.attr("d", "M49.16326530612245 39 L 49.16326530612245 24 L 82.29154518950438 24 L 82.29154518950438 39 L 79.27988338192421 39 L 79.27988338192421 25 L 52.17492711370262 25 L 52.17492711370262 39 Z")
     	;
     	d3.select("#" + wrapperId).append("div");
+
+
+        d3.select("body").append("div").attr("id", "otherId");
+        options.wrapperSeedId = "diffId";
+        React.render(
+            <ProteinTrack
+                {...options}
+            />,
+            document.getElementById("otherId")
+        );
         /*
         var dummyObject = d3.select("body").append("div")
             .classed("up_pftv_hiddenContainer", true)
