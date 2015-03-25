@@ -223,6 +223,7 @@ var variants = {
     ] */
     "variants": var_j3kp33.variants
 };
+p05067.categories.push(var_p05067.variants);
 var model = {
     //accession: "P00000",
     //identifier: "P0_human",
