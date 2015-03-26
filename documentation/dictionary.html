@@ -475,27 +475,48 @@
                 <td><a href="http://en.wikipedia.org/wiki/CPK_coloring">Linkage colours</a></td>
             </tr>
             <tr>
-                <th>Variations</th>
-                <td>Variant</td>
+                <th rowspan="4">Variations</th>
+                <td>Missense</td>
                 <td>Describes the natural sequence variants due to polymorphisms, disease-associated
                     mutations, RNA editing and variations between strains, isolates or cultivars.</td>
                 <td>SO:0001147</td>
-                <td bgcolor="#006666">Heatmap. If only one colour is used then #006666 TGB:0, 102, 102</td>
-                <td>Rectangle</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th rowspan="7">Sequence information</th>
-                <td>Compositional bias</td>
-                <td>Polypeptide region that is rich in a particular amino acid or homopolymeric and greater than
-                    three residues in length.</td>
-                <td>SO:0001066</td>
-                <td bgcolor="#FF3366">#FF3366, RGB: 255, 51, 102</td>
+                <td>
+                	<div style="background-color:#006666">For benign variations</div>
+                	<div style="background-color:#FDAE61">For undiscriminating variations</div>
+                	<div style="background-color:#D7191C">For deleterious variations</div>
+                </td>
                 <td>Rectangle</td>
                 <td></td>
             </tr>
             <tr>
 
+                <td>Stop gained</td>
+                <td>Natural variation when the stop codon has been gained in the middle of the sequence</td>
+                <td></td>
+                <td bgcolor="#2C7BB6">#2C7BB6, RGB 44, 123, 182</td>
+                <td>Rectangle</td>
+                <td></td>
+            </tr>
+            <tr>
+
+                <td>Stop lost</td>
+                <td>Natural variation when the stop codon has been lost</td>
+                <td></td>
+                <td bgcolor="#88A0E7">#88A0E7, RGB: 136, 160, 231</td>
+                <td>Rectangle</td>
+                <td></td>
+            </tr>
+            <tr>
+
+                <td>Initiator codon</td>
+                <td>Initiator codon variant</td>
+                <td></td>
+                <td bgcolor="#996633">#996633, RGB: 153, 102, 51</td>
+                <td>Rectangle</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Mutagenesis</th>
                 <td>Mutagen</td>
                 <td>Site which has been experimentally altered.</td>
                 <td>SO:0001148</td>
@@ -503,6 +524,17 @@
                 <td>Rectangle</td>
                 <td></td>
             </tr>
+            </tr>
+            <tr>
+                <th rowspan="6">Sequence information</th>
+                <td>Compositional bias</td>
+                <td>Polypeptide region that is rich in a particular amino acid or homopolymeric and greater than
+                    three residues in length.</td>
+                <td>SO:0001066</td>
+                <td bgcolor="#FF3366">#FF3366, RGB: 255, 51, 102</td>
+                <td>Rectangle</td>
+                <td></td>
+            </tr>            
             <tr>
 
                 <td>Conflict</td>
