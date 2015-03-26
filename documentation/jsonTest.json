@@ -2,9 +2,10 @@
     "accession": "P00000",
     "entryName": "P0_human",
     "sequence": "abcdefghikklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+    "sequenceVersion": "12345",
     "categories": [
 		{
-		    "category": "Domains and sites",
+		    "category": "Domains and sites", "categoryAbbrev": "DOM_SITE",
 		    "types": [
 		        {
 		            "type": "ACT_SITE", "label": "Active site", "cvId": "SO:0000417",
@@ -88,7 +89,7 @@
 		        }
 		    ]
 		}, {
-		    "category": "Structural features - Seq info",
+		    "category": "Structural features - Seq info", "categoryAbbrev": "STR_FT",
 		    "types": [
 		        {
 		            "type": "DISULFID", "label": "Disulfide bond", "cvId": "MOD:00689",
@@ -160,9 +161,65 @@
 		        }
 		    ]
 		}, {
-		    "category": "Topological",
+		    "category": "Topological", "categoryAbbrev": "TOPO",
 		    "types": [ ]
 
+		}, {
+			"category": "Variants", "categoryAbbrev": "NAT_VAR",
+			"types": [
+				{
+		            "type": "MISSENSE", "label": "Missense", "cvId": "NA",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { 
+		                        	"ftId": "P05067_variant36", "description": "in ALZ; something else", "begin": 200, "end": 200
+		                        	,"wildType" : "F", "mutation": "A", "frequency": 0
+		                        	,"polyphenPrediction": "a prediction", "polyphenScore": 0.005
+		                        	, "siftPrediction": "another prediction", "siftScore": 0.99
+		                        	,"association": "Alzheimer 1"
+		                        	,"somaticStatus" : 1
+            						,"consequenceTypes" : "missense variant"
+            						,"cytogeneticBand" : "21q21.3"
+            						,"genomicLocation" : "21:g.25881691G>T"
+            						,"sourceIds" : ["COSM1029630"]
+            						,"clinicalSignificances" : ["unclassified"]
+	                        	}, { 
+		                        	"ftId": "P05067_variant36", "description": "in ALZ; something else", "begin": 201, "end": 201
+		                        	,"wildType" : "F", "mutation": "AG", "frequency": 0
+		                        	,"polyphenPrediction": "a prediction", "polyphenScore": 0.005
+		                        	, "siftPrediction": "another prediction", "siftScore": 0.99
+		                        	,"association": "Alzheimer 1"
+	                        	}, { 
+		                        	"ftId": "P05067_variant36", "description": "in ALZ; something else", "begin": 202, "end": 202
+		                        	,"wildType" : "F", "mutation": "-", "frequency": 0
+		                        	,"polyphenPrediction": "a prediction", "polyphenScore": 0.005
+		                        	, "siftPrediction": "another prediction", "siftScore": 0.99
+		                        	,"association": "Alzheimer 1"
+	                        	}
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		        	"type": "STOP GAINED", "label": "Stop gained",
+		            "locations": [
+		                {
+		                    "locationType": "POSITION",
+		                    "features": [
+		                        { 
+		                        	"ftId": "P05067_variant36", "description": "in ALZ; something else", "begin": 202, "end": 202
+		                        	,"wildType" : "F", "mutation": "*", "frequency": 0
+		                        	,"polyphenPrediction": "a prediction", "polyphenScore": 0.005
+		                        	, "siftPrediction": "another prediction", "siftScore": 0.99
+		                        	,"association": "Alzheimer 1"
+	                        	}
+		                    ]
+		                }
+		            ]
+		        }
+			]
 		}
 	]
 }

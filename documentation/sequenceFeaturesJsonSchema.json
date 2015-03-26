@@ -1,177 +1,260 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://jsonschema.net",
-  "type": "object",
-  "properties": {
-    "accession": {
-      "type": "string"
-    },
-    "entryName": {
-      "type": "string"
-    },
-    "sequence": {
-      "type": "string"
-    },
-    "categories": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "type": "object",
-        "$ref": "#/definitions/categoryObject"
-      }
-    }
-  },
-  "required": [
-    "accession",
-    "entryName",
-    "sequence",
-    "categories"
-  ],
-  "definitions": {
-    "categoryObject": {
-      "properties": {
-        "category": {
-          "type": "string"
-        },
-        "types": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/typeObject"
-          }
-        }
-      },
-      "required": [
-        "category",
-        "types"
-      ]
-    },
-    "typeObject": {
-      "properties": {
-        "type": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        },
-        "cvId": {
-          "type": "string"
-        },
-        "locations": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/locationObject"
-          },
-          "minItems": 1
-        }
-      },
-      "required": [
-        "type",
-        "label",
-        "cvId",
-        "locations"
-      ]
-    },
-    "locationObject": {
-      "properties": {
-        "locationType": {
-          "enum": ["CONTINUOUS", "BRIDGE", "POSITION"]
-        },
-        "features": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/featureObject"
-          },
-          "minItems": 1
-        }
-      },
-      "required": [
-        "locationType",
-        "features"
-      ]
-    },
-    "featureObject": {
-      "properties": {
-        "ftId": {
-          "type": "string",
-          "unique": true
-        },
-        "internalId": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "begin": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "end": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "status": {
-          "type": "string"
-        },
-        "evidence": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/evidenceObject"
-          },
-          "minItems": 1
-        }
-      },
-      "required": [
-        "ftId",
-        "begin",
-        "end"
-      ]
-    },
-    "evidenceObject": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "pattern": "^ECO:[0-9]{7}$"
-        },
-        "source": {
-          "type": "object",
-          "oneOf": [
-            {"$ref": "#/definitions/dbReferenceObject"},
-            {"$ref": "#/definitions/referenceObject"}
-          ]
-        }
-      },
-      "required": [
-        "type",
-        "source"
-      ]
-    },
-    "dbReferenceObject": {
-      "properties": {
-        "dbReferenceType": {
-          "type": "string"
-        },
-        "dbReferenceId": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "dbReferenceType",
-        "dbReferenceId"
-      ]
-    },
-    "referenceObject": {
-      "properties": {
-        "ref": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "ref"
-      ]
-    }
-  }
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://jsonschema.net",
+	"type": "object",
+	"properties": {
+		"accession": {
+			"type": "string"
+		},
+		"entryName": {
+			"type": "string"
+		},
+		"sequence": {
+			"type": "string"
+		},
+		"sequenceVersion": {
+			"type": "string"
+		},
+		"eGeneId": {
+			"type": "string"
+		},
+		"eProteinId": {
+			"type": "string"
+		},
+		"categories": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "object",
+				"$ref": "#/definitions/categoryObject"
+			}
+		}
+	},
+	"required": ["accession", "entryName", "sequence", "sequenceVersion", "categories"],
+	"definitions": {
+		"categoryObject": {
+			"properties": {
+				"category": {
+					"type": "string"
+				},
+				"categoryAbbrev": {
+					"type": "string",
+					"pattern": "^(MOL_PROC|STR_FT|DOM_SITE|PTM|NAT_VAR|MUTA|SEQ_INFO|TOPO)$"
+				},
+				"types": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/typeObject"
+					}
+				}
+			},
+			"required": ["category", "types"]
+		},
+		"typeObject": {
+			"properties": {
+				"type": {
+					"type": "string"
+				},
+				"label": {
+					"type": "string"
+				},
+				"cvId": {
+					"type": "string"
+				},
+				"locations": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/locationObject"
+					},
+					"minItems": 1
+				}
+			},
+			"required": ["type", "label", "locations"]
+		},
+		"locationObject": {
+			"properties": {
+				"locationType": {
+					"enum": ["CONTINUOUS", "BRIDGE", "POSITION"]
+				},
+				"features": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"anyOf": [
+							{
+								"$ref": "#/definitions/featureObject"
+							}, {
+								"$ref": "#/definitions/variantObject"
+							}
+						]							
+					},
+					"minItems": 1
+				}
+			},
+			"required": ["locationType", "features"]
+		},
+		"featureObject": {
+			"properties": {
+				"ftId": {
+					"type": "string",
+					"unique": true
+				},
+				"internalId": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"begin": {
+					"type": "integer",
+					"minimum": 1
+				},
+				"end": {
+					"type": "integer",
+					"minimum": 1
+				},
+				"status": {
+					"type": "string"
+				},
+				"evidence": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/evidenceObject"
+					},
+					"minItems": 1
+				}
+			},
+			"required": ["ftId", "begin", "end"]
+		},
+		"variantObject": {
+			"properties": {
+				"ftId": {
+					"type": "string",
+					"unique": true
+				},
+				"internalId": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"begin": {
+					"type": "integer",
+					"minimum": 1
+				},
+				"end": {
+					"type": "integer",
+					"minimum": 1
+				},
+				"status": {
+					"type": "string"
+				},
+				"wildType": {
+					"type": "string",
+					"pattern": "^(A|R|N|D|C|Q|E|G|H|I|L|K|M|F|P|S|T|W|Y|V)$"
+				},
+				"mutation": {
+					"type": "string",
+					"pattern": "^(A|R|N|D|C|Q|E|G|H|I|L|K|M|F|P|S|T|W|Y|V|-|\\*){1,2}$"
+				},
+				"frequency": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 1.0
+				},
+				"polyphenPrediction": {
+					"type": "string"
+				},
+				"polyphenScore": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 1.0
+				},
+				"siftPrediction": {
+					"type": "string"
+				},
+				"siftScore": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 1.0
+				},
+				"somaticStatus": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 1
+				},
+				"cytogeneticBand": {
+					"type": "string"
+				},
+				"genomicLocation": {
+					"type": "string"
+				},
+				"association": {
+					"type": "string"
+				},
+				"sourceIds": {
+		            "type": "array",
+		            "minItems": 1,
+		            "items": { "type": "string" },
+		            "uniqueItems": true
+		        },
+		        "clinicalSignificances": {
+		            "type": "array",
+		            "minItems": 1,
+		            "items": { "type": "string" },
+		            "uniqueItems": true
+		        },
+				"evidence": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/evidenceObject"
+					},
+					"minItems": 1
+				}
+			},
+			"required": ["ftId", "begin", "end", "wildType", "mutation", "frequency", "polyphenPrediction", "polyphenScore", "siftPrediction", "siftScore"]
+		},
+		"evidenceObject": {
+			"properties": {
+				"type": {
+					"type": "string",
+					"pattern": "^ECO:[0-9]{7}$"
+				},
+				"source": {
+					"type": "object",
+					"oneOf": [
+						{
+							"$ref": "#/definitions/dbReferenceObject"
+						}, {
+							"$ref": "#/definitions/referenceObject"
+						}
+					]
+				}
+			},
+			"required": ["type", "source"]
+		},
+		"dbReferenceObject": {
+			"properties": {
+				"dbReferenceType": {
+					"type": "string"
+				},
+				"dbReferenceId": {
+					"type": "string"
+				}
+			},
+			"required": ["dbReferenceType", "dbReferenceId"]
+		},
+		"referenceObject": {
+			"properties": {
+				"ref": {
+					"type": "string"
+				}
+			},
+			"required": ["ref"]
+		}
+	}
 }
