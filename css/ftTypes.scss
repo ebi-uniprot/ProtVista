@@ -35,7 +35,7 @@ $ftTypes: join($ftTypes, $topology);
 /**
 * Miscellaneous
 */
-div.up_pftv_hiddenContainer {
+div.up_pftv_hiddenContainer {     //TODO why?
   position: absolute;
   z-index: -1;
   opacity: 0.0000001;
@@ -239,34 +239,61 @@ div.up_pftv_identifier {
 * Categories and types
 */
 //Category
+div.up_pftv_notDisplayed {
+  display: none;
+}
 div.up_pftv_category {
   clear: left;
   display: table-row;
 }
 //Category and type titles
+@mixin marginPadding() {
+  margin: 0px 1px 1px 0px;
+  padding: 3px;
+}
 @mixin titles($fontSize, $fontWeight, $background, $fontColor) {
   font-family: $titlesFont;
-  margin: 0px 1px 1px 1px;
-  padding: 5px;
   display: inline-block;
   vertical-align: top;
   font-size: $fontSize;
   font-weight: $fontWeight;
   background-color: $background;
   color: $fontColor;
+  @include marginPadding();
 }
 div.up_pftv_categoryTitle {
-  @include titles(11px, bold, $categoryTitleBackground, $categoryFontColor);
+  @include titles(10px, bold, $categoryTitleBackground, $categoryFontColor);
   width: 150px;
+  cursor: pointer;
 }
 div.up_pftv_categoryTitleNoCollapsible {
-  @include titles(11px, bold, $categoryTitleBackgroundNoCollapsible, $subcategoryFontColor);
-  //white-space: pre;
+  @include titles(10px, bold, $categoryTitleBackgroundNoCollapsible, $subcategoryFontColor);
   margin-left: 10px;
   width: 140px;
 }
 div.up_pftv_typeTitle {
-  @include titles(11px, normal, $typeTitleBackground, $categoryFontColor);
+  @include titles(10px, normal, $typeTitleBackground, $categoryFontColor);
+}
+div.up_pftv_withShapesShort {
+  height: 33px;
+}
+div.up_pftv_withBridgesShort {
+   height: 17px; //bridges need 15 but title needs at least 17
+}
+div.up_pftv_withRegionsShort {
+  height: 17px; //regions need 10 but title need at least 17
+}
+div.up_pftv_withVariants {
+  height: 130px;
+}
+div.up_pftv_longTitle {
+  height: 33px; //28 would be enough but 33 simplifies things with shapes, regions, and bridges
+}
+div.up_pftv_longTitleClose {
+  height: 28px;
+}
+div.up_pftv_shortTitleClose {
+  height: 17px;
 }
 //Category and type feature containers
 @mixin featureContainer ($background, $opacity:1.0) {
@@ -275,8 +302,7 @@ div.up_pftv_typeTitle {
   opacity: $opacity;
 }
 div.up_pftv_categoryFeatures {
-  margin: 0px 1px 1px 1px;
-  padding: 5px;
+  @include marginPadding();
 }
 div.up_pftv_categoryFeaturesDark { //will alternate
   @include featureContainer($categoryFeaturesDarkBackground);

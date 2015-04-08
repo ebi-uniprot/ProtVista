@@ -27,12 +27,18 @@ var
      * @private
      */
     _constructor = function(self, options) {
-        React.render(
+        options.todo = self.test;
+        var component = React.render(
             <ProteinTrack
                 {...options}
             />,
             options.element
         );
+        component.on('myEvent', function(obj) {
+            console.log('i am listening');
+            console.log(obj.value);
+        });
+        /*
         var wrapperId = options.wrapperSeedId + "_category_" + options.categoryIndex +
                     (options.isTrackCategory === true
                         ?  ""
@@ -63,6 +69,7 @@ var
             />,
             document.getElementById("otherId")
         );
+        */
         /*
         var dummyObject = d3.select("body").append("div")
             .classed("up_pftv_hiddenContainer", true)
@@ -94,5 +101,17 @@ var
         console.log(child);
         options.element.appendChild(child);
         */
+    },
+    _test = function(anything) {
+        console.log("private TEST defined in parent");
+        console.log(anything);
     }
 ;
+
+CategoryTypeTrack.prototype.myVar = "i am a variable";
+CategoryTypeTrack.prototype.test = function test(anything) {
+    console.log("public TEST defined in parent");
+    console.log(this);
+    console.log(anything);
+    console.log(this.myVar);
+};

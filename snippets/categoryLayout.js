@@ -2,14 +2,13 @@
 var catType = require("categoryTypeTrack");
 var instance = new catType({
     element: document.getElementById("target"),
+    title: "MOLECULE PROCESSING",//"POST TRANSLATIONAL MODIFICATIONS", //"MOLECULE PROCESSING",
     isTrackCategory: true,
     categoryIndex: 0,
     typeIndex: 0,
     wrapperSeedId: "catWrapperId",
     collapsible: true,
     dark: true,
-    featuresStyle: {
-        width: "1050px",
-        height: "39px"
-    }
+    content: "withBridges",
+    featuresWidth: 1050
 });
