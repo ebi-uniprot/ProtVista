@@ -23,6 +23,7 @@
   "main": "lib/biojs-vis-proteinFeaturesViewer",
   "scripts": {
     "test": "gulp test",
+    "react-test": "mocha --compilers .jsx:test_react/compiler.js test_react/*-test.jsx",
     "build": "gulp build",
     "build-browser": "gulp build-browser",
     "build-browser-min": "gulp build-browser-gzip",
@@ -35,14 +36,15 @@
     "d3": "^3.4.13",
     "jquery": "^2.1.1",
     "react": "^0.13.0",
+    "react-tools": "^0.13.1",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
-    "reactify": "^1.1.0",
     "biojs-sniper": "^0.0.4",
     "browserify": "5.x",
     "chai": "^1.9.1",
     "del": "^0.1.3",
+    "fs": "0.0.2",
     "gulp": "^3.8.8",
     "gulp-chmod": "^1.1.1",
     "gulp-gzip": "0.0.8",
@@ -50,13 +52,15 @@
     "gulp-mocha": "^1.0.0",
     "gulp-mocha-phantomjs": "^0.5.0",
     "gulp-rename": "^1.2.0",
+    "gulp-sass": "^1.3.2",
     "gulp-streamify": "^0.0.5",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
     "gulp-watch": "^1.0.2",
-    "gulp-sass": "^1.3.2",
+    "jsdom": "^3.1.1",
     "mkdirp": "^0.5.0",
-    "mocha": "~1.20.1",
+    "mocha": "^2.2.4",
+    "reactify": "^1.1.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^1.0.6"
   },
@@ -69,7 +73,7 @@
   "sniper": {
     "js": [
       "/build/pftv-aux-proteinCategoryFTViewer.js",
-      "/build/categoryTypeTrack.js"
+      "/build/biojs-vis-proteinTrackViewer.js"
     ],
     "snippets": [
       "snippets"
@@ -79,7 +83,8 @@
     "third": "proteinCategoryFTViewer_test"
   },
   "keywords": [
-    "sequence protein features", "visualization",
+    "sequence protein features",
+    "visualization",
     "biojs"
   ]
 }

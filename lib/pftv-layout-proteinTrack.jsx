@@ -61,8 +61,8 @@ module.exports =
         widthStyle: undefined,
         svgIndex: undefined,
         transform: undefined,
-        close: undefined,
         shortTitle: undefined,
+        isClosed: undefined,
         /**
          * Mixin classes.
          */
@@ -73,6 +73,7 @@ module.exports =
         propTypes: {
             wrapperSeedId: React.PropTypes.string.isRequired,
             title: React.PropTypes.string.isRequired,
+            tooltip: React.PropTypes.string.isRequired,
             isTrackCategory: React.PropTypes.bool.isRequired,
             categoryIndex: React.PropTypes.number.isRequired,
             typeIndex: React.PropTypes.number.isRequired,
@@ -80,26 +81,6 @@ module.exports =
             dark: React.PropTypes.bool.isRequired,
             content: React.PropTypes.oneOf([LayoutGlobal.withShapes, LayoutGlobal.withBridges, LayoutGlobal.withRegions, LayoutGlobal.withVariants]),
             featuresWidth: React.PropTypes.number.isRequired
-        },
-        /**
-         * Initializes the category wrapper id and the all-types wrapper id.
-         * @private
-         */
-        _initWrapperIds: function() {
-            this.wrapperId = this.props.wrapperSeedId + _SEPARATOR + _CATEGORY + _SEPARATOR + this.props.categoryIndex +
-                (this.props.isTrackCategory === true
-                    ?  ""
-                    : _SEPARATOR + _TYPE + _SEPARATOR + this.props.typeIndex
-                )
-            ;
-
-            this.divTitleId = this.wrapperId + _SEPARATOR + _TITLE;
-            this.divFeaturesId = this.wrapperId + _SEPARATOR + _FEATURES;
-
-            this.allTypesWrapperId = this.wrapperId + _SEPARATOR + _ALL_TYPES_WRAPPER;
-            if (this.props.isTrackCategory === true) {
-                this.catTypes = <div id={this.allTypesWrapperId} className={_ROW_CLASS}></div>;
-            }
         },
         /**
          * Initializes title and feature classes.
@@ -141,13 +122,33 @@ module.exports =
             }
         },
         /**
+         * Initializes the category wrapper id and the all-types wrapper id.
+         * @private
+         */
+        _initWrapperIds: function() {
+            this.wrapperId = this.props.wrapperSeedId + _SEPARATOR + _CATEGORY + _SEPARATOR + this.props.categoryIndex +
+                (this.props.isTrackCategory === true
+                    ?  ""
+                    : _SEPARATOR + _TYPE + _SEPARATOR + this.props.typeIndex
+                )
+            ;
+
+            this.divTitleId = this.wrapperId + _SEPARATOR + _TITLE;
+            this.divFeaturesId = this.wrapperId + _SEPARATOR + _FEATURES;
+
+            this.allTypesWrapperId = this.wrapperId + _SEPARATOR + _ALL_TYPES_WRAPPER;
+            if (this.props.isTrackCategory === true) {
+                this.catTypes = <div id={this.allTypesWrapperId} className={_ROW_CLASS}></div>;
+            }
+        },
+        /**
          * Opens or closes a track and triggers an event.
          * If track is closed, arrow will point down, otherwise it will point right.
          * @private
          */
         _openClose: function() {
-            this.close = !this.close;
-            if (this.close === true) {
+            this.isClosed = !this.isClosed;
+            if (this.isClosed === true) {
                 d3.select("#" + this.divTitleId).text(LayoutGlobal.arrowRight + " " + this.props.title);
                 d3.select("#" + this.divTitleId).attr("class", this.titleClass);
                 d3.select("#" + this.divFeaturesId).style("display", "");
@@ -164,7 +165,24 @@ module.exports =
                 }
                 d3.select("#" + this.divTitleId).attr("class", titleClass);
             }
-            this.trigger("openClose", {close: this.close});
+            this.trigger("openClose", {isClosed: this.isClosed});
+        },
+        /**
+         * Triggers a "ready" event.
+         */
+        componentDidMount: function() {
+            this.trigger("ready", {wrapperId: this.wrapperId, divTitleId: this.divTitleId, divFeaturesId: this.divFeaturesId});
+        },
+        /**
+         * Initializes the close/open state, the wrapper ids, classes, styles, and SVG index & transformation.
+         */
+        componentWillMount: function() {
+            this.isClosed = true;
+            this._initWrapperIds();
+            this._initClasses();
+            this.widthStyle = {width: this.props.featuresWidth + "px"};
+            this.svgIndex = this.props.categoryIndex + _SEPARATOR + this.props.typeIndex;
+            this.transform = "translate(0, -" + LayoutGlobal.trackPadding + ")";
         },
         /**
          * Default parameter values.
@@ -172,8 +190,9 @@ module.exports =
          */
         getDefaultProps: function() {
             return {
-                wrapperSeedId: "catWrapperSeedId",
+                wrapperSeedId: "wrapperSeedId",
                 title: "",
+                tooltip: "",
                 isTrackCategory: true,
                 categoryIndex: 0,
                 typeIndex: 0,
@@ -182,23 +201,6 @@ module.exports =
                 content: LayoutGlobal.withRegions,
                 featuresWidth: 1050
             };
-        },
-        /**
-         * Initializes the open/close status, wrapper ids, classes, styles, and SVG index & transformation.
-         */
-        componentWillMount: function() {
-            this.close = true;
-            this._initWrapperIds();
-            this._initClasses();
-            this.widthStyle = {width: this.props.featuresWidth + "px"};
-            this.svgIndex = this.props.categoryIndex + _SEPARATOR + this.props.typeIndex;
-            this.transform = "translate(0, -" + LayoutGlobal.trackPadding + ")";
-        },
-        /**
-         * Triggers a "ready" event.
-         */
-        componentDidMount: function() {
-            this.trigger("ready", {wrapperId: this.wrapperId, divTitleId: this.divTitleId, divFeaturesId: this.divFeaturesId});
         },
         /**
          * Component rendering.

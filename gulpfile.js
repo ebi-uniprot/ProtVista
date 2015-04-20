@@ -72,6 +72,12 @@ gulp.task('test-unit', function () {
                     useColors: false}));
 });
 
+gulp.task('test-react', function () {
+    return gulp.src('./test_react/*-test.js', {read: false})
+        .pipe(mocha({reporter: 'spec',
+            useColors: false}));
+});
+
 
 gulp.task('test-dom', ["build-test"], function () {
   return gulp
@@ -197,7 +203,7 @@ gulp.task('build-browser-cat', ['init-cat'], function() {
 
 //category layout module
 var reactify = require('reactify');
-var outputFileCatLayout = "categoryTypeTrack";
+var outputFileCatLayout = "biojs-vis-proteinTrackViewer";
 gulp.task('init-cat-layout', function(cb) {
     del([buildDir + '/' + outputFileCatLayout + '.js'], cb);
     mkdirp(buildDir, function (err) {
@@ -206,7 +212,7 @@ gulp.task('init-cat-layout', function(cb) {
 });
 gulp.task('build-browser-catLayout', ['init-cat-layout'], function() {
     var b = browserify({debug: true, hasExports: true});
-    b.add(['./lib/categoryTypeTrack.jsx'], {expose: outputFileCatLayout });
+    b.add(['./lib/' + outputFileCatLayout + '.jsx'], {expose: outputFileCatLayout });
     b.transform(reactify);
     return b.bundle()
         .pipe(source(outputFileCatLayout + ".js"))
