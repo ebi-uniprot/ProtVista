@@ -136,8 +136,8 @@ module.exports =
             this.divTitleId = this.wrapperId + _SEPARATOR + _TITLE;
             this.divFeaturesId = this.wrapperId + _SEPARATOR + _FEATURES;
 
-            this.allTypesWrapperId = this.wrapperId + _SEPARATOR + _ALL_TYPES_WRAPPER;
             if (this.props.isTrackCategory === true) {
+                this.allTypesWrapperId = this.wrapperId + _SEPARATOR + _ALL_TYPES_WRAPPER;
                 this.catTypes = <div id={this.allTypesWrapperId} className={_ROW_CLASS}></div>;
             }
         },
@@ -171,7 +171,7 @@ module.exports =
          * Triggers a "ready" event.
          */
         componentDidMount: function() {
-            this.trigger("ready", {wrapperId: this.wrapperId, divTitleId: this.divTitleId, divFeaturesId: this.divFeaturesId});
+            this.trigger("ready", {wrapperId: this.wrapperId, divTitleId: this.divTitleId, divFeaturesId: this.divFeaturesId, allTypesWrapperId: this.allTypesWrapperId});
         },
         /**
          * Initializes the close/open state, the wrapper ids, classes, styles, and SVG index & transformation.

@@ -101,4 +101,22 @@ describe('pftv-layout-proteinTrack', function() {
         var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
         assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.cssPrefix + "longTitle") != -1, true);
     });
+    it('checks that allTypes div exists for categories', function() {
+        var options = {
+            isTrackCategory: true
+        };
+        var component = TestUtils.renderIntoDocument(
+            <ProteinTrack {...options}/>
+        );
+        assert.equal(component.allTypesWrapperId == undefined, false);
+    });
+    it('checks that allTypes div does not exist for types', function() {
+        var options = {
+            isTrackCategory: false
+        };
+        var component = TestUtils.renderIntoDocument(
+            <ProteinTrack {...options}/>
+        );
+        assert.equal(component.allTypesWrapperId == undefined, true);
+    });
 });
