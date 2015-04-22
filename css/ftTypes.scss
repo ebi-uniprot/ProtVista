@@ -249,7 +249,7 @@ div.up_pftv_category {
 //Category and type titles
 @mixin marginPadding() {
   margin: 0px 1px 1px 0px;
-  padding: 3px;
+  padding: 3px; //SVG needs to be translate to -3px as well
 }
 @mixin titles($fontSize, $fontWeight, $background, $fontColor) {
   font-family: $titlesFont;
@@ -262,12 +262,12 @@ div.up_pftv_category {
   @include marginPadding();
 }
 div.up_pftv_categoryTitle {
-  @include titles(10px, bold, $categoryTitleBackground, $categoryFontColor);
+  @include titles(11px, bold, $categoryTitleBackground, $categoryFontColor);
   width: 150px;
   cursor: pointer;
 }
 div.up_pftv_categoryTitleNoCollapsible {
-  @include titles(10px, bold, $categoryTitleBackgroundNoCollapsible, $subcategoryFontColor);
+  @include titles(11px, bold, $categoryTitleBackgroundNoCollapsible, $subcategoryFontColor);
   margin-left: 10px;
   width: 140px;
 }

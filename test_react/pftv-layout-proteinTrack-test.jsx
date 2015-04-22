@@ -5,8 +5,8 @@ var assert = require('assert');
 var ReactAO = require('react/addons');
 var React = require('react');
 var TestUtils = React.addons.TestUtils;
-var ProteinTrack = require('../lib/pftv-layout-proteinTrack.jsx');
-var LayoutGlobal = require('../lib/pftv-layout-global');
+var ProteinTrack = require('../lib/ptv-layout-proteinTrack.jsx');
+var LayoutGlobal = require('../lib/ptv-layout-global');
 
 describe('pftv-layout-proteinTrack', function() {
     afterEach(function(done) {
@@ -20,15 +20,15 @@ describe('pftv-layout-proteinTrack', function() {
         );
         assert.equal(component.isClosed, true);
 
-        var titleClose = LayoutGlobal.arrowRight + " ";
-        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
+        var titleClose = LayoutGlobal.ARROW_RIGHT + " ";
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
         assert.equal(divTitle.getDOMNode().textContent, titleClose);
     });
     it('opens and closes a track', function() {
         var component = TestUtils.renderIntoDocument(
             <ProteinTrack/>
         );
-        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
 
         TestUtils.Simulate.click(divTitle);
         assert.equal(component.isClosed, false);
@@ -36,60 +36,99 @@ describe('pftv-layout-proteinTrack', function() {
         TestUtils.Simulate.click(divTitle);
         assert.equal(component.isClosed, true);
     });
-    it('checks title and feature classes for a short title with regions', function() {
+    it('attempts to open a type track (type tracks do not open/close)', function() {
         var options = {
-            title: "MOLECULE PROCESSING",
-            content: LayoutGlobal.withRegions
+            isTrackCategory: false
         };
         var component = TestUtils.renderIntoDocument(
             <ProteinTrack {...options}/>
         );
-        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
-        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.cssPrefix + "withRegionsShort") != -1, true);
+
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitleNoCollapsible");
+        try {
+            TestUtils.Simulate.click(divTitle);
+        } catch (error) {
+            assert(true);
+        }
+    });
+    it('attempts to access a category title div from a type track', function() {
+        var options = {
+            isTrackCategory: false
+        };
+        var component = TestUtils.renderIntoDocument(
+            <ProteinTrack {...options}/>
+        );
+
+        try {
+            TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
+        } catch (error) {
+            assert(true);
+        }
+    });
+    it('checks no arrow in title when isTrackCategory is false', function() {
+        var options = {
+            isTrackCategory: false
+        };
+        var component = TestUtils.renderIntoDocument(
+            <ProteinTrack {...options}/>
+        );
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitleNoCollapsible");
+        assert.equal(divTitle.getDOMNode().textContent.indexOf(LayoutGlobal.ARROW_RIGHT) === -1, true);
+    });
+    it('checks title and feature classes for a short title with regions', function() {
+        var options = {
+            title: "MOLECULE PROCESSING",
+            content: LayoutGlobal.WITH_REGIONS
+        };
+        var component = TestUtils.renderIntoDocument(
+            <ProteinTrack {...options}/>
+        );
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
+        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.CSS_PREFIX + "withRegionsShort") != -1, true);
     });
     it('checks title and feature classes for a short title with bridges', function() {
         var options = {
             title: "MOLECULE PROCESSING",
-            content: LayoutGlobal.withBridges
+            content: LayoutGlobal.WITH_BRIDGES
         };
         var component = TestUtils.renderIntoDocument(
             <ProteinTrack {...options}/>
         );
-        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
-        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.cssPrefix + "withBridgesShort") != -1, true);
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
+        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.CSS_PREFIX + "withBridgesShort") != -1, true);
     });
     it('checks title and feature classes for a short title with shapes', function() {
         var options = {
             title: "MOLECULE PROCESSING",
-            content: LayoutGlobal.withShapes
+            content: LayoutGlobal.WITH_SHAPES
         };
         var component = TestUtils.renderIntoDocument(
             <ProteinTrack {...options}/>
         );
-        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
-        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.cssPrefix + "withShapesShort") != -1, true);
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
+        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.CSS_PREFIX + "withShapesShort") != -1, true);
     });
     it('checks title and feature classes for variants category with a short title', function() {
         var options = {
             title: "MOLECULE PROCESSING",
-            content: LayoutGlobal.withVariants
+            content: LayoutGlobal.WITH_VARIANTS
         };
         var component = TestUtils.renderIntoDocument(
             <ProteinTrack {...options}/>
         );
-        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
-        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.cssPrefix + "withVariants") != -1, true);
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
+        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.CSS_PREFIX + "withVariants") != -1, true);
     });
     it('checks title and feature classes for variants category with a long title', function() {
         var options = {
             title: "MOLECULE PROCESSING LONG TITLE",
-            content: LayoutGlobal.withVariants
+            content: LayoutGlobal.WITH_VARIANTS
         };
         var component = TestUtils.renderIntoDocument(
             <ProteinTrack {...options}/>
         );
-        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
-        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.cssPrefix + "withVariants") != -1, true);
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
+        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.CSS_PREFIX + "withVariants") != -1, true);
     });
     it('checks title and feature classes for variants category', function() {
         var options = {
@@ -98,8 +137,8 @@ describe('pftv-layout-proteinTrack', function() {
         var component = TestUtils.renderIntoDocument(
             <ProteinTrack {...options}/>
         );
-        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.cssPrefix + "categoryTitle");
-        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.cssPrefix + "longTitle") != -1, true);
+        var divTitle = TestUtils.findRenderedDOMComponentWithClass(component, LayoutGlobal.CSS_PREFIX + "categoryTitle");
+        assert.equal(divTitle.getDOMNode().className.indexOf(LayoutGlobal.CSS_PREFIX + "longTitle") != -1, true);
     });
     it('checks that allTypes div exists for categories', function() {
         var options = {
