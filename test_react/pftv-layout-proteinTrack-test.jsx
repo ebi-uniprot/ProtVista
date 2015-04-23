@@ -6,7 +6,7 @@ var ReactAO = require('react/addons');
 var React = require('react');
 var TestUtils = React.addons.TestUtils;
 var ProteinTrack = require('../lib/ptv-layout-proteinTrack.jsx');
-var LayoutGlobal = require('../lib/ptv-layout-global');
+var LayoutGlobal = require('../lib/ptv-aux-global');
 
 describe('pftv-layout-proteinTrack', function() {
     afterEach(function(done) {

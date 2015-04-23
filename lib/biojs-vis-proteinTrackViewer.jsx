@@ -2,7 +2,7 @@
 
 var React = require('react');
 var LayoutProteinTrack = require('./ptv-layout-proteinTrack.jsx');
-var LayoutGlobal = require('./ptv-layout-global');
+var LayoutGlobal = require('./ptv-aux-global');
 var ProteinTrackUtils = require('./ptv-aux-utils');
 var TrackPaintingHelper = require('./ptv-aux-trackPaintingHelper');
 var _ = require('underscore');

@@ -1,6 +1,6 @@
 var React = require('react');
 var React = require('react');
-var LayoutGlobal = require('./ptv-layout-global');
+var LayoutGlobal = require('./ptv-aux-global');
 var BiojsEvents = require('biojs-events');
 var d3 = require('d3');
 /*
