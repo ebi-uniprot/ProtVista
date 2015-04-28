@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        jQuery = $;
+    </script>
+    <script src="../js/biojs-vis-proteinFeaturesViewer.js"></script>
+    <script src="../js/biojs-vis-sequence.js"></script>
+    <script src="../js/jquery-browser-plugin.js"></script>
+    <link href="../css/protOverview.css" rel="stylesheet"/>
+    <link href="../css/ftTypes.css" rel="stylesheet"/>
+    <script src="../data/P05067.js"></script>
+    <script>
+        window.onload = function () {
+            var model = {
+                accession: p05067.accession,
+                identifier: p05067.entryName,
+                sequence: p05067.sequence,
+                categories: p05067.categories
+            };
+            var biojs_proteinFTViewer = require("biojs-vis-proteinFeaturesViewer");
+            var instance = new biojs_proteinFTViewer({
+                element: document.getElementById("target_ft"),
+                useTooltips: true,
+                width: 1200,
+                featuresModel: model,
+                transparency: 0.4,
+                ftHeight: 10
+            });
+                        
+            $.browser = require("jquery-browser-plugin");
+            var Sequence = require("biojs-vis-sequence");
+            mySequence = new Sequence({
+                sequence : model.sequence,
+                target : "target_seq",
+                format : 'CODATA',
+                formatOptions : {
+                    title:false,
+                    footer:false
+                },
+                id : model.accession,
+                columns : {size:50,spacedEach:10}
+            });
+            mySequence.removeAllHighlights();
+            instance.on("featureSelected", function(obj) {
+            	console.log("featureSelected");
+            	console.log(obj);
+            	mySequence.addHighlight({ "start": +obj.feature.begin, "end": +obj.feature.end, "color": "black", "background": obj.feature.color});
+            });
+            instance.on("featureUnselected", function(obj) {
+            	console.log("featureUnselected");
+            	console.log(obj);
+            	mySequence.removeAllHighlights();
+            });
+        }
+    </script>
+</head>
+<body>
+<div id="target">
+    <div class="up_pov_table" width="1200px">
+        <div class="up_pov_row">
+            <div id="target_ft" class="up_pov_ft"></div>
+        </div>
+        <div class="up_pov_row">
+            <div id="target_seq" class="up_pov_seq"></div>
+            <div id="target_3d" class="up_pov_3d"></div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
