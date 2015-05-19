@@ -1,0 +1,324 @@
+{
+	"accession": "P00000",
+	"entryName": "P0_human",
+	"sequence": "abcdefghikklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+	"sequenceVersion": "12345",
+	"moleculeProcessing": {
+		"label": "Molecule processing",
+		"features": [
+
+		]
+	},
+	"structural": {
+		"label": "Structural features",
+		"features": [{
+					"type": {
+						"name":"DISULFID",
+						"label":"disulfide bond"
+					},
+					"description": "bond-1-desc",
+					"begin": 15,
+					"end": 25
+				}, {
+					"type": {
+						"name":"TURN",
+						"label":"turn"
+					},
+					"description": "TURN-1-desc",
+					"begin": 8,
+					"end": 59,
+					"evidence": [{
+						"type": "ECO:0000218",
+						"source": {
+							"reference": "23",
+							"url": "url to source here"
+						}
+					}]
+				}, {
+					"type": {
+						"name":"TURN",
+						"label":"turn"
+					},
+					"description": "TURN-2-desc",
+					"begin": 18,
+					"end": 69,
+					"evidence": [{
+						"type": "ECO:0000203",
+						"source": {
+							"dbReferenceType": "MIM",
+							"dbReferenceId": "123"
+						}
+					}]
+				}, {
+					"type": {
+						"name":"TURN",
+						"label":"turn"
+					},
+					"description": "TURN-3-desc",
+					"begin": 28,
+					"end": 79,
+					"evidence": [{
+						"type": "ECO:0000203",
+						"source": {
+							"dbReferenceType": "MIM",
+							"dbReferenceId": "123",
+							"url": "url to source here"
+						}
+					}]
+				}, {
+					"type": {
+						"name":"NON_CONS",
+						"label":"non-terminal residue"
+					},
+					"description": "non-ter-0-desc",
+					"sourceIds": [{
+						"reference": "internal ID"
+					}],
+					"begin": 170
+				}, {
+					"type": {
+						"name":"NON_CONS",
+						"label":"non-terminal residue"
+					},
+					"description": "non-cons-0-desc",
+					"begin": 21
+				}, {
+					"type": {
+						"name":"NON_CONS",
+						"label":"non-terminal residue"
+					},
+					"description": "non-cons-1-desc",
+					"begin": 170
+				}, {
+					"type": {
+						"name":"INIT_MET",
+						"label":"initiator methionine"
+					},
+					"description": "init-met-0-desc",
+					"begin": 1
+				}
+		]
+	},
+	"domainsAndSites": {
+		"label": "Domains & sites",
+		"features": [{
+			"type": {
+				"name":"ACT_SITE",
+				"label":"active site"
+			},
+			"description": "act-site-1-desc",
+			"begin": 5,
+			"end": 6
+		}, {
+			"type": {
+				"name":"ACT_SITE",
+				"label":"active site"
+			},
+			"description": "act-site-2-desc",
+			"begin": 10
+		}, {
+			"type": {
+				"name":"ACT_SITE",
+				"label":"active site"
+			},
+			"description": "act-site-3-desc",
+			"begin": 170
+		}, {
+			"type": {
+				"name":"ACT_SITE",
+				"label":"active site"
+			},
+			"description": "site-1-desc",
+			"begin": 20
+		}, {
+			"type": {
+				"name":"METAL",
+				"label":"metal ion-binding site"
+			},
+			"description": "metal-1-desc",
+			"begin": 30
+		}, {
+			"type": {
+				"name":"BINDING",
+				"label":"binding site"
+			},
+			"description": "binding-1-desc",
+			"begin": 40,
+			"end": 41
+		}, {
+			"type": {
+				"name":"LIPID",
+				"label":"lipid moiety-binding region"
+			},
+			"description": "lipid-1-desc",
+			"begin": 50
+		}, {
+			"type": {
+				"name":"NON_STD",
+				"label":"non-standard amino acid"
+			},
+			"description": "non-std-1-desc",
+			"begin": 60
+		}, {
+			"type": {
+				"name":"CA_BIND",
+				"label":"calcium-binding region"
+			},
+			"description": "ca_bind-1-desc",
+			"begin": 7,
+			"end": 14
+		}, {
+			"type": {
+				"name":"CA_BIND",
+				"label":"calcium-binding region"
+			},
+			"description": "ca_bind-2-desc",
+			"begin": 38,
+			"end": 45
+		}]
+	},
+	"ptm": {
+		"label": "Post translational modifications",
+		"features": [
+
+		]
+	},
+	"mutagenesis": {
+		"label": "Mutagenesis",
+		"features": [
+
+		]
+	},
+	"seqInfo": {
+		"label": "Sequence information",
+		"features": [
+
+		]
+	},
+	"topology": {
+		"label": "Topology",
+		"features": [
+
+		]
+	},
+	"variants": {
+		"label": "Variants",
+		"features": [{
+			"begin": 200,
+			"mutation": [{
+				"type": {
+					"name": "MS_DEL",
+					"label": "Missense deletion"
+				},
+				"description": "in ALZ; something else",
+				"sourceIds": [{
+					"reference": "COSM1029630"
+				}],
+				"mutatedType": "A",
+				"frequency": 0,
+				"polyphenPrediction": "a prediction",
+				"polyphenScore": 0.005,
+				"siftPrediction": "another prediction",
+				"siftScore": 0.99,
+				"association": "Alzheimer 1",
+				"somaticStatus": 1,
+				"cytogeneticBand": "21q21.3",
+				"genomicLocation": "21:g.25881691G>T",
+				"clinicalSignificances": ["unclassified"]
+			}, {
+				"type": {
+					"name": "MS_DEL",
+					"label": "Missense deletion"
+				},
+				"description": "in ALZ; something else",
+				"sourceIds": [{
+					"reference": "COSM1029",
+					"url": "a url here"
+				}],
+				"mutatedType": "P",
+				"frequency": 0,
+				"polyphenPrediction": "a prediction",
+				"polyphenScore": 0.07,
+				"siftPrediction": "another prediction",
+				"siftScore": 0.90,
+				"association": "Alzheimer 1"
+			}]
+		}, {
+			"begin": 202,
+			"mutation": [{
+				"type": {
+					"name": "INSDEL",
+					"label": "Insertion-deletion"
+				},
+				"description": "in ALZ; something else",
+				"sourceIds": [{
+					"reference": "VAR_123"
+				}],
+				"mutatedType": "-",
+				"frequency": 0,
+				"polyphenPrediction": "a prediction",
+				"polyphenScore": 0.005,
+				"siftPrediction": "another prediction",
+				"siftScore": 0.99,
+				"association": "Alzheimer 1"
+			}, {
+				"type": {
+					"name": "MS_DEL",
+					"label": "Missense deletion"
+				},
+				"description": "in ALZ; something else",
+				"length": 4,
+				"sourceIds": [{
+					"reference": "rs123"
+				}],
+				"mutatedType": "FATM",
+				"frequency": 0,
+				"polyphenPrediction": "a prediction",
+				"polyphenScore": 0.005,
+				"siftPrediction": "another prediction",
+				"siftScore": 0.99,
+				"association": "Alzheimer 1"
+			}]
+
+		}, {
+			"begin": 211,
+			"mutation": [{
+				"type": {
+					"name": "MS_DEL",
+					"label": "Missense deletion"
+				},
+				"description": "in ALZ; something else",
+				"length": 3,
+				"sourceIds": [{
+					"reference": "rs2345"
+				}],
+				"mutatedType": "ATM",
+				"frequency": 0,
+				"polyphenPrediction": "a prediction",
+				"polyphenScore": 0.005,
+				"siftPrediction": "another prediction",
+				"siftScore": 0.99,
+				"association": "Alzheimer 1"
+			}]
+		}, {
+			"begin": 212,
+			"mutation": [{
+				"type": {
+					"name": "STOP_GAINED",
+					"label": "Stop gained"
+				},
+				"description": "in ALZ; something else",
+				"sourceIds": [{
+					"reference": "COSM1029631"
+				}],
+				"mutatedType": "*",
+				"frequency": 0,
+				"polyphenPrediction": "a prediction",
+				"polyphenScore": 0.005,
+				"siftPrediction": "another prediction",
+				"siftScore": 0.99,
+				"association": "Alzheimer 1"
+			}]
+		}]
+	}
+}
