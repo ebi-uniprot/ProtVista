@@ -1,34 +1,32 @@
 /*
- * biojs-vis-proteinFeaturesViewer
- * https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer
+ * variation-viewer
+ * https://github.com/xwatkins/variation-viewer
  *
- * Copyright (c) 2014 ebi-uniprot
+ * Copyright (c) 2014 Xavier Watkins
  * Licensed under the Apache 2 license.
  */
 
 
 // browserify build config
 var buildDir = "build";
-var outputFile = "biojs-vis-proteinFeaturesViewer";
+var outputFile = "featuresviewer";
 
 // packages
 var gulp   = require('gulp');
 
 // browser builds
 var browserify = require('browserify');
-var watchify = require('watchify');
+var watchify = require('watchify')
 var uglify = require('gulp-uglify');
 
 
 // testing
 var mocha = require('gulp-mocha'); 
-var mochaPhantomJS = require('gulp-mocha-phantomjs');
+var mochaPhantomJS = require('gulp-mocha-phantomjs'); 
 
-//SASS
-var sass = require('gulp-sass');
 
 // code style 
-var jshint = require('gulp-jshint');//remove
+var jshint = require('gulp-jshint'); 
 
 // gulp helper
 var source = require('vinyl-source-stream'); // converts node streams into vinyl streams
@@ -36,7 +34,6 @@ var gzip = require('gulp-gzip');
 var rename = require('gulp-rename');
 var chmod = require('gulp-chmod');
 var streamify = require('gulp-streamify'); // converts streams into buffers (legacy support for old plugins)
-var watch = require('gulp-watch');
 
 // path tools
 var fs = require('fs');
@@ -51,14 +48,14 @@ var packageConfig = require('./package.json');
 
 // a failing test breaks the whole build chain
 gulp.task('build', ['build-browser', 'build-browser-gzip']);
-gulp.task('default', ['test',  'build']);
+gulp.task('default', ['lint','test',  'build']);
 
 
 
 gulp.task('lint', function() {
-    return gulp.src('./lib/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+  return gulp.src('./lib/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
 
 
@@ -70,7 +67,7 @@ gulp.task('test', ['test-unit', 'test-dom']);
 gulp.task('test-unit', function () {
     return gulp.src('./test/unit/**/*.js', {read: false})
         .pipe(mocha({reporter: 'spec',
-                    useColors: false}));
+                    useColors: true}));
 });
 
 
@@ -90,17 +87,15 @@ gulp.task('build-test',['init'], function() {
     .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('sass', function () {
-    gulp.src('./css/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('./css'));
-});
+
 
 gulp.task('test-watch', function() {
-   gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js'], function() {
-     gulp.run('test');
-   });
+   gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js'], ['test']);
 });
+
+
+
+
 
 // will remove everything in build
 gulp.task('clean', function(cb) {
@@ -110,7 +105,7 @@ gulp.task('clean', function(cb) {
 // just makes sure that the build dir exists
 gulp.task('init', ['clean'], function() {
   mkdirp(buildDir, function (err) {
-    if (err) console.error(err);
+    if (err) console.error(err)
   });
 });
 
@@ -126,7 +121,7 @@ gulp.task('build-browser',['init'], function() {
 
 // browserify min
 gulp.task('build-browser-min',['init'], function() {
-  var b = browserify({hasExports: true, standalone: "biojs-vis-proteinFeaturesViewer"});
+  var b = browserify({hasExports: true, standalone: "biojs-vis-variation"});
   exposeBundles(b);
   return b.bundle()
     .pipe(source(outputFile + ".min.js"))
@@ -145,7 +140,7 @@ gulp.task('build-browser-gzip', ['build-browser-min'], function() {
 // exposes the main package
 // + checks the config whether it should expose other packages
 function exposeBundles(b){
-  b.add('./index.js', {expose: packageConfig.name });
+  b.add("./" + packageConfig.main, {expose: packageConfig.name });
   if(packageConfig.sniper !== undefined && packageConfig.sniper.exposed !== undefined){
     for(var i=0; i<packageConfig.sniper.exposed.length; i++){
       b.require(packageConfig.sniper.exposed[i]);
@@ -156,10 +151,12 @@ function exposeBundles(b){
 // watch task for browserify 
 // watchify has an internal cache -> subsequent builds are faster
 gulp.task('watch', function() {
-  var util = require('gulp-util');
+  var util = require('gulp-util')
 
   var b = browserify({debug: true,hasExports: true, cache: {}, packageCache: {} });
-  b.add('./index.js', {expose: packageConfig.name});
+  b.add("./" + packageConfig.main, {expose: packageConfig.name});
+  // expose other bundles
+  exposeBundles(b);
 
   function rebundle(ids){
     b.bundle()
@@ -177,21 +174,4 @@ gulp.task('watch', function() {
       util.log("Refreshed:", message);
   });
   return rebundle();
-});
-
-//category viewer module
-var outputFileCat = "pftv-aux-proteinCategoryFTViewer";
-gulp.task('init-cat', function(cb) {
-    del([buildDir + '/' + outputFileCat + '.js'], cb);
-    mkdirp(buildDir, function (err) {
-        if (err) console.error(err);
-    });
-});
-gulp.task('build-browser-cat', ['init-cat'], function() {
-    var b = browserify({debug: true, hasExports: true});
-    b.add('./lib/' + outputFileCat + '.js', {expose: outputFileCat });
-    return b.bundle()
-        .pipe(source(outputFileCat + ".js"))
-        .pipe(chmod(644))
-        .pipe(gulp.dest(buildDir));
 });

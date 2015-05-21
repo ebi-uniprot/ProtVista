@@ -6,6 +6,9 @@
   "author": {
     "name": "Leyla Jael Garcia Castro",
     "email": "ljgarcia@ebi.ac.uk"
+  }, "author": {
+    "name": "Xavier Watkins",
+    "email": "xwatkins@ebi.ac.uk"
   },
   "repository": {
     "type": "git",
@@ -20,7 +23,7 @@
       "url": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/blob/master/LICENSE"
     }
   ],
-  "main": "lib/biojs-vis-proteinFeaturesViewer",
+  "main": "lib/FeaturesViewer",
   "scripts": {
     "test": "gulp test",
     "build": "gulp build",
@@ -66,14 +69,15 @@
   },
   "sniper": {
     "js": [
-      "/build/biojs-vis-proteinFeaturesViewer.js",
-      "/build/pftv-aux-proteinCategoryFTViewer.js"
-    ],
+      "/build/featuresviewer.js"
+    ], 
+    "css": [
+      "/style/main.css"
+    ], 
     "snippets": [
       "snippets"
     ],
-    "first": "simple_example",
-    "second": "proteinFTViewer_test"
+    "first": "simple_example"
   },
   "keywords": [
     "test",
