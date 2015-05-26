@@ -4,9 +4,6 @@
   "version": "0.0.1",
   "homepage": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer",
   "author": {
-    "name": "Leyla Jael Garcia Castro",
-    "email": "ljgarcia@ebi.ac.uk"
-  }, "author": {
     "name": "Xavier Watkins",
     "email": "xwatkins@ebi.ac.uk"
   },
@@ -40,7 +37,7 @@
     "underscore": "^1.7.0"
   },
   "devDependencies": {
-    "biojs-sniper": "^0.0.4",
+    "sniper": "^0.2.16",
     "browserify": "5.x",
     "chai": "^1.9.1",
     "del": "^0.1.3",
@@ -70,10 +67,10 @@
   "sniper": {
     "js": [
       "/build/featuresviewer.js"
-    ], 
+    ],
     "css": [
       "/style/main.css"
-    ], 
+    ],
     "snippets": [
       "snippets"
     ],
