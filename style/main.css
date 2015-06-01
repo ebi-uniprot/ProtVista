@@ -1,0 +1,287 @@
+svg { overflow: hidden; }
+
+.fv-category-container svg {
+  cursor: move;
+}
+
+.fv-container {
+	width:960px;
+	color: #3c4043;
+   	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+   	font-weight: 300;
+	font-size:16px;
+	line-height:1.428;
+}
+
+.ft-navruler, .ft-aaviewer {
+	margin-left:195px;
+}
+
+.ft-navruler svg {
+  /*background-color: aquamarine;*/
+  font-size: 14px;
+}
+
+.fv-category {
+	background-color: #b2f5ff;
+	margin-bottom: .3em;
+	padding: .2em 0;
+}
+
+.fv-category a:hover {
+	font-weight: normal;
+}
+
+.fv-track {
+	margin-bottom: .3em;
+}
+
+.fv-category-name, .fv-track-header {
+	display: inline-block;
+	width: 180px;
+	vertical-align: top;
+	padding:.5em;
+	text-transform: capitalize;
+}
+
+.fv-category-viewer, .fv-track {
+	background-color: #fff;
+	display: inline-block;
+	width: 760px;
+}
+
+.fv-category-name {
+	cursor: pointer;
+}
+
+.fv-category-name.arrow-right:before {
+	content: ' ';
+	display: inline-block;
+	width: 0;
+	height: 0; 
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;	
+	border-left: 5px solid #333;
+	margin-right: 5px;
+}
+
+.fv-category-name.arrow-down:before {
+	content: ' ';
+	display: inline-block;
+	width: 0;
+	height: 0; 
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;	
+	border-top: 5px solid #333;
+	margin-right: 5px;
+}
+
+.fv-track-header {
+	background-color: #d9faff;
+	line-height:1.5em;
+}
+
+.fv-category-disabled {
+	opacity: .4;
+}
+.fv-category-disabled a:hover {
+	font-weight: 300;
+}
+
+.fv-category-disabled .fv-category-name {
+	cursor: default;
+}
+
+/* Ruler */
+.ft-navruler line, .ft-navruler path {
+	stroke-width: 1px;
+	fill:none;
+	stroke: black;
+}
+.ft-navruler .viewport {
+    stroke: grey;
+    fill: black;
+    fill-opacity: 0.2;
+}
+.ft-aaviewer text {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 12px;
+}
+
+.feature {
+  cursor: pointer;
+	fill-opacity: .7;
+}
+
+.feature:hover {
+	fill-opacity: .9;
+}
+
+/* Features */
+ path.up_pftv_chain {
+  stroke: #CC9933;
+  fill: #CC9933; }
+
+ path.up_pftv_transit {
+  stroke: #009966;
+  fill: #009966; }
+
+ path.up_pftv_init_met {
+  stroke: #996633;
+  fill: #996633; }
+
+ path.up_pftv_propep {
+  stroke: #99CCCC;
+  fill: #99CCCC; }
+
+ path.up_pftv_peptide {
+  stroke: #006699;
+  fill: #006699; }
+
+ path.up_pftv_signal {
+  stroke: #CC0033;
+  fill: #CC0033; }
+
+ path.up_pftv_turn {
+  stroke: #CCCCCC;
+  fill: #CCCCCC; }
+
+ path.up_pftv_strand {
+  stroke: #FFCC00;
+  fill: #FFCC00; }
+
+ path.up_pftv_helix {
+  stroke: #FF0066;
+  fill: #FF0066; }
+
+ path.up_pftv_crosslink {
+  stroke: #0571AF;
+  fill: #0571AF; }
+
+ path.up_pftv_disulfid {
+  stroke: #23B14D;
+  fill: #23B14D; }
+
+ path.up_pftv_region {
+  stroke: #FF6600;
+  fill: #FF6600; }
+
+ path.up_pftv_coiled {
+  stroke: #FF9966;
+  fill: #FF9966; }
+
+ path.up_pftv_motif {
+  stroke: #663399;
+  fill: #663399; }
+
+ path.up_pftv_repeat {
+  stroke: #9900FF;
+  fill: #9900FF; }
+
+ path.up_pftv_ca_bind {
+  stroke: #FF3399;
+  fill: #FF3399; }
+
+ path.up_pftv_dna_bind {
+  stroke: #009933;
+  fill: #009933; }
+
+ path.up_pftv_domain {
+  stroke: #9999FF;
+  fill: #9999FF; }
+
+ path.up_pftv_zn_fing {
+  stroke: #990066;
+  fill: #990066; }
+
+ path.up_pftv_np_bind {
+  stroke: #FF9900;
+  fill: #FF9900; }
+
+ path.up_pftv_metal {
+  stroke: #009900;
+  fill: #009900; }
+
+ path.up_pftv_site {
+  stroke: #660033;
+  fill: #660033; }
+
+ path.up_pftv_binding {
+  stroke: #006699;
+  fill: #006699; }
+
+ path.up_pftv_act_site {
+  stroke: #FF6666;
+  fill: #FF6666; }
+
+ path.up_pftv_mod_res {
+  stroke: #000066;
+  fill: #000066; }
+
+ path.up_pftv_lipid {
+  stroke: #99CC33;
+  fill: #99CC33; }
+
+ path.up_pftv_carbohyd {
+  stroke: #CC3366;
+  fill: #CC3366; }
+
+ path.up_pftv_variant {
+  stroke: #006666;
+  fill: #006666; }
+
+ path.up_pftv_compbias {
+  stroke: #FF3366;
+  fill: #FF3366; }
+
+ path.up_pftv_mutagen {
+  stroke: #FF9900;
+  fill: #FF9900; }
+
+ path.up_pftv_conflict {
+  stroke: #6633CC;
+  fill: #6633CC; }
+
+ path.up_pftv_non_cons {
+  stroke: #FF0033;
+  fill: #FF0033; }
+
+ path.up_pftv_non_ter {
+  stroke: #339933;
+  fill: #339933; }
+
+ path.up_pftv_unsure {
+  stroke: #33FF00;
+  fill: #33FF00; }
+
+ path.up_pftv_non_std {
+  stroke: #330066;
+  fill: #330066; }
+
+ path.up_pftv_topo_dom {
+  stroke: #CC0000;
+  fill: #CC0000; }
+
+ path.up_pftv_transmem {
+  stroke: #CC00CC;
+  fill: #CC00CC; }
+
+ path.up_pftv_intramem {
+  stroke: #0000CC;
+  fill: #0000CC; }
+
+ path.up_pftv_damaging {
+  stroke: #D7191C;
+  fill: #D7191C; }
+
+ path.up_pftv_mixed {
+  stroke: #FDAE61;
+  fill: #FDAE61; }
+
+ path.up_pftv_benign {
+  stroke: #2C7BB6;
+  fill: #2C7BB6; }
+
+ path.up_pftv_no_prediction {
+  stroke: black;
+  fill: black; }
