@@ -6,7 +6,15 @@
 	"moleculeProcessing": {
 		"label": "Molecule processing",
 		"features": [
-
+			{
+				"type": {
+					"name":"CHAIN",
+					"label":"chain"
+				},
+				"description": "Phosphatidylinositol 4,5-bisphosphate 3- kinase catalytic subunit alpha isoform",
+				"begin": 3,
+				"end": 35
+			}
 		]
 	},
 	"structural": {
@@ -19,6 +27,14 @@
 					"description": "bond-1-desc",
 					"begin": 15,
 					"end": 25
+				}, {
+					"type": {
+						"name":"CROSSLINK",
+						"label":"cross link"
+					},
+					"description": "cross-ling-1-desc",
+					"begin": 30,
+					"end": 30
 				}, {
 					"type": {
 						"name":"TURN",
@@ -103,7 +119,7 @@
 		"label": "Domains & sites",
 		"features": [{
 			"type": {
-				"name":"ACT_SITE",
+				"name":"SITE",
 				"label":"active site"
 			},
 			"description": "act-site-1-desc",
@@ -139,19 +155,20 @@
 			"begin": 30
 		}, {
 			"type": {
+				"name":"METAL",
+				"label":"metal ion-binding site"
+			},
+			"description": "metal-2-desc",
+			"begin": 40,
+			"end": 41
+		}, {
+			"type": {
 				"name":"BINDING",
 				"label":"binding site"
 			},
 			"description": "binding-1-desc",
 			"begin": 40,
 			"end": 41
-		}, {
-			"type": {
-				"name":"LIPID",
-				"label":"lipid moiety-binding region"
-			},
-			"description": "lipid-1-desc",
-			"begin": 50
 		}, {
 			"type": {
 				"name":"NON_STD",
@@ -180,7 +197,28 @@
 	"ptm": {
 		"label": "Post translational modifications",
 		"features": [
-
+			{
+				"type": {
+					"name":"LIPID",
+					"label":"lipid moiety-binding region"
+				},
+				"description": "lipid-1-desc",
+				"begin": 50
+			}, {
+				"type": {
+					"name":"CARBOHYD",
+					"label":"glycosilation"
+				},
+				"description": "glycosilation-1-desc",
+				"begin": 70
+			}, {
+				"type": {
+					"name":"MOD_RES",
+					"label":"modified residue"
+				},
+				"description": "mod_res-1-desc",
+				"begin": 90
+			}
 		]
 	},
 	"mutagenesis": {
@@ -192,7 +230,21 @@
 	"seqInfo": {
 		"label": "Sequence information",
 		"features": [
-
+			{
+				"type": {
+					"name":"INIT_MET",
+					"label":"initiator methionine"
+				},
+				"description": "init_met-1-desc",
+				"begin": 1
+			}, {
+				"type": {
+					"name":"NON_TER",
+					"label":"non terminal residue"
+				},
+				"description": "non-ter-1-desc",
+				"begin": 140
+			}
 		]
 	},
 	"topology": {
