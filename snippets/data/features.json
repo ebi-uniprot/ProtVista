@@ -189,6 +189,14 @@
 				"name":"CA_BIND",
 				"label":"calcium-binding region"
 			},
+			"description": "ca_bind-5to5-desc",
+			"begin": 5,
+			"end": 5
+		}, {
+			"type": {
+				"name":"CA_BIND",
+				"label":"calcium-binding region"
+			},
 			"description": "ca_bind-2-desc",
 			"begin": 38,
 			"end": 45
