@@ -17,24 +17,13 @@ var assert = chai.assert;
 chai.expect();
 chai.should();
 
-// requires your main app (specified in index.js)
-var biojs_vis_proteinFeaturesViewer = require('../..');
+// requires your main app
+var FeaturesViewer = require('../..');
 
-// describe('biojs_vis_proteinFeaturesViewer module', function(){
-//     describe('#init()', function(){
-//         it('should set the options', function(){
-//             var opts = {target: "mocha", testText: "biojs"};
-//             var instance = new biojs_vis_proteinFeaturesViewer(opts);
-//             assert.equal(instance.opt.target,"mocha");
-//             assert.equal(instance.opt.testText,"biojs");
-//         });
-//     });
-
-//     describe('#getGreetings()', function(){
-//         it('should return a hello', function(){
-//             assert.equal(biojs_vis_proteinFeaturesViewer.getGreetings('biojs'), ("hello biojs"));
-//             // alternative styles
-//             biojs_vis_proteinFeaturesViewer.getGreetings('biojs').should.equal("hello biojs");
-//         });
-//     });
-// });
+describe('FeaturesViewer', function(){
+    describe('#bogus()', function(){
+        it('just checking', function(){
+            assert.equal(1,1);
+        });
+    });
+});
