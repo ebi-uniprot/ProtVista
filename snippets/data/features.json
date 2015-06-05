@@ -6,7 +6,22 @@
 	"moleculeProcessing": {
 		"label": "Molecule processing",
 		"features": [
-			{
+				{
+					"type": {
+						"name":"INIT_MET",
+						"label":"initiator methionine"
+					},
+					"description": "init-met-0-desc",
+					"begin": 1
+				}, {
+					"type": {
+						"name":"INIT_MET",
+						"label":"initiator methionine"
+					},
+					"description": "init-met-2-desc",
+					"begin": 10,
+					"end": 11
+				}, {
 				"type": {
 					"name":"CHAIN",
 					"label":"chain"
@@ -19,7 +34,26 @@
 	},
 	"structural": {
 		"label": "Structural features",
-		"features": [{
+		"features": [
+				{
+					"type": {
+						"name":"NON_CONS",
+						"label":"non-terminal residue"
+					},
+					"description": "non-ter-0-desc",
+					"sourceIds": [{
+						"reference": "internal ID"
+					}],
+					"begin": 1
+				}, {
+					"type": {
+						"name":"NON_CONS",
+						"label":"non-terminal residue"
+					},
+					"description": "non-ter-1-desc",
+					"begin": 10,
+					"end": 11
+				}, {
 					"type": {
 						"name":"DISULFID",
 						"label":"disulfide bond"
@@ -86,16 +120,6 @@
 						"name":"NON_CONS",
 						"label":"non-terminal residue"
 					},
-					"description": "non-ter-0-desc",
-					"sourceIds": [{
-						"reference": "internal ID"
-					}],
-					"begin": 1
-				}, {
-					"type": {
-						"name":"NON_CONS",
-						"label":"non-terminal residue"
-					},
 					"description": "non-cons-0-desc",
 					"begin": 21
 				}, {
@@ -105,13 +129,6 @@
 					},
 					"description": "non-cons-1-desc",
 					"begin": 170
-				}, {
-					"type": {
-						"name":"INIT_MET",
-						"label":"initiator methionine"
-					},
-					"description": "init-met-0-desc",
-					"begin": 1
 				}
 		]
 	},
@@ -131,7 +148,8 @@
 				"label":"active site"
 			},
 			"description": "act-site-2-desc",
-			"begin": 10
+			"begin": 10,
+			"end": 11
 		}, {
 			"type": {
 				"name":"ACT_SITE",
@@ -167,8 +185,15 @@
 				"label":"binding site"
 			},
 			"description": "binding-1-desc",
-			"begin": 40,
-			"end": 41
+			"begin": 50
+		}, {
+			"type": {
+				"name":"BINDING",
+				"label":"binding site"
+			},
+			"description": "binding-2-desc",
+			"begin": 55,
+			"end": 56
 		}, {
 			"type": {
 				"name":"NON_STD",
@@ -176,6 +201,14 @@
 			},
 			"description": "non-std-1-desc",
 			"begin": 60
+		}, {
+			"type": {
+				"name":"NON_STD",
+				"label":"non-standard amino acid"
+			},
+			"description": "non-std-1-desc",
+			"begin": 65,
+			"end": 66
 		}, {
 			"type": {
 				"name":"CA_BIND",
@@ -214,6 +247,14 @@
 				"begin": 50
 			}, {
 				"type": {
+					"name":"LIPID",
+					"label":"lipid moiety-binding region"
+				},
+				"description": "lipid-2-desc",
+				"begin": 55,
+				"end": 56
+			}, {
+				"type": {
 					"name":"CARBOHYD",
 					"label":"glycosilation"
 				},
@@ -221,11 +262,27 @@
 				"begin": 70
 			}, {
 				"type": {
+					"name":"CARBOHYD",
+					"label":"glycosilation"
+				},
+				"description": "glycosilation-1-desc",
+				"begin": 75,
+				"end": 76
+			}, {
+				"type": {
 					"name":"MOD_RES",
 					"label":"modified residue"
 				},
 				"description": "mod_res-1-desc",
 				"begin": 90
+			}, {
+				"type": {
+					"name":"MOD_RES",
+					"label":"modified residue"
+				},
+				"description": "mod_res-2-desc",
+				"begin": 100,
+				"end": 101
 			}
 		]
 	},
@@ -239,13 +296,6 @@
 		"label": "Sequence information",
 		"features": [
 			{
-				"type": {
-					"name":"INIT_MET",
-					"label":"initiator methionine"
-				},
-				"description": "init_met-1-desc",
-				"begin": 1
-			}, {
 				"type": {
 					"name":"NON_TER",
 					"label":"non terminal residue"
