@@ -181,6 +181,13 @@
 			"end": 41
 		}, {
 			"type": {
+				"name":"METAL",
+				"label":"metal ion-binding site"
+			},
+			"description": "metal-at-20-desc",
+			"begin": 20
+		}, {
+			"type": {
 				"name":"BINDING",
 				"label":"binding site"
 			},
@@ -233,6 +240,14 @@
 			"description": "ca_bind-2-desc",
 			"begin": 38,
 			"end": 45
+		}, {
+			"type": {
+				"name":"CA_BIND",
+				"label":"calcium-binding region"
+			},
+			"description": "ca_bind-50-desc",
+			"begin": 51,
+			"end": 51
 		}]
 	},
 	"ptm": {
