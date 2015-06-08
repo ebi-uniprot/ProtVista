@@ -117,6 +117,45 @@ svg { overflow: hidden; }
 	fill-opacity: .9;
 }
 
+
+/* Tooltip */
+.fv-tooltip-container {
+  position: absolute;
+  top: 0;
+}
+
+.fv-tooltip-container table {
+    font-weight: lighter;
+    font-size: .9em;
+    border: 2px solid #CCC;
+    border-spacing: 0;
+    border-collapse: collapse;
+    background-color: #FFF;
+    -webkit-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
+}
+
+.fv-tooltip-container table th {
+    letter-spacing: .05em;
+    font-weight: lighter;
+    font-size: 1.1em;
+    background-color: #333;
+    line-height: 2em;
+    padding: 0  .7em;
+    color: #FFF;
+}
+
+.fv-tooltip-container table td {
+    padding: .7em;
+    margin: 0;
+    border: 1px solid #CCC;
+}
+
+.fv-tooltip-container td:first-child {
+  font-weight: normal;
+}
+
 /* Features */
  path.up_pftv_chain {
   stroke: #CC9933;
