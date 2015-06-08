@@ -38,9 +38,9 @@
 				{
 					"type": {
 						"name":"NON_CONS",
-						"label":"non-terminal residue"
+						"label":"non-consecutive residue"
 					},
-					"description": "non-ter-0-desc",
+					"description": "non-cons-0-desc",
 					"sourceIds": [{
 						"reference": "internal ID"
 					}],
@@ -48,9 +48,9 @@
 				}, {
 					"type": {
 						"name":"NON_CONS",
-						"label":"non-terminal residue"
+						"label":"non-consecutive residue"
 					},
-					"description": "non-ter-1-desc",
+					"description": "non-cons-1-desc",
 					"begin": 10,
 					"end": 11
 				}, {
@@ -66,7 +66,7 @@
 						"name":"CROSSLINK",
 						"label":"cross link"
 					},
-					"description": "cross-ling-1-desc",
+					"description": "cross-link-1-desc",
 					"begin": 30,
 					"end": 30
 				}, {
@@ -118,17 +118,17 @@
 				}, {
 					"type": {
 						"name":"NON_CONS",
-						"label":"non-terminal residue"
+						"label":"non-consecutive residue"
 					},
-					"description": "non-cons-0-desc",
+					"description": "non-cons-2-desc",
 					"begin": 21
 				}, {
 					"type": {
 						"name":"NON_CONS",
-						"label":"non-terminal residue"
+						"label":"non-consecutive residue"
 					},
-					"description": "non-cons-1-desc",
-					"begin": 170
+					"description": "non-cons-3-desc",
+					"begin": 150
 				}
 		]
 	},
@@ -137,9 +137,9 @@
 		"features": [{
 			"type": {
 				"name":"SITE",
-				"label":"active site"
+				"label":"site"
 			},
-			"description": "act-site-1-desc",
+			"description": "site-1-desc",
 			"begin": 5,
 			"end": 6
 		}, {
@@ -147,7 +147,7 @@
 				"name":"ACT_SITE",
 				"label":"active site"
 			},
-			"description": "act-site-2-desc",
+			"description": "act-site-1-desc",
 			"begin": 10,
 			"end": 11
 		}, {
@@ -155,15 +155,15 @@
 				"name":"ACT_SITE",
 				"label":"active site"
 			},
-			"description": "act-site-3-desc",
-			"begin": 170
+			"description": "act-site-2-desc",
+			"begin": 20
 		}, {
 			"type": {
 				"name":"ACT_SITE",
 				"label":"active site"
 			},
-			"description": "site-1-desc",
-			"begin": 20
+			"description": "active-site-3-desc",
+			"begin": 130
 		}, {
 			"type": {
 				"name":"METAL",
@@ -206,7 +206,7 @@
 				"name":"NON_STD",
 				"label":"non-standard amino acid"
 			},
-			"description": "non-std-1-desc",
+			"description": "non-std-2-desc",
 			"begin": 65,
 			"end": 66
 		}, {
