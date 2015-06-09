@@ -1,6 +1,6 @@
 /*
- * variation-viewer
- * https://github.com/xwatkins/variation-viewer
+ * Protein Features Viewer
+ * https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer
  *
  * Copyright (c) 2014 Xavier Watkins
  * Licensed under the Apache 2 license.
@@ -121,7 +121,7 @@ gulp.task('build-browser',['init'], function() {
 
 // browserify min
 gulp.task('build-browser-min',['init'], function() {
-  var b = browserify({hasExports: true, standalone: "biojs-vis-variation"});
+  var b = browserify({hasExports: true, standalone: "biojs-vis-proteinFeaturesViewer"});
   exposeBundles(b);
   return b.bundle()
     .pipe(source(outputFile + ".min.js"))

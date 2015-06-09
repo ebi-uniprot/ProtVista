@@ -36,12 +36,13 @@ svg { overflow: hidden; }
 	margin-bottom: .3em;
 }
 
-.fv-category-name, .fv-track-header {
+.fv-category-name, .fv-track-header , .fv-category-name:hover, .fv-track-header:hover {
 	display: inline-block;
 	width: 180px;
 	vertical-align: top;
 	padding:.5em;
 	text-transform: capitalize;
+  border: none;
 }
 
 .fv-category-viewer, .fv-track {
@@ -127,14 +128,14 @@ svg { overflow: hidden; }
 .fv-tooltip-container .tooltip-close {
     font-family: Arial, sans-serif;
     color: #FFF;
-    background-color: 333333;
+    background-color: #333333;
     position: absolute;
     top:-10px;
     right: -10px;
     cursor: pointer;
     border-radius: 20px;
-    width:20;
-    height: 20;
+    width:20px;
+    height: 20px;
     font-size: 14px;
     text-align: center;
     border: 1px solid #fff;
