@@ -118,6 +118,10 @@ svg { overflow: hidden; }
 	fill-opacity: .9;
 }
 
+.up_pftv_activeFeature {
+	fill-opacity: .9;
+}
+
 
 /* Tooltip */
 .fv-tooltip-container {
