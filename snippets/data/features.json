@@ -1,4 +1,7 @@
 {
+	"options": {
+		"withShapes": false
+	},
 	"accession": "P00000",
 	"entryName": "P0_human",
 	"sequence": "abcdefghikklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
