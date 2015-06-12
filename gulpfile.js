@@ -73,7 +73,7 @@ gulp.task('test-unit', function () {
                 .pipe(istanbul.hookRequire())
                 .on('finish', function(){
                     gulp.src('./test/unit/**/*.js', {read: false})
-                                .pipe(mocha({reporter: 'nyan',
+                                .pipe(mocha({reporter: 'mocha-sonar-reporter',
                                     useColors: true}))
                                 .pipe(istanbul.writeReports());
                 });
