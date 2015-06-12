@@ -25,6 +25,9 @@ var mocha = require('gulp-mocha');
 var mochaPhantomJS = require('gulp-mocha-phantomjs'); 
 
 
+// code coverage
+var istanbul = require('gulp-istanbul');
+
 // code style 
 var jshint = require('gulp-jshint'); 
 
@@ -65,9 +68,15 @@ gulp.task('test', ['test-unit', 'test-dom']);
 
 
 gulp.task('test-unit', function () {
-    return gulp.src('./test/unit/**/*.js', {read: false})
-        .pipe(mocha({reporter: 'mocha-sonar-reporter',
-                    useColors: true}));
+    return gulp.src(['./src/**/*.js','./lib/**/*.js', './test/**/*.js'])
+                .pipe(istanbul())
+                .pipe(istanbul.hookRequire())
+                .on('finish', function(){
+                    gulp.src('./test/unit/**/*.js', {read: false})
+                                .pipe(mocha({reporter: 'nyan',
+                                    useColors: true}))
+                                .pipe(istanbul.writeReports());
+                });
 });
 
 
