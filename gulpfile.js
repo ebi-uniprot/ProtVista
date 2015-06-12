@@ -66,7 +66,7 @@ gulp.task('test', ['test-unit', 'test-dom']);
 
 gulp.task('test-unit', function () {
     return gulp.src('./test/unit/**/*.js', {read: false})
-        .pipe(mocha({reporter: 'spec',
+        .pipe(mocha({reporter: 'mocha-sonar-reporter',
                     useColors: true}));
 });
 

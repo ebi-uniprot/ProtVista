@@ -4,12 +4,10 @@
   "version": "0.0.1",
   "homepage": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer",
   "author": {
-    "name": "Xavier Watkins",
-    "email": "xwatkins@ebi.ac.uk"
-  }, "author" : {
     "name": "Leyla Jael Garcia Castro",
     "email": "ljgarcia@ebi.ac.uk"
-  }, "repository": {
+  },
+  "repository": {
     "type": "git",
     "url": "git://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer.git"
   },
@@ -58,7 +56,8 @@
     "mkdirp": "^0.5.0",
     "mocha": "~1.20.1",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^1.0.6"
+    "watchify": "^1.0.6",
+    "mocha-sonar-reporter": "^0.1.2"
   },
   "shields": {
     "test": {
@@ -77,6 +76,10 @@
       "snippets"
     ],
     "first": "simple_example"
+  }, "config": {
+    "mocha-sonar-reporter": {
+      "outputfile": "test/TEST-all.xml"
+    }
   },
   "keywords": [
     "test",
