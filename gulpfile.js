@@ -68,15 +68,18 @@ gulp.task('test', ['test-unit', 'test-dom']);
 
 
 gulp.task('test-unit', function () {
-    return gulp.src(['./src/**/*.js','./lib/**/*.js', './test/**/*.js'])
-                .pipe(istanbul())
-                .pipe(istanbul.hookRequire())
-                .on('finish', function(){
-                    gulp.src('./test/unit/**/*.js', {read: false})
-                                .pipe(mocha({reporter: 'mocha-sonar-reporter',
-                                    useColors: true}))
-                                .pipe(istanbul.writeReports());
-                });
+  return gulp.src(['./src/**/*.js', './lib/**/*.js', './test/**/*.js'])
+    .pipe(istanbul())
+    .pipe(istanbul.hookRequire())
+    .on('finish', function() {
+      gulp.src('./test/unit/**/*.js', {
+          read: false
+        })
+        .pipe(mocha({
+          reporter: 'mocha-sonar-reporter'
+        }))
+        .pipe(istanbul.writeReports());
+    });
 });
 
 

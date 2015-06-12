@@ -80,7 +80,7 @@
   },
   "config": {
     "mocha-sonar-reporter": {
-      "outputfile": "reports/TEST-all.xml"
+      "outputfile": "test/TEST-all.xml"
     }
   },
   "keywords": [
