@@ -179,170 +179,170 @@ svg { overflow: hidden; }
 }
 
 /* Features */
- path.up_pftv_chain {
+ svg .up_pftv_chain {
   stroke: #CC9933;
   fill: #CC9933; }
 
- path.up_pftv_transit {
+ svg .up_pftv_transit {
   stroke: #009966;
   fill: #009966; }
 
- path.up_pftv_init_met {
+ svg .up_pftv_init_met {
   stroke: #996633;
   fill: #996633; }
 
- path.up_pftv_propep {
+ svg .up_pftv_propep {
   stroke: #99CCCC;
   fill: #99CCCC; }
 
- path.up_pftv_peptide {
+ svg .up_pftv_peptide {
   stroke: #006699;
   fill: #006699; }
 
- path.up_pftv_signal {
+ svg .up_pftv_signal {
   stroke: #CC0033;
   fill: #CC0033; }
 
- path.up_pftv_turn {
+ svg .up_pftv_turn {
   stroke: #CCCCCC;
   fill: #CCCCCC; }
 
- path.up_pftv_strand {
+ svg .up_pftv_strand {
   stroke: #FFCC00;
   fill: #FFCC00; }
 
- path.up_pftv_helix {
+ svg .up_pftv_helix {
   stroke: #FF0066;
   fill: #FF0066; }
 
- path.up_pftv_crosslink {
+ svg .up_pftv_crosslink {
   stroke: #0571AF;
   fill: #0571AF; }
 
- path.up_pftv_disulfid {
+ svg .up_pftv_disulfid {
   stroke: #23B14D;
   fill: #23B14D; }
 
- path.up_pftv_region {
+ svg .up_pftv_region {
   stroke: #FF6600;
   fill: #FF6600; }
 
- path.up_pftv_coiled {
+ svg .up_pftv_coiled {
   stroke: #FF9966;
   fill: #FF9966; }
 
- path.up_pftv_motif {
+ svg .up_pftv_motif {
   stroke: #663399;
   fill: #663399; }
 
- path.up_pftv_repeat {
+ svg .up_pftv_repeat {
   stroke: #9900FF;
   fill: #9900FF; }
 
- path.up_pftv_ca_bind {
+ svg .up_pftv_ca_bind {
   stroke: #FF3399;
   fill: #FF3399; }
 
- path.up_pftv_dna_bind {
+ svg .up_pftv_dna_bind {
   stroke: #009933;
   fill: #009933; }
 
- path.up_pftv_domain {
+ svg .up_pftv_domain {
   stroke: #9999FF;
   fill: #9999FF; }
 
- path.up_pftv_zn_fing {
+ svg .up_pftv_zn_fing {
   stroke: #990066;
   fill: #990066; }
 
- path.up_pftv_np_bind {
+ svg .up_pftv_np_bind {
   stroke: #FF9900;
   fill: #FF9900; }
 
- path.up_pftv_metal {
+ svg .up_pftv_metal {
   stroke: #009900;
   fill: #009900; }
 
- path.up_pftv_site {
+ svg .up_pftv_site {
   stroke: #660033;
   fill: #660033; }
 
- path.up_pftv_binding {
+ svg .up_pftv_binding {
   stroke: #006699;
   fill: #006699; }
 
- path.up_pftv_act_site {
+ svg .up_pftv_act_site {
   stroke: #FF6666;
   fill: #FF6666; }
 
- path.up_pftv_mod_res {
+ svg .up_pftv_mod_res {
   stroke: #000066;
   fill: #000066; }
 
- path.up_pftv_lipid {
+ svg .up_pftv_lipid {
   stroke: #99CC33;
   fill: #99CC33; }
 
- path.up_pftv_carbohyd {
+ svg .up_pftv_carbohyd {
   stroke: #CC3366;
   fill: #CC3366; }
 
- path.up_pftv_variant {
+ svg .up_pftv_variant {
   stroke: #006666;
   fill: #006666; }
 
- path.up_pftv_compbias {
+ svg .up_pftv_compbias {
   stroke: #FF3366;
   fill: #FF3366; }
 
- path.up_pftv_mutagen {
+ svg .up_pftv_mutagen {
   stroke: #FF9900;
   fill: #FF9900; }
 
- path.up_pftv_conflict {
+ svg .up_pftv_conflict {
   stroke: #6633CC;
   fill: #6633CC; }
 
- path.up_pftv_non_cons {
+ svg .up_pftv_non_cons {
   stroke: #FF0033;
   fill: #FF0033; }
 
- path.up_pftv_non_ter {
+ svg .up_pftv_non_ter {
   stroke: #339933;
   fill: #339933; }
 
- path.up_pftv_unsure {
+ svg .up_pftv_unsure {
   stroke: #33FF00;
   fill: #33FF00; }
 
- path.up_pftv_non_std {
+ svg .up_pftv_non_std {
   stroke: #330066;
   fill: #330066; }
 
- path.up_pftv_topo_dom {
+ svg .up_pftv_topo_dom {
   stroke: #CC0000;
   fill: #CC0000; }
 
- path.up_pftv_transmem {
+ svg .up_pftv_transmem {
   stroke: #CC00CC;
   fill: #CC00CC; }
 
- path.up_pftv_intramem {
+ svg .up_pftv_intramem {
   stroke: #0000CC;
   fill: #0000CC; }
 
- path.up_pftv_damaging {
+ svg .up_pftv_damaging {
   stroke: #D7191C;
   fill: #D7191C; }
 
- path.up_pftv_mixed {
+ svg .up_pftv_mixed {
   stroke: #FDAE61;
   fill: #FDAE61; }
 
- path.up_pftv_benign {
+ svg .up_pftv_benign {
   stroke: #2C7BB6;
   fill: #2C7BB6; }
 
- path.up_pftv_no_prediction {
+ svg .up_pftv_no_prediction {
   stroke: black;
   fill: black; }

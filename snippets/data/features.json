@@ -1,6 +1,6 @@
 {
 	"options": {
-		"withShapes": false
+		"withShapes": true
 	},
 	"accession": "P00000",
 	"entryName": "P0_human",
