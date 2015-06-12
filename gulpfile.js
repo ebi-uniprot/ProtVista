@@ -48,7 +48,7 @@ var packageConfig = require('./package.json');
 
 // a failing test breaks the whole build chain
 gulp.task('build', ['build-browser', 'build-browser-gzip']);
-gulp.task('default', ['lint','test',  'build']);
+gulp.task('default', ['lint','test-unit',  'build']);
 
 
 
