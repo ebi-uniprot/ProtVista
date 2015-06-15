@@ -68,7 +68,7 @@ gulp.task('test', ['test-unit', 'test-dom']);
 
 
 gulp.task('test-unit', function () {
-  return gulp.src(['./src/**/*.js', './lib/**/*.js', './test/**/*.js'])
+  return gulp.src(['./src/**/*.js', './lib/**/*.js'])
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
     .on('finish', function() {
@@ -76,7 +76,7 @@ gulp.task('test-unit', function () {
           read: false
         })
         .pipe(mocha({
-          reporter: 'mocha-sonar-reporter'
+          reporter: 'nyan'
         }))
         .pipe(istanbul.writeReports());
     });

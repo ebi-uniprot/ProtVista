@@ -78,13 +78,6 @@
     ],
     "first": "simple_example"
   },
-  "config": {
-    "mocha-sonar-reporter": {
-      "classname": "biojs_test_test.js",
-      "testdir": "test/dom",
-      "outputfile": "test/TEST-all.xml"
-    }
-  },
   "keywords": [
     "test",
     "biojs"
