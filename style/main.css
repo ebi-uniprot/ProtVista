@@ -122,6 +122,17 @@ svg { overflow: hidden; }
 	fill-opacity: .9;
 }
 
+.variation-chart .block-area {
+  fill:lightgrey;
+  stroke:none;
+}
+
+.variation-chart .line {
+  fill:none;
+  stroke:darkgrey;
+  stroke-width:1px;
+}
+
 
 /* Tooltip */
 .fv-tooltip-container {

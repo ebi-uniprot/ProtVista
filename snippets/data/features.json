@@ -332,7 +332,7 @@
 	"variants": {
 		"label": "Variants",
 		"features": [{
-				"begin": 200,
+				"begin": 20,
 				"type": {
 					"name": "MS_DEL",
 					"label": "Missense deletion"
@@ -353,7 +353,7 @@
 				"genomicLocation": "21:g.25881691G>T",
 				"clinicalSignificances": ["unclassified"]
 			}, {
-				"begin": 200,
+				"begin": 50,
 				"type": {
 					"name": "MS_DEL",
 					"label": "Missense deletion"
@@ -371,7 +371,7 @@
 				"siftScore": 0.90,
 				"association": "Alzheimer 1"
 			}, {
-				"begin": 202,
+				"begin": 66,
 				"type": {
 					"name": "INSDEL",
 					"label": "Insertion-deletion"
@@ -388,7 +388,7 @@
 				"siftScore": 0.99,
 				"association": "Alzheimer 1"
 			}, {
-				"begin": 202,
+				"begin": 100,
 				"type": {
 					"name": "MS_DEL",
 					"label": "Missense deletion"
@@ -408,7 +408,7 @@
 			}
 
 			, {
-				"begin": 211,
+				"begin": 154,
 				"type": {
 					"name": "MS_DEL",
 					"label": "Missense deletion"
@@ -426,7 +426,7 @@
 				"siftScore": 0.99,
 				"association": "Alzheimer 1"
 			}, {
-				"begin": 212,
+				"begin": 154,
 				"type": {
 					"name": "STOP_GAINED",
 					"label": "Stop gained"
