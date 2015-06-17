@@ -118,6 +118,11 @@ svg { overflow: hidden; }
 	fill-opacity: .9;
 }
 
+.amino_acid_selector {
+    opacity: 1;
+    fill-opacity: .3;
+}
+
 .up_pftv_activeFeature {
 	fill-opacity: .9;
 }
