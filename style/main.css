@@ -7,10 +7,10 @@ svg { overflow: hidden; }
 .fv-container {
 	width:960px;
 	color: #3c4043;
-   	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
-   	font-weight: 300;
+ 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+ 	font-weight: 300;
 	font-size:16px;
-	line-height:1.428;
+	line-height:1.5;
 }
 
 .ft-navruler, .ft-aaviewer {
@@ -18,22 +18,16 @@ svg { overflow: hidden; }
 }
 
 .ft-navruler svg {
-  /*background-color: aquamarine;*/
   font-size: 14px;
 }
 
 .fv-category {
-	background-color: #b2f5ff;
-	margin-bottom: .3em;
-	padding: .2em 0;
+	margin-bottom: .1em;
+  border-bottom: .1em solid #b2f5ff;
 }
 
 .fv-category a:hover {
 	font-weight: normal;
-}
-
-.fv-track {
-	margin-bottom: .3em;
 }
 
 .fv-category-name, .fv-track-header , .fv-category-name:hover, .fv-track-header:hover {
@@ -42,17 +36,19 @@ svg { overflow: hidden; }
 	vertical-align: top;
 	padding:.5em;
 	text-transform: capitalize;
+  background-color: #b2f5ff;
   border: none;
 }
 
 .fv-category-viewer, .fv-track {
-	background-color: #fff;
 	display: inline-block;
-	width: 760px;
+  width: 760px;
 }
-
 .fv-category-name {
 	cursor: pointer;
+}
+.fv-track {
+  border-top:1px #b2f5ff solid;
 }
 
 .fv-category-name.arrow-right:before {
@@ -79,7 +75,8 @@ svg { overflow: hidden; }
 
 .fv-track-header {
 	background-color: #d9faff;
-	line-height:1.5em;
+	line-height:1.6em;
+  margin: .05em 0;
 }
 
 .fv-category-disabled {
