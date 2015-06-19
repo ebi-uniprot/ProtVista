@@ -1,5 +1,23 @@
 svg { overflow: hidden; }
 
+.fv-buttons {
+  display: inline-block;
+  padding:0 .5em .2em .5em;
+  width: 180px;
+  text-align: right;
+}
+
+.fv-buttons span {
+  cursor: pointer;
+}
+
+.fv-buttons span:hover {
+  color: #5C5C5C;
+}
+
+.ft-aaviewer {
+}
+
 .fv-category-container svg {
   cursor: move;
 }
@@ -13,12 +31,16 @@ svg { overflow: hidden; }
 	line-height:1.5;
 }
 
-.ft-navruler, .ft-aaviewer {
+.ft-navruler {
 	margin-left:195px;
 }
 
 .ft-navruler svg {
   font-size: 14px;
+}
+
+.ft-navruler svg {
+  background-color: #FDF7EF;
 }
 
 .fv-category {
@@ -40,7 +62,7 @@ svg { overflow: hidden; }
   border: none;
 }
 
-.fv-category-viewer, .fv-track {
+.fv-category-viewer, .fv-track, .ft-aaviewer {
 	display: inline-block;
   width: 760px;
 }

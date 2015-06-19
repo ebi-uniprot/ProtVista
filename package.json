@@ -71,6 +71,7 @@
       "/build/featuresviewer.js"
     ],
     "css": [
+      "/style/fontello.css",
       "/style/main.css"
     ],
     "snippets": [
@@ -79,7 +80,9 @@
     "first": "simple_example"
   },
   "keywords": [
-    "test",
-    "biojs"
+    "uniprot",
+    "biojs",
+    "features viewer",
+    "variation"
   ]
 }
