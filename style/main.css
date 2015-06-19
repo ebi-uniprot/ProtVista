@@ -18,6 +18,11 @@ svg { overflow: hidden; }
 .ft-aaviewer {
 }
 
+.fv-category-container {
+  border-right:2px solid #b2f5ff;
+  border-top:1px solid #b2f5ff;
+}
+
 .fv-category-container svg {
   cursor: move;
 }
