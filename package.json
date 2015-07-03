@@ -27,7 +27,7 @@
     "build-browser": "gulp build-browser",
     "build-browser-min": "gulp build-browser-gzip",
     "prepublish": "gulp",
-    "sniper": "biojs-sniper .",
+    "sniper": "sniper .",
     "watch": "gulp watch"
   },
   "dependencies": {
