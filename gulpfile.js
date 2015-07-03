@@ -18,7 +18,7 @@ var gulp   = require('gulp');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var uglify = require('gulp-uglify');
-
+var minifyCss = require('gulp-minify-css');
 
 // testing
 var mocha = require('gulp-mocha'); 
@@ -62,11 +62,7 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-
-
-
 gulp.task('test', ['test-unit', 'test-dom']);
-
 
 gulp.task('test-unit', function () {
   return gulp.src(['./src/**/*.js', './lib/**/*.js'])
@@ -82,7 +78,6 @@ gulp.task('test-unit', function () {
         .pipe(istanbul.writeReports());
     });
 });
-
 
 gulp.task('test-dom', ["build-test"], function () {
   return gulp
@@ -100,15 +95,9 @@ gulp.task('build-test',['init'], function() {
     .pipe(gulp.dest(buildDir));
 });
 
-
-
 gulp.task('test-watch', function() {
    gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js'], ['test']);
 });
-
-
-
-
 
 // will remove everything in build
 gulp.task('clean', function(cb) {
@@ -122,10 +111,16 @@ gulp.task('init', ['clean'], function() {
   });
 });
 
-// browserify debug
-gulp.task('build-browser',['init'], function() {
-    gulp.src("./style/*.*")
+gulp.task('copy-resources', ['init'], function() {
+    gulp.src("./font/*.*")
         .pipe(gulp.dest(buildDir));
+    return gulp.src("./style/*.css")
+        .pipe(minifyCss({compatibility: 'ie8'}))
+        .pipe(gulp.dest(buildDir));
+});
+
+// browserify debug
+gulp.task('build-browser',['copy-resources'], function() {
   var b = browserify({debug: true,hasExports: true});
   exposeBundles(b);
   return b.bundle()
@@ -135,8 +130,8 @@ gulp.task('build-browser',['init'], function() {
 });
 
 // browserify min
-gulp.task('build-browser-min',['init'], function() {
-  var b = browserify({hasExports: true, standalone: "biojs-vis-proteinFeaturesViewer"});
+gulp.task('build-browser-min',['copy-resources'], function() {
+  var b = browserify({hasExports: true});
   exposeBundles(b);
   return b.bundle()
     .pipe(source(outputFile + ".min.js"))
