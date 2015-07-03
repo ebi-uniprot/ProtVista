@@ -128,6 +128,11 @@ svg { overflow: hidden; }
     fill: black;
     fill-opacity: 0.2;
 }
+.ft-navruler path.trapezoid {
+    stroke: grey;
+    fill: black;
+    fill-opacity: 0.2;
+}
 .ft-aaviewer text {
 	font-family: "Lucida Console", Monaco, monospace;
 	font-size: 12px;

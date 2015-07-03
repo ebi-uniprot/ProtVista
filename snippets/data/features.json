@@ -2,7 +2,6 @@
   "accession": "P00000",
   "entryName": "P0_human",
   "sequence": "abcdefghikklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
-  "sequenceVersion": "12345",
   "moleculeProcessing": {
     "label": "Molecule processing",
     "features": [
@@ -77,15 +76,15 @@
         "description": "TURN-1-desc",
         "begin": 8,
         "end": 59,
-        "evidence": [{
-          "type": "ECO:0000218",
+        "evidences": [{
+          "code": "ECO:0000218",
           "sources": [{
-            "dbReferenceType": "publication",
-            "dbReferenceId": "23",
+            "name": "citation",
+            "id": "23",
             "url": "url to source here"
           }, {
-            "dbReferenceType": "pubmed",
-            "dbReferenceId": "234567",
+            "name": "pubmed",
+            "id": "234567",
             "url": "url to pubmed here"
           }]
         }]
@@ -97,11 +96,11 @@
         "description": "TURN-2-desc",
         "begin": 18,
         "end": 69,
-        "evidence": [{
-          "type": "ECO:0000203",
+        "evidences": [{
+          "code": "ECO:0000203",
           "sources": [{
-            "dbReferenceType": "MIM",
-            "dbReferenceId": "123"
+            "name": "MIM",
+            "id": "123"
           }]
         }]
       }, {
@@ -112,11 +111,11 @@
         "description": "TURN-3-desc",
         "begin": 28,
         "end": 79,
-        "evidence": [{
-          "type": "ECO:0000203",
+        "evidences": [{
+          "code": "ECO:0000203",
           "sources": [{
-            "dbReferenceType": "MIM",
-            "dbReferenceId": "123",
+            "name": "MIM",
+            "id": "123",
             "url": "url to source here"
           }]
         }]
@@ -340,8 +339,13 @@
         "label": "Missense deletion"
       },
       "description": "in ALZ; something else",
-      "sourceIds": [{
-        "reference": "COSM1029630"
+      "evidences": [{
+        "code": "ECO:0000001",
+        "sources": [{
+            "name": "COSMIC",
+            "id": "COSM1029630"
+          }
+        ]
       }],
       "mutatedType": "A",
       "frequency": 0,
@@ -352,13 +356,13 @@
       "association": {
         "diseaseName": "Alzheimer 1",
         "description": "a description",
-        "evidence": [
+        "evidences": [
           {
-            "type": "ECO:0000218",
+            "code": "ECO:0000218",
             "sources": [
               {
-                "dbReferenceType": "MIM",
-                "dbRdferenceId": "1234",
+                "name": "MIM",
+                "id": "1234",
                 "url": "a valid OMIM url"
               }
             ]
@@ -376,9 +380,13 @@
         "label": "Missense deletion"
       },
       "description": "in ALZ; something else",
-      "sourceIds": [{
-        "reference": "COSM1029",
-        "url": "a url here"
+      "evidences": [{
+        "code": "ECO:0000001",
+        "sources": [{
+          "name": "COSMIC",
+          "id": "COSM1029"
+        }
+        ]
       }],
       "mutatedType": "P",
       "frequency": 0,
@@ -397,8 +405,13 @@
         "label": "Insertion-deletion"
       },
       "description": "in ALZ; something else",
-      "sourceIds": [{
-        "reference": "VAR_123"
+      "evidences": [{
+        "code": "ECO:0000001",
+        "sources": [{
+          "name": "Prosite",
+          "id": "VAR_123"
+        }
+        ]
       }],
       "mutatedType": "-",
       "frequency": 0,
@@ -418,8 +431,13 @@
       },
       "description": "in ALZ; something else",
       "length": 4,
-      "sourceIds": [{
-        "reference": "rs123"
+      "evidences": [{
+        "code": "ECO:0000001",
+        "sources": [{
+          "name": "REFSEQ",
+          "id": "ref123456"
+        }
+        ]
       }],
       "mutatedType": "FATM",
       "frequency": 0,
@@ -441,8 +459,13 @@
         },
         "description": "in ALZ; something else",
         "length": 3,
-        "sourceIds": [{
-          "reference": "rs2345"
+        "evidences": [{
+          "code": "ECO:0000001",
+          "sources": [{
+            "name": "RefSeq",
+            "id": "rs098765"
+          }
+          ]
         }],
         "mutatedType": "ATM",
         "frequency": 0,
@@ -461,8 +484,13 @@
           "label": "Stop gained"
         },
         "description": "in ALZ; something else",
-        "sourceIds": [{
-          "reference": "COSM1029631"
+        "evidences": [{
+          "code": "ECO:0000001",
+          "sources": [{
+            "name": "COSMIC",
+            "id": "COSM1029630"
+          }
+          ]
         }],
         "mutatedType": "*",
         "frequency": 0,
