@@ -16,7 +16,7 @@ var gulp   = require('gulp');
 
 // browser builds
 var browserify = require('browserify');
-var watchify = require('watchify')
+var watchify = require('watchify');
 var uglify = require('gulp-uglify');
 
 
@@ -37,6 +37,7 @@ var gzip = require('gulp-gzip');
 var rename = require('gulp-rename');
 var chmod = require('gulp-chmod');
 var streamify = require('gulp-streamify'); // converts streams into buffers (legacy support for old plugins)
+var watch = require('gulp-watch');
 
 // path tools
 var fs = require('fs');
@@ -123,6 +124,8 @@ gulp.task('init', ['clean'], function() {
 
 // browserify debug
 gulp.task('build-browser',['init'], function() {
+    gulp.src("./style/*.*")
+        .pipe(gulp.dest(buildDir));
   var b = browserify({debug: true,hasExports: true});
   exposeBundles(b);
   return b.bundle()
@@ -163,7 +166,7 @@ function exposeBundles(b){
 // watch task for browserify 
 // watchify has an internal cache -> subsequent builds are faster
 gulp.task('watch', function() {
-  var util = require('gulp-util')
+  var util = require('gulp-util');
 
   var b = browserify({debug: true,hasExports: true, cache: {}, packageCache: {} });
   b.add("./" + packageConfig.main, {expose: packageConfig.name});
