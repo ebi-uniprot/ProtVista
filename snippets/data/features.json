@@ -62,7 +62,7 @@
         "end": 25
       }, {
         "type": {
-          "name":"CROSSLINK",
+          "name":"CROSSLNK",
           "label":"cross link"
         },
         "description": "cross-link-1-desc",
@@ -79,13 +79,17 @@
         "evidences": [{
           "code": "ECO:0000218",
           "sources": [{
-            "name": "citation",
+            "name": "PubMed",
+            "id": "7654321",
+            "url": "url to pubmed here"
+          }, {
+            "name": "Citation",
             "id": "23",
             "url": "url to source here"
           }, {
-            "name": "pubmed",
+            "name": "PubMed",
             "id": "234567",
-            "url": "url to pubmed here"
+            "url": "url to another pubmed here"
           }]
         }]
       }, {
