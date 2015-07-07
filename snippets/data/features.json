@@ -1,7 +1,7 @@
 {
   "accession": "P00000",
   "entryName": "P0_human",
-  "sequence": "abcdefghikklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+  "sequence": "ABCDEFGHIKKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
   "moleculeProcessing": {
     "label": "Molecule processing",
     "features": [
@@ -312,7 +312,61 @@
   "mutagenesis": {
     "label": "Mutagenesis",
     "features": [
-
+      {
+        "type": {
+          "name":"MUTAGEN",
+          "label":"Mutagenesis"
+        },
+        "description": "mutagen-1",
+        "begin": 14,
+        "alternativeSequence": "M"
+      },
+      {
+        "type": {
+          "name":"MUTAGEN",
+          "label":"Mutagenesis"
+        },
+        "description": "mutagen-1",
+        "begin": 28,
+        "end": 32,
+        "alternativeSequence": "MVKNT"
+      }, {
+        "begin": 154,
+        "type": {
+          "name":"MUTAGEN",
+          "label":"Mutagenesis"
+        },
+        "description": "in ALZ; something else",
+        "evidences": [{
+          "code": "ECO:0000001",
+          "sources": [{
+            "name": "RefSeq",
+            "id": "rs098765"
+          }
+          ]
+        }],
+        "alternativeSequence": "ATM",
+        "frequency": 0,
+        "polyphenPrediction": "a prediction",
+        "polyphenScore": 0.005,
+        "siftPrediction": "another prediction",
+        "siftScore": 0.99,
+        "association": {
+          "diseaseName": "Alzheimer 1",
+          "description": "a description",
+          "evidences": [
+            {
+              "code": "ECO:0000001",
+              "sources": [
+                {
+                  "name": "COSMIC",
+                  "id": "COSM1029630"
+                }
+              ]
+            }
+          ]
+        }
+      }
     ]
   },
   "seqInfo": {

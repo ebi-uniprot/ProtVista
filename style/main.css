@@ -227,10 +227,6 @@ svg { overflow: hidden; }
     font-size: 0.8em;
 }
 
-.fv-tooltip-container .fv-tooltip-value {
-    width: 50%;
-}
-
 .fv-tooltip-container .fv-tooltip-bar {
     width: 1px;
     background-color: #333;
