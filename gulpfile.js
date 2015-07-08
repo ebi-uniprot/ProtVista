@@ -160,7 +160,7 @@ function exposeBundles(b){
 
 // watch task for browserify 
 // watchify has an internal cache -> subsequent builds are faster
-gulp.task('watch', function() {
+gulp.task('watch', ['copy-resources'], function() {
   var util = require('gulp-util');
 
   var b = browserify({debug: true,hasExports: true, cache: {}, packageCache: {} });
