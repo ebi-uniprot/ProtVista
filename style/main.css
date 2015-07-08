@@ -208,6 +208,8 @@ svg { overflow: hidden; }
 }
 
 .fv-tooltip-container table th {
+    text-transform: capitalize;
+    white-space: nowrap;
     letter-spacing: .05em;
     font-weight: lighter;
     font-size: 1.1em;
@@ -227,13 +229,16 @@ svg { overflow: hidden; }
   font-weight: normal;
 }
 
-.fv-tooltip-container .fv-tooltip-small {
-    font-size: 0.8em;
+.fv-tooltip-container .fv-evidence-col {
+  background-color: #E8E8E8;
 }
 
-.fv-tooltip-container .fv-tooltip-bar {
-    width: 1px;
-    background-color: #333;
+.fv-tooltip-container .fv-evidence-source {
+  background-color: #F0F0F0;
+}
+.fv-tooltip-container .fv-evidence-source td:first-child {
+  text-align: right;
+  font-weight: lighter;
 }
 
 /* Features */
