@@ -19,6 +19,7 @@ svg { overflow: hidden; }
 }
 
 .fv-category-container {
+  position: relative;
   border-right:2px solid #b2f5ff;
   border-top:1px solid #b2f5ff;
 }
@@ -28,6 +29,7 @@ svg { overflow: hidden; }
 }
 
 .fv-container {
+  position: relative;
 	width:960px;
 	color: #3c4043;
  	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
@@ -68,6 +70,7 @@ svg { overflow: hidden; }
 }
 
 .fv-category-viewer, .fv-track, .ft-aaviewer {
+  position: relative;
 	display: inline-block;
   width: 760px;
 }
@@ -170,6 +173,7 @@ svg { overflow: hidden; }
 
 /* Tooltip */
 .fv-tooltip-container {
+  z-index: 50000;
   position: absolute;
   opacity: 0;
   display: none;
