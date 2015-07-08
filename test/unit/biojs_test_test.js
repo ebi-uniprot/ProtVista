@@ -29,7 +29,7 @@ describe('FeaturesViewer', function() {
 	describe('DataLoader', function() {
 		it('should process the data', function() {
 			var d = DataLoader.processData(data);
-			assert.equal(40, d.totalFeatureCount);
+			assert.equal(43, d.totalFeatureCount);
 		});
 	});
 
