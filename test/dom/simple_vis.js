@@ -24,6 +24,14 @@ var FeaturesViewer = require('../..');
 describe('FeaturesViewer module', function() {
     var instance;
     var data;
+
+    var flushAllD3Transitions = function() {
+        var now = Date.now;
+        Date.now = function() { return Infinity; };
+        d3.timer.flush();
+        Date.now = now;
+    };
+
     before(function(done) {
         var opts = {
             el: yourDiv,
@@ -47,6 +55,7 @@ describe('FeaturesViewer module', function() {
         assert.equal(document.getElementsByClassName('up_pftv_buttons').length, 1);
         assert.equal(document.getElementsByClassName('up_pftv_aaviewer').length, 1);
         assert.equal(document.getElementsByClassName('up_pftv_category-container').length, 1);
+        assert.equal(document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild.style.opacity, 0);
 	});
     it('should create aa sequence', function() {
         var aaViewer = document.getElementsByClassName('up_pftv_aaviewer')[0].firstElementChild.firstElementChild;
@@ -134,10 +143,11 @@ describe('FeaturesViewer module', function() {
         assert.equal(pathsMP[0].getAttribute('class'), 'up_pftv_feature up_pftv_signal');
     });
     it('should zoom in/out', function() {
-        var zoomIn = document.getElementsByClassName('up_pftv_icon-zoom-in')[0];
+        var zoomIn = document.querySelector('.up_pftv_icon-zoom-in');
         var evt = document.createEvent("MouseEvents");
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomIn);
         zoomIn.dispatchEvent(evt); //zoom in
+        flushAllD3Transitions();
 
         var feature = data.domainsAndSites.features[0];
         var path = document.querySelector("[name='" + feature.internalId + "']");
@@ -146,15 +156,22 @@ describe('FeaturesViewer module', function() {
         var extent = document.querySelector('.up_pftv_navruler .extent');
         assert.equal(extent.getAttribute('x'), 0);
         expect(extent.getAttribute('width')).to.be.above(0);
+
         var trapezoid = document.querySelector('.up_pftv_trapezoid');
         expect(trapezoid.getAttribute('d')).to.not.equal('M0,0');
+
+        var aaViewer = document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild;
+        assert.equal(aaViewer.style.opacity, 1);
 
         var resetButton = document.querySelector('.up_pftv_icon-arrows-cw');
         var evtReset = document.createEvent("MouseEvents");
         evtReset.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, resetButton);
         resetButton.dispatchEvent(evtReset); //zoom out
+        flushAllD3Transitions();
+
         assert.equal(extent.getAttribute('width'), 0);
-        assert.equal(trapezoid.getAttribute('d'), 'M0,0')
+        assert.equal(trapezoid.getAttribute('d'), 'M0,0');
+        assert.equal(aaViewer.style.opacity, 0);
     });
     it('', function() {
 
