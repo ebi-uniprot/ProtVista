@@ -38,32 +38,32 @@ describe('FeaturesViewer module', function() {
 
 	it('should create general structure', function() {
         var mochaDiv = document.getElementById('mocha');
-        assert.equal(mochaDiv.firstElementChild.getAttribute('class'), 'fv-container');
+        assert.equal(mochaDiv.firstElementChild.getAttribute('class'), 'up_pftv_container');
         assert.equal(mochaDiv.childElementCount, 1);
-        var mainContainer = document.getElementsByClassName('fv-container');
+        var mainContainer = document.getElementsByClassName('up_pftv_container');
         assert.equal(mainContainer.length, 1);
         assert.equal(mainContainer[0].childElementCount, 4);
-        assert.equal(document.getElementsByClassName('ft-navruler').length, 1);
-        assert.equal(document.getElementsByClassName('fv-buttons').length, 1);
-        assert.equal(document.getElementsByClassName('ft-aaviewer').length, 1);
-        assert.equal(document.getElementsByClassName('fv-category-container').length, 1);
+        assert.equal(document.getElementsByClassName('up_pftv_navruler').length, 1);
+        assert.equal(document.getElementsByClassName('up_pftv_buttons').length, 1);
+        assert.equal(document.getElementsByClassName('up_pftv_aaviewer').length, 1);
+        assert.equal(document.getElementsByClassName('up_pftv_category-container').length, 1);
 	});
     it('should create aa sequence', function() {
-        var aaViewer = document.getElementsByClassName('ft-aaviewer')[0].firstElementChild.firstElementChild;
+        var aaViewer = document.getElementsByClassName('up_pftv_aaviewer')[0].firstElementChild.firstElementChild;
         assert.equal(aaViewer.childElementCount, instance.sequence.length);
     });
     it('should create a category track', function() {
-        var category = document.getElementsByClassName('fv-category-container')[0].firstElementChild;
+        var category = document.getElementsByClassName('up_pftv_category-container')[0].firstElementChild;
         var catTitle = category.firstElementChild;
         assert.equal(catTitle.text.toUpperCase(), "DOMAINS & SITES");
-        expect(catTitle.getAttribute('class').indexOf('arrow-right')).to.not.equal(-1);
+        expect(catTitle.getAttribute('class').indexOf('up_pftv_arrow-right')).to.not.equal(-1);
         var categoryFeatures = category.children[1].firstElementChild.firstElementChild;
         assert.equal(categoryFeatures.childElementCount, data.domainsAndSites.features.length);
         var typeTracks = category.children[2];
         assert.equal(typeTracks.style.display, 'none');
     });
     it('should open/close type tracks', function() {
-        var category = document.getElementsByClassName('fv-category-container')[0].firstElementChild;
+        var category = document.getElementsByClassName('up_pftv_category-container')[0].firstElementChild;
         var catTitle = category.firstElementChild;
         var evt = document.createEvent("MouseEvents");
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, catTitle);
@@ -78,7 +78,7 @@ describe('FeaturesViewer module', function() {
         var feature = data.domainsAndSites.features[0];
         var path = document.querySelector("[name='" + feature.internalId + "']");
         assert.equal(path.getAttribute('d'), 'M0,0L5,5L0,10L-5,5Z');
-        assert.equal(path.getAttribute('class'), 'feature up_pftv_metal');
+        assert.equal(path.getAttribute('class'), 'up_pftv_feature up_pftv_metal');
         assert.equal(path.getAttribute('transform'), 'translate(' + instance.xScale(+feature.begin) + ',5)');
     });
     it('should select a feature in position 147', function() {
@@ -89,11 +89,11 @@ describe('FeaturesViewer module', function() {
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, paths[0]);
         paths[0].dispatchEvent(evt); //select
 
-        assert.equal(paths[0].getAttribute('class'), 'feature up_pftv_metal up_pftv_activeFeature');
-        assert.equal(paths[1].getAttribute('class'), 'feature up_pftv_metal');
+        assert.equal(paths[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal up_pftv_activeFeature');
+        assert.equal(paths[1].getAttribute('class'), 'up_pftv_feature up_pftv_metal');
 
         paths[0].dispatchEvent(evt); //deselect
-        assert.equal(paths[0].getAttribute('class'), 'feature up_pftv_metal');
+        assert.equal(paths[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal');
     });
     it('should propagate selection on selected feature', function() {
         var feature = data.domainsAndSites.features[0];
@@ -102,13 +102,13 @@ describe('FeaturesViewer module', function() {
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, paths[0]);
         paths[0].dispatchEvent(evt); //select
 
-        var category = document.getElementsByClassName('fv-category-container')[0].firstElementChild;
+        var category = document.getElementsByClassName('up_pftv_category-container')[0].firstElementChild;
         var catTitle = category.firstElementChild;
         var evtOpen = document.createEvent("MouseEvents");
         evtOpen.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, catTitle);
         catTitle.dispatchEvent(evtOpen); //open
 
-        assert.equal(paths[1].getAttribute('class'), 'feature up_pftv_metal up_pftv_activeFeature');
+        assert.equal(paths[1].getAttribute('class'), 'up_pftv_feature up_pftv_metal up_pftv_activeFeature');
 
         paths[0].dispatchEvent(evt); //deselect
         catTitle.dispatchEvent(evtOpen); //close
@@ -119,22 +119,22 @@ describe('FeaturesViewer module', function() {
         var evtDS = document.createEvent("MouseEvents");
         evtDS.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, pathsDS[0]);
         pathsDS[0].dispatchEvent(evtDS); //select
-        assert.equal(pathsDS[0].getAttribute('class'), 'feature up_pftv_metal up_pftv_activeFeature');
+        assert.equal(pathsDS[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal up_pftv_activeFeature');
 
         var featureMP = data.moleculeProcessing.features[0];
         var pathsMP = document.querySelectorAll("[name='" + featureMP.internalId + "']");
-        assert.equal(pathsMP[0].getAttribute('class'), 'feature up_pftv_signal');
+        assert.equal(pathsMP[0].getAttribute('class'), 'up_pftv_feature up_pftv_signal');
         var evtMP = document.createEvent("MouseEvents");
         evtMP.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, pathsMP[0]);
         pathsMP[0].dispatchEvent(evtMP); //select another
-        assert.equal(pathsDS[0].getAttribute('class'), 'feature up_pftv_metal');
-        assert.equal(pathsMP[0].getAttribute('class'), 'feature up_pftv_signal up_pftv_activeFeature');
+        assert.equal(pathsDS[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal');
+        assert.equal(pathsMP[0].getAttribute('class'), 'up_pftv_feature up_pftv_signal up_pftv_activeFeature');
 
         pathsMP[0].dispatchEvent(evtMP); //deselect
-        assert.equal(pathsMP[0].getAttribute('class'), 'feature up_pftv_signal');
+        assert.equal(pathsMP[0].getAttribute('class'), 'up_pftv_feature up_pftv_signal');
     });
     it('should zoom in/out', function() {
-        var zoomIn = document.getElementsByClassName('icon-zoom-in')[0];
+        var zoomIn = document.getElementsByClassName('up_pftv_icon-zoom-in')[0];
         var evt = document.createEvent("MouseEvents");
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomIn);
         zoomIn.dispatchEvent(evt); //zoom in
@@ -149,7 +149,7 @@ describe('FeaturesViewer module', function() {
         var trapezoid = document.querySelector('.up_pftv_trapezoid');
         expect(trapezoid.getAttribute('d')).to.not.equal('M0,0');
 
-        var resetButton = document.querySelector('.icon-arrows-cw');
+        var resetButton = document.querySelector('.up_pftv_icon-arrows-cw');
         var evtReset = document.createEvent("MouseEvents");
         evtReset.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, resetButton);
         resetButton.dispatchEvent(evtReset); //zoom out

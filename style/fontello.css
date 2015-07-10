@@ -19,7 +19,7 @@
 }
 */
  
- [class^="icon-"]:before, [class*=" icon-"]:before {
+ [class^="up_pftv_icon-"]:before, [class*=" up_pftv_icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
@@ -54,7 +54,7 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-arrows-cw:before { content: '\e800'; } /* '' */
-.icon-zoom-in:before { content: '\e801'; } /* '' */
-.icon-filter:before { content: '\e802'; } /* '' */
-.icon-info:before { content: '\e803'; } /* '' */
+.up_pftv_icon-arrows-cw:before { content: '\e800'; } /* '' */
+.up_pftv_icon-zoom-in:before { content: '\e801'; } /* '' */
+.up_pftv_icon-filter:before { content: '\e802'; } /* '' */
+.up_pftv_icon-info:before { content: '\e803'; } /* '' */
