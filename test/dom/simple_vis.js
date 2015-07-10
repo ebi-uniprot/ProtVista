@@ -143,15 +143,18 @@ describe('FeaturesViewer module', function() {
         var path = document.querySelector("[name='" + feature.internalId + "']");
         assert.equal(path.getAttribute('transform'), 'translate(' + instance.xScale(+feature.begin) + ',5)');
 
-        var extent = document.getElementsByClassName('extent')[0];
+        var extent = document.querySelector('.extent');
         assert.equal(extent.getAttribute('x'), 0);
         expect(extent.getAttribute('width')).to.be.above(0);
+        var trapezoid = document.querySelector('.up_pftv_trapezoid');
+        expect(trapezoid.getAttribute('d')).to.not.equal('M0,0');
 
-        var resetButton = document.getElementsByClassName('icon-arrows-cw')[0];
+        var resetButton = document.querySelector('.icon-arrows-cw');
         var evtReset = document.createEvent("MouseEvents");
         evtReset.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, resetButton);
-        resetButton.dispatchEvent(evtReset); //zoom out //TODO Error: Problem parsing d=""
+        resetButton.dispatchEvent(evtReset); //zoom out
         assert.equal(extent.getAttribute('width'), 0);
+        assert.equal(trapezoid.getAttribute('d'), 'M0,0')
     });
     it('', function() {
 
