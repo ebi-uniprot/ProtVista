@@ -126,7 +126,7 @@ svg { overflow: hidden; }
 	fill:none;
 	stroke: black;
 }
-.up_pftv_navruler .viewport {
+.up_pftv_navruler .up_pftv_viewport {
     stroke: grey;
     fill: black;
     fill-opacity: 0.2;
