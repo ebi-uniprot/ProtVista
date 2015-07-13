@@ -24,7 +24,7 @@ var FeaturesViewer = require('../..');
 describe('FeaturesViewer module', function() {
     var instance,
         data,
-        firstMetalPosition = 1;
+        firstMetalPosition = 9;
 
     var flushAllD3Transitions = function() {
         var now = Date.now;
