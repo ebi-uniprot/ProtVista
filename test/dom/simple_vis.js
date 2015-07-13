@@ -22,8 +22,9 @@ var yourDiv = document.getElementById('mocha');
 var FeaturesViewer = require('../..');
 
 describe('FeaturesViewer module', function() {
-    var instance;
-    var data;
+    var instance,
+        data,
+        firstMetalPosition = 1;
 
     var flushAllD3Transitions = function() {
         var now = Date.now;
@@ -44,22 +45,61 @@ describe('FeaturesViewer module', function() {
         });
     });
 
-	it('should create general structure', function() {
+	it('should create one general container with 4 children', function() {
         var mochaDiv = document.getElementById('mocha');
         assert.equal(mochaDiv.firstElementChild.getAttribute('class'), 'up_pftv_container');
         assert.equal(mochaDiv.childElementCount, 1);
+
         var mainContainer = document.getElementsByClassName('up_pftv_container');
         assert.equal(mainContainer.length, 1);
         assert.equal(mainContainer[0].childElementCount, 4);
-        assert.equal(document.getElementsByClassName('up_pftv_navruler').length, 1);
-        assert.equal(document.getElementsByClassName('up_pftv_buttons').length, 1);
-        assert.equal(document.getElementsByClassName('up_pftv_aaviewer').length, 1);
-        assert.equal(document.getElementsByClassName('up_pftv_category-container').length, 1);
-        assert.equal(document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild.style.opacity, 0);
 	});
-    it('should create aa sequence', function() {
-        var aaViewer = document.getElementsByClassName('up_pftv_aaviewer')[0].firstElementChild.firstElementChild;
+    it('should create one nav-ruler with one SVG with id up_pftv_svg-navruler', function() {
+        var navRuler = document.querySelectorAll('.up_pftv_container>.up_pftv_navruler');
+        assert.equal(navRuler.length, 1);
+        assert.equal(navRuler[0].childElementCount, 1);
+
+        var rulerSvg = navRuler[0].firstElementChild;
+        assert.equal(rulerSvg.getAttribute('id'), 'up_pftv_svg-navruler');
+    });
+    it('should create a elements inside the up_pftv_svg-navruler', function() {
+        var groups = document.querySelectorAll('#up_pftv_svg-navruler>g');
+        assert.equal(groups.length, 3);
+        assert.equal(groups[0].getAttribute('class'), 'x axis');
+        assert.equal(groups[1].getAttribute('class'), 'up_pftv_viewport');
+        assert.equal(groups[2].childElementCount, 1);
+        var trapezoid = document.querySelectorAll('#up_pftv_svg-navruler .up_pftv_trapezoid');
+        expect(trapezoid.d).to.be.undefined;
+    });
+    it('should create one up_pftv_buttons with 4 span children', function() {
+        var buttonsDiv = document.querySelectorAll('.up_pftv_container>.up_pftv_buttons');
+        assert.equal(buttonsDiv.length, 1);
+        assert.equal(buttonsDiv[0].childElementCount, 4);
+
+        var buttons = document.querySelectorAll('.up_pftv_buttons span');
+        assert.equal(buttons.length, 4);
+        assert.equal(buttons[0].getAttribute('class'), 'up_pftv_icon-arrows-cw');
+        assert.equal(buttons[1].getAttribute('class'), 'up_pftv_icon-zoom-in');
+        assert.equal(buttons[2].getAttribute('class'), 'up_pftv_icon-filter');
+        assert.equal(buttons[3].getAttribute('class'), 'up_pftv_icon-info');
+    });
+    it('should create one aaViewer with a hidden aa sequence', function() {
+        var aaViewerDiv = document.querySelectorAll('.up_pftv_container>.up_pftv_aaviewer');
+        assert.equal(aaViewerDiv.length, 1);
+        assert.equal(aaViewerDiv[0].childElementCount, 1);
+
+        var aaViewer = aaViewerDiv[0].firstElementChild.firstElementChild;
+        assert.equal(aaViewer.style.opacity, 0);
         assert.equal(aaViewer.childElementCount, instance.sequence.length);
+    });
+    it('should create one category container', function() {
+        var catContainer = document.querySelectorAll('.up_pftv_container>.up_pftv_category-container');
+        assert.equal(catContainer.length, 1);
+        assert.equal(catContainer[0].childElementCount, 7);
+
+        var children = document.querySelectorAll('.up_pftv_category-container>.up_pftv_category');
+        assert.equal(children.length, 7);
+
     });
     it('should create a category track', function() {
         var category = document.getElementsByClassName('up_pftv_category-container')[0].firstElementChild;
@@ -74,24 +114,26 @@ describe('FeaturesViewer module', function() {
     it('should open/close type tracks', function() {
         var category = document.getElementsByClassName('up_pftv_category-container')[0].firstElementChild;
         var catTitle = category.firstElementChild;
+        var typeTracks = category.children[2];
+        assert.equal(typeTracks.style.display, 'none');
+
         var evt = document.createEvent("MouseEvents");
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, catTitle);
         catTitle.dispatchEvent(evt); //open
-        var typeTracks = category.children[2];
         assert.equal(typeTracks.style.display, 'inline-block');
 
         catTitle.dispatchEvent(evt); //close
         assert.equal(typeTracks.style.display, 'none');
     });
     it('should create a metal in position 147', function() {
-        var feature = data.domainsAndSites.features[0];
+        var feature = data.domainsAndSites.features[firstMetalPosition];
         var path = document.querySelector("[name='" + feature.internalId + "']");
         assert.equal(path.getAttribute('d'), 'M0,0L5,5L0,10L-5,5Z');
         assert.equal(path.getAttribute('class'), 'up_pftv_feature up_pftv_metal');
         assert.equal(path.getAttribute('transform'), 'translate(' + instance.xScale(+feature.begin) + ',5)');
     });
     it('should select a feature in position 147', function() {
-        var feature = data.domainsAndSites.features[0];
+        var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         assert.equal(paths.length, 2);
         var evt = document.createEvent("MouseEvents");
@@ -105,7 +147,7 @@ describe('FeaturesViewer module', function() {
         assert.equal(paths[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal');
     });
     it('should propagate selection on selected feature', function() {
-        var feature = data.domainsAndSites.features[0];
+        var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         var evt = document.createEvent("MouseEvents");
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, paths[0]);
@@ -123,7 +165,7 @@ describe('FeaturesViewer module', function() {
         catTitle.dispatchEvent(evtOpen); //close
     });
     it('should select another feature', function() {
-        var featureDS = data.domainsAndSites.features[0];
+        var featureDS = data.domainsAndSites.features[firstMetalPosition];
         var pathsDS = document.querySelectorAll("[name='" + featureDS.internalId + "']");
         var evtDS = document.createEvent("MouseEvents");
         evtDS.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, pathsDS[0]);
@@ -149,7 +191,7 @@ describe('FeaturesViewer module', function() {
         zoomIn.dispatchEvent(evt); //zoom in
         flushAllD3Transitions();
 
-        var feature = data.domainsAndSites.features[0];
+        var feature = data.domainsAndSites.features[firstMetalPosition];
         var path = document.querySelector("[name='" + feature.internalId + "']");
         assert.equal(path.getAttribute('transform'), 'translate(' + instance.xScale(+feature.begin) + ',5)');
 
@@ -172,8 +214,5 @@ describe('FeaturesViewer module', function() {
         assert.equal(extent.getAttribute('width'), 0);
         assert.equal(trapezoid.getAttribute('d'), 'M0,0');
         assert.equal(aaViewer.style.opacity, 0);
-    });
-    it('', function() {
-
     });
 });
