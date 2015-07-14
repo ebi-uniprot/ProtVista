@@ -50,6 +50,12 @@ svg { overflow: hidden; }
   background-color: #FDF7EF;
 }
 
+.up_pftv_shadow {
+    fill: #FDF7EF;
+    stroke: #FDF7EF;
+    fill-opacity: 0.9;
+}
+
 .up_pftv_category {
 	margin-bottom: .1em;
   border-bottom: .1em solid #b2f5ff;
