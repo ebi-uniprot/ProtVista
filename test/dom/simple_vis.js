@@ -119,20 +119,6 @@ describe('FeaturesViewer module', function() {
         var typeTracks = category.children[2];
         assert.equal(typeTracks.style.display, 'none', 'type tracks display');
     });
-    it('should open/close type tracks', function() {
-        var category = document.getElementsByClassName('up_pftv_category-container')[0].firstElementChild;
-        var catTitle = category.firstElementChild;
-        var typeTracks = category.children[2];
-        assert.equal(typeTracks.style.display, 'none', 'initial type tracks display');
-
-        var evt = document.createEvent("MouseEvents");
-        evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, catTitle);
-        catTitle.dispatchEvent(evt); //open
-        assert.equal(typeTracks.style.display, 'inline-block', 'type tracks display after opening');
-
-        catTitle.dispatchEvent(evt); //close
-        assert.equal(typeTracks.style.display, 'none', 'type tracks display after closing');
-    });
     it('should create a metal in position 147', function() {
         var feature = data.domainsAndSites.features[firstMetalPosition];
         var path = document.querySelector("[name='" + feature.internalId + "']");
@@ -155,7 +141,7 @@ describe('FeaturesViewer module', function() {
         paths[0].dispatchEvent(evt); //deselect
         assert.equal(paths[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal', 'unselected metal class');
     });
-    it('should activate vertical highlight', function() {
+    it('should activate vertical highlight on selection of feature at 147', function() {
         var feature = data.domainsAndSites.features[0];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         assert.equal(paths.length, 2, 'number of metal in position 147');
@@ -176,8 +162,43 @@ describe('FeaturesViewer module', function() {
         expect(Math.abs(lineEnd - x - width)).to.be.below(0.01);
 
         paths[0].dispatchEvent(evt); //deselect
+        assert.equal(categoryShadow.getAttribute('transform'), 'translate(0,0)', 'shadow translation when not visible');
+        assert.equal(categoryShadow.getAttribute('x'), 0, 'shadow x coordinate when not visible');
+        assert.equal(categoryShadow.getAttribute('width'), 0, 'shadow x coordinate when not visible');
     });
-    it('should propagate selection on selected feature', function() {
+    it('should propagate vertical highlight on selection of feature at 147 when types are opened', function() {
+        var feature = data.domainsAndSites.features[0];
+        var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
+        var evt = document.createEvent("MouseEvents");
+        evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, paths[0]);
+        paths[0].dispatchEvent(evt); //select
+
+        var categoryShadow = document.querySelector('.up_pftv_track .up_pftv_shadow');
+        assert.equal(categoryShadow.getAttribute('height'), 0, 'shadow height before opening');
+
+        var category = document.getElementsByClassName('up_pftv_category-container')[0].firstElementChild;
+        var catTitle = category.firstElementChild;
+        var evtOpen = document.createEvent("MouseEvents");
+        evtOpen.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, catTitle);
+        catTitle.dispatchEvent(evtOpen); //open
+
+        var transform = paths[1].getAttribute('transform');
+        transform = transform.substring(0, transform.indexOf(','));
+        var shapePath = paths[0].getAttribute('d');
+        var x = shapePath.substring(1, shapePath.indexOf(','));
+        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
+
+        var categoryShadow = document.querySelector('.up_pftv_track .up_pftv_shadow');
+        var width = categoryShadow.getAttribute('width');
+        assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
+        assert.equal(categoryShadow.getAttribute('x'), x, 'shadow x coordinate');
+        expect(Math.abs(lineEnd - x - width)).to.be.below(0.01);
+        expect(categoryShadow.getAttribute('height')).to.be.above(0);
+
+        paths[0].dispatchEvent(evt); //deselect
+        catTitle.dispatchEvent(evtOpen); //close
+    });
+    it('should propagate selection on selected feature when types are opened', function() {
         var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         var evt = document.createEvent("MouseEvents");
@@ -215,6 +236,20 @@ describe('FeaturesViewer module', function() {
 
         pathsMP[0].dispatchEvent(evtMP); //deselect
         assert.equal(pathsMP[0].getAttribute('class'), 'up_pftv_feature up_pftv_signal', 'unselected signal class');
+    });
+    it('should open/close type tracks', function() {
+        var category = document.getElementsByClassName('up_pftv_category-container')[0].firstElementChild;
+        var catTitle = category.firstElementChild;
+        var typeTracks = category.children[2];
+        assert.equal(typeTracks.style.display, 'none', 'initial type tracks display');
+
+        var evt = document.createEvent("MouseEvents");
+        evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, catTitle);
+        catTitle.dispatchEvent(evt); //open
+        assert.equal(typeTracks.style.display, 'inline-block', 'type tracks display after opening');
+
+        catTitle.dispatchEvent(evt); //close
+        assert.equal(typeTracks.style.display, 'none', 'type tracks display after closing');
     });
     it('should zoom in/out', function() {
         var zoomIn = document.querySelector('.up_pftv_icon-zoom-in');
