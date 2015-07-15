@@ -207,7 +207,23 @@ describe('FeaturesViewer module', function() {
         assert.equal(typeShadow.firstElementChild.getAttribute('y'), 0, 'shadow y');
     });
 
-    it('should deselect the selected feature @147', function() {
+    it('should open 1 tooltip after feature selection @147', function() {
+        var tooltip = document.querySelectorAll('.up_pftv_tooltip-container');
+        assert.equal(tooltip.length, 1, 'tooltip exists');
+    });
+
+    it('should close 1 tooltip ', function() {
+        var tooltip = document.querySelector('.up_pftv_tooltip-close');
+        var evt = document.createEvent("MouseEvents");
+        evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, tooltip);
+        tooltip.dispatchEvent(evt); //close tooltip
+        flushAllD3Transitions();
+
+        var allTooltips = document.querySelectorAll('.up_pftv_tooltip-container');
+        assert.equal(allTooltips.length, 0, 'tooltip does not exists');
+    });
+
+    it('should deselect the 0selected feature @147', function() {
         var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         var evt = document.createEvent("MouseEvents");
@@ -215,6 +231,11 @@ describe('FeaturesViewer module', function() {
 
         paths[0].dispatchEvent(evt); //deselect
         assert.equal(paths[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal', 'unselected metal class');
+    });
+
+    it('should re-open 1 tooltip after feature deselection @147', function() {
+        var tooltip = document.querySelectorAll('.up_pftv_tooltip-container');
+        assert.equal(tooltip.length, 1, 'tooltip exists');
     });
 
     it('should deactivate category vertical highlight after feature deselection @147', function() {
@@ -397,20 +418,7 @@ describe('FeaturesViewer module', function() {
         assert.equal(categoryShadow.getAttribute('y'), 0, 'shadow y coordinate');
     });
 
-    it('should deselect the selected feature', function() {
-        var featureMP = data.moleculeProcessing.features[0];
-        var pathsMP = document.querySelectorAll("[name='" + featureMP.internalId + "']");
-        assert.equal(pathsMP[0].getAttribute('class'), 'up_pftv_feature up_pftv_signal up_pftv_activeFeature'
-            , 'selected signal class');
-
-        var evtMP = document.createEvent("MouseEvents");
-        evtMP.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, pathsMP[0]);
-        pathsMP[0].dispatchEvent(evtMP); //deselect
-
-        assert.equal(pathsMP[0].getAttribute('class'), 'up_pftv_feature up_pftv_signal', 'unselected signal class');
-    });
-
-    it('should zoom out', function() {
+    it('should reset view (zoom out and deselect features)', function() {
         var resetButton = document.querySelector('.up_pftv_icon-arrows-cw');
         var evtReset = document.createEvent("MouseEvents");
         evtReset.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, resetButton);
@@ -421,9 +429,22 @@ describe('FeaturesViewer module', function() {
         assert.equal(extent.getAttribute('width'), 0, 'extent not visible after zooming out');
 
         var trapezoid = document.querySelector('.up_pftv_trapezoid');
-        assert.equal(trapezoid.getAttribute('d'), 'M0,0', 'trapezoid not visible afterm zooming out');
+        assert.equal(trapezoid.getAttribute('d'), 'M0,0', 'trapezoid not visible after zooming out');
 
         var aaViewer = document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild;
         assert.equal(aaViewer.style.opacity, 0, 'aa sequence not visible after zooming out');
+
+        var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
+        assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
+
+        var categoryShadow = document.querySelector('.up_pftv_category-container .up_pftv_shadow');
+        assert.equal(categoryShadow.getAttribute('transform'), 'translate(0,0)', 'shadow x coordinate');
+        assert.equal(categoryShadow.getAttribute('width'), 0, 'shadow x coordinate');
+        assert.equal(categoryShadow.getAttribute('x'), 0, 'shadow x coordinate');
+    });
+
+    it('should keep tooltip open', function() {
+        var tooltip = document.querySelectorAll('.up_pftv_tooltip-container');
+        assert.equal(tooltip.length, 1, 'tooltip still exists');
     });
 });
