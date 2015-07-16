@@ -133,12 +133,12 @@ svg { overflow: hidden; }
     fill-opacity: 0.2;
 }
 .up_pftv_shadow {
-    fill: grey;
-    fill-opacity: 0.2;
+    fill: #B9AE9D;
+    fill-opacity: 0.4;
 }
 .up_pftv_amino_acid_selector {
-    fill-opacity: .2;
-    fill: grey;
+    fill-opacity: .4;
+    fill: #B9AE9D;
 }
 
 .up_pftv_aaviewer text {
