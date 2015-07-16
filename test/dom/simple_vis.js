@@ -172,6 +172,7 @@ describe('FeaturesViewer module', function() {
 
         assert.equal(paths[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal up_pftv_activeFeature', 'selected metal class');
         assert.equal(paths[1].getAttribute('class'), 'up_pftv_feature up_pftv_metal', 'hidden type track metal class');
+        assert.equal(feature, instance.selectedFeature, 'selected feature');
     });
 
     it('should activate vertical highlight after feature selection @147', function() {
@@ -180,12 +181,6 @@ describe('FeaturesViewer module', function() {
 
         var transform = paths[0].getAttribute('transform');
         transform = transform.substring(0, transform.indexOf(','));
-        /*var shapePath = paths[0].getAttribute('d');
-        var x = shapePath.substring(1, shapePath.indexOf(','));
-        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
-        console.log(shapePath);
-        console.log(x);
-        console.log(lineEnd);*/
 
         var categoryShadow = document.querySelector('.up_pftv_category-container .up_pftv_shadow');
         assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
@@ -193,8 +188,6 @@ describe('FeaturesViewer module', function() {
         expect(categoryShadow.getAttribute('height')).to.be.above(0);
         assert.equal(categoryShadow.getAttribute('x'), -gapRegion, 'shadow x coordinate');
         assert.equal(categoryShadow.getAttribute('y'), 0, 'shadow y coordinate');
-        /*assert.equal(categoryShadow.getAttribute('x'), x, 'shadow x coordinate');
-        expect(Math.abs(lineEnd - x - width)).to.be.below(0.01);*/
     });
 
     it('should adjust vertical highlight for type tracks', function() {
@@ -223,7 +216,7 @@ describe('FeaturesViewer module', function() {
         assert.equal(allTooltips.length, 0, 'tooltip does not exists');
     });
 
-    it('should deselect the 0selected feature @147', function() {
+    it('should deselect the selected feature @147', function() {
         var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         var evt = document.createEvent("MouseEvents");
@@ -231,6 +224,7 @@ describe('FeaturesViewer module', function() {
 
         paths[0].dispatchEvent(evt); //deselect
         assert.equal(paths[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal', 'unselected metal class');
+        expect(instance.selectedFeature).to.be.undefined;
     });
 
     it('should re-open 1 tooltip after feature deselection @147', function() {
@@ -284,6 +278,7 @@ describe('FeaturesViewer module', function() {
             'metal class in category');
         assert.equal(paths[1].getAttribute('class'), 'up_pftv_feature up_pftv_metal up_pftv_activeFeature'
             , 'selected metal class in category in type');
+        assert.equal(feature, instance.selectedFeature, 'selected feature');
     });
 
     it('should activate all vertical highlight after feature selection @147', function() {
@@ -323,6 +318,7 @@ describe('FeaturesViewer module', function() {
             , 'type track metal class');
         assert.equal(paths[1].getAttribute('class'), 'up_pftv_feature up_pftv_metal up_pftv_activeFeature'
             , 'type track metal class');
+        assert.equal(feature, instance.selectedFeature, 'selected feature');
     });
 
     it('should select another feature, first molecule processing feature @1-17', function() {
@@ -339,6 +335,8 @@ describe('FeaturesViewer module', function() {
         assert.equal(pathsDS[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal', 'unselected metal class');
         assert.equal(pathsMP[0].getAttribute('class'), 'up_pftv_feature up_pftv_signal up_pftv_activeFeature'
             , 'selected signal class');
+        expect(featureDS).to.be.not.equal(instance.selectedFeature);
+        assert.equal(featureMP, instance.selectedFeature, 'selected feature');
     });
 
     it('should activate vertical highlight after feature selection @1-17', function() {
@@ -436,6 +434,7 @@ describe('FeaturesViewer module', function() {
 
         var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
         assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
+        expect(instance.selectedFeature).to.be.undefined;
 
         var categoryShadow = document.querySelector('.up_pftv_category-container .up_pftv_shadow');
         assert.equal(categoryShadow.getAttribute('transform'), 'translate(0,0)', 'shadow x coordinate');
