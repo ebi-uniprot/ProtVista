@@ -442,16 +442,19 @@ svg { overflow: hidden; }
 }
 
 .variants-svg .tolerated {
+  cursor: pointer;
   opacity: .7;
   fill:lightgreen;
 }
 
 .variants-svg .mixed {
+  cursor: pointer;
   opacity: .7;
   fill:lightskyblue;
 }
 
 .variants-svg .deleterious {
+  cursor: pointer;
   opacity: .7;
   fill:crimson;
 }
