@@ -50,12 +50,6 @@ svg { overflow: hidden; }
   background-color: #FDF7EF;
 }
 
-.up_pftv_shadow {
-    fill: #FDF7EF;
-    stroke: #FDF7EF;
-    fill-opacity: 0.9;
-}
-
 .up_pftv_category {
 	margin-bottom: .1em;
   border-bottom: .1em solid #b2f5ff;
@@ -128,20 +122,25 @@ svg { overflow: hidden; }
 
 /* Ruler */
 .up_pftv_navruler line, .up_pftv_navruler path {
-	stroke-width: 1px;
 	fill:none;
-	stroke: black;
 }
 .up_pftv_navruler .up_pftv_viewport {
-    stroke: grey;
-    fill: black;
+    fill: grey;
     fill-opacity: 0.2;
 }
 .up_pftv_navruler path.up_pftv_trapezoid {
-    stroke: grey;
-    fill: black;
+    fill: grey;
     fill-opacity: 0.2;
 }
+.up_pftv_shadow {
+    fill: grey;
+    fill-opacity: 0.2;
+}
+.up_pftv_amino_acid_selector {
+    fill-opacity: .2;
+    fill: grey;
+}
+
 .up_pftv_aaviewer text {
 	font-family: "Lucida Console", Monaco, monospace;
 	font-size: 12px;
@@ -154,11 +153,6 @@ svg { overflow: hidden; }
 
 .up_pftv_feature:hover {
 	fill-opacity: .9;
-}
-
-.up_pftv_amino_acid_selector {
-    opacity: 1;
-    fill-opacity: .3;
 }
 
 .up_pftv_activeFeature {
@@ -273,8 +267,8 @@ svg { overflow: hidden; }
   fill: #CC0033; }
 
  svg .up_pftv_turn {
-  stroke: #CCCCCC;
-  fill: #CCCCCC; }
+  stroke: #0571AF;
+  fill: #0571AF; }
 
  svg .up_pftv_strand {
   stroke: #FFCC00;
@@ -285,8 +279,8 @@ svg { overflow: hidden; }
   fill: #FF0066; }
 
  svg .up_pftv_crosslnk {
-  stroke: #0571AF;
-  fill: #0571AF; }
+  stroke: #B33E00;
+  fill: #B33E00; }
 
  svg .up_pftv_disulfid {
   stroke: #23B14D;
