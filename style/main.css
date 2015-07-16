@@ -431,31 +431,27 @@ svg { overflow: hidden; }
 }
 
 .variants-svg circle.main-seq {
-/*  fill:#fff;
+  fill:#fff;
   stroke: steelblue;
-  stroke-width: 1.5px;*/
-  display: none;
+  stroke-width: 1.5px;
+  /*display: none;*/
 }
 
 .variants-svg .main-sequence {
   fill: green;
 }
 
-.variants-svg .tolerated {
-  cursor: pointer;
-  opacity: .7;
-  fill:lightgreen;
-}
-
-.variants-svg .mixed {
+.variants-svg circle {
   cursor: pointer;
   opacity: .7;
   fill:lightskyblue;
 }
 
+.variants-svg .tolerated {
+  fill:lightgreen;
+}
+
 .variants-svg .deleterious {
-  cursor: pointer;
-  opacity: .7;
   fill:crimson;
 }
 
