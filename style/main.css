@@ -448,14 +448,17 @@ svg { overflow: hidden; }
 }
 
 .variants-svg .tolerated {
+  opacity: .7;
   fill:lightgreen;
 }
 
 .variants-svg .mixed {
+  opacity: .7;
   fill:lightskyblue;
 }
 
 .variants-svg .deleterious {
+  opacity: .7;
   fill:crimson;
 }
 
