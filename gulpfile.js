@@ -96,7 +96,7 @@ gulp.task('build-test',['init'], function() {
 });
 
 gulp.task('test-watch', function() {
-   gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js'], ['test']);
+   gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js', './style/main.css'], ['test']);
 });
 
 // will remove everything in build

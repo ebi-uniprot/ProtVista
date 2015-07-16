@@ -415,3 +415,50 @@ svg { overflow: hidden; }
  svg .up_pftv_no_prediction {
   stroke: black;
   fill: black; }
+
+
+/* Variation */
+.variants-svg .axis path {
+  display: none;
+}
+
+.variants-svg .axis text {
+  font-size: 10px;
+  font-family: 'Helvetica neue', Helvetica, Arial, sans-serif;
+}
+
+.variants-svg .variation-y.axis line {
+  stroke:#ccc;
+  opacity: .4;
+}
+
+.variants-svg .variation-x.axis line {
+  stroke:#000;
+}
+
+.variants-svg circle.main-seq {
+/*  fill:#fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;*/
+  display: none;
+}
+
+.variants-svg .main-sequence {
+  fill: green;
+}
+
+.variants-svg .tolerated {
+  fill:lightgreen;
+}
+
+.variants-svg .mixed {
+  fill:lightskyblue;
+}
+
+.variants-svg .deleterious {
+  fill:crimson;
+}
+
+.variants-svg .stop-gain {
+  fill: teal;
+}
