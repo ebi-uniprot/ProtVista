@@ -28,8 +28,8 @@ var env = require('gulp-env');
 // code coverage
 var istanbul = require('gulp-istanbul');
 
-// code style 
-var jshint = require('gulp-jshint'); 
+// code style
+var jshint = require('gulp-jshint');
 
 // gulp helper
 var source = require('vinyl-source-stream'); // converts node streams into vinyl streams
@@ -61,9 +61,9 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('test', ['test-unit']);
+gulp.task('test', ['test-unit', 'test-unit-file']);
 
-gulp.task('test-unit', function () {
+gulp.task('test-unit', ['test-env'], function () {
     return gulp.src(['./src/**/*.js', './lib/**/*.js'])
         .pipe(istanbul())
         .pipe(istanbul.hookRequire())
@@ -71,20 +71,32 @@ gulp.task('test-unit', function () {
             gulp.src('./test/unit/**/*.js', {
                 read: false
             })
-                .pipe(mocha())
+                .pipe(mocha({
+                    reporter: 'xunit-file'
+                }))
                 .pipe(istanbul.writeReports());
         });
 });
 
-gulp.task('test-unit-file', function() {
-    gulp
-        .src('./test/unit/**/*.js', {
-            read: false
-        })
-        .pipe(mocha({
-            reporter: 'xunit-file'
-        }));
+gulp.task('test-env', ['init-test-reports'], function() {
+    env({
+        vars: {
+            XUNIT_FILE: 'reports/xunit.xml',
+            LOG_XUNIT: true
+        }
+    });
 });
+
+gulp.task('init-test-reports', ['clean-test-reports'], function() {
+    mkdirp('reports', function (err) {
+        if (err) console.error(err)
+    });
+});
+
+gulp.task('clean-test-reports', function(cb) {
+    del(['reports'], cb);
+});
+
 
 gulp.task('test-dom', ['build-test'], function () {
     return gulp
@@ -147,7 +159,7 @@ gulp.task('build-browser-min',['copy-resources'], function() {
         .pipe(streamify(uglify()))
         .pipe(gulp.dest(buildDir));
 });
- 
+
 gulp.task('build-browser-gzip', ['build-browser-min'], function() {
     return gulp.src(outputFileMin)
         .pipe(gzip({append: false, gzipOptions: { level: 9 }}))
@@ -166,7 +178,7 @@ function exposeBundles(b){
     }
 }
 
-// watch task for browserify 
+// watch task for browserify
 // watchify has an internal cache -> subsequent builds are faster
 gulp.task('watch', ['copy-resources'], function() {
     var util = require('gulp-util');

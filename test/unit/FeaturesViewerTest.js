@@ -22,7 +22,7 @@ var FeaturesViewer = require('../..');
 var DataLoader = require('../../lib/dataLoader');
 var NonOverlappingLayout = require('../../lib/NonOverlappingLayout');
 
-describe('FeaturesViewer', function() {
+describe('FeaturesViewerTest', function() {
 
 	var data = require('../../snippets/data/features.json');
 

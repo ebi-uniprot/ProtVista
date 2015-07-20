@@ -21,6 +21,10 @@
     }
   ],
   "main": "lib/FeaturesViewer",
+  "config": {
+    "classname": "FeaturesViewerTest",
+    "outputfile": "reports/TEST-all.xml"
+  },
   "scripts": {
     "test": "gulp test",
     "build": "gulp build",
