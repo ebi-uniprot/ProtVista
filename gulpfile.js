@@ -12,7 +12,7 @@ var buildDir = "build";
 var outputFile = "featuresviewer";
 
 // packages
-var gulp   = require('gulp');
+var gulp     = require('gulp');
 
 // browser builds
 var browserify = require('browserify');
@@ -22,8 +22,8 @@ var minifyCss = require('gulp-minify-css');
 
 // testing
 var mocha = require('gulp-mocha'); 
-var mochaPhantomJS = require('gulp-mocha-phantomjs'); 
-
+var mochaPhantomJS = require('gulp-mocha-phantomjs');
+var env = require('gulp-env');
 
 // code coverage
 var istanbul = require('gulp-istanbul');
@@ -52,136 +52,155 @@ var packageConfig = require('./package.json');
 
 // a failing test breaks the whole build chain
 gulp.task('build', ['build-browser', 'build-browser-gzip']);
-gulp.task('default', ['lint','test',  'build']);
+gulp.task('default', ['lint', 'test', 'build']);
 
-
-
+//test tasks
 gulp.task('lint', function() {
-  return gulp.src('./lib/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    return gulp.src('./lib/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
 gulp.task('test', ['test-unit', 'test-dom']);
 
-gulp.task('test-unit', function () {
-  return gulp.src(['./src/**/*.js', './lib/**/*.js'])
-    .pipe(istanbul())
-    .pipe(istanbul.hookRequire())
-    .on('finish', function() {
-      gulp.src('./test/unit/**/*.js', {
-          read: false
-        })
-        .pipe(mocha({
-          reporter: 'nyan'
-        }))
-        .pipe(istanbul.writeReports());
+gulp.task('test-unit', ['test-env'], function () {
+    return gulp.src(['./src/**/*.js', './lib/**/*.js'])
+        .pipe(istanbul())
+        .pipe(istanbul.hookRequire())
+        .on('finish', function() {
+            gulp.src('./test/unit/**/*.js', {
+                    read: false
+                })
+                .pipe(mocha({
+                    reporter: 'reporter-file'
+                }))
+                .pipe(istanbul.writeReports());
+        });
+});
+
+gulp.task('test-dom', ['build-test'], function () {
+    return gulp
+    .src('test/index.html')
+    .pipe(mochaPhantomJS());
+});
+
+gulp.task('test-env', ['init-test-reports'], function() {
+    env({
+         vars: {
+             MOCHA_REPORTER: 'Nyan',
+             MOCHA_REPORTER_FILE: './reports/testResults.xml'
+         }
+     });
+});
+
+gulp.task('init-test-reports', ['clean-test-reports'], function() {
+    mkdirp('reports', function (err) {
+        if (err) console.error(err)
     });
 });
 
-gulp.task('test-dom', ["build-test"], function () {
-  return gulp
-  .src('test/index.html')
-  .pipe(mochaPhantomJS());
+gulp.task('clean-test-reports', function(cb) {
+    del(['reports'], cb);
 });
 
 // browserify debug
 gulp.task('build-test',['init'], function() {
-  var b = browserify({debug: true});
-  b.add('./test/dom/index');
-  return b.bundle()
-    .pipe(source("test.js"))
-    .pipe(chmod(644))
-    .pipe(gulp.dest(buildDir));
+    var b = browserify({debug: true});
+    b.add('./test/dom/index');
+    return b.bundle()
+        .pipe(source("test.js"))
+        .pipe(chmod(644))
+        .pipe(gulp.dest(buildDir));
 });
 
 gulp.task('test-watch', function() {
-   gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js', './style/main.css'], ['test']);
+     gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js', './style/main.css'], ['test']);
 });
 
+//build tasks
 // will remove everything in build
 gulp.task('clean', function(cb) {
-  del([buildDir], cb);
+    del([buildDir], cb);
 });
 
 // just makes sure that the build dir exists
 gulp.task('init', ['clean'], function() {
-  mkdirp(buildDir, function (err) {
-    if (err) console.error(err)
-  });
+    mkdirp(buildDir, function (err) {
+        if (err) console.error(err)
+    });
 });
 
 gulp.task('copy-resources', ['init'], function() {
-    gulp.src("./font/*.*")
-        .pipe(gulp.dest(buildDir));
-    return gulp.src("./style/*.css")
-        .pipe(minifyCss({compatibility: 'ie8'}))
-        .pipe(gulp.dest(buildDir));
+        gulp.src("./font/*.*")
+                .pipe(gulp.dest(buildDir));
+        return gulp.src("./style/*.css")
+                .pipe(minifyCss({compatibility: 'ie8'}))
+                .pipe(gulp.dest(buildDir));
 });
 
 // browserify debug
 gulp.task('build-browser',['copy-resources'], function() {
-  var b = browserify({debug: true,hasExports: true});
-  exposeBundles(b);
-  return b.bundle()
-    .pipe(source(outputFile + ".js"))
-    .pipe(chmod(644))
-    .pipe(gulp.dest(buildDir));
+    var b = browserify({debug: true,hasExports: true});
+    exposeBundles(b);
+    return b.bundle()
+        .pipe(source(outputFile + ".js"))
+        .pipe(chmod(644))
+        .pipe(gulp.dest(buildDir));
 });
 
 // browserify min
 gulp.task('build-browser-min',['copy-resources'], function() {
-  var b = browserify({hasExports: true});
-  exposeBundles(b);
-  return b.bundle()
-    .pipe(source(outputFile + ".min.js"))
-    .pipe(chmod(644))
-    .pipe(streamify(uglify()))
-    .pipe(gulp.dest(buildDir));
+    var b = browserify({hasExports: true});
+    exposeBundles(b);
+    return b.bundle()
+        .pipe(source(outputFile + ".min.js"))
+        .pipe(chmod(644))
+        .pipe(streamify(uglify()))
+        .pipe(gulp.dest(buildDir));
 });
  
 gulp.task('build-browser-gzip', ['build-browser-min'], function() {
-  return gulp.src(outputFileMin)
-    .pipe(gzip({append: false, gzipOptions: { level: 9 }}))
-    .pipe(rename(outputFile + ".min.gz.js"))
-    .pipe(gulp.dest(buildDir));
+    return gulp.src(outputFileMin)
+        .pipe(gzip({append: false, gzipOptions: { level: 9 }}))
+        .pipe(rename(outputFile + ".min.gz.js"))
+        .pipe(gulp.dest(buildDir));
 });
 
 // exposes the main package
 // + checks the config whether it should expose other packages
 function exposeBundles(b){
-  b.add("./" + packageConfig.main, {expose: packageConfig.name });
-  if(packageConfig.sniper !== undefined && packageConfig.sniper.exposed !== undefined){
-    for(var i=0; i<packageConfig.sniper.exposed.length; i++){
-      b.require(packageConfig.sniper.exposed[i]);
+    b.add("./" + packageConfig.main, {expose: packageConfig.name });
+    if(packageConfig.sniper !== undefined && packageConfig.sniper.exposed !== undefined){
+        for(var i=0; i<packageConfig.sniper.exposed.length; i++){
+            b.require(packageConfig.sniper.exposed[i]);
+        }
     }
-  }
 }
 
 // watch task for browserify 
 // watchify has an internal cache -> subsequent builds are faster
 gulp.task('watch', ['copy-resources'], function() {
-  var util = require('gulp-util');
+    var util = require('gulp-util');
 
-  var b = browserify({debug: true,hasExports: true, cache: {}, packageCache: {} });
-  b.add("./" + packageConfig.main, {expose: packageConfig.name});
-  // expose other bundles
-  exposeBundles(b);
+    var b = browserify({debug: true,hasExports: true, cache: {}, packageCache: {} });
+    b.add("./" + packageConfig.main, {expose: packageConfig.name});
+    // expose other bundles
+    exposeBundles(b);
 
-  function rebundle(ids){
-    b.bundle()
-    .on("error", function(error) {
-      util.log(util.colors.red("Error: "), error);
-     })
-    .pipe(source(outputFile + ".js"))
-    .pipe(chmod(644))
-    .pipe(gulp.dest(buildDir));
-  }
+    function rebundle(ids){
+        b.bundle()
+        .on("error", function(error) {
+            util.log(util.colors.red("Error: "), error);
+         })
+        .pipe(source(outputFile + ".js"))
+        .pipe(chmod(644))
+        .pipe(gulp.dest(buildDir));
+    }
 
-  var watcher = watchify(b);
-  watcher.on("update", rebundle)
-   .on("log", function(message) {
-      util.log("Refreshed:", message);
-  });
-  return rebundle();
+    var watcher = watchify(b);
+    watcher.on("update", rebundle)
+     .on("log", function(message) {
+            util.log("Refreshed:", message);
+    });
+    return rebundle();
 });
