@@ -61,7 +61,8 @@
     "reporter-file": "^1.0.0",
     "sniper": "^0.2.16",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^3.2.3"
+    "watchify": "^3.2.3",
+    "xunit-file": "0.0.6"
   },
   "shields": {
     "test": {
