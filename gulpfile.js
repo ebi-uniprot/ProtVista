@@ -63,44 +63,35 @@ gulp.task('lint', function() {
 
 gulp.task('test', ['test-unit']);
 
-gulp.task('test-unit', ['test-env'], function () {
+gulp.task('test-unit', ['test-unit-file'], function () {
     return gulp.src(['./src/**/*.js', './lib/**/*.js'])
         .pipe(istanbul())
         .pipe(istanbul.hookRequire())
         .on('finish', function() {
             gulp.src('./test/unit/**/*.js', {
-                    read: false
-                })
+                read: false
+            })
                 .pipe(mocha({
-                    reporter: 'reporter-file'
+                    reporter: 'Nyan'
                 }))
                 .pipe(istanbul.writeReports());
         });
+});
+
+gulp.task('test-unit-file', function() {
+    gulp
+        .src('./test/unit/**/*.js', {
+            read: false
+        })
+        .pipe(mocha({
+            reporter: 'xunit-file'
+        }));
 });
 
 gulp.task('test-dom', ['build-test'], function () {
     return gulp
     .src('test/index.html')
     .pipe(mochaPhantomJS());
-});
-
-gulp.task('test-env', ['init-test-reports'], function() {
-    env({
-         vars: {
-             MOCHA_REPORTER: 'Nyan',
-             MOCHA_REPORTER_FILE: './reports/testResults.xml'
-         }
-     });
-});
-
-gulp.task('init-test-reports', ['clean-test-reports'], function() {
-    mkdirp('reports', function (err) {
-        if (err) console.error(err)
-    });
-});
-
-gulp.task('clean-test-reports', function(cb) {
-    del(['reports'], cb);
 });
 
 // browserify debug
