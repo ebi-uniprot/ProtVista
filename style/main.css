@@ -125,12 +125,14 @@ svg { overflow: hidden; }
 	fill:none;
     stroke:black;
 }
+
 .up_pftv_navruler .up_pftv_viewport {
     fill: grey;
     fill-opacity: 0.2;
 }
 .up_pftv_navruler path.up_pftv_trapezoid {
     fill: grey;
+    stroke:none;
     fill-opacity: 0.2;
     stroke: none;
 }
