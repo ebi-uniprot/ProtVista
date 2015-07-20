@@ -61,31 +61,21 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('test', ['test-unit', 'test-dom']);
+gulp.task('test', ['test-unit']);
 
-gulp.task('test-unit', ['test-unit-file'], function () {
+gulp.task('test-unit', ['test-env'], function () {
     return gulp.src(['./src/**/*.js', './lib/**/*.js'])
         .pipe(istanbul())
         .pipe(istanbul.hookRequire())
         .on('finish', function() {
             gulp.src('./test/unit/**/*.js', {
-                read: false
-            })
+                    read: false
+                })
                 .pipe(mocha({
-                    reporter: 'Nyan'
+                    reporter: 'reporter-file'
                 }))
                 .pipe(istanbul.writeReports());
         });
-});
-
-gulp.task('test-unit-file', function() {
-    gulp
-        .src('./test/unit/**/*.js', {
-            read: false
-        })
-        .pipe(mocha({
-            reporter: 'xunit-file'
-        }));
 });
 
 gulp.task('test-dom', ['build-test'], function () {
