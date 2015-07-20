@@ -22,7 +22,6 @@ var minifyCss = require('gulp-minify-css');
 
 // testing
 var mocha = require('gulp-mocha');
-var mochaFile = require('gulp-mocha');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var env = require('gulp-env');
 
@@ -72,9 +71,7 @@ gulp.task('test-unit', function () {
             gulp.src('./test/unit/**/*.js', {
                 read: false
             })
-                .pipe(mocha({
-                    reporter: 'Nyan'
-                }))
+                .pipe(mocha())
                 .pipe(istanbul.writeReports());
         });
 });
@@ -84,7 +81,7 @@ gulp.task('test-unit-file', function() {
         .src('./test/unit/**/*.js', {
             read: false
         })
-        .pipe(mochaFile({
+        .pipe(mocha({
             reporter: 'xunit-file'
         }));
 });
