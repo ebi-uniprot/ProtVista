@@ -121,6 +121,10 @@ svg { overflow: hidden; }
 }
 
 /* Ruler */
+.up_pftv_navruler .axis {
+  font-size: 12px;
+}
+
 .up_pftv_navruler line, .up_pftv_navruler path {
 	fill:none;
     stroke:black;
