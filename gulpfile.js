@@ -63,7 +63,7 @@ gulp.task('lint', function() {
 
 gulp.task('test', ['test-unit']);
 
-gulp.task('test-unit', ['test-unit-file'], function () {
+gulp.task('test-unit', function () {
     return gulp.src(['./src/**/*.js', './lib/**/*.js'])
         .pipe(istanbul())
         .pipe(istanbul.hookRequire())
