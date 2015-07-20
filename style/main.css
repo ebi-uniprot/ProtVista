@@ -123,6 +123,7 @@ svg { overflow: hidden; }
 /* Ruler */
 .up_pftv_navruler line, .up_pftv_navruler path {
 	fill:none;
+  stroke:black;
 }
 .up_pftv_navruler .up_pftv_viewport {
     fill: grey;
