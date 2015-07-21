@@ -81,7 +81,7 @@ gulp.task('test-unit', ['test-env'], function () {
 gulp.task('test-env', ['init-test-reports'], function() {
     env({
         vars: {
-            XUNIT_FILE: '../TEST-FeaturesViewerTest.xml',
+            XUNIT_FILE: 'reports/TEST-FeaturesViewerTest.xml',
             LOG_XUNIT: true
         }
     });
