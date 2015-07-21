@@ -26,14 +26,14 @@ describe('FeaturesViewerTest', function() {
 
 	var data = require('../../snippets/data/features.json');
 
-	describe('DataLoader', function() {
+	//describe('DataLoader', function() {
 		it('should process the data', function() {
 			var d = DataLoader.processData(data);
 			assert.equal(43, d.totalFeatureCount);
 		});
-	});
+	//});
 
-	describe('NonOverlappingLayout', function() {
+	//describe('NonOverlappingLayout', function() {
 		var layout = new NonOverlappingLayout(data.domainsAndSites.features, 40);
 
 		it('should calculate track overlapps', function() {
@@ -47,6 +47,6 @@ describe('FeaturesViewerTest', function() {
 		it('should return right number of rows', function() {
 			assert.equal(2, layout.getRows().length);
 		});
-	});
+	//});
 
 });

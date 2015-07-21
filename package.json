@@ -23,7 +23,7 @@
   "main": "lib/FeaturesViewer",
   "config": {
     "classname": "FeaturesViewerTest",
-    "outputfile": "reports/TEST-all.xml"
+    "outputfile": "reports/TEST-FeaturesViewerTest.xml"
   },
   "scripts": {
     "test": "gulp test",
