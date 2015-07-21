@@ -62,7 +62,7 @@
     "mkdirp": "^0.5.0",
     "mocha": "~1.20.1",
     "mocha-sonar-reporter": "^0.1.2",
-    "phantomjs": "^1.9.16",
+    "phantomjs": "^1.9.1",
     "sniper": "^0.2.16",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^3.2.3",
