@@ -9,3 +9,4 @@ coverage/
 .project
 config.rb
 *.iml
+xunit.xml
