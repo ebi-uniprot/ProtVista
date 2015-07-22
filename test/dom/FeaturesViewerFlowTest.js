@@ -21,10 +21,9 @@ var yourDiv = document.getElementById('mocha');
 // requires your main app (specified in index.js)
 var FeaturesViewer = require('../..');
 
-describe('FeaturesViewer module', function() {
+describe('FeaturesViewerFlowTest', function() {
     var instance,
         data, aaWidth, gapRegion,
-        featureAt147, pathsAt137,
         firstMetalPosition = 9;
 
     var flushAllD3Transitions = function() {
@@ -109,6 +108,40 @@ describe('FeaturesViewer module', function() {
         var children = document.querySelectorAll('.up_pftv_category-container>.up_pftv_category');
         assert.equal(children.length, 8, 'category count');
 
+    });
+
+    it('should create 1 category container with 8 category and type tracks', function() {
+        var categoryFeatures = document.querySelectorAll('.up_pftv_category-container' +
+            ' .up_pftv_category-viewer-group');
+        assert.equal(categoryFeatures.length, 27, 'category and type tracks number, variants excluded');
+        assert.equal(categoryFeatures[0].childElementCount, data.domainsAndSites.features.length, 'first category' +
+            ' features count');
+        assert.equal(categoryFeatures[6].childElementCount, data.moleculeProcessing.features.length, 'second category' +
+            ' features count');
+        assert.equal(categoryFeatures[10].childElementCount, data.ptm.features.length, 'second' +
+            ' category' +
+            ' features count');
+        assert.equal(categoryFeatures[13].childElementCount, data.seqInfo.features.length, 'second' +
+            ' category' +
+            ' features count');
+        assert.equal(categoryFeatures[16].childElementCount, data.structural.features.length, 'second' +
+            ' category' +
+            ' features count');
+        assert.equal(categoryFeatures[22].childElementCount, data.topology.features.length, 'second' +
+            ' category' +
+            ' features count');
+        assert.equal(categoryFeatures[25].childElementCount, data.mutagenesis.features.length, 'second' +
+            ' category' +
+            ' features count');
+    });
+
+    it('should cut all title to maximum 29 characters', function() {
+        var catTitle = document.querySelectorAll('.up_pftv_category-container .up_pftv_category-name');
+
+        for (var i = 0; i < catTitle.length; i++) {
+            console.log(catTitle[i].text.length);
+            expect(catTitle[i].text.length).to.be.below(27);
+        }
     });
 
     it('should create a category track with title and features', function() {
@@ -388,7 +421,7 @@ describe('FeaturesViewer module', function() {
             , 'translated metal');
 
         var extent = document.querySelector('.up_pftv_navruler .extent');
-        assert.equal(extent.getAttribute('x'), 0, 'navRuler.extent initial position');
+        assert.equal(extent.getAttribute('x'), 10, 'navRuler.extent initial position');
         expect(extent.getAttribute('width')).to.be.above(0);
 
         var trapezoid = document.querySelector('.up_pftv_trapezoid');
