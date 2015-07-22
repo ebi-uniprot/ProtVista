@@ -73,8 +73,13 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(groups[0].getAttribute('class'), 'x axis', 'first #up_pftv_svg-navruler group class');
         assert.equal(groups[1].getAttribute('class'), 'up_pftv_viewport', 'second #up_pftv_svg-navruler group class');
         assert.equal(groups[2].childElementCount, 1, 'third #up_pftv_svg-navruler group, children count');
+
         var trapezoid = document.querySelectorAll('#up_pftv_svg-navruler .up_pftv_trapezoid');
         expect(trapezoid.d).to.be.undefined;
+
+        var extent = document.querySelector('.up_pftv_navruler .extent');
+        assert.equal(extent.getAttribute('x'), 10, 'navRuler.extent initial position');
+        expect(+extent.getAttribute('width')).to.be.closeTo(740, 1);
     });
 
     it('should create 1 up_pftv_buttons with 4 children', function() {
@@ -139,7 +144,6 @@ describe('FeaturesViewerFlowTest', function() {
         var catTitle = document.querySelectorAll('.up_pftv_category-container .up_pftv_category-name');
 
         for (var i = 0; i < catTitle.length; i++) {
-            console.log(catTitle[i].text.length);
             expect(catTitle[i].text.length).to.be.below(27);
         }
     });
@@ -457,10 +461,10 @@ describe('FeaturesViewerFlowTest', function() {
         flushAllD3Transitions();
 
         var extent = document.querySelector('.up_pftv_navruler .extent');
-        assert.equal(extent.getAttribute('width'), 0, 'extent not visible after zooming out');
+        assert.equal(extent.getAttribute('width'), 740, 'extent covers all width after zooming out');
 
         var trapezoid = document.querySelector('.up_pftv_trapezoid');
-        assert.equal(trapezoid.getAttribute('d'), 'M0,0', 'trapezoid not visible after zooming out');
+        assert.equal(trapezoid.getAttribute('d'), 'M0,50L0,48L10,40L750,40L760,48L760,50Z', 'trapezoid not visible after zooming out');
 
         var aaViewer = document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild;
         assert.equal(aaViewer.style.opacity, 0, 'aa sequence not visible after zooming out');
