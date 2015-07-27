@@ -18,6 +18,10 @@ svg { overflow: hidden; }
 .up_pftv_aaviewer {
 }
 
+.bottom-aa-container {
+  padding-left: 195px;
+}
+
 .up_pftv_category-container {
   position: relative;
   border-right:2px solid #b2f5ff;
