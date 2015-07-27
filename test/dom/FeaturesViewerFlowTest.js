@@ -21,6 +21,58 @@ var yourDiv = document.getElementById('mocha');
 // requires your main app (specified in index.js)
 var FeaturesViewer = require('../..');
 
+var verifyShadowAttributes = function(containerClass, path, translate, width, height, x, y, exactWidth) {
+    var categoryShadow = document.querySelector('.' + containerClass + ' .up_pftv_shadow');
+
+    if (path) {
+        var transform = path.getAttribute('transform');
+        transform = transform.substring(0, transform.indexOf(','));
+        assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
+    } else {
+        if (translate) {
+            assert.equal(categoryShadow.getAttribute('transform'), translate, 'shadow translation');
+        } else {
+            expect(categoryShadow.getAttribute('transform')).to.be.null;
+        }
+    }
+
+    if (exactWidth === true) {
+        assert.equal(categoryShadow.getAttribute('width'), width, 'shadow width');
+    } else {
+        expect(Math.abs(width - categoryShadow.getAttribute('width'))).to.be.below(0.01);
+    }
+
+    assert.equal(categoryShadow.getAttribute('height'), height, 'shadow height');
+    assert.equal(categoryShadow.getAttribute('x'), x, 'shadow x coordinate');
+
+    if (y) {
+        assert.equal(categoryShadow.getAttribute('y'), y, 'shadow y coordinate');
+    }
+};
+
+var verifyViewPortAttributes = function(verifyInitialX, verifyFullWidth, verifyFullPath, opacity) {
+    var extent = document.querySelector('.up_pftv_navruler .extent');
+
+    if (verifyInitialX) {
+        assert.equal(extent.getAttribute('x'), 10, 'navRuler.extent initial position');
+    }
+    if (verifyFullWidth) {
+        assert.equal(extent.getAttribute('width'), 740, 'extent covers all width after zooming out');
+    } else {
+        expect(extent.getAttribute('width')).to.be.above(0);
+    }
+
+    var trapezoid = document.querySelector('.up_pftv_trapezoid');
+    if (verifyFullPath) {
+        assert.equal(trapezoid.getAttribute('d'), 'M0,50L0,48L10,40L750,40L760,48L760,50Z', 'visible trapezoid');
+    } else {
+        expect(trapezoid.getAttribute('d')).to.not.equal('M0,0');
+    }
+
+    var aaViewer = document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild;
+    assert.equal(aaViewer.style.opacity, opacity, 'aa sequence opacity');
+};
+
 describe('FeaturesViewerFlowTest', function() {
     var instance,
         data, aaWidth, gapRegion,
@@ -47,7 +99,7 @@ describe('FeaturesViewerFlowTest', function() {
         });
     });
 
-	it('should create 1 up_pftv_container with 4 children', function() {
+	it('should create 1 up_pftv_container with 5 children', function() {
         var mochaDiv = document.getElementById('mocha');
         assert.equal(mochaDiv.firstElementChild.getAttribute('class'), 'up_pftv_container', 'up_pftv_container' +
             ' existence inside test div');
@@ -55,7 +107,7 @@ describe('FeaturesViewerFlowTest', function() {
 
         var mainContainer = document.getElementsByClassName('up_pftv_container');
         assert.equal(mainContainer.length, 1, 'only one up_pftv_container');
-        assert.equal(mainContainer[0].childElementCount, 4, 'up_pftv_container children count');
+        assert.equal(mainContainer[0].childElementCount, 5, 'up_pftv_container children count');
 	});
 
     it('should create 1 nav-ruler with 1 SVG', function() {
@@ -158,17 +210,12 @@ describe('FeaturesViewerFlowTest', function() {
             ' features count');
     });
 
-    it('should create a hidden vertical highlight on the category track', function() {
-        var categoryShadow = document.querySelector('.up_pftv_category-container g');
-        var svg = document.querySelector('.up_pftv_category svg');
+    it('should create one hidden vertical highlight on the category track', function() {
+        var categoryShadowGroup = document.querySelector('.up_pftv_category-container g');
+        assert.equal(categoryShadowGroup.childElementCount, 1, 'only one vertical shadow');
 
-        assert.equal(categoryShadow.childElementCount, 1, 'only one vertical shadow');
-        expect(categoryShadow.getAttribute('transform')).to.be.null;
-        assert.equal(categoryShadow.firstElementChild.getAttribute('width'), 0, 'shadow width');
-        assert.equal(categoryShadow.firstElementChild.getAttribute('height'), svg.getAttribute('height'), 'shadow' +
-            ' height');
-        assert.equal(categoryShadow.firstElementChild.getAttribute('x'), 0, 'shadow x');
-        assert.equal(categoryShadow.firstElementChild.getAttribute('y'), 0, 'shadow y');
+        verifyShadowAttributes('up_pftv_category-container', undefined, undefined, 0,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), 0, 0, true);
     });
 
     it('should create 10 hidden type track elements on the category track', function() {
@@ -179,15 +226,10 @@ describe('FeaturesViewerFlowTest', function() {
 
     it('should create a hidden vertical highlight on the type track', function() {
         var typeShadow = document.querySelector('.up_pftv_track g');
-        var svg = document.querySelector('.up_pftv_category svg');
-
         assert.equal(typeShadow.childElementCount, 1, 'only one vertical shadow');
-        expect(typeShadow.getAttribute('transform')).to.be.null;
-        assert.equal(typeShadow.firstElementChild.getAttribute('width'), 0, 'shadow width');
-        assert.equal(typeShadow.firstElementChild.getAttribute('height'), svg.getAttribute('height'), 'shadow' +
-            ' height');
-        assert.equal(typeShadow.firstElementChild.getAttribute('x'), 0, 'shadow x');
-        assert.equal(typeShadow.firstElementChild.getAttribute('y'), 0, 'shadow y');
+
+        verifyShadowAttributes('up_pftv_track', undefined, undefined, 0, document.querySelector('.up_pftv_category' +
+                ' svg').getAttribute('height'), 0, 0, true);
     });
 
     it('should create a metal in position 147', function() {
@@ -215,26 +257,21 @@ describe('FeaturesViewerFlowTest', function() {
     it('should activate vertical highlight after feature selection @147', function() {
         var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
+        var svg = document.querySelector('.up_pftv_category svg');
 
-        var transform = paths[0].getAttribute('transform');
-        transform = transform.substring(0, transform.indexOf(','));
-
-        var categoryShadow = document.querySelector('.up_pftv_category-container .up_pftv_shadow');
-        assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
-        assert.equal(categoryShadow.getAttribute('width'), aaWidth, 'shadow width');
-        expect(categoryShadow.getAttribute('height')).to.be.above(0);
-        assert.equal(categoryShadow.getAttribute('x'), -gapRegion, 'shadow x coordinate');
-        assert.equal(categoryShadow.getAttribute('y'), 0, 'shadow y coordinate');
+        verifyShadowAttributes('up_pftv_category', paths[0], undefined, aaWidth, svg.getAttribute('height'), -gapRegion,
+            undefined, true);
     });
 
     it('should adjust vertical highlight for type tracks', function() {
         var typeShadow = document.querySelector('.up_pftv_track g');
         assert.equal(typeShadow.childElementCount, 1, 'only one vertical shadow');
-        expect(typeShadow.getAttribute('transform')).to.be.null;
-        assert.equal(typeShadow.firstElementChild.getAttribute('width'), aaWidth, 'shadow width');
-        expect(typeShadow.getAttribute('height')).to.be.null;
-        assert.equal(typeShadow.firstElementChild.getAttribute('x'), -gapRegion, 'shadow x');
-        assert.equal(typeShadow.firstElementChild.getAttribute('y'), 0, 'shadow y');
+
+        var feature = data.domainsAndSites.features[firstMetalPosition];
+        var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
+
+        verifyShadowAttributes('up_pftv_track', paths[0], undefined, aaWidth,
+            document.querySelector('.up_pftv_track svg').getAttribute('height'), -gapRegion, 0, true);
     });
 
     it('should open 1 tooltip after feature selection @147', function() {
@@ -270,21 +307,13 @@ describe('FeaturesViewerFlowTest', function() {
     });
 
     it('should deactivate category vertical highlight after feature deselection @147', function() {
-        var categoryShadow = document.querySelector('.up_pftv_category-container .up_pftv_shadow');
-        assert.equal(categoryShadow.getAttribute('transform'), 'translate(0,0)', 'shadow translation when not visible');
-        assert.equal(categoryShadow.getAttribute('width'), 0, 'shadow x coordinate when not visible');
-        expect(categoryShadow.getAttribute('height')).to.be.above(0);
-        assert.equal(categoryShadow.getAttribute('x'), 0, 'shadow x coordinate when not visible');
-        assert.equal(categoryShadow.getAttribute('y'), 0, 'shadow y coordinate');
+        verifyShadowAttributes('up_pftv_category-container', undefined, 'translate(0,0)', 0,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), 0, 0, true);
     });
 
     it('should deactivate type vertical highlight after feature deselection @147', function() {
-        var typeShadow = document.querySelector('.up_pftv_track .up_pftv_shadow');
-        assert.equal(typeShadow.getAttribute('transform'), 'translate(0,0)', 'shadow translation when not visible');
-        assert.equal(typeShadow.getAttribute('width'), 0, 'shadow x coordinate when not visible');
-        expect(typeShadow.getAttribute('height')).to.be.above(0);
-        assert.equal(typeShadow.getAttribute('x'), 0, 'shadow x coordinate when not visible');
-        assert.equal(typeShadow.getAttribute('y'), 0, 'shadow y coordinate');
+        verifyShadowAttributes('up_pftv_track', undefined, 'translate(0,0)', 0,
+            document.querySelector('.up_pftv_track svg').getAttribute('height'), 0, 0, true);
     });
 
     it('should open first category type tracks', function() {
@@ -380,36 +409,25 @@ describe('FeaturesViewerFlowTest', function() {
         var featureMP = data.moleculeProcessing.features[0];
         var paths = document.querySelectorAll("[name='" + featureMP.internalId + "']");
 
-        var transform = paths[0].getAttribute('transform');
-        transform = transform.substring(0, transform.indexOf(','));
+        var svg = document.querySelector('.up_pftv_category svg');
+
         var shapePath = paths[0].getAttribute('d');
         var x = shapePath.substring(1, shapePath.indexOf(','));
         var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
 
-        var categoryShadow = document.querySelector('.up_pftv_category-container .up_pftv_shadow');
-        assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
-        expect(Math.abs(lineEnd - x - categoryShadow.getAttribute('width'))).to.be.below(0.01);
-        expect(categoryShadow.getAttribute('height')).to.be.above(0);
-        assert.equal(categoryShadow.getAttribute('x'), x, 'shadow x coordinate');
-        assert.equal(categoryShadow.getAttribute('y'), 0, 'shadow y coordinate');
+        verifyShadowAttributes('up_pftv_category-container', paths[0], undefined, lineEnd - x, svg.getAttribute('height'), x, 0, false);
     });
 
     it('should adjust vertical highlight for type tracks after feature selection @1-17', function() {
         var featureMP = data.moleculeProcessing.features[0];
         var paths = document.querySelectorAll("[name='" + featureMP.internalId + "']");
 
-        var transform = paths[0].getAttribute('transform');
-        transform = transform.substring(0, transform.indexOf(','));
         var shapePath = paths[0].getAttribute('d');
         var x = shapePath.substring(1, shapePath.indexOf(','));
         var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
 
-        var typeShadow = document.querySelector('.up_pftv_track .up_pftv_shadow');
-        assert.equal(typeShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
-        expect(Math.abs(lineEnd - x - typeShadow.getAttribute('width'))).to.be.below(0.01);
-        expect(typeShadow.getAttribute('height')).to.be.above(0);
-        assert.equal(typeShadow.getAttribute('x'), x, 'shadow x');
-        assert.equal(typeShadow.getAttribute('y'), 0, 'shadow y');
+        verifyShadowAttributes('up_pftv_track', paths[0], undefined, lineEnd - x,
+            document.querySelector('.up_pftv_track svg').getAttribute('height'), x, 0, false);
     });
 
     it('should zoom in', function() {
@@ -424,33 +442,55 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(path.getAttribute('transform'), 'translate(' + instance.xScale(+feature.begin) + ',5)'
             , 'translated metal');
 
-        var extent = document.querySelector('.up_pftv_navruler .extent');
-        assert.equal(extent.getAttribute('x'), 10, 'navRuler.extent initial position');
-        expect(extent.getAttribute('width')).to.be.above(0);
+        verifyViewPortAttributes(true, false, false, 1);
+    });
 
-        var trapezoid = document.querySelector('.up_pftv_trapezoid');
-        expect(trapezoid.getAttribute('d')).to.not.equal('M0,0');
+    it('should display only zoom-out button', function() {
+        var zoomBtn = document.querySelectorAll('.up_pftv_icon-zoom-in');
+        assert.equal(zoomBtn.length, 0, 'no zoom-in button');
 
-        var aaViewer = document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild;
-        assert.equal(aaViewer.style.opacity, 1, 'aa sequence opacity, now visible');
+        zoomBtn = document.querySelectorAll('.up_pftv_icon-zoom-out');
+        assert.equal(zoomBtn.length, 1, 'only one zoom-out button');
     });
 
     it('should adjust vertical highlight after zooming', function() {
         var featureMP = data.moleculeProcessing.features[0];
         var paths = document.querySelectorAll("[name='" + featureMP.internalId + "']");
 
-        var transform = paths[0].getAttribute('transform');
-        transform = transform.substring(0, transform.indexOf(','));
         var shapePath = paths[0].getAttribute('d');
         var x = shapePath.substring(1, shapePath.indexOf(','));
         var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
 
-        var categoryShadow = document.querySelector('.up_pftv_category-container .up_pftv_shadow');
-        assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
-        expect(Math.abs(lineEnd - x - categoryShadow.getAttribute('width'))).to.be.below(0.01);
-        expect(categoryShadow.getAttribute('height')).to.be.above(0);
-        assert.equal(categoryShadow.getAttribute('x'), x, 'shadow x coordinate');
-        assert.equal(categoryShadow.getAttribute('y'), 0, 'shadow y coordinate');
+        verifyShadowAttributes('up_pftv_category', paths[0], undefined, lineEnd - x,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), x, 0, false);
+    });
+
+    it('should zoom-out with button', function() {
+        var zoomOutButton = document.querySelector('.up_pftv_icon-zoom-out');
+        var outEvent = document.createEvent("MouseEvents");
+        outEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomOutButton);
+        zoomOutButton.dispatchEvent(outEvent); //zoom out
+        flushAllD3Transitions();
+
+        verifyViewPortAttributes(false, true, true, 0);
+    });
+
+    it('should keep selection after zooming-out', function() {
+        var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
+        assert.equal(selectedFeature.length, 2, 'feature still selected');
+        expect(instance.selectedFeature).to.be.not.undefined;
+    });
+
+    it('should keep shadow after zooming-out', function() {
+        var featureMP = data.moleculeProcessing.features[0];
+        var paths = document.querySelectorAll("[name='" + featureMP.internalId + "']");
+
+        var shapePath = paths[0].getAttribute('d');
+        var x = shapePath.substring(1, shapePath.indexOf(','));
+        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
+
+        verifyShadowAttributes('up_pftv_category', paths[0], undefined, lineEnd - x,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), x, 0, false);
     });
 
     it('should reset view (zoom out and deselect features)', function() {
@@ -460,27 +500,26 @@ describe('FeaturesViewerFlowTest', function() {
         resetButton.dispatchEvent(evtReset); //zoom out
         flushAllD3Transitions();
 
-        var extent = document.querySelector('.up_pftv_navruler .extent');
-        assert.equal(extent.getAttribute('width'), 740, 'extent covers all width after zooming out');
-
-        var trapezoid = document.querySelector('.up_pftv_trapezoid');
-        assert.equal(trapezoid.getAttribute('d'), 'M0,50L0,48L10,40L750,40L760,48L760,50Z', 'trapezoid not visible after zooming out');
-
-        var aaViewer = document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild;
-        assert.equal(aaViewer.style.opacity, 0, 'aa sequence not visible after zooming out');
+        verifyViewPortAttributes(false, true, true, 0);
 
         var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
         assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
         expect(instance.selectedFeature).to.be.undefined;
 
-        var categoryShadow = document.querySelector('.up_pftv_category-container .up_pftv_shadow');
-        assert.equal(categoryShadow.getAttribute('transform'), 'translate(0,0)', 'shadow x coordinate');
-        assert.equal(categoryShadow.getAttribute('width'), 0, 'shadow x coordinate');
-        assert.equal(categoryShadow.getAttribute('x'), 0, 'shadow x coordinate');
+        verifyShadowAttributes('up_pftv_category', undefined, 'translate(0,0)', 0,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), 0, 0, true);
     });
 
     it('should keep tooltip open', function() {
         var tooltip = document.querySelectorAll('.up_pftv_tooltip-container');
         assert.equal(tooltip.length, 1, 'tooltip still exists');
+    });
+
+    it('should go back to zoom-in button', function() {
+        var zoomBtn = document.querySelectorAll('.up_pftv_icon-zoom-in');
+        assert.equal(zoomBtn.length, 1, 'only 1 zoom-in button');
+
+        zoomBtn = document.querySelectorAll('.up_pftv_icon-zoom-out');
+        assert.equal(zoomBtn.length, 0, 'no zoom-out button');
     });
 });
