@@ -26,27 +26,28 @@ describe('FeaturesViewerTest', function() {
 
 	var data = require('../../snippets/data/features.json');
 
-	//describe('DataLoader', function() {
-		it('should process the data', function() {
-			var d = DataLoader.processData(data);
-			assert.equal(43, d.totalFeatureCount);
-		});
-	//});
+	//'DataLoader'
+	it('should process the data', function() {
+		var d = DataLoader.processData(data);
+		var totalFeatures = data.domainsAndSites.features.length + data.moleculeProcessing.features.length +
+			data.ptm.features.length + data.seqInfo.features.length + data.structural.features.length +
+			data.topology.features.length + data.mutagenesis.features.length + data.variants.features.length;
+		assert(d.totalFeatureCount, totalFeatures);
+	});
 
-	//describe('NonOverlappingLayout', function() {
-		var layout = new NonOverlappingLayout(data.domainsAndSites.features, 40);
+	//'NonOverlappingLayout
+	var layout = new NonOverlappingLayout(data.domainsAndSites.features, 40);
 
-		it('should calculate track overlapps', function() {
-			layout.calculate();
-		});
+	it('should calculate track overlaps', function() {
+		layout.calculate();
+	});
 
-		it('should return feature height', function() {
-			assert.equal(13,layout.getFeatureHeight());
-		});
+	it('should return feature height', function() {
+		assert.equal(13,layout.getFeatureHeight());
+	});
 
-		it('should return right number of rows', function() {
-			assert.equal(2, layout.getRows().length);
-		});
-	//});
+	it('should return right number of rows', function() {
+		assert.equal(2, layout.getRows().length);
+	});
 
 });
