@@ -50,7 +50,7 @@ var verifyShadowAttributes = function(containerClass, path, translate, width, he
     }
 };
 
-var verifyViewPortAttributes = function(verifyInitialX, verifyFullWidth, verifyFullPath, opacity) {
+var verifyViewPortAttributes = function(verifyInitialX, verifyFullWidth, fullPath, opacity) {
     var extent = document.querySelector('.up_pftv_navruler .extent');
 
     if (verifyInitialX) {
@@ -63,8 +63,8 @@ var verifyViewPortAttributes = function(verifyInitialX, verifyFullWidth, verifyF
     }
 
     var trapezoid = document.querySelector('.up_pftv_trapezoid');
-    if (verifyFullPath) {
-        assert.equal(trapezoid.getAttribute('d'), 'M0,50L0,48L10,40L750,40L760,48L760,50Z', 'visible trapezoid');
+    if (fullPath) {
+        assert.equal(trapezoid.getAttribute('d'), fullPath, 'visible trapezoid');
     } else {
         expect(trapezoid.getAttribute('d')).to.not.equal('M0,0');
     }
@@ -430,7 +430,7 @@ describe('FeaturesViewerFlowTest', function() {
             document.querySelector('.up_pftv_track svg').getAttribute('height'), x, 0, false);
     });
 
-    it('should zoom in', function() {
+    it('should zoom in with button to the middle of the selected ft', function() {
         var zoomIn = document.querySelector('.up_pftv_icon-zoom-in');
         var evt = document.createEvent("MouseEvents");
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomIn);
@@ -442,7 +442,7 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(path.getAttribute('transform'), 'translate(' + instance.xScale(+feature.begin) + ',5)'
             , 'translated metal');
 
-        verifyViewPortAttributes(true, false, false, 1);
+        verifyViewPortAttributes(true, false, 'M0,50L0,48L10,28L10,40L38.86866059817945,40L38.86866059817945,28L760,48L760,50Z', 1);
     });
 
     it('should display only zoom-out button', function() {
@@ -472,7 +472,7 @@ describe('FeaturesViewerFlowTest', function() {
         zoomOutButton.dispatchEvent(outEvent); //zoom out
         flushAllD3Transitions();
 
-        verifyViewPortAttributes(false, true, true, 0);
+        verifyViewPortAttributes(false, true, 'M0,50L0,48L10,28L10,40L750,40L750,28L760,48L760,50Z', 0);
     });
 
     it('should keep selection after zooming-out', function() {
@@ -500,7 +500,7 @@ describe('FeaturesViewerFlowTest', function() {
         resetButton.dispatchEvent(evtReset); //zoom out
         flushAllD3Transitions();
 
-        verifyViewPortAttributes(false, true, true, 0);
+        verifyViewPortAttributes(false, true, 'M0,50L0,48L10,28L10,40L750,40L750,28L760,48L760,50Z', 0);
 
         var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
         assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
@@ -521,5 +521,15 @@ describe('FeaturesViewerFlowTest', function() {
 
         zoomBtn = document.querySelectorAll('.up_pftv_icon-zoom-out');
         assert.equal(zoomBtn.length, 0, 'no zoom-out button');
+    });
+
+    it('should zoom-in with button to position 1 when no ft is selected', function() {
+        var zoomInButton = document.querySelector('.up_pftv_icon-zoom-in');
+        var inEvent = document.createEvent("MouseEvents");
+        inEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomInButton);
+        zoomInButton.dispatchEvent(inEvent); //zoom in
+        flushAllD3Transitions();
+
+        verifyViewPortAttributes(false, false, 'M0,50L0,48L10,28L10,40L37.90637191157347,40L37.90637191157347,28L760,48L760,50Z', 1);
     });
 });
