@@ -89,9 +89,9 @@ svg { overflow: hidden; }
 	content: ' ';
 	display: inline-block;
 	width: 0;
-	height: 0; 
+	height: 0;
 	border-top: 5px solid transparent;
-	border-bottom: 5px solid transparent;	
+	border-bottom: 5px solid transparent;
 	border-left: 5px solid #333;
 	margin-right: 5px;
 }
@@ -100,9 +100,9 @@ svg { overflow: hidden; }
 	content: ' ';
 	display: inline-block;
 	width: 0;
-	height: 0; 
+	height: 0;
 	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;	
+	border-right: 5px solid transparent;
 	border-top: 5px solid #333;
 	margin-right: 5px;
 }
@@ -291,24 +291,24 @@ svg { overflow: hidden; }
   fill: #FF0066; }
 
  svg .up_pftv_crosslnk {
-  stroke: #B33E00;
-  fill: #B33E00; }
+  stroke: #FF6600;
+  fill: #FF6600; }
 
  svg .up_pftv_disulfid {
   stroke: #23B14D;
   fill: #23B14D; }
 
  svg .up_pftv_region {
-  stroke: #FF6600;
-  fill: #FF6600; }
+  stroke: #B33E00;
+  fill: #B33E00; }
 
  svg .up_pftv_coiled {
-  stroke: #FF9966;
-  fill: #FF9966; }
+  stroke: #006699;
+  fill: #006699; }
 
  svg .up_pftv_motif {
-  stroke: #663399;
-  fill: #663399; }
+  stroke: #402060;
+  fill: #402060; }
 
  svg .up_pftv_repeat {
   stroke: #9900FF;
