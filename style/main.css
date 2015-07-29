@@ -2,9 +2,10 @@ svg { overflow: hidden; }
 
 .up_pftv_buttons {
   display: inline-block;
-  padding:0 .5em .2em .5em;
+  padding:0 .5em 0 .5em;
   width: 180px;
   text-align: right;
+  vertical-align: bottom;
 }
 
 .up_pftv_buttons span {
@@ -34,19 +35,20 @@ svg { overflow: hidden; }
 
 .up_pftv_container {
   position: relative;
-	width:960px;
-	color: #3c4043;
- 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
- 	font-weight: 300;
-	font-size:16px;
-	line-height:1.5;
+  width:960px;
+  color: #3c4043;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  font-weight: 300;
+  font-size:16px;
+  line-height:1.5;
 }
 
 .up_pftv_navruler {
-	margin-left:195px;
+  margin-left:195px;
 }
 
 .up_pftv_navruler svg {
+  vertical-align: bottom;
   font-size: 14px;
 }
 
@@ -55,73 +57,79 @@ svg { overflow: hidden; }
 }
 
 .up_pftv_category {
-	margin-bottom: .1em;
+  margin-bottom: .1em;
   border-bottom: .1em solid #b2f5ff;
 }
 
 .up_pftv_category a:hover {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 .up_pftv_category-name, .up_pftv_track-header , .up_pftv_category-name:hover, .up_pftv_track-header:hover {
-	display: inline-block;
-	width: 180px;
-	vertical-align: top;
-	padding:.5em;
-	text-transform: capitalize;
-  background-color: #b2f5ff;
-  border: none;
+  display: inline-block;
+  width: 180px;
+  vertical-align: bottom;
+  padding:.5em;
+  text-transform: capitalize;
+    background-color: #b2f5ff;
+    border: none;   
 }
 
 .up_pftv_category-viewer, .up_pftv_track, .up_pftv_aaviewer {
   position: relative;
-	display: inline-block;
+  display: inline-block;
+  vertical-align: bottom;
   width: 760px;
 }
+
+.up_pftv_category-viewer svg, .up_pftv_track svg, .up_pftv_aaviewer svg{
+  vertical-align: bottom;
+}
+
 .up_pftv_category-name {
-	cursor: pointer;
+  cursor: pointer;
 }
 .up_pftv_track {
   border-top:1px #b2f5ff solid;
 }
 
 .up_pftv_category-name.up_pftv_arrow-right:before {
-	content: ' ';
-	display: inline-block;
-	width: 0;
-	height: 0;
-	border-top: 5px solid transparent;
-	border-bottom: 5px solid transparent;
-	border-left: 5px solid #333;
-	margin-right: 5px;
+  content: ' ';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #333;
+  margin-right: 5px;
 }
 
 .up_pftv_category-name.up_pftv_arrow-down:before {
-	content: ' ';
-	display: inline-block;
-	width: 0;
-	height: 0;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-top: 5px solid #333;
-	margin-right: 5px;
+  content: ' ';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+  margin-right: 5px;
 }
 
 .up_pftv_track-header {
-	background-color: #d9faff;
-	line-height:1.6em;
+  background-color: #d9faff;
+  line-height:1.6em;
   margin: .05em 0;
 }
 
 .up_pftv_category-disabled {
-	opacity: .4;
+  opacity: .4;
 }
 .up_pftv_category-disabled a:hover {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 .up_pftv_category-disabled .up_pftv_category-name {
-	cursor: default;
+  cursor: default;
 }
 
 /* Ruler */
@@ -130,7 +138,7 @@ svg { overflow: hidden; }
 }
 
 .up_pftv_navruler line, .up_pftv_navruler path {
-	fill:none;
+  fill:none;
     stroke:black;
 }
 
@@ -154,21 +162,21 @@ svg { overflow: hidden; }
 }
 
 .up_pftv_aaviewer text {
-	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 12px;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 12px;
 }
 
 .up_pftv_feature {
   cursor: pointer;
-	fill-opacity: .6;
+  fill-opacity: .6;
 }
 
 .up_pftv_feature:hover {
-	fill-opacity: .9;
+  fill-opacity: .9;
 }
 
 .up_pftv_activeFeature {
-	fill-opacity: .9;
+  fill-opacity: .9;
 }
 
 .up_pftv_variation-chart .up_pftv_block-area {
