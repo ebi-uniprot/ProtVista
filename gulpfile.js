@@ -61,7 +61,7 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('test', ['test-unit']);
+gulp.task('test', ['test-unit','test-dom']);
 
 gulp.task('test-unit', ['test-env'], function () {
     return gulp.src(['./src/**/*.js', './lib/**/*.js'])
