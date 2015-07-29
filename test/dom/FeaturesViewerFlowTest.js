@@ -242,6 +242,7 @@ describe('FeaturesViewerFlowTest', function() {
     });
 
     it('should select a category feature @147', function() {
+        instance.overFeature = true;
         var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         assert.equal(paths.length, 2, 'number of metals in position 147 (1 in category, 1 in type)');
@@ -249,9 +250,10 @@ describe('FeaturesViewerFlowTest', function() {
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, paths[0]);
         paths[0].dispatchEvent(evt); //select
 
+        assert.equal(feature, instance.selectedFeature, 'selected feature');
         assert.equal(paths[0].getAttribute('class'), 'up_pftv_feature up_pftv_metal up_pftv_activeFeature', 'selected metal class');
         assert.equal(paths[1].getAttribute('class'), 'up_pftv_feature up_pftv_metal', 'hidden type track metal class');
-        assert.equal(feature, instance.selectedFeature, 'selected feature');
+        instance.overFeature = false;
     });
 
     it('should activate vertical highlight after feature selection @147', function() {
@@ -333,6 +335,7 @@ describe('FeaturesViewerFlowTest', function() {
     });
 
     it('should select a type feature @147', function() {
+        instance.overFeature = true;
         var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         assert.equal(paths.length, 2, 'number of metals in position 147 (1 in category, 1 in type)');
@@ -345,6 +348,7 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(paths[1].getAttribute('class'), 'up_pftv_feature up_pftv_metal up_pftv_activeFeature'
             , 'selected metal class in category in type');
         assert.equal(feature, instance.selectedFeature, 'selected feature');
+        instance.overFeature = false;
     });
 
     it('should activate all vertical highlight after feature selection @147', function() {
@@ -388,6 +392,7 @@ describe('FeaturesViewerFlowTest', function() {
     });
 
     it('should select another feature, first molecule processing feature @1-17', function() {
+        instance.overFeature = true;
         var featureDS = data.domainsAndSites.features[firstMetalPosition];
         var pathsDS = document.querySelectorAll("[name='" + featureDS.internalId + "']");
 
@@ -403,6 +408,7 @@ describe('FeaturesViewerFlowTest', function() {
             , 'selected signal class');
         expect(featureDS).to.be.not.equal(instance.selectedFeature);
         assert.equal(featureMP, instance.selectedFeature, 'selected feature');
+        instance.overFeature = false;
     });
 
     it('should activate vertical highlight after feature selection @1-17', function() {
@@ -493,6 +499,27 @@ describe('FeaturesViewerFlowTest', function() {
             document.querySelector('.up_pftv_category svg').getAttribute('height'), x, 0, false);
     });
 
+    it('should keep selection on div click', function() {
+        var svgDiv = document.querySelector('.up_pftv_category-viewer');
+        var evtDiv = document.createEvent("MouseEvents");
+        evtDiv.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, svgDiv);
+        svgDiv.dispatchEvent(evtDiv);
+
+        var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
+        assert.equal(selectedFeature.length, 2, 'feature still selected');
+        expect(instance.selectedFeature).to.be.not.undefined;
+
+        var featureMP = data.moleculeProcessing.features[0];
+        var paths = document.querySelectorAll("[name='" + featureMP.internalId + "']");
+
+        var shapePath = paths[0].getAttribute('d');
+        var x = shapePath.substring(1, shapePath.indexOf(','));
+        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
+
+        verifyShadowAttributes('up_pftv_category', paths[0], undefined, lineEnd - x,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), x, 0, false);
+    });
+
     it('should reset view (zoom out and deselect features)', function() {
         var resetButton = document.querySelector('.up_pftv_icon-arrows-cw');
         var evtReset = document.createEvent("MouseEvents");
@@ -531,5 +558,25 @@ describe('FeaturesViewerFlowTest', function() {
         flushAllD3Transitions();
 
         verifyViewPortAttributes(false, false, 'M0,50L0,48L10,28L10,40L37.90637191157347,40L37.90637191157347,28L760,48L760,50Z', 1);
+    });
+
+    it('should deselect feature on svg click', function() {
+        var featureMP = data.moleculeProcessing.features[0];
+        var pathsMP = document.querySelectorAll("[name='" + featureMP.internalId + "']");
+        var evtMP = document.createEvent("MouseEvents");
+        evtMP.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, pathsMP[0]);
+        pathsMP[0].dispatchEvent(evtMP);
+
+        var svg = document.querySelector('.up_pftv_category-viewer svg');
+        var evtSVG = document.createEvent("MouseEvents");
+        evtSVG.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, svg);
+        svg.dispatchEvent(evtSVG);
+
+        var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
+        assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
+        expect(instance.selectedFeature).to.be.undefined;
+
+        verifyShadowAttributes('up_pftv_category', undefined, 'translate(0,0)', 0,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), 0, 0, true);
     });
 });
