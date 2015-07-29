@@ -329,7 +329,7 @@ describe('FeaturesViewerFlowTest', function() {
         evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, catTitle);
         catTitle.dispatchEvent(evt); //open
 
-        assert.equal(typeTracks.style.display, 'inline-block', 'type tracks display after opening');
+        assert.equal(typeTracks.style.display, 'block', 'type tracks display after opening');
         assert.equal(catTitle.getAttribute('class'), 'up_pftv_category-name up_pftv_arrow-down'
             , 'title class when category is open');
     });
