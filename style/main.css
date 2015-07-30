@@ -154,10 +154,10 @@ svg { overflow: hidden; }
 }
 .up_pftv_shadow {
     fill: #B9AE9D;
-    fill-opacity: 0.4;
+    fill-opacity: 0.2;
 }
 .up_pftv_amino_acid_selector {
-    fill-opacity: .4;
+    fill-opacity: .2;
     fill: #B9AE9D;
 }
 
