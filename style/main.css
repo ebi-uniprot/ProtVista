@@ -480,17 +480,8 @@ svg { overflow: hidden; }
 .variants-svg circle {
   cursor: pointer;
   opacity: .7;
-  fill:lightskyblue;
 }
 
-.variants-svg .tolerated {
-  fill:lightgreen;
-}
-
-.variants-svg .deleterious {
-  fill:crimson;
-}
-
-.variants-svg .stop-gain {
-  fill: teal;
+.variants-svg circle:hover {
+  opacity: 1;
 }
