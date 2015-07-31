@@ -165,7 +165,7 @@ svg { overflow: hidden; }
     fill:#666;
     fill-opacity: .8;
     stroke: #000;
-    stroke-width: 1.5px;
+    stroke-width: 1px;
  }
 
  .up_pftv_navruler .handle:hover {
