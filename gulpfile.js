@@ -89,7 +89,7 @@ gulp.task('test-env', ['init-test-reports'], function() {
 
 gulp.task('init-test-reports', ['clean-test-reports'], function() {
     mkdirp('reports', function (err) {
-        if (err) console.error(err)
+        if (err) console.error(err);
     });
 });
 
@@ -127,7 +127,7 @@ gulp.task('clean', function(cb) {
 // just makes sure that the build dir exists
 gulp.task('init', ['clean'], function() {
     mkdirp(buildDir, function (err) {
-        if (err) console.error(err)
+        if (err) console.error(err);
     });
 });
 
