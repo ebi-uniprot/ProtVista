@@ -153,12 +153,12 @@ svg { overflow: hidden; }
     stroke: none;
 }
 .up_pftv_shadow {
-    fill: #B9AE9D;
-    fill-opacity: 0.2;
+    fill: #fff9e3;
+    fill-opacity: 1;
 }
 .up_pftv_amino_acid_selector {
-    fill-opacity: .2;
-    fill: #B9AE9D;
+    fill-opacity: 1;
+    fill: #fff9e3;
 }
 
 .up_pftv_navruler .handle {
