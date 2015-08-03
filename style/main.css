@@ -122,14 +122,8 @@ svg { overflow: hidden; }
 }
 
 .up_pftv_category-disabled {
-  opacity: .4;
-}
-.up_pftv_category-disabled a:hover {
-  font-weight: 300;
-}
-
-.up_pftv_category-disabled .up_pftv_category-name {
-  cursor: default;
+  opacity: 0;
+  display: none;
 }
 
 /* Ruler */
