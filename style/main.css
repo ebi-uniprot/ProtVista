@@ -453,40 +453,40 @@ svg { overflow: hidden; }
 
 
 /* Variation */
-.variants-svg .axis path {
+.up_pftv_variants-svg .axis path {
   display: none;
 }
 
-.variants-svg .axis text {
+.up_pftv_variants-svg .axis text {
   font-size: 10px;
   font-family: 'Helvetica neue', Helvetica, Arial, sans-serif;
 }
 
-.variants-svg .variation-y.axis line {
+.up_pftv_variants-svg .variation-y.axis line {
   stroke:#ccc;
   opacity: .4;
 }
 
-.variants-svg .variation-x.axis line {
+.up_pftv_variants-svg .variation-x.axis line {
   stroke:#000;
 }
 
-.variants-svg circle.main-seq {
+.up_pftv_variants-svg circle.main-seq {
   fill:#fff;
   stroke: steelblue;
   stroke-width: 1.5px;
   /*display: none;*/
 }
 
-.variants-svg .main-sequence {
+.up_pftv_variants-svg .main-sequence {
   fill: green;
 }
 
-.variants-svg circle {
+.up_pftv_variants-svg circle {
   cursor: pointer;
   opacity: .7;
 }
 
-.variants-svg circle:hover {
+.up_pftv_variants-svg circle:hover {
   opacity: 1;
 }
