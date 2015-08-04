@@ -69,8 +69,6 @@ var verifyViewPortAttributes = function(verifyInitialX, verifyFullWidth, fullPat
         expect(trapezoid.getAttribute('d')).to.not.equal('M0,0');
     }
 
-    var aaViewer = document.querySelector('.up_pftv_aaviewer').firstElementChild.firstElementChild;
-    assert.equal(aaViewer.style.opacity, opacity, 'aa sequence opacity');
 };
 
 describe('FeaturesViewerFlowTest', function() {
@@ -147,14 +145,13 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(buttons[3].getAttribute('class'), 'up_pftv_icon-info', 'fourth button class');
     });
 
-    it('should create 1 aaViewer with a hidden aa sequence', function() {
-        var aaViewerDiv = document.querySelectorAll('.up_pftv_container>.up_pftv_aaviewer');
-        assert.equal(aaViewerDiv.length, 1, 'only one up_pftv_aaviewer');
+    it('should create 2 aaViewers aa sequence', function() {
+        var aaViewerDiv = document.querySelectorAll('.up_pftv_container .up_pftv_aaviewer');
+        assert.equal(aaViewerDiv.length, 2, 'only one up_pftv_aaviewer');
         assert.equal(aaViewerDiv[0].childElementCount, 1, 'up_pftv_aaviewer children count');
 
-        var aaViewer = aaViewerDiv[0].firstElementChild.firstElementChild;
-        assert.equal(aaViewer.style.opacity, 0, 'aa sequence opacity');
-        assert.equal(aaViewer.childElementCount, instance.sequence.length, 'aa sequence length');
+        var aaText = document.querySelectorAll('.up_pftv_aaviewer text');
+        assert.equal(aaText.length, instance.sequence.length * 2, 'aa sequence length');
     });
 
     it('should create 1 category container with 8 categories', function() {
