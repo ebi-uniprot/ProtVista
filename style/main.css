@@ -197,18 +197,8 @@ svg { overflow: hidden; }
 
 /* Dialog */
 .up_pftv_dialog-container {
-    z-index: 50000;
-    position: absolute;
-    opacity: 0;
-    display: none;
     font-weight: lighter;
     font-size: .9em;
-    border: 2px solid #CCC;
-    padding: 5px;
-    background-color: #FFF;
-    -webkit-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
-    -moz-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
-    box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
 }
 
 /* Close button */
