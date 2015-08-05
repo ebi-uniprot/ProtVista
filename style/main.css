@@ -77,8 +77,10 @@ svg {
     background-color: #b2f5ff;
 }
 
-.up_pftv_category-name:hover {
+.up_pftv_category a:hover {
     background-color: #80EEFF;
+    border-bottom: none;
+    text-decoration: none;
 }
 
 .up_pftv_track-header {
