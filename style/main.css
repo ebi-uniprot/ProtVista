@@ -1,198 +1,212 @@
-svg { overflow: hidden; }
+svg {
+    overflow: hidden;
+}
 
 .up_pftv_buttons {
-  display: inline-block;
-  padding:0 .5em 0 .5em;
-  width: 180px;
-  text-align: right;
-  vertical-align: bottom;
+    display: inline-block;
+    padding: 0 .5em 0 .5em;
+    width: 180px;
+    text-align: right;
+    vertical-align: bottom;
 }
 
 .up_pftv_buttons span {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .up_pftv_buttons span:hover {
-  color: #5C5C5C;
+    color: #5C5C5C;
 }
 
 .up_pftv_aaviewer {
 }
 
 .bottom-aa-container {
-  padding-left: 195px;
+    padding-left: 195px;
 }
 
 .up_pftv_category-container {
-  position: relative;
-  border-right:2px solid #b2f5ff;
-  border-top:1px solid #b2f5ff;
+    position: relative;
+    border-right: 2px solid #b2f5ff;
+    border-top: 1px solid #b2f5ff;
 }
 
 .up_pftv_category-container svg {
-  cursor: move;
+    cursor: move;
 }
 
 .up_pftv_container {
-  position: relative;
-  width:960px;
-  color: #3c4043;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
-  font-weight: 300;
-  font-size:16px;
-  line-height:1.5;
+    position: relative;
+    width: 960px;
+    color: #3c4043;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .up_pftv_navruler {
-  margin-left:195px;
+    margin-left: 195px;
 }
 
 .up_pftv_navruler svg {
-  vertical-align: bottom;
-  font-size: 14px;
+    vertical-align: bottom;
+    font-size: 14px;
 }
 
 .up_pftv_navruler svg {
-  background-color: #FDF7EF;
+    background-color: #FDF7EF;
 }
 
+/*Category and type tracks*/
 .up_pftv_category {
-  margin-bottom: .1em;
-  border-bottom: .1em solid #b2f5ff;
+    margin-bottom: .1em;
+    border-bottom: .1em solid #b2f5ff;
 }
 
-.up_pftv_category a:hover {
-  font-weight: normal;
-}
-
-.up_pftv_category-name, .up_pftv_track-header , .up_pftv_category-name:hover, .up_pftv_track-header:hover {
-  display: inline-block;
-  width: 180px;
-  vertical-align: bottom;
-  padding:.5em;
-  text-transform: capitalize;
-    background-color: #b2f5ff;
+.up_pftv_category-name, .up_pftv_track-header {
+    display: inline-block;
+    width: 180px;
+    vertical-align: bottom;
+    padding: .5em;
+    text-transform: capitalize;
     border: none;
 }
 
-.up_pftv_category-viewer, .up_pftv_track, .up_pftv_aaviewer {
-  position: relative;
-  display: inline-block;
-  vertical-align: bottom;
-  width: 760px;
-}
-
-.up_pftv_category-viewer svg, .up_pftv_track svg, .up_pftv_aaviewer svg{
-  vertical-align: bottom;
-}
-
 .up_pftv_category-name {
-  cursor: pointer;
-}
-.up_pftv_track {
-  border-top:1px #b2f5ff solid;
+    background-color: #b2f5ff;
 }
 
-.up_pftv_category-name.up_pftv_arrow-right:before {
-  content: ' ';
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 5px solid #333;
-  margin-right: 5px;
-}
-
-.up_pftv_category-name.up_pftv_arrow-down:before {
-  content: ' ';
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #333;
-  margin-right: 5px;
+.up_pftv_category-name:hover {
+    background-color: #80EEFF;
 }
 
 .up_pftv_track-header {
-  background-color: #d9faff;
-  line-height:1.6em;
-  margin: .05em 0;
+    background-color: #d9faff;
+    /*line-height: 1.6em;
+    margin: .05em 0;*/
+}
+
+.up_pftv_category-viewer, .up_pftv_track, .up_pftv_aaviewer {
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    width: 760px;
+}
+
+.up_pftv_category-viewer svg, .up_pftv_track svg, .up_pftv_aaviewer svg {
+    vertical-align: bottom;
+}
+
+.up_pftv_category-name {
+    cursor: pointer;
+}
+
+.up_pftv_track-header-container {
+    vertical-align: top;
+}
+
+.up_pftv_track {
+    border-top: 1px #b2f5ff solid;
+}
+
+.up_pftv_category-name.up_pftv_arrow-right:before {
+    content: ' ';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #333;
+    margin-right: 5px;
+}
+
+.up_pftv_category-name.up_pftv_arrow-down:before {
+    content: ' ';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+    margin-right: 5px;
 }
 
 .up_pftv_category-disabled {
-  opacity: 0;
-  display: none;
+    opacity: 0;
+    display: none;
 }
 
 /* Ruler */
 .up_pftv_navruler .axis {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 .up_pftv_navruler line, .up_pftv_navruler path {
-  fill:none;
-    stroke:black;
+    fill: none;
+    stroke: black;
 }
 
 .up_pftv_navruler .up_pftv_viewport {
     fill: grey;
     fill-opacity: 0.2;
 }
+
 .up_pftv_navruler path.up_pftv_trapezoid {
     fill: grey;
-    stroke:none;
+    stroke: none;
     fill-opacity: 0.2;
     stroke: none;
 }
+
 .up_pftv_shadow {
     fill: #fff9e3;
     fill-opacity: 1;
 }
+
 .up_pftv_amino_acid_selector {
     fill-opacity: 1;
     fill: #fff9e3;
 }
 
 .up_pftv_navruler .handle {
-    fill:#666;
+    fill: #666;
     fill-opacity: .8;
     stroke: #000;
     stroke-width: 1px;
- }
+}
 
- .up_pftv_navruler .handle:hover {
-   fill-opacity: 1;
+.up_pftv_navruler .handle:hover {
+    fill-opacity: 1;
 }
 
 .up_pftv_aaviewer text {
-  font-family: "Lucida Console", Monaco, monospace;
-  font-size: 12px;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 12px;
 }
 
 .up_pftv_feature {
-  cursor: pointer;
-  fill-opacity: .6;
+    cursor: pointer;
+    fill-opacity: .6;
 }
 
 .up_pftv_feature:hover {
-  fill-opacity: .9;
+    fill-opacity: .9;
 }
 
 .up_pftv_activeFeature {
-  fill-opacity: .9;
+    fill-opacity: .9;
 }
 
 .up_pftv_variation-chart .up_pftv_block-area {
-  fill:lightgrey;
-  stroke:none;
+    fill: lightgrey;
+    stroke: none;
 }
 
 .up_pftv_variation-chart .up_pftv_line {
-  fill:none;
-  stroke:darkgrey;
-  stroke-width:1px;
+    fill: none;
+    stroke: darkgrey;
+    stroke-width: 1px;
 }
 
 /* Dialog */
@@ -207,11 +221,11 @@ svg { overflow: hidden; }
     color: #FFF;
     background-color: #333333;
     position: absolute;
-    top:-10px;
+    top: -10px;
     right: -10px;
     cursor: pointer;
     border-radius: 20px;
-    width:20px;
+    width: 20px;
     height: 20px;
     font-size: 14px;
     text-align: center;
@@ -220,10 +234,10 @@ svg { overflow: hidden; }
 
 /* Tooltip */
 .up_pftv_tooltip-container {
-  z-index: 50000;
-  position: absolute;
-  opacity: 0;
-  display: none;
+    z-index: 50000;
+    position: absolute;
+    opacity: 0;
+    display: none;
 }
 
 .up_pftv_tooltip-container table {
@@ -233,9 +247,9 @@ svg { overflow: hidden; }
     border-spacing: 0;
     border-collapse: collapse;
     background-color: #FFF;
-    -webkit-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
-    -moz-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
-    box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .up_pftv_tooltip-container table th {
@@ -246,7 +260,7 @@ svg { overflow: hidden; }
     font-size: 1.1em;
     background-color: #333;
     line-height: 2em;
-    padding: 0  .7em;
+    padding: 0 .7em;
     color: #FFF;
 }
 
@@ -257,226 +271,268 @@ svg { overflow: hidden; }
 }
 
 .up_pftv_tooltip-container td:first-child {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .up_pftv_tooltip-container .up_pftv_evidence-col {
-  background-color: #E8E8E8;
+    background-color: #E8E8E8;
 }
 
 .up_pftv_tooltip-container .up_pftv_evidence-source {
-  background-color: #F0F0F0;
+    background-color: #F0F0F0;
 }
+
 .up_pftv_tooltip-container .up_pftv_evidence-source td:first-child {
-  text-align: right;
-  font-weight: lighter;
+    text-align: right;
+    font-weight: lighter;
 }
 
 /* Features */
- svg .up_pftv_chain {
-  stroke: #CC9933;
-  fill: #CC9933; }
+svg .up_pftv_chain {
+    stroke: #CC9933;
+    fill: #CC9933;
+}
 
- svg .up_pftv_transit {
-  stroke: #009966;
-  fill: #009966; }
+svg .up_pftv_transit {
+    stroke: #009966;
+    fill: #009966;
+}
 
- svg .up_pftv_init_met {
-  stroke: #996633;
-  fill: #996633; }
+svg .up_pftv_init_met {
+    stroke: #996633;
+    fill: #996633;
+}
 
- svg .up_pftv_propep {
-  stroke: #99CCCC;
-  fill: #99CCCC; }
+svg .up_pftv_propep {
+    stroke: #99CCCC;
+    fill: #99CCCC;
+}
 
- svg .up_pftv_peptide {
-  stroke: #006699;
-  fill: #006699; }
+svg .up_pftv_peptide {
+    stroke: #006699;
+    fill: #006699;
+}
 
- svg .up_pftv_signal {
-  stroke: #CC0033;
-  fill: #CC0033; }
+svg .up_pftv_signal {
+    stroke: #CC0033;
+    fill: #CC0033;
+}
 
- svg .up_pftv_turn {
-  stroke: #0571AF;
-  fill: #0571AF; }
+svg .up_pftv_turn {
+    stroke: #0571AF;
+    fill: #0571AF;
+}
 
- svg .up_pftv_strand {
-  stroke: #FFCC00;
-  fill: #FFCC00; }
+svg .up_pftv_strand {
+    stroke: #FFCC00;
+    fill: #FFCC00;
+}
 
- svg .up_pftv_helix {
-  stroke: #FF0066;
-  fill: #FF0066; }
+svg .up_pftv_helix {
+    stroke: #FF0066;
+    fill: #FF0066;
+}
 
- svg .up_pftv_crosslnk {
-  stroke: #FF6600;
-  fill: #FF6600; }
+svg .up_pftv_crosslnk {
+    stroke: #FF6600;
+    fill: #FF6600;
+}
 
- svg .up_pftv_disulfid {
-  stroke: #23B14D;
-  fill: #23B14D; }
+svg .up_pftv_disulfid {
+    stroke: #23B14D;
+    fill: #23B14D;
+}
 
- svg .up_pftv_region {
-  stroke: #B33E00;
-  fill: #B33E00; }
+svg .up_pftv_region {
+    stroke: #B33E00;
+    fill: #B33E00;
+}
 
- svg .up_pftv_coiled {
-  stroke: #006699;
-  fill: #006699; }
+svg .up_pftv_coiled {
+    stroke: #006699;
+    fill: #006699;
+}
 
- svg .up_pftv_motif {
-  stroke: #402060;
-  fill: #402060; }
+svg .up_pftv_motif {
+    stroke: #402060;
+    fill: #402060;
+}
 
- svg .up_pftv_repeat {
-  stroke: #9900FF;
-  fill: #9900FF; }
+svg .up_pftv_repeat {
+    stroke: #9900FF;
+    fill: #9900FF;
+}
 
- svg .up_pftv_ca_bind {
-  stroke: #FF3399;
-  fill: #FF3399; }
+svg .up_pftv_ca_bind {
+    stroke: #FF3399;
+    fill: #FF3399;
+}
 
- svg .up_pftv_dna_bind {
-  stroke: #009933;
-  fill: #009933; }
+svg .up_pftv_dna_bind {
+    stroke: #009933;
+    fill: #009933;
+}
 
- svg .up_pftv_domain {
-  stroke: #9999FF;
-  fill: #9999FF; }
+svg .up_pftv_domain {
+    stroke: #9999FF;
+    fill: #9999FF;
+}
 
- svg .up_pftv_zn_fing {
-  stroke: #990066;
-  fill: #990066; }
+svg .up_pftv_zn_fing {
+    stroke: #990066;
+    fill: #990066;
+}
 
- svg .up_pftv_np_bind {
-  stroke: #FF9900;
-  fill: #FF9900; }
+svg .up_pftv_np_bind {
+    stroke: #FF9900;
+    fill: #FF9900;
+}
 
- svg .up_pftv_metal {
-  stroke: #009900;
-  fill: #009900; }
+svg .up_pftv_metal {
+    stroke: #009900;
+    fill: #009900;
+}
 
- svg .up_pftv_site {
-  stroke: #660033;
-  fill: #660033; }
+svg .up_pftv_site {
+    stroke: #660033;
+    fill: #660033;
+}
 
- svg .up_pftv_binding {
-  stroke: #006699;
-  fill: #006699; }
+svg .up_pftv_binding {
+    stroke: #006699;
+    fill: #006699;
+}
 
- svg .up_pftv_act_site {
-  stroke: #FF6666;
-  fill: #FF6666; }
+svg .up_pftv_act_site {
+    stroke: #FF6666;
+    fill: #FF6666;
+}
 
- svg .up_pftv_mod_res {
-  stroke: #000066;
-  fill: #000066; }
+svg .up_pftv_mod_res {
+    stroke: #000066;
+    fill: #000066;
+}
 
- svg .up_pftv_lipid {
-  stroke: #99CC33;
-  fill: #99CC33; }
+svg .up_pftv_lipid {
+    stroke: #99CC33;
+    fill: #99CC33;
+}
 
- svg .up_pftv_carbohyd {
-  stroke: #CC3366;
-  fill: #CC3366; }
+svg .up_pftv_carbohyd {
+    stroke: #CC3366;
+    fill: #CC3366;
+}
 
- svg .up_pftv_variant {
-  stroke: #006666;
-  fill: #006666; }
+svg .up_pftv_variant {
+    stroke: #006666;
+    fill: #006666;
+}
 
- svg .up_pftv_compbias {
-  stroke: #FF3366;
-  fill: #FF3366; }
+svg .up_pftv_compbias {
+    stroke: #FF3366;
+    fill: #FF3366;
+}
 
- svg .up_pftv_mutagen {
-  stroke: #FF9900;
-  fill: #FF9900; }
+svg .up_pftv_mutagen {
+    stroke: #FF9900;
+    fill: #FF9900;
+}
 
- svg .up_pftv_conflict {
-  stroke: #6633CC;
-  fill: #6633CC; }
+svg .up_pftv_conflict {
+    stroke: #6633CC;
+    fill: #6633CC;
+}
 
- svg .up_pftv_non_cons {
-  stroke: #FF0033;
-  fill: #FF0033; }
+svg .up_pftv_non_cons {
+    stroke: #FF0033;
+    fill: #FF0033;
+}
 
- svg .up_pftv_non_ter {
-  stroke: #339933;
-  fill: #339933; }
+svg .up_pftv_non_ter {
+    stroke: #339933;
+    fill: #339933;
+}
 
- svg .up_pftv_unsure {
-  stroke: #33FF00;
-  fill: #33FF00; }
+svg .up_pftv_unsure {
+    stroke: #33FF00;
+    fill: #33FF00;
+}
 
- svg .up_pftv_non_std {
-  stroke: #330066;
-  fill: #330066; }
+svg .up_pftv_non_std {
+    stroke: #330066;
+    fill: #330066;
+}
 
- svg .up_pftv_topo_dom {
-  stroke: #CC0000;
-  fill: #CC0000; }
+svg .up_pftv_topo_dom {
+    stroke: #CC0000;
+    fill: #CC0000;
+}
 
- svg .up_pftv_transmem {
-  stroke: #CC00CC;
-  fill: #CC00CC; }
+svg .up_pftv_transmem {
+    stroke: #CC00CC;
+    fill: #CC00CC;
+}
 
- svg .up_pftv_intramem {
-  stroke: #0000CC;
-  fill: #0000CC; }
+svg .up_pftv_intramem {
+    stroke: #0000CC;
+    fill: #0000CC;
+}
 
- svg .up_pftv_damaging {
-  stroke: #D7191C;
-  fill: #D7191C; }
+svg .up_pftv_damaging {
+    stroke: #D7191C;
+    fill: #D7191C;
+}
 
- svg .up_pftv_mixed {
-  stroke: #FDAE61;
-  fill: #FDAE61; }
+svg .up_pftv_mixed {
+    stroke: #FDAE61;
+    fill: #FDAE61;
+}
 
- svg .up_pftv_benign {
-  stroke: #2C7BB6;
-  fill: #2C7BB6; }
+svg .up_pftv_benign {
+    stroke: #2C7BB6;
+    fill: #2C7BB6;
+}
 
- svg .up_pftv_no_prediction {
-  stroke: black;
-  fill: black; }
-
+svg .up_pftv_no_prediction {
+    stroke: black;
+    fill: black;
+}
 
 /* Variation */
 .up_pftv_variants-svg .axis path {
-  display: none;
+    display: none;
 }
 
 .up_pftv_variants-svg .axis text {
-  font-size: 10px;
-  font-family: 'Helvetica neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-family: 'Helvetica neue', Helvetica, Arial, sans-serif;
 }
 
 .up_pftv_variants-svg .variation-y.axis line {
-  stroke:#ccc;
-  opacity: .4;
+    stroke: #ccc;
+    opacity: .4;
 }
 
 .up_pftv_variants-svg .variation-x.axis line {
-  stroke:#000;
+    stroke: #000;
 }
 
 .up_pftv_variants-svg circle.main-seq {
-  fill:#fff;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-  /*display: none;*/
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+    /*display: none;*/
 }
 
 .up_pftv_variants-svg .main-sequence {
-  fill: green;
+    fill: green;
 }
 
 .up_pftv_variants-svg circle {
-  cursor: pointer;
-  opacity: .7;
+    cursor: pointer;
+    opacity: .7;
 }
 
 .up_pftv_variants-svg circle:hover {
-  opacity: 1;
+    opacity: 1;
 }
