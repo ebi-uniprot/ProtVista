@@ -564,9 +564,12 @@ describe('FeaturesViewerFlowTest', function() {
         pathsMP[0].dispatchEvent(evtMP);
 
         var svg = document.querySelector('.up_pftv_category-viewer svg');
-        var evtSVG = document.createEvent("MouseEvents");
-        evtSVG.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, svg);
-        svg.dispatchEvent(evtSVG);
+        var evtSVGDown = document.createEvent("MouseEvents");
+        evtSVGDown.initMouseEvent("mousedown", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, svg);
+        svg.dispatchEvent(evtSVGDown);
+        var evtSVGUp = document.createEvent("MouseEvents");
+        evtSVGUp.initMouseEvent("mouseup", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, svg);
+        svg.dispatchEvent(evtSVGUp);
 
         var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
         assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
