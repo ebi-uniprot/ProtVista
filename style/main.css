@@ -68,7 +68,7 @@ svg {
     display: inline-block;
     width: 180px;
     vertical-align: bottom;
-    padding: .5em;
+    padding: .485em;
     text-transform: capitalize;
     border: none;
 }
@@ -106,6 +106,7 @@ svg {
 
 .up_pftv_track-header-container {
     vertical-align: top;
+    margin-top: 1px;
 }
 
 .up_pftv_track {
