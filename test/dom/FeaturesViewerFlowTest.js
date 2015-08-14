@@ -171,19 +171,19 @@ describe('FeaturesViewerFlowTest', function() {
             ' features count');
         assert.equal(categoryFeatures[6].childElementCount, data.moleculeProcessing.features.length, 'second category' +
             ' features count');
-        assert.equal(categoryFeatures[10].childElementCount, data.ptm.features.length, 'second' +
+        assert.equal(categoryFeatures[10].childElementCount, data.ptm.features.length, 'third' +
             ' category' +
             ' features count');
-        assert.equal(categoryFeatures[13].childElementCount, data.seqInfo.features.length, 'second' +
+        assert.equal(categoryFeatures[15].childElementCount, data.seqInfo.features.length, 'fourth' +
             ' category' +
             ' features count');
-        assert.equal(categoryFeatures[16].childElementCount, data.structural.features.length, 'second' +
+        assert.equal(categoryFeatures[18].childElementCount, data.structural.features.length, 'fifth' +
             ' category' +
             ' features count');
-        assert.equal(categoryFeatures[22].childElementCount, data.topology.features.length, 'second' +
+        assert.equal(categoryFeatures[22].childElementCount, data.topology.features.length, 'sixth' +
             ' category' +
             ' features count');
-        assert.equal(categoryFeatures[25].childElementCount, data.mutagenesis.features.length, 'second' +
+        assert.equal(categoryFeatures[25].childElementCount, data.mutagenesis.features.length, 'seventh' +
             ' category' +
             ' features count');
     });
