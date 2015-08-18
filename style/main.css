@@ -162,14 +162,9 @@ svg {
     stroke: none;
 }
 
-.up_pftv_shadow {
-    fill: #fff9e3;
+.up_pftv_shadow, .up_pftv_amino_acid_selector {
+    fill: #FFE999;
     fill-opacity: 1;
-}
-
-.up_pftv_amino_acid_selector {
-    fill-opacity: 1;
-    fill: #fff9e3;
 }
 
 .up_pftv_navruler .handle {
