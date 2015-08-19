@@ -201,10 +201,20 @@ svg {
     stroke: none;
 }
 
+.up_pftv_variation-chart .up_pftv_block-area:hover {
+    fill: darkslategrey;
+    cursor: pointer;
+}
+
 .up_pftv_variation-chart .up_pftv_line {
     fill: none;
     stroke: darkgrey;
     stroke-width: 1px;
+}
+
+.up_pftv_variation-chart .up_pftv_line:hover,  .up_pftv_variation-chart .up_pftv_line:hover + .up_pftv_block-area {
+    stroke: darkslategrey;
+    cursor: pointer;
 }
 
 /* Dialog */
