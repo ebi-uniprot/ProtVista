@@ -3,7 +3,7 @@
   "accession": "P05067",
   "entryName": "A4_HUMAN",
   "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDSDPSGTKTCIDTKEGILQYCQEVYPELQITNVVEANQPVTIQNWCKRGRKQCKTHPHFVIPYRCLVGEFVSDALLVPDKCKFLHQERMDVCETHLHWHTVAKETCSEKSTNLHDYGMLLPCGIDKFRGVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDKVVEVAEEEEVAEVEEEEADDDEDDEDGDEVEEEAEEPYEEATERTTSIATTTTTTTESVEEVVREVCSEQAETGPCRAMISRWYFDVTEGKCAPFFYGGCGGNRNNFDTEEYCMAVCGSAMSQSLLKTTQEPLARDPVKLPTTAASTPDAVDKYLETPGDENEHAHFQKAKERLEAKHRERMSQVMREWEEAERQAKNLPKADKKAVIQHFQEKVESLEQEAANERQQLVETHMARVEAMLNDRRRLALENYITALQAVPPRPRHVFNMLKKYVRAEQKDRQHTLKHFEHVRMVDPKKAAQIRSQVMTHLRVIYERMNQSLSLLYNVPAVAEEIQDEVDELLQKEQNYSDDVLANMISEPRISYGNDALMPSLTETKTTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDARPAADRGLTTRPGSGLTNIKTEEISEVKMDAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIATVIVITLVMLKKKQYTSIHHGVVEVDAAVTPEERHLSKMQQNGYENPTYKFFEQMQN",
-  "sequenceVersion": 3,
+  "sequenceChecksum": "A12EE761403740F5",
   "moleculeProcessing":
 
   {
@@ -295,156 +295,6 @@
         "type":
 
         {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "38",
-        "end": "62"
-
-      },
-      {
-
-        "type":
-
-        {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "73",
-        "end": "117"
-
-      },
-      {
-
-        "type":
-
-        {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "98",
-        "end": "105"
-
-      },
-      {
-
-        "type":
-
-        {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "133",
-        "end": "187"
-
-      },
-      {
-
-        "type":
-
-        {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "144",
-        "end": "174"
-
-      },
-      {
-
-        "type":
-
-        {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "158",
-        "end": "186"
-
-      },
-      {
-
-        "type":
-
-        {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "291",
-        "end": "341"
-
-      },
-      {
-
-        "type":
-
-        {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "300",
-        "end": "324"
-
-      },
-      {
-
-        "type":
-
-        {
-          "name": "DISULFID",
-          "label": "disulfide bond"
-        },
-        "description": "",
-        "begin": "316",
-        "end": "337"
-
-      },
-      {
-
-        "type":
-
-        {
-
-          "name": "CROSSLNK",
-          "label": "cross-link"
-
-        },
-        "description": "Glycyl lysine isopeptide (Lys-Gly) (interchain with G-Cter in ubiquitin)",
-        "begin": "763",
-        "end": "763",
-        "evidences":
-        [
-
-          {
-
-            "code": "ECO:0000250",
-            "sources":
-
-            [
-
-              {
-                "name": "UniProtKB",
-                "id": "P08592",
-                "url": "http://www.uniprot.org/uniprot/P08592"
-              }
-            ]
-          }
-        ]
-
-      },
-      {
-
-        "type":
-
-        {
 
           "name": "HELIX",
           "label": "helix"
@@ -456,18 +306,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -488,18 +327,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -520,18 +348,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -552,18 +369,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -584,18 +390,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -616,18 +411,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PWQ",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PWQ"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -648,18 +432,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -680,18 +453,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -712,18 +474,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -744,18 +495,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -776,18 +516,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -808,18 +537,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -840,18 +558,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -872,18 +579,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4PQD",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4PQD"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -904,18 +600,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "2FMA",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/2FMA"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -936,18 +621,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "2FMA",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/2FMA"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -968,18 +642,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "2FMA",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/2FMA"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1000,18 +663,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "2FMA",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/2FMA"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1032,18 +684,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "2FMA",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/2FMA"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1064,18 +705,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1AAP",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1AAP"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1096,18 +726,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1AAP",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1AAP"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1128,18 +747,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1AAP",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1AAP"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1160,18 +768,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1AAP",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1AAP"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1192,18 +789,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1AAP",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1AAP"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1224,18 +810,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1AAP",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1AAP"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1256,18 +831,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1AAP",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1AAP"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1288,18 +852,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1AAP",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1AAP"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1320,18 +873,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3NYL",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3NYL"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1352,18 +894,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3UMH",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3UMH"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1384,18 +915,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3UMH",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3UMH"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1416,18 +936,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3UMH",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3UMH"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1448,18 +957,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3NYJ",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3NYJ"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1480,18 +978,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3UMH",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3UMH"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1512,18 +999,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3UMH",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3UMH"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1544,18 +1020,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3UMH",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3UMH"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1576,18 +1041,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3UMH",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3UMH"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1608,18 +1062,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "4OJF",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/4OJF"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1640,18 +1083,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "2MVX",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/2MVX"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1672,18 +1104,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1BA6",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1BA6"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1704,18 +1125,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1BA4",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1BA4"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1736,18 +1146,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3OVJ",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3OVJ"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1768,18 +1167,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3MOQ",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3MOQ"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1800,18 +1188,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1QXC",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1QXC"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1832,18 +1209,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "2Y3J",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/2Y3J"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1864,18 +1230,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "2Y3K",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/2Y3K"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1896,18 +1251,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3DXE",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3DXE"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1928,18 +1272,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "1X11",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/1X11"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
 
@@ -1960,18 +1293,7 @@
         [
 
           {
-
-            "code": "ECO:0000244",
-            "sources":
-
-            [
-
-              {
-                "name": "PDB",
-                "id": "3L81",
-                "url": "http://www.ebi.ac.uk/pdbe-srv/view/entry/3L81"
-              }
-            ]
+            "code": "ECO:0000244"
           }
         ]
       }
@@ -2003,17 +1325,7 @@
         [
 
           {
-
-            "code": "ECO:0000255",
-            "sources":
-
-            [
-
-              {
-                "name": "PROSITE-ProRule",
-                "id": "PRU00031"
-              }
-            ]
+            "code": "ECO:0000255"
           }
         ]
 
@@ -2493,6 +1805,72 @@
           "label": "modified residue"
 
         },
+        "description": "Phosphoserine; by FAM20C",
+        "begin": "441",
+        "end": "441",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000269",
+            "sources":
+
+            [
+
+              {
+                "name": "PubMed",
+                "id": "26091039",
+                "url": "http://www.ncbi.nlm.nih.gov/pubmed/26091039"
+              }
+            ]
+          }
+        ]
+
+      },
+      {
+
+        "type":
+
+        {
+
+          "name": "MOD_RES",
+          "label": "modified residue"
+
+        },
+        "description": "Phosphotyrosine",
+        "begin": "497",
+        "end": "497",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000269",
+            "sources":
+
+            [
+
+              {
+                "name": "PubMed",
+                "id": "26091039",
+                "url": "http://www.ncbi.nlm.nih.gov/pubmed/26091039"
+              }
+            ]
+          }
+        ]
+
+      },
+      {
+
+        "type":
+
+        {
+
+          "name": "MOD_RES",
+          "label": "modified residue"
+
+        },
         "description": "Phosphothreonine",
         "begin": "729",
         "end": "729",
@@ -2562,17 +1940,24 @@
             [
 
               {
-
-                "name": "PubMed",
-                "id": "24275569",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/24275569"
-
-              },
-
-              {
                 "name": "PubMed",
                 "id": "8131745",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/8131745"
+              }
+            ]
+
+          },
+          {
+
+            "code": "ECO:0000244",
+            "sources":
+
+            [
+
+              {
+                "name": "PubMed",
+                "id": "24275569",
+                "url": "http://www.ncbi.nlm.nih.gov/pubmed/24275569"
               }
             ]
           }
@@ -3055,6 +2440,156 @@
             ]
           }
         ]
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "38",
+        "end": "62"
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "73",
+        "end": "117"
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "98",
+        "end": "105"
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "133",
+        "end": "187"
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "144",
+        "end": "174"
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "158",
+        "end": "186"
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "291",
+        "end": "341"
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "300",
+        "end": "324"
+
+      },
+      {
+
+        "type":
+
+        {
+          "name": "DISULFID",
+          "label": "disulfide bond"
+        },
+        "description": "",
+        "begin": "316",
+        "end": "337"
+
+      },
+      {
+
+        "type":
+
+        {
+
+          "name": "CROSSLNK",
+          "label": "cross-link"
+
+        },
+        "description": "Glycyl lysine isopeptide (Lys-Gly) (interchain with G-Cter in ubiquitin)",
+        "begin": "763",
+        "end": "763",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000250",
+            "sources":
+
+            [
+
+              {
+                "name": "UniProtKB",
+                "id": "P08592",
+                "url": "http://www.uniprot.org/uniprot/P08592"
+              }
+            ]
+          }
+        ]
       }
     ]
 
@@ -3078,7 +2613,7 @@
 
         },
         "description": "Reduced heparin-binding",
-        "alternativeSequence": "NQGG",
+        "mutation": "NQGG",
         "begin": "99",
         "end": "102",
         "evidences":
@@ -3112,7 +2647,7 @@
 
         },
         "description": "Binds copper. Forms dimer",
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "137",
         "end": "137",
         "evidences":
@@ -3146,7 +2681,7 @@
 
         },
         "description": "Binds copper. Forms dimer",
-        "alternativeSequence": "T",
+        "mutation": "T",
         "begin": "141",
         "end": "141",
         "evidences":
@@ -3180,7 +2715,7 @@
 
         },
         "description": "Binds copper. No dimer formation. No copper reducing activity",
-        "alternativeSequence": "S",
+        "mutation": "S",
         "begin": "144",
         "end": "144",
         "evidences":
@@ -3222,7 +2757,7 @@
 
         },
         "description": "50% decrease in copper reducing activity",
-        "alternativeSequence": "ALA",
+        "mutation": "ALA",
         "begin": "147",
         "end": "149",
         "evidences":
@@ -3256,7 +2791,7 @@
 
         },
         "description": "Some decrease in copper reducing activity",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "147",
         "end": "147",
         "evidences":
@@ -3298,7 +2833,7 @@
 
         },
         "description": "Binds copper. Forms dimer",
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "147",
         "end": "147",
         "evidences":
@@ -3340,7 +2875,7 @@
 
         },
         "description": "Greatly reduced copper-mediated low-density lipoprotein oxidation",
-        "alternativeSequence": "Y",
+        "mutation": "Y",
         "begin": "147",
         "end": "147",
         "evidences":
@@ -3382,7 +2917,7 @@
 
         },
         "description": "Greatly reduced copper-mediated low-density lipoprotein oxidation",
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "151",
         "end": "151",
         "evidences":
@@ -3424,7 +2959,7 @@
 
         },
         "description": "Binds copper. Forms dimer",
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "151",
         "end": "151",
         "evidences":
@@ -3466,7 +3001,7 @@
 
         },
         "description": "Greatly reduced casein kinase phosphorylation",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "198",
         "end": "198",
         "evidences":
@@ -3508,7 +3043,7 @@
 
         },
         "description": "Reduced casein kinase phosphorylation",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "206",
         "end": "206",
         "evidences":
@@ -3550,7 +3085,7 @@
 
         },
         "description": "Reduced affinity for heparin; when associated with A-503",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "499",
         "end": "499",
         "evidences":
@@ -3584,7 +3119,7 @@
 
         },
         "description": "Reduced affinity for heparin; when associated with A-499",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "503",
         "end": "503",
         "evidences":
@@ -3618,7 +3153,7 @@
 
         },
         "description": "Abolishes chondroitin sulfate binding in L-APP733 isoform",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "656",
         "end": "656",
         "evidences":
@@ -3652,7 +3187,7 @@
 
         },
         "description": "60-70% zinc-induced beta-APP (28) peptide aggregation",
-        "alternativeSequence": "G",
+        "mutation": "G",
         "begin": "676",
         "end": "676",
         "evidences":
@@ -3686,7 +3221,7 @@
 
         },
         "description": "60-70% zinc-induced beta-APP (28) peptide aggregation",
-        "alternativeSequence": "F",
+        "mutation": "F",
         "begin": "681",
         "end": "681",
         "evidences":
@@ -3720,7 +3255,7 @@
 
         },
         "description": "Only 23% zinc-induced beta-APP (28) peptide aggregation",
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "684",
         "end": "684",
         "evidences":
@@ -3752,7 +3287,7 @@
           "label": "mutagenesis site"
         },
         "description": "Reduced protein oxidation. No hippocampal neuron toxicity",
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "704",
         "end": "704"
 
@@ -3768,7 +3303,7 @@
 
         },
         "description": "Reduced lipid peroxidation inhibition",
-        "alternativeSequence": "L",
+        "mutation": "L",
         "begin": "706",
         "end": "706",
         "evidences":
@@ -3810,7 +3345,7 @@
 
         },
         "description": "No free radical production. No hippocampal neuron toxicity",
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "706",
         "end": "706",
         "evidences":
@@ -3852,7 +3387,7 @@
 
         },
         "description": "Unchanged beta-APP42/total APP-beta ratio",
-        "alternativeSequence": "C,S",
+        "mutation": "C,S",
         "begin": "717",
         "end": "717",
         "evidences":
@@ -3894,7 +3429,7 @@
 
         },
         "description": "Increased beta-APP42/beta-APP40 ratio",
-        "alternativeSequence": "F,G,I",
+        "mutation": "F,G,I",
         "begin": "717",
         "end": "717",
         "evidences":
@@ -3936,7 +3471,7 @@
 
         },
         "description": "Decreased beta-APP42/total APP-beta ratio",
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "717",
         "end": "717",
         "evidences":
@@ -3978,7 +3513,7 @@
 
         },
         "description": "Increased beta-APP42/beta-APP40 ratio. No change in apoptosis after caspase cleavage",
-        "alternativeSequence": "M",
+        "mutation": "M",
         "begin": "717",
         "end": "717",
         "evidences":
@@ -4020,7 +3555,7 @@
 
         },
         "description": "No effect on APBA1 nor APBB1 binding. Greatly reduces the binding to APPBP2. APP internalization unchanged. No change in beta-APP42 secretion",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "728",
         "end": "728",
         "evidences":
@@ -4069,7 +3604,7 @@
 
         },
         "description": "No cleavage by caspases during apoptosis",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "739",
         "end": "739",
         "evidences":
@@ -4118,7 +3653,7 @@
 
         },
         "description": "No effect on FADD-induced apoptosis",
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "739",
         "end": "739",
         "evidences":
@@ -4167,7 +3702,7 @@
 
         },
         "description": "Greatly reduces the binding to SHC1 and APBB family members; no effect on NGF-stimulated neurite extension",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "743",
         "end": "743",
         "evidences":
@@ -4223,7 +3758,7 @@
 
         },
         "description": "Reduced NGF-stimulated neurite extension. No effect on APP maturation",
-        "alternativeSequence": "E",
+        "mutation": "E",
         "begin": "743",
         "end": "743",
         "evidences":
@@ -4279,7 +3814,7 @@
 
         },
         "description": "APP internalization unchanged. No change in beta-APP42 secretion",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "756",
         "end": "756",
         "evidences":
@@ -4313,7 +3848,7 @@
 
         },
         "description": "Little APP internalization. Reduced beta-APP42 secretion",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "757",
         "end": "757",
         "evidences":
@@ -4369,7 +3904,7 @@
 
         },
         "description": "Loss of binding to MAPK8IP1, APBA1, APBB1, APPBP2 and SHC1",
-        "alternativeSequence": "G",
+        "mutation": "G",
         "begin": "757",
         "end": "757",
         "evidences":
@@ -4425,7 +3960,7 @@
 
         },
         "description": "No binding to APBA1, no effect on APBB1 binding. Little APP internalization. Reduced beta-APP42 secretion",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "759",
         "end": "759",
         "evidences":
@@ -4467,7 +4002,7 @@
 
         },
         "description": "Little APP internalization. Reduced beta-APP42 secretion",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "760",
         "end": "760",
         "evidences":
@@ -4501,7 +4036,7 @@
 
         },
         "description": "Loss of binding to APBA1 and APBB1. APP internalization unchanged. No change in beta-APP42 secretion",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "762",
         "end": "762",
         "evidences":
@@ -4775,11 +4310,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "8",
         "end": "8",
         "evidences":
@@ -4833,7 +4368,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26170599G>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -4843,13 +4377,13 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "L",
-        "begin": "764",
-        "end": "764",
+        "mutation": "L",
+        "begin": "770",
+        "end": "770",
         "evidences":
         [
 
@@ -4893,7 +4427,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881691G>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -4902,12 +4435,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "763",
         "end": "763",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM318737",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=318737"
+              }
+            ]
+          }
+        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -4918,7 +4471,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881695T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -4927,12 +4479,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "STOP GAINED",
+          "label": "stop gained"
+
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "753",
         "end": "753",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3841667",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3841667"
+              }
+            ]
+          }
+        ],
         "wildType": "Q",
         "frequency": 0,
         "polyphenScore": 0,
@@ -4941,7 +4513,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881726G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -4950,12 +4521,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "752",
         "end": "752",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3841668",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3841668"
+              }
+            ]
+          }
+        ],
         "wildType": "M",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -4966,7 +4557,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881727C>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -4976,11 +4566,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "P",
+        "mutation": "P",
         "begin": "747",
         "end": "747",
         "evidences":
@@ -5026,7 +4616,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881743C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -5036,11 +4625,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "C",
+        "mutation": "C",
         "begin": "747",
         "end": "747",
         "evidences":
@@ -5086,7 +4675,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881744G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -5096,11 +4684,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "729",
         "end": "729",
         "evidences":
@@ -5137,8 +4725,9 @@
               },
 
               {
-                "name": "dbsnp",
-                "id": "rs551889721"
+                "name": "dbSNP",
+                "id": "rs551889721",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs551889721"
               }
             ]
           }
@@ -5153,7 +4742,6 @@
         "cytogeneticBand": "17q21.2",
         "genomicLocation": "17:g.41845226C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -5163,11 +4751,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "L",
+        "mutation": "L",
         "begin": "727",
         "end": "727",
         "evidences":
@@ -5213,7 +4801,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891753T>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -5223,12 +4810,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1",
-        "alternativeSequence": "P",
+        "mutation": "P",
         "begin": "723",
         "end": "723",
         "evidences":
@@ -5266,7 +4853,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_010109"
+                "id": "VAR_010109",
+                "url": "http://web.expasy.org/variant_pages/VAR_010109.html"
               }
             ]
           }
@@ -5277,7 +4865,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -5287,12 +4874,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1",
-        "alternativeSequence": "L",
+        "mutation": "L",
         "begin": "717",
         "end": "717",
         "evidences":
@@ -5400,7 +4987,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_014219"
+                "id": "VAR_014219",
+                "url": "http://web.expasy.org/variant_pages/VAR_014219.html"
               }
             ]
           }
@@ -5411,7 +4999,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -5421,12 +5008,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1",
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "717",
         "end": "717",
         "evidences":
@@ -5534,7 +5121,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_000021"
+                "id": "VAR_000021",
+                "url": "http://web.expasy.org/variant_pages/VAR_000021.html"
               }
             ]
           }
@@ -5545,7 +5133,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -5555,12 +5142,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1",
-        "alternativeSequence": "G",
+        "mutation": "G",
         "begin": "717",
         "end": "717",
         "evidences":
@@ -5668,7 +5255,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_000022"
+                "id": "VAR_000022",
+                "url": "http://web.expasy.org/variant_pages/VAR_000022.html"
               }
             ]
           }
@@ -5679,7 +5267,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -5689,12 +5276,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1",
-        "alternativeSequence": "F",
+        "mutation": "F",
         "begin": "717",
         "end": "717",
         "evidences":
@@ -5802,7 +5389,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_000023"
+                "id": "VAR_000023",
+                "url": "http://web.expasy.org/variant_pages/VAR_000023.html"
               }
             ]
           }
@@ -5813,7 +5401,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -5823,12 +5410,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1",
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "716",
         "end": "716",
         "evidences":
@@ -5858,7 +5445,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_000020"
+                "id": "VAR_000020",
+                "url": "http://web.expasy.org/variant_pages/VAR_000020.html"
               }
             ]
           }
@@ -5869,7 +5457,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -5879,11 +5466,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "M",
+        "mutation": "M",
         "begin": "715",
         "end": "715",
         "evidences":
@@ -5913,7 +5500,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_010108"
+                "id": "VAR_010108",
+                "url": "http://web.expasy.org/variant_pages/VAR_010108.html"
               }
             ]
           }
@@ -5931,29 +5519,20 @@
 
             "name": "Alzheimer disease 1 (AD1)",
             "description": "decreased beta-APP40/ total APP-beta",
-            "evidences":
+            "moreInfo":
 
             [
 
               {
-
-                "code": "ECO:0000006",
-                "sources":
-
-                [
-
-                  {
-                    "name": "MIM",
-                    "id": "104300"
-                  }
-                ]
+                "name": "OMIM",
+                "id": "104300",
+                "url": "http://www.omim.org/entry/104300"
               }
             ]
           }
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "isSP": true,
         "sp": true
 
       },
@@ -5963,11 +5542,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "714",
         "end": "714",
         "evidences":
@@ -6012,7 +5591,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_014218"
+                "id": "VAR_014218",
+                "url": "http://web.expasy.org/variant_pages/VAR_014218.html"
               }
             ]
           }
@@ -6030,29 +5610,20 @@
 
             "name": "Alzheimer disease 1 (AD1)",
             "description": "increased beta-APP42/ beta-APP40 ratio",
-            "evidences":
+            "moreInfo":
 
             [
 
               {
-
-                "code": "ECO:0000006",
-                "sources":
-
-                [
-
-                  {
-                    "name": "MIM",
-                    "id": "104300"
-                  }
-                ]
+                "name": "OMIM",
+                "id": "104300",
+                "url": "http://www.omim.org/entry/104300"
               }
             ]
           }
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "isSP": true,
         "sp": true
 
       },
@@ -6062,12 +5633,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1; primary tissue(s): endometrium",
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "714",
         "end": "714",
         "evidences":
@@ -6142,7 +5713,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_032277"
+                "id": "VAR_032277",
+                "url": "http://web.expasy.org/variant_pages/VAR_032277.html"
               }
             ]
           }
@@ -6155,7 +5727,6 @@
         "siftScore": 0.01,
         "somaticStatus": 1,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -6165,12 +5736,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in one chronic schizophrenia patient; unknown pathological significance",
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "713",
         "end": "713",
         "evidences":
@@ -6215,7 +5786,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_000018"
+                "id": "VAR_000018",
+                "url": "http://web.expasy.org/variant_pages/VAR_000018.html"
               }
             ]
 
@@ -6228,8 +5800,9 @@
             [
 
               {
-                "name": "dbsnp",
-                "id": "rs1800557"
+                "name": "dbSNP",
+                "id": "rs1800557",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs1800557"
               }
             ]
           }
@@ -6240,7 +5813,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -6250,12 +5822,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1; ALZHEIMER DISEASE, FAMILIAL, 1",
-        "alternativeSequence": "T",
+        "mutation": "T",
         "begin": "713",
         "end": "713",
         "evidences":
@@ -6299,8 +5871,9 @@
             [
 
               {
-                "name": "dbsnp",
-                "id": "rs63750066"
+                "name": "dbSNP",
+                "id": "rs63750066",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs63750066"
               }
             ]
 
@@ -6314,7 +5887,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_000019"
+                "id": "VAR_000019",
+                "url": "http://web.expasy.org/variant_pages/VAR_000019.html"
               }
             ]
           }
@@ -6330,7 +5904,6 @@
         "genomicLocation": "21:g.25891796C>T",
         "clinicalSignificances": "not provided,pathogenic",
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -6339,12 +5912,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "709",
         "end": "709",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs544705359",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs544705359"
+              }
+            ]
+          }
+        ],
         "wildType": "G",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -6355,7 +5948,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891807C>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -6365,11 +5957,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "709",
         "end": "709",
         "evidences":
@@ -6423,7 +6015,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891807C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -6433,11 +6024,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "705",
         "end": "705",
         "evidences":
@@ -6467,7 +6058,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_032276"
+                "id": "VAR_032276",
+                "url": "http://web.expasy.org/variant_pages/VAR_032276.html"
               }
             ]
           }
@@ -6485,29 +6077,20 @@
 
             "name": "Cerebral amyloid angiopathy, APP-related (CAA-APP)",
             "description": "Italian type",
-            "evidences":
+            "moreInfo":
 
             [
 
               {
-
-                "code": "ECO:0000006",
-                "sources":
-
-                [
-
-                  {
-                    "name": "MIM",
-                    "id": "605714"
-                  }
-                ]
+                "name": "OMIM",
+                "id": "605714",
+                "url": "http://www.omim.org/entry/605714"
               }
             ]
           }
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "isSP": true,
         "sp": true
 
       },
@@ -6516,12 +6099,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "704",
         "end": "704",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3549993",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549993"
+              }
+            ]
+          }
+        ],
         "wildType": "G",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -6532,7 +6135,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891823C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -6542,11 +6144,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "701",
         "end": "701",
         "evidences":
@@ -6592,7 +6194,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891831G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -6602,11 +6203,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "694",
         "end": "694",
         "evidences":
@@ -6644,7 +6245,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_014217"
+                "id": "VAR_014217",
+                "url": "http://web.expasy.org/variant_pages/VAR_014217.html"
               }
             ]
           }
@@ -6662,29 +6264,20 @@
 
             "name": "Cerebral amyloid angiopathy, APP-related (CAA-APP)",
             "description": "Iowa type",
-            "evidences":
+            "moreInfo":
 
             [
 
               {
-
-                "code": "ECO:0000006",
-                "sources":
-
-                [
-
-                  {
-                    "name": "MIM",
-                    "id": "605714"
-                  }
-                ]
+                "name": "OMIM",
+                "id": "605714",
+                "url": "http://www.omim.org/entry/605714"
               }
             ]
           }
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "isSP": true,
         "sp": true
 
       },
@@ -6694,11 +6287,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "693",
         "end": "693",
         "evidences":
@@ -6743,7 +6336,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_000017"
+                "id": "VAR_000017",
+                "url": "http://web.expasy.org/variant_pages/VAR_000017.html"
               }
             ]
           }
@@ -6761,29 +6355,20 @@
 
             "name": "Cerebral amyloid angiopathy, APP-related (CAA-APP)",
             "description": "Dutch type",
-            "evidences":
+            "moreInfo":
 
             [
 
               {
-
-                "code": "ECO:0000006",
-                "sources":
-
-                [
-
-                  {
-                    "name": "MIM",
-                    "id": "605714"
-                  }
-                ]
+                "name": "OMIM",
+                "id": "605714",
+                "url": "http://www.omim.org/entry/605714"
               }
             ]
           }
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "isSP": true,
         "sp": true
 
       },
@@ -6793,11 +6378,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "693",
         "end": "693",
         "evidences":
@@ -6842,7 +6427,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_014216"
+                "id": "VAR_014216",
+                "url": "http://web.expasy.org/variant_pages/VAR_014216.html"
               }
             ]
           }
@@ -6860,29 +6446,20 @@
 
             "name": "Cerebral amyloid angiopathy, APP-related (CAA-APP)",
             "description": "Italian type",
-            "evidences":
+            "moreInfo":
 
             [
 
               {
-
-                "code": "ECO:0000006",
-                "sources":
-
-                [
-
-                  {
-                    "name": "MIM",
-                    "id": "605714"
-                  }
-                ]
+                "name": "OMIM",
+                "id": "605714",
+                "url": "http://www.omim.org/entry/605714"
               }
             ]
           }
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "isSP": true,
         "sp": true
 
       },
@@ -6892,11 +6469,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "G",
+        "mutation": "G",
         "begin": "692",
         "end": "692",
         "evidences":
@@ -6941,7 +6518,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_000016"
+                "id": "VAR_000016",
+                "url": "http://web.expasy.org/variant_pages/VAR_000016.html"
               }
             ]
           }
@@ -6959,29 +6537,20 @@
 
             "name": "Alzheimer disease 1 (AD1)",
             "description": "increases the solubility of processed beta-amyloid peptides and increases the stability of peptide oligomers",
-            "evidences":
+            "moreInfo":
 
             [
 
               {
-
-                "code": "ECO:0000006",
-                "sources":
-
-                [
-
-                  {
-                    "name": "MIM",
-                    "id": "104300"
-                  }
-                ]
+                "name": "OMIM",
+                "id": "104300",
+                "url": "http://www.omim.org/entry/104300"
               }
             ]
           }
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "isSP": true,
         "sp": true
 
       },
@@ -6991,11 +6560,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "D",
+        "mutation": "D",
         "begin": "68",
         "end": "68",
         "evidences":
@@ -7049,7 +6618,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112001C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7059,11 +6627,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "685",
         "end": "685",
         "evidences":
@@ -7109,7 +6677,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897583T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7119,11 +6686,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "684",
         "end": "684",
         "evidences":
@@ -7169,7 +6736,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897585A>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7179,11 +6745,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "STOP GAINED",
+          "label": "stop gained"
 
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "679",
         "end": "679",
         "evidences":
@@ -7235,7 +6801,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897601G>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7245,12 +6810,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in AD1",
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "678",
         "end": "678",
         "evidences":
@@ -7280,7 +6845,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_044424"
+                "id": "VAR_044424",
+                "url": "http://web.expasy.org/variant_pages/VAR_044424.html"
               }
             ]
           }
@@ -7291,7 +6857,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -7300,12 +6865,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "676",
         "end": "676",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs559207950",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs559207950"
+              }
+            ]
+          }
+        ],
         "wildType": "R",
         "frequency": 0.000199681,
         "polyphenPrediction": "possibly damaging",
@@ -7316,7 +6901,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897610C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7326,11 +6910,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "STOP GAINED",
+          "label": "stop gained"
 
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "674",
         "end": "674",
         "evidences":
@@ -7374,7 +6958,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897617C>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7383,12 +6966,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "L",
+        "mutation": "L",
         "begin": "671",
         "end": "671",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs572842823",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs572842823"
+              }
+            ]
+          }
+        ],
         "wildType": "M",
         "frequency": 0.00159744,
         "polyphenPrediction": "benign",
@@ -7399,7 +7002,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897626T>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7408,20 +7010,39 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
         "description": "(in AD1",
-        "alternativeSequence": "",
+        "mutation": "",
         "begin": "670",
         "end": "671",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000305",
+            "sources":
+
+            [
+
+              {
+                "name": "swp_var",
+                "id": "VAR_000015",
+                "url": "http://web.expasy.org/variant_pages/VAR_000015.html"
+              }
+            ]
+          }
+        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenScore": 0,
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -7431,11 +7052,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "668",
         "end": "668",
         "evidences":
@@ -7481,7 +7102,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897635C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7491,12 +7111,12 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
         "description": "in a patient with late onset Alzheimer disease",
-        "alternativeSequence": "D",
+        "mutation": "D",
         "begin": "665",
         "end": "665",
         "evidences":
@@ -7526,7 +7146,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_010107"
+                "id": "VAR_010107",
+                "url": "http://web.expasy.org/variant_pages/VAR_010107.html"
               }
             ]
           }
@@ -7537,7 +7158,6 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -7547,11 +7167,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "664",
         "end": "664",
         "evidences":
@@ -7597,7 +7217,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897647C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7607,11 +7226,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "652",
         "end": "652",
         "evidences":
@@ -7657,7 +7276,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25905033T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7667,11 +7285,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "636",
         "end": "636",
         "evidences":
@@ -7717,7 +7335,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911744C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7727,11 +7344,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "F",
+        "mutation": "F",
         "begin": "628",
         "end": "628",
         "evidences":
@@ -7785,7 +7402,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911767G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7794,12 +7410,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "Y",
+        "mutation": "Y",
         "begin": "623",
         "end": "623",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3423878",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3423878"
+              }
+            ]
+          }
+        ],
         "wildType": "S",
         "frequency": 0,
         "polyphenPrediction": "possibly damaging",
@@ -7810,7 +7446,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911782G>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7819,12 +7454,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "F",
+        "mutation": "F",
         "begin": "623",
         "end": "623",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3911982",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3911982"
+              }
+            ]
+          }
+        ],
         "wildType": "S",
         "frequency": 0,
         "polyphenPrediction": "possibly damaging",
@@ -7835,7 +7490,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911782G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7844,12 +7498,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "617",
         "end": "617",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM1723850",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1723850"
+              }
+            ]
+          }
+        ],
         "wildType": "D",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7860,7 +7534,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911801C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7869,12 +7542,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "G",
+        "mutation": "G",
         "begin": "614",
         "end": "614",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs112263157",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs112263157"
+              }
+            ]
+          }
+        ],
         "wildType": "S",
         "frequency": 0.00379393,
         "polyphenPrediction": "benign",
@@ -7885,7 +7578,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911810T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7894,12 +7586,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "M",
+        "mutation": "M",
         "begin": "609",
         "end": "609",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs541374184",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs541374184"
+              }
+            ]
+          }
+        ],
         "wildType": "V",
         "frequency": 0.000199681,
         "polyphenPrediction": "possibly damaging",
@@ -7910,7 +7622,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911825C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7920,11 +7631,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "M",
+        "mutation": "M",
         "begin": "604",
         "end": "604",
         "evidences":
@@ -7969,8 +7680,9 @@
               },
 
               {
-                "name": "dbsnp",
-                "id": "rs199887707"
+                "name": "dbSNP",
+                "id": "rs199887707",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs199887707"
               }
             ]
           }
@@ -7985,7 +7697,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911840C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -7994,12 +7705,40 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "599",
         "end": "599",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+
+                "name": "cosmic",
+                "id": "COSM3911983",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3911983"
+
+              },
+
+              {
+                "name": "dbSNP",
+                "id": "rs140304729",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs140304729"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0.000599042,
         "polyphenPrediction": "possibly damaging",
@@ -8010,7 +7749,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911855C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8019,12 +7757,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "591",
         "end": "591",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs201874897",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs201874897"
+              }
+            ]
+          }
+        ],
         "wildType": "D",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -8035,7 +7793,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911879C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8044,12 +7801,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "S",
+        "mutation": "S",
         "begin": "584",
         "end": "584",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3549994",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549994"
+              }
+            ]
+          }
+        ],
         "wildType": "P",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -8060,7 +7837,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911900G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8069,12 +7845,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "584",
         "end": "584",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs145371658",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs145371658"
+              }
+            ]
+          }
+        ],
         "wildType": "P",
         "frequency": 0.000199681,
         "polyphenPrediction": "possibly damaging",
@@ -8085,7 +7881,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911899G>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8094,12 +7889,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "580",
         "end": "580",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs533667466",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs533667466"
+              }
+            ]
+          }
+        ],
         "wildType": "M",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -8110,7 +7925,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911912T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8120,11 +7934,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Y",
+        "mutation": "Y",
         "begin": "574",
         "end": "574",
         "evidences":
@@ -8178,7 +7992,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911930C>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8187,12 +8000,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "571",
         "end": "571",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM1029640",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029640"
+              }
+            ]
+          }
+        ],
         "wildType": "N",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -8203,7 +8036,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911937G>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8213,11 +8045,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "564",
         "end": "564",
         "evidences":
@@ -8263,7 +8095,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911960C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8272,12 +8103,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "D",
+        "mutation": "D",
         "begin": "561",
         "end": "561",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs553447317",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs553447317"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -8288,7 +8139,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954594T>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8298,11 +8148,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "556",
         "end": "556",
         "evidences":
@@ -8356,7 +8206,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954611C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8365,12 +8214,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "STOP GAINED",
+          "label": "stop gained"
+
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "525",
         "end": "525",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM1751585",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1751585"
+              }
+            ]
+          }
+        ],
         "wildType": "Q",
         "frequency": 0,
         "polyphenScore": 0,
@@ -8379,7 +8248,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955641G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8388,12 +8256,40 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "51",
         "end": "51",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+
+                "name": "dbSNP",
+                "id": "rs529782627",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs529782627"
+
+              },
+
+              {
+                "name": "cosmic",
+                "id": "COSM3550001",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3550001"
+              }
+            ]
+          }
+        ],
         "wildType": "K",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -8404,7 +8300,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112051C>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8414,11 +8309,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "513",
         "end": "513",
         "evidences":
@@ -8464,7 +8359,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955677C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8473,19 +8367,53 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "501",
         "end": "501",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000305",
+            "sources":
+
+            [
+
+              {
+                "name": "swp_var",
+                "id": "VAR_022315",
+                "url": "http://web.expasy.org/variant_pages/VAR_022315.html"
+              }
+            ]
+
+          },
+          {
+
+            "code": "ECO:0000312",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs45588932",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs45588932"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenScore": 0,
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -8495,11 +8423,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "C",
+        "mutation": "C",
         "begin": "499",
         "end": "499",
         "evidences":
@@ -8545,7 +8473,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955719G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8555,11 +8482,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "498",
         "end": "498",
         "evidences":
@@ -8596,8 +8523,9 @@
               },
 
               {
-                "name": "dbsnp",
-                "id": "rs576776689"
+                "name": "dbSNP",
+                "id": "rs576776689",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs576776689"
               }
             ]
           }
@@ -8612,7 +8540,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954600C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8622,11 +8549,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "S",
+        "mutation": "S",
         "begin": "492",
         "end": "492",
         "evidences":
@@ -8672,7 +8599,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955739T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8682,11 +8608,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "L",
+        "mutation": "L",
         "begin": "491",
         "end": "491",
         "evidences":
@@ -8732,7 +8658,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955741G>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8741,12 +8666,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "M",
+        "mutation": "M",
         "begin": "490",
         "end": "490",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM4100933",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100933"
+              }
+            ]
+          }
+        ],
         "wildType": "V",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -8757,7 +8702,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955746C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8767,11 +8711,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "C",
+        "mutation": "C",
         "begin": "488",
         "end": "488",
         "evidences":
@@ -8817,7 +8761,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955752G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8826,12 +8769,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "486",
         "end": "486",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs200268317",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs200268317"
+              }
+            ]
+          }
+        ],
         "wildType": "R",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -8842,7 +8805,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975071C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8852,11 +8814,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "S",
+        "mutation": "S",
         "begin": "484",
         "end": "484",
         "evidences":
@@ -8910,7 +8872,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975078G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8919,12 +8880,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "H",
+        "mutation": "H",
         "begin": "470",
         "end": "470",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs182162117",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs182162117"
+              }
+            ]
+          }
+        ],
         "wildType": "R",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -8935,7 +8916,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975119C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -8945,11 +8925,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "H",
+        "mutation": "H",
         "begin": "469",
         "end": "469",
         "evidences":
@@ -9010,7 +8990,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975122C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9020,11 +8999,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "449",
         "end": "449",
         "evidences":
@@ -9068,8 +9047,9 @@
             [
 
               {
-                "name": "dbsnp",
-                "id": "rs539339652"
+                "name": "dbSNP",
+                "id": "rs539339652",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs539339652"
               }
             ]
 
@@ -9083,7 +9063,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_014215"
+                "id": "VAR_014215",
+                "url": "http://web.expasy.org/variant_pages/VAR_014215.html"
               }
             ]
           }
@@ -9098,7 +9079,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975183C>T",
         "disease": false,
-        "isSP": true,
         "sp": true
 
       },
@@ -9108,11 +9088,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Y",
+        "mutation": "Y",
         "begin": "441",
         "end": "441",
         "evidences":
@@ -9158,7 +9138,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975206G>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9167,12 +9146,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "E",
+        "mutation": "E",
         "begin": "438",
         "end": "438",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs556451971",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs556451971"
+              }
+            ]
+          }
+        ],
         "wildType": "K",
         "frequency": 0.000199681,
         "polyphenPrediction": "possibly damaging",
@@ -9183,7 +9182,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975216T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9192,12 +9190,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "E",
+        "mutation": "E",
         "begin": "436",
         "end": "436",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3720833",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3720833"
+              }
+            ]
+          }
+        ],
         "wildType": "Q",
         "frequency": 0,
         "polyphenPrediction": "possibly damaging",
@@ -9208,7 +9226,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975222G>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9217,12 +9234,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "STOP GAINED",
+          "label": "stop gained"
+
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "436",
         "end": "436",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM4100936",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100936"
+              }
+            ]
+          }
+        ],
         "wildType": "Q",
         "frequency": 0,
         "polyphenScore": 0,
@@ -9231,7 +9268,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975222G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9240,12 +9276,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "429",
         "end": "429",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs188433801",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs188433801"
+              }
+            ]
+          }
+        ],
         "wildType": "K",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -9256,7 +9312,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975967T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9266,11 +9321,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "E",
+        "mutation": "E",
         "begin": "428",
         "end": "428",
         "evidences":
@@ -9316,7 +9371,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975971T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9326,11 +9380,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "421",
         "end": "421",
         "evidences":
@@ -9376,7 +9430,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975990C>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9386,11 +9439,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "C",
+        "mutation": "C",
         "begin": "418",
         "end": "418",
         "evidences":
@@ -9436,7 +9489,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25976001G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9445,12 +9497,40 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "417",
         "end": "417",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+
+                "name": "dbSNP",
+                "id": "rs543363868",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs543363868"
+
+              },
+
+              {
+                "name": "cosmic",
+                "id": "COSM3841669",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3841669"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -9461,7 +9541,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25976004C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9470,12 +9549,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "404",
         "end": "404",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs201668897",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs201668897"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -9486,7 +9585,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982358C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9496,11 +9594,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "399",
         "end": "399",
         "evidences":
@@ -9546,7 +9644,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982373C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9556,11 +9653,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "E",
+        "mutation": "E",
         "begin": "393",
         "end": "393",
         "evidences":
@@ -9606,7 +9703,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982391T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9615,12 +9711,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "S",
+        "mutation": "S",
         "begin": "386",
         "end": "386",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM4137201",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4137201"
+              }
+            ]
+          }
+        ],
         "wildType": "N",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -9631,7 +9747,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982411T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9641,11 +9756,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "377",
         "end": "377",
         "evidences":
@@ -9699,7 +9814,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982438T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9708,12 +9822,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "375",
         "end": "375",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs141331202",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs141331202"
+              }
+            ]
+          }
+        ],
         "wildType": "V",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -9724,7 +9858,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982445C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9733,12 +9866,40 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "S",
+        "mutation": "S",
         "begin": "365",
         "end": "365",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+
+                "name": "cosmic",
+                "id": "COSM3549996",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549996"
+
+              },
+
+              {
+                "name": "dbSNP",
+                "id": "rs371425292",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs371425292"
+              }
+            ]
+          }
+        ],
         "wildType": "P",
         "frequency": 0.00159744,
         "polyphenPrediction": "probably damaging",
@@ -9749,7 +9910,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897627C>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9759,11 +9919,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "359",
         "end": "359",
         "evidences":
@@ -9817,7 +9977,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997374C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9826,12 +9985,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "358",
         "end": "358",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3405329",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3405329"
+              }
+            ]
+          }
+        ],
         "wildType": "A",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -9842,7 +10021,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997377G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9852,11 +10030,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "F",
+        "mutation": "F",
         "begin": "357",
         "end": "357",
         "evidences":
@@ -9910,7 +10088,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997381G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9919,12 +10096,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "T",
+        "mutation": "T",
         "begin": "344",
         "end": "344",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs201045185",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs201045185"
+              }
+            ]
+          }
+        ],
         "wildType": "A",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -9935,7 +10132,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000018C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -9945,11 +10141,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "STOP GAINED",
+          "label": "stop gained"
 
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "316",
         "end": "316",
         "evidences":
@@ -9993,7 +10189,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000100A>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10003,11 +10198,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "315",
         "end": "315",
         "evidences":
@@ -10053,7 +10248,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000103C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10063,11 +10257,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "STOP GAINED",
+          "label": "stop gained"
 
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "308",
         "end": "308",
         "evidences":
@@ -10111,7 +10305,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000124G>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10120,12 +10313,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "303",
         "end": "303",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3549997",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549997"
+              }
+            ]
+          }
+        ],
         "wildType": "M",
         "frequency": 0,
         "polyphenPrediction": "possibly damaging",
@@ -10136,7 +10349,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000139C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10146,11 +10358,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "G",
+        "mutation": "G",
         "begin": "301",
         "end": "301",
         "evidences":
@@ -10196,7 +10408,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000147G>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10205,12 +10416,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "L",
+        "mutation": "L",
         "begin": "299",
         "end": "299",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM4100938",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100938"
+              }
+            ]
+          }
+        ],
         "wildType": "P",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -10221,7 +10452,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000152G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10231,11 +10461,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "M",
+        "mutation": "M",
         "begin": "297",
         "end": "297",
         "evidences":
@@ -10297,7 +10527,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000158G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10307,11 +10536,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "P",
+        "mutation": "P",
         "begin": "28",
         "end": "28",
         "evidences":
@@ -10357,7 +10586,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112121A>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10366,12 +10594,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "285",
         "end": "285",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3841670",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3841670"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10382,7 +10630,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021852C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10391,12 +10638,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "284",
         "end": "284",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3549999",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549999"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10407,7 +10674,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021855C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10416,12 +10682,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "S",
+        "mutation": "S",
         "begin": "276",
         "end": "276",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs202198008",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs202198008"
+              }
+            ]
+          }
+        ],
         "wildType": "T",
         "frequency": 0.00159744,
         "polyphenPrediction": "unknown",
@@ -10432,7 +10718,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021879T>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10441,12 +10726,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "269",
         "end": "269",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3681239",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3681239"
+              }
+            ]
+          }
+        ],
         "wildType": "T",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10457,7 +10762,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021899G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10466,12 +10770,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "256",
         "end": "256",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM4100939",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100939"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10482,7 +10806,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021939C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10492,11 +10815,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "STOP GAINED",
+          "label": "stop gained"
 
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "255",
         "end": "255",
         "evidences":
@@ -10548,7 +10871,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021942C>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10558,11 +10880,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "254",
         "end": "254",
         "evidences":
@@ -10600,8 +10922,9 @@
 
               {
 
-                "name": "dbsnp",
-                "id": "rs532114068"
+                "name": "dbSNP",
+                "id": "rs532114068",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs532114068"
 
               },
 
@@ -10623,7 +10946,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021945C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10632,12 +10954,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "N",
+        "mutation": "N",
         "begin": "248",
         "end": "248",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3911984",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3911984"
+              }
+            ]
+          }
+        ],
         "wildType": "D",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10648,7 +10990,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021963C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10657,12 +10998,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "G",
+        "mutation": "G",
         "begin": "23",
         "end": "23",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3963886",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3963886"
+              }
+            ]
+          }
+        ],
         "wildType": "D",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10673,7 +11034,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112136T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10682,12 +11042,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "227",
         "end": "227",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM4100940",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100940"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10698,7 +11078,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26022026C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10707,12 +11086,40 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "225",
         "end": "225",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+
+                "name": "cosmic",
+                "id": "COSM4100941",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100941"
+
+              },
+
+              {
+                "name": "cosmic",
+                "id": "COSM3517575",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3517575"
+              }
+            ]
+          }
+        ],
         "wildType": "V",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -10723,7 +11130,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26022031A>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10733,11 +11139,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "L",
+        "mutation": "L",
         "begin": "206",
         "end": "206",
         "evidences":
@@ -10783,7 +11189,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051045G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10792,12 +11197,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "A",
+        "mutation": "A",
         "begin": "196",
         "end": "196",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM4100942",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100942"
+              }
+            ]
+          }
+        ],
         "wildType": "V",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10808,7 +11233,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051075A>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10818,11 +11242,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "191",
         "end": "191",
         "evidences":
@@ -10876,7 +11300,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051091C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10885,12 +11308,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "D",
+        "mutation": "D",
         "begin": "191",
         "end": "191",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3550000",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3550000"
+              }
+            ]
+          }
+        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10901,7 +11344,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051089T>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10911,11 +11353,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "M",
+        "mutation": "M",
         "begin": "185",
         "end": "185",
         "evidences":
@@ -10969,7 +11411,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051109C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -10978,12 +11419,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "L",
+        "mutation": "L",
         "begin": "184",
         "end": "184",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3423879",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3423879"
+              }
+            ]
+          }
+        ],
         "wildType": "F",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -10994,7 +11455,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051110A>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11004,11 +11464,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Q",
+        "mutation": "Q",
         "begin": "183",
         "end": "183",
         "evidences":
@@ -11054,7 +11514,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051115C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11063,12 +11522,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "178",
         "end": "178",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3841671",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3841671"
+              }
+            ]
+          }
+        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -11079,7 +11558,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051129T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11089,11 +11567,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "I",
+        "mutation": "I",
         "begin": "170",
         "end": "170",
         "evidences":
@@ -11122,8 +11600,9 @@
             [
 
               {
-                "name": "dbsnp",
-                "id": "rs372642708"
+                "name": "dbSNP",
+                "id": "rs372642708",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs372642708"
               }
             ]
 
@@ -11137,7 +11616,8 @@
 
               {
                 "name": "swp_var",
-                "id": "VAR_069358"
+                "id": "VAR_069358",
+                "url": "http://web.expasy.org/variant_pages/VAR_069358.html"
               }
             ]
           }
@@ -11159,29 +11639,20 @@
 
             "name": "Spermatogenic failure 11 (SPGF11)",
             "description": "results in impaired self-association",
-            "evidences":
+            "moreInfo":
 
             [
 
               {
-
-                "code": "ECO:0000006",
-                "sources":
-
-                [
-
-                  {
-                    "name": "MIM",
-                    "id": "615081"
-                  }
-                ]
+                "name": "OMIM",
+                "id": "615081",
+                "url": "http://www.omim.org/entry/615081"
               }
             ]
           }
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "isSP": true,
         "sp": true
 
       },
@@ -11191,11 +11662,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "Y",
+        "mutation": "Y",
         "begin": "158",
         "end": "158",
         "evidences":
@@ -11241,7 +11712,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051189C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11251,11 +11721,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "T",
+        "mutation": "T",
         "begin": "154",
         "end": "154",
         "evidences":
@@ -11301,7 +11771,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053244C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11311,11 +11780,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "STOP GAINED",
+          "label": "stop gained"
 
         },
-        "alternativeSequence": "*",
+        "mutation": "*",
         "begin": "150",
         "end": "150",
         "evidences":
@@ -11359,7 +11828,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053254C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11369,11 +11837,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "K",
+        "mutation": "K",
         "begin": "145",
         "end": "145",
         "evidences":
@@ -11419,7 +11887,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053271C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11428,12 +11895,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "R",
+        "mutation": "R",
         "begin": "134",
         "end": "134",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs576712021",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs576712021"
+              }
+            ]
+          }
+        ],
         "wildType": "K",
         "frequency": 0.000199681,
         "polyphenPrediction": "unknown",
@@ -11444,7 +11931,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053303T>C",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11454,11 +11940,11 @@
 
         {
 
-          "name": "VARIANT",
-          "label": "sequence variant"
+          "name": "MISSENSE",
+          "label": "missense"
 
         },
-        "alternativeSequence": "V",
+        "mutation": "V",
         "begin": "126",
         "end": "126",
         "evidences":
@@ -11512,7 +11998,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053327G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11521,12 +12006,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "S",
+        "mutation": "S",
         "begin": "114",
         "end": "114",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "cosmic",
+                "id": "COSM3550002",
+                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3550002"
+              }
+            ]
+          }
+        ],
         "wildType": "P",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -11537,7 +12042,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089958G>A",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11546,12 +12050,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "D",
+        "mutation": "D",
         "begin": "101",
         "end": "101",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs532382285",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs532382285"
+              }
+            ]
+          }
+        ],
         "wildType": "G",
         "frequency": 0.000199681,
         "polyphenPrediction": "unknown",
@@ -11562,7 +12086,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089996C>T",
         "disease": false,
-        "isSP": false,
         "sp": false
 
       },
@@ -11571,12 +12094,32 @@
         "type":
 
         {
-          "name": "VARIANT",
-          "label": "sequence variant"
+
+          "name": "MISSENSE",
+          "label": "missense"
+
         },
-        "alternativeSequence": "P",
+        "mutation": "P",
         "begin": "100",
         "end": "100",
+        "evidences":
+        [
+
+          {
+
+            "code": "ECO:0000313",
+            "sources":
+
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs199741007",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs199741007"
+              }
+            ]
+          }
+        ],
         "wildType": "R",
         "frequency": 0.000199681,
         "polyphenPrediction": "unknown",
@@ -11587,7 +12130,6 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089999C>G",
         "disease": false,
-        "isSP": false,
         "sp": false
       }
     ]
