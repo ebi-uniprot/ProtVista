@@ -4372,14 +4372,10 @@
 
       },
       {
-
         "type":
-
         {
-
           "name": "MISSENSE",
           "label": "missense"
-
         },
         "mutation": "L",
         "begin": "770",
@@ -4429,6 +4425,44 @@
         "disease": false,
         "sp": false
 
+      },
+      {
+
+        "type":
+
+        {
+
+          "name": "STOP_LOST",
+          "label": "stop lost"
+
+        },
+        "mutation": "S",
+        "begin": "771",
+        "end": "771",
+        "evidences":
+        [
+          {
+            "code": "ECO:0000313",
+            "sources":
+            [
+
+              {
+                "name": "dbSNP",
+                "id": "rs201761287",
+                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs201761287"
+              }
+            ]
+          }
+        ],
+        "wildType": "*",
+        "frequency": 0.000199681,
+        "polyphenScore": 0,
+        "siftScore": 0,
+        "somaticStatus": 0,
+        "cytogeneticBand": "6p21.1",
+        "genomicLocation": "6:g.43054441C>G",
+        "disease": false,
+        "sp": false
       },
       {
 
