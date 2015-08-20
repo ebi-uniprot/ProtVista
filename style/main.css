@@ -222,6 +222,9 @@ svg {
     font-weight: lighter;
     font-size: .9em;
 }
+.up_pftv_indentedCheck {
+    padding-left: 1.2em;
+}
 
 /* Close button */
 .up_pftv_tooltip-close {
