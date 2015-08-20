@@ -149,7 +149,7 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(aaViewerDiv.length, 2, 'only one up_pftv_aaviewer');
         assert.equal(aaViewerDiv[0].childElementCount, 1, 'up_pftv_aaviewer children count');
 
-        var aaText = document.querySelectorAll('.up_pftv_aaviewer text');
+        var aaText = document.querySelectorAll('.up_pftv_aa-text text');
         assert.equal(aaText.length, instance.sequence.length * 2, 'aa sequence length');
     });
 
