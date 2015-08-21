@@ -219,11 +219,13 @@ svg {
 
 /* Dialog */
 .up_pftv_dialog-container {
+    font-family: "Gill Sans","Gill Sans MT",Calibri,sans-serif;
     font-weight: lighter;
     font-size: .9em;
 }
 .up_pftv_indentedCheck {
     padding-left: 1.2em;
+    font-size: .85em;
 }
 
 /* Close button */
