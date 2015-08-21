@@ -71,6 +71,9 @@ svg {
     padding: .485em;
     text-transform: capitalize;
     border: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .up_pftv_category-name {
