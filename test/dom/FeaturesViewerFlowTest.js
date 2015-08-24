@@ -188,14 +188,6 @@ describe('FeaturesViewerFlowTest', function() {
             ' features count');
     });
 
-    it('should cut all title to maximum 29 characters', function() {
-        var catTitle = document.querySelectorAll('.up_pftv_category-container .up_pftv_category-name');
-
-        for (var i = 0; i < catTitle.length; i++) {
-            expect(catTitle[i].text.length).to.be.below(27);
-        }
-    });
-
     it('should create a category track with title and features', function() {
         var catTitle = document.querySelector('.up_pftv_category-container .up_pftv_category-name');
         assert.equal(catTitle.text.toUpperCase(), "DOMAINS & SITES", 'first category title');
