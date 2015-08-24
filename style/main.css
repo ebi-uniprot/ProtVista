@@ -6,13 +6,13 @@ svg {
     display: inline-block;
     padding: 0 .5em 0 .5em;
     width: 180px;
-    text-align: right;
+    text-align: left;
     vertical-align: bottom;
 }
 
 .up_pftv_buttons span {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .up_pftv_buttons span:hover {
