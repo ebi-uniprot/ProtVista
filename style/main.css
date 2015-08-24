@@ -12,6 +12,7 @@ svg {
 
 .up_pftv_buttons span {
     cursor: pointer;
+    font-size: 20px;
 }
 
 .up_pftv_buttons span:hover {
