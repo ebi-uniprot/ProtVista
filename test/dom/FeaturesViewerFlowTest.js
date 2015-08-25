@@ -21,33 +21,28 @@ var yourDiv = document.getElementById('mocha');
 // requires your main app (specified in index.js)
 var FeaturesViewer = require('../..');
 
-var verifyShadowAttributes = function(containerClass, path, translate, width, height, x, y, exactWidth) {
+var verifyShadowAttributes = function(containerClass, path, exactPath, translate, height, x) {
     var categoryShadow = document.querySelector('.' + containerClass + ' .up_pftv_shadow');
 
-    if (path) {
-        var transform = path.getAttribute('transform');
-        transform = transform.substring(0, transform.indexOf(','));
-        assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
-    } else {
-        if (translate) {
-            assert.equal(categoryShadow.getAttribute('transform'), translate, 'shadow translation');
-        } else {
+     if (path) {
+         var transform = path.getAttribute('transform');
+         transform = transform.substring(0, transform.indexOf(','));
+         assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
+     } else {
+         if (translate) {
+             assert.equal(categoryShadow.getAttribute('transform'), translate, 'shadow translation');
+         } else {
             expect(categoryShadow.getAttribute('transform')).to.be.null;
-        }
-    }
+         }
+     }
 
-    if (exactWidth === true) {
-        assert.equal(categoryShadow.getAttribute('width'), width, 'shadow width');
-    } else {
-        expect(Math.abs(width - categoryShadow.getAttribute('width'))).to.be.below(0.01);
-    }
-
-    assert.equal(categoryShadow.getAttribute('height'), height, 'shadow height');
-    assert.equal(categoryShadow.getAttribute('x'), x, 'shadow x coordinate');
-
-    if (y) {
-        assert.equal(categoryShadow.getAttribute('y'), y, 'shadow y coordinate');
-    }
+     if (exactPath) {
+         assert.equal(categoryShadow.getAttribute('d'), exactPath, 'shadow path');
+     } else {
+         var shadowPath = categoryShadow.getAttribute('d');
+         assert.equal(shadowPath.indexOf('M' + x + ','), 0, 'shadow initial x');
+         assert.notEqual(shadowPath.indexOf(',' + height + 'L'), -1, 'shadow height');
+     }
 };
 
 var verifyViewPortAttributes = function(verifyInitialX, verifyFullWidth, fullPath, opacity) {
@@ -202,8 +197,7 @@ describe('FeaturesViewerFlowTest', function() {
         var categoryShadowGroup = document.querySelector('.up_pftv_category-container g');
         assert.equal(categoryShadowGroup.childElementCount, 1, 'only one vertical shadow');
 
-        verifyShadowAttributes('up_pftv_category-container', undefined, undefined, 0,
-            document.querySelector('.up_pftv_category svg').getAttribute('height'), 0, 0, true);
+        verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
     });
 
     it('should create 10 hidden type track elements on the category track', function() {
@@ -216,8 +210,7 @@ describe('FeaturesViewerFlowTest', function() {
         var typeShadow = document.querySelector('.up_pftv_track g');
         assert.equal(typeShadow.childElementCount, 1, 'only one vertical shadow');
 
-        verifyShadowAttributes('up_pftv_track', undefined, undefined, 0, document.querySelector('.up_pftv_category' +
-                ' svg').getAttribute('height'), 0, 0, true);
+        verifyShadowAttributes('up_pftv_track', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
     });
 
     it('should create a metal in position 147', function() {
@@ -249,8 +242,8 @@ describe('FeaturesViewerFlowTest', function() {
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
         var svg = document.querySelector('.up_pftv_category svg');
 
-        verifyShadowAttributes('up_pftv_category', paths[0], undefined, aaWidth, svg.getAttribute('height'), -gapRegion,
-            undefined, true);
+        verifyShadowAttributes('up_pftv_category', paths[0], undefined, undefined,
+            svg.getAttribute('height'), -gapRegion);
     });
 
     it('should adjust vertical highlight for type tracks', function() {
@@ -260,8 +253,8 @@ describe('FeaturesViewerFlowTest', function() {
         var feature = data.domainsAndSites.features[firstMetalPosition];
         var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
 
-        verifyShadowAttributes('up_pftv_track', paths[0], undefined, aaWidth,
-            document.querySelector('.up_pftv_track svg').getAttribute('height'), -gapRegion, 0, true);
+        verifyShadowAttributes('up_pftv_track', paths[0], undefined, undefined,
+            document.querySelector('.up_pftv_track svg').getAttribute('height'), -gapRegion);
     });
 
     it('should open 1 tooltip after feature selection @147', function() {
@@ -297,13 +290,11 @@ describe('FeaturesViewerFlowTest', function() {
     });
 
     it('should deactivate category vertical highlight after feature deselection @147', function() {
-        verifyShadowAttributes('up_pftv_category-container', undefined, 'translate(0,0)', 0,
-            document.querySelector('.up_pftv_category svg').getAttribute('height'), 0, 0, true);
+        verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
     });
 
     it('should deactivate type vertical highlight after feature deselection @147', function() {
-        verifyShadowAttributes('up_pftv_track', undefined, 'translate(0,0)', 0,
-            document.querySelector('.up_pftv_track svg').getAttribute('height'), 0, 0, true);
+        verifyShadowAttributes('up_pftv_track', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
     });
 
     it('should open first category type tracks', function() {
@@ -350,8 +341,7 @@ describe('FeaturesViewerFlowTest', function() {
         for (var i = 0; i < shadows.length; i++) {
             var shadow = shadows[i];
             assert.equal(shadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
-            assert.equal(shadow.getAttribute('width'), aaWidth, 'shadow width');
-            assert.equal(shadow.getAttribute('x'), -gapRegion, 'shadow x coordinate');
+            assert.equal(shadow.getAttribute('d').indexOf('M' + (-gapRegion) + ','), 0, 'shadow initial x');
         }
     });
 
@@ -407,9 +397,9 @@ describe('FeaturesViewerFlowTest', function() {
 
         var shapePath = paths[0].getAttribute('d');
         var x = shapePath.substring(1, shapePath.indexOf(','));
-        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
 
-        verifyShadowAttributes('up_pftv_category-container', paths[0], undefined, lineEnd - x, svg.getAttribute('height'), x, 0, false);
+        verifyShadowAttributes('up_pftv_category-container', paths[0], undefined, undefined,
+            svg.getAttribute('height'), x);
     });
 
     it('should adjust vertical highlight for type tracks after feature selection @1-17', function() {
@@ -418,10 +408,9 @@ describe('FeaturesViewerFlowTest', function() {
 
         var shapePath = paths[0].getAttribute('d');
         var x = shapePath.substring(1, shapePath.indexOf(','));
-        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
 
-        verifyShadowAttributes('up_pftv_track', paths[0], undefined, lineEnd - x,
-            document.querySelector('.up_pftv_track svg').getAttribute('height'), x, 0, false);
+        verifyShadowAttributes('up_pftv_track', paths[0], undefined, undefined,
+            document.querySelector('.up_pftv_track svg').getAttribute('height'), x);
     });
 
     it('should zoom in with button to the middle of the selected ft', function() {
@@ -453,10 +442,9 @@ describe('FeaturesViewerFlowTest', function() {
 
         var shapePath = paths[0].getAttribute('d');
         var x = shapePath.substring(1, shapePath.indexOf(','));
-        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
 
-        verifyShadowAttributes('up_pftv_category', paths[0], undefined, lineEnd - x,
-            document.querySelector('.up_pftv_category svg').getAttribute('height'), x, 0, false);
+        verifyShadowAttributes('up_pftv_category', paths[0], undefined, undefined,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), x);
     });
 
     it('should zoom-out with button', function() {
@@ -481,10 +469,9 @@ describe('FeaturesViewerFlowTest', function() {
 
         var shapePath = paths[0].getAttribute('d');
         var x = shapePath.substring(1, shapePath.indexOf(','));
-        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
 
-        verifyShadowAttributes('up_pftv_category', paths[0], undefined, lineEnd - x,
-            document.querySelector('.up_pftv_category svg').getAttribute('height'), x, 0, false);
+        verifyShadowAttributes('up_pftv_category', paths[0], undefined, undefined,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), x);
     });
 
     it('should keep selection on div click', function() {
@@ -502,10 +489,9 @@ describe('FeaturesViewerFlowTest', function() {
 
         var shapePath = paths[0].getAttribute('d');
         var x = shapePath.substring(1, shapePath.indexOf(','));
-        var lineEnd = shapePath.substring(shapePath.indexOf('L')+1, shapePath.indexOf(',', shapePath.indexOf('L')));
 
-        verifyShadowAttributes('up_pftv_category', paths[0], undefined, lineEnd - x,
-            document.querySelector('.up_pftv_category svg').getAttribute('height'), x, 0, false);
+        verifyShadowAttributes('up_pftv_category', paths[0], undefined, undefined,
+            document.querySelector('.up_pftv_category svg').getAttribute('height'), x);
     });
 
     it('should reset view (zoom out and deselect features)', function() {
@@ -521,8 +507,7 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
         expect(instance.selectedFeature).to.be.undefined;
 
-        verifyShadowAttributes('up_pftv_category', undefined, 'translate(0,0)', 0,
-            document.querySelector('.up_pftv_category svg').getAttribute('height'), 0, 0, true);
+        verifyShadowAttributes('up_pftv_category', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
     });
 
     it('should keep tooltip open', function() {
@@ -567,7 +552,6 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
         expect(instance.selectedFeature).to.be.undefined;
 
-        verifyShadowAttributes('up_pftv_category', undefined, 'translate(0,0)', 0,
-            document.querySelector('.up_pftv_category svg').getAttribute('height'), 0, 0, true);
+        verifyShadowAttributes('up_pftv_category', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
     });
 });
