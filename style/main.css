@@ -16,7 +16,7 @@ svg {
 }
 
 .up_pftv_buttons span:hover {
-    color: #5C5C5C;
+    color: #3C4043;
 }
 
 .up_pftv_aaviewer {
@@ -221,7 +221,7 @@ svg {
     cursor: pointer;
 }
 
-/* Dialog */
+/* Dialogs */
 .up_pftv_dialog-container {
     font-family: "Gill Sans","Gill Sans MT",Calibri,sans-serif;
     font-weight: lighter;
@@ -230,6 +230,27 @@ svg {
 .up_pftv_indentedCheck {
     padding-left: 1.2em;
     font-size: .85em;
+}
+
+.up_pftv_dialog-legend {
+    padding: 0.5em 0.5em 0.1em 0;
+}
+
+.up_pftv_legend, .up_pftv_legendRect, .up_pftv_legendTitle {
+    height: 15px;
+}
+
+.up_pftv_legendRect {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+}
+
+.up_pftv_legendTitle {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-left: .2em;
+    font-size: 0.8em;
 }
 
 /* Close button */
