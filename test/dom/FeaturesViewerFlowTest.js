@@ -130,14 +130,13 @@ describe('FeaturesViewerFlowTest', function() {
     it('should create 1 up_pftv_buttons with 3 children', function() {
         var buttonsDiv = document.querySelectorAll('.up_pftv_container>.up_pftv_buttons');
         assert.equal(buttonsDiv.length, 1, 'only one up_pftv_buttons');
-        assert.equal(buttonsDiv[0].childElementCount, 4, 'up_pftv_buttons children count');
+        assert.equal(buttonsDiv[0].childElementCount, 3, 'up_pftv_buttons children count');
 
         var buttons = document.querySelectorAll('.up_pftv_buttons span');
-        assert.equal(buttons.length, 4);
-        assert.equal(buttons[0].getAttribute('class'), 'up_pftv_icon-arrows-cw', 'first button class');
+        assert.equal(buttons.length, 3);
+        assert.equal(buttons[0].getAttribute('class'), 'up_pftv_icon-eye-off', 'third button class');
         assert.equal(buttons[1].getAttribute('class'), 'up_pftv_icon-zoom-in', 'second button class');
-        assert.equal(buttons[2].getAttribute('class'), 'up_pftv_icon-eye-off', 'third button class');
-        assert.equal(buttons[3].getAttribute('class'), 'up_pftv_icon-info', 'fourth button class');
+        assert.equal(buttons[2].getAttribute('class'), 'up_pftv_icon-arrows-cw', 'first button class');
     });
 
     it('should create 2 aaViewers aa sequence', function() {
