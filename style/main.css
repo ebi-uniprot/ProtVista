@@ -8,6 +8,7 @@ svg {
     width: 180px;
     text-align: left;
     vertical-align: bottom;
+    position: relative;
 }
 
 .up_pftv_buttons span {
@@ -282,6 +283,7 @@ svg {
     border: 1px solid #000;
     background-color: #ffffff;
     padding: 0.5em;
+    min-width: 210px;
 }
 
 .up_pftv_tooltip-container table {
