@@ -101,7 +101,11 @@ gulp.task('clean-test-reports', function(cb) {
 gulp.task('test-dom', ['build-test'], function () {
     return gulp
     .src('test/index.html')
-    .pipe(mochaPhantomJS());
+    .pipe(mochaPhantomJS({
+        phantomjs:{
+            ignoreSslErrors: true
+        }
+    }));
 });
 
 // browserify debug
