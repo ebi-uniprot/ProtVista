@@ -1,34 +1,18 @@
 # biojs-vis-proteinFeaturesViewer
 
-[![NPM version](http://img.shields.io/npm/v/biojs-vis-proteinFeaturesViewer.svg)](https://www.npmjs.org/package/biojs-vis-proteinFeaturesViewer)
+[![NPM version](http://img.shields.io/npm/v/biojs-vis-proteinFeaturesViewer.svg)](https://www.npmjs.org/package/biojs-vis-proteinfeaturesviewer)
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer.png?branch=master)](http://travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
 [![Coverage Status](https://img.shields.io/coveralls/ebi-github/biojs-vis-proteinFeaturesViewer.svg)](https://coveralls.io/r/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
-[![NPM version](https://badge-me.herokuapp.com/api/npm/biojs-vis-proteinFeaturesViewer.png)](http://badges.enytc.com/for/npm/biojs-vis-proteinFeaturesViewer)
+[![NPM version](https://badge-me.herokuapp.com/api/npm/biojs-vis-proteinfeaturesviewer.png)](http://badges.enytc.com/for/npm/biojs-vis-proteinfeaturesviewer)
 
 > This is an ongoing project on a pretty early stage, please be aware that this is under development, not ready to be use yet!
 
 ## Getting Started
-Install the module with: `npm install biojs-vis-proteinFeaturesViewer`
+Install the module with: `npm install biojs-vis-proteinfeaturesviewer`
 
 ```javascript
-var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinFeaturesViewer');
-biojs_vis_proteinFeaturesViewer.hello("biojs"); // "hello biojs"
-```
-
-## Documentation
-
-#### .hello(name)
-
-**Parameter**: `name`
-**Type**: `String`
-**Example**: `biojs`
-
-The 'hello' method is responsible for showing a name.
-
-How to use this method
-
-```javascript
-biojs_vis_proteinFeaturesViewer.hello('biojs'); // "hello biojs"
+var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
+var instance = new biojs_vis_proteinFeaturesViewer({el: 'yourDiv', uniprotacc : 'UniProt_accession'});
 ```
 
 ## Contributing
