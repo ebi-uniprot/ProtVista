@@ -86,8 +86,8 @@
       "/build/featuresviewer.js"
     ],
     "css": [
-      "/build/fontello.css",
-      "/build/main.css"
+      "/style/fontello.css",
+      "/style/main.css"
     ],
     "snippets": [
       "snippets"
