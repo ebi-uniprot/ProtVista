@@ -4,13 +4,16 @@
   "version": "0.0.2",
   "homepage": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer",
   "author": "UniProt",
-  "contributors": [{
-    "name": "Leyla Jael Garcia Castro",
-    "email": "ljgarcia@ebi.ac.uk"
-  },{
-    "name": "Xavier Watkins",
-    "email": "xwatkins@ebi.ac.uk"
-  }],
+  "contributors": [
+    {
+      "name": "Leyla Jael Garcia Castro",
+      "email": "ljgarcia@ebi.ac.uk"
+    },
+    {
+      "name": "Xavier Watkins",
+      "email": "xwatkins@ebi.ac.uk"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer.git"
@@ -46,6 +49,7 @@
   "devDependencies": {
     "browserify": "^10.2.4",
     "chai": "^1.9.1",
+    "coveralls": "^2.11.4",
     "del": "^0.1.3",
     "gulp": "^3.9.0",
     "gulp-chmod": "^1.1.1",
