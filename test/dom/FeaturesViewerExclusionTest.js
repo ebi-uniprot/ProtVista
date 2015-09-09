@@ -26,7 +26,8 @@ describe('FeaturesViewerExclusionTest', function() {
         var instance = new FeaturesViewer({
             el: yourDiv,
             uniprotacc: 'P05067',
-            exclusions: ['moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'topology', 'mutagenesis', 'variants']
+            exclusions: ['moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'topology', 'mutagenesis', 'variants'],
+            proxy: 'http://wwwdev.ebi.ac.uk/uniprot/services/rest/uniprot/features/P05067?nothing='
         });
         instance.getDispatcher().on("ready", function(data) {
             var catContainer = document.querySelectorAll('.up_pftv_container>.up_pftv_category-container');
@@ -50,7 +51,8 @@ describe('FeaturesViewerExclusionTest', function() {
         var instance = new FeaturesViewer({
             el: yourDiv,
             uniprotacc: 'P05067',
-            exclusions: ['domainsAndSites', 'moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'variants']
+            exclusions: ['domainsAndSites', 'moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'variants'],
+            proxy: 'http://wwwdev.ebi.ac.uk/uniprot/services/rest/uniprot/features/P05067?nothing='
         });
         instance.getDispatcher().on("ready", function(data) {
             var children = document.querySelectorAll('.up_pftv_category-container>.up_pftv_category');

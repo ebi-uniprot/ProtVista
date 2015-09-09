@@ -81,7 +81,8 @@ describe('FeaturesViewerFlowTest', function() {
     before(function(done) {
         var opts = {
             el: yourDiv,
-            uniprotacc: 'P05067'
+            uniprotacc: 'P05067',
+            proxy: 'http://wwwdev.ebi.ac.uk/uniprot/services/rest/uniprot/features/P05067?nothing='
         };
         instance = new FeaturesViewer(opts);
         instance.getDispatcher().on("ready", function(obj) {
