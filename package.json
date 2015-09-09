@@ -1,12 +1,16 @@
 {
-  "name": "biojs-vis-proteinFeaturesViewer",
-  "description": "A protein sequence features viewer using D3",
+  "name": "biojs-vis-proteinfeaturesviewer",
+  "description": "A visualisation for protein features and variation",
   "version": "0.0.1",
   "homepage": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer",
-  "author": {
+  "author": "UniProt",
+  "contributors": [{
     "name": "Leyla Jael Garcia Castro",
     "email": "ljgarcia@ebi.ac.uk"
-  },
+  },{
+    "name": "Xavier Watkins",
+    "email": "xwatkins@ebi.ac.uk"
+  }],
   "repository": {
     "type": "git",
     "url": "git://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer.git"
