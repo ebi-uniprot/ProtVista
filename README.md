@@ -1,9 +1,8 @@
 # biojs-vis-proteinFeaturesViewer
 
-[![NPM version](http://img.shields.io/npm/v/biojs-vis-proteinFeaturesViewer.svg)](https://www.npmjs.org/package/biojs-vis-proteinfeaturesviewer)
+[![NPM version](http://img.shields.io/npm/v/biojs-vis-proteinfeaturesviewer.svg)](https://www.npmjs.org/package/biojs-vis-proteinfeaturesviewer)
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer.png?branch=master)](http://travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
 [![Coverage Status](https://img.shields.io/coveralls/ebi-github/biojs-vis-proteinFeaturesViewer.svg)](https://coveralls.io/r/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
-[![NPM version](https://badge-me.herokuapp.com/api/npm/biojs-vis-proteinfeaturesviewer.png)](http://badges.enytc.com/for/npm/biojs-vis-proteinfeaturesviewer)
 
 > This is an ongoing project on a pretty early stage, please be aware that this is under development, not ready to be use yet!
 
