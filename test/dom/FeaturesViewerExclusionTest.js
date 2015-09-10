@@ -20,16 +20,25 @@ var yourDiv = document.getElementById('mocha');
 
 // requires your main app (specified in index.js)
 var FeaturesViewer = require('../..');
+var DataLoader = require('../../lib/dataLoader');
 
 describe('FeaturesViewerExclusionTest', function() {
     it('should create 1 category container with 1 category "Domains and Sites"', function(done) {
-        var instance = new FeaturesViewer({
+        var opts = {
             el: yourDiv,
-            uniprotacc: 'P05067',
-            exclusions: ['moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'topology', 'mutagenesis', 'variants'],
-            proxy: 'http://wwwdev.ebi.ac.uk/uniprot/services/rest/uniprot/features/P05067?nothing='
+            uniprotacc: 'nothing',
+            exclusions: ['moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'topology', 'mutagenesis', 'variants']
+        };
+        var instance = new FeaturesViewer(opts);
+
+        instance.getDispatcher().on("noData", function() {
+            data = require('../../snippets/data/features.json');
+            data = DataLoader.processData(data);
+
+            instance.init(opts, data);
         });
-        instance.getDispatcher().on("ready", function(data) {
+
+        instance.getDispatcher().on("ready", function() {
             var catContainer = document.querySelectorAll('.up_pftv_container>.up_pftv_category-container');
             assert.equal(catContainer.length, 1, 'only one up_pftv_category-container');
             assert.equal(catContainer[0].childElementCount, 1, 'up_pftv_category-container children count');
@@ -48,13 +57,22 @@ describe('FeaturesViewerExclusionTest', function() {
     });
 
     it('should create 2 categories "Topology" and "Mutagenesis", in that order', function(done) {
-        var instance = new FeaturesViewer({
+        var opts = {
             el: yourDiv,
             uniprotacc: 'P05067',
             exclusions: ['domainsAndSites', 'moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'variants'],
             proxy: 'http://wwwdev.ebi.ac.uk/uniprot/services/rest/uniprot/features/P05067?nothing='
+        };
+        var instance = new FeaturesViewer(opts);
+
+        instance.getDispatcher().on("noData", function() {
+            data = require('../../snippets/data/features.json');
+            data = DataLoader.processData(data);
+
+            instance.init(opts, data);
         });
-        instance.getDispatcher().on("ready", function(data) {
+
+        instance.getDispatcher().on("ready", function() {
             var children = document.querySelectorAll('.up_pftv_category-container>.up_pftv_category');
             assert.equal(children.length, 2, 'category count');
 

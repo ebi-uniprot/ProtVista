@@ -20,6 +20,7 @@ var yourDiv = document.getElementById('mocha');
 
 // requires your main app (specified in index.js)
 var FeaturesViewer = require('../..');
+var DataLoader = require('../../lib/dataLoader');
 
 var verifyShadowAttributes = function(containerClass, path, exactPath, translate, height, x) {
     var categoryShadow = document.querySelector('.' + containerClass + ' .up_pftv_shadow');
@@ -81,12 +82,19 @@ describe('FeaturesViewerFlowTest', function() {
     before(function(done) {
         var opts = {
             el: yourDiv,
-            uniprotacc: 'P05067',
-            proxy: 'http://wwwdev.ebi.ac.uk/uniprot/services/rest/uniprot/features/P05067?nothing='
+            uniprotacc: 'nothing'
         };
         instance = new FeaturesViewer(opts);
-        instance.getDispatcher().on("ready", function(obj) {
-            data = obj;
+
+        instance.getDispatcher().on("noData", function() {
+            data = require('../../snippets/data/features.json');
+            data.variants.features = DataLoader.processVariants(data);
+            data = DataLoader.processData(data);
+
+            instance.init(opts, data);
+        });
+
+        instance.getDispatcher().on("ready", function() {
             aaWidth = instance.xScale(2) - instance.xScale(1);
             gapRegion = aaWidth/2;
             done();
@@ -98,7 +106,6 @@ describe('FeaturesViewerFlowTest', function() {
         assert.equal(mochaDiv.firstElementChild.getAttribute('class'), 'up_pftv_container', 'up_pftv_container' +
             ' existence inside test div');
         assert.equal(mochaDiv.childElementCount, 1, 'test div children count');
-
         var mainContainer = document.getElementsByClassName('up_pftv_container');
         assert.equal(mainContainer.length, 1, 'only one up_pftv_container');
         assert.equal(mainContainer[0].childElementCount, 5, 'up_pftv_container children count');
