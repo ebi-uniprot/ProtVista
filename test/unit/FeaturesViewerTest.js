@@ -32,7 +32,14 @@ describe('FeaturesViewerTest', function() {
 		var totalFeatures = data.domainsAndSites.features.length + data.moleculeProcessing.features.length +
 			data.ptm.features.length + data.seqInfo.features.length + data.structural.features.length +
 			data.topology.features.length + data.mutagenesis.features.length + data.variants.features.length;
-		assert(d.totalFeatureCount, totalFeatures);
+		assert.equal(d.totalFeatureCount, totalFeatures);
+	});
+
+	it('should process variants', function() {
+		var variantFeatures = DataLoader.processVariants(data);
+		assert.equal(variantFeatures.length, data.sequence.length + 2);
+        assert.equal(variantFeatures[0].variants.length, 0);
+        assert.equal(variantFeatures[data.sequence.length+1].variants.length, 0);
 	});
 
 	//'NonOverlappingLayout
@@ -49,5 +56,4 @@ describe('FeaturesViewerTest', function() {
 	it('should return right number of rows', function() {
 		assert.equal(2, layout.getRows().length);
 	});
-
 });
