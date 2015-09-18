@@ -198,7 +198,7 @@ svg {
 }
 
 .up_pftv_activeFeature {
-    fill-opacity: .9;
+    fill-opacity: .9 !important;
 }
 
 .up_pftv_variation-chart .up_pftv_block-area {
@@ -576,9 +576,9 @@ svg .up_pftv_no_prediction {
 
 .up_pftv_variants-svg circle {
     cursor: pointer;
-    opacity: .7;
+    fill-opacity: .6;
 }
 
 .up_pftv_variants-svg circle:hover {
-    opacity: 1;
+    fill-opacity: 0.9;
 }
