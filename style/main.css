@@ -304,7 +304,7 @@ svg {
     letter-spacing: .05em;
     font-weight: lighter;
     font-size: 1.1em;
-    background-color: #333;
+    background-color: #595959;
     line-height: 2em;
     padding: 0 .7em;
     color: #FFF;
@@ -326,6 +326,15 @@ svg {
 
 .up_pftv_tooltip-container .up_pftv_evidence-source {
     background-color: #F0F0F0;
+}
+
+.up_pftv_tooltip-container .up_pftv_section {
+    background-color: #B3B3B3;
+    text-align: center;
+}
+
+.up_pftv_tooltip-container .up_pftv_subsection {
+    font-weight: bold !important;
 }
 
 .up_pftv_tooltip-container .up_pftv_evidence-source td:first-child {
