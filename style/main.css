@@ -478,10 +478,7 @@ svg .up_pftv_carbohyd {
     fill: #CC3366;
 }
 
-svg .up_pftv_variant {
-    stroke: #006666;
-    fill: #006666;
-}
+svg .up_pftv_variant {}
 
 svg .up_pftv_compbias {
     stroke: #FF3366;
@@ -531,26 +528,6 @@ svg .up_pftv_transmem {
 svg .up_pftv_intramem {
     stroke: #0000CC;
     fill: #0000CC;
-}
-
-svg .up_pftv_damaging {
-    stroke: #D7191C;
-    fill: #D7191C;
-}
-
-svg .up_pftv_mixed {
-    stroke: #FDAE61;
-    fill: #FDAE61;
-}
-
-svg .up_pftv_benign {
-    stroke: #2C7BB6;
-    fill: #2C7BB6;
-}
-
-svg .up_pftv_no_prediction {
-    stroke: black;
-    fill: black;
 }
 
 /* Variation */
