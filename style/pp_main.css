@@ -1,0 +1,114 @@
+/*PinPad*/
+.up_pp_main-container {
+    border: 1px solid #000;
+}
+.up_pp_mainTitle {
+    background-color: black;
+    padding: .5em;
+}
+.up_pp_pad {
+    overflow-x: auto;
+    overflow-y: scroll;
+}
+.up_pp_iconContainer {
+    background-color: #fff;
+    position: relative;
+    border-radius: 20px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+}
+
+.up_pp_icon, .up_pp_clickable-icon {
+    top: 2px;
+    left: -1px;
+    position: absolute;
+}
+
+.up_pp_clickable-icon {
+    cursor: pointer;
+}
+
+/*Arrows*/
+.up_pftv_arrow-right:before {
+    content: ' ';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #ffffff;
+    margin-right: 5px;
+}
+
+.up_pftv_arrow-down:before {
+    content: ' ';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #ffffff;
+    margin-right: 5px;
+}
+
+/*Categories*/
+.up_pp_category-container {
+    border-top: 1px solid whitesmoke;
+}
+
+.up_pp_category-header {
+    background-color: #333333;
+    padding: .5em;
+}
+
+.up_pp_category-pad {}
+
+.up_pp_category-name, .up_pp_element-name {
+    vertical-align: middle;
+    text-transform: capitalize;
+    letter-spacing: .05em;
+    font-weight: normal;
+    font-size: 1em;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+/*Elements*/
+.up_pp_category-pad table {
+    font-weight: lighter;
+    font-size: .9em;
+    border: 2px solid #CCC;
+    border-spacing: 0;
+    border-collapse: collapse;
+    background-color: #FFF;
+    -webkit-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.1);
+}
+
+.up_pp_element-header {
+    background-color: #595959;
+    padding: .5em .5em .5em 1.4em;
+    border-top: 1px solid whitesmoke;
+}
+
+.up_pp_category-pad table td:first-child {
+    text-transform: capitalize;
+}
+
+.up_pp_category-pad table td {
+    padding: .4em;
+    margin: 0;
+    border: 1px solid #CCC;
+}
+
+.up_pp_element-section {
+    background-color: #B3B3B3;
+    text-align: center;
+}
+
+.up_pp_table_subsection {
+    font-weight: bold;
+}
