@@ -42,6 +42,7 @@
     "watch": "gulp watch"
   },
   "dependencies": {
+    "biojs-vis-pinpad": "^0.1.0",
     "d3": "^3.4.13",
     "jquery": "^2.1.4",
     "underscore": "^1.7.0"
@@ -87,7 +88,8 @@
     ],
     "css": [
       "/style/fontello.css",
-      "/style/main.css"
+      "/style/main.css",
+      "/style/pp_main.css"
     ],
     "snippets": [
       "snippets"

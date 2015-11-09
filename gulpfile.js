@@ -136,7 +136,7 @@ gulp.task('init', ['clean'], function() {
 });
 
 gulp.task('copy-resources', ['init'], function() {
-    gulp.src(["./style/fontello.*", "!./style/fontello.css"])
+    gulp.src(["./style/*fontello.*", "!./style/*fontello.css"])
             .pipe(gulp.dest(buildDir));
     return gulp.src("./style/*.css")
         .pipe(minifyCss({compatibility: 'ie8'}))
