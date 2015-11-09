@@ -47,6 +47,12 @@ svg {
     line-height: 1.5;
 }
 
+.up_ptfv_pp-container {
+    display: inline-block;
+    margin: 5em 0 0 0.5em;
+    vertical-align: top;
+}
+
 .up_pftv_navruler {
     margin-left: 195px;
 }
@@ -272,6 +278,26 @@ svg {
 }
 
 /* Tooltip */
+.up_pftv_tooltip-pin-container {
+    display: inline-block;
+    float: left;
+    padding: 4px 10px 0 0;
+}
+
+.up_pftv_iconContainer-unpinned {
+    background-color: lightgrey !important;
+    color: black !important;
+}
+
+.up_pftv_iconContainer-unpinned:hover {
+    background-color: grey !important;
+}
+
+.up_pftv_iconContainer-pinned {
+    background-color: black !important;
+    color: white !important;
+}
+
 .up_pftv_tooltip-container, .up_pftv_popupDialog-container {
     z-index: 50000;
     position: absolute;
