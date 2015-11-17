@@ -305,6 +305,10 @@ svg {
     display: none;
 }
 
+.up_pftv_tooltip-container {
+    min-width: 220px;
+}
+
 .up_pftv_popupDialog-container {
     border: 1px solid #000;
     background-color: #ffffff;
@@ -347,11 +351,11 @@ svg {
 }
 
 .up_pftv_tooltip-container .up_pftv_evidence-col {
-    background-color: #E8E8E8;
+    background-color: #FFF;
 }
 
 .up_pftv_tooltip-container .up_pftv_evidence-source {
-    background-color: #F0F0F0;
+    background-color: #FFF;
 }
 
 .up_pftv_tooltip-container .up_pftv_section {
@@ -361,6 +365,7 @@ svg {
 
 .up_pftv_tooltip-container .up_pftv_subsection {
     font-weight: bold !important;
+    color: #595959;
 }
 
 .up_pftv_tooltip-container .up_pftv_evidence-source td:first-child {
