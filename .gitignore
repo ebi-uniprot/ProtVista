@@ -7,6 +7,7 @@ coverage/
 .coveralls.yml
 .sass-cache/
 .project
+.settings/
 config.rb
 *.iml
 xunit.xml
