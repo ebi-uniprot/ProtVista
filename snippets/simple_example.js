@@ -5,10 +5,10 @@ instance.getDispatcher().on("ready", function() {
     console.log('ready');
 });
 instance.getDispatcher().on("featureSelected", function(obj) {
-    console.log('feature selected');
+    console.log('Feature selected');
     console.log(obj);
 });
 instance.getDispatcher().on("featureDeselected", function(obj) {
-    console.log('feature deselected');
+    console.log('Feature deselected');
     console.log(obj);
 });
