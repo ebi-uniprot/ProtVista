@@ -45,19 +45,6 @@
                 });
                 mySequence.removeAllHighlights();
             });
-
-            instance.getDispatcher().on("featureSelected", function(data) {
-                mySequence.addHighlight({
-                    "start": +data.feature.begin,
-                    "end": +data.feature.end,
-                    "color": "white",
-                    "background": data.color
-                });
-            });
-
-            instance.getDispatcher().on("featureDeselected", function(obj) {
-                mySequence.removeAllHighlights();
-            });
         };
     </script>
 </head>

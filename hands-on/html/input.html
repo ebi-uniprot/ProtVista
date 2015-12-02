@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script>
+        var getData = function() {
+            var accession = document.getElementById("accession").value;
+            document.getElementById("target_ft").html = "";
+            document.getElementById("target_seq").html = "";
+        };
+    </script>
+</head>
+<body>
+<div>
+    <input id="accession">
+    <button id="submit" onclick="getData();">Get data</button>
+</div>
+<div id="target_ft" width="1200px"></div>
+<div id="target_seq" width="1200px"></div>
+</body>
+</html>
