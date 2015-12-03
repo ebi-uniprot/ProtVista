@@ -33,7 +33,7 @@ var instance = new biojs_vis_proteinFeaturesViewer({
 });
 ```
 
-There is a third option that can be specified, *pinPad* with possible values *true* or *false*. This option is used to activate a notepad on the right where tooltip can be pinned.
+There is a third option that can be specified, *pinPad* with possible values *true* or *false*. This option is used to activate a notepad on the right where tooltip can be pinned. If you set up that option to true, you **must** include pp_main.css.
 
 ## Events
 The Protein Features viewer triggers five events. In order to listen to those events, you need to get the dispacher.
