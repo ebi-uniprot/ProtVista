@@ -77,7 +77,6 @@ svg {
     width: 180px;
     vertical-align: bottom;
     padding: .485em;
-    text-transform: capitalize;
     border: none;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -594,6 +593,11 @@ svg .up_pftv_intramem {
 .up_pftv_variants-svg circle {
     cursor: pointer;
     fill-opacity: .6;
+}
+
+.up_pftv_variants-svg .up_pftv_variant_hidden {
+    cursor: default;
+    opacity: 0;
 }
 
 .up_pftv_variants-svg circle:hover {
