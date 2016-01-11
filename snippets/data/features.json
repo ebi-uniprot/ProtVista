@@ -2822,9 +2822,17 @@
         "mutation": "I",
         "begin": "8",
         "end": "8",
+        "description": "LSS: Any description",
+        "xrefs": [
+          {
+              "name": "cosmic",
+              "id": "COSM1580524",
+              "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1580524"
+          }
+        ],
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -2835,16 +2843,6 @@
                 "name": "PubMed",
                 "id": "23292937",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/23292937"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1580524",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1580524"
               }
             ]
           }
@@ -3205,7 +3203,7 @@
           "name": "MISSENSE",
           "label": "missense"
         },
-        "description": "in AD1",
+        "description": "Ftid: VAR_010109",
         "mutation": "P",
         "begin": "723",
         "end": "723",
@@ -3224,16 +3222,6 @@
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/15201367"
               }
             ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_010109",
-                "url": "http://web.expasy.org/variant_pages/VAR_010109.html"
-              }
-            ]
           }
         ],
         "wildType": "L",
@@ -3249,13 +3237,13 @@
           "name": "MISSENSE",
           "label": "missense"
         },
-        "description": "in AD1",
+        "description": "in AD1. Ftid: VAR_000023",
         "mutation": "L",
         "begin": "717",
         "end": "717",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3316,16 +3304,6 @@
                 "name": "PubMed",
                 "id": "8577393",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/8577393"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_014219",
-                "url": "http://web.expasy.org/variant_pages/VAR_014219.html"
               }
             ]
           }
@@ -3343,13 +3321,12 @@
           "name": "MISSENSE",
           "label": "missense"
         },
-        "description": "in AD1",
         "mutation": "I",
         "begin": "717",
         "end": "717",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3410,16 +3387,6 @@
                 "name": "PubMed",
                 "id": "8577393",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/8577393"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000021",
-                "url": "http://web.expasy.org/variant_pages/VAR_000021.html"
               }
             ]
           }
@@ -3778,13 +3745,13 @@
           "name": "MISSENSE",
           "label": "missense"
         },
-        "description": "in AD1; primary tissue(s): endometrium",
+        "description": "in AD1. Ftid: VAR_000714 LSS: primary tissue(s): endometrium",
         "mutation": "A",
         "begin": "714",
         "end": "714",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3804,7 +3771,7 @@
             ]
           },
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -3812,26 +3779,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029634",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029634"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_032277",
-                "url": "http://web.expasy.org/variant_pages/VAR_032277.html"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1029634",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029634"
           }
         ],
         "wildType": "T",
@@ -4739,8 +4693,8 @@
           "name": "MISSENSE",
           "label": "missense"
         },
-        "description": "(in AD1",
-        "mutation": "",
+        "description": "in AD1",
+        "mutation": "GA",
         "begin": "670",
         "end": "671",
         "evidences": [
@@ -8036,7 +7990,7 @@
         "association": [
           {
             "name": "Spermatogenic failure 11 (SPGF11)",
-            "description": "results in impaired self-association",
+            "description": "results in impaired self-association. Ftid: VAR_000016",
             "moreInfo": [
               {
                 "name": "OMIM",
