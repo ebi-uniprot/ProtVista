@@ -117,6 +117,7 @@ svg {
 .up_pftv_track-header-container {
     vertical-align: top;
     margin-top: 1px;
+    background-color: #D9FAFF;
 }
 
 .up_pftv_track {
@@ -232,10 +233,11 @@ svg {
     font-family: "Gill Sans","Gill Sans MT",Calibri,sans-serif;
     font-weight: lighter;
     font-size: .9em;
+    padding: 0.5em 0 0.5em 0.15em;
 }
 .up_pftv_indentedCheck {
     padding-left: 1.2em;
-    font-size: .85em;
+    font-size: .9em;
 }
 
 .up_pftv_dialog-legend {
