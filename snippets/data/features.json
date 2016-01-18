@@ -2787,7 +2787,7 @@
         "end": "1",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -2812,7 +2812,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26170599G>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -2828,6 +2828,24 @@
               "name": "cosmic",
               "id": "COSM1580524",
               "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1580524"
+          },
+          {
+            "name": "cosmic",
+            "id": "COSM15805",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=15805"
+          },
+          {
+            "name": "any other",
+            "id": "OTHER123",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=OTHER123"
+          },
+          {
+            "name": "cosmic",
+            "id": "COSM1580524",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1580524"
+          },
+          {
+            "id": "COSM1580524"
           }
         ],
         "evidences": [
@@ -2857,7 +2875,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26170599G>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -2869,7 +2887,7 @@
         "end": "770",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -2877,16 +2895,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029630",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029630"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1029630",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029630"
           }
         ],
         "wildType": "F",
@@ -2899,7 +2914,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881691G>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -2909,18 +2924,6 @@
         "mutation": "S",
         "begin": "771",
         "end": "771",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs201761287",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs201761287"
-              }
-            ]
-          }
-        ],
         "wildType": "*",
         "frequency": 0.000199681,
         "polyphenScore": 0,
@@ -2929,7 +2932,7 @@
         "cytogeneticBand": "6p21.1",
         "genomicLocation": "6:g.43054441C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -2961,7 +2964,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881695T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -2991,7 +2994,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881726G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -3023,7 +3026,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881727C>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -3035,7 +3038,7 @@
         "end": "747",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -3043,16 +3046,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=417"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM578783",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=578783"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM578783",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=578783"
           }
         ],
         "wildType": "R",
@@ -3065,7 +3065,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881743C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -3077,7 +3077,7 @@
         "end": "747",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -3085,16 +3085,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029632",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029632"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1029632",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029632"
           }
         ],
         "wildType": "R",
@@ -3107,7 +3104,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881744G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -3119,7 +3116,7 @@
         "end": "729",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -3127,21 +3124,18 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=375"
               }
             ]
+          }
+        ],
+        "xrefs": [
+          {
+            "name": "cosmic",
+            "id": "COSM1566114",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1566114"
           },
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1566114",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1566114"
-              },
-              {
-                "name": "dbSNP",
-                "id": "rs551889721",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs551889721"
-              }
-            ]
+            "name": "dbSNP",
+            "id": "rs551889721",
+            "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs551889721"
           }
         ],
         "wildType": "T",
@@ -3154,7 +3148,7 @@
         "cytogeneticBand": "17q21.2",
         "genomicLocation": "17:g.41845226C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -3166,7 +3160,7 @@
         "end": "727",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -3174,16 +3168,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=376"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1413494",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413494"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1413494",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413494"
           }
         ],
         "wildType": "Q",
@@ -3196,7 +3187,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891753T>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -3209,7 +3200,7 @@
         "end": "723",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3230,7 +3221,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3314,7 +3305,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3397,7 +3388,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3410,7 +3401,7 @@
         "end": "717",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3473,16 +3464,6 @@
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/8577393"
               }
             ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000022",
-                "url": "http://web.expasy.org/variant_pages/VAR_000022.html"
-              }
-            ]
           }
         ],
         "wildType": "V",
@@ -3491,7 +3472,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3504,7 +3485,7 @@
         "end": "717",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3567,16 +3548,6 @@
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/8577393"
               }
             ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000023",
-                "url": "http://web.expasy.org/variant_pages/VAR_000023.html"
-              }
-            ]
           }
         ],
         "wildType": "V",
@@ -3585,7 +3556,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3598,22 +3569,12 @@
         "end": "716",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
                 "id": "9328472",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/9328472"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000020",
-                "url": "http://web.expasy.org/variant_pages/VAR_000020.html"
               }
             ]
           }
@@ -3624,7 +3585,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3636,22 +3597,12 @@
         "end": "715",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
                 "id": "10097173",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/10097173"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_010108",
-                "url": "http://web.expasy.org/variant_pages/VAR_010108.html"
               }
             ]
           }
@@ -3676,7 +3627,7 @@
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3688,7 +3639,7 @@
         "end": "714",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3704,16 +3655,6 @@
                 "name": "PubMed",
                 "id": "15668448",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/15668448"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_014218",
-                "url": "http://web.expasy.org/variant_pages/VAR_014218.html"
               }
             ]
           }
@@ -3738,7 +3679,7 @@
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3796,7 +3737,7 @@
         "siftScore": 0.01,
         "somaticStatus": 1,
         "disease": false,
-        "sp": true
+        "sourceType": 2
       },
       {
         "type": {
@@ -3809,7 +3750,7 @@
         "end": "713",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3827,26 +3768,6 @@
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/15365148"
               }
             ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000018",
-                "url": "http://web.expasy.org/variant_pages/VAR_000018.html"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000312",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs1800557",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs1800557"
-              }
-            ]
           }
         ],
         "wildType": "A",
@@ -3855,7 +3776,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3868,7 +3789,7 @@
         "end": "713",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -3884,26 +3805,6 @@
                 "name": "PubMed",
                 "id": "15365148",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/15365148"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs63750066",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs63750066"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000019",
-                "url": "http://web.expasy.org/variant_pages/VAR_000019.html"
               }
             ]
           }
@@ -3919,7 +3820,7 @@
         "genomicLocation": "21:g.25891796C>T",
         "clinicalSignificances": "not provided,pathogenic",
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -3929,18 +3830,6 @@
         "mutation": "V",
         "begin": "709",
         "end": "709",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs544705359",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs544705359"
-              }
-            ]
-          }
-        ],
         "wildType": "G",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -3951,7 +3840,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891807C>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -3963,7 +3852,7 @@
         "end": "709",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -3976,16 +3865,13 @@
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/23292937"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1580522",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1580522"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1580522",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1580522"
           }
         ],
         "wildType": "G",
@@ -3998,7 +3884,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891807C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4010,22 +3896,12 @@
         "end": "705",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
                 "id": "16178030",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/16178030"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_032276",
-                "url": "http://web.expasy.org/variant_pages/VAR_032276.html"
               }
             ]
           }
@@ -4050,7 +3926,7 @@
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -4082,7 +3958,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891823C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4094,7 +3970,7 @@
         "end": "701",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -4102,16 +3978,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029635",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029635"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1029635",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029635"
           }
         ],
         "wildType": "A",
@@ -4124,7 +3997,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891831G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4136,7 +4009,7 @@
         "end": "694",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -4147,16 +4020,6 @@
                 "name": "PubMed",
                 "id": "12654973",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/12654973"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_014217",
-                "url": "http://web.expasy.org/variant_pages/VAR_014217.html"
               }
             ]
           }
@@ -4181,7 +4044,7 @@
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -4193,7 +4056,7 @@
         "end": "693",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -4209,16 +4072,6 @@
                 "name": "PubMed",
                 "id": "2111584",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/2111584"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000017",
-                "url": "http://web.expasy.org/variant_pages/VAR_000017.html"
               }
             ]
           }
@@ -4243,7 +4096,7 @@
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -4255,7 +4108,7 @@
         "end": "693",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -4271,16 +4124,6 @@
                 "name": "PubMed",
                 "id": "2111584",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/2111584"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_014216",
-                "url": "http://web.expasy.org/variant_pages/VAR_014216.html"
               }
             ]
           }
@@ -4305,7 +4148,7 @@
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -4317,7 +4160,7 @@
         "end": "692",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -4333,16 +4176,6 @@
                 "name": "PubMed",
                 "id": "9754958",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/9754958"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000016",
-                "url": "http://web.expasy.org/variant_pages/VAR_000016.html"
               }
             ]
           }
@@ -4367,7 +4200,7 @@
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -4379,7 +4212,7 @@
         "end": "68",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -4392,16 +4225,13 @@
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/22895193"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1183278",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1183278"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1183278",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1183278"
           }
         ],
         "wildType": "G",
@@ -4414,7 +4244,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112001C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4426,7 +4256,7 @@
         "end": "685",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -4434,16 +4264,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029636",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029636"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1029636",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029636"
           }
         ],
         "wildType": "H",
@@ -4456,7 +4283,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897583T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4468,7 +4295,7 @@
         "end": "684",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -4476,16 +4303,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029637",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029637"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1029637",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029637"
           }
         ],
         "wildType": "H",
@@ -4498,7 +4322,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897585A>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4510,7 +4334,7 @@
         "end": "679",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -4523,16 +4347,13 @@
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/22842228"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1713870",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1713870"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1713870",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1713870"
           }
         ],
         "wildType": "S",
@@ -4543,7 +4364,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897601G>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4554,24 +4375,15 @@
         "mutation": "N",
         "begin": "678",
         "end": "678",
+        "description": "Ftid: VAR_044424",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
                 "id": "15201367",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/15201367"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_044424",
-                "url": "http://web.expasy.org/variant_pages/VAR_044424.html"
               }
             ]
           }
@@ -4582,7 +4394,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -4592,16 +4404,11 @@
         "mutation": "Q",
         "begin": "676",
         "end": "676",
-        "evidences": [
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs559207950",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs559207950"
-              }
-            ]
+            "name": "dbSNP",
+            "id": "rs559207950",
+            "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs559207950"
           }
         ],
         "wildType": "R",
@@ -4614,7 +4421,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897610C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4626,7 +4433,7 @@
         "end": "674",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -4634,16 +4441,13 @@
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
               }
             ]
-          },
+          }
+        ],
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029638",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029638"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1029638",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029638"
           }
         ],
         "wildType": "E",
@@ -4654,7 +4458,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897617C>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4664,29 +4468,19 @@
         "mutation": "L",
         "begin": "671",
         "end": "671",
-        "evidences": [
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs572842823",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs572842823"
-              }
-            ]
+            "name": "dbSNP",
+            "id": "rs572842823",
+            "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs572842823"
           }
         ],
-        "wildType": "M",
-        "frequency": 0.00159744,
-        "polyphenPrediction": "benign",
-        "polyphenScore": 0.062,
-        "siftPrediction": "tolerated",
-        "siftScore": 0.36,
+        "description": "Ftid: VAR_00000",
         "somaticStatus": 0,
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897626T>A",
         "disease": false,
-        "sp": false
+        "sourceType": 2
       },
       {
         "type": {
@@ -4697,25 +4491,13 @@
         "mutation": "GA",
         "begin": "670",
         "end": "671",
-        "evidences": [
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_000015",
-                "url": "http://web.expasy.org/variant_pages/VAR_000015.html"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenScore": 0,
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -4727,22 +4509,12 @@
         "end": "668",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
                 "id": "COSU:417",
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=417"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1534477",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1534477"
               }
             ]
           }
@@ -4757,35 +4529,25 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897635C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
           "name": "MISSENSE",
           "label": "missense"
         },
-        "description": "in a patient with late onset Alzheimer disease",
+        "description": "in a patient with late onset Alzheimer disease. Ftid: VAR_010107",
         "mutation": "D",
         "begin": "665",
         "end": "665",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
                 "id": "8154870",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/8154870"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_010107",
-                "url": "http://web.expasy.org/variant_pages/VAR_010107.html"
               }
             ]
           }
@@ -4796,7 +4558,7 @@
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -4808,22 +4570,12 @@
         "end": "664",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
                 "id": "COSU:376",
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=376"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1413496",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413496"
               }
             ]
           }
@@ -4838,7 +4590,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897647C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4850,22 +4602,12 @@
         "end": "652",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
                 "id": "COSU:419",
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029639",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029639"
               }
             ]
           }
@@ -4880,7 +4622,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25905033T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4892,22 +4634,12 @@
         "end": "636",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
                 "id": "COSU:376",
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=376"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1413497",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413497"
               }
             ]
           }
@@ -4922,7 +4654,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911744C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4934,7 +4666,7 @@
         "end": "628",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
@@ -4945,16 +4677,6 @@
                 "name": "PubMed",
                 "id": "22842228",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/22842228"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1713871",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1713871"
               }
             ]
           }
@@ -4969,7 +4691,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911767G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -4979,16 +4701,11 @@
         "mutation": "Y",
         "begin": "623",
         "end": "623",
-        "evidences": [
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3423878",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3423878"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM3423878",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3423878"
           }
         ],
         "wildType": "S",
@@ -5001,7 +4718,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911782G>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5011,18 +4728,6 @@
         "mutation": "F",
         "begin": "623",
         "end": "623",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3911982",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3911982"
-              }
-            ]
-          }
-        ],
         "wildType": "S",
         "frequency": 0,
         "polyphenPrediction": "possibly damaging",
@@ -5033,7 +4738,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911782G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5043,18 +4748,6 @@
         "mutation": "N",
         "begin": "617",
         "end": "617",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1723850",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1723850"
-              }
-            ]
-          }
-        ],
         "wildType": "D",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -5065,7 +4758,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911801C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5075,16 +4768,11 @@
         "mutation": "G",
         "begin": "614",
         "end": "614",
-        "evidences": [
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs112263157",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs112263157"
-              }
-            ]
+            "name": "dbSNP",
+            "id": "rs112263157",
+            "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs112263157"
           }
         ],
         "wildType": "S",
@@ -5097,7 +4785,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911810T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5107,18 +4795,6 @@
         "mutation": "M",
         "begin": "609",
         "end": "609",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs541374184",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs541374184"
-              }
-            ]
-          }
-        ],
         "wildType": "V",
         "frequency": 0.000199681,
         "polyphenPrediction": "possibly damaging",
@@ -5129,7 +4805,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911825C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5141,34 +4817,36 @@
         "end": "604",
         "evidences": [
           {
-            "code": "ECO:0000269",
+            "code": "ECO:0000313",
             "sources": [
               {
                 "name": "cosmic_study",
                 "id": "COSU:482",
                 "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=482"
-              },
+              }
+            ]
+          },
+          {
+            "code": "ECO:0000269",
+            "sources": [
               {
                 "name": "PubMed",
                 "id": "23292937",
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/23292937"
               }
             ]
+          }
+        ],
+        "xrefs": [
+          {
+            "name": "cosmic",
+            "id": "COSM1580523",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1580523"
           },
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1580523",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1580523"
-              },
-              {
-                "name": "dbSNP",
-                "id": "rs199887707",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs199887707"
-              }
-            ]
+            "name": "dbSNP",
+            "id": "rs199887707",
+            "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs199887707"
           }
         ],
         "wildType": "V",
@@ -5181,7 +4859,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911840C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 2
       },
       {
         "type": {
@@ -5191,23 +4869,6 @@
         "mutation": "K",
         "begin": "599",
         "end": "599",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3911983",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3911983"
-              },
-              {
-                "name": "dbSNP",
-                "id": "rs140304729",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs140304729"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0.000599042,
         "polyphenPrediction": "possibly damaging",
@@ -5218,7 +4879,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911855C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5228,18 +4889,6 @@
         "mutation": "N",
         "begin": "591",
         "end": "591",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs201874897",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs201874897"
-              }
-            ]
-          }
-        ],
         "wildType": "D",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -5250,7 +4899,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911879C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5260,16 +4909,11 @@
         "mutation": "S",
         "begin": "584",
         "end": "584",
-        "evidences": [
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3549994",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549994"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM3549994",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549994"
           }
         ],
         "wildType": "P",
@@ -5282,7 +4926,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911900G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5292,18 +4936,6 @@
         "mutation": "R",
         "begin": "584",
         "end": "584",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs145371658",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs145371658"
-              }
-            ]
-          }
-        ],
         "wildType": "P",
         "frequency": 0.000199681,
         "polyphenPrediction": "possibly damaging",
@@ -5314,7 +4946,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911899G>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5324,18 +4956,6 @@
         "mutation": "V",
         "begin": "580",
         "end": "580",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs533667466",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs533667466"
-              }
-            ]
-          }
-        ],
         "wildType": "M",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -5346,7 +4966,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911912T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5356,33 +4976,6 @@
         "mutation": "Y",
         "begin": "574",
         "end": "574",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:431",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=431"
-              },
-              {
-                "name": "PubMed",
-                "id": "22980975",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22980975"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM384941",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=384941"
-              }
-            ]
-          }
-        ],
         "wildType": "D",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -5393,7 +4986,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911930C>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5403,18 +4996,6 @@
         "mutation": "K",
         "begin": "571",
         "end": "571",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029640",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029640"
-              }
-            ]
-          }
-        ],
         "wildType": "N",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -5425,7 +5006,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911937G>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5435,28 +5016,6 @@
         "mutation": "Q",
         "begin": "564",
         "end": "564",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:414",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=414"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1483888",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1483888"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -5467,7 +5026,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911960C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5477,18 +5036,6 @@
         "mutation": "D",
         "begin": "561",
         "end": "561",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs553447317",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs553447317"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -5499,7 +5046,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954594T>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5509,33 +5056,6 @@
         "mutation": "K",
         "begin": "556",
         "end": "556",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:413",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=413"
-              },
-              {
-                "name": "cosmic_study",
-                "id": "COSU:414",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=414"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1307691",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1307691"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -5546,7 +5066,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954611C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5556,16 +5076,11 @@
         "mutation": "*",
         "begin": "525",
         "end": "525",
-        "evidences": [
+        "xrefs": [
           {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1751585",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1751585"
-              }
-            ]
+            "name": "cosmic",
+            "id": "COSM1751585",
+            "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1751585"
           }
         ],
         "wildType": "Q",
@@ -5576,7 +5091,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955641G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5586,23 +5101,6 @@
         "mutation": "N",
         "begin": "51",
         "end": "51",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs529782627",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs529782627"
-              },
-              {
-                "name": "cosmic",
-                "id": "COSM3550001",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3550001"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -5613,7 +5111,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112051C>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5623,28 +5121,6 @@
         "mutation": "K",
         "begin": "513",
         "end": "513",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:323",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=323"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1615937",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1615937"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -5655,7 +5131,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955677C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5665,35 +5141,13 @@
         "mutation": "K",
         "begin": "501",
         "end": "501",
-        "evidences": [
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_022315",
-                "url": "http://web.expasy.org/variant_pages/VAR_022315.html"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000312",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs45588932",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs45588932"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenScore": 0,
         "siftScore": 0,
         "somaticStatus": 0,
         "disease": false,
-        "sp": true
+        "sourceType": 1
       },
       {
         "type": {
@@ -5703,28 +5157,6 @@
         "mutation": "C",
         "begin": "499",
         "end": "499",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029642",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029642"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -5735,7 +5167,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955719G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5745,33 +5177,6 @@
         "mutation": "I",
         "begin": "498",
         "end": "498",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:417",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=417"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1534476",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1534476"
-              },
-              {
-                "name": "dbSNP",
-                "id": "rs576776689",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs576776689"
-              }
-            ]
-          }
-        ],
         "wildType": "V",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -5782,7 +5187,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954600C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5792,28 +5197,6 @@
         "mutation": "S",
         "begin": "492",
         "end": "492",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:376",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=376"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1413498",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413498"
-              }
-            ]
-          }
-        ],
         "wildType": "N",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -5824,7 +5207,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955739T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5834,28 +5217,6 @@
         "mutation": "L",
         "begin": "491",
         "end": "491",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029643",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029643"
-              }
-            ]
-          }
-        ],
         "wildType": "F",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -5866,7 +5227,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955741G>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5876,18 +5237,6 @@
         "mutation": "M",
         "begin": "490",
         "end": "490",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM4100933",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100933"
-              }
-            ]
-          }
-        ],
         "wildType": "V",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -5898,7 +5247,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955746C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5908,28 +5257,6 @@
         "mutation": "C",
         "begin": "488",
         "end": "488",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029644",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029644"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -5940,7 +5267,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955752G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5950,18 +5277,6 @@
         "mutation": "Q",
         "begin": "486",
         "end": "486",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs200268317",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs200268317"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -5972,7 +5287,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975071C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -5982,33 +5297,6 @@
         "mutation": "S",
         "begin": "484",
         "end": "484",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:453",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=453"
-              },
-              {
-                "name": "PubMed",
-                "id": "22975805",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22975805"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1190324",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1190324"
-              }
-            ]
-          }
-        ],
         "wildType": "P",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -6019,7 +5307,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975078G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6029,18 +5317,6 @@
         "mutation": "H",
         "begin": "470",
         "end": "470",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs182162117",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs182162117"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -6051,7 +5327,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975119C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6061,38 +5337,6 @@
         "mutation": "H",
         "begin": "469",
         "end": "469",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              },
-              {
-                "name": "cosmic_study",
-                "id": "COSU:452",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=452"
-              },
-              {
-                "name": "PubMed",
-                "id": "22895193",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22895193"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029645",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029645"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -6103,7 +5347,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975122C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6113,48 +5357,6 @@
         "mutation": "K",
         "begin": "449",
         "end": "449",
-        "evidences": [
-          {
-            "code": "ECO:0000006",
-            "sources": [
-              {
-                "name": "PubMed",
-                "id": "11528419",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/11528419"
-              },
-              {
-                "name": "PubMed",
-                "id": "1415269",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/1415269"
-              },
-              {
-                "name": "PubMed",
-                "id": "2111584",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/2111584"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs539339652",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs539339652"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_014215",
-                "url": "http://web.expasy.org/variant_pages/VAR_014215.html"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -6165,7 +5367,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975183C>T",
         "disease": false,
-        "sp": true
+        "sourceType": 2
       },
       {
         "type": {
@@ -6175,28 +5377,6 @@
         "mutation": "Y",
         "begin": "441",
         "end": "441",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029646",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029646"
-              }
-            ]
-          }
-        ],
         "wildType": "S",
         "frequency": 0,
         "polyphenPrediction": "possibly damaging",
@@ -6207,7 +5387,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975206G>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6217,18 +5397,6 @@
         "mutation": "E",
         "begin": "438",
         "end": "438",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs556451971",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs556451971"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0.000199681,
         "polyphenPrediction": "possibly damaging",
@@ -6239,7 +5407,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975216T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6249,18 +5417,6 @@
         "mutation": "E",
         "begin": "436",
         "end": "436",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3720833",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3720833"
-              }
-            ]
-          }
-        ],
         "wildType": "Q",
         "frequency": 0,
         "polyphenPrediction": "possibly damaging",
@@ -6271,7 +5427,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975222G>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6281,18 +5437,6 @@
         "mutation": "*",
         "begin": "436",
         "end": "436",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM4100936",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100936"
-              }
-            ]
-          }
-        ],
         "wildType": "Q",
         "frequency": 0,
         "polyphenScore": 0,
@@ -6301,7 +5445,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975222G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6311,18 +5455,6 @@
         "mutation": "R",
         "begin": "429",
         "end": "429",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs188433801",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs188433801"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -6333,7 +5465,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975967T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6343,28 +5475,6 @@
         "mutation": "E",
         "begin": "428",
         "end": "428",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:322",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=322"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1632437",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1632437"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -6375,7 +5485,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975971T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6385,28 +5495,6 @@
         "mutation": "N",
         "begin": "421",
         "end": "421",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029647",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029647"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -6417,7 +5505,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975990C>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6427,28 +5515,6 @@
         "mutation": "C",
         "begin": "418",
         "end": "418",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:376",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=376"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1413499",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413499"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -6459,7 +5525,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25976001G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6469,23 +5535,6 @@
         "mutation": "Q",
         "begin": "417",
         "end": "417",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs543363868",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs543363868"
-              },
-              {
-                "name": "cosmic",
-                "id": "COSM3841669",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3841669"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -6496,7 +5545,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25976004C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6506,18 +5555,6 @@
         "mutation": "Q",
         "begin": "404",
         "end": "404",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs201668897",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs201668897"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0.000199681,
         "polyphenPrediction": "probably damaging",
@@ -6528,7 +5565,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982358C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6538,28 +5575,6 @@
         "mutation": "Q",
         "begin": "399",
         "end": "399",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:414",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=414"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM444315",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=444315"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -6570,7 +5585,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982373C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6580,28 +5595,6 @@
         "mutation": "E",
         "begin": "393",
         "end": "393",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:417",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=417"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM578780",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=578780"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -6612,7 +5605,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982391T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6622,18 +5615,6 @@
         "mutation": "S",
         "begin": "386",
         "end": "386",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM4137201",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4137201"
-              }
-            ]
-          }
-        ],
         "wildType": "N",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -6644,7 +5625,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982411T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6654,33 +5635,6 @@
         "mutation": "R",
         "begin": "377",
         "end": "377",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:494",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=494"
-              },
-              {
-                "name": "PubMed",
-                "id": "23797736",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/23797736"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1660586",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1660586"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -6691,7 +5645,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982438T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6701,18 +5655,6 @@
         "mutation": "I",
         "begin": "375",
         "end": "375",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs141331202",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs141331202"
-              }
-            ]
-          }
-        ],
         "wildType": "V",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -6723,7 +5665,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982445C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6733,23 +5675,6 @@
         "mutation": "S",
         "begin": "365",
         "end": "365",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3549996",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549996"
-              },
-              {
-                "name": "dbSNP",
-                "id": "rs371425292",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs371425292"
-              }
-            ]
-          }
-        ],
         "wildType": "P",
         "frequency": 0.00159744,
         "polyphenPrediction": "probably damaging",
@@ -6760,7 +5685,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897627C>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6770,33 +5695,6 @@
         "mutation": "Q",
         "begin": "359",
         "end": "359",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:452",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=452"
-              },
-              {
-                "name": "PubMed",
-                "id": "22895193",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22895193"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1183277",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1183277"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -6807,7 +5705,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997374C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6817,18 +5715,6 @@
         "mutation": "V",
         "begin": "358",
         "end": "358",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3405329",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3405329"
-              }
-            ]
-          }
-        ],
         "wildType": "A",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -6839,7 +5725,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997377G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6849,33 +5735,6 @@
         "mutation": "F",
         "begin": "357",
         "end": "357",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:431",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=431"
-              },
-              {
-                "name": "PubMed",
-                "id": "22980975",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22980975"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM340603",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=340603"
-              }
-            ]
-          }
-        ],
         "wildType": "L",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -6886,7 +5745,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997381G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6896,18 +5755,6 @@
         "mutation": "T",
         "begin": "344",
         "end": "344",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs201045185",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs201045185"
-              }
-            ]
-          }
-        ],
         "wildType": "A",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -6918,7 +5765,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000018C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6928,28 +5775,6 @@
         "mutation": "*",
         "begin": "316",
         "end": "316",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:376",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=376"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1413500",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413500"
-              }
-            ]
-          }
-        ],
         "wildType": "C",
         "frequency": 0,
         "polyphenScore": 0,
@@ -6958,7 +5783,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000100A>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -6968,28 +5793,6 @@
         "mutation": "N",
         "begin": "315",
         "end": "315",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029649",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029649"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7000,7 +5803,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000103C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7010,28 +5813,6 @@
         "mutation": "*",
         "begin": "308",
         "end": "308",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:418",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=418"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM725427",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=725427"
-              }
-            ]
-          }
-        ],
         "wildType": "Y",
         "frequency": 0,
         "polyphenScore": 0,
@@ -7040,7 +5821,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000124G>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7050,18 +5831,6 @@
         "mutation": "I",
         "begin": "303",
         "end": "303",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3549997",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549997"
-              }
-            ]
-          }
-        ],
         "wildType": "M",
         "frequency": 0,
         "polyphenPrediction": "possibly damaging",
@@ -7072,7 +5841,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000139C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7082,28 +5851,6 @@
         "mutation": "G",
         "begin": "301",
         "end": "301",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:376",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=376"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1413501",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413501"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -7114,7 +5861,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000147G>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7124,18 +5871,6 @@
         "mutation": "L",
         "begin": "299",
         "end": "299",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM4100938",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100938"
-              }
-            ]
-          }
-        ],
         "wildType": "P",
         "frequency": 0,
         "polyphenPrediction": "probably damaging",
@@ -7146,7 +5881,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000152G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7156,38 +5891,6 @@
         "mutation": "M",
         "begin": "297",
         "end": "297",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:389",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=389"
-              },
-              {
-                "name": "PubMed",
-                "id": "22197931",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22197931"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3357282",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3357282"
-              },
-              {
-                "name": "cosmic",
-                "id": "COSM231782",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=231782"
-              }
-            ]
-          }
-        ],
         "wildType": "T",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7198,7 +5901,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000158G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7208,28 +5911,6 @@
         "mutation": "P",
         "begin": "28",
         "end": "28",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:375",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=375"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1566113",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1566113"
-              }
-            ]
-          }
-        ],
         "wildType": "L",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7240,7 +5921,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112121A>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7250,18 +5931,6 @@
         "mutation": "Q",
         "begin": "285",
         "end": "285",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3841670",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3841670"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7272,7 +5941,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021852C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7282,18 +5951,6 @@
         "mutation": "K",
         "begin": "284",
         "end": "284",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3549999",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3549999"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7304,7 +5961,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021855C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7314,18 +5971,6 @@
         "mutation": "S",
         "begin": "276",
         "end": "276",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs202198008",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs202198008"
-              }
-            ]
-          }
-        ],
         "wildType": "T",
         "frequency": 0.00159744,
         "polyphenPrediction": "unknown",
@@ -7336,7 +5981,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021879T>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7346,18 +5991,6 @@
         "mutation": "I",
         "begin": "269",
         "end": "269",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3681239",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3681239"
-              }
-            ]
-          }
-        ],
         "wildType": "T",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7368,7 +6001,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021899G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7378,18 +6011,6 @@
         "mutation": "K",
         "begin": "256",
         "end": "256",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM4100939",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100939"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7400,7 +6021,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021939C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7410,33 +6031,6 @@
         "mutation": "*",
         "begin": "255",
         "end": "255",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:431",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=431"
-              },
-              {
-                "name": "PubMed",
-                "id": "22980975",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22980975"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM361233",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=361233"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenScore": 0,
@@ -7445,7 +6039,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021942C>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7455,38 +6049,6 @@
         "mutation": "I",
         "begin": "254",
         "end": "254",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:431",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=431"
-              },
-              {
-                "name": "PubMed",
-                "id": "22980975",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22980975"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs532114068",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs532114068"
-              },
-              {
-                "name": "cosmic",
-                "id": "COSM352986",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=352986"
-              }
-            ]
-          }
-        ],
         "wildType": "V",
         "frequency": 0.000199681,
         "polyphenPrediction": "benign",
@@ -7497,7 +6059,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021945C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7507,18 +6069,6 @@
         "mutation": "N",
         "begin": "248",
         "end": "248",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3911984",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3911984"
-              }
-            ]
-          }
-        ],
         "wildType": "D",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7529,7 +6079,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021963C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7539,18 +6089,6 @@
         "mutation": "G",
         "begin": "23",
         "end": "23",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3963886",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3963886"
-              }
-            ]
-          }
-        ],
         "wildType": "D",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7561,7 +6099,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112136T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7571,18 +6109,6 @@
         "mutation": "K",
         "begin": "227",
         "end": "227",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM4100940",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100940"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7593,7 +6119,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26022026C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7603,23 +6129,6 @@
         "mutation": "A",
         "begin": "225",
         "end": "225",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM4100941",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100941"
-              },
-              {
-                "name": "cosmic",
-                "id": "COSM3517575",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3517575"
-              }
-            ]
-          }
-        ],
         "wildType": "V",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7630,7 +6139,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26022031A>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7640,28 +6149,6 @@
         "mutation": "L",
         "begin": "206",
         "end": "206",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029651",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029651"
-              }
-            ]
-          }
-        ],
         "wildType": "S",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7672,7 +6159,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051045G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7682,18 +6169,6 @@
         "mutation": "A",
         "begin": "196",
         "end": "196",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM4100942",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=4100942"
-              }
-            ]
-          }
-        ],
         "wildType": "V",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7704,7 +6179,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051075A>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7714,33 +6189,6 @@
         "mutation": "Q",
         "begin": "191",
         "end": "191",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:431",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=431"
-              },
-              {
-                "name": "PubMed",
-                "id": "22980975",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22980975"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM350238",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=350238"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7751,7 +6199,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051091C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7761,18 +6209,6 @@
         "mutation": "D",
         "begin": "191",
         "end": "191",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3550000",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3550000"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7783,7 +6219,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051089T>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7793,33 +6229,6 @@
         "mutation": "M",
         "begin": "185",
         "end": "185",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:504",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=504"
-              },
-              {
-                "name": "PubMed",
-                "id": "23856246",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/23856246"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1681896",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1681896"
-              }
-            ]
-          }
-        ],
         "wildType": "V",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7830,7 +6239,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051109C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7840,18 +6249,6 @@
         "mutation": "L",
         "begin": "184",
         "end": "184",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3423879",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3423879"
-              }
-            ]
-          }
-        ],
         "wildType": "F",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7862,7 +6259,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051110A>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7872,28 +6269,6 @@
         "mutation": "Q",
         "begin": "183",
         "end": "183",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:413",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=413"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1307692",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1307692"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -7904,7 +6279,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051115C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7914,18 +6289,6 @@
         "mutation": "R",
         "begin": "178",
         "end": "178",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3841671",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3841671"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -7936,7 +6299,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051129T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -7948,7 +6311,7 @@
         "end": "170",
         "evidences": [
           {
-            "code": "ECO:0000006",
+            "code": "ECO:0000269",
             "sources": [
               {
                 "name": "PubMed",
@@ -7956,27 +6319,14 @@
                 "url": "http://www.ncbi.nlm.nih.gov/pubmed/17047026"
               }
             ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
+          }
+        ],
+        "xrefs": [
               {
                 "name": "dbSNP",
                 "id": "rs372642708",
                 "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs372642708"
               }
-            ]
-          },
-          {
-            "code": "ECO:0000305",
-            "sources": [
-              {
-                "name": "swp_var",
-                "id": "VAR_069358",
-                "url": "http://web.expasy.org/variant_pages/VAR_069358.html"
-              }
-            ]
-          }
         ],
         "wildType": "M",
         "frequency": 0.000199681,
@@ -8002,7 +6352,7 @@
         ],
         "clinicalSignificances": "disease",
         "disease": true,
-        "sp": true
+        "sourceType": 2
       },
       {
         "type": {
@@ -8012,28 +6362,6 @@
         "mutation": "Y",
         "begin": "158",
         "end": "158",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:376",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=376"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1413504",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1413504"
-              }
-            ]
-          }
-        ],
         "wildType": "C",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -8044,7 +6372,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051189C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -8054,28 +6382,6 @@
         "mutation": "T",
         "begin": "154",
         "end": "154",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:375",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=375"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM173205",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=173205"
-              }
-            ]
-          }
-        ],
         "wildType": "A",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -8086,7 +6392,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053244C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -8096,28 +6402,6 @@
         "mutation": "*",
         "begin": "150",
         "end": "150",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029653",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029653"
-              }
-            ]
-          }
-        ],
         "wildType": "W",
         "frequency": 0,
         "polyphenScore": 0,
@@ -8126,7 +6410,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053254C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -8136,28 +6420,6 @@
         "mutation": "K",
         "begin": "145",
         "end": "145",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:419",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=419"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1029654",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1029654"
-              }
-            ]
-          }
-        ],
         "wildType": "E",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -8168,7 +6430,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053271C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -8178,18 +6440,6 @@
         "mutation": "R",
         "begin": "134",
         "end": "134",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs576712021",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs576712021"
-              }
-            ]
-          }
-        ],
         "wildType": "K",
         "frequency": 0.000199681,
         "polyphenPrediction": "unknown",
@@ -8200,7 +6450,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053303T>C",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -8210,33 +6460,6 @@
         "mutation": "V",
         "begin": "126",
         "end": "126",
-        "evidences": [
-          {
-            "code": "ECO:0000269",
-            "sources": [
-              {
-                "name": "cosmic_study",
-                "id": "COSU:453",
-                "url": "http://cancer.sanger.ac.uk/cosmic/study/overview?study_id=453"
-              },
-              {
-                "name": "PubMed",
-                "id": "22975805",
-                "url": "http://www.ncbi.nlm.nih.gov/pubmed/22975805"
-              }
-            ]
-          },
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM1190325",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=1190325"
-              }
-            ]
-          }
-        ],
         "wildType": "A",
         "frequency": 0,
         "polyphenPrediction": "benign",
@@ -8247,7 +6470,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053327G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -8257,18 +6480,6 @@
         "mutation": "S",
         "begin": "114",
         "end": "114",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "cosmic",
-                "id": "COSM3550002",
-                "url": "http://cancer.sanger.ac.uk/cosmic/mutation/overview?id=3550002"
-              }
-            ]
-          }
-        ],
         "wildType": "P",
         "frequency": 0,
         "polyphenPrediction": "unknown",
@@ -8279,7 +6490,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089958G>A",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -8289,18 +6500,6 @@
         "mutation": "D",
         "begin": "101",
         "end": "101",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs532382285",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs532382285"
-              }
-            ]
-          }
-        ],
         "wildType": "G",
         "frequency": 0.000199681,
         "polyphenPrediction": "unknown",
@@ -8311,7 +6510,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089996C>T",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       },
       {
         "type": {
@@ -8321,18 +6520,6 @@
         "mutation": "P",
         "begin": "100",
         "end": "100",
-        "evidences": [
-          {
-            "code": "ECO:0000313",
-            "sources": [
-              {
-                "name": "dbSNP",
-                "id": "rs199741007",
-                "url": "http://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=rs199741007"
-              }
-            ]
-          }
-        ],
         "wildType": "R",
         "frequency": 0.000199681,
         "polyphenPrediction": "unknown",
@@ -8343,7 +6530,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089999C>G",
         "disease": false,
-        "sp": false
+        "sourceType": 0
       }
     ]
   }
