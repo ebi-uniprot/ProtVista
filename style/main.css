@@ -6,14 +6,19 @@ svg {
     display: inline-block;
     padding: 0 .5em 0 .5em;
     width: 180px;
-    text-align: left;
+    text-align: right;
     vertical-align: bottom;
     position: relative;
 }
 
 .up_pftv_buttons span {
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.up_pftv_buttons span:hover {
+    opacity: 1;
 }
 
 /*.up_pftv_buttons span:hover {
@@ -234,6 +239,7 @@ svg {
     font-weight: lighter;
     font-size: .9em;
     padding: 0.5em 0 0.5em 0.15em;
+    text-align: left;
 }
 .up_pftv_indentedCheck {
     padding-left: 1.2em;
@@ -367,11 +373,6 @@ svg {
 .up_pftv_tooltip-container .up_pftv_subsection {
     font-weight: bold !important;
     color: #595959;
-}
-
-.up_pftv_tooltip-container .up_pftv_evidence-source td:first-child {
-    text-align: right;
-    font-weight: lighter;
 }
 
 /* Features */
