@@ -271,7 +271,7 @@ Full-Width Styles
   margin: 0 auto;
 }
 
-#forkme_banner {
+/*#forkme_banner {
   display: block;
   position: absolute;
   top:0;
@@ -284,7 +284,7 @@ Full-Width Styles
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-}
+} */
 
 #header_wrap {
   background: #212121;
@@ -422,4 +422,35 @@ Small Device Styles
     font-size: 11px;
   }
 
+}
+
+/*********
+Customized
+**********/
+.up_links {
+  display: block;
+  float: right;
+  height:30px;
+  overflow: hidden;
+  color: #00709B;
+  background-color: #9ACEDD;
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  padding: 5px;
+  margin: 2px;
+  font-weight: 700;
+}
+
+.up_links:hover {
+  background-color: #CFE8EF;
+}
+
+#forkme_banner {
+  background: url('../images/blacktocat.png') #9ACEDD no-repeat 95% 50%;
+  padding: 5px 50px 5px 5px;
+}
+
+#forkme_banner:hover {
+  background: url('../images/blacktocat.png') #CFE8EF no-repeat 95% 50%;
 }
