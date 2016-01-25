@@ -371,8 +371,7 @@ svg {
 }
 
 .up_pftv_tooltip-container .up_pftv_subsection {
-    font-weight: bold !important;
-    color: #595959;
+    color: black;
 }
 
 /* Features */
