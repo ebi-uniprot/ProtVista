@@ -142,9 +142,9 @@ describe('FeaturesViewerFlowTest', function() {
 
         var buttons = document.querySelectorAll('.up_pftv_buttons span');
         assert.equal(buttons.length, 3);
-        assert.equal(buttons[0].getAttribute('class'), 'up_pftv_icon-eye-off', 'third button class');
-        assert.equal(buttons[1].getAttribute('class'), 'up_pftv_icon-zoom-in', 'second button class');
-        assert.equal(buttons[2].getAttribute('class'), 'up_pftv_icon-arrows-cw', 'first button class');
+        assert.equal(buttons[0].getAttribute('class'), 'up_pftv_icon-cog', 'third button class');
+        assert.equal(buttons[1].getAttribute('class'), 'up_pftv_icon-arrows-cw', 'second button class');
+        assert.equal(buttons[2].getAttribute('class'), 'up_pftv_icon-zoom-in', 'first button class');
     });
 
     it('should create 2 aaViewers aa sequence', function() {
