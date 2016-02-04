@@ -11,3 +11,11 @@ coverage/
 config.rb
 *.iml
 xunit.xml
+reports/
+_includes/
+_posts/
+_sass/
+_site/
+Gemfile.lock
+
+
