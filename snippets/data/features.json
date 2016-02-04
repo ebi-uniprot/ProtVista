@@ -2798,7 +2798,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26170599G>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -2861,7 +2861,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26170599G>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -2900,7 +2900,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881691G>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -2918,7 +2918,7 @@
         "cytogeneticBand": "6p21.1",
         "genomicLocation": "6:g.43054441C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -2950,7 +2950,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881695T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -2980,7 +2980,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881726G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3012,7 +3012,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881727C>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3051,7 +3051,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881743C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3090,7 +3090,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25881744G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3134,7 +3134,7 @@
         "cytogeneticBand": "17q21.2",
         "genomicLocation": "17:g.41845226C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3173,7 +3173,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891753T>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3826,7 +3826,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891807C>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3870,7 +3870,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891807C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3944,7 +3944,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891823C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -3983,7 +3983,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25891831G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4230,7 +4230,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112001C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4269,7 +4269,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897583T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4308,7 +4308,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897585A>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4350,7 +4350,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897601G>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4407,7 +4407,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897610C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4444,7 +4444,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897617C>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4515,7 +4515,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897635C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4576,7 +4576,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897647C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4608,7 +4608,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25905033T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4640,7 +4640,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911744C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4677,7 +4677,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911767G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4704,7 +4704,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911782G>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4724,7 +4724,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911782G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4744,7 +4744,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911801C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4771,7 +4771,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911810T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4791,7 +4791,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911825C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4865,7 +4865,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911855C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4885,7 +4885,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911879C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4912,7 +4912,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911900G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4932,7 +4932,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911899G>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4952,7 +4952,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911912T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4972,7 +4972,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911930C>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -4992,7 +4992,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911937G>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5012,7 +5012,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25911960C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5032,7 +5032,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954594T>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5052,7 +5052,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954611C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5077,7 +5077,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955641G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5097,7 +5097,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112051C>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5117,7 +5117,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955677C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5153,7 +5153,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955719G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5173,7 +5173,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25954600C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5193,7 +5193,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955739T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5213,7 +5213,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955741G>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5233,7 +5233,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955746C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5253,7 +5253,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25955752G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5273,7 +5273,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975071C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5293,7 +5293,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975078G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5313,7 +5313,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975119C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5333,7 +5333,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975122C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5373,7 +5373,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975206G>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5393,7 +5393,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975216T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5413,7 +5413,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975222G>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5431,7 +5431,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975222G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5451,7 +5451,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975967T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5471,7 +5471,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975971T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5491,7 +5491,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25975990C>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5511,7 +5511,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25976001G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5531,7 +5531,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25976004C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5551,7 +5551,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982358C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5571,7 +5571,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982373C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5591,7 +5591,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982391T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5611,7 +5611,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982411T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5631,7 +5631,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982438T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5651,7 +5651,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25982445C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5671,7 +5671,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25897627C>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5691,7 +5691,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997374C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5711,7 +5711,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997377G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5731,7 +5731,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.25997381G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5751,7 +5751,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000018C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5769,7 +5769,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000100A>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5789,7 +5789,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000103C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5807,7 +5807,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000124G>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5827,7 +5827,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000139C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5847,7 +5847,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000147G>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5867,7 +5867,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000152G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5887,7 +5887,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26000158G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5907,7 +5907,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112121A>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5927,7 +5927,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021852C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5947,7 +5947,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021855C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5967,7 +5967,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021879T>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -5987,7 +5987,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021899G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6007,7 +6007,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021939C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6025,7 +6025,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021942C>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6045,7 +6045,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021945C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6065,7 +6065,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26021963C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6085,7 +6085,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26112136T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6105,7 +6105,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26022026C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6125,7 +6125,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26022031A>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6145,7 +6145,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051045G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6165,7 +6165,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051075A>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6185,7 +6185,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051091C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6205,7 +6205,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051089T>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6225,7 +6225,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051109C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6245,7 +6245,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051110A>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6265,7 +6265,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051115C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6285,7 +6285,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051129T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6358,7 +6358,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26051189C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6378,7 +6378,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053244C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6396,7 +6396,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053254C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6416,7 +6416,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053271C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6436,7 +6436,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053303T>C",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6456,7 +6456,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26053327G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6476,7 +6476,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089958G>A",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6496,7 +6496,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089996C>T",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       },
       {
         "type": {
@@ -6516,7 +6516,7 @@
         "cytogeneticBand": "21q21.3",
         "genomicLocation": "21:g.26089999C>G",
         "disease": false,
-        "sourceType": "Large scale studies"
+        "sourceType": "large_scale_study"
       }
     ]
   }
