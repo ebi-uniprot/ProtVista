@@ -12,3 +12,25 @@ instance.getDispatcher().on("featureDeselected", function(obj) {
     console.log('Feature deselected');
     console.log(obj);
 });
+
+var input = d3.select('body').append('div');
+input.append('span').text('FtType: ');
+input.append('input').attr('type', 'text').attr('id', 'ftType');
+input.append('span').text('Begin: ');
+input.append('input').attr('type', 'text').attr('id', 'ftBegin');
+input.append('span').text('End: ');
+input.append('input').attr('type', 'text').attr('id', 'ftEnd');
+input.append('button').text('Select')
+    .on('click', function() {
+        instance.selectFeature(
+            d3.select('#ftType').node().value,
+            d3.select('#ftBegin').node().value,
+            d3.select('#ftEnd').node().value);
+    });
+input.append('button').text('Deselect')
+    .on('click', function() {
+        instance.deselectFeature(
+            d3.select('#ftType').node().value,
+            d3.select('#ftBegin').node().value,
+            d3.select('#ftEnd').node().value);
+    });
