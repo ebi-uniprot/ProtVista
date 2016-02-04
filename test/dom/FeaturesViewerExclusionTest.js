@@ -60,8 +60,7 @@ describe('FeaturesViewerExclusionTest', function() {
         var opts = {
             el: yourDiv,
             uniprotacc: 'P05067',
-            exclusions: ['domainsAndSites', 'moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'variants'],
-            proxy: 'http://wwwdev.ebi.ac.uk/uniprot/services/rest/uniprot/features/P05067?nothing='
+            exclusions: ['domainsAndSites', 'moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'variants']
         };
         var instance = new FeaturesViewer(opts);
 

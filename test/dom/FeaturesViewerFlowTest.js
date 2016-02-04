@@ -292,9 +292,9 @@ describe('FeaturesViewerFlowTest', function() {
         expect(instance.selectedFeature).to.be.undefined;
     });
 
-    it('should re-open 1 tooltip after feature deselection @147', function() {
+    it('should not re-open 1 tooltip after feature deselection @147', function() {
         var tooltip = document.querySelectorAll('.up_pftv_tooltip-container');
-        assert.equal(tooltip.length, 1, 'tooltip exists');
+        assert.equal(tooltip.length, 0, 'tooltip was not created');
     });
 
     it('should deactivate category vertical highlight after feature deselection @147', function() {
