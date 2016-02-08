@@ -16,4 +16,10 @@ _includes/
 _posts/
 _sass/
 _site/
+<<<<<<< HEAD
 Gemfile.lock
+=======
+Gemfile.lock
+
+
+>>>>>>> master
