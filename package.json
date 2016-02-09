@@ -1,7 +1,7 @@
 {
   "name": "biojs-vis-proteinfeaturesviewer",
   "description": "A visualisation for protein features and variation",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "homepage": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer",
   "author": "UniProt",
   "contributors": [
@@ -99,7 +99,8 @@
   "keywords": [
     "uniprot",
     "biojs",
-    "features viewer",
+    "protein features viewer",
+    "protein feature viewer",
     "variation"
   ]
 }
