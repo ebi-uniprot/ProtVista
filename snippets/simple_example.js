@@ -22,6 +22,7 @@ input.append('span').text('End: ');
 input.append('input').attr('type', 'text').attr('id', 'ftEnd');
 input.append('span').text('AltSeq: ');
 input.append('input').attr('type', 'text').attr('id', 'atlSeq');
+
 input.append('button').text('Select')
     .on('click', function() {
         var altSeq = d3.select('#atlSeq').node().value.toUpperCase();
@@ -31,4 +32,11 @@ input.append('button').text('Select')
             d3.select('#ftBegin').node().value,
             d3.select('#ftEnd').node().value,
             altSeq);
+    });
+
+input.append('button').text('Highlight')
+    .on('click', function() {
+        instance.highlightRegion(
+            d3.select('#ftBegin').node().value,
+            d3.select('#ftEnd').node().value);
     });
