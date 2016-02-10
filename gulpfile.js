@@ -136,11 +136,11 @@ gulp.task('init', ['clean'], function() {
 });
 
 gulp.task('copy-resources', ['init'], function() {
-    gulp.src(["./style/*fontello.*", "!./style/*fontello.css"])
-            .pipe(gulp.dest(buildDir));
+    gulp.src(["./font/**/*.*"])
+            .pipe(gulp.dest(buildDir + '/font/'));
     return gulp.src("./style/*.css")
         .pipe(minifyCss({compatibility: 'ie8'}))
-        .pipe(gulp.dest(buildDir));
+        .pipe(gulp.dest(buildDir + '/css/'));
 });
 
 // browserify debug
