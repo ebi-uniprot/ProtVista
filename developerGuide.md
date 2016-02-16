@@ -6,7 +6,7 @@ title: Developer Guide
 # biojs-vis-proteinFeaturesViewer
 
 ## Getting Started
-You can find the latest built version in our [CDN](http://ebi-uniprot.github.io/CDN/feature-viewer/). You will need the **css** folder, the **font** folder and any of the **JavaScript** files in there.
+You can find the latest built version in our Github Pages [CDN](https://github.com/ebi-uniprot/CDN/tree/gh-pages/feature-viewer). You will need the **css** folder, the **font** folder and any of the **JavaScript** files in there.
 
 Alternatively, you can install the module with: 
 `npm install biojs-vis-proteinfeaturesviewer`
