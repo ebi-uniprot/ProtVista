@@ -5,7 +5,7 @@ title: User Guide
 
 # UniProtKB entry display options
 
-UniProtKB entries provide three Display options, accessible from the left hand side navigation area. The default 'Entry' view contains all information for the entry including comments and sequence features, the second option 'Feature viewer' shows an interactive visualisation of the sequence features and the third option 'Features table' shows the sequence features in a tabular format. UniProt provides a number sequence annotation or features, as described in [http://www.uniprot.org/help/sequence_annotation]. You can click on the second option 'Feature Viewer' to access the visualisation of sequence annotations for the protein entry.
+UniProtKB entries provide three Display options, accessible from the left hand side navigation area. The default 'Entry' view contains all information for the entry including comments and sequence features, the second option 'Feature viewer' shows an interactive visualisation of the sequence features and the third option 'Feature table' shows the sequence features in a tabular format. UniProt provides a number sequence annotation or features, as described in [http://www.uniprot.org/help/sequence_annotation]. You can click on the second option 'Feature Viewer' to access the visualisation of sequence annotations for the protein entry.
 
 ![Entry page](./images/entryPage.png)
 
