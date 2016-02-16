@@ -6,7 +6,7 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: BioJS UniProt Protein Features Viewer
+title: BioJS UniProt Protein Feature Viewer
 email: ljgarcia|xwatkins@ebi.ac.uk
 description: A BioJS viewer for protein sequence features
 encoding: utf-8

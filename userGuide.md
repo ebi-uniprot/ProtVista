@@ -5,19 +5,19 @@ title: User Guide
 
 # UniProtKB entry display options
 
-UniProtKB entries provide three Display options, accessible from the left hand side navigation area. The default 'Entry' view contains all information for the entry including comments and sequence features, the second option 'Features viewer' shows an interactive visualisation of the sequence features and the third option 'Features table' shows the sequence features in a tabular format. UniProt provides a number sequence annotation or features, as described in [http://www.uniprot.org/help/sequence_annotation]. You can click on the second option 'Feature Viewer' to access the visualisation of sequence annotations for the protein entry.
+UniProtKB entries provide three Display options, accessible from the left hand side navigation area. The default 'Entry' view contains all information for the entry including comments and sequence features, the second option 'Feature viewer' shows an interactive visualisation of the sequence features and the third option 'Features table' shows the sequence features in a tabular format. UniProt provides a number sequence annotation or features, as described in [http://www.uniprot.org/help/sequence_annotation]. You can click on the second option 'Feature Viewer' to access the visualisation of sequence annotations for the protein entry.
 
 ![Entry page](./images/entryPage.png)
 
 You can go back to the default Entry view by clicking on the 'Entry' option under Display. The Feature Viewer presents all UniProt sequence features as well as some additional features from external sources (for example, it presents Variation data from UniProt and also from Large Scale Studies in addition).
 
-# Features viewer
+# Feature viewer
 
 ![Feature viewer](./images/ftViewerUP.png)
 
 ## Feature tracks
 
-The Features viewer presents sequence feature tracks under a ruler that represents sequence length for this protein. The track names are listed on the left hand side and the sequence features are shown in the horizontal track under the ruler.
+The Feature viewer presents sequence feature tracks under a ruler that represents sequence length for this protein. The track names are listed on the left hand side and the sequence features are shown in the horizontal track under the ruler.
 
 You can expand a feature track to view to view all the sub-category titles by clicking on the blue area with the track name. In the example below, 'Domains & Sites' expands into 'Domain', 'Binding site', Active site' and 'Nucleotide binding site.
 
