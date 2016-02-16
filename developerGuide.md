@@ -6,15 +6,23 @@ title: Developer Guide
 # biojs-vis-proteinFeaturesViewer
 
 ## Getting Started
-Install the module with: `npm install biojs-vis-proteinfeaturesviewer`
+You can find the latest built version in our [CDN](http://ebi-uniprot.github.io/CDN/feature-viewer/). You will need the **css** folder, the **font** folder and any of the **JavaScript** files in there.
 
-In order to use this component, you need an HTML element such as <div\> or <span\> or anything else that can act as a container where the viewer will be located. In the following lines, we suppose you have an element identified as *yourDiv*. Do not forget to add a link to the js and the css.
+Alternatively, you can install the module with: 
+`npm install biojs-vis-proteinfeaturesviewer`
+This is probably the preferred way if you are modifying this component, or developing a new component or application 
+while using this component as well as [node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/). 
+ 
+In order to use this component, you need an HTML element such as <div\> or <span\> or anything else that can act as a container where the viewer will be located. In the following lines, we suppose you have an element identified as  *yourDiv*. Do not forget to add a link to the **js**, the **css** and the **font** files. We are supposing here that you are using our **CDN**, if not, then please adjust the paths to your own environment.
 
 ```
+<!DOCTYPE html>
 <html>
-  <head>
-    <script src="biojs-vis-proteinFeaturesViewer.js"></script>
-    <link href="main.css" rel="stylesheet"/>
+<head>
+    <meta charset='utf-8'>
+    <script src="http://ebi-uniprot.github.io/CDN/feature-viewer/featuresviewer.js"></script>
+    <link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/main.css" rel="stylesheet"/>
+    <link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/fontello.css" rel="stylesheet"/>    
   </head>
   <body>
     <div id='yourDiv'/>
@@ -22,21 +30,25 @@ In order to use this component, you need an HTML element such as <div\> or <span
 </html>
 ```
 
-Now you can include the component in your code and create an instance. In order to create an instance, you need to provide some configuration options. Particularly, you need to specify the object where the component will be located, *el*, as well as the UniProt accession whose sequence annotations will be visualized, *uniprotacc*. 
+Now you can include the component in your code and create an instance. In order to create an instance, you need to provide some configuration options. Particularly, you need to specify the object where the component will be located, *el*, as well as the UniProt accession whose sequence annotations will be visualized, *uniprotacc*. We are supposing here that you will instantiate the component as soon as the window has been loaded, i.e., window.onload function. Remember to place this script at the end of the *head* section of your HTML. 
 
 ```javascript
-var yourDiv = document.getElementById('yourDiv');
-var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
-var instance = new biojs_vis_proteinFeaturesViewer({
-  el: yourDiv, 
-  uniprotacc : 'UniProt_accession'
-});
+<script>
+    window.onload = function() {
+        var yourDiv = document.getElementById('yourDiv');
+        var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
+        var instance = new biojs_vis_proteinFeaturesViewer({
+            el: yourDiv,
+            uniprotacc : 'P05067'
+        });
+    }
+</script>
 ```
 
 There is a third option that can be specified, *pinPad* with possible values *true* or *false*. This option is used to activate a notepad on the right where tooltip can be pinned. If you set up that option to true, you **must** include pp_main.css.
 
 ## Events
-The Protein Features viewer triggers five events. In order to listen to those events, you need to get the dispacher.
+The Protein Feature Viewer triggers five events. In order to listen to those events, you need to get the dispatcher.
 
 ```javascript
 instance.getDispatcher().on("ready", function() {
