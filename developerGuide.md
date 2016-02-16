@@ -51,16 +51,17 @@ There is a third option that can be specified, *pinPad* with possible values *tr
 The Protein Feature Viewer triggers five events. In order to listen to those events, you need to get the dispatcher.
 
 ```javascript
-instance.getDispatcher().on("ready", function() {
+instance.getDispatcher().on("ready", function(obj) {
     console.log('ready');
+    console.log(obj);
 });
 ``` 
 
 ### "ready"
-As soon as data has been loaded and visualized, this event will be triggered.
+As soon as data has been loaded and visualized, this event will be triggered. The object provided by this event corresponds to all the data retrieved from the data service plus some parsing, it will be ready to be used by the viewer or any other JavaScript component. 
 
 ### "featureSelected"
-As soon as a feature has been selected, meaning a click on it has happened, this event will be triggered. The data provided by this event looks like:
+As soon as a feature has been selected, meaning a click on it has happened, this event will be triggered. The object provided by this event looks like:
 
 ```javascript
 {
@@ -76,13 +77,24 @@ As soon as a feature has been selected, meaning a click on it has happened, this
 ```
 
 ### "featureDeselected"
-As soon as a feature has been deselected, this event will be triggered. A feature is deselected when it is selected and a clicked on it happens, or when another feature is selected. The data provided by this event looks like the one provided by the event "featureSelected".
+As soon as a feature has been deselected, this event will be triggered. A feature is deselected when it is selected and a clicked on it happens, or when another feature is selected. The object provided by this event looks like the one provided by the event "featureSelected".
 
 ### "noData"
-Triggered when the data failed to be loaded. the data provided by this event will be an error return by a jQuery.ajax request.
+Triggered when the data failed to be loaded. The object provided by this event will be an **error** return by a jQuery.ajax request.
 
 ### "noFeatures"
-Triggered when the Uniprot accession has no sequence annotations.
+Triggered when the Uniprot accession has no sequence annotations. The object provided by this event corresponds to the data retrieved from the data service.
+
+### "notFound"
+Triggered when the method **selectFeature** is used but no corresponding feature has been found. The object provided by this event will contain the information passed as parameters to the method, for instance
+
+```javascript
+{
+  "ftType": "REGION",
+  "begin": 5,
+  "end": 27
+}
+```
 
 ## Contributing
 Please submit all issues and pull requests to the [ebi-uniprot/biojs-vis-proteinFeaturesViewer](http://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer) repository!
