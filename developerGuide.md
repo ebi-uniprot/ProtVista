@@ -6,14 +6,14 @@ title: Developer Guide
 # biojs-vis-proteinFeaturesViewer
 
 ## Getting Started
-You can find the latest built version in our Github Pages [CDN](https://github.com/ebi-uniprot/CDN/tree/gh-pages/feature-viewer). You will need the **css** folder, the **font** folder and any of the **JavaScript** files in there.
+You can find the latest built version in our Github Pages [CDN-like repository](https://github
+.com/ebi-uniprot/CDN/tree/gh-pages/feature-viewer). You will need the **css** folder, the **font** folder and any of the **JavaScript** files in there.
 
 Alternatively, you can install the module with: 
 `npm install biojs-vis-proteinfeaturesviewer`
-This is probably the preferred way if you are modifying this component, or developing a new component or application 
-while using this component as well as [node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/). 
+This is probably the preferred way if you are developing a new component or application that uses our feature viewer. It would be useful as well if you are modifying this component. Some more information about [node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/). 
  
-In order to use this component, you need an HTML element such as <div\> or <span\> or anything else that can act as a container where the viewer will be located. In the following lines, we suppose you have an element identified as  *yourDiv*. Do not forget to add a link to the **js**, the **css** and the **font** files. We are supposing here that you are using our **CDN**, if not, then please adjust the paths to your own environment.
+In order to use this component, you need an HTML element such as <div\> or <span\> or anything else that can act as a container where the viewer will be located. In the following lines, we use a DIV element identified as *yourDiv*, it could have any other name. Do not forget to add a link to the **js**, the **css** and the **font** files. We are supposing here that you are using our **CDN-like repository**, if not, then please adjust the paths to your own environment.
 
 ```
 <!DOCTYPE html>
