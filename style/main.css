@@ -605,3 +605,12 @@ svg .up_pftv_intramem {
 .up_pftv_variants-svg circle:hover {
     fill-opacity: 0.9;
 }
+
+.up_pftv_dialog_checkboxLabel {
+    opacity: 0.9;
+}
+
+.up_pftv_dialog_checkboxLabel:hover {
+    cursor: pointer;
+    opacity: 1;
+}
