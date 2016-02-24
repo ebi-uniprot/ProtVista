@@ -4,8 +4,6 @@
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer.png?branch=master)](http://travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
 [![Coverage Status](https://img.shields.io/coveralls/ebi-github/biojs-vis-proteinFeaturesViewer.svg)](https://coveralls.io/r/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
 
-> This is an ongoing project on a pretty early stage, please be aware that this is under development, not ready to be use yet!
-
 ## Getting Started
 Install the module with: `npm install biojs-vis-proteinfeaturesviewer`
 
@@ -23,12 +21,12 @@ In order to use this component, you need an HTML element such as <div\> or <span
 </html>
 ```
 
-Now you can include the component in your code and create an instance. In order to create an instance, you need to provide some configuration options. Particularly, you need to specify the object where the component will be located, *el*, as well as the UniProt accession whose sequence annotations will be visualized, *uniprotacc*. 
+Now you can include the component in your code and create an instance. In order to create an instance, you need to provide some configuration options. Particularly, you need to specify the object where the component will be located, *el*, as well as the UniProt accession whose sequence annotations will be visualized, *uniprotacc*.
 ```javascript
 var yourDiv = document.getElementById('yourDiv');
 var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
 var instance = new biojs_vis_proteinFeaturesViewer({
-  el: yourDiv, 
+  el: yourDiv,
   uniprotacc : 'UniProt_accession'
 });
 ```
@@ -42,7 +40,7 @@ The Protein Features viewer triggers five events. In order to listen to those ev
 instance.getDispatcher().on("ready", function() {
     console.log('ready');
 });
-``` 
+```
 
 ### "ready"
 As soon as data has been loaded and visualized, this event will be triggered.
@@ -77,7 +75,7 @@ Please submit all issues and pull requests to the [ebi-uniprot/biojs-vis-protein
 ## Support
 If you have any problem or suggestion please open an issue [here](https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/issues).
 
-## License 
+## License
 This software is licensed under the Apache 2 license, quoted below.
 
 Copyright (c) 2014, ebi-uniprot
