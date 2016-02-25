@@ -11,6 +11,10 @@ svg {
     position: relative;
 }
 
+.up_pftv_buttons a {
+    color: inherit;
+    text-decoration: none;
+}
 .up_pftv_buttons span {
     cursor: pointer;
     font-size: 18px;
