@@ -144,7 +144,7 @@ gulp.task('copy-resources', ['init'], function() {
         .pipe(gulp.dest(buildDir + '/css/'));
 });
 
-gulp.task('copy-pinpad-resources', function() {
+gulp.task('copy-pinpad-resources', ['init'], function() {
     return gulp.src(["./node_modules/biojs-vis-pinpad/build/pp_main.css"])
         .pipe(gulp.dest(buildDir + '/css/'));
 });
