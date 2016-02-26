@@ -1,7 +1,7 @@
 {
   "name": "biojs-vis-proteinfeaturesviewer",
   "description": "A visualisation for protein features and variation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer",
   "author": "UniProt",
   "contributors": [
@@ -42,7 +42,7 @@
     "watch": "gulp watch"
   },
   "dependencies": {
-    "biojs-vis-pinpad": "^0.1.7",
+    "biojs-vis-pinpad": "^0.1.8",
     "d3": "^3.4.13",
     "jquery": "^2.1.4",
     "underscore": "^1.7.0"
@@ -87,9 +87,9 @@
       "/build/featuresviewer.js"
     ],
     "css": [
-      "/style/fontello.css",
-      "/style/main.css",
-      "/style/pp_main.css"
+      "/build/css/fontello.css",
+      "/build/css/main.css",
+      "/build/css/pp_main.css"
     ],
     "snippets": [
       "snippets"
