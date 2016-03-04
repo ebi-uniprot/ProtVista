@@ -842,6 +842,51 @@
       },
       {
         "type": {
+          "name": "DOMAIN",
+          "label": "domain"
+        },
+        "description": "P53_TAD",
+        "begin": "5",
+        "end": "29",
+        "evidences": [
+          {
+            "code": "ECO:0000259",
+            "sources": [
+              {
+                "name": "Pfam",
+                "id": "PF08563",
+                "url": "http://pfam.xfam.org/family/PF08563"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":
+        {
+          "name": "DOMAIN",
+          "label": "domain"
+        },
+        "description": "C2 1",
+        "begin": "21",
+        "end": "125",
+        "evidences":
+        [
+          {
+            "code": "ECO:0000255",
+            "sources":
+            [
+              {
+                "name": "PROSITE-ProRule",
+                "id": "PRU00041",
+                "url": "http://prosite.expasy.org/unirule/PRU00041"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": {
           "name": "REGION",
           "label": "region of interest"
         },
