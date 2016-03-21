@@ -27,7 +27,7 @@
       "url": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/blob/master/LICENSE"
     }
   ],
-  "main": "lib/FeaturesViewer",
+  "main": "src/FeaturesViewer",
   "config": {
     "classname": "FeaturesViewerTest",
     "outputfile": "reports/TEST-FeaturesViewerTest.xml"
