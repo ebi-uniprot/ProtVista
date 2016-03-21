@@ -2,9 +2,11 @@
 /*jshint laxcomma: true */
 
 var _ = require("underscore");
-var DataLoader = require("./dataLoader");
-var CategoryFactory = require("./CategoryFactory");
 var d3 = require("d3");
+
+var Constants = require("./Constants");
+var DataLoader = require("./DataLoader");
+var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
 var VariantFilterDialog = require("./VariantFilterDialog");
@@ -393,98 +395,94 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
     return varLookup ? varLookup : lookup;
 };
 
-var removeFromPinPad = function(obj, fv) {
-    var isCandidate = false;
-    if (obj.element) {
-        fv.pinPadElements = _.reject(fv.pinPadElements, function(el) {
-            if (el.internalId === obj.element.id) {
-                el.pinned = false;
-            }
-            return el.internalId === obj.element.id;
-        });
-        if ((fv.selectedFeature !== undefined) && (fv.selectedFeature.internalId === obj.element.id)) {
-            isCandidate = true;
-        }
-    } else if (obj.category) {
-        fv.pinPadElements = _.reject(fv.pinPadElements, function(el) {
-            var comparison = fv.getCategoryTitle(el.type.name) === obj.category;
-            if (comparison) {
-                el.pinned = false;
-            }
-            if ((fv.selectedFeature !== undefined) && (fv.selectedFeature.internalId === el.internalId)) {
-                isCandidate = true;
-            }
-            return comparison;
-        });
-    }
-    var tooltip = d3.select('.up_pftv_tooltip-container');
-    if (isCandidate && (tooltip.node() !== null)) {
-        var pinContainer = d3.select('.up_pp_iconContainer.up_pftv_iconContainer-pinned');
-        pinContainer.classed('up_pftv_iconContainer-unpinned', true);
-        pinContainer.classed('up_pftv_iconContainer-pinned', false);
-        pinContainer.attr('title', 'Pin tooltip');
-    }
-};
+// var removeFromPinPad = function(obj, fv) {
+//     var isCandidate = false;
+//     if (obj.element) {
+//         fv.pinPadElements = _.reject(fv.pinPadElements, function(el) {
+//             if (el.internalId === obj.element.id) {
+//                 el.pinned = false;
+//             }
+//             return el.internalId === obj.element.id;
+//         });
+//         if ((fv.selectedFeature !== undefined) && (fv.selectedFeature.internalId === obj.element.id)) {
+//             isCandidate = true;
+//         }
+//     } else if (obj.category) {
+//         fv.pinPadElements = _.reject(fv.pinPadElements, function(el) {
+//             var comparison = fv.getCategoryTitle(el.type.name) === obj.category;
+//             if (comparison) {
+//                 el.pinned = false;
+//             }
+//             if ((fv.selectedFeature !== undefined) && (fv.selectedFeature.internalId === el.internalId)) {
+//                 isCandidate = true;
+//             }
+//             return comparison;
+//         });
+//     }
+//     var tooltip = d3.select('.up_pftv_tooltip-container');
+//     if (isCandidate && (tooltip.node() !== null)) {
+//         var pinContainer = d3.select('.up_pp_iconContainer.up_pftv_iconContainer-pinned');
+//         pinContainer.classed('up_pftv_iconContainer-unpinned', true);
+//         pinContainer.classed('up_pftv_iconContainer-pinned', false);
+//         pinContainer.attr('title', 'Pin tooltip');
+//     }
+// };
 
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noData", "noFeatures", "notFound");
+
     fv.width = 760;
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
     fv.sequence = "";
-    fv.categoryOrderAndType = {
-        domainsAndSites: {
-            type: 'basic', filter: false, title: 'Domains & sites',
-            ftTypes: ['REGION', 'COILED', 'MOTIF', 'REPEAT', 'CA_BIND', 'DNA_BIND', 'DOMAIN', 'ZN_FING', 'NP_BIND',
-                'METAL', 'SITE', 'BINDING', 'ACT_SITE']
-        }, moleculeProcessing: {
-            type: 'basic', filter: false, title: 'Molecule processing',
-            ftTypes: ['CHAIN', 'TRANSIT', 'INIT_MET', 'PROPEP', 'PEPTIDE', 'SIGNAL']
-        }, ptm: {
-            type: 'basic', filter: false, title: 'Post translational modifications',
-            ftTypes: ['MOD_RES', 'LIPID', 'CARBOHYD', 'DISULFID', 'CROSSLNK']
-        }, seqInfo: {
-            type: 'basic', filter: false, title: 'Sequence information',
-            ftTypes: ['COMPBIAS', 'CONFLICT', 'NON_CONS', 'NON_TER', 'UNSURE', 'NON_STD']
-        }, structural: {
-            type: 'basic', filter: false, title: 'Structural features',
-            ftTypes: ['HELIX', 'STRAND', 'TURN']
-        }, topology: {
-            type: 'basic', filter: false, title: 'Topology',
-            ftTypes: ['TOPO_DOM', 'TRANSMEM', 'INTRAMEM']
-        }, mutagenesis: {
-            type: 'basic', filter: false, title: 'Mutagenesis',
-            ftTypes: ['MUTAGEN']
-        }, variants: {
-            type: 'variant', filter: true, title: 'Variants',
-            ftTypes: ['VARIANT', 'MISSENSE', 'MS_DEL', 'INSDEL', 'STOP_LOST', 'STOP_GAINED', 'INIT_CODON']
-        }
-    };
-    fv.filterTypes = fv.categoryOrderAndType.variants.ftTypes;
+    // fv.filterTypes = fv.categoryOrderAndType.variants.ftTypes;
     fv.categories = [];
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
-    fv.data = undefined;
 
     fv.load = function() {
-        opts.proxy = opts.proxy ? opts.proxy : "";
-        var dataLoader = DataLoader.get(opts.proxy, opts.uniprotacc);
-        dataLoader.done(function(d) {
-            fv.data = d;
-            if (d.totalFeatureCount === 0) {
-                d3.select(opts.el)
-                    .text('No features available for protein ' + opts.uniprotacc);
-                fv.dispatcher.noFeatures(d);
-            } else {
-                fv.init(opts, d);
+        var dataSources = Constants.getDataSources();
+        _.each(dataSources, function(source){
+          var url = source.url + opts.uniprotacc + '.json';
+          var dataLoader = DataLoader.get(url);
+          console.log(source.url);
+          dataLoader.then(function(d){
+            if (d instanceof Array) //Workaround to be removed
+              d = d[0];
+            // First promise to resolve will set global parameters
+            if(!fv.sequence) {
+              fv.init(opts, d);
             }
-        }).fail(function(e) {
-            d3.select(opts.el)
-                .text(e.responseText);
-            fv.dispatcher.noData({error: e});
+            var features = d.features;
+            // group by categories
+            if(features.length > 0 && _.has(features[0],'category')){
+              features = DataLoader.groupFeaturesByCategory(features);
+            } else if (features.length > 0 && features[0].type === 'VARIANT') {
+              features = DataLoader.processVariants(features, d.sequence);
+            }
+            fv.drawCategories(features, source.type, fv);
+          }).fail(function(e){
+            console.log(e);
+          });
         });
+
+        // var dataLoader = DataLoader.get(opts.proxy, opts.uniprotacc);
+        // dataLoader.done(function(d) {
+        //     fv.data = d;
+        //     if (d.totalFeatureCount === 0) {
+        //         d3.select(opts.el)
+        //             .text('No features available for protein ' + opts.uniprotacc);
+        //         fv.dispatcher.noFeatures(d);
+        //     } else {
+        //         fv.init(opts, d);
+        //     }
+        // }).fail(function(e) {
+        //     d3.select(opts.el)
+        //         .text(e.responseText);
+        //     fv.dispatcher.noData({error: e});
+        // });
     };
 
     fv.load();
@@ -584,26 +582,26 @@ FeaturesViewer.prototype.init = function(opts, d) {
         .on('mousedown', function() {
             closeTooltipAndPopup(fv);
         });
-    if (opts.pinPad === true) {
-        fvContainer.style('display', 'inline-block');
-        var pinPadId = '_' + new Date().getTime();
-        genericContainer.append('div')
-            .classed('up_ptfv_pp-container', true)
-            .attr('id', pinPadId);
-        fv.pinPad = new PinPad({
-            ordering: ['type', 'start', 'end'],
-            options: {
-                el: '#' + pinPadId
-                , width: '220px'
-                , height: '320px'
-                , highlightColor: 'green'
-            }
-        });
-        fv.pinPadElements = [];
-        fv.pinPad.dispatcher.on('remove', function(obj) {
-            removeFromPinPad(obj, fv);
-        });
-    }
+      // if (opts.pinPad === true) {
+      //     fvContainer.style('display', 'inline-block');
+      //     var pinPadId = '_' + new Date().getTime();
+      //     genericContainer.append('div')
+      //         .classed('up_ptfv_pp-container', true)
+      //         .attr('id', pinPadId);
+      //     fv.pinPad = new PinPad({
+      //         ordering: ['type', 'start', 'end'],
+      //         options: {
+      //             el: '#' + pinPadId
+      //             , width: '220px'
+      //             , height: '320px'
+      //             , highlightColor: 'green'
+      //         }
+      //     });
+      //     fv.pinPadElements = [];
+      //     fv.pinPad.dispatcher.on('remove', function(obj) {
+      //         removeFromPinPad(obj, fv);
+      //     });
+      // }
 
     fv.viewport = createNavRuler(fv, fvContainer);
     createButtons(fv, d, fvContainer);
@@ -614,20 +612,18 @@ FeaturesViewer.prototype.init = function(opts, d) {
         .append('div')
         .attr('class', 'up_pftv_category-container');
 
-    _.each(fv.categoryOrderAndType, function(value, category) {
-        if ( (!_.contains(opts.exclusions, category)) && (d[category].features.length !== 0) ){
-            var cat = CategoryFactory.createCategory(d[category], fv.categoryOrderAndType[category].type, fv);
-            fv.categories.push(cat);
-            if (fv.categoryOrderAndType[category].filter) {
-                fv.filterCategories.push(cat);
-            }
-        }
-    });
     var bottomAAViewerContainer = fvContainer.append('div').attr('class','bottom-aa-container');
     fv.aaViewer2 = createAAViewer(fv, bottomAAViewerContainer, d.sequence);
     updateViewportFromChart(fv);
     updateZoomFromChart(fv);
     fv.dispatcher.ready(d);
+};
+
+FeaturesViewer.prototype.drawCategories = function(data, type, fv) {
+  _.each(data, function(categoryData) {
+    var cat = CategoryFactory.createCategory(categoryData, type, fv);
+    fv.categories.push(cat);
+  });
 };
 
 module.exports = FeaturesViewer;
