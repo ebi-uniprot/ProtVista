@@ -91,7 +91,8 @@ var Track = function(typeFeatures, category) {
         //variants
         variant: {label: 'Natural variant', tooltip: 'Natural variant of the protein, including polymorphisms, ' +
             'variations between strains, isolates or cultivars, disease-associated mutations and RNA editing events'
-        }
+        },
+        proteomics: {label:'Proteomics', tooltip:'TBD'}
     };
 };
 

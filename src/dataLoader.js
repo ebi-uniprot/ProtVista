@@ -33,9 +33,11 @@ var DataLoader = function() {
     //   return d;
     // },
     groupFeaturesByCategory: function(features) {
-      return _.groupBy(features, function(d) {
+      var categories = _.groupBy(features, function(d) {
         return d.category;
       });
+      delete categories.VARIANTS;
+      return categories;
     },
     processUngroupedFeatures: function(features) {
       var obj = {};
@@ -45,10 +47,7 @@ var DataLoader = function() {
     processVariants: function(variants, sequence) {
       var mutationArray = [];
         mutationArray.push({
-          'type': {
-            'name': 'VARIANT',
-            'label': 'Sequence Variant'
-          },
+          'type': 'VARIANT',
           'normal': '-',
           'pos': 0,
           'variants': []
@@ -56,20 +55,14 @@ var DataLoader = function() {
         var seq = sequence.split('');
         _.each(seq, function(d, i) {
           mutationArray.push({
-            'type': {
-              'name': 'VARIANT',
-              'label': 'Sequence Variant'
-            },
+            'type': 'VARIANT',
             'normal': seq[i],
             'pos': i + 1,
             'variants': []
           });
         });
         mutationArray.push({
-          'type': {
-            'name': 'VARIANT',
-            'label': 'Sequence Variant'
-          },
+          'type': 'VARIANT',
           'normal': '-',
           'pos': seq.length + 1,
           'variants': []

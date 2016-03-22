@@ -76,7 +76,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
             return variantsFill(d, fv);
         })
         .attr('cy', function(d) {
-            return variantViewer.yScale(d.mutation);
+            return variantViewer.yScale(d.alternativeSequence);
         })
     ;
 
