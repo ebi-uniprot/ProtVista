@@ -170,7 +170,7 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
     tooltip.pinData = {
         category: catTitle, id: d.internalId,
         ordering: {
-            type: tooltip.data.type.name,
+            type: tooltip.data.type,
             start: +tooltip.data.begin,
             end: tooltip.data.end ? +tooltip.data.end : +tooltip.data.begin
         },
@@ -206,7 +206,7 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
 
     var descRow = tooltip.table.append('tr');
 
-    var tooltipTitle = tooltip.data.type.label + ' ' + tooltip.data.begin +
+    var tooltipTitle = tooltip.data.type + ' ' + tooltip.data.begin +
         (tooltip.data.end ? '-' + tooltip.data.end : '');
 
     tooltip.pinData.sections.push({title: tooltipTitle, information: {}});
@@ -552,7 +552,7 @@ var TooltipFactory = function() {
     return {
         createTooltip: function(fv, catTitle, data, container, coordinates) {
             var tooltip
-                , type = data.type.name.toLowerCase();
+                , type = data.type.toLowerCase();
             // error if the constructor doesn't exist
             if (typeof Tooltip[type] !== "function") {
                 Tooltip.basic.prototype = new Tooltip(fv, catTitle, data, container, coordinates);

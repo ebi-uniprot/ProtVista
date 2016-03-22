@@ -447,7 +447,6 @@ var FeaturesViewer = function(opts) {
         _.each(dataSources, function(source){
           var url = source.url + opts.uniprotacc + '.json';
           var dataLoader = DataLoader.get(url);
-          console.log(source.url);
           dataLoader.then(function(d){
             if (d instanceof Array) //Workaround to be removed
               d = d[0];
@@ -461,6 +460,8 @@ var FeaturesViewer = function(opts) {
               features = DataLoader.groupFeaturesByCategory(features);
             } else if (features.length > 0 && features[0].type === 'VARIANT') {
               features = DataLoader.processVariants(features, d.sequence);
+            } else {
+              features = DataLoader.processUngroupedFeatures(features);
             }
             fv.drawCategories(features, source.type, fv);
           }).fail(function(e){
@@ -620,8 +621,8 @@ FeaturesViewer.prototype.init = function(opts, d) {
 };
 
 FeaturesViewer.prototype.drawCategories = function(data, type, fv) {
-  _.each(data, function(categoryData) {
-    var cat = CategoryFactory.createCategory(categoryData, type, fv);
+  _.each(_.keys(data), function(category) {
+    var cat = CategoryFactory.createCategory(category, data[category], type, fv);
     fv.categories.push(cat);
   });
 };

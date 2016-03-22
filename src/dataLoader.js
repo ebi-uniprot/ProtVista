@@ -37,6 +37,11 @@ var DataLoader = function() {
         return d.category;
       });
     },
+    processUngroupedFeatures: function(features) {
+      var obj = {};
+      obj[features[0].type] = features;
+      return obj;
+    },
     processVariants: function(variants, sequence) {
       var mutationArray = [];
         mutationArray.push({
@@ -80,7 +85,7 @@ var DataLoader = function() {
             mutationArray[d.begin - 1].variants.push(d);
           }
         });
-      return mutationArray;
+      return { VARIATION : mutationArray};
     }
   };
 }();

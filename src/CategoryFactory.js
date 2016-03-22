@@ -10,8 +10,9 @@ var NonOverlappingLayout = require("./NonOverlappingLayout");
 var BasicViewer = require("./BasicViewer");
 var ViewerHelper = require("./ViewerHelper");
 
-var Category = function(data, type, fv) {
+var Category = function(name, data, type, fv) {
     var category = this;
+    category.name = name;
     category.tracks = [];
     category.data = data;
     category.viewerType = type;
@@ -21,11 +22,10 @@ var Category = function(data, type, fv) {
 
     category.categoryContainer = fv.container.append('div')
         .attr('class', 'up_pftv_category');
-
     category.header = category.categoryContainer.append('a')
         .attr('class', 'up_pftv_category-name up_pftv_arrow-right')
-        .attr('title', data.label)
-        .text(data.label)
+        .attr('title', category.name)
+        .text(category.name)
         .on('click', function() {
             category.toggle();
             category.propagateSelection();
@@ -46,9 +46,9 @@ Category.prototype.addTrack = function(track) {
 Category.prototype.buildTracks = function() {
     var category = this;
     //Group tracks by type
-    var typeFeatures = _.groupBy(category.data.features, function(d) {
+    var typeFeatures = _.groupBy(category.data, function(d) {
         if (d.type) {
-            return d.type.label;
+            return d.type;
         }
     });
     var that = this;
@@ -96,13 +96,13 @@ Category.prototype.update = function() {
 //Viewer types
 var BasicCategoryViewer = function(category) {
     return new BasicViewer(
-        category.data.label, category.data.features, category.viewerContainer, category.fv
+        category.name, category.data, category.viewerContainer, category.fv
     );
 };
 
 var VariantCategoryViewer = function(category) {
     var height = 40;
-    var features = category.data.features,
+    var features = category.data,
         container = category.viewerContainer,
         xScale = category.fv.xScale,
         width = category.fv.width,
@@ -169,7 +169,7 @@ Category.variant = function() {
 // Factory
 var CategoryFactory = function() {
     return {
-        createCategory: function(data, type, fv) {
+        createCategory: function(name, data, type, fv) {
             var category;
 
             // error if the constructor doesn't exist
@@ -178,10 +178,10 @@ var CategoryFactory = function() {
             }
 
             //inherit parent constructor
-            Category[type].prototype = new Category(data, type, fv);
+            Category[type].prototype = new Category(name, data, type, fv);
             category = new Category[type]();
 
-            if(data.features.length > 0) {
+            if(data.length > 0) {
                 category.buildTracks();
             } else {
                 category.setDisabled();

@@ -14,8 +14,8 @@ var LegendDialog = require("./VariantLegendDialog");
 var Track = function(typeFeatures, category) {
     var track = this;
     track.data = typeFeatures;
-    track.type = typeFeatures[0].type.name;
-    track.label = typeFeatures[0].type.label;
+    track.type = typeFeatures[0].type;
+    track.label = typeFeatures[0].type;
     track.category = category;
     track.id = track.type + '_track';
 
