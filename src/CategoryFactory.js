@@ -10,7 +10,7 @@ var NonOverlappingLayout = require("./NonOverlappingLayout");
 var BasicViewer = require("./BasicViewer");
 var ViewerHelper = require("./ViewerHelper");
 
-var Category = function(name, data, type, fv) {
+var Category = function(name, data, type, fv, container) {
     var category = this;
     category.name = name;
     category.tracks = [];
@@ -20,7 +20,7 @@ var Category = function(name, data, type, fv) {
     category.tracksCreated = false;
     category.categoryViewer = undefined;
 
-    category.categoryContainer = fv.container.append('div')
+    category.categoryContainer = container.append('div')
         .attr('class', 'up_pftv_category');
     category.header = category.categoryContainer.append('a')
         .attr('class', 'up_pftv_category-name up_pftv_arrow-right')
@@ -169,7 +169,7 @@ Category.variant = function() {
 // Factory
 var CategoryFactory = function() {
     return {
-        createCategory: function(name, data, type, fv) {
+        createCategory: function(name, data, type, fv, container) {
             var category;
 
             // error if the constructor doesn't exist
@@ -178,7 +178,7 @@ var CategoryFactory = function() {
             }
 
             //inherit parent constructor
-            Category[type].prototype = new Category(name, data, type, fv);
+            Category[type].prototype = new Category(name, data, type, fv, container);
             category = new Category[type]();
 
             if(data.length > 0) {

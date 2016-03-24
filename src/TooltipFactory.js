@@ -78,43 +78,6 @@ var getEvidenceText = function(tooltip, code, sources) {
         (Evidence.text[code] ? ' (' + Evidence.text[code] + ')' : '');
 };
 
-var addPinPad = function(fv, tooltip, descRow, tooltipTitle) {
-    if (fv.pinPad) {
-        var th = descRow.append('th')
-            .attr('colspan',2);
-        var pinClass = 'up_pftv_iconContainer-unpinned';
-        var pinTitle = 'Pin tooltip';
-        if (tooltip.data.pinned === true) {
-            pinClass = 'up_pftv_iconContainer-pinned';
-            pinTitle = 'Unpin tooltip';
-        }
-        var pinContainer = th.append('div').classed('up_pftv_tooltip-pin-container', true)
-            .append('div').attr('class', 'up_pp_iconContainer ' + pinClass);
-        pinContainer.attr('title', pinTitle);
-
-        pinContainer.append('div').attr('class', 'icon-pin up_pp_icon up_pp_clickable-icon')
-            .on('click', function() {
-                if (tooltip.data.pinned === true) {
-                    tooltip.data.pinned = false;
-                    pinContainer.classed('up_pftv_iconContainer-unpinned', true);
-                    pinContainer.classed('up_pftv_iconContainer-pinned', false);
-                    pinContainer.attr('title', 'Pin tooltip');
-                    fv.pinPad.removeElement(tooltip.pinData.id);
-                } else {
-                    tooltip.data.pinned = true;
-                    fv.pinPad.addElement(tooltip.pinData);
-                    fv.pinPadElements.push(tooltip.data);
-                    pinContainer.classed('up_pftv_iconContainer-unpinned', false);
-                    pinContainer.classed('up_pftv_iconContainer-pinned', true);
-                    pinContainer.attr('title', 'Unpin tooltip');
-                }
-            });
-        th.append('div').style('display', 'inline-block').text(tooltipTitle);
-    } else {
-        descRow.append('th').attr('colspan',2).text(tooltipTitle);
-    }
-};
-
 var parseVariantDescription = function(data) {
     if (data.description) {
         var descriptionArray = data.description.replace(/\s*Ftid:/g, '|Ftid:').replace(/\s*LSS:/g,'|LSS:').split('|');
@@ -140,48 +103,32 @@ var parseVariantDescription = function(data) {
     }
 };
 
-var addFtId = function(tooltip, pinDataSection) {
+var addFtId = function(tooltip) {
     if (tooltip.data.ftId !== undefined) {
         var dataId = tooltip.table.append('tr');
         dataId.append('td').text('Feature ID');
         dataId.append('td').text(tooltip.data.ftId);
-        pinDataSection.information.styled_feature_id = {
-            key: "Feature ID",
-            value: tooltip.data.ftId
-        };
     }
 };
 
-var addDescription = function(tooltip, description, pinDataSection, descriptionType){
+var addDescription = function(tooltip, description, descriptionType){
     if (description) {
         var dataDes = tooltip.table.append('tr');
         dataDes.append('td').text('Description');
         dataDes.append('td').text(description);
-        pinDataSection.information['styled_' + descriptionType] = {
-            key: "Description",
-            value: description
-        };
     }
 };
 
 var Tooltip = function(fv, catTitle, d, container, coordinates) {
     var tooltip = this;
     tooltip.data = d;
-    tooltip.pinData = {
-        category: catTitle, id: d.internalId,
-        ordering: {
-            type: tooltip.data.type,
-            start: +tooltip.data.begin,
-            end: tooltip.data.end ? +tooltip.data.end : +tooltip.data.begin
-        },
-        sections: []
-    };
     tooltip.sequence = fv.sequence;
     tooltip.accession = fv.accession;
     tooltip.tooltipViewer = undefined;
-    tooltip.tooltipViewer = undefined;
 
     var tooltipContainer = createTooltipBox(container);
+
+
 
     if (coordinates) {
         tooltipContainer.style('left', (coordinates.x + 10) + 'px')
@@ -208,40 +155,34 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
 
     var tooltipTitle = tooltip.data.type + ' ' + tooltip.data.begin +
         (tooltip.data.end ? '-' + tooltip.data.end : '');
-
-    tooltip.pinData.sections.push({title: tooltipTitle, information: {}});
-
-    addPinPad(fv, tooltip, descRow, tooltipTitle);
+    descRow.append('th').attr('colspan',2).text(tooltipTitle);
 
     if (tooltip.data.sourceType !== undefined) {
         var dataSource = tooltip.table.append('tr');
         dataSource.append('td').text('Source');
         var sourceText = '';
         if (tooltip.data.sourceType === Evidence.variantSourceType.mixed) {
-            tooltip.pinData.sections[0].information.source = 'UniProt and large scale studies';
             sourceText = 'UniProt and large scale studies';
         } else if (tooltip.data.sourceType === Evidence.variantSourceType.uniprot) {
-            tooltip.pinData.sections[0].information.source = 'UniProt';
             sourceText = 'UniProt';
         } else {
-            tooltip.pinData.sections[0].information.source = 'Large scale studies';
             sourceText = 'Large scale studies';
         }
         dataSource.append('td').text(sourceText);
         parseVariantDescription(tooltip.data);
         if (sourceText === 'UniProt') {
-            addFtId(tooltip, tooltip.pinData.sections[0]);
-            addDescription(tooltip, tooltip.data.up_description, tooltip.pinData.sections[0], 'up_description');
+            addFtId(tooltip);
+            addDescription(tooltip, tooltip.data.up_description, 'up_description');
         } else if (sourceText === 'Large scale studies'){
-            addDescription(tooltip, tooltip.data.lss_description, tooltip.pinData.sections[0], 'lss_description');
+            addDescription(tooltip, tooltip.data.lss_description, 'lss_description');
         }
     } else {
-        addFtId(tooltip, tooltip.pinData.sections[0]);
-        addDescription(tooltip, tooltip.data.description, tooltip.pinData.sections[0], 'description');
+        addFtId(tooltip);
+        addDescription(tooltip, tooltip.data.description, 'description');
     }
 };
 
-var addEvidenceXRefLinks = function(tooltip, section, sourceRow, info) {
+var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
     if (!sourceRow) {
         sourceRow = tooltip.table.append('tr')
             .attr('class','up_pftv_evidence-source');
@@ -250,29 +191,15 @@ var addEvidenceXRefLinks = function(tooltip, section, sourceRow, info) {
             .text('');
     }
 
-    section.information['styled_'+ info.attrText + 'Array_' + info.index + '_' + info.counter] = {
-        key: info.index,
-        key_right: true,
-        value: []
-    };
-    var list = sourceRow.append('td').text(info.index + ' ');
-    _.each(info.elem, function(el, i) {
-        var url = info.alternative === true ? el.alternativeUrl: el.url;
-        list.append('span').append('a')
-            .attr('href', url)
-            .attr('target', '_blank')
-            .text(el.id);
-        if (i !== (info.elem.length-1)) {
-            list.append('span').text(', ');
-        }
-        section.information['styled_'+ info.attrText + 'Array_' + info.index + '_' + info.counter].value.push({
-            value: el.id,
-            link: url
-        });
-    });
+    var list = sourceRow.append('td').text(info.elem.name + ' ');
+    var url = info.alternative === true ? info.elem.alternativeUrl: info.elem.url;
+    list.append('span').append('a')
+        .attr('href', url)
+        .attr('target', '_blank')
+        .text(info.elem.id);
 };
 
-Tooltip.prototype.addEvidences = function(evidences, section) {
+Tooltip.prototype.addEvidences = function(evidences) {
     var tooltip = this;
     _.each(evidences, function(e, counter) {
         var typeRow = tooltip.table.append('tr')
@@ -282,29 +209,14 @@ Tooltip.prototype.addEvidences = function(evidences, section) {
         var evidenceText = getEvidenceText(tooltip, e.code, e.sources);
         typeRow.append('td')
             .text(evidenceText);
-        section.information['styled_evidence_' + counter] = {
-            key: 'Evidence',
-            value: evidenceText
-        };
-
-        var groupedSources = _.groupBy(e.sources, 'name');
-        delete groupedSources['undefined'];
-
-        _.each(groupedSources, function(elem, index) {
-            addEvidenceXRefLinks(tooltip, section, undefined, {
-                counter: counter, elem: elem, index: index, attrText: 'evidence'
-            });
-            if (index === 'PubMed') {
-                addEvidenceXRefLinks(tooltip, section, undefined, {
-                    counter:counter, elem: elem, index: 'EuropePMC', attrText: 'evidence', alternative: true
-                });
-            }
+        addEvidenceXRefLinks(tooltip, undefined, {
+            counter: counter, elem: e.source, attrText: 'evidence'
         });
     });
 };
 
 var BasicTooltipViewer = function(tooltip) {
-    tooltip.addEvidences(tooltip.data.evidences, tooltip.pinData.sections[0]);
+    tooltip.addEvidences(tooltip.data.evidences);
 };
 
 var AlternativeTooltipViewer = function(tooltip, change, field) {
@@ -316,21 +228,19 @@ var AlternativeTooltipViewer = function(tooltip, change, field) {
                 var end = tooltip.data.end ? tooltip.data.end : tooltip.data.begin;
                 var original = tooltip.sequence.substring(+tooltip.data.begin - 1, +end);
                 var text = original + ' > ' + tooltip.data[field];
-                tooltip.pinData.sections[0].information[change] = text;
                 return text;
             });
     }
-    tooltip.addEvidences(tooltip.data.evidences, tooltip.pinData.sections[0]);
+    tooltip.addEvidences(tooltip.data.evidences);
 };
 
-var addPredictions = function(tooltip, section) {
+var addPredictions = function(tooltip) {
     if (tooltip.data.frequency && (tooltip.data.frequency !== 0)) {
         var freqRow = tooltip.table.append('tr');
         freqRow.append('td').append('span').append('a')
             .attr('href', 'http://www.ncbi.nlm.nih.gov/projects/SNP/docs/rs_attributes.html#gmaf')
             .attr('target', '_blank').text('Frequency (MAF)');
         freqRow.append('td').text(tooltip.data.frequency);
-        section.information.frequency = tooltip.data.frequency;
     }
     if (tooltip.data.polyphenPrediction && (tooltip.data.polyphenPrediction !== '-')
         && (tooltip.data.polyphenPrediction !== 'unknown')) {
@@ -340,7 +250,6 @@ var addPredictions = function(tooltip, section) {
             .attr('target', '_blank').text('Polyphen');
         var text = tooltip.data.polyphenPrediction + ', score ' + tooltip.data.polyphenScore;
         polyRow.append('td').text(text);
-        section.information.polyphen = text;
     }
     if (tooltip.data.siftPrediction && (tooltip.data.siftPrediction !== '-')
         && (tooltip.data.siftPrediction !== 'unknown')) {
@@ -350,7 +259,6 @@ var addPredictions = function(tooltip, section) {
             .attr('target', '_blank').text('SIFT');
         var predictionText = tooltip.data.siftPrediction + ', score ' + tooltip.data.siftScore;
         siftRow.append('td').text(predictionText);
-        section.information.sift = predictionText;
     }
 };
 
@@ -370,14 +278,10 @@ var havePredictions = function(data) {
     return response;
 };
 
-var addAssociation = function(tooltip, section) {
+var addAssociation = function(tooltip) {
     if (Evidence.existAssociation(tooltip.data.association)) {
         var assocRow = tooltip.table.append('tr');
         assocRow.append('td').attr('colspan', 2).classed('up_pftv_subsection',true).text('Disease Association');
-        section.information.subsection_disease = {
-            title: 'Disease Association',
-            information: {}
-        };
         _.each(tooltip.data.association, function(association, counter){
             if (association.name) {
                 var diseaseRow = tooltip.table.append('tr');
@@ -385,22 +289,11 @@ var addAssociation = function(tooltip, section) {
                 diseaseRow.append('td').append('span').append('a')
                     .attr('href', 'http://www.uniprot.org/diseases/?query=' + association.name)
                     .attr('target', '_blank').text(association.name);
-                section.information.subsection_disease.information['styled_evidenceArray_disease_' + counter] = {
-                    key: 'Disease',
-                    value: {
-                        value: association.name,
-                        link: 'http://www.uniprot.org/diseases/?query=' + association.name
-                    }
-                };
             }
             if (association.description) {
                 var descRow = tooltip.table.append('tr');
                 descRow.append('td').text('Description');
                 descRow.append('td').text(association.description);
-                section.information.subsection_disease.information['styled_evidenceArray_description_' + counter] = {
-                    key: 'Description',
-                    value: association.description
-                };
             }
             if (association.moreInfo) {
                 var groupedSources = _.groupBy(association.moreInfo, 'name');
@@ -409,21 +302,9 @@ var addAssociation = function(tooltip, section) {
                     moreInfo.append('td');
                     var list = moreInfo.append('td').text(index + ' ');
 
-                    section.information.subsection_disease.information
-                        ['styled_associationArray_' + index + '_' + counter] = {
-                        key: index,
-                        key_right: true,
-                        value: []
-                    };
-
                     _.each(elem, function(el) {
                         list.append('span').append('a').attr('href', el.url)
                             .attr('target', '_blank').text(el.id);
-                        section.information.subsection_disease.information
-                            ['styled_associationArray_' + index + '_' + counter].value.push({
-                                value: el.id,
-                                link: el.url
-                            });
                     });
                 });
             }
@@ -431,15 +312,14 @@ var addAssociation = function(tooltip, section) {
     }
 };
 
-var addMutation = function(tooltip, section) {
+var addMutation = function(tooltip) {
     var mutRow = tooltip.table.append('tr');
     mutRow.append('td').text('Variant');
     var text = tooltip.data.wildType + ' > ' + tooltip.data.mutation;
     mutRow.append('td').text(text);
-    section.information.mutation = text;
 };
 
-var addXRefs = function(tooltip, section) {
+var addXRefs = function(tooltip) {
     if (tooltip.data.xrefs) {
         var sourceRow = tooltip.table.append('tr')
             .attr('class','up_pftv_evidence-source');
@@ -456,12 +336,12 @@ var addXRefs = function(tooltip, section) {
         var first = true;
         _.each(groupedSources, function (elem, key) {
             if (first) {
-                addEvidenceXRefLinks(tooltip, section, sourceRow, {
+                addEvidenceXRefLinks(tooltip, sourceRow, {
                     counter: 0, elem: elem, index: key, attrText: 'xref'
                 });
                 first = false;
             } else {
-                addEvidenceXRefLinks(tooltip, section, undefined, {
+                addEvidenceXRefLinks(tooltip, undefined, {
                     counter: 0, elem: elem, index: key, attrText: 'xref'
                 });
             }
@@ -475,11 +355,10 @@ var addUPSection = function(tooltip, upEvidences) {
     if (tooltip.data.ftId || tooltip.data.up_description || (upEvidences.length !== 0) || tooltip.data.association) {
         var upRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         upRow.append('td').attr('colspan',2).text('UniProt');
-        var length = tooltip.pinData.sections.push({title: 'UniProt', information: {}});
-        addFtId(tooltip, tooltip.pinData.sections[length-1]);
-        addDescription(tooltip, tooltip.data.up_description, tooltip.pinData.sections[length-1], 'up_description');
-        tooltip.addEvidences(upEvidences, tooltip.pinData.sections[length-1]);
-        addAssociation(tooltip, tooltip.pinData.sections[length-1]);
+        addFtId(tooltip);
+        addDescription(tooltip, tooltip.data.up_description, 'up_description');
+        tooltip.addEvidences(upEvidences);
+        addAssociation(tooltip);
     }
 };
 
@@ -487,10 +366,9 @@ var addLSSSection = function(tooltip, lssEvidences) {
     if (tooltip.data.lss_description || (lssEvidences.length !== 0) || havePredictions(tooltip.data)) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         lssRow.append('td').attr('colspan',2).text('Large Scale Studies');
-        var length = tooltip.pinData.sections.push({title: 'Large Scale Studies', information: {}});
-        addDescription(tooltip, tooltip.data.lss_description, tooltip.pinData.sections[length-1], 'lss_description');
-        addPredictions(tooltip, tooltip.pinData.sections[length-1]);
-        tooltip.addEvidences(lssEvidences, tooltip.pinData.sections[length-1]);
+        addDescription(tooltip, tooltip.data.lss_description, 'lss_description');
+        addPredictions(tooltip);
+        tooltip.addEvidences(lssEvidences);
     }
 };
 
@@ -504,16 +382,16 @@ var VariantTooltipViewer = function(tooltip) {
                 lssEvidences.push(e);
             }
         });
-        addMutation(tooltip, tooltip.pinData.sections[0]);
-        addXRefs(tooltip, tooltip.pinData.sections[0]);
+        addMutation(tooltip);
+        addXRefs(tooltip);
         addUPSection(tooltip, upEvidences);
         addLSSSection(tooltip, lssEvidences);
     } else {
-        addMutation(tooltip, tooltip.pinData.sections[0]);
-        addPredictions(tooltip, tooltip.pinData.sections[0]);
-        tooltip.addEvidences(tooltip.data.evidences, tooltip.pinData.sections[0]);
-        addXRefs(tooltip, tooltip.pinData.sections[0]);
-        addAssociation(tooltip, tooltip.pinData.sections[0]);
+        addMutation(tooltip);
+        addPredictions(tooltip);
+        tooltip.addEvidences(tooltip.data.evidences);
+        addXRefs(tooltip);
+        addAssociation(tooltip);
     }
 };
 

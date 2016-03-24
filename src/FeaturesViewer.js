@@ -12,7 +12,6 @@ var FeatureFactory = require("./FeatureFactory");
 var VariantFilterDialog = require("./VariantFilterDialog");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
 var TooltipFactory = require('./TooltipFactory');
-var PinPad = require("biojs-vis-pinpad");
 
 var updateZoomFromChart = function(fv) {
     fv.zoom.x(fv.xScale);
@@ -395,39 +394,6 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
     return varLookup ? varLookup : lookup;
 };
 
-// var removeFromPinPad = function(obj, fv) {
-//     var isCandidate = false;
-//     if (obj.element) {
-//         fv.pinPadElements = _.reject(fv.pinPadElements, function(el) {
-//             if (el.internalId === obj.element.id) {
-//                 el.pinned = false;
-//             }
-//             return el.internalId === obj.element.id;
-//         });
-//         if ((fv.selectedFeature !== undefined) && (fv.selectedFeature.internalId === obj.element.id)) {
-//             isCandidate = true;
-//         }
-//     } else if (obj.category) {
-//         fv.pinPadElements = _.reject(fv.pinPadElements, function(el) {
-//             var comparison = fv.getCategoryTitle(el.type.name) === obj.category;
-//             if (comparison) {
-//                 el.pinned = false;
-//             }
-//             if ((fv.selectedFeature !== undefined) && (fv.selectedFeature.internalId === el.internalId)) {
-//                 isCandidate = true;
-//             }
-//             return comparison;
-//         });
-//     }
-//     var tooltip = d3.select('.up_pftv_tooltip-container');
-//     if (isCandidate && (tooltip.node() !== null)) {
-//         var pinContainer = d3.select('.up_pp_iconContainer.up_pftv_iconContainer-pinned');
-//         pinContainer.classed('up_pftv_iconContainer-unpinned', true);
-//         pinContainer.classed('up_pftv_iconContainer-pinned', false);
-//         pinContainer.attr('title', 'Pin tooltip');
-//     }
-// };
-
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noData", "noFeatures", "notFound");
@@ -443,16 +409,18 @@ var FeaturesViewer = function(opts) {
     fv.padding = {top:2, right:10, bottom:2, left:10};
 
     fv.load = function() {
+        fv.initLayout(opts);
         var dataSources = Constants.getDataSources();
         _.each(dataSources, function(source){
-          var url = source.url + opts.uniprotacc + '.json';
+          var url = source.url + opts.uniprotacc;
           var dataLoader = DataLoader.get(url);
+          var container = fv.container.append('div');
           dataLoader.then(function(d){
             if (d instanceof Array) //Workaround to be removed
               d = d[0];
             // First promise to resolve will set global parameters
             if(!fv.sequence) {
-              fv.init(opts, d);
+              fv.loadZoom(d);
             }
             var features = d.features;
             // group by categories
@@ -463,27 +431,11 @@ var FeaturesViewer = function(opts) {
             } else {
               features = DataLoader.processUngroupedFeatures(features);
             }
-            fv.drawCategories(features, source.type, fv);
+            fv.drawCategories(features, source.type, fv, container);
           }).fail(function(e){
             console.log(e);
           });
         });
-
-        // var dataLoader = DataLoader.get(opts.proxy, opts.uniprotacc);
-        // dataLoader.done(function(d) {
-        //     fv.data = d;
-        //     if (d.totalFeatureCount === 0) {
-        //         d3.select(opts.el)
-        //             .text('No features available for protein ' + opts.uniprotacc);
-        //         fv.dispatcher.noFeatures(d);
-        //     } else {
-        //         fv.init(opts, d);
-        //     }
-        // }).fail(function(e) {
-        //     d3.select(opts.el)
-        //         .text(e.responseText);
-        //     fv.dispatcher.noData({error: e});
-        // });
     };
 
     fv.load();
@@ -567,62 +519,50 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     }
 };
 
-FeaturesViewer.prototype.init = function(opts, d) {
+FeaturesViewer.prototype.initLayout = function(opts, d) {
     var fv = this;
-    fv.sequence = d.sequence;
-    fv.accession = d.accession;
-    fv.maxPos = d.sequence.length;
-    fv.xScale = d3.scale.linear()
-        .domain([1, d.sequence.length + 1])
-        .range([fv.padding.left, fv.width - fv.padding.right]);
     //remove any previous text
-    var genericContainer = d3.select(opts.el).text('');
-    var fvContainer = genericContainer
+    var globalContainer = d3.select(opts.el).text('');
+    fvContainer = globalContainer
         .append('div')
         .attr('class', 'up_pftv_container')
         .on('mousedown', function() {
             closeTooltipAndPopup(fv);
         });
-      // if (opts.pinPad === true) {
-      //     fvContainer.style('display', 'inline-block');
-      //     var pinPadId = '_' + new Date().getTime();
-      //     genericContainer.append('div')
-      //         .classed('up_ptfv_pp-container', true)
-      //         .attr('id', pinPadId);
-      //     fv.pinPad = new PinPad({
-      //         ordering: ['type', 'start', 'end'],
-      //         options: {
-      //             el: '#' + pinPadId
-      //             , width: '220px'
-      //             , height: '320px'
-      //             , highlightColor: 'green'
-      //         }
-      //     });
-      //     fv.pinPadElements = [];
-      //     fv.pinPad.dispatcher.on('remove', function(obj) {
-      //         removeFromPinPad(obj, fv);
-      //     });
-      // }
 
-    fv.viewport = createNavRuler(fv, fvContainer);
-    createButtons(fv, d, fvContainer);
-    fv.aaViewer = createAAViewer(fv, fvContainer, d.sequence);
-    fv.zoom = createZoom(fv);
+    fv.header = fvContainer.append('div');
 
     fv.container = fvContainer
         .append('div')
         .attr('class', 'up_pftv_category-container');
 
-    var bottomAAViewerContainer = fvContainer.append('div').attr('class','bottom-aa-container');
-    fv.aaViewer2 = createAAViewer(fv, bottomAAViewerContainer, d.sequence);
-    updateViewportFromChart(fv);
-    updateZoomFromChart(fv);
-    fv.dispatcher.ready(d);
+    fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
 };
 
-FeaturesViewer.prototype.drawCategories = function(data, type, fv) {
+FeaturesViewer.prototype.loadZoom = function(d) {
+  var fv = this;
+  fv.sequence = d.sequence;
+  fv.accession = d.accession;
+  fv.maxPos = d.sequence.length;
+
+  fv.xScale = d3.scale.linear()
+      .domain([1, d.sequence.length + 1])
+      .range([fv.padding.left, fv.width - fv.padding.right]);
+
+  fv.viewport = createNavRuler(fv, fv.header);
+  createButtons(fv, d, fv.header);
+  fv.aaViewer = createAAViewer(fv, fv.header, d.sequence);
+  fv.zoom = createZoom(fv);
+
+  fv.aaViewer2 = createAAViewer(fv, fv.footer, d.sequence);
+  updateViewportFromChart(fv);
+  updateZoomFromChart(fv);
+  fv.dispatcher.ready(d);
+}
+
+FeaturesViewer.prototype.drawCategories = function(data, type, fv, container) {
   _.each(_.keys(data), function(category) {
-    var cat = CategoryFactory.createCategory(category, data[category], type, fv);
+    var cat = CategoryFactory.createCategory(category, data[category], type, fv, container);
     fv.categories.push(cat);
   });
 };
