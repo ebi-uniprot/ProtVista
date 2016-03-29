@@ -566,6 +566,16 @@ svg .up_pftv_intramem {
     fill: #0000CC;
 }
 
+svg .up_pftv_unique {
+    stroke: #fc3133;
+    fill: #fd5a5d;
+}
+
+svg .up_pftv_non_unique {
+    stroke: #8585fc;
+    fill: #5a60fb;
+}
+
 /* Variation */
 .up_pftv_variants-svg .axis path {
     display: none;

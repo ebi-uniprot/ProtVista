@@ -18,12 +18,11 @@ var Constants = function() {
         type: 'variant'
       }];
       return sources;
-    },
-    getCategoryNames: function() {
+    }, getCategoryNamesInOrder: function() {
       return [{
-        MOLECULE_PROCESSING: 'Molecule processing'
-      }, {
         DOMAINS_AND_SITES: 'Domains & sites'
+      }, {
+        MOLECULE_PROCESSING: 'Molecule processing'
       }, {
         PTM: 'Post translational modifications'
       }, {
@@ -34,7 +33,21 @@ var Constants = function() {
         TOPOLOGY: 'Topology'
       }, {
         MUTAGENESIS: 'Mutagenesis'
+      }, {
+        PROTEOMICS: 'Proteomics'
+      }, {
+        VARIATION: 'Variants'
       }];
+    }, getCategoryName: function(name) {
+      var names = this.getCategoryNamesInOrder();
+      var match = _.find( names, function(item){
+        return name === _.keys(item)[0];
+      });
+      if(match) {
+        return match[name];
+      } else {
+        return name;
+      }
     }
   }
 }();

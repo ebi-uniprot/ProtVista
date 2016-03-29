@@ -5,6 +5,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Evidence = require('./Evidence');
+var Constants = require('./Constants');
 
 var DataLoader = function() {
   return {
@@ -37,12 +38,27 @@ var DataLoader = function() {
         return d.category;
       });
       delete categories.VARIANTS;
-      return categories;
+      var orderedPairs = [];
+      var categoriesNames = Constants.getCategoryNamesInOrder();
+      _.each(categoriesNames, function(name){
+        if(categories[_.keys(name)[0]]){
+          orderedPairs.push([
+            _.keys(name)[0],
+            categories[_.keys(name)[0]]
+          ]);
+        }
+      });
+      return orderedPairs;
+    },
+    processProteomics: function(features) {
+      var types = _.map(features, function(d){
+        d.unique ? d.type = 'unique' : d.type = 'non_unique';
+        return d;
+      });
+      return [['PROTEOMICS',types]];
     },
     processUngroupedFeatures: function(features) {
-      var obj = {};
-      obj[features[0].type] = features;
-      return obj;
+      return [[features[0].type, features]];
     },
     processVariants: function(variants, sequence) {
       var mutationArray = [];
@@ -78,7 +94,7 @@ var DataLoader = function() {
             mutationArray[d.begin - 1].variants.push(d);
           }
         });
-      return { VARIATION : mutationArray};
+      return [['VARIATION', mutationArray]];
     }
   };
 }();

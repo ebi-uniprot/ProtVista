@@ -428,6 +428,8 @@ var FeaturesViewer = function(opts) {
               features = DataLoader.groupFeaturesByCategory(features);
             } else if (features.length > 0 && features[0].type === 'VARIANT') {
               features = DataLoader.processVariants(features, d.sequence);
+            } else if (features.length > 0 && features[0].type === 'PROTEOMICS'){
+              features = DataLoader.processProteomics(features);
             } else {
               features = DataLoader.processUngroupedFeatures(features);
             }
@@ -561,8 +563,8 @@ FeaturesViewer.prototype.loadZoom = function(d) {
 }
 
 FeaturesViewer.prototype.drawCategories = function(data, type, fv, container) {
-  _.each(_.keys(data), function(category) {
-    var cat = CategoryFactory.createCategory(category, data[category], type, fv, container);
+  _.each(data, function(category) {
+    var cat = CategoryFactory.createCategory(category[0], category[1], type, fv, container);
     fv.categories.push(cat);
   });
 };

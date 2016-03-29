@@ -63,7 +63,8 @@ var symbolSize = 10,
         stop_gained:'variant',//CHECK
         init_codon:'variant',//CHECK
         //proteomics
-        proteomics:'rectangle'
+        unique:'rectangle',
+        non_unique:'rectangle'
     };
 
 var Feature = function() {

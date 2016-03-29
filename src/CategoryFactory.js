@@ -9,6 +9,7 @@ var FeatureFactory = require("./FeatureFactory");
 var NonOverlappingLayout = require("./NonOverlappingLayout");
 var BasicViewer = require("./BasicViewer");
 var ViewerHelper = require("./ViewerHelper");
+var Constants = require("./Constants");
 
 var Category = function(name, data, type, fv, container) {
     var category = this;
@@ -25,7 +26,7 @@ var Category = function(name, data, type, fv, container) {
     category.header = category.categoryContainer.append('a')
         .attr('class', 'up_pftv_category-name up_pftv_arrow-right')
         .attr('title', category.name)
-        .text(category.name)
+        .text(Constants.getCategoryName(category.name))
         .on('click', function() {
             category.toggle();
             category.propagateSelection();
