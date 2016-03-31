@@ -8,8 +8,6 @@ var FeatureFactory = require("./FeatureFactory");
 var NonOverlappingLayout = require("./NonOverlappingLayout");
 var BasicViewer = require("./BasicViewer");
 var VariantViewer = require("./VariantViewer");
-var VariantFilterDialog = require("./VariantFilterDialog");
-var LegendDialog = require("./VariantLegendDialog");
 var Constants = require("./Constants");
 
 var Track = function(typeFeatures, category) {
@@ -40,6 +38,7 @@ var BasicTrackViewer = function(track) {
 var VariantTrackViewer = function(track) {
     return new VariantViewer(
         track.category.data.label, track.data, track.trackContainer, track.category.fv, track.variantHeight
+        , track.titleContainer
     );
 };
 
@@ -56,14 +55,8 @@ Track.variant = function() {
     var self = this;
     var trackInfo = Constants.getTrackInfo('variant');
     this.variantHeight = 430;
-    this.titleContainer.classed('up_pftv_track-header-container', true);
-    this.titleContainer.style('height', this.variantHeight);
-    this.titleContainer.append('div')
-        .attr('class', 'up_pftv_track-header')
-        .attr('title', trackInfo.label + '\n' + trackInfo.tooltip)
-        .text(trackInfo.label);
-    VariantFilterDialog.displayDialog(self.titleContainer, self.category.fv);
-    LegendDialog.createLegendDialog(self.titleContainer);
+    this.titleContainer.attr('class', 'up_pftv_track-header')
+        .attr('style','height:' + this.variantHeight);
     this.trackViewer = new VariantTrackViewer(this);
 };
 

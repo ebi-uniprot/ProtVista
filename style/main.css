@@ -245,30 +245,23 @@ svg {
     padding: 0.5em 0 0.5em 0.15em;
     text-align: left;
 }
-.up_pftv_indentedCheck {
-    padding-left: 1.2em;
-    font-size: .9em;
+
+.up_pftv_dialog-container li a {
+  display: block;
+  line-height: 2em;
+  padding: 0 .2em;
+  cursor: pointer;
 }
 
-.up_pftv_dialog-legend {
-    padding: 0.5em 0.5em 0.1em 0;
-}
 
-.up_pftv_legend, .up_pftv_legendRect, .up_pftv_legendTitle {
-    height: 15px;
-}
-
-.up_pftv_legendRect {
+.up_pftv_legend {
+    vertical-align: sub;
+    width: 1.5em;
     display: inline-block;
-    vertical-align: middle;
-    width: 10px;
-}
-
-.up_pftv_legendTitle {
-    display: inline-block;
-    vertical-align: text-bottom;
-    padding-left: .2em;
-    font-size: 0.76em;
+    height: 1em;
+    border-radius: .4em;
+    border: 2px solid #cacaca;
+    margin-right: .5em;
 }
 
 /* Close button */

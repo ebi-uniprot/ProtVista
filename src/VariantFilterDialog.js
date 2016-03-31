@@ -5,134 +5,92 @@
 
 var d3 = require("d3");
 var _ = require("underscore");
+var $ = require('jquery');
 var Evidence = require('./Evidence');
 
-var allFilters = [
-    {
-        id: 'up_pftv_dialog-checkReviewed',
-        label: 'UniProt reviewed',
-        on: true,
-        property: 'sourceType',
-        value: [Evidence.variantSourceType.uniprot, Evidence.variantSourceType.mixed],
-        subfilters: [
-            {
-                id: 'up_pftv_dialog-checkDisease',
-                label: 'Disease associated',
-                clazz: 'up_pftv_indentedCheck',
-                on: true,
-                property: 'disease',
-                value: [true]
-            },
-            {
-                id: 'up_pftv_dialog-checkNotDisease',
-                label: 'Not disease associated',
-                clazz: 'up_pftv_indentedCheck',
-                on: true,
-                property: 'disease',
-                value: [false]
-            }
-        ]
-    },
-    {
-        id: 'up_pftv_dialog-checkOther',
-        label: 'Large scale studies',
-        on: true,
-        property: 'sourceType',
-        value: [Evidence.variantSourceType.lss, Evidence.variantSourceType.mixed]
-    }
-];
+// deleteriousColor: '#ff3300',
+// getPredictionColor: d3.scale.linear()
+//     .domain([0,1])
+//     .range(['#ff3300','#009900']),
 
-var onClick = function(fv) {
-    _.each(allFilters, function(filter) {
-        var showFilter = false;
-        if (filter.subfilters) {
-            _.each(filter.subfilters, function(subfilter) {
-                var showSubfilter = d3.select('#' + subfilter.id).property('checked');
-                subfilter.on = showSubfilter;
-                showFilter = showFilter || showSubfilter;
-            });
-            filter.on = showFilter;
-            d3.select('#' + filter.id).property('checked', showFilter);
-        } else {
-            filter.on = d3.select('#' + filter.id).property('checked');
-        }
+var filters = [{
+  label: 'Disease associated',
+  on: true,
+  property: 'disease',
+  color: '#990000',
+  value: true
+}, {
+  label: 'Predicted',
+  on: true,
+  property: 'sourceType',
+  value: Evidence.variantSourceType.lss
+}, {
+  label: 'Not disease associated',
+  on: true,
+  property: 'disease',
+  color: '#99cc00',
+  value: false
+}, {
+  label: 'Init, stop',
+  on: true,
+  property: '',
+  color: '#0033cc',
+  value: ''
+}];
+
+var VariantFilterDialog = function(container, variantViewer) {
+  var variantFilterDialog = this;
+  variantFilterDialog.variantViewer = variantViewer;
+
+  var drawFilter = function(filter, li) {
+    var anchor = li.append('a')
+      .on('click', function() {
+        var inputElem = d3.select(this);
+        filter.on = !filter.on;
+        var filteredData = filterData(variantFilterDialog.variantViewer.features, filter);
+        variantViewer.updateData(filteredData);
+      });
+      anchor.append('div')
+        .attr('class', 'up_pftv_legend')
+        .attr('style','background-color:' + filter.color);
+      anchor.append('span')
+        .text(filter.label);
+  };
+
+  container.append('div').text('Filter consequence');
+  var ul = container.append('ul')
+    .attr('class', 'up_pftv_dialog-container');
+  variantFilterDialog.dialog
+  _.each(filters, function(filter) {
+    var li = ul.append('li');
+    drawFilter(filter, li)
+  });
+
+  return variantFilterDialog;
+};
+
+var filterData = function(data, filter) {
+  var newData = [];
+  _.each(data, function(feature) {
+    var filtered = _.filter(feature.variants, function(variant) {
+      return (!filter.on &&
+        ((variant[filter.property] === undefined) || (filter.value != variant[filter.property]))) || filter.on;
     });
-    fv.applyFilter();
+    var featureCopy = $.extend(true, {}, feature);
+    featureCopy.variants = filtered;
+    newData.push(featureCopy);
+  });
+  return newData;
 };
 
-var createCheckbox = function(container, filter, fv) {
-    var div = container.append('div');
-    if (filter.clazz) {
-        div.attr('class', filter.clazz);
-    }
-    div.append('input')
-        .classed('up_pftv_dialog_checkboxLabel', true)
-        .attr('type', 'checkbox')
-        .attr('id', filter.id)
-        .property('checked', true)
-        .on('click', function() {
-            var inputElem = d3.select(this);
-            d3.select(this.parentNode).selectAll('div')
-                .selectAll('input')
-                .property('checked', inputElem.property('checked'));
-            onClick(fv);
-        });
-    div.append('label')
-        .classed('up_pftv_dialog_checkboxLabel', true)
-        .text(filter.label)
-        .attr('for', filter.id);
-    return div;
-};
-
-var populateDialog = function(self, fv) {
-    _.each(allFilters, function(filter) {
-        var container = createCheckbox(self.dialog, filter, fv);
-        if (filter.subfilters) {
-            _.each(filter.subfilters, function(subfilter) {
-                createCheckbox(container, subfilter, fv);
-            });
-        }
-    });
-};
-
-var subFilterLoop = function(subfilters, feature) {
-    var subDisplay = false;
-    _.each(subfilters, function(subfilter) {
-        if (subfilter.on) {
-            var ftValuePropSub = feature[subfilter.property] === undefined
-                ? false : feature[subfilter.property];
-            subDisplay = subDisplay || _.contains(subfilter.value, ftValuePropSub);
-        }
-    });
-    return subDisplay;
-};
-
-var VariantFilterDialog = function() {
-    return {
-        displayDialog: function(container, fv) {
-            this.dialog = container.append('div')
-                .attr('class','up_pftv_dialog-container');
-            populateDialog(this, fv);
-            return this.dialog;
-        },
-        displayFeature: function(feature) {
-            var display = false;
-            _.each(allFilters, function(filter) {
-                if (filter.on) {
-                    var ftValueProp = feature[filter.property] === undefined ? false : feature[filter.property];
-                    var parentDisplay = _.contains(filter.value, ftValueProp);
-                    if (parentDisplay && filter.subfilters) {
-                        var subDisplay = subFilterLoop(filter.subfilters, feature);
-                        display = display || (parentDisplay && subDisplay);
-                    } else {
-                        display = display || parentDisplay;
-                    }
-                }
-            });
-
-            return display;
-        }
-    };
-}();
+var displayFeature = function(feature) {
+  var display = false;
+  _.each(filters, function(filter) {
+    var ftValueProp = feature[filter.property] === undefined ? false : feature[filter.property];
+    var parentDisplay = _.contains(filter.value, ftValueProp);
+    display = display || parentDisplay;
+  });
+  return display;
+}
 
 module.exports = VariantFilterDialog;

@@ -21,29 +21,6 @@ var aaList = ['G', 'A', 'V', 'L', 'I'
     , 'P'
     , '*'];
 
-var drawMainSequence = function(variantViewer, bars) {
-    var circle = bars.selectAll('circle')
-        .data(function(d) {
-            return [d];
-        });
-
-    circle
-        .enter()
-        .append('circle');
-
-    circle.attr('cx', function(d) {
-        return variantViewer.xScale(d.pos);
-    })
-        .attr('cy', function(d) {
-            return variantViewer.yScale(d.normal);
-        })
-        .attr('r', 1)
-        .attr('style','visibility:hidden')
-        .attr('class', 'main-seq');
-
-    circle.exit().remove();
-};
-
 var variantsFill = function(d, fv) {
     if((d.mutation === '*') || (d.begin > fv.maxPos)) {
         return LegendDialog.othersColor;
@@ -82,7 +59,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
 
     variantCircle
         .attr('r', function(d) {
-            return VariantFilterDialog.displayFeature(d) ? frequency(0) : 0;
+            return frequency(0);
         })
         .attr('cx', function(d) {
             return variantViewer.xScale(Math.min(d.begin, fv.sequence.length));
@@ -132,7 +109,7 @@ var createDataSeries = function(variantViewer, svg, features, series) {
     return dataSeries;
 };
 
-var VariantViewer = function(catTitle, features, container, fv, variantHeight) {
+var VariantViewer = function(catTitle, features, container, fv, variantHeight, titleContainer) {
     var variantViewer = this;
     variantViewer.height = variantHeight;
     variantViewer.width = fv.width;
@@ -140,6 +117,9 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight) {
     variantViewer.showAutomatic = true;
     variantViewer.xScale = fv.xScale;
     variantViewer.margin = {top:20, bottom:10};
+    variantViewer.features = features;
+
+    var filter = new VariantFilterDialog(titleContainer, variantViewer);
 
     variantViewer.yScale = d3.scale.ordinal()
         .domain(aaList)
@@ -168,12 +148,13 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight) {
 
                 bars.enter()
                     .append('g')
-                    .classed('up_pftv_var-series', true);
+                    .transition()
+                    .duration(250)
+                    .attr('class','up_pftv_var-series');
 
-                // drawMainSequence(variantViewer, bars);
                 drawVariants(variantViewer, bars, frequency, fv, container, catTitle);
 
-                bars.exit().remove();
+                bars.exit().transition().duration(250).remove();
             });
         };
 
@@ -211,6 +192,11 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight) {
             ViewerHelper.updateShadow(fv.selectedFeature, fv);
         }
     };
+
+    this.updateData = function(data) {
+      dataSeries.datum(data);
+      this.update();
+    }
 
     return this;
 };

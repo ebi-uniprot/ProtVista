@@ -454,18 +454,6 @@ FeaturesViewer.prototype.getCategoryTitle = function(type) {
     return category ? category.title : undefined;
 };
 
-FeaturesViewer.prototype.applyFilter = function() {
-    var fv = this;
-    _.each(fv.filterCategories, function(category) {
-        category.update();
-    });
-
-    if (fv.selectedFeature && _.contains(fv.filterTypes, fv.selectedFeature.type.name) &&
-        !VariantFilterDialog.displayFeature(fv.selectedFeature) ) {
-        ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
-    }
-};
-
 FeaturesViewer.prototype.updateFeatureSelector = function() {
     this.aaViewer.selectFeature();
     this.aaViewer2.selectFeature();

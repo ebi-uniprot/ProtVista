@@ -87,8 +87,7 @@
     ],
     "css": [
       "/build/css/fontello.css",
-      "/build/css/main.css",
-      "/build/css/pp_main.css"
+      "/build/css/main.css"
     ],
     "snippets": [
       "snippets"
