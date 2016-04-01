@@ -56,7 +56,7 @@ Track.variant = function() {
     var trackInfo = Constants.getTrackInfo('variant');
     this.variantHeight = 430;
     this.titleContainer.attr('class', 'up_pftv_track-header')
-        .attr('style','height:' + this.variantHeight);
+        .attr('style','height:' + this.variantHeight + 'px');
     this.trackViewer = new VariantTrackViewer(this);
 };
 

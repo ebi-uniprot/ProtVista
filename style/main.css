@@ -49,14 +49,20 @@ svg {
 .up_pftv_container {
     position: relative;
     width: 960px;
-    color: #557071;
+    color:#557071 !important;
     font-family: 'Helvetica neue', Helvetica, Arial, sans-serif !important;
     font-size: 13px !important;
-    line-height: 1.5;
+    line-height: 1.5 !important;
+}
+
+.up_pftv_container a {
+  color:#557071 !important;
+  border:none !important;
 }
 
 .up_pftv_container h4 {
-  font-weight: 500;
+  font-size: 1em !important;
+  font-weight: 500 !important;
   border-bottom: 1px solid #cacaca;
   margin-bottom: .7em;
 }
