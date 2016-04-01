@@ -8,34 +8,42 @@ var _ = require("underscore");
 var $ = require('jquery');
 var Evidence = require('./Evidence');
 
-// deleteriousColor: '#ff3300',
-// getPredictionColor: d3.scale.linear()
-//     .domain([0,1])
-//     .range(['#ff3300','#009900']),
-
 var filters = [{
-  label: 'Disease associated',
-  on: true,
-  property: 'disease',
-  color: '#990000',
-  value: true
+  label: 'Disease (UniProt)',
+  on: false,
+  properties: {
+    'disease': true,
+    'sourceType': [
+      Evidence.variantSourceType.uniprot,
+      Evidence.variantSourceType.mixed
+    ]
+  },
+  color: '#990000'
 }, {
   label: 'Predicted',
-  on: true,
-  property: 'sourceType',
-  value: Evidence.variantSourceType.lss
+  on: false,
+  properties: {
+    'sourceType':Evidence.variantSourceType.lss
+  },
+  colorRange: ['#ff3300','#009900']
 }, {
-  label: 'Not disease associated',
-  on: true,
-  property: 'disease',
-  color: '#99cc00',
-  value: false
+  label: 'Non-disease (UniProt)',
+  on: false,
+  properties: {
+    'disease':false,
+    'sourceType': [
+      Evidence.variantSourceType.uniprot,
+      Evidence.variantSourceType.mixed
+    ]
+  },
+  color: '#99cc00'
 }, {
-  label: 'Init, stop',
-  on: true,
-  property: '',
-  color: '#0033cc',
-  value: ''
+  label: 'Init, stop loss or gain',
+  on: false,
+  properties: {
+    'alternativeSequence':'*'
+  },
+  color: '#0033cc'
 }];
 
 var VariantFilterDialog = function(container, variantViewer) {
@@ -47,17 +55,18 @@ var VariantFilterDialog = function(container, variantViewer) {
       .on('click', function() {
         var inputElem = d3.select(this);
         filter.on = !filter.on;
-        var filteredData = filterData(variantFilterDialog.variantViewer.features, filter);
+        li.select('.up_pftv_legend').attr('style', getBackground(filter));
+        var filteredData = filterData(variantFilterDialog.variantViewer.features);
         variantViewer.updateData(filteredData);
       });
       anchor.append('div')
         .attr('class', 'up_pftv_legend')
-        .attr('style','background-color:' + filter.color);
+        .attr('style',getBackground(filter));
       anchor.append('span')
         .text(filter.label);
   };
 
-  container.append('div').text('Filter consequence');
+  container.append('h4').text('Filter consequence');
   var ul = container.append('ul')
     .attr('class', 'up_pftv_dialog-container');
   variantFilterDialog.dialog
@@ -69,12 +78,31 @@ var VariantFilterDialog = function(container, variantViewer) {
   return variantFilterDialog;
 };
 
-var filterData = function(data, filter) {
+var getBackground = function(filter) {
+  if(filter.colorRange) {
+    return 'background:' + (filter.on ? '#ffffff' : 'linear-gradient(' + filter.colorRange + ');');
+  } else {
+    return 'background-color:' + (filter.on ? '#ffffff' : filter.color);
+  }
+}
+
+var filterData = function(data) {
+  var activeFilters = _.filter(filters, 'on');
   var newData = [];
   _.each(data, function(feature) {
     var filtered = _.filter(feature.variants, function(variant) {
-      return (!filter.on &&
-        ((variant[filter.property] === undefined) || (filter.value != variant[filter.property]))) || filter.on;
+      return !_.some(activeFilters, function(filter){
+        var discard = _.every(_.keys(filter.properties), function(prop){
+          if(filter.properties[prop] instanceof Array) {
+            return _.some(filter.properties[prop], function(orProp){
+              return variant[prop] === orProp;
+            });
+          } else {
+            return variant[prop] === filter.properties[prop];
+          }
+        });
+        return discard;
+      })
     });
     var featureCopy = $.extend(true, {}, feature);
     featureCopy.variants = filtered;

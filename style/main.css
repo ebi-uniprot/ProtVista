@@ -49,11 +49,16 @@ svg {
 .up_pftv_container {
     position: relative;
     width: 960px;
-    color: #3c4043;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
-    font-weight: 300;
-    font-size: 16px;
+    color: #557071;
+    font-family: 'Helvetica neue', Helvetica, Arial, sans-serif !important;
+    font-size: 13px !important;
     line-height: 1.5;
+}
+
+.up_pftv_container h4 {
+  font-weight: 500;
+  border-bottom: 1px solid #cacaca;
+  margin-bottom: .7em;
 }
 
 .up_ptfv_pp-container {
@@ -82,6 +87,8 @@ svg {
 }
 
 .up_pftv_category-name, .up_pftv_track-header {
+    font-weight: 400;
+    line-height: 2.1em;
     display: inline-block;
     width: 180px;
     vertical-align: bottom;
@@ -238,12 +245,9 @@ svg {
 }
 
 /* Dialogs */
-.up_pftv_dialog-container, .up_pftv_popupDialog-container {
-    font-family: "Gill Sans","Gill Sans MT",Calibri,sans-serif;
-    font-weight: lighter;
-    font-size: .9em;
-    padding: 0.5em 0 0.5em 0.15em;
-    text-align: left;
+
+.up_pftv_dialog-container {
+  margin:0;padding:0;
 }
 
 .up_pftv_dialog-container li a {
@@ -266,7 +270,6 @@ svg {
 
 /* Close button */
 .up_pftv_tooltip-close {
-    font-family: Arial, sans-serif;
     color: #FFF;
     background-color: #333333;
     position: absolute;
@@ -321,8 +324,7 @@ svg {
 }
 
 .up_pftv_tooltip-container table {
-    font-weight: lighter;
-    font-size: .9em;
+    font-size: 13px;
     border: 2px solid #CCC;
     border-spacing: 0;
     border-collapse: collapse;
@@ -334,9 +336,9 @@ svg {
 
 .up_pftv_tooltip-container table th {
     text-transform: capitalize;
+    font-weight: 400;
     white-space: nowrap;
     letter-spacing: .05em;
-    font-weight: lighter;
     font-size: 1.1em;
     background-color: #595959;
     line-height: 2em;
@@ -351,7 +353,7 @@ svg {
 }
 
 .up_pftv_tooltip-container td:first-child {
-    font-weight: normal;
+    font-weight: bold;
 }
 
 .up_pftv_tooltip-container .up_pftv_evidence-col {

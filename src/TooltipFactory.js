@@ -315,7 +315,7 @@ var addAssociation = function(tooltip) {
 var addMutation = function(tooltip) {
     var mutRow = tooltip.table.append('tr');
     mutRow.append('td').text('Variant');
-    var text = tooltip.data.wildType + ' > ' + tooltip.data.mutation;
+    var text = tooltip.data.wildType + ' > ' + tooltip.data.alternativeSequence;
     mutRow.append('td').text(text);
 };
 

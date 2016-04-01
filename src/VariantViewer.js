@@ -22,7 +22,7 @@ var aaList = ['G', 'A', 'V', 'L', 'I'
     , '*'];
 
 var variantsFill = function(d, fv) {
-    if((d.mutation === '*') || (d.begin > fv.maxPos)) {
+    if((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
         return LegendDialog.othersColor;
     } else if((d.sourceType === Evidence.variantSourceType.uniprot) ||
         (d.sourceType === Evidence.variantSourceType.mixed)) {

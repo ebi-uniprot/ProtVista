@@ -375,13 +375,13 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
                 if (feature.variants && (feature.type.name === 'VARIANT')) {
                     varLookup = _.find(feature.variants, function(variant) {
                         var varEnd = variant.end ? variant.end : variant.begin;
-                        return (+variant.begin === +begin) && (+varEnd === +end) && (variant.mutation === altSequence);
+                        return (+variant.begin === +begin) && (+varEnd === +end) && (variant.alternativeSequence === altSequence);
                     });
                     return varLookup;
                 } else if (feature.type.name === 'CONFLICT'){
                     return (+feature.begin === +begin) && (+ftEnd === +end) && (feature.alternativeSequence === altSequence);
                 } else if (feature.type.name === 'MUTAGEN') {
-                    return (+feature.begin === +begin) && (+ftEnd === +end) && (feature.mutation === altSequence);
+                    return (+feature.begin === +begin) && (+ftEnd === +end) && (feature.alternativeSequence === altSequence);
                 } else {
                     return (feature.type.name === ftType) && (+feature.begin === +begin) && (+ftEnd === +end);
                 }
