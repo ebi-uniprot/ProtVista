@@ -25,7 +25,8 @@ var createTooltipBox = function(container) {
 
 var getEvidenceText = function(tooltip, code, sources) {
     var acronym = Evidence.acronym[code];
-    var publications = _.where(sources, {name: 'PubMed'}).length;
+    console.log(sources);
+    var publications = sources['name'] === 'PubMed';
     publications += _.where(sources, {name: 'Citation'}).length;
     var evidenceText = '';
     if ((acronym === 'EXP') || (acronym === 'NAS')) {
@@ -190,7 +191,6 @@ var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
         sourceRow.append('td')
             .text('');
     }
-
     var list = sourceRow.append('td').text(info.elem.name + ' ');
     var url = info.alternative === true ? info.elem.alternativeUrl: info.elem.url;
     list.append('span').append('a')
@@ -206,7 +206,7 @@ Tooltip.prototype.addEvidences = function(evidences) {
             .attr('class','up_pftv_evidence-col');
         typeRow.append('td')
             .text('Evidence');
-        var evidenceText = getEvidenceText(tooltip, e.code, e.sources);
+        var evidenceText = getEvidenceText(tooltip, e.code, e.source);
         typeRow.append('td')
             .text(evidenceText);
         addEvidenceXRefLinks(tooltip, undefined, {
@@ -320,37 +320,23 @@ var addMutation = function(tooltip) {
 };
 
 var addXRefs = function(tooltip) {
-    if (tooltip.data.xrefs) {
-        var sourceRow = tooltip.table.append('tr')
-            .attr('class','up_pftv_evidence-source');
+  if (tooltip.data.xrefs) {
+    var sourceRow = tooltip.table.append('tr')
+      .attr('class', 'up_pftv_evidence-source');
 
-        sourceRow.append('td')
-            .text('Cross-references');
+    sourceRow.append('td')
+      .text('Cross-references');
 
-        var groupedSources = _.uniq(tooltip.data.xrefs, function(ref) {
-            return ref.name + ref.id + ref.url;
-        });
-        groupedSources = _.groupBy(groupedSources, 'name');
-        delete groupedSources['undefined'];
-
-        var first = true;
-        _.each(groupedSources, function (elem, key) {
-            if (first) {
-                addEvidenceXRefLinks(tooltip, sourceRow, {
-                    counter: 0, elem: elem, index: key, attrText: 'xref'
-                });
-                first = false;
-            } else {
-                addEvidenceXRefLinks(tooltip, undefined, {
-                    counter: 0, elem: elem, index: key, attrText: 'xref'
-                });
-            }
-
-
-        });
-    }
+    _.each(tooltip.data.xrefs, function(elem, key) {
+      addEvidenceXRefLinks(tooltip, sourceRow, {
+        counter: 0,
+        elem: elem,
+        index: key,
+        attrText: 'xref'
+      });
+    });
+  }
 };
-
 var addUPSection = function(tooltip, upEvidences) {
     if (tooltip.data.ftId || tooltip.data.up_description || (upEvidences.length !== 0) || tooltip.data.association) {
         var upRow = tooltip.table.append('tr').classed('up_pftv_section', true);
