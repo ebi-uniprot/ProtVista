@@ -25,9 +25,7 @@ var createTooltipBox = function(container) {
 
 var getEvidenceText = function(tooltip, code, sources) {
     var acronym = Evidence.acronym[code];
-    console.log(sources);
-    var publications = sources['name'] === 'PubMed';
-    publications += _.where(sources, {name: 'Citation'}).length;
+    var publications = (sources['name'] === 'PubMed')||(sources['name'] === 'Citation') ? 1:0;
     var evidenceText = '';
     if ((acronym === 'EXP') || (acronym === 'NAS')) {
         publications += _.filter(sources, function(s) {
