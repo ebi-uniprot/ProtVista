@@ -25,7 +25,8 @@ var createTooltipBox = function(container) {
 
 var getEvidenceText = function(tooltip, code, sources) {
     var acronym = Evidence.acronym[code];
-    var publications = (sources['name'] === 'PubMed')||(sources['name'] === 'Citation') ? 1:0;
+    var publications = _.where(sources, {name: 'PubMed'}).length;
+    publications += _.where(sources, {name: 'Citation'}).length;
     var evidenceText = '';
     if ((acronym === 'EXP') || (acronym === 'NAS')) {
         publications += _.filter(sources, function(s) {
@@ -103,14 +104,14 @@ var parseVariantDescription = function(data) {
 };
 
 var addFtId = function(tooltip) {
-    if (tooltip.data.ftId !== undefined) {
+    if (tooltip.data.ftId) {
         var dataId = tooltip.table.append('tr');
         dataId.append('td').text('Feature ID');
         dataId.append('td').text(tooltip.data.ftId);
     }
 };
 
-var addDescription = function(tooltip, description, descriptionType){
+var addDescription = function(tooltip, description){
     if (description) {
         var dataDes = tooltip.table.append('tr');
         dataDes.append('td').text('Description');
@@ -126,8 +127,6 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
     tooltip.tooltipViewer = undefined;
 
     var tooltipContainer = createTooltipBox(container);
-
-
 
     if (coordinates) {
         tooltipContainer.style('left', (coordinates.x + 10) + 'px')
@@ -189,26 +188,43 @@ var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
         sourceRow.append('td')
             .text('');
     }
-    var list = sourceRow.append('td').text(info.elem.name + ' ');
-    var url = info.alternative === true ? info.elem.alternativeUrl: info.elem.url;
-    list.append('span').append('a')
-        .attr('href', url)
-        .attr('target', '_blank')
-        .text(info.elem.id);
+
+    var list = sourceRow.append('td').text(info.index + ' ');
+    _.each(info.elem, function(el, i) {
+        var url = info.alternative === true ? el.alternativeUrl: el.url;
+        list.append('span').append('a')
+            .attr('href', url)
+            .attr('target', '_blank')
+            .text(el.id);
+        if (i !== (info.elem.length-1)) {
+            list.append('span').text(', ');
+        }
+    });
 };
 
 Tooltip.prototype.addEvidences = function(evidences) {
     var tooltip = this;
-    _.each(evidences, function(e, counter) {
+    _.each(evidences, function(sources, eco) {
         var typeRow = tooltip.table.append('tr')
             .attr('class','up_pftv_evidence-col');
         typeRow.append('td')
             .text('Evidence');
-        var evidenceText = getEvidenceText(tooltip, e.code, e.source);
+        var evidenceText = getEvidenceText(tooltip, eco, sources);
         typeRow.append('td')
             .text(evidenceText);
-        addEvidenceXRefLinks(tooltip, undefined, {
-            counter: counter, elem: e.source, attrText: 'evidence'
+
+        var groupedSources = _.groupBy(sources, 'name');
+        delete groupedSources['undefined'];
+
+        _.each(groupedSources, function(elem, index) {
+            addEvidenceXRefLinks(tooltip, undefined, {
+                counter: eco, elem: elem, index: index, attrText: 'evidence'
+            });
+            if (index === 'PubMed') {
+                addEvidenceXRefLinks(tooltip, undefined, {
+                    counter:eco, elem: elem, index: 'EuropePMC', attrText: 'evidence', alternative: true
+                });
+            }
         });
     });
 };
@@ -293,12 +309,12 @@ var addAssociation = function(tooltip) {
                 descRow.append('td').text('Description');
                 descRow.append('td').text(association.description);
             }
-            if (association.moreInfo) {
-                var groupedSources = _.groupBy(association.moreInfo, 'name');
+            if (association.xrefs) {
+                var groupedSources = _.groupBy(association.xrefs, 'name');
                 _.each(groupedSources, function(elem, index) {
-                    var moreInfo = tooltip.table.append('tr');
-                    moreInfo.append('td');
-                    var list = moreInfo.append('td').text(index + ' ');
+                    var xrefs = tooltip.table.append('tr');
+                    xrefs.append('td');
+                    var list = xrefs.append('td').text(index + ' ');
 
                     _.each(elem, function(el) {
                         list.append('span').append('a').attr('href', el.url)
@@ -325,15 +341,28 @@ var addXRefs = function(tooltip) {
     sourceRow.append('td')
       .text('Cross-references');
 
-    _.each(tooltip.data.xrefs, function(elem, key) {
-      addEvidenceXRefLinks(tooltip, sourceRow, {
-        counter: 0,
-        elem: elem,
-        index: key,
-        attrText: 'xref'
-      });
-    });
-  }
+        var groupedSources = _.uniq(tooltip.data.xrefs, function(ref) {
+            return ref.name + ref.id + ref.url;
+        });
+        groupedSources = _.groupBy(groupedSources, 'name');
+        delete groupedSources['undefined'];
+
+        var first = true;
+        _.each(groupedSources, function (elem, key) {
+            if (first) {
+                addEvidenceXRefLinks(tooltip, sourceRow, {
+                    counter: 0, elem: elem, index: key, attrText: 'xref'
+                });
+                first = false;
+            } else {
+                addEvidenceXRefLinks(tooltip, undefined, {
+                    counter: 0, elem: elem, index: key, attrText: 'xref'
+                });
+            }
+
+
+        });
+    }
 };
 var addUPSection = function(tooltip, upEvidences) {
     if (tooltip.data.ftId || tooltip.data.up_description || (upEvidences.length !== 0) || tooltip.data.association) {
@@ -358,12 +387,12 @@ var addLSSSection = function(tooltip, lssEvidences) {
 
 var VariantTooltipViewer = function(tooltip) {
     if (tooltip.data.sourceType === Evidence.variantSourceType.mixed) {
-        var upEvidences = [], lssEvidences = [];
-        _.each(tooltip.data.evidences, function(e) {
-            if (_.contains(Evidence.manual, e.code)) {
-                upEvidences.push(e);
+        var upEvidences = {}, lssEvidences = {};
+        _.each(tooltip.data.evidences, function(sources, eco) {
+            if (_.contains(Evidence.manual, eco)) {
+                upEvidences[eco] = tooltip.data.evidences[eco];
             } else {
-                lssEvidences.push(e);
+                lssEvidences[eco] = tooltip.data.evidences[eco];
             }
         });
         addMutation(tooltip);
