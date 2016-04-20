@@ -71,7 +71,11 @@ var DataLoader = function() {
         processProteomics: function(features) {
             features = groupEvidencesByCode(features);
             var types = _.map(features, function(d){
-                d.unique ? d.type = 'unique' : d.type = 'non_unique';
+                if (d.unique) {
+                    d.type = 'unique';
+                } else {
+                    d.type = 'non_unique';
+                }
                 return d;
             });
             return [['PROTEOMICS',types]];

@@ -548,7 +548,7 @@ FeaturesViewer.prototype.loadZoom = function(d) {
   updateViewportFromChart(fv);
   updateZoomFromChart(fv);
   fv.dispatcher.ready(d);
-}
+};
 
 FeaturesViewer.prototype.drawCategories = function(data, type, fv, container) {
   _.each(data, function(category) {

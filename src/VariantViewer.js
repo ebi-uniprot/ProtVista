@@ -196,7 +196,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
     this.updateData = function(data) {
       dataSeries.datum(data);
       this.update();
-    }
+    };
 
     return this;
 };

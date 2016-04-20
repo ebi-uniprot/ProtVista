@@ -69,10 +69,10 @@ var VariantFilterDialog = function(container, variantViewer) {
   container.append('h4').text('Filter consequence');
   var ul = container.append('ul')
     .attr('class', 'up_pftv_dialog-container');
-  variantFilterDialog.dialog
+
   _.each(filters, function(filter) {
     var li = ul.append('li');
-    drawFilter(filter, li)
+    drawFilter(filter, li);
   });
 
   return variantFilterDialog;
@@ -84,7 +84,7 @@ var getBackground = function(filter) {
   } else {
     return 'background-color:' + (filter.on ? '#ffffff' : filter.color);
   }
-}
+};
 
 var filterData = function(data) {
   var activeFilters = _.filter(filters, 'on');
@@ -102,7 +102,7 @@ var filterData = function(data) {
           }
         });
         return discard;
-      })
+      });
     });
     var featureCopy = $.extend(true, {}, feature);
     featureCopy.variants = filtered;
@@ -119,6 +119,6 @@ var displayFeature = function(feature) {
     display = display || parentDisplay;
   });
   return display;
-}
+};
 
 module.exports = VariantFilterDialog;
