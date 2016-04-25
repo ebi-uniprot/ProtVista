@@ -123,7 +123,7 @@ var Constants = function() {
     }, getTrackInfo: function(name) {
       return this.getTrackNames()[name];
     }
-  }
+  };
 }();
 
 module.exports = Constants;
