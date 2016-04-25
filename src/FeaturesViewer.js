@@ -447,13 +447,13 @@ var FeaturesViewer = function(opts) {
 
 FeaturesViewer.prototype.getCategoryTitle = function(type) {
     var fv = this;
-    var category = _.find(fv.categoryOrderAndType, function(cat) {
-        if (_.contains(cat.ftTypes, type.toUpperCase())) {
-            return true;
-        }
-        return false;
+    var category = _.find(fv.data, function(cat) {
+        var hasType = _.find(cat[1], function(ft) {
+            return ft.type === type;
+        });
+        return hasType;
     });
-    return category ? category.title : undefined;
+    return category ? category[0] : undefined;
 };
 
 FeaturesViewer.prototype.updateFeatureSelector = function() {
@@ -469,10 +469,12 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     var fv = this;
     ftType = ftType.toUpperCase();
     altSequence = altSequence ? altSequence.toUpperCase() : altSequence;
+    
     var catTitle = fv.getCategoryTitle(ftType);
     var category = _.find(fv.categories, function(cat) {
-        return cat.data.label === catTitle;
+        return cat.name === catTitle;
     });
+    
     var feature = findFeature(fv, ftType, +start, +end, altSequence);
     if (!feature) {
         fv.dispatcher.notFound({ftType: ftType, begin: start, end: end});
@@ -480,11 +482,9 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     }
 
     var elem = d3.select('[name="' + feature.internalId + '"]');
-
     if (category && feature && elem && !elem.classed('up_pftv_variant_hidden')) {
         var container = category.viewerContainer.style('display') === 'none'
             ? category.tracksContainer : category.viewerContainer;
-
         if (elem.classed('up_pftv_variant')) {
             var varTrack = d3.select('.up_pftv_category-name[title="' + catTitle + '"]');
             if (varTrack.classed('up_pftv_arrow-right')) {
