@@ -39,6 +39,7 @@ var variantsFill = function(d, fv) {
 };
 
 var drawVariants = function(variantViewer, bars, frequency, fv, container, catTitle) {
+    var consecutive = 0;
     var variantCircle = bars.selectAll('circle')
         .data(function(d) {
             return d.variants;
@@ -46,8 +47,8 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
 
     var newCircles = variantCircle.enter().append('circle')
         .classed('up_pftv_variant', true)
-        .attr('name', function(d, index) {
-            d.internalId = d.internalId == undefined ? 'var_' + index : d.internalId;
+        .attr('name', function(d) {
+            d.internalId = d.internalId == undefined ? 'var_' + (++consecutive) : d.internalId;
             return d.internalId;
         })
         .attr('fill', function(d) {
