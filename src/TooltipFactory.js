@@ -412,7 +412,7 @@ Tooltip.basic = function() {
     this.tooltipViewer = new BasicTooltipViewer(this);
 };
 Tooltip.mutagen = function() {
-    this.tooltipViewer = new AlternativeTooltipViewer(this, 'Mutation', 'mutation');
+    this.tooltipViewer = new AlternativeTooltipViewer(this, 'Mutation', 'alternativeSequence');
 };
 Tooltip.conflict = function() {
     this.tooltipViewer = new AlternativeTooltipViewer(this, 'Conflict', 'alternativeSequence');
