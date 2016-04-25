@@ -46,7 +46,8 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
 
     var newCircles = variantCircle.enter().append('circle')
         .classed('up_pftv_variant', true)
-        .attr('name', function(d) {
+        .attr('name', function(d, index) {
+            d.internalId = d.internalId == undefined ? 'var_' + index : d.internalId;
             return d.internalId;
         })
         .attr('fill', function(d) {
