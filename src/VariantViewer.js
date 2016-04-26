@@ -31,15 +31,27 @@ var variantsFill = function(d, fv) {
         } else {
             return LegendDialog.UPNonDiseaseColor;
         }
-    } else if (d.siftScore !== undefined) {
-        return LegendDialog.getPredictionColor((d.siftScore + (1-d.polyphenScore))/2);
     } else {
-        return LegendDialog.othersColor;
+        var sift = false, polyphen = false;
+        if ((d.polyphenPrediction != undefined) && (d.polyphenPrediction !== 'unknown')) {
+            polyphen = d.polyphenScore != undefined ? true : false;
+        }
+        if ((d.siftPrediction != undefined) && (d.siftPrediction !== 'unknown')) {
+            sift = d.siftScore != undefined ? true : false;
+        }
+        if (sift && polyphen) {
+            return LegendDialog.getPredictionColor((d.siftScore + (1-d.polyphenScore))/2);
+        } else if (sift && !polyphen) {
+            return LegendDialog.getPredictionColor(d.siftScore);
+        } else if (!sift && polyphen) {
+            return LegendDialog.getPredictionColor(1-d.polyphenScore);
+        } else {
+            return LegendDialog.othersColor;
+        }
     }
 };
 
 var drawVariants = function(variantViewer, bars, frequency, fv, container, catTitle) {
-    var consecutive = 0;
     var variantCircle = bars.selectAll('circle')
         .data(function(d) {
             return d.variants;
@@ -47,24 +59,24 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
 
     var newCircles = variantCircle.enter().append('circle')
         .classed('up_pftv_variant', true)
-        .attr('name', function(d) {
-            d.internalId = d.internalId == undefined ? 'var_' + (++consecutive) : d.internalId;
-            return d.internalId;
-        })
-        .attr('fill', function(d) {
-            return variantsFill(d, fv);
-        })
         .attr('cy', function(d) {
-            return variantViewer.yScale(d.alternativeSequence);
+            return variantViewer.yScale(d.alternativeSequence.charAt(0));
+        })
+        .attr('r', function(d) {
+            return frequency(0);
         })
     ;
 
     variantCircle
-        .attr('r', function(d) {
-            return frequency(0);
-        })
         .attr('cx', function(d) {
             return variantViewer.xScale(Math.min(d.begin, fv.sequence.length));
+        })
+        .attr('name', function(d) {
+            d.internalId = 'var_' + d.wildType + d.begin + d.alternativeSequence;
+            return d.internalId;
+        })
+        .attr('fill', function(d) {
+            return variantsFill(d, fv);
         })
     ;
 
