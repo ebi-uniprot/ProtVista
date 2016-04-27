@@ -6,11 +6,17 @@
 var d3 = require("d3");
 var _ = require("underscore");
 var ViewerHelper = require("./ViewerHelper");
+var Constants = require("./Constants");
 
-var populateDialog = function (fv, data, wrapper) {
+var populateDialog = function (fv, wrapper) {
     var index = 0;
-    _.each(fv.categoryOrderAndType, function(value, categoryName) {
-        if (data[categoryName] && (data[categoryName].features.length !== 0)) {
+    _.each(Constants.getCategoryNamesInOrder(), function(category) {
+        var catKey = _.keys(category)[0];
+        var dataCategory = _.find(fv.data, function(catArray) {
+            return catArray[0] === catKey;
+        });
+        if (dataCategory[1].length !== 0) {
+            console.log(dataCategory);
             var div = wrapper.append('div');
             div.append('input')
                 .attr('type', 'checkbox')
@@ -25,12 +31,6 @@ var populateDialog = function (fv, data, wrapper) {
                         wrapper.selectAll('input:disabled').attr('disabled', null);
                     } else {
                         d3.select(allCategory[0][myIndex]).style('display', 'none');
-                        if (fv.selectedFeature) {
-                            var key = _.keys(fv.categoryOrderAndType)[myIndex];
-                            if (_.contains(fv.categoryOrderAndType[key].ftTypes, fv.selectedFeature.type.name)) {
-                                ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
-                            }
-                        }
                         var displayed = wrapper.selectAll("input:checked");
                         if (displayed[0].length === 1) {
                             displayed.attr('disabled', true);
@@ -38,13 +38,13 @@ var populateDialog = function (fv, data, wrapper) {
                     }
                 });
             div.append('label')
-                .text(data[categoryName].label);
+                .text(category[catKey]);
             index++;
         }
     });
 };
 
-var createDialog = function (fv, data, container) {
+var createDialog = function (fv, container) {
     var wrapper = container.append('div')
         .attr('class','up_pftv_popupDialog-container')
         .style('left', (d3.mouse(container.node())[0] + 10) + 'px')
@@ -64,16 +64,16 @@ var createDialog = function (fv, data, container) {
                 .style('opacity',0)
                 .style('display','none');
         });
-    populateDialog(fv, data, wrapper);
+    populateDialog(fv, wrapper);
     return wrapper;
 };
 
 var CategoryFilterDialog = function() {
     var dialog;
     return {
-        displayDialog: function(fv, data, container) {
+        displayDialog: function(fv, container) {
             if (!dialog) {
-                dialog = createDialog(fv, data, container);
+                dialog = createDialog(fv, container);
             }
             dialog.transition(20)
                 .style('opacity',1)

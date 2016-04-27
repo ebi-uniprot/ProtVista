@@ -244,7 +244,7 @@ var createButtons = function(fv, data, container) {
         .attr('class','icon-cog')
         .attr('title','Hide/Show tracks')
         .on('click', function(){
-            CategoryFilterDialog.displayDialog(fv, data, buttons);
+            CategoryFilterDialog.displayDialog(fv, buttons);
         });
     buttons.append('span')
         .attr('class','icon-arrows-cw')
@@ -469,12 +469,12 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     var fv = this;
     ftType = ftType.toUpperCase();
     altSequence = altSequence ? altSequence.toUpperCase() : altSequence;
-    
+
     var catTitle = fv.getCategoryTitle(ftType);
     var category = _.find(fv.categories, function(cat) {
         return cat.name === catTitle;
     });
-    
+
     var feature = findFeature(fv, ftType, +start, +end, altSequence);
     if (!feature) {
         fv.dispatcher.notFound({ftType: ftType, begin: start, end: end});
