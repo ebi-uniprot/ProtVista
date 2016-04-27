@@ -33,11 +33,11 @@ var variantsFill = function(d, fv) {
         }
     } else {
         var sift = false, polyphen = false;
-        if ((d.polyphenPrediction != undefined) && (d.polyphenPrediction !== 'unknown')) {
-            polyphen = d.polyphenScore != undefined ? true : false;
+        if ((d.polyphenPrediction !== undefined) && (d.polyphenPrediction !== 'unknown')) {
+            polyphen = d.polyphenScore !== undefined ? true : false;
         }
-        if ((d.siftPrediction != undefined) && (d.siftPrediction !== 'unknown')) {
-            sift = d.siftScore != undefined ? true : false;
+        if ((d.siftPrediction !== undefined) && (d.siftPrediction !== 'unknown')) {
+            sift = d.siftScore !== undefined ? true : false;
         }
         if (sift && polyphen) {
             return LegendDialog.getPredictionColor((d.siftScore + (1-d.polyphenScore))/2);

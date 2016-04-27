@@ -26,7 +26,7 @@ var BasicViewer = function(catTitle, features, container, fv) {
 
                 var newShapes = shapes.enter().append('path')
                     .attr('name', function(d, index) {
-                        d.internalId = d.internalId == undefined ? catTitle + '_' + index : d.internalId;
+                        d.internalId = d.internalId === undefined ? catTitle + '_' + index : d.internalId;
                         return d.internalId;
                     })
                     .attr('class',function(d) {
