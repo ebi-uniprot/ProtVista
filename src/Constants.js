@@ -80,7 +80,8 @@ var Constants = function() {
               ' the Fork-Head domain, the HMG box and the Myb domain'
           }, domain: {label: 'Domain', tooltip: 'Specific combination of secondary structures organized into a ' +
               'characteristic three-dimensional structure or fold'
-          }, zn_fing: {label: 'Zing finger', tooltip: 'Small, functional, independently folded domain that coordinates' +
+          }, zn_fing: {label: 'Zinc finger', tooltip: 'Small, functional, independently folded domain that' +
+          ' coordinates' +
               ' one or more zinc ions'
           }, np_bind: {label: 'Nucleotide binding', tooltip: '(aka flavin-binding). Region in the protein which binds' +
               ' nucleotide phosphates'
