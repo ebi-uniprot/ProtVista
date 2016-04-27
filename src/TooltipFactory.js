@@ -80,14 +80,14 @@ var getEvidenceText = function(tooltip, code, sources) {
 
 var parseVariantDescription = function(data) {
     if (data.description) {
-        var descriptionArray = data.description.replace(/\s*Ftid:/g, '|Ftid:').replace(/\s*LSS:/g,'|LSS:').split('|');
-        descriptionArray = _.groupBy(descriptionArray, function(d){
-            return d.indexOf(':') > -1 ? d.split(/:/)[0] : 'UP';
+        var descriptionArray = data.description.split(/\[LSS_|\[SWP]: /g);
+        descriptionArray = _.groupBy(descriptionArray, function(desc) {
+            return desc.length === 0 ? 'NOTHING'
+                : desc.indexOf(']: ') !== -1 ? 'LSS' : 'UP';
         });
-        data.ftId = descriptionArray.Ftid ? descriptionArray.Ftid.toString().replace(/Ftid:/g, '') : undefined;
-        data.up_description = descriptionArray.UP ? descriptionArray.UP.toString() : undefined;
+        data.up_description = descriptionArray.UP ? descriptionArray.UP.join('; ') : undefined;
         data.lss_description = descriptionArray.LSS
-            ? descriptionArray.LSS.toString().replace(/LSS:/g, '') : undefined;
+            ? descriptionArray.LSS.join('; ').replace(/]: /g, ': ') : undefined;
     }
     if (Evidence.existAssociation(data.association)) {
         _.each(data.association, function(association) {
