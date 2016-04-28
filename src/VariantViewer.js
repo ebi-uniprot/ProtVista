@@ -58,21 +58,29 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         });
 
     var newCircles = variantCircle.enter().append('circle')
-        .classed('up_pftv_variant', true)
-        .attr('cy', function(d) {
-            return variantViewer.yScale(d.alternativeSequence.charAt(0));
-        })
         .attr('r', function(d) {
             return frequency(0);
         })
     ;
 
     variantCircle
+        .attr('class', function(d) {
+            if (d === fv.selectedFeature) {
+                return 'up_pftv_variant up_pftv_activeFeature';
+            } else {
+                return 'up_pftv_variant';
+            }
+        })
         .attr('cx', function(d) {
             return variantViewer.xScale(Math.min(d.begin, fv.sequence.length));
         })
+        .attr('cy', function(d) {
+            return variantViewer.yScale(d.alternativeSequence.charAt(0));
+        })
         .attr('name', function(d) {
-            d.internalId = 'var_' + d.wildType + d.begin + d.alternativeSequence;
+            var mutation = d.alternativeSequence === '*' ? 'STOP' :
+                d.alternativeSequence === '-' ? 'DEL' : d.alternativeSequence;
+            d.internalId = 'var_' + d.wildType + d.begin + mutation;
             return d.internalId;
         })
         .attr('fill', function(d) {
