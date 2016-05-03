@@ -244,7 +244,7 @@ var createButtons = function(fv, data, container) {
         .attr('class','icon-cog')
         .attr('title','Hide/Show tracks')
         .on('click', function(){
-            CategoryFilterDialog.displayDialog(fv, data, buttons);
+            CategoryFilterDialog.displayDialog(fv, buttons);
         });
     buttons.append('span')
         .attr('class','icon-arrows-cw')
@@ -368,28 +368,27 @@ var createAAViewer = function(fv, container, sequence) {
 
 var findFeature = function(fv, ftType, begin, end, altSequence) {
     var lookup, varLookup;
-    _.find(fv.data, function(datum) {
-        if (datum.features) {
-            lookup =  _.find(datum.features, function(feature) {
-                var ftEnd = feature.end ? feature.end : feature.begin;
-                if (feature.variants && (feature.type.name === 'VARIANT')) {
-                    varLookup = _.find(feature.variants, function(variant) {
-                        var varEnd = variant.end ? variant.end : variant.begin;
-                        return (+variant.begin === +begin) && (+varEnd === +end) && (variant.alternativeSequence === altSequence);
-                    });
-                    return varLookup;
-                } else if (feature.type.name === 'CONFLICT'){
-                    return (+feature.begin === +begin) && (+ftEnd === +end) && (feature.alternativeSequence === altSequence);
-                } else if (feature.type.name === 'MUTAGEN') {
-                    return (+feature.begin === +begin) && (+ftEnd === +end) && (feature.alternativeSequence === altSequence);
-                } else {
-                    return (feature.type.name === ftType) && (+feature.begin === +begin) && (+ftEnd === +end);
-                }
-            });
-            return lookup;
-        } else {
-            return false;
-        }
+    _.find(fv.data, function(category) {
+        lookup =  _.find(category[1], function(feature) {
+            var ftEnd = feature.end ? feature.end : feature.begin;
+            if (feature.variants && (feature.type === 'VARIANT')) {
+                varLookup = _.find(feature.variants, function(variant) {
+                    var varEnd = variant.end ? variant.end : variant.begin;
+                    return (+variant.begin === +begin) && (+varEnd === +end)
+                        && (variant.alternativeSequence === altSequence);
+                });
+                return varLookup;
+            } else if (feature.type === 'CONFLICT'){
+                return (+feature.begin === +begin) && (+ftEnd === +end)
+                    && (feature.alternativeSequence === altSequence);
+            } else if (feature.type === 'MUTAGEN') {
+                return (+feature.begin === +begin) && (+ftEnd === +end)
+                    && (feature.alternativeSequence === altSequence);
+            } else {
+                return (feature.type === ftType) && (+feature.begin === +begin) && (+ftEnd === +end);
+            }
+        });
+        return lookup;
     });
     return varLookup ? varLookup : lookup;
 };
@@ -407,6 +406,7 @@ var FeaturesViewer = function(opts) {
     fv.categories = [];
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
+    fv.data = [];
 
     fv.load = function() {
         fv.initLayout(opts);
@@ -434,6 +434,8 @@ var FeaturesViewer = function(opts) {
               features = DataLoader.processUngroupedFeatures(features);
             }
             fv.drawCategories(features, source.type, fv, container);
+            fv.data = fv.data.concat(features);
+            fv.dispatcher.ready();
           }).fail(function(e){
             console.log(e);
           });
@@ -445,13 +447,13 @@ var FeaturesViewer = function(opts) {
 
 FeaturesViewer.prototype.getCategoryTitle = function(type) {
     var fv = this;
-    var category = _.find(fv.categoryOrderAndType, function(cat) {
-        if (_.contains(cat.ftTypes, type.toUpperCase())) {
-            return true;
-        }
-        return false;
+    var category = _.find(fv.data, function(cat) {
+        var hasType = _.find(cat[1], function(ft) {
+            return ft.type === type;
+        });
+        return hasType;
     });
-    return category ? category.title : undefined;
+    return category ? category[0] : undefined;
 };
 
 FeaturesViewer.prototype.updateFeatureSelector = function() {
@@ -467,10 +469,12 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     var fv = this;
     ftType = ftType.toUpperCase();
     altSequence = altSequence ? altSequence.toUpperCase() : altSequence;
+
     var catTitle = fv.getCategoryTitle(ftType);
     var category = _.find(fv.categories, function(cat) {
-        return cat.data.label === catTitle;
+        return cat.name === catTitle;
     });
+
     var feature = findFeature(fv, ftType, +start, +end, altSequence);
     if (!feature) {
         fv.dispatcher.notFound({ftType: ftType, begin: start, end: end});
@@ -478,11 +482,9 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     }
 
     var elem = d3.select('[name="' + feature.internalId + '"]');
-
     if (category && feature && elem && !elem.classed('up_pftv_variant_hidden')) {
         var container = category.viewerContainer.style('display') === 'none'
             ? category.tracksContainer : category.viewerContainer;
-
         if (elem.classed('up_pftv_variant')) {
             var varTrack = d3.select('.up_pftv_category-name[title="' + catTitle + '"]');
             if (varTrack.classed('up_pftv_arrow-right')) {
@@ -547,7 +549,6 @@ FeaturesViewer.prototype.loadZoom = function(d) {
   fv.aaViewer2 = createAAViewer(fv, fv.footer, d.sequence);
   updateViewportFromChart(fv);
   updateZoomFromChart(fv);
-  fv.dispatcher.ready(d);
 };
 
 FeaturesViewer.prototype.drawCategories = function(data, type, fv, container) {

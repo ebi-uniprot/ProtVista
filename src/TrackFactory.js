@@ -32,13 +32,13 @@ Track.prototype.update = function() {
 
 var BasicTrackViewer = function(track) {
     return new BasicViewer(
-        track.category.data.label, track.data, track.trackContainer, track.category.fv
+        track.category.name, track.data, track.trackContainer, track.category.fv
     );
 };
 
 var VariantTrackViewer = function(track) {
     return new VariantViewer(
-        track.category.data.label, track.data, track.trackContainer, track.category.fv, track.variantHeight
+        track.category.name, track.data, track.trackContainer, track.category.fv, track.variantHeight
         , track.titleContainer
     );
 };

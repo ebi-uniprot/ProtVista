@@ -263,7 +263,6 @@ svg {
   cursor: pointer;
 }
 
-
 .up_pftv_legend {
     vertical-align: sub;
     width: 1.5em;
@@ -272,6 +271,16 @@ svg {
     border-radius: .4em;
     border: 2px solid #cacaca;
     margin-right: .5em;
+}
+
+.up_pftv_legend_double {
+    height: 3em !important;
+}
+
+.up_pftv_legend_text {
+    line-height: 2em;
+    display: inline-block;
+    vertical-align: top;
 }
 
 /* Close button */
@@ -327,6 +336,7 @@ svg {
     background-color: #ffffff;
     padding: 0.5em;
     min-width: 210px;
+    text-align: left;
 }
 
 .up_pftv_tooltip-container table {
