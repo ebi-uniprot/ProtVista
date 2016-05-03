@@ -19,7 +19,7 @@ var aaList = ['G', 'A', 'V', 'L', 'I'
     , 'R', 'K', 'H'
     , 'F', 'Y', 'W'
     , 'P'
-    , '*'];
+    , '-', '*'];
 
 var variantsFill = function(d, fv) {
     if((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
@@ -31,10 +31,23 @@ var variantsFill = function(d, fv) {
         } else {
             return LegendDialog.UPNonDiseaseColor;
         }
-    } else if (d.siftScore !== undefined) {
-        return LegendDialog.getPredictionColor((d.siftScore + (1-d.polyphenScore))/2);
     } else {
-        return LegendDialog.othersColor;
+        var sift = false, polyphen = false;
+        if ((d.polyphenPrediction != undefined) && (d.polyphenPrediction !== 'unknown')) {
+            polyphen = d.polyphenScore != undefined ? true : false;
+        }
+        if ((d.siftPrediction != undefined) && (d.siftPrediction !== 'unknown')) {
+            sift = d.siftScore != undefined ? true : false;
+        }
+        if (sift && polyphen) {
+            return LegendDialog.getPredictionColor((d.siftScore + (1-d.polyphenScore))/2);
+        } else if (sift && !polyphen) {
+            return LegendDialog.getPredictionColor(d.siftScore);
+        } else if (!sift && polyphen) {
+            return LegendDialog.getPredictionColor(1-d.polyphenScore);
+        } else {
+            return LegendDialog.othersColor;
+        }
     }
 };
 
@@ -45,24 +58,33 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         });
 
     var newCircles = variantCircle.enter().append('circle')
-        .classed('up_pftv_variant', true)
-        .attr('name', function(d) {
-            return d.internalId;
-        })
-        .attr('fill', function(d) {
-            return variantsFill(d, fv);
-        })
-        .attr('cy', function(d) {
-            return variantViewer.yScale(d.alternativeSequence);
+        .attr('r', function(d) {
+            return frequency(0);
         })
     ;
 
     variantCircle
-        .attr('r', function(d) {
-            return frequency(0);
+        .attr('class', function(d) {
+            if (d === fv.selectedFeature) {
+                return 'up_pftv_variant up_pftv_activeFeature';
+            } else {
+                return 'up_pftv_variant';
+            }
         })
         .attr('cx', function(d) {
             return variantViewer.xScale(Math.min(d.begin, fv.sequence.length));
+        })
+        .attr('cy', function(d) {
+            return variantViewer.yScale(d.alternativeSequence.charAt(0));
+        })
+        .attr('name', function(d) {
+            var mutation = d.alternativeSequence === '*' ? 'STOP' :
+                d.alternativeSequence === '-' ? 'DEL' : d.alternativeSequence;
+            d.internalId = 'var_' + d.wildType + d.begin + mutation;
+            return d.internalId;
+        })
+        .attr('fill', function(d) {
+            return variantsFill(d, fv);
         })
     ;
 
