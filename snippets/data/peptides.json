@@ -1,0 +1,3203 @@
+{
+
+  "accession": "P05067",
+  "entryName": "A4_HUMAN",
+  "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDSDPSGTKTCIDTKEGILQYCQEVYPELQITNVVEANQPVTIQNWCKRGRKQCKTHPHFVIPYRCLVGEFVSDALLVPDKCKFLHQERMDVCETHLHWHTVAKETCSEKSTNLHDYGMLLPCGIDKFRGVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDKVVEVAEEEEVAEVEEEEADDDEDDEDGDEVEEEAEEPYEEATERTTSIATTTTTTTESVEEVVREVCSEQAETGPCRAMISRWYFDVTEGKCAPFFYGGCGGNRNNFDTEEYCMAVCGSAMSQSLLKTTQEPLARDPVKLPTTAASTPDAVDKYLETPGDENEHAHFQKAKERLEAKHRERMSQVMREWEEAERQAKNLPKADKKAVIQHFQEKVESLEQEAANERQQLVETHMARVEAMLNDRRRLALENYITALQAVPPRPRHVFNMLKKYVRAEQKDRQHTLKHFEHVRMVDPKKAAQIRSQVMTHLRVIYERMNQSLSLLYNVPAVAEEIQDEVDELLQKEQNYSDDVLANMISEPRISYGNDALMPSLTETKTTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDARPAADRGLTTRPGSGLTNIKTEEISEVKMDAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIATVIVITLVMLKKKQYTSIHHGVVEVDAAVTPEERHLSKMQQNGYENPTYKFFEQMQN",
+  "sequenceChecksum": "A12EE761403740F5",
+  "taxid" : 9606,
+  "features":
+
+  [
+
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "764",
+      "end": "770",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "FFEQMQN",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "752",
+      "end": "763",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "MQQNGYENPTYK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "747",
+      "end": "766",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "RHLSKMQQNGYENPTYKFFE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "746",
+      "end": "766",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "ERHLSKMQQNGYENPTYKFFE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "727",
+      "end": "751",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "QYTSIHHGVVEVDAAVTPEERHLSK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "727",
+      "end": "747",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "QYTSIHHGVVEVDAAVTPEER",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "726",
+      "end": "747",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "KQYTSIHHGVVEVDAAVTPEER",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "688",
+      "end": "699",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LVFFAEDVGSNK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "677",
+      "end": "687",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "HDSGYEVHHQK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "675",
+      "end": "682",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "FRHDSGYE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "671",
+      "end": "687",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "MDAEFRHDSGYEVHHQK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "67",
+      "end": "99",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "EGILQYCQEVYPELQITNVVEANQPVTIQNWCK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "67",
+      "end": "100",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "EGILQYCQEVYPELQITNVVEANQPVTIQNWCKR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "663",
+      "end": "676",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "TEEISEVKMDAEFR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "663",
+      "end": "670",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "TEEISEVK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "654",
+      "end": "662",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "PGSGLTNIK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "649",
+      "end": "670",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "GLTTRPGSGLTNIKTEEISEVK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "649",
+      "end": "662",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "GLTTRPGSGLTNIK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "627",
+      "end": "646",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "DSVPANTENEVEPVDARPAA",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "618",
+      "end": "636",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LQPWHSFGADSVPANTENE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "617",
+      "end": "646",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "DLQPWHSFGADSVPANTENEVEPVDARPAA",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "616",
+      "end": "626",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "DDLQPWHSFGA",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "602",
+      "end": "648",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "TTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDARPAADR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "602",
+      "end": "643",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "TTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDAR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "586",
+      "end": "601",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "ISYGNDALMPSLTETK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "574",
+      "end": "590",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "DDVLANMISEPRISYGN",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "569",
+      "end": "585",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "EQNYSDDVLANMISEPR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "563",
+      "end": "573",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "DELLQKEQNYS",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "560",
+      "end": "573",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "DEVDELLQKEQNYS",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "541",
+      "end": "568",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "MNQSLSLLYNVPAVAEEIQDEVDELLQK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "528",
+      "end": "535",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "SQVMTHLR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "52",
+      "end": "60",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "WDSDPSGTK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "489",
+      "end": "496",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "HVFNMLKK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "489",
+      "end": "495",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "HVFNMLK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "471",
+      "end": "488",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LALENYITALQAVPPRPR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "471",
+      "end": "486",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LALENYITALQAVPPR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "470",
+      "end": "488",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "RLALENYITALQAVPPRPR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "461",
+      "end": "469",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "VEAMLNDRR",
+      "unique": false
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "461",
+      "end": "468",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "VEAMLNDR",
+      "unique": false
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "451",
+      "end": "460",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "QQLVETHMAR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "439",
+      "end": "460",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "VESLEQEAANERQQLVETHMAR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "439",
+      "end": "450",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "VESLEQEAANER",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "436",
+      "end": "453",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "QEKVESLEQEAANERQQL",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "430",
+      "end": "460",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "AVIQHFQEKVESLEQEAANERQQLVETHMAR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "430",
+      "end": "450",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "AVIQHFQEKVESLEQEAANER",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "430",
+      "end": "438",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "AVIQHFQEK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "429",
+      "end": "438",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "KAVIQHFQEK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "412",
+      "end": "418",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "EWEEAER",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "41",
+      "end": "60",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LNMHMNVQNGKWDSDPSGTK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "41",
+      "end": "51",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LNMHMNVQNGK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "406",
+      "end": "418",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "MSQVMREWEEAER",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "379",
+      "end": "391",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LETPGDENEHAHF",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "378",
+      "end": "393",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "YLETPGDENEHAHFQK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "364",
+      "end": "377",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LPTTAASTPDAVDK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "360",
+      "end": "377",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "DPVKLPTTAASTPDAVDK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "352",
+      "end": "359",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "TTQEPLAR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "329",
+      "end": "351",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "NNFDTEEYCMAVCGSAMSQSLLK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "322",
+      "end": "336",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "GGCGGNRNNFDTEEY",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "316",
+      "end": "328",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "CAPFFYGGCGGNR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "314",
+      "end": "335",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "GKCAPFFYGGCGGNRNNFDTEE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "308",
+      "end": "319",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "YFDVTEGKCAPF",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "307",
+      "end": "315",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "WYFDVTEGK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "289",
+      "end": "306",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "EVCSEQAETGPCRAMISR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "289",
+      "end": "301",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "EVCSEQAETGPCR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "269",
+      "end": "301",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "TTSIATTTTTTTESVEEVVREVCSEQAETGPCR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "269",
+      "end": "288",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "TTSIATTTTTTTESVEEVVR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "268",
+      "end": "281",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "RTTSIATTTTTTTE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "225",
+      "end": "268",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "VVEVAEEEEVAEVEEEEADDDEDDEDGDEVEEEAEEPYEEATER",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "181",
+      "end": "224",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "GVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "179",
+      "end": "224",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "FRGVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "17",
+      "end": "40",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "ALEVPTDGNAGLLAEPQIAMFCGR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "169",
+      "end": "179",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "GMLLPCGIDKF",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "168",
+      "end": "183",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "YGMLLPCGIDKFRGVE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "162",
+      "end": "180",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "STNLHDYGMLLPCGIDKFR",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "162",
+      "end": "178",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "STNLHDYGMLLPCGIDK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "161",
+      "end": "183",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "KSTNLHDYGMLLPCGIDKFRGVE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "151",
+      "end": "168",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "HTVAKETCSEKSTNLHDY",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "146",
+      "end": "156",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "THLHWHTVAKE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "141",
+      "end": "155",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "MDVCETHLHWHTVAK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "137",
+      "end": "150",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "HQERMDVCETHLHW",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "136",
+      "end": "150",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "LHQERMDVCETHLHW",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "126",
+      "end": "139",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "ALLVPDKCKFLHQE",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "123",
+      "end": "135",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "VSDALLVPDKCKF",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "117",
+      "end": "134",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "CLVGEFVSDALLVPDKCK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "117",
+      "end": "132",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "CLVGEFVSDALLVPDK",
+      "unique": true
+
+    },
+    {
+
+      "type": "PROTEOMICS",
+      "begin": "107",
+      "end": "116",
+      "xrefs":
+
+      [
+
+        {
+          "name": "Proteomes",
+          "id": "UP000005640"
+        }
+
+      ],
+      "evidences":
+      [
+
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "PeptideAtlas",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "MaxQB",
+            "id": "P05067"
+          }
+
+        },
+        {
+
+          "code": "ECO:0000213",
+          "source":
+
+          {
+            "name": "EPD",
+            "id": "P05067"
+          }
+        }
+      ],
+      "peptide": "THPHFVIPYR",
+      "unique": true
+    }
+  ]
+
+}

@@ -18,32 +18,52 @@ chai.expect();
 chai.should();
 
 // requires your main app
+var _ = require("underscore");
 var FeaturesViewer = require('../..');
-var DataLoader = require('../../lib/dataLoader');
-var NonOverlappingLayout = require('../../lib/NonOverlappingLayout');
+var DataLoader = require('../../src/dataLoader');
+var NonOverlappingLayout = require('../../src/NonOverlappingLayout');
 
 describe('FeaturesViewerTest', function() {
-
-	var data = require('../../snippets/data/features.json');
-
 	//'DataLoader'
-	it('should process the data', function() {
-		var d = DataLoader.processData(data);
-		var totalFeatures = data.domainsAndSites.features.length + data.moleculeProcessing.features.length +
-			data.ptm.features.length + data.seqInfo.features.length + data.structural.features.length +
-			data.topology.features.length + data.mutagenesis.features.length + data.variants.features.length;
-		assert.equal(d.totalFeatureCount, totalFeatures);
+    var data = require('../../snippets/data/features.json');
+    var basicFeatures = DataLoader.groupFeaturesByCategory(data.features);
+
+	it('should process the data', function(done) {
+		var variants = _.contains(basicFeatures, function(cat) {
+			return (cat[0] === 'VARIANTS') || (cat[0] === 'VARIATION');
+		});
+		assert.equal(variants, false);
+
+        var ftVariants = _.filter(data.features, function(ft) {
+            return ft.category === 'VARIANTS';
+        });
+        var totalFeatures = data.features.length - ftVariants.length;
+		var totalCount = 0;
+        _.each(basicFeatures, function(cat) {
+			totalCount += cat[1].length;
+		});
+        assert.equal(totalFeatures, totalCount);
+        done();
 	});
 
 	it('should process variants', function() {
-		var variantFeatures = DataLoader.processVariants(data);
-		assert.equal(variantFeatures.length, data.sequence.length + 2);
-        assert.equal(variantFeatures[0].variants.length, 0);
-        assert.equal(variantFeatures[data.sequence.length+1].variants.length, 0);
+        var data = require('../../snippets/data/variant.json');
+        var variants = DataLoader.processVariants(data.features, data.sequence);
+        assert.equal(variants[0].length, 2);
+        assert.equal(variants[0][0], 'VARIATION');
+        assert.equal(variants[0][1].length, data.sequence.length + 2);
 	});
 
+    it('should process proteomics', function() {
+        var data = require('../../snippets/data/peptides.json');
+        var proteomics = DataLoader.processProteomics(data.features, data.sequence);
+        assert.equal(proteomics[0].length, 2);
+        assert.equal(proteomics[0][0], 'PROTEOMICS');
+        assert.equal(proteomics[0][1].length, data.features.length);
+    });
+
 	//'NonOverlappingLayout
-	var layout = new NonOverlappingLayout(data.domainsAndSites.features, 40);
+	var layout = new NonOverlappingLayout(basicFeatures[0][1], 40);
 
 	it('should calculate track overlaps', function() {
 		layout.calculate();

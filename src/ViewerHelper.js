@@ -51,7 +51,7 @@ ViewerHelper.shadowPath = function (feature, fv, height) {
     var path;
     if (!feature.type) {
         path = 'M-1,-1';
-    } else if (FeatureFactory.isContinuous(feature.type.name)) {
+    } else if (FeatureFactory.isContinuous(feature.type)) {
         path = 'M' + -(gapRegion) + ',0'
             + 'L' + (-gapRegion+width) + ',0'
             + 'L' + (-gapRegion+width) + ',' + height

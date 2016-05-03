@@ -52,12 +52,11 @@ var packageConfig = require('./package.json');
 
 // a failing test breaks the whole build chain
 gulp.task('build', ['build-browser', 'build-browser-gzip']);
-gulp.task('build-with-pinpad', ['build', 'copy-pinpad-resources']);
 gulp.task('default', ['lint', 'test', 'build']);
 
 //test tasks
 gulp.task('lint', function() {
-    return gulp.src('./lib/*.js')
+    return gulp.src('./src/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -141,11 +140,6 @@ gulp.task('copy-resources', ['init'], function() {
             .pipe(gulp.dest(buildDir + '/font/'));
     return gulp.src("./style/*.css")
         .pipe(minifyCss({compatibility: 'ie8'}))
-        .pipe(gulp.dest(buildDir + '/css/'));
-});
-
-gulp.task('copy-pinpad-resources', ['init'], function() {
-    return gulp.src(["./node_modules/biojs-vis-pinpad/build/pp_main.css"])
         .pipe(gulp.dest(buildDir + '/css/'));
 });
 

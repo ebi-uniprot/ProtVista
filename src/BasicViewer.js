@@ -25,18 +25,19 @@ var BasicViewer = function(catTitle, features, container, fv) {
                     .data(data);
 
                 var newShapes = shapes.enter().append('path')
-                    .attr('name', function(d) {
+                    .attr('name', function(d, index) {
+                        d.internalId = d.internalId === undefined ? catTitle + '_' + index : d.internalId;
                         return d.internalId;
                     })
                     .attr('class',function(d) {
-                        return 'up_pftv_feature up_pftv_' + d.type.name.toLowerCase();
+                        return 'up_pftv_feature up_pftv_' + d.type.toLowerCase();
                     })
                 ;
 
                 shapes
                     .attr('d', function(d) {
                         return FeatureFactory.getFeature(
-                            d.type.name,
+                            d.type,
                             fv.xScale(2) - fv.xScale(1),
                             layout.getFeatureHeight(),
                             (d.end) ? d.end - d.begin + 1 : 1);

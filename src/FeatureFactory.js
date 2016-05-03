@@ -54,12 +54,17 @@ var symbolSize = 10,
         transmem:'rectangle',
         intramem:'rectangle',
         //variants
+        var_seq:'variant',
+        variant:'variant',
         missense:'variant',//CHECK
         ms_del:'variant',//CHECK
         insdel:'variant',//CHECK
         stop_lost:'variant',//CHECK
         stop_gained:'variant',//CHECK
-        init_codon:'variant'//CHECK
+        init_codon:'variant',//CHECK
+        //proteomics
+        unique:'rectangle',
+        non_unique:'rectangle'
     };
 
 var Feature = function() {
