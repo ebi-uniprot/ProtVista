@@ -195,9 +195,15 @@ var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
         list.append('span').append('a')
             .attr('href', url)
             .attr('target', '_blank')
-            .text(el.id);
+            .text(function() {
+                if (info.textAttr) {
+                    return el[info.textAttr];
+                } else {
+                    return el.id;
+                }
+            });
         if (i !== (info.elem.length-1)) {
-            list.append('span').text(', ');
+            list.append('span').text(' | ');
         }
     });
 };
@@ -217,13 +223,9 @@ Tooltip.prototype.addEvidences = function(evidences) {
         delete groupedSources['undefined'];
 
         _.each(groupedSources, function(elem, index) {
-            addEvidenceXRefLinks(tooltip, undefined, {
-                counter: eco, elem: elem, index: index, attrText: 'evidence'
-            });
+            addEvidenceXRefLinks(tooltip, undefined, {elem: elem, index: index});
             if (index === 'PubMed') {
-                addEvidenceXRefLinks(tooltip, undefined, {
-                    counter:eco, elem: elem, index: 'EuropePMC', attrText: 'evidence', alternative: true
-                });
+                addEvidenceXRefLinks(tooltip, undefined, {elem: elem, index: 'EuropePMC', alternative: true});
             }
         });
     });
@@ -296,7 +298,7 @@ var addAssociation = function(tooltip) {
     if (Evidence.existAssociation(tooltip.data.association)) {
         var assocRow = tooltip.table.append('tr');
         assocRow.append('td').attr('colspan', 2).classed('up_pftv_subsection',true).text('Disease Association');
-        _.each(tooltip.data.association, function(association, counter){
+        _.each(tooltip.data.association, function(association){
             if (association.name) {
                 var diseaseRow = tooltip.table.append('tr');
                 diseaseRow.append('td').text('Disease');
@@ -316,9 +318,12 @@ var addAssociation = function(tooltip) {
                     xrefs.append('td');
                     var list = xrefs.append('td').text(index + ' ');
 
-                    _.each(elem, function(el) {
+                    _.each(elem, function(el, index) {
                         list.append('span').append('a').attr('href', el.url)
                             .attr('target', '_blank').text(el.id);
+                        if ((index + 1) !== elem.length) {
+                            list.append('span').text(' | ');
+                        }
                     });
                 });
             }
@@ -335,55 +340,49 @@ var addMutation = function(tooltip) {
     mutRow.append('td').text(text);
 };
 
-var addXRefs = function(tooltip) {
-  if (tooltip.data.xrefs) {
-    var sourceRow = tooltip.table.append('tr')
-      .attr('class', 'up_pftv_evidence-source');
+var addXRefs = function(tooltip, xrefs) {
+    if (xrefs) {
+        var sourceRow = tooltip.table.append('tr')
+            .attr('class', 'up_pftv_evidence-source');
 
-    sourceRow.append('td')
-      .text('Cross-references');
+        sourceRow.append('td')
+            .text('Cross-references');
 
-        var groupedSources = _.uniq(tooltip.data.xrefs, function(ref) {
-            return ref.name + ref.id + ref.url;
-        });
-        groupedSources = _.groupBy(groupedSources, 'name');
+        var groupedSources = _.groupBy(xrefs, 'id');
         delete groupedSources['undefined'];
+        console.log(groupedSources);
 
         var first = true;
         _.each(groupedSources, function (elem, key) {
             if (first) {
-                addEvidenceXRefLinks(tooltip, sourceRow, {
-                    counter: 0, elem: elem, index: key, attrText: 'xref'
-                });
+                addEvidenceXRefLinks(tooltip, sourceRow, {elem: elem, index: key, textAttr: 'name'});
                 first = false;
             } else {
-                addEvidenceXRefLinks(tooltip, undefined, {
-                    counter: 0, elem: elem, index: key, attrText: 'xref'
-                });
+                addEvidenceXRefLinks(tooltip, undefined, {elem: elem, index: key, textAttr: 'name'});
             }
-
-
         });
     }
 };
-var addUPSection = function(tooltip, upEvidences) {
+var addUPSection = function(tooltip, upEvidences, upXrefs) {
     if (tooltip.data.ftId || tooltip.data.up_description || (upEvidences.length !== 0) || tooltip.data.association) {
         var upRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         upRow.append('td').attr('colspan',2).text('UniProt');
         addFtId(tooltip);
         addDescription(tooltip, tooltip.data.up_description, 'up_description');
         tooltip.addEvidences(upEvidences);
+        addXRefs(tooltip, upXrefs);
         addAssociation(tooltip);
     }
 };
 
-var addLSSSection = function(tooltip, lssEvidences) {
+var addLSSSection = function(tooltip, lssEvidences, lssXrefs) {
     if (tooltip.data.lss_description || (lssEvidences.length !== 0) || havePredictions(tooltip.data)) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         lssRow.append('td').attr('colspan',2).text('Large Scale Studies');
         addDescription(tooltip, tooltip.data.lss_description, 'lss_description');
         addPredictions(tooltip);
         tooltip.addEvidences(lssEvidences);
+        addXRefs(tooltip, lssXrefs);
     }
 };
 
@@ -397,15 +396,22 @@ var VariantTooltipViewer = function(tooltip) {
                 lssEvidences[eco] = tooltip.data.evidences[eco];
             }
         });
+        var upXrefs = [], lssXrefs = [];
+        _.each(tooltip.data.xrefs, function(xref) {
+            if (xref.reviewed === true) {
+                upXrefs.push(xref);
+            } else {
+                lssXrefs.push(xref);
+            }
+        });
         addMutation(tooltip);
-        addXRefs(tooltip);
-        addUPSection(tooltip, upEvidences);
-        addLSSSection(tooltip, lssEvidences);
+        addUPSection(tooltip, upEvidences, upXrefs);
+        addLSSSection(tooltip, lssEvidences, lssXrefs);
     } else {
         addMutation(tooltip);
         addPredictions(tooltip);
         tooltip.addEvidences(tooltip.data.evidences);
-        addXRefs(tooltip);
+        addXRefs(tooltip.data.xrefs);
         addAssociation(tooltip);
     }
 };
