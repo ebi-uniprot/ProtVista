@@ -128,6 +128,10 @@ var createDataSeries = function(variantViewer, svg, features, series) {
         .attr('class','variation-y axis')
         .call(yAxis2);
 
+    d3.selectAll('g.variation-y g.tick').attr('class', function(d) {
+        return 'tick up_pftv_aa_' + d;
+    });
+
     return dataSeries;
 };
 

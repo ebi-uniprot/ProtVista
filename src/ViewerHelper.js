@@ -133,11 +133,19 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
                 ViewerHelper.selectFeature(d, this, fv);
             }
         })
-        .on('mouseover', function() {
+        .on('mouseover', function(d) {
             fv.overFeature = true;
+            if (d3.select(this).classed('up_pftv_variant')) {
+                var initial = d.alternativeSequence.charAt(0);
+                d3.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 1);
+            }
         })
-        .on('mouseout', function() {
+        .on('mouseout', function(d) {
             fv.overFeature = false;
+            if (d3.select(this).classed('up_pftv_variant')) {
+                var initial = d.alternativeSequence.charAt(0);
+                d3.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 0.4);
+            }
         });
 };
 
