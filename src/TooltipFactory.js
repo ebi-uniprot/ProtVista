@@ -341,7 +341,7 @@ var addMutation = function(tooltip) {
 };
 
 var addXRefs = function(tooltip, xrefs) {
-    if (xrefs) {
+    if (xrefs && (xrefs.length !== 0)) {
         var sourceRow = tooltip.table.append('tr')
             .attr('class', 'up_pftv_evidence-source');
 
