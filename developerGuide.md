@@ -5,49 +5,52 @@ title: Developer Guide
 
 # biojs-vis-proteinFeaturesViewer
 
-## Getting Started
-You can find the latest built version in our Github Pages [CDN-like repository](https://github
-.com/ebi-uniprot/CDN/tree/gh-pages/feature-viewer). You will need the **css** folder, the **font** folder and any of the **JavaScript** files in there.
+## Getting the code
+As well as ```featuresviewer.min.js``` which contains the minified JavaScript code required to run the application, two css files are required: ```main.css``` (general styling, including feature styles) and ```fontello.css``` (icon font).
 
-Alternatively, you can install the module with: 
-`npm install biojs-vis-proteinfeaturesviewer`
-This is probably the preferred way if you are developing a new component or application that uses our feature viewer. It would be useful as well if you are modifying this component. Some more information about [node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/). 
- 
-In order to use this component, you need an HTML element such as <div\> or <span\> or anything else that can act as a container where the viewer will be located. In the following lines, we use a DIV element identified as *yourDiv*, it could have any other name. Do not forget to add a link to the **js**, the **css** and the **font** files. We are supposing here that you are using our **CDN-like repository**, if not, then please adjust the paths to your own environment.
+### The easy way (CDN)
+We host all our releases on Github, using Github pages as a CDN. The latest release is available here:
 
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <script src="http://ebi-uniprot.github.io/CDN/feature-viewer/featuresviewer.js"></script>
-    <link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/main.css" rel="stylesheet"/>
-    <link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/fontello.css" rel="stylesheet"/>    
-  </head>
-  <body>
-    <div id='yourDiv'/>
-  </body>
-</html>
+<script src="http://ebi-uniprot.github.io/CDN/feature-viewer/featuresviewer.js"></script>
+<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/main.css" rel="stylesheet"/>
+<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/fontello.css" rel="stylesheet"/>   
 ```
 
-Now you can include the component in your code and create an instance. In order to create an instance, you need to provide some configuration options. Particularly, you need to specify the object where the component will be located, *el*, as well as the UniProt accession whose sequence annotations will be visualized, *uniprotacc*. We are supposing here that you will instantiate the component as soon as the window has been loaded, i.e., window.onload function. Remember to place this script at the end of the *head* section of your HTML. 
+We also archive previous versions:
 
-```javascript
+```
+<script src="http://ebi-uniprot.github.io/CDN/feature-viewer/1.0.0/featuresviewer.js"></script>
+<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/1.0.0/css/main.css" rel="stylesheet"/>
+<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/1.0.0/css/fontello.css" rel="stylesheet"/>   
+```
+
+### The node way
+`>npm install biojs-vis-proteinfeaturesviewer`
+This is probably the preferred way if you are developing a new component or application that uses our feature viewer. It would be useful as well if you are modifying this component. Some more information about [node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/).
+
+## Loading the Feature Viewer
+In order to use this component, you need an HTML element such as <div\> or <span\> or anything else that can act as a container where the viewer will be located. In the following lines, we use a DIV element identified as *yourDiv*, it could have any other name.
+
+When creating the instance, you need to specify the object where the component will be located, *el*, as well as the UniProt accession whose sequence annotations will be visualized, *uniprotacc*. We are supposing here that you will instantiate the component as soon as the window has been loaded, i.e., window.onload function.
+
+```html
+<div id='yourDiv'/>
 <script>
     window.onload = function() {
         var yourDiv = document.getElementById('yourDiv');
         var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
         var instance = new biojs_vis_proteinFeaturesViewer({
-*   el: yourDiv,
-*   uniprotacc : 'P05067'
+            el: yourDiv,
+            uniprotacc : 'P05067'
         });
     }
 </script>
 ```
 
-There is a third option that can be specified, *pinPad* with possible values *true* or *false*. This option is used to activate a notepad on the right where tooltip can be pinned. If you set up that option to true, you **must** include pp_main.css.
+That's it, you should now see the Feature Viewer in your web page!
 
-## Methods
+## API
 The protein feature viewer offer some public methods that can be used to programmatically interact with the component.
 
 ### selectFeature(ftType, begin, end, altSequence)
@@ -75,82 +78,82 @@ Here is the list of the currently supported feature types:
 
 **ftType** | **Label** | **Description**
 --- | --- | ---
-[domain](http://www.uniprot.org/help/domain) | Domain | Position and type of each modular protein domain 
-[repeat](http://www.uniprot.org/help/repeat) | Repeat | Positions of repeated sequence motifs or repeated domains 
-[ca_bind](http://www.uniprot.org/help/ca_bind) | Calcium binding | Position(s) of calcium binding region(s) within the protein 
-[zn_fing](http://www.uniprot.org/help/zn_fing) | Zinc finger | Position(s) and type(s) of zinc fingers within the protein 
-[dna_bind](http://www.uniprot.org/help/dna_bind) | DNA binding | Position and type of a <span class="caps](http://www.uniprot.org/help/DNA</span>-binding domain 
-[np_bind](http://www.uniprot.org/help/np_bind) | Nucleotide binding | Nucleotide phosphate binding region 
-[region](http://www.uniprot.org/help/region) | Region | Region of interest in the sequence 
-[coiled](http://www.uniprot.org/help/coiled) | Coiled coil | Positions of regions of coiled coil within the protein 
-[motif](http://www.uniprot.org/help/motif) | Motif | Short (up to 20 amino acids) sequence motif of biological interest 
-[act_site](http://www.uniprot.org/help/act_site) | Active site | Amino acid(s) directly involved in the activity of an enzyme 
-[metal](http://www.uniprot.org/help/metal) | Metal binding | Binding site for a metal ion 
-[binding](http://www.uniprot.org/help/binding) | Binding site | Binding site for any chemical group (co-enzyme, prosthetic group, etc.) 
-[site](http://www.uniprot.org/help/site) | Site | Any interesting single amino acid site on the sequence 
- 
+[domain](http://www.uniprot.org/help/domain) | Domain | Position and type of each modular protein domain
+[repeat](http://www.uniprot.org/help/repeat) | Repeat | Positions of repeated sequence motifs or repeated domains
+[ca_bind](http://www.uniprot.org/help/ca_bind) | Calcium binding | Position(s) of calcium binding region(s) within the protein
+[zn_fing](http://www.uniprot.org/help/zn_fing) | Zinc finger | Position(s) and type(s) of zinc fingers within the protein
+[dna_bind](http://www.uniprot.org/help/dna_bind) | DNA binding | Position and type of a <span class="caps](http://www.uniprot.org/help/DNA</span>-binding domain
+[np_bind](http://www.uniprot.org/help/np_bind) | Nucleotide binding | Nucleotide phosphate binding region
+[region](http://www.uniprot.org/help/region) | Region | Region of interest in the sequence
+[coiled](http://www.uniprot.org/help/coiled) | Coiled coil | Positions of regions of coiled coil within the protein
+[motif](http://www.uniprot.org/help/motif) | Motif | Short (up to 20 amino acids) sequence motif of biological interest
+[act_site](http://www.uniprot.org/help/act_site) | Active site | Amino acid(s) directly involved in the activity of an enzyme
+[metal](http://www.uniprot.org/help/metal) | Metal binding | Binding site for a metal ion
+[binding](http://www.uniprot.org/help/binding) | Binding site | Binding site for any chemical group (co-enzyme, prosthetic group, etc.)
+[site](http://www.uniprot.org/help/site) | Site | Any interesting single amino acid site on the sequence
+
  **Category: Molecule processing**
- 
+
  **ftType** | **Label** | **Description**
  --- | --- | ---
-[init_met](http://www.uniprot.org/help/init_met) | Initiator methionine |  Cleavage of the initiator methionine 
-[signal](http://www.uniprot.org/help/signal) | Signal | Sequence targeting proteins to the secretory pathway or periplasmic space 
-[transit](http://www.uniprot.org/help/transit) | Transit peptide | Extent of a transit peptide for organelle targeting 
-[propep](http://www.uniprot.org/help/propep) | Propeptide | Part of a protein that is cleaved during maturation or activation 
-[chain](http://www.uniprot.org/help/chain) | Chain | Extent of a polypeptide chain in the mature protein 
-[peptide](http://www.uniprot.org/help/peptide) | Peptide | Extent of an active peptide in the mature protein 
+[init_met](http://www.uniprot.org/help/init_met) | Initiator methionine |  Cleavage of the initiator methionine
+[signal](http://www.uniprot.org/help/signal) | Signal | Sequence targeting proteins to the secretory pathway or periplasmic space
+[transit](http://www.uniprot.org/help/transit) | Transit peptide | Extent of a transit peptide for organelle targeting
+[propep](http://www.uniprot.org/help/propep) | Propeptide | Part of a protein that is cleaved during maturation or activation
+[chain](http://www.uniprot.org/help/chain) | Chain | Extent of a polypeptide chain in the mature protein
+[peptide](http://www.uniprot.org/help/peptide) | Peptide | Extent of an active peptide in the mature protein
 
 **Category: Post translational modifications**
 
 **ftType** | **Label** | **Description**
  --- | --- | ---
-[mod_res](http://www.uniprot.org/help/mod_res) | Modified residue | Modified residues excluding lipids, glycans and protein cross-links 
-[lipid](http://www.uniprot.org/help/lipid) | Lipidation | Covalently attached lipid group(s) 
-[carbohyd](http://www.uniprot.org/help/carbohyd) | Glycosylation | Covalently attached glycan group(s) 
-[disulfid](http://www.uniprot.org/help/disulfid) | Disulfide bond | Cysteine residues participating in disulfide bonds 
-[crosslnk](http://www.uniprot.org/help/crosslnk) | Cross-link | Residues participating in covalent linkage(s) between proteins 
+[mod_res](http://www.uniprot.org/help/mod_res) | Modified residue | Modified residues excluding lipids, glycans and protein cross-links
+[lipid](http://www.uniprot.org/help/lipid) | Lipidation | Covalently attached lipid group(s)
+[carbohyd](http://www.uniprot.org/help/carbohyd) | Glycosylation | Covalently attached glycan group(s)
+[disulfid](http://www.uniprot.org/help/disulfid) | Disulfide bond | Cysteine residues participating in disulfide bonds
+[crosslnk](http://www.uniprot.org/help/crosslnk) | Cross-link | Residues participating in covalent linkage(s) between proteins
 
 **Category: Sequence information**
 
 **ftType** | **Label** | **Description**
  --- | --- | ---
-[compbias](http://www.uniprot.org/help/compbias) | Compositional biased | Region of compositional bias in the protein 
-[non_std](http://www.uniprot.org/help/non_std) | Non-standard residue | Occurence of non-standard amino acids (selenocysteine and pyrrolysine) in the protein sequence 
-[unsure](http://www.uniprot.org/help/unsure) | Sequence uncertainty | Regions of uncertainty in the sequence 
-[conflict](http://www.uniprot.org/help/conflict) | Sequence conflict | Description of sequence discrepancies of unknown origin 
-[non_cons](http://www.uniprot.org/help/non_cons) | Non-adjacent residues | Indicates that two residues in a sequence are not consecutive 
-[non_ter](http://www.uniprot.org/help/non_ter) | Non-terminal residue | The sequence is incomplete. Indicate that a residue is not the terminal residue of the complete protein 
+[compbias](http://www.uniprot.org/help/compbias) | Compositional biased | Region of compositional bias in the protein
+[non_std](http://www.uniprot.org/help/non_std) | Non-standard residue | Occurence of non-standard amino acids (selenocysteine and pyrrolysine) in the protein sequence
+[unsure](http://www.uniprot.org/help/unsure) | Sequence uncertainty | Regions of uncertainty in the sequence
+[conflict](http://www.uniprot.org/help/conflict) | Sequence conflict | Description of sequence discrepancies of unknown origin
+[non_cons](http://www.uniprot.org/help/non_cons) | Non-adjacent residues | Indicates that two residues in a sequence are not consecutive
+[non_ter](http://www.uniprot.org/help/non_ter) | Non-terminal residue | The sequence is incomplete. Indicate that a residue is not the terminal residue of the complete protein
 
 **Category: Structural features**
 
 **ftType** | **Label** | **Description**
  --- | --- | ---
-[helix](http://www.uniprot.org/help/helix) | Helix | Helical regions within the experimentally determined protein structure 
-[turn](http://www.uniprot.org/help/turn) | Turn | Turns within the experimentally determined protein structure 
+[helix](http://www.uniprot.org/help/helix) | Helix | Helical regions within the experimentally determined protein structure
+[turn](http://www.uniprot.org/help/turn) | Turn | Turns within the experimentally determined protein structure
 [strand](http://www.uniprot.org/help/strand) | Beta strand | Beta strand regions within the experimentally determined protein structure
 
 **Category: Topology**
 
 **ftType** | **Label** | **Description**
  --- | --- | ---
-[topo_dom](http://www.uniprot.org/help/topo_dom) | Topological domain | Location of non-membrane regions of membrane-spanning proteins 
-[transmem](http://www.uniprot.org/help/transmem) | Transmembrane | Extent of a membrane-spanning region 
-[intramem](http://www.uniprot.org/help/intramem) | Intramembrane | Extent of a region located in a membrane without crossing it 
+[topo_dom](http://www.uniprot.org/help/topo_dom) | Topological domain | Location of non-membrane regions of membrane-spanning proteins
+[transmem](http://www.uniprot.org/help/transmem) | Transmembrane | Extent of a membrane-spanning region
+[intramem](http://www.uniprot.org/help/intramem) | Intramembrane | Extent of a region located in a membrane without crossing it
 
 **Category: Mutagenesis**
 
 **ftType** | **Label** | **Description**
  --- | --- | ---
-[mutagen](http://www.uniprot.org/help/mutagen) | Mutagenesis | Site which has been experimentally altered by mutagenesis 
- 
+[mutagen](http://www.uniprot.org/help/mutagen) | Mutagenesis | Site which has been experimentally altered by mutagenesis
+
 **Category: Variants**
 
 **ftType** | **Label** | **Description**
  --- | --- | ---
 [variant](http://www.uniprot.org/help/variant) | Natural variant | Description of a natural variant of the protein |
-						 
-  
-  
+
+
+
 ## Events
 The Protein Feature Viewer triggers five events. In order to listen to those events, you need to get the dispatcher.
 
@@ -159,10 +162,10 @@ instance.getDispatcher().on("ready", function(obj) {
     console.log('ready');
     console.log(obj);
 });
-``` 
+```
 
 ### "ready"
-As soon as data has been loaded and visualized, this event will be triggered. The object provided by this event corresponds to all the data retrieved from the data service plus some parsing, it will be ready to be used by the viewer or any other JavaScript component. 
+As soon as data has been loaded and visualized, this event will be triggered. The object provided by this event corresponds to all the data retrieved from the data service plus some parsing, it will be ready to be used by the viewer or any other JavaScript component.
 
 ### "featureSelected"
 As soon as a feature has been selected, meaning a click on it has happened, this event will be triggered. The object provided by this event looks like:
@@ -206,7 +209,7 @@ Please submit all issues and pull requests to the [ebi-uniprot/biojs-vis-protein
 ## Support
 If you have any problem or suggestion please open an issue [here](https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/issues).
 
-## License 
+## License
 This software is licensed under the Apache 2 license, quoted below.
 
 Copyright (c) 2014, ebi-uniprot
