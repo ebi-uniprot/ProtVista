@@ -5,6 +5,7 @@
 
 #Documentation
 [Documentation](http://ebi-uniprot.github.io/biojs-vis-proteinFeaturesViewer/)
+
 [Developer documentation](http://ebi-uniprot.github.io/biojs-vis-proteinFeaturesViewer/developerGuide.html)
 
 ## Contributing
