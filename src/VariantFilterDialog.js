@@ -14,37 +14,37 @@ var filters = [
         cases: [
             {
                 label: 'Disease',
-                on: false,
+                on: true,
                 properties: {
-                    'disease': true,
-                    'sourceType': [
-                        Evidence.variantSourceType.uniprot,
-                        Evidence.variantSourceType.mixed
-                    ]
+                    'association': function(associations){
+                      return _.some(associations, function(association){
+                        return association.disease === true;
+                      });
+                    }
                 },
                 color: '#990000'
             }, {
                 label: ['Predicted deleterious', 'Predicted benign'],
-                on: false,
+                on: true,
                 properties: {
-                    'alternativeSequence': /[^*]/,
+                    // 'alternativeSequence': /[^*]/,
                     'sourceType':Evidence.variantSourceType.lss
                 },
                 colorRange: ['#ff3300','#009900']
             }, {
                 label: 'Non-disease',
-                on: false,
+                on: true,
                 properties: {
-                    'disease':false,
-                    'sourceType': [
-                        Evidence.variantSourceType.uniprot,
-                        Evidence.variantSourceType.mixed
-                    ]
+                  'association': function(associations){
+                    return _.some(associations, function(association){
+                      return association.disease === true;
+                    });
+                  }
                 },
                 color: '#99cc00'
             }, {
                 label: 'Init, stop loss or gain',
-                on: false,
+                on: true,
                 properties: {
                     'alternativeSequence': '*'
                 },
@@ -56,8 +56,8 @@ var filters = [
         label: 'Filter data source',
         cases: [
             {
-                label: 'UniProt',
-                on: false,
+                label: 'UniProt reviewed',
+                on: true,
                 properties: {
                     'sourceType': [
                         Evidence.variantSourceType.uniprot,
@@ -67,7 +67,7 @@ var filters = [
                 color: 'grey'
             }, {
                 label: 'Large scale studies',
-                on: false,
+                on: true,
                 properties: {
                     'sourceType': [
                         Evidence.variantSourceType.lss,
@@ -88,7 +88,11 @@ var VariantFilterDialog = function(container, variantViewer) {
     var drawFilter = function(filter, li) {
         var anchor = li.append('a')
             .on('click', function() {
+                if(allOn()) {
+                  clearFilters();
+                }
                 filter.on = !filter.on;
+                // TODO repaint all getBackground
                 li.select('.up_pftv_legend').attr('style', getBackground(filter));
                 var filteredData = filterData(variantFilterDialog.variantViewer.features);
                 variantViewer.updateData(filteredData);
@@ -128,19 +132,31 @@ var VariantFilterDialog = function(container, variantViewer) {
 
 var getBackground = function(filter) {
     if(filter.colorRange) {
-        return 'background:' + (filter.on ? '#ffffff' : 'linear-gradient(' + filter.colorRange + ');');
+        return 'background:' + (filter.on ? 'linear-gradient(' + filter.colorRange + ');' : '#ffffff');
     } else {
-        return 'background-color:' + (filter.on ? '#ffffff' : filter.color);
+        return 'background-color:' + (filter.on ? filter.color : '#ffffff');
     }
 };
+
+var allOn = function() {
+  return _.filter(filterCases, 'on').length === filterCases.length;
+}
+
+var clearFilters = function() {
+  _.each(filters, function(d) {
+    _.each(d.cases, function(e) {
+      e.on = false;
+    })
+  })
+}
 
 var filterData = function(data) {
     var activeFilters = _.filter(filterCases, 'on');
     var newData = [];
     _.each(data, function(feature) {
         var filtered = _.filter(feature.variants, function(variant) {
-            return !_.some(activeFilters, function(filter){
-                var discard = _.every(_.keys(filter.properties), function(prop){
+            var returnValue = _.some(activeFilters, function(filter){
+                return _.some(_.keys(filter.properties), function(prop){
                     if(filter.properties[prop] instanceof Array) {
                         return _.some(filter.properties[prop], function(orProp){
                             return variant[prop] === orProp;
@@ -149,12 +165,16 @@ var filterData = function(data) {
                         return filter.properties[prop] === variant[prop];
                     } else if (filter.properties[prop] instanceof RegExp) {
                         return filter.properties[prop].test(variant[prop]);
+                    } else if (filter.properties[prop] instanceof Function) {
+                      if(variant[prop]){
+                        return filter.properties[prop](variant[prop]);
+                      }
                     } else {
                         return variant[prop] === filter.properties[prop];
                     }
                 });
-                return discard;
             });
+            return returnValue;
         });
         var featureCopy = $.extend(true, {}, feature);
         featureCopy.variants = filtered;
@@ -162,15 +182,5 @@ var filterData = function(data) {
     });
     return newData;
 };
-/*
-var displayFeature = function(feature) {
-    var display = false;
-    _.each(filters, function(filter) {
-        var ftValueProp = feature[filter.property] === undefined ? false : feature[filter.property];
-        var parentDisplay = _.contains(filter.value, ftValueProp);
-        display = display || parentDisplay;
-    });
-    return display;
-};*/
 
 module.exports = VariantFilterDialog;
