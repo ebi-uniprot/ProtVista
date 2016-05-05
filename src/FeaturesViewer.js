@@ -5,7 +5,7 @@ var _ = require("underscore");
 var d3 = require("d3");
 
 var Constants = require("./Constants");
-var DataLoader = require("./dataLoader");
+var DataLoader = require("./DataLoader");
 var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
