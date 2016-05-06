@@ -8,13 +8,13 @@ var Constants = function() {
   return {
     getDataSources: function() {
       var sources = [{
-        url: 'https://wwwdev.ebi.ac.uk/uniprot/services/restful/features/',
+        url: 'https://www.ebi.ac.uk/uniprot/api/features/',
         type: 'basic'
       }, {
-        url: 'https://wwwdev.ebi.ac.uk/uniprot/services/restful/proteomics/',
+        url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
         type: 'basic'
       }, {
-        url: 'https://wwwdev.ebi.ac.uk/uniprot/services/restful/variation/',
+        url: 'https://www.ebi.ac.uk/uniprot/api/variation/',
         type: 'variant'
       }];
       return sources;
