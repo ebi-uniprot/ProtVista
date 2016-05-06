@@ -258,8 +258,7 @@ var addPredictions = function(tooltip) {
             .attr('target', '_blank').text('Frequency (MAF)');
         freqRow.append('td').text(tooltip.data.frequency);
     }
-    if (tooltip.data.polyphenPrediction && (tooltip.data.polyphenPrediction !== '-')
-        && (tooltip.data.polyphenPrediction !== 'unknown')) {
+    if (tooltip.data.polyphenPrediction && (tooltip.data.polyphenPrediction !== '-')) {
         var polyRow = tooltip.table.append('tr');
         polyRow.append('td').append('span').append('a')
             .attr('href', 'http://genetics.bwh.harvard.edu/pph2/dokuwiki/about')
@@ -267,8 +266,7 @@ var addPredictions = function(tooltip) {
         var text = tooltip.data.polyphenPrediction + ', score ' + tooltip.data.polyphenScore;
         polyRow.append('td').text(text);
     }
-    if (tooltip.data.siftPrediction && (tooltip.data.siftPrediction !== '-')
-        && (tooltip.data.siftPrediction !== 'unknown')) {
+    if (tooltip.data.siftPrediction && (tooltip.data.siftPrediction !== '-')) {
         var siftRow = tooltip.table.append('tr');
         siftRow.append('td').append('span').append('a')
             .attr('href', 'http://sift.jcvi.org/')

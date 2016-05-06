@@ -36,7 +36,7 @@ var variantsFill = function(d, fv) {
         if ((d.polyphenPrediction !== undefined) && (d.polyphenPrediction !== 'unknown')) {
             polyphen = d.polyphenScore !== undefined ? true : false;
         }
-        if ((d.siftPrediction !== undefined) && (d.siftPrediction !== 'unknown')) {
+        if (d.siftPrediction !== undefined) {
             sift = d.siftScore !== undefined ? true : false;
         }
         if (sift && polyphen) {
@@ -45,6 +45,8 @@ var variantsFill = function(d, fv) {
             return LegendDialog.getPredictionColor(d.siftScore);
         } else if (!sift && polyphen) {
             return LegendDialog.getPredictionColor(1-d.polyphenScore);
+        } else if (d.polyphenPrediction === 'unknown') {
+            return LegendDialog.getPredictionColor(1);
         } else {
             return LegendDialog.othersColor;
         }

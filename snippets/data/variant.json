@@ -16,9 +16,7 @@
       "begin": "99",
       "end": "99",
       "xrefs":
-
       [
-
         {
           "name": "dbSNP",
           "id": "rs759815430",
@@ -27,10 +25,9 @@
       ],
       "wildType": "A",
       "frequency": 0.0,
-      "polyphenPrediction": "benign",
-      "polyphenScore": 0.314,
-      "siftPrediction": "tolerated",
-      "siftScore": 0.06,
+      "polyphenPrediction": "unknown",
+      "polyphenScore": 0.0,
+      "siftScore": 0.0,
       "somaticStatus": 0,
       "cytogeneticBand": "4p16.3",
       "genomicLocation": "4:g.1799439G>A",
