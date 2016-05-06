@@ -20,7 +20,7 @@ chai.should();
 // requires your main app
 var _ = require("underscore");
 var FeaturesViewer = require('../..');
-var DataLoader = require('../../src/dataLoader');
+var DataLoader = require('../../src/DataLoader');
 var NonOverlappingLayout = require('../../src/NonOverlappingLayout');
 
 describe('FeaturesViewerTest', function() {
