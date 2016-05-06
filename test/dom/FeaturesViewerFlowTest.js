@@ -21,8 +21,9 @@ var yourDiv = document.getElementById('mocha');
 
 // requires your main app (specified in index.js)
 var FeaturesViewer = require('../..');
-var DataLoader = require('../../src/dataLoader');
 var Constants = require('../../src/Constants');
+var FeaturesData = require('./FeaturesData');
+var jQuery = require('jquery');
 
 var verifyShadowAttributes = function(containerClass, path, exactPath, translate, height, x) {
     var categoryShadow = document.querySelector('.' + containerClass + ' .up_pftv_shadow');
@@ -83,13 +84,20 @@ describe('FeaturesViewerFlowTest', function() {
     before(function(done) {
         sinon.stub(Constants, 'getDataSources', function() {
             return [{
-                url: 'https://wwwdev.ebi.ac.uk/uniprot/services/restful/features/',
+                url: '',
                 type: 'basic'
             }];
         });
+        sinon.stub(jQuery, 'getJSON', function() {
+            var deferred = jQuery.Deferred();
+            setTimeout(function() {
+                return deferred.resolve(FeaturesData.features);
+            }, 5);
+            return deferred;
+        });
         var opts = {
             el: yourDiv,
-            uniprotacc: 'P05067'
+            uniprotacc: ''
         };
         instance = new FeaturesViewer(opts);
 
@@ -103,6 +111,7 @@ describe('FeaturesViewerFlowTest', function() {
 
     after(function() {
         Constants.getDataSources.restore();
+        jQuery.getJSON.restore();
     });
 
     describe('Viewer initialization.', function() {
@@ -618,10 +627,10 @@ describe('FeaturesViewerFlowTest', function() {
             instance.selectFeature('MUTAGEN', 198, 198, 'A');
             var activeFeature = document.querySelector('.up_pftv_activeFeature');
 
-            assert.equal(instance.selectedFeature.begin, 198, 'begin selected variant feature');
-            assert.equal(instance.selectedFeature.end, 198, 'end selected variant feature');
+            assert.equal(instance.selectedFeature.begin, 198, 'begin selected mutagen feature');
+            assert.equal(instance.selectedFeature.end, 198, 'end selected mutagen feature');
             assert.equal(activeFeature.getAttribute('class'), 'up_pftv_feature up_pftv_mutagen up_pftv_activeFeature',
-                'selected variant class');
+                'selected mutagen class');
         });
 
         it('should have deselected the REGION feature', function() {
@@ -630,7 +639,7 @@ describe('FeaturesViewerFlowTest', function() {
                 'non-selected region class');
         });
 
-        it('should still have only 1 tooltip after feature variant selection', function() {
+        it('should still have only 1 tooltip after feature mutagen selection', function() {
             var tooltip = document.querySelectorAll('.up_pftv_tooltip-container');
             assert.equal(tooltip.length, 1, 'region tooltip exists');
         });
