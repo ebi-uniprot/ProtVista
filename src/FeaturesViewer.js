@@ -2,15 +2,16 @@
 /*jshint laxcomma: true */
 
 var _ = require("underscore");
-var DataLoader = require("./dataLoader");
-var CategoryFactory = require("./CategoryFactory");
 var d3 = require("d3");
+
+var Constants = require("./Constants");
+var DataLoader = require("./DataLoader");
+var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
 var VariantFilterDialog = require("./VariantFilterDialog");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
 var TooltipFactory = require('./TooltipFactory');
-var PinPad = require("biojs-vis-pinpad");
 
 var updateZoomFromChart = function(fv) {
     fv.zoom.x(fv.xScale);
@@ -243,7 +244,7 @@ var createButtons = function(fv, data, container) {
         .attr('class','icon-cog')
         .attr('title','Hide/Show tracks')
         .on('click', function(){
-            CategoryFilterDialog.displayDialog(fv, data, buttons);
+            CategoryFilterDialog.displayDialog(fv, buttons);
         });
     buttons.append('span')
         .attr('class','icon-arrows-cw')
@@ -367,123 +368,77 @@ var createAAViewer = function(fv, container, sequence) {
 
 var findFeature = function(fv, ftType, begin, end, altSequence) {
     var lookup, varLookup;
-    _.find(fv.data, function(datum) {
-        if (datum.features) {
-            lookup =  _.find(datum.features, function(feature) {
-                var ftEnd = feature.end ? feature.end : feature.begin;
-                if (feature.variants && (feature.type.name === 'VARIANT')) {
-                    varLookup = _.find(feature.variants, function(variant) {
-                        var varEnd = variant.end ? variant.end : variant.begin;
-                        return (+variant.begin === +begin) && (+varEnd === +end) && (variant.mutation === altSequence);
-                    });
-                    return varLookup;
-                } else if (feature.type.name === 'CONFLICT'){
-                    return (+feature.begin === +begin) && (+ftEnd === +end) && (feature.alternativeSequence === altSequence);
-                } else if (feature.type.name === 'MUTAGEN') {
-                    return (+feature.begin === +begin) && (+ftEnd === +end) && (feature.mutation === altSequence);
-                } else {
-                    return (feature.type.name === ftType) && (+feature.begin === +begin) && (+ftEnd === +end);
-                }
-            });
-            return lookup;
-        } else {
-            return false;
-        }
+    _.find(fv.data, function(category) {
+        lookup =  _.find(category[1], function(feature) {
+            var ftEnd = feature.end ? feature.end : feature.begin;
+            if (feature.variants && (feature.type === 'VARIANT')) {
+                varLookup = _.find(feature.variants, function(variant) {
+                    var varEnd = variant.end ? variant.end : variant.begin;
+                    return (+variant.begin === +begin) && (+varEnd === +end)
+                        && (variant.alternativeSequence === altSequence);
+                });
+                return varLookup;
+            } else if (feature.type === 'CONFLICT'){
+                return (+feature.begin === +begin) && (+ftEnd === +end)
+                    && (feature.alternativeSequence === altSequence);
+            } else if (feature.type === 'MUTAGEN') {
+                return (+feature.begin === +begin) && (+ftEnd === +end)
+                    && (feature.alternativeSequence === altSequence);
+            } else {
+                return (feature.type === ftType) && (+feature.begin === +begin) && (+ftEnd === +end);
+            }
+        });
+        return lookup;
     });
     return varLookup ? varLookup : lookup;
-};
-
-var removeFromPinPad = function(obj, fv) {
-    var isCandidate = false;
-    if (obj.element) {
-        fv.pinPadElements = _.reject(fv.pinPadElements, function(el) {
-            if (el.internalId === obj.element.id) {
-                el.pinned = false;
-            }
-            return el.internalId === obj.element.id;
-        });
-        if ((fv.selectedFeature !== undefined) && (fv.selectedFeature.internalId === obj.element.id)) {
-            isCandidate = true;
-        }
-    } else if (obj.category) {
-        fv.pinPadElements = _.reject(fv.pinPadElements, function(el) {
-            var comparison = fv.getCategoryTitle(el.type.name) === obj.category;
-            if (comparison) {
-                el.pinned = false;
-            }
-            if ((fv.selectedFeature !== undefined) && (fv.selectedFeature.internalId === el.internalId)) {
-                isCandidate = true;
-            }
-            return comparison;
-        });
-    }
-    var tooltip = d3.select('.up_pftv_tooltip-container');
-    if (isCandidate && (tooltip.node() !== null)) {
-        var pinContainer = d3.select('.up_pp_iconContainer.up_pftv_iconContainer-pinned');
-        pinContainer.classed('up_pftv_iconContainer-unpinned', true);
-        pinContainer.classed('up_pftv_iconContainer-pinned', false);
-        pinContainer.attr('title', 'Pin tooltip');
-    }
 };
 
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noData", "noFeatures", "notFound");
+
     fv.width = 760;
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
     fv.sequence = "";
-    fv.categoryOrderAndType = {
-        domainsAndSites: {
-            type: 'basic', filter: false, title: 'Domains & sites',
-            ftTypes: ['REGION', 'COILED', 'MOTIF', 'REPEAT', 'CA_BIND', 'DNA_BIND', 'DOMAIN', 'ZN_FING', 'NP_BIND',
-                'METAL', 'SITE', 'BINDING', 'ACT_SITE']
-        }, moleculeProcessing: {
-            type: 'basic', filter: false, title: 'Molecule processing',
-            ftTypes: ['CHAIN', 'TRANSIT', 'INIT_MET', 'PROPEP', 'PEPTIDE', 'SIGNAL']
-        }, ptm: {
-            type: 'basic', filter: false, title: 'Post translational modifications',
-            ftTypes: ['MOD_RES', 'LIPID', 'CARBOHYD', 'DISULFID', 'CROSSLNK']
-        }, seqInfo: {
-            type: 'basic', filter: false, title: 'Sequence information',
-            ftTypes: ['COMPBIAS', 'CONFLICT', 'NON_CONS', 'NON_TER', 'UNSURE', 'NON_STD']
-        }, structural: {
-            type: 'basic', filter: false, title: 'Structural features',
-            ftTypes: ['HELIX', 'STRAND', 'TURN']
-        }, topology: {
-            type: 'basic', filter: false, title: 'Topology',
-            ftTypes: ['TOPO_DOM', 'TRANSMEM', 'INTRAMEM']
-        }, mutagenesis: {
-            type: 'basic', filter: false, title: 'Mutagenesis',
-            ftTypes: ['MUTAGEN']
-        }, variants: {
-            type: 'variant', filter: true, title: 'Variants',
-            ftTypes: ['VARIANT', 'MISSENSE', 'MS_DEL', 'INSDEL', 'STOP_LOST', 'STOP_GAINED', 'INIT_CODON']
-        }
-    };
-    fv.filterTypes = fv.categoryOrderAndType.variants.ftTypes;
+    // fv.filterTypes = fv.categoryOrderAndType.variants.ftTypes;
     fv.categories = [];
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
-    fv.data = undefined;
+    fv.data = [];
 
     fv.load = function() {
-        opts.proxy = opts.proxy ? opts.proxy : "";
-        var dataLoader = DataLoader.get(opts.proxy, opts.uniprotacc);
-        dataLoader.done(function(d) {
-            fv.data = d;
-            if (d.totalFeatureCount === 0) {
-                d3.select(opts.el)
-                    .text('No features available for protein ' + opts.uniprotacc);
-                fv.dispatcher.noFeatures(d);
-            } else {
-                fv.init(opts, d);
+        fv.initLayout(opts);
+        var dataSources = Constants.getDataSources();
+        _.each(dataSources, function(source){
+          var url = source.url + opts.uniprotacc;
+          var dataLoader = DataLoader.get(url);
+          var container = fv.container.append('div');
+          dataLoader.then(function(d){
+            if (d instanceof Array) //Workaround to be removed
+              d = d[0];
+            // First promise to resolve will set global parameters
+            if(!fv.sequence) {
+              fv.loadZoom(d);
             }
-        }).fail(function(e) {
-            d3.select(opts.el)
-                .text(e.responseText);
-            fv.dispatcher.noData({error: e});
+            var features = d.features;
+            // group by categories
+            if(features.length > 0 && _.has(features[0],'category')){
+              features = DataLoader.groupFeaturesByCategory(features);
+            } else if (features.length > 0 && features[0].type === 'VARIANT') {
+              features = DataLoader.processVariants(features, d.sequence);
+            } else if (features.length > 0 && features[0].type === 'PROTEOMICS'){
+              features = DataLoader.processProteomics(features);
+            } else {
+              features = DataLoader.processUngroupedFeatures(features);
+            }
+            fv.drawCategories(features, source.type, fv, container);
+            fv.data = fv.data.concat(features);
+            fv.dispatcher.ready();
+          }).fail(function(e){
+            console.log(e);
+          });
         });
     };
 
@@ -492,25 +447,13 @@ var FeaturesViewer = function(opts) {
 
 FeaturesViewer.prototype.getCategoryTitle = function(type) {
     var fv = this;
-    var category = _.find(fv.categoryOrderAndType, function(cat) {
-        if (_.contains(cat.ftTypes, type.toUpperCase())) {
-            return true;
-        }
-        return false;
+    var category = _.find(fv.data, function(cat) {
+        var hasType = _.find(cat[1], function(ft) {
+            return ft.type === type;
+        });
+        return hasType;
     });
-    return category ? category.title : undefined;
-};
-
-FeaturesViewer.prototype.applyFilter = function() {
-    var fv = this;
-    _.each(fv.filterCategories, function(category) {
-        category.update();
-    });
-
-    if (fv.selectedFeature && _.contains(fv.filterTypes, fv.selectedFeature.type.name) &&
-        !VariantFilterDialog.displayFeature(fv.selectedFeature) ) {
-        ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
-    }
+    return category ? category[0] : undefined;
 };
 
 FeaturesViewer.prototype.updateFeatureSelector = function() {
@@ -526,10 +469,12 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     var fv = this;
     ftType = ftType.toUpperCase();
     altSequence = altSequence ? altSequence.toUpperCase() : altSequence;
+
     var catTitle = fv.getCategoryTitle(ftType);
     var category = _.find(fv.categories, function(cat) {
-        return cat.data.label === catTitle;
+        return cat.name === catTitle;
     });
+
     var feature = findFeature(fv, ftType, +start, +end, altSequence);
     if (!feature) {
         fv.dispatcher.notFound({ftType: ftType, begin: start, end: end});
@@ -537,11 +482,9 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     }
 
     var elem = d3.select('[name="' + feature.internalId + '"]');
-
     if (category && feature && elem && !elem.classed('up_pftv_variant_hidden')) {
         var container = category.viewerContainer.style('display') === 'none'
             ? category.tracksContainer : category.viewerContainer;
-
         if (elem.classed('up_pftv_variant')) {
             var varTrack = d3.select('.up_pftv_category-name[title="' + catTitle + '"]');
             if (varTrack.classed('up_pftv_arrow-right')) {
@@ -568,66 +511,51 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
     }
 };
 
-FeaturesViewer.prototype.init = function(opts, d) {
+FeaturesViewer.prototype.initLayout = function(opts, d) {
     var fv = this;
-    fv.sequence = d.sequence;
-    fv.accession = d.accession;
-    fv.maxPos = d.sequence.length;
-    fv.xScale = d3.scale.linear()
-        .domain([1, d.sequence.length + 1])
-        .range([fv.padding.left, fv.width - fv.padding.right]);
     //remove any previous text
-    var genericContainer = d3.select(opts.el).text('');
-    var fvContainer = genericContainer
+    var globalContainer = d3.select(opts.el).text('');
+    fvContainer = globalContainer
         .append('div')
         .attr('class', 'up_pftv_container')
         .on('mousedown', function() {
             closeTooltipAndPopup(fv);
         });
-    if (opts.pinPad === true) {
-        fvContainer.style('display', 'inline-block');
-        var pinPadId = '_' + new Date().getTime();
-        genericContainer.append('div')
-            .classed('up_ptfv_pp-container', true)
-            .attr('id', pinPadId);
-        fv.pinPad = new PinPad({
-            ordering: ['type', 'start', 'end'],
-            options: {
-                el: '#' + pinPadId
-                , width: '220px'
-                , height: '320px'
-                , highlightColor: 'green'
-            }
-        });
-        fv.pinPadElements = [];
-        fv.pinPad.dispatcher.on('remove', function(obj) {
-            removeFromPinPad(obj, fv);
-        });
-    }
 
-    fv.viewport = createNavRuler(fv, fvContainer);
-    createButtons(fv, d, fvContainer);
-    fv.aaViewer = createAAViewer(fv, fvContainer, d.sequence);
-    fv.zoom = createZoom(fv);
+    fv.header = fvContainer.append('div');
 
     fv.container = fvContainer
         .append('div')
         .attr('class', 'up_pftv_category-container');
 
-    _.each(fv.categoryOrderAndType, function(value, category) {
-        if ( (!_.contains(opts.exclusions, category)) && (d[category].features.length !== 0) ){
-            var cat = CategoryFactory.createCategory(d[category], fv.categoryOrderAndType[category].type, fv);
-            fv.categories.push(cat);
-            if (fv.categoryOrderAndType[category].filter) {
-                fv.filterCategories.push(cat);
-            }
-        }
-    });
-    var bottomAAViewerContainer = fvContainer.append('div').attr('class','bottom-aa-container');
-    fv.aaViewer2 = createAAViewer(fv, bottomAAViewerContainer, d.sequence);
-    updateViewportFromChart(fv);
-    updateZoomFromChart(fv);
-    fv.dispatcher.ready(d);
+    fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
+};
+
+FeaturesViewer.prototype.loadZoom = function(d) {
+  var fv = this;
+  fv.sequence = d.sequence;
+  fv.accession = d.accession;
+  fv.maxPos = d.sequence.length;
+
+  fv.xScale = d3.scale.linear()
+      .domain([1, d.sequence.length + 1])
+      .range([fv.padding.left, fv.width - fv.padding.right]);
+
+  fv.viewport = createNavRuler(fv, fv.header);
+  createButtons(fv, d, fv.header);
+  fv.aaViewer = createAAViewer(fv, fv.header, d.sequence);
+  fv.zoom = createZoom(fv);
+
+  fv.aaViewer2 = createAAViewer(fv, fv.footer, d.sequence);
+  updateViewportFromChart(fv);
+  updateZoomFromChart(fv);
+};
+
+FeaturesViewer.prototype.drawCategories = function(data, type, fv, container) {
+  _.each(data, function(category) {
+    var cat = CategoryFactory.createCategory(category[0], category[1], type, fv, container);
+    fv.categories.push(cat);
+  });
 };
 
 module.exports = FeaturesViewer;

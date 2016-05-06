@@ -49,11 +49,22 @@ svg {
 .up_pftv_container {
     position: relative;
     width: 960px;
-    color: #3c4043;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 1.5;
+    color:#557071 !important;
+    font-family: 'Helvetica neue', Helvetica, Arial, sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+}
+
+.up_pftv_container a {
+  color:#557071 !important;
+  border:none !important;
+}
+
+.up_pftv_container h4 {
+  font-size: 1em !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid #cacaca;
+  margin-bottom: .7em;
 }
 
 .up_ptfv_pp-container {
@@ -82,6 +93,8 @@ svg {
 }
 
 .up_pftv_category-name, .up_pftv_track-header {
+    font-weight: 400;
+    line-height: 2.1em;
     display: inline-block;
     width: 180px;
     vertical-align: bottom;
@@ -238,42 +251,40 @@ svg {
 }
 
 /* Dialogs */
-.up_pftv_dialog-container, .up_pftv_popupDialog-container {
-    font-family: "Gill Sans","Gill Sans MT",Calibri,sans-serif;
-    font-weight: lighter;
-    font-size: .9em;
-    padding: 0.5em 0 0.5em 0.15em;
-    text-align: left;
-}
-.up_pftv_indentedCheck {
-    padding-left: 1.2em;
-    font-size: .9em;
+
+.up_pftv_dialog-container {
+  margin:0;padding:0;
 }
 
-.up_pftv_dialog-legend {
-    padding: 0.5em 0.5em 0.1em 0;
+.up_pftv_dialog-container li a {
+  display: block;
+  line-height: 2em;
+  padding: 0 .2em;
+  cursor: pointer;
 }
 
-.up_pftv_legend, .up_pftv_legendRect, .up_pftv_legendTitle {
-    height: 15px;
-}
-
-.up_pftv_legendRect {
+.up_pftv_legend {
+    vertical-align: sub;
+    width: 1.5em;
     display: inline-block;
-    vertical-align: middle;
-    width: 10px;
+    height: 1em;
+    border-radius: .4em;
+    border: 2px solid #cacaca;
+    margin-right: .5em;
 }
 
-.up_pftv_legendTitle {
+.up_pftv_legend_double {
+    height: 3em !important;
+}
+
+.up_pftv_legend_text {
+    line-height: 2em;
     display: inline-block;
-    vertical-align: text-bottom;
-    padding-left: .2em;
-    font-size: 0.76em;
+    vertical-align: top;
 }
 
 /* Close button */
 .up_pftv_tooltip-close {
-    font-family: Arial, sans-serif;
     color: #FFF;
     background-color: #333333;
     position: absolute;
@@ -325,11 +336,11 @@ svg {
     background-color: #ffffff;
     padding: 0.5em;
     min-width: 210px;
+    text-align: left;
 }
 
 .up_pftv_tooltip-container table {
-    font-weight: lighter;
-    font-size: .9em;
+    font-size: 13px;
     border: 2px solid #CCC;
     border-spacing: 0;
     border-collapse: collapse;
@@ -341,9 +352,9 @@ svg {
 
 .up_pftv_tooltip-container table th {
     text-transform: capitalize;
+    font-weight: 400;
     white-space: nowrap;
     letter-spacing: .05em;
-    font-weight: lighter;
     font-size: 1.1em;
     background-color: #595959;
     line-height: 2em;
@@ -358,7 +369,7 @@ svg {
 }
 
 .up_pftv_tooltip-container td:first-child {
-    font-weight: normal;
+    font-weight: bold;
 }
 
 .up_pftv_tooltip-container .up_pftv_evidence-col {
@@ -564,6 +575,16 @@ svg .up_pftv_transmem {
 svg .up_pftv_intramem {
     stroke: #0000CC;
     fill: #0000CC;
+}
+
+svg .up_pftv_unique {
+    stroke: #fc3133;
+    fill: #fd5a5d;
+}
+
+svg .up_pftv_non_unique {
+    stroke: #8585fc;
+    fill: #5a60fb;
 }
 
 /* Variation */

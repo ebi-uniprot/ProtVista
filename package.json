@@ -27,7 +27,7 @@
       "url": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/blob/master/LICENSE"
     }
   ],
-  "main": "lib/FeaturesViewer",
+  "main": "src/FeaturesViewer",
   "config": {
     "classname": "FeaturesViewerTest",
     "outputfile": "reports/TEST-FeaturesViewerTest.xml"
@@ -42,7 +42,6 @@
     "watch": "gulp watch"
   },
   "dependencies": {
-    "biojs-vis-pinpad": "^0.1.8",
     "d3": "^3.4.13",
     "jquery": "^2.1.4",
     "underscore": "^1.7.0"
@@ -71,6 +70,7 @@
     "mocha": "~1.20.1",
     "mocha-sonar-reporter": "^0.1.2",
     "phantomjs": "^1.9.1",
+    "sinon": "^1.17.3",
     "sniper": "^0.2.16",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^3.2.3",
@@ -87,9 +87,8 @@
       "/build/featuresviewer.js"
     ],
     "css": [
-      "/build/css/fontello.css",
-      "/build/css/main.css",
-      "/build/css/pp_main.css"
+      "/style/fontello.css",
+      "/style/main.css"
     ],
     "snippets": [
       "snippets"

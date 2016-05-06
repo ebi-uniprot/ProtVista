@@ -51,7 +51,7 @@ ViewerHelper.shadowPath = function (feature, fv, height) {
     var path;
     if (!feature.type) {
         path = 'M-1,-1';
-    } else if (FeatureFactory.isContinuous(feature.type.name)) {
+    } else if (FeatureFactory.isContinuous(feature.type)) {
         path = 'M' + -(gapRegion) + ',0'
             + 'L' + (-gapRegion+width) + ',0'
             + 'L' + (-gapRegion+width) + ',' + height
@@ -133,11 +133,19 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
                 ViewerHelper.selectFeature(d, this, fv);
             }
         })
-        .on('mouseover', function() {
+        .on('mouseover', function(d) {
             fv.overFeature = true;
+            if (d3.select(this).classed('up_pftv_variant')) {
+                var initial = d.alternativeSequence.charAt(0);
+                d3.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 1);
+            }
         })
-        .on('mouseout', function() {
+        .on('mouseout', function(d) {
             fv.overFeature = false;
+            if (d3.select(this).classed('up_pftv_variant')) {
+                var initial = d.alternativeSequence.charAt(0);
+                d3.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 0.4);
+            }
         });
 };
 
