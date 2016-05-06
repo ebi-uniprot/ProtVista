@@ -120,7 +120,7 @@ var VariantFilterDialog = function(container, variantViewer) {
                 }
             })
             .attr('style',function(filter){
-              return getBackground(filter)
+              return getBackground(filter);
             });
 
         anchor.append('span')
@@ -135,7 +135,7 @@ var VariantFilterDialog = function(container, variantViewer) {
 
         var update = function(){
           anchor.select('div').attr('style',function(filter){
-              return getBackground(filter)
+              return getBackground(filter);
           });
         };
     });
