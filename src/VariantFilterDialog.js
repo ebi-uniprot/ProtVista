@@ -14,18 +14,18 @@ var filters = [
         cases: [
             {
                 label: 'Disease',
-                on: false,
+                on: true,
                 properties: {
-                    'disease': true,
-                    'sourceType': [
-                        Evidence.variantSourceType.uniprot,
-                        Evidence.variantSourceType.mixed
-                    ]
+                    'association': function(associations){
+                      return _.some(associations, function(association){
+                        return association.disease === true;
+                      });
+                    }
                 },
                 color: '#990000'
             }, {
                 label: ['Predicted deleterious', 'Predicted benign'],
-                on: false,
+                on: true,
                 properties: {
                     'alternativeSequence': /[^*]/,
                     'sourceType':Evidence.variantSourceType.lss
@@ -33,9 +33,13 @@ var filters = [
                 colorRange: ['#ff3300','#009900']
             }, {
                 label: 'Non-disease',
-                on: false,
+                on: true,
                 properties: {
-                    'disease':false,
+                    'association': function(associations){
+                        return _.every(associations, function(association){
+                            return association.disease !== true;
+                        }) || (!associations);
+                    },
                     'sourceType': [
                         Evidence.variantSourceType.uniprot,
                         Evidence.variantSourceType.mixed
@@ -44,7 +48,7 @@ var filters = [
                 color: '#99cc00'
             }, {
                 label: 'Init, stop loss or gain',
-                on: false,
+                on: true,
                 properties: {
                     'alternativeSequence': '*'
                 },
@@ -56,8 +60,8 @@ var filters = [
         label: 'Filter data source',
         cases: [
             {
-                label: 'UniProt',
-                on: false,
+                label: 'UniProt reviewed',
+                on: true,
                 properties: {
                     'sourceType': [
                         Evidence.variantSourceType.uniprot,
@@ -67,7 +71,7 @@ var filters = [
                 color: 'grey'
             }, {
                 label: 'Large scale studies',
-                on: false,
+                on: true,
                 properties: {
                     'sourceType': [
                         Evidence.variantSourceType.lss,
@@ -79,48 +83,61 @@ var filters = [
         ]
     }
 ];
-var filterCases = _.flatten(_.pluck(filters, 'cases'));
 
 var VariantFilterDialog = function(container, variantViewer) {
     var variantFilterDialog = this;
     variantFilterDialog.variantViewer = variantViewer;
 
-    var drawFilter = function(filter, li) {
+    _.each(filters, function(filterSet) {
+        container.append('h4').text(filterSet.label);
+        var ul = container.append('ul')
+            .attr('class', 'up_pftv_dialog-container');
+
+        var li = ul
+          .selectAll('li')
+          .data(filterSet.cases)
+          .enter()
+          .append('li');
+
         var anchor = li.append('a')
-            .on('click', function() {
-                filter.on = !filter.on;
-                li.select('.up_pftv_legend').attr('style', getBackground(filter));
+            .on('click', function(filter) {
+                if(filter.on === true) {
+                  clearOthers(filterSet, filter);
+                } else {
+                    filter.on = true;
+                }
+                update();
                 var filteredData = filterData(variantFilterDialog.variantViewer.features);
-                variantViewer.updateData(filteredData);
+                variantFilterDialog.variantViewer.updateData(filteredData);
             });
+
         anchor.append('div')
-            .attr('class', function() {
+            .attr('class', function(filter) {
                 if (filter.label instanceof Array) {
                     return 'up_pftv_legend up_pftv_legend_double';
                 } else {
                     return 'up_pftv_legend';
                 }
             })
-            .attr('style',getBackground(filter));
+            .attr('style',function(filter){
+              return getBackground(filter);
+            });
 
-        var legend = anchor.append('span')
-            .classed('up_pftv_legend_text', true);
-        if (filter.label instanceof Array) {
-            legend.html(filter.label.join('<br/>'));
-        } else {
-            legend.text(filter.label);
-        }
-    };
+        anchor.append('span')
+            .attr('class', 'up_pftv_legend_text')
+            .html(function(filter){
+              if (filter.label instanceof Array) {
+                   return filter.label.join('<br/>');
+              } else {
+                  return filter.label;
+              }
+            });
 
-    _.each(filters, function(filter) {
-        container.append('h4').text(filter.label);
-        var ul = container.append('ul')
-            .attr('class', 'up_pftv_dialog-container');
-
-        _.each(filter.cases, function(filter) {
-            var li = ul.append('li');
-            drawFilter(filter, li);
-        });
+        var update = function(){
+          anchor.select('div').attr('style',function(filter){
+              return getBackground(filter);
+          });
+        };
     });
 
     return variantFilterDialog;
@@ -128,33 +145,45 @@ var VariantFilterDialog = function(container, variantViewer) {
 
 var getBackground = function(filter) {
     if(filter.colorRange) {
-        return 'background:' + (filter.on ? '#ffffff' : 'linear-gradient(' + filter.colorRange + ');');
+        return 'background:' + (filter.on ? 'linear-gradient(' + filter.colorRange + ');' : '#ffffff');
     } else {
-        return 'background-color:' + (filter.on ? '#ffffff' : filter.color);
+        return 'background-color:' + (filter.on ? filter.color : '#ffffff');
     }
 };
 
+var clearOthers = function(filterSet, filterCase) {
+    _.each(filterSet.cases, function(e) {
+        e.on = filterCase.label === e.label ? true : false;
+    });
+};
+
 var filterData = function(data) {
-    var activeFilters = _.filter(filterCases, 'on');
     var newData = [];
     _.each(data, function(feature) {
         var filtered = _.filter(feature.variants, function(variant) {
-            return !_.some(activeFilters, function(filter){
-                var discard = _.every(_.keys(filter.properties), function(prop){
-                    if(filter.properties[prop] instanceof Array) {
-                        return _.some(filter.properties[prop], function(orProp){
-                            return variant[prop] === orProp;
-                        });
-                    } else if (typeof filter.properties[prop] === 'string') {
-                        return filter.properties[prop] === variant[prop];
-                    } else if (filter.properties[prop] instanceof RegExp) {
-                        return filter.properties[prop].test(variant[prop]);
-                    } else {
-                        return variant[prop] === filter.properties[prop];
-                    }
+            var returnValue = _.every(filters, function(filterSet) {
+                var activeFilters = _.filter(filterSet.cases, 'on');
+                var anyOfSet = _.some(activeFilters, function(filter){
+                    var allOfProps = _.every(_.keys(filter.properties), function(prop){
+                        if(filter.properties[prop] instanceof Array) {
+                            return _.some(filter.properties[prop], function(orProp){
+                                return variant[prop] === orProp;
+                            });
+                        } else if (typeof filter.properties[prop] === 'string') {
+                            return filter.properties[prop] === variant[prop];
+                        } else if (filter.properties[prop] instanceof RegExp) {
+                            return filter.properties[prop].test(variant[prop]);
+                        } else if (filter.properties[prop] instanceof Function) {
+                            return filter.properties[prop](variant[prop]);
+                        } else {
+                            return variant[prop] === filter.properties[prop];
+                        }
+                    });
+                    return allOfProps;
                 });
-                return discard;
+                return anyOfSet;
             });
+            return returnValue;
         });
         var featureCopy = $.extend(true, {}, feature);
         featureCopy.variants = filtered;
@@ -162,15 +191,5 @@ var filterData = function(data) {
     });
     return newData;
 };
-/*
-var displayFeature = function(feature) {
-    var display = false;
-    _.each(filters, function(filter) {
-        var ftValueProp = feature[filter.property] === undefined ? false : feature[filter.property];
-        var parentDisplay = _.contains(filter.value, ftValueProp);
-        display = display || parentDisplay;
-    });
-    return display;
-};*/
 
 module.exports = VariantFilterDialog;
