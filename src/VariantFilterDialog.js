@@ -85,46 +85,57 @@ var VariantFilterDialog = function(container, variantViewer) {
     var variantFilterDialog = this;
     variantFilterDialog.variantViewer = variantViewer;
 
-    var drawFilter = function(filter, li) {
+    _.each(filters, function(filter) {
+        container.append('h4').text(filter.label);
+        var ul = container.append('ul')
+            .attr('class', 'up_pftv_dialog-container');
+
+        var li = ul
+          .selectAll('li')
+          .data(filter.cases)
+          .enter()
+          .append('li');
+
         var anchor = li.append('a')
-            .on('click', function() {
+            .on('click', function(filter) {
                 if(allOn()) {
                   clearFilters();
                 }
                 filter.on = !filter.on;
-                // TODO repaint all getBackground
-                li.select('.up_pftv_legend').attr('style', getBackground(filter));
+                update();
                 var filteredData = filterData(variantFilterDialog.variantViewer.features);
-                variantViewer.updateData(filteredData);
-            });
+                variantFilterDialog.variantViewer.updateData(filteredData);
+            })
+
         anchor.append('div')
-            .attr('class', function() {
+            .attr('class', function(filter) {
                 if (filter.label instanceof Array) {
                     return 'up_pftv_legend up_pftv_legend_double';
                 } else {
                     return 'up_pftv_legend';
                 }
             })
-            .attr('style',getBackground(filter));
+            .attr('style',function(filter){
+              return getBackground(filter)
+            });
 
-        var legend = anchor.append('span')
-            .classed('up_pftv_legend_text', true);
-        if (filter.label instanceof Array) {
-            legend.html(filter.label.join('<br/>'));
-        } else {
-            legend.text(filter.label);
+        anchor.append('span')
+            .attr('class', 'up_pftv_legend_text')
+            .html(function(filter){
+              if (filter.label instanceof Array) {
+                   return filter.label.join('<br/>');
+              } else {
+                  return filter.label;
+              }
+            });
+
+        var update = function(){
+          anchor.select('div').attr('style',function(filter){
+              return getBackground(filter)
+          });
         }
-    };
 
-    _.each(filters, function(filter) {
-        container.append('h4').text(filter.label);
-        var ul = container.append('ul')
-            .attr('class', 'up_pftv_dialog-container');
-
-        _.each(filter.cases, function(filter) {
-            var li = ul.append('li');
-            drawFilter(filter, li);
-        });
+        // li.exit().remove();
     });
 
     return variantFilterDialog;
@@ -137,6 +148,12 @@ var getBackground = function(filter) {
         return 'background-color:' + (filter.on ? filter.color : '#ffffff');
     }
 };
+
+var redrawBackgrounds = function(ul) {
+  _.each(ul.childNodes, function(li){
+    console.log(li);
+  });
+}
 
 var allOn = function() {
   return _.filter(filterCases, 'on').length === filterCases.length;
