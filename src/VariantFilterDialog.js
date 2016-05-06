@@ -27,7 +27,7 @@ var filters = [
                 label: ['Predicted deleterious', 'Predicted benign'],
                 on: true,
                 properties: {
-                    // 'alternativeSequence': /[^*]/,
+                    'alternativeSequence': /[^*]/,
                     'sourceType':Evidence.variantSourceType.lss
                 },
                 colorRange: ['#ff3300','#009900']
@@ -35,11 +35,15 @@ var filters = [
                 label: 'Non-disease',
                 on: true,
                 properties: {
-                  'association': function(associations){
-                    return _.some(associations, function(association){
-                      return association.disease === true;
-                    });
-                  }
+                    'association': function(associations){
+                        return _.every(associations, function(association){
+                            return association.disease !== true;
+                        }) || (!associations);
+                    },
+                    'sourceType': [
+                        Evidence.variantSourceType.uniprot,
+                        Evidence.variantSourceType.mixed
+                    ]
                 },
                 color: '#99cc00'
             }, {
@@ -79,33 +83,33 @@ var filters = [
         ]
     }
 ];
-var filterCases = _.flatten(_.pluck(filters, 'cases'));
 
 var VariantFilterDialog = function(container, variantViewer) {
     var variantFilterDialog = this;
     variantFilterDialog.variantViewer = variantViewer;
 
-    _.each(filters, function(filter) {
-        container.append('h4').text(filter.label);
+    _.each(filters, function(filterSet) {
+        container.append('h4').text(filterSet.label);
         var ul = container.append('ul')
             .attr('class', 'up_pftv_dialog-container');
 
         var li = ul
           .selectAll('li')
-          .data(filter.cases)
+          .data(filterSet.cases)
           .enter()
           .append('li');
 
         var anchor = li.append('a')
             .on('click', function(filter) {
-                if(allOn()) {
-                  clearFilters();
+                if(filter.on === true) {
+                  clearOthers(filterSet, filter);
+                } else {
+                    filter.on = true;
                 }
-                filter.on = !filter.on;
                 update();
                 var filteredData = filterData(variantFilterDialog.variantViewer.features);
                 variantFilterDialog.variantViewer.updateData(filteredData);
-            })
+            });
 
         anchor.append('div')
             .attr('class', function(filter) {
@@ -133,9 +137,7 @@ var VariantFilterDialog = function(container, variantViewer) {
           anchor.select('div').attr('style',function(filter){
               return getBackground(filter)
           });
-        }
-
-        // li.exit().remove();
+        };
     });
 
     return variantFilterDialog;
@@ -149,47 +151,37 @@ var getBackground = function(filter) {
     }
 };
 
-var redrawBackgrounds = function(ul) {
-  _.each(ul.childNodes, function(li){
-    console.log(li);
-  });
-}
-
-var allOn = function() {
-  return _.filter(filterCases, 'on').length === filterCases.length;
-}
-
-var clearFilters = function() {
-  _.each(filters, function(d) {
-    _.each(d.cases, function(e) {
-      e.on = false;
-    })
-  })
-}
+var clearOthers = function(filterSet, filterCase) {
+    _.each(filterSet.cases, function(e) {
+        e.on = filterCase.label === e.label ? true : false;
+    });
+};
 
 var filterData = function(data) {
-    var activeFilters = _.filter(filterCases, 'on');
     var newData = [];
     _.each(data, function(feature) {
         var filtered = _.filter(feature.variants, function(variant) {
-            var returnValue = _.some(activeFilters, function(filter){
-                return _.some(_.keys(filter.properties), function(prop){
-                    if(filter.properties[prop] instanceof Array) {
-                        return _.some(filter.properties[prop], function(orProp){
-                            return variant[prop] === orProp;
-                        });
-                    } else if (typeof filter.properties[prop] === 'string') {
-                        return filter.properties[prop] === variant[prop];
-                    } else if (filter.properties[prop] instanceof RegExp) {
-                        return filter.properties[prop].test(variant[prop]);
-                    } else if (filter.properties[prop] instanceof Function) {
-                      if(variant[prop]){
-                        return filter.properties[prop](variant[prop]);
-                      }
-                    } else {
-                        return variant[prop] === filter.properties[prop];
-                    }
+            var returnValue = _.every(filters, function(filterSet) {
+                var activeFilters = _.filter(filterSet.cases, 'on');
+                var anyOfSet = _.some(activeFilters, function(filter){
+                    var allOfProps = _.every(_.keys(filter.properties), function(prop){
+                        if(filter.properties[prop] instanceof Array) {
+                            return _.some(filter.properties[prop], function(orProp){
+                                return variant[prop] === orProp;
+                            });
+                        } else if (typeof filter.properties[prop] === 'string') {
+                            return filter.properties[prop] === variant[prop];
+                        } else if (filter.properties[prop] instanceof RegExp) {
+                            return filter.properties[prop].test(variant[prop]);
+                        } else if (filter.properties[prop] instanceof Function) {
+                            return filter.properties[prop](variant[prop]);
+                        } else {
+                            return variant[prop] === filter.properties[prop];
+                        }
+                    });
+                    return allOfProps;
                 });
+                return anyOfSet;
             });
             return returnValue;
         });
