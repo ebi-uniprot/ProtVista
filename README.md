@@ -9,6 +9,7 @@
 - Model changes to the REST api the feature viewer uses
 - Supports multiple data sources (first steps towards being able to use your own data)
 - New filtering mechanism
+- Improved tooltip for variants including more information related to cross-references
 
 ## Documentation
 [Developer documentation](http://ebi-uniprot.github.io/biojs-vis-proteinFeaturesViewer/developerGuide.html)
