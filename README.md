@@ -3,9 +3,14 @@
 [![NPM version](http://img.shields.io/npm/v/biojs-vis-proteinfeaturesviewer.svg)](https://www.npmjs.org/package/biojs-vis-proteinfeaturesviewer)
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer.png?branch=master)](http://travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
 
-#Documentation
-[Documentation](http://ebi-uniprot.github.io/biojs-vis-proteinFeaturesViewer/)
+### 2.0.0
+- Addition of "Proteomics" track, showing unique and non-unique peptides
+- Updates to typography which was causing issues with some users
+- Model changes to the REST api the feature viewer uses
+- Supports multiple data sources (first steps towards being able to use your own data)
+- New filtering mechanism
 
+## Documentation
 [Developer documentation](http://ebi-uniprot.github.io/biojs-vis-proteinFeaturesViewer/developerGuide.html)
 
 ## Contributing
