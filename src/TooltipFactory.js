@@ -211,6 +211,10 @@ var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
 Tooltip.prototype.addEvidences = function(evidences) {
     var tooltip = this;
     _.each(evidences, function(sources, eco) {
+        sources = _.filter(sources, function (source) {
+            return source !== undefined;
+        });
+
         var typeRow = tooltip.table.append('tr')
             .attr('class','up_pftv_evidence-col');
         typeRow.append('td')
@@ -348,7 +352,6 @@ var addXRefs = function(tooltip, xrefs) {
 
         var groupedSources = _.groupBy(xrefs, 'id');
         delete groupedSources['undefined'];
-        console.log(groupedSources);
 
         var first = true;
         _.each(groupedSources, function (elem, key) {
