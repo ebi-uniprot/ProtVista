@@ -348,6 +348,7 @@ svg {
     -webkit-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .up_pftv_tooltip-container table th {
