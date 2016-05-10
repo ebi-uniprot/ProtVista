@@ -15,8 +15,7 @@ var populateDialog = function (fv, wrapper) {
         var dataCategory = _.find(fv.data, function(catArray) {
             return catArray[0] === catKey;
         });
-        if (dataCategory[1].length !== 0) {
-            console.log(dataCategory);
+        if (dataCategory && (dataCategory[1].length !== 0)) {
             var div = wrapper.append('div');
             div.append('input')
                 .attr('type', 'checkbox')
