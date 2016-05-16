@@ -19,6 +19,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
+var concat = require('gulp-concat');
 
 // testing
 var mocha = require('gulp-mocha');
@@ -140,6 +141,7 @@ gulp.task('copy-resources', ['init'], function() {
             .pipe(gulp.dest(buildDir + '/font/'));
     return gulp.src("./style/*.css")
         .pipe(minifyCss({compatibility: 'ie8'}))
+        .pipe(concat('main.css'))
         .pipe(gulp.dest(buildDir + '/css/'));
 });
 
