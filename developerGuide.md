@@ -6,18 +6,17 @@ title: Developer Guide
 # biojs-vis-proteinFeaturesViewer
 
 ## Getting the code
-As well as ```featuresviewer.min.js``` which contains the minified JavaScript code required to run the application, two css files are required: ```main.css``` (general styling, including feature styles) and ```fontello.css``` (icon font).
+You will need the ```featuresviewer.min.js``` which contains the minified JavaScript code required to run the application, as well as the CSS file ```main.css``` (general styling, including feature styles and icon fonts).
 
-### The easy way (CDN)
+### The easy way (CDN-like)
 We host all our releases on Github, using Github pages as a CDN. The latest release is available here:
 
 ```
 <script src="http://ebi-uniprot.github.io/CDN/feature-viewer/featuresviewer.js"></script>
-<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/main.css" rel="stylesheet"/>
-<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/fontello.css" rel="stylesheet"/>   
+<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/main.css" rel="stylesheet"/>   
 ```
 
-We also archive previous versions:
+We also archive previous versions, for instance:
 
 ```
 <script src="http://ebi-uniprot.github.io/CDN/feature-viewer/1.0.0/featuresviewer.js"></script>
@@ -42,13 +41,32 @@ When creating the instance, you need to specify the object where the component w
         var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
         var instance = new biojs_vis_proteinFeaturesViewer({
             el: yourDiv,
-            uniprotacc : 'P05067'
+            uniprotacc: 'P05067'
         });
     }
 </script>
 ```
 
 That's it, you should now see the Feature Viewer in your web page!
+
+### Excluding some categories
+
+If you are not interested in all the categories supported by the Viewer, you can exclude some of them, make sure you use the right spelling and CAPITAL letters. The available categories are: DOMAINS_AND_SITES, MOLECULE_PROCESSING, PTM, SEQUENCE_INFORMATON, STRUCTURAL, TOPOLOGY, MUTAGENESIS, PROTEOMICS and VARIATION. For more information on features belongin to each category, please read the API section in this guide.
+ 
+```html
+<div id='yourDiv'/>
+<script>
+    window.onload = function() {
+        var yourDiv = document.getElementById('yourDiv');
+        var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
+        var instance = new biojs_vis_proteinFeaturesViewer({
+            el: yourDiv,
+            uniprotacc: 'P05067',
+            exclusions: ['SEQUENCE_INFORMATON', 'STRUCTURAL']
+        });
+    }
+</script>
+```
 
 ## API
 The protein feature viewer offer some public methods that can be used to programmatically interact with the component.
@@ -146,7 +164,14 @@ Here is the list of the currently supported feature types:
  --- | --- | ---
 [mutagen](http://www.uniprot.org/help/mutagen) | Mutagenesis | Site which has been experimentally altered by mutagenesis
 
-**Category: Variants**
+**Category: Proteomics**
+
+**ftType** | **Label** | **Description**
+ --- | --- | ---
+[unique](ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomics_mapping/README) | Unique peptides | Unique peptides based on peptide evidence mapped from mass-spectrometry proteomics services (PeptideAtlas, EPD and MaxQB) to UniProtKB sequences |
+[non-unique](ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomics_mapping/README) | Non-unique peptides | Non-unique peptides based on peptide evidence mapped from mass-spectrometry proteomics services (PeptideAtlas, EPD and MaxQB) to UniProtKB sequences |
+
+**Category: Variation**
 
 **ftType** | **Label** | **Description**
  --- | --- | ---
@@ -165,10 +190,16 @@ instance.getDispatcher().on("ready", function(obj) {
 ```
 
 ### "ready"
-As soon as data has been loaded and visualized, this event will be triggered. The object provided by this event corresponds to all the data retrieved from the data service plus some parsing, it will be ready to be used by the viewer or any other JavaScript component.
+As soon as data from at least one of the data service has been loaded, this event will be triggered. The object provided by this event corresponds to all the data retrieved from the data service plus some parsing, it will be ready to be used by the viewer or any other JavaScript component.
+
+### "noDataAvailable"
+Triggered when the UniProt accession retrieved has no sequence annotations. No object is provided in this case.
+
+### "noDataRetrieved"
+Triggered when the data failed to be loaded. No object is provided in this case. Check the console logs for errors.
 
 ### "featureSelected"
-As soon as a feature has been selected, meaning a click on it has happened, this event will be triggered. The object provided by this event looks like:
+As soon as a feature has been selected, meaning a click on it has happened, this event will be triggered. This event will also be triggered after using the method _selectFeature_ if the selection was successful. The object provided by this event looks like:
 
 ```javascript
 {
@@ -185,12 +216,6 @@ As soon as a feature has been selected, meaning a click on it has happened, this
 
 ### "featureDeselected"
 As soon as a feature has been deselected, this event will be triggered. A feature is deselected when it is selected and a clicked on it happens, or when another feature is selected. The object provided by this event looks like the one provided by the event "featureSelected".
-
-### "noData"
-Triggered when the data failed to be loaded. The object provided by this event will be an **error** return by a jQuery.ajax request.
-
-### "noFeatures"
-Triggered when the Uniprot accession has no sequence annotations. The object provided by this event corresponds to the data retrieved from the data service.
 
 ### "notFound"
 Triggered when the method **selectFeature** is used but no corresponding feature has been found. The object provided by this event will contain the information passed as parameters to the method, for instance
