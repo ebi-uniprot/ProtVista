@@ -160,7 +160,7 @@ To expand the variants track and see all individual variants, click on the 'Natu
 
 ![Variants expanded track](./images/variantTrack.png)
 
-You can filter the variants to only see those curated by UniProt (UniProt Reviewed), within which you can choose disease associated or non-disease associated ones, or only see Large Scale Study variants.
+You can filter the variants to see those curated by UniProt (UniProt Reviewed) or Large Scale Study variants. You can also filter by consequence and choose disease associated, predicted deleterious to predicted benign, non-disease associated and variants affecting the initiator codon, stop loss or stop gain.
 
 Click on a variant to view more details about the variants including the exact sequence change, the evidence, source and identifiers.
 
