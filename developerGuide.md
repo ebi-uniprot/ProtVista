@@ -131,7 +131,7 @@ instance.getDispatcher().on("ready", function(obj) {
 As soon as data from at least one of the data service has been loaded, this event will be triggered. The object provided by this event corresponds to all the data retrieved from the data service plus some parsing, it will be ready to be used by the viewer or any other JavaScript component.
 
 ### "noDataAvailable"
-Triggered when the UniProt accession retrieved has no sequence annotations. No object is provided in this case.
+Triggered when the protein accession retrieved has no sequence annotations. No object is provided in this case.
 
 ### "noDataRetrieved"
 Triggered when the data failed to be loaded. No object is provided in this case. Check the console logs for errors.
