@@ -5,6 +5,31 @@ title: Developer Guide
 
 # biojs-vis-proteinFeaturesViewer
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Getting the code](#getting-the-code)
+  - [The easy way (CDN-like)](#the-easy-way-cdn-like)
+  - [The node way](#the-node-way)
+- [Loading the Feature Viewer](#loading-the-feature-viewer)
+  - [Excluding some categories](#excluding-some-categories)
+- [API](#api)
+  - [selectFeature(ftType, begin, end, altSequence)](#selectfeaturefttype-begin-end-altsequence)
+  - [Currently supported features](#currently-supported-features)
+- [Events](#events)
+  - ["ready"](#ready)
+  - ["noDataAvailable"](#nodataavailable)
+  - ["noDataRetrieved"](#nodataretrieved)
+  - ["featureSelected"](#featureselected)
+  - ["featureDeselected"](#featuredeselected)
+  - ["notFound"](#notfound)
+- [Contributing](#contributing)
+- [Support](#support)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Getting the code
 You will need the ```featuresviewer.min.js``` which contains the minified JavaScript code required to run the application, as well as the CSS file ```main.css``` (general styling, including feature styles and icon fonts).
 
@@ -89,95 +114,8 @@ If you want to select a feature you can use the *selectFeature method*. The para
 </script>
 ```
 
-Here is the list of the currently supported feature types:
-
-
-**Category: Domains and sites**
-
-**ftType** | **Label** | **Description**
---- | --- | ---
-[domain](http://www.uniprot.org/help/domain) | Domain | Position and type of each modular protein domain
-[repeat](http://www.uniprot.org/help/repeat) | Repeat | Positions of repeated sequence motifs or repeated domains
-[ca_bind](http://www.uniprot.org/help/ca_bind) | Calcium binding | Position(s) of calcium binding region(s) within the protein
-[zn_fing](http://www.uniprot.org/help/zn_fing) | Zinc finger | Position(s) and type(s) of zinc fingers within the protein
-[dna_bind](http://www.uniprot.org/help/dna_bind) | DNA binding | Position and type of a <span class="caps](http://www.uniprot.org/help/DNA</span>-binding domain
-[np_bind](http://www.uniprot.org/help/np_bind) | Nucleotide binding | Nucleotide phosphate binding region
-[region](http://www.uniprot.org/help/region) | Region | Region of interest in the sequence
-[coiled](http://www.uniprot.org/help/coiled) | Coiled coil | Positions of regions of coiled coil within the protein
-[motif](http://www.uniprot.org/help/motif) | Motif | Short (up to 20 amino acids) sequence motif of biological interest
-[act_site](http://www.uniprot.org/help/act_site) | Active site | Amino acid(s) directly involved in the activity of an enzyme
-[metal](http://www.uniprot.org/help/metal) | Metal binding | Binding site for a metal ion
-[binding](http://www.uniprot.org/help/binding) | Binding site | Binding site for any chemical group (co-enzyme, prosthetic group, etc.)
-[site](http://www.uniprot.org/help/site) | Site | Any interesting single amino acid site on the sequence
-
- **Category: Molecule processing**
-
- **ftType** | **Label** | **Description**
- --- | --- | ---
-[init_met](http://www.uniprot.org/help/init_met) | Initiator methionine |  Cleavage of the initiator methionine
-[signal](http://www.uniprot.org/help/signal) | Signal | Sequence targeting proteins to the secretory pathway or periplasmic space
-[transit](http://www.uniprot.org/help/transit) | Transit peptide | Extent of a transit peptide for organelle targeting
-[propep](http://www.uniprot.org/help/propep) | Propeptide | Part of a protein that is cleaved during maturation or activation
-[chain](http://www.uniprot.org/help/chain) | Chain | Extent of a polypeptide chain in the mature protein
-[peptide](http://www.uniprot.org/help/peptide) | Peptide | Extent of an active peptide in the mature protein
-
-**Category: Post translational modifications**
-
-**ftType** | **Label** | **Description**
- --- | --- | ---
-[mod_res](http://www.uniprot.org/help/mod_res) | Modified residue | Modified residues excluding lipids, glycans and protein cross-links
-[lipid](http://www.uniprot.org/help/lipid) | Lipidation | Covalently attached lipid group(s)
-[carbohyd](http://www.uniprot.org/help/carbohyd) | Glycosylation | Covalently attached glycan group(s)
-[disulfid](http://www.uniprot.org/help/disulfid) | Disulfide bond | Cysteine residues participating in disulfide bonds
-[crosslnk](http://www.uniprot.org/help/crosslnk) | Cross-link | Residues participating in covalent linkage(s) between proteins
-
-**Category: Sequence information**
-
-**ftType** | **Label** | **Description**
- --- | --- | ---
-[compbias](http://www.uniprot.org/help/compbias) | Compositional biased | Region of compositional bias in the protein
-[non_std](http://www.uniprot.org/help/non_std) | Non-standard residue | Occurence of non-standard amino acids (selenocysteine and pyrrolysine) in the protein sequence
-[unsure](http://www.uniprot.org/help/unsure) | Sequence uncertainty | Regions of uncertainty in the sequence
-[conflict](http://www.uniprot.org/help/conflict) | Sequence conflict | Description of sequence discrepancies of unknown origin
-[non_cons](http://www.uniprot.org/help/non_cons) | Non-adjacent residues | Indicates that two residues in a sequence are not consecutive
-[non_ter](http://www.uniprot.org/help/non_ter) | Non-terminal residue | The sequence is incomplete. Indicate that a residue is not the terminal residue of the complete protein
-
-**Category: Structural features**
-
-**ftType** | **Label** | **Description**
- --- | --- | ---
-[helix](http://www.uniprot.org/help/helix) | Helix | Helical regions within the experimentally determined protein structure
-[turn](http://www.uniprot.org/help/turn) | Turn | Turns within the experimentally determined protein structure
-[strand](http://www.uniprot.org/help/strand) | Beta strand | Beta strand regions within the experimentally determined protein structure
-
-**Category: Topology**
-
-**ftType** | **Label** | **Description**
- --- | --- | ---
-[topo_dom](http://www.uniprot.org/help/topo_dom) | Topological domain | Location of non-membrane regions of membrane-spanning proteins
-[transmem](http://www.uniprot.org/help/transmem) | Transmembrane | Extent of a membrane-spanning region
-[intramem](http://www.uniprot.org/help/intramem) | Intramembrane | Extent of a region located in a membrane without crossing it
-
-**Category: Mutagenesis**
-
-**ftType** | **Label** | **Description**
- --- | --- | ---
-[mutagen](http://www.uniprot.org/help/mutagen) | Mutagenesis | Site which has been experimentally altered by mutagenesis
-
-**Category: Proteomics**
-
-**ftType** | **Label** | **Description**
- --- | --- | ---
-[unique](ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomics_mapping/README) | Unique peptides | Unique peptides based on peptide evidence mapped from mass-spectrometry proteomics services (PeptideAtlas, EPD and MaxQB) to UniProtKB sequences |
-[non-unique](ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomics_mapping/README) | Non-unique peptides | Non-unique peptides based on peptide evidence mapped from mass-spectrometry proteomics services (PeptideAtlas, EPD and MaxQB) to UniProtKB sequences |
-
-**Category: Variation**
-
-**ftType** | **Label** | **Description**
- --- | --- | ---
-[variant](http://www.uniprot.org/help/variant) | Natural variant | Description of a natural variant of the protein |
-
-
+### Currently supported features
+Please take look to the [currently supported categories, types and features](userGuide.html#feature-categories-and-types). 
 
 ## Events
 The Protein Feature Viewer triggers five events. In order to listen to those events, you need to get the dispatcher.
