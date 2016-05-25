@@ -12,6 +12,7 @@ var FeatureFactory = require("./FeatureFactory");
 var VariantFilterDialog = require("./VariantFilterDialog");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
 var TooltipFactory = require('./TooltipFactory');
+var jQuery = require('jquery');
 
 var updateZoomFromChart = function(fv) {
     fv.zoom.x(fv.xScale);
@@ -395,7 +396,8 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
 
 var FeaturesViewer = function(opts) {
     var fv = this;
-    fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noData", "noFeatures", "notFound");
+    fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
+        "notFound");
 
     fv.width = 760;
     fv.maxZoomSize = 30;
@@ -411,34 +413,61 @@ var FeaturesViewer = function(opts) {
     fv.load = function() {
         fv.initLayout(opts);
         var dataSources = Constants.getDataSources();
-        _.each(dataSources, function(source){
-          var url = source.url + opts.uniprotacc;
-          var dataLoader = DataLoader.get(url);
-          var container = fv.container.append('div');
-          dataLoader.then(function(d){
-            if (d instanceof Array) //Workaround to be removed
-              d = d[0];
-            // First promise to resolve will set global parameters
-            if(!fv.sequence) {
-              fv.loadZoom(d);
+        var loaders = [], delegates = [];
+        _.each(dataSources, function (source) {
+            var delegate = jQuery.Deferred();
+            delegates.push(delegate);
+        });
+        _.each(dataSources, function(source, index){
+            var url = source.url + opts.uniprotacc;
+            var dataLoader = DataLoader.get(url);
+            loaders.push(dataLoader);
+            var container = fv.container.append('div');
+            dataLoader.done(function(d){
+                if (d instanceof Array) //Workaround to be removed
+                    d = d[0];
+                // First promise to resolve will set global parameters
+                if(!fv.sequence) {
+                    fv.loadZoom(d);
+                }
+                var features = d.features;
+                // group by categories
+                if(features.length > 0 && _.has(features[0],'category')){
+                    features = DataLoader.groupFeaturesByCategory(features);
+                } else if (features.length > 0 && features[0].type === 'VARIANT') {
+                    features = DataLoader.processVariants(features, d.sequence);
+                } else if (features.length > 0 && features[0].type === 'PROTEOMICS'){
+                    features = DataLoader.processProteomics(features);
+                } else if (features.length > 0) {
+                    features = DataLoader.processUngroupedFeatures(features);
+                }
+                if (features.length >= 0) {
+                    fv.drawCategories(features, source.type, fv, container);
+                    fv.data = fv.data.concat(features);
+                    fv.dispatcher.ready();
+                }
+            }).fail(function(e){
+                console.log(e);
+            }).complete(function () {
+                delegates[index].resolve();
+            });
+        });
+
+        jQuery.when.apply(null, delegates).done(function () {
+            var rejected = _.filter(loaders, function (loader) {
+                return loader.state() === 'rejected';
+            });
+            if ((rejected.length === loaders.length) || (fv.data.length === 0)) {
+                d3.select(opts.el).selectAll('*').remove();
+                d3.select(opts.el).html('');
+                if (rejected.length === loaders.length) {
+                    d3.select(opts.el).text('Sorry, data could not be retrieved at this time, please try again later.');
+                    fv.dispatcher.noDataRetrieved();
+                } else if (fv.data.length === 0) {
+                    d3.select(opts.el).text('There are no features for this protein.');
+                    fv.dispatcher.noDataAvailable();
+                }
             }
-            var features = d.features;
-            // group by categories
-            if(features.length > 0 && _.has(features[0],'category')){
-              features = DataLoader.groupFeaturesByCategory(features);
-            } else if (features.length > 0 && features[0].type === 'VARIANT') {
-              features = DataLoader.processVariants(features, d.sequence);
-            } else if (features.length > 0 && features[0].type === 'PROTEOMICS'){
-              features = DataLoader.processProteomics(features);
-            } else {
-              features = DataLoader.processUngroupedFeatures(features);
-            }
-            fv.drawCategories(features, source.type, fv, container);
-            fv.data = fv.data.concat(features);
-            fv.dispatcher.ready();
-          }).fail(function(e){
-            console.log(e);
-          });
         });
     };
 
