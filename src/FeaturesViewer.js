@@ -12,7 +12,6 @@ var FeatureFactory = require("./FeatureFactory");
 var VariantFilterDialog = require("./VariantFilterDialog");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
 var TooltipFactory = require('./TooltipFactory');
-var jQuery = require('jquery');
 
 var updateZoomFromChart = function(fv) {
     fv.zoom.x(fv.xScale);
@@ -395,71 +394,60 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
 };
 
 var FeaturesViewer = function(opts) {
-  var fv = this;
-  fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
-      "notFound");
+    var fv = this;
+    fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noData", "noFeatures", "notFound");
 
-  fv.width = 760;
-  fv.maxZoomSize = 30;
-  fv.selectedFeature = undefined;
-  fv.selectedFeatureElement = undefined;
-  fv.sequence = "";
-  // fv.filterTypes = fv.categoryOrderAndType.variants.ftTypes;
-  fv.categories = [];
-  fv.filterCategories = [];
-  fv.padding = {top:2, right:10, bottom:2, left:10};
-  fv.data = [];
-   
-  fv.load = function() {
-    fv.initLayout(opts);
-    var dataSources = Constants.getDataSources();
-    var loaders = [], delegates = [];
-    _.each(dataSources, function (source) {
-      var delegate = jQuery.Deferred();
-      delegates.push(delegate);
-    });
-    _.each(dataSources, function(source, index){
-      if (!_.contains(opts.exclusions, source.category)) {
-        var url = source.url + opts.uniprotacc;
-        var dataLoader = DataLoader.get(url);
-        loaders.push(dataLoader);
-        var container = fv.container.append('div');
-        dataLoader.done(function (d) {
-          if (d instanceof Array) //Workaround to be removed
-            d = d[0];
-          // First promise to resolve will set global parameters
-          if (!fv.sequence) {
-            fv.loadZoom(d);
-          }
-          var features = d.features;
-          // group by categories
-          if (features.length > 0 && _.has(features[0], 'category')) {
-            features = DataLoader.groupFeaturesByCategory(features);
-            features = _.filter(features, function (cat) {
-              return !_.contains(opts.exclusions, cat[0]);
+    fv.width = 760;
+    fv.maxZoomSize = 30;
+    fv.selectedFeature = undefined;
+    fv.selectedFeatureElement = undefined;
+    fv.sequence = "";
+    // fv.filterTypes = fv.categoryOrderAndType.variants.ftTypes;
+    fv.categories = [];
+    fv.filterCategories = [];
+    fv.padding = {top:2, right:10, bottom:2, left:10};
+    fv.data = [];
+
+    fv.load = function() {
+        fv.initLayout(opts);
+        var dataSources = Constants.getDataSources();
+        _.each(dataSources, function(source){
+          if (!_.contains(opts.exclusions, source.category)) {
+            var url = source.url + opts.uniprotacc;
+            var dataLoader = DataLoader.get(url);
+            var container = fv.container.append('div');
+            dataLoader.then(function (d) {
+              if (d instanceof Array) //Workaround to be removed
+                d = d[0];
+              // First promise to resolve will set global parameters
+              if (!fv.sequence) {
+                fv.loadZoom(d);
+              }
+              var features = d.features;
+              // group by categories
+              if (features.length > 0 && _.has(features[0], 'category')) {
+                features = DataLoader.groupFeaturesByCategory(features);
+                features = _.filter(features, function (cat) {
+                  return !_.contains(opts.exclusions, cat[0]);
+                });
+              } else if (features.length > 0 && features[0].type === 'VARIANT') {
+                features = DataLoader.processVariants(features, d.sequence);
+              } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
+                features = DataLoader.processProteomics(features);
+              } else if (features.length > 0) {
+                features = DataLoader.processUngroupedFeatures(features);
+              }
+              fv.drawCategories(features, source.type, fv, container);
+              fv.data = fv.data.concat(features);
+              fv.dispatcher.ready();
+            }).fail(function (e) {
+              console.log(e);
             });
-          } else if (features.length > 0 && features[0].type === 'VARIANT') {
-            features = DataLoader.processVariants(features, d.sequence);
-          } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
-            features = DataLoader.processProteomics(features);
-          } else if (features.length > 0) {
-            features = DataLoader.processUngroupedFeatures(features);
           }
-          if (features.length >= 0) {
-            fv.drawCategories(features, source.type, fv, container);
-            fv.data = fv.data.concat(features);
-            fv.dispatcher.ready();
-          }
-        }).fail(function (e) {
-          console.log(e);
-        }).complete(function () {
-          delegates[index].resolve();
         });
-      }      
-    });
-  };
+    };
 
-  fv.load();
+    fv.load();
 };
 
 FeaturesViewer.prototype.getCategoryTitle = function(type) {

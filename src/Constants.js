@@ -6,12 +6,6 @@ var _ = require('underscore');
 
 var Constants = function() {
   return {
-    getBlastURL: function() {
-        return 'http://www.uniprot.org/blast/?about='
-    },
-    getNoBlastTypes: function() {
-      return ['helix', 'strand', 'turn', 'disulfid', 'crosslnk', 'variant'];
-    },
     getDataSources: function() {
       var sources = [{
         url: 'https://www.ebi.ac.uk/uniprot/api/features/',
@@ -125,8 +119,8 @@ var Constants = function() {
           variant: {label: 'Natural variant', tooltip: 'Natural variant of the protein, including polymorphisms, ' +
               'variations between strains, isolates or cultivars, disease-associated mutations and RNA editing events'
           },
-          unique:{label:'Unique peptide',tooltip:''},
-          non_unique:{label:'Non-unique peptide',tooltip:''}
+          unique:{label:'Unique peptides',tooltip:''},
+          non_unique:{label:'Non-unique peptides',tooltip:''}
       };
     }, getTrackInfo: function(name) {
       return this.getTrackNames()[name];
