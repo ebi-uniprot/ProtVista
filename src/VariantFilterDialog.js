@@ -92,7 +92,7 @@ var VariantFilterDialog = function(container, variantViewer) {
         .attr('class','up_pftv_buttons');
 
     buttons.append('span')
-        .style('display', 'none')
+        .style('visibility', 'hidden')
         .attr('class','icon-ccw')
         .attr('title','Reset all filters')
         .on('click', function(){
@@ -100,8 +100,11 @@ var VariantFilterDialog = function(container, variantViewer) {
             variantFilterDialog.variantViewer.updateData(variantFilterDialog.variantViewer.features);
         });
 
-    _.each(filters, function(filterSet) {
-        container.append('h4').text(filterSet.label);
+    _.each(filters, function(filterSet, index) {
+        var filterTitle = container.append('h4').text(filterSet.label);
+        if (index === 0) {
+            filterTitle.classed('up_pftv_keepWithPrevious', true);
+        }
         var ul = container.append('ul')
             .attr('class', 'up_pftv_dialog-container');
 
@@ -116,7 +119,7 @@ var VariantFilterDialog = function(container, variantViewer) {
                 if(filter.on === true) {
                     clearOthers(filterSet, filter);
                     container.select('.icon-ccw')
-                        .style('display', 'inline-block');
+                        .style('visibility', 'visible');
                 } else {
                     filter.on = true;
                     updateResetButton(container);
@@ -162,7 +165,7 @@ var VariantFilterDialog = function(container, variantViewer) {
             });
         });
         container.select('.icon-ccw')
-            .style('display', 'none');
+            .style('visibility', 'hidden');
         container.selectAll('.up_pftv_legend')
             .attr('style',function(filter){
                 return getBackground(filter);
@@ -180,7 +183,7 @@ var updateResetButton = function(container) {
     });
     if (allOn === true) {
         container.select('.icon-ccw')
-            .style('display', 'none');
+            .style('visibility', 'hidden');
     }
 };
 
