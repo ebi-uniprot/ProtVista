@@ -436,7 +436,7 @@ var VariantTooltipViewer = function(tooltip) {
         addMutation(tooltip);
         addPredictions(tooltip);
         tooltip.addEvidences(tooltip.data.evidences);
-        addXRefs(tooltip.data.xrefs);
+        addXRefs(tooltip, tooltip.data.xrefs);
         addAssociation(tooltip);
     }
 };
