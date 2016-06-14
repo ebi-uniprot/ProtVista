@@ -88,6 +88,18 @@ var VariantFilterDialog = function(container, variantViewer) {
     var variantFilterDialog = this;
     variantFilterDialog.variantViewer = variantViewer;
 
+    var buttons = container.append('div')
+        .attr('class','up_pftv_buttons');
+
+    buttons.append('span')
+        .style('display', 'none')
+        .attr('class','icon-ccw')
+        .attr('title','Reset all filters')
+        .on('click', function(){
+            variantFilterDialog.reset();
+            variantFilterDialog.variantViewer.updateData(variantFilterDialog.variantViewer.features);
+        });
+
     _.each(filters, function(filterSet) {
         container.append('h4').text(filterSet.label);
         var ul = container.append('ul')
@@ -102,9 +114,12 @@ var VariantFilterDialog = function(container, variantViewer) {
         var anchor = li.append('a')
             .on('click', function(filter) {
                 if(filter.on === true) {
-                  clearOthers(filterSet, filter);
+                    clearOthers(filterSet, filter);
+                    container.select('.icon-ccw')
+                        .style('display', 'inline-block');
                 } else {
                     filter.on = true;
+                    updateResetButton(container);
                 }
                 update();
                 var filteredData = filterData(variantFilterDialog.variantViewer.features);
@@ -140,7 +155,33 @@ var VariantFilterDialog = function(container, variantViewer) {
         };
     });
 
+    variantFilterDialog.reset = function() {
+        _.each(filters, function(filterset) {
+            _.each(filterset.cases, function(filterCase) {
+                filterCase.on = true;
+            });
+        });
+        container.select('.icon-ccw')
+            .style('display', 'none');
+        container.selectAll('.up_pftv_legend')
+            .attr('style',function(filter){
+                return getBackground(filter);
+            });
+    };
+
     return variantFilterDialog;
+};
+
+var updateResetButton = function(container) {
+    var allOn = _.every(filters, function(filterset) {
+        return _.every(filterset.cases, function(filterCase) {
+            return filterCase.on === true;
+        });
+    });
+    if (allOn === true) {
+        container.select('.icon-ccw')
+            .style('display', 'none');
+    }
 };
 
 var getBackground = function(filter) {
