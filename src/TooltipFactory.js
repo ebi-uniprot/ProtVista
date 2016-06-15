@@ -6,6 +6,7 @@
 var d3 = require("d3");
 var _ = require("underscore");
 var Evidence = require('./Evidence');
+var Constants = require('./Constants');
 
 var createTooltipBox = function(container) {
     d3.select('.up_pftv_tooltip-container').remove();
@@ -235,8 +236,30 @@ Tooltip.prototype.addEvidences = function(evidences) {
     });
 };
 
+Tooltip.prototype.addBlast = function() {
+    var tooltip = this;
+    var end = tooltip.data.end ? tooltip.data.end : tooltip.data.begin;
+    var type = tooltip.data.type.toLowerCase();
+    if (((end - tooltip.data.begin) >= 3) && (!_.contains(Constants.getNoBlastTypes(), type))) {
+        var blast = tooltip.table.append('tr');
+        blast.append('td').text('Tools');
+        var url = Constants.getBlastURL() + tooltip.accession + '[' + tooltip.data.begin;
+        url += '-';
+        url += end + ']' + '&key=' + Constants.getTrackInfo(type).label;
+        if (tooltip.data.ftId) {
+            url += '&id=' + tooltip.data.ftId;
+        }
+        blast.append('td').append('span')
+            .append('a')
+            .attr('href', url)
+            .attr('target', '_blank')
+            .text('BLAST');
+    }
+};
+
 var BasicTooltipViewer = function(tooltip) {
     tooltip.addEvidences(tooltip.data.evidences);
+    tooltip.addBlast();
 };
 
 var AlternativeTooltipViewer = function(tooltip, change, field) {
@@ -252,6 +275,7 @@ var AlternativeTooltipViewer = function(tooltip, change, field) {
             });
     }
     tooltip.addEvidences(tooltip.data.evidences);
+    tooltip.addBlast();
 };
 
 var addPredictions = function(tooltip) {
@@ -412,7 +436,7 @@ var VariantTooltipViewer = function(tooltip) {
         addMutation(tooltip);
         addPredictions(tooltip);
         tooltip.addEvidences(tooltip.data.evidences);
-        addXRefs(tooltip.data.xrefs);
+        addXRefs(tooltip, tooltip.data.xrefs);
         addAssociation(tooltip);
     }
 };
