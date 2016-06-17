@@ -143,8 +143,8 @@ var Constants = function() {
         });
         return temp;
     },
-    addCategories: function(source, categoryNamesInOrder) {
-        var typeGroup = _.find(categories, function(cat) {return cat.type === source.type});
+    addCategories: function(sourceType, categoryNamesInOrder) {
+        var typeGroup = _.find(categories, function(cat) {return cat.type === sourceType});
         if (typeGroup) {
             var keys = [];
             _.each(typeGroup.categoryNamesInOrder, function(elem) {

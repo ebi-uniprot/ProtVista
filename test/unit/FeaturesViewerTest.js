@@ -103,7 +103,7 @@ describe('FeaturesViewerTest', function() {
             var categoriesToAdd = [
                 {MY_DOMAINS: 'My domains'}, {MOLECULE_PROCESSING: 'Molecule processing'}, {CAT: 'My cat'}
             ];
-            Constants.addCategories(source, categoriesToAdd);
+            Constants.addCategories(source.type, categoriesToAdd);
             assert.equal(JSON.stringify(expectedCategoryNamesInOrder),
                 JSON.stringify(Constants.getCategoryNamesInOrder()));
         });
