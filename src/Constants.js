@@ -133,6 +133,9 @@ var Constants = function() {
         }
         sources.push(source);
     },
+    cleanDataSources: function() {
+        sources = [];
+    },  
     getCategoryNamesInOrder: function() {
         var temp = [];
         _.each(categories, function(cat) {
@@ -167,7 +170,7 @@ var Constants = function() {
     }, getTrackNames: function() {
       return trackNames;
     },
-    addTrackName: function(tracksToAdd) {
+    addTrackTypes: function(tracksToAdd) {
         _.each(tracksToAdd, function(elem, key) {
             if (!trackNames[key]) {
                 trackNames[key] = elem;

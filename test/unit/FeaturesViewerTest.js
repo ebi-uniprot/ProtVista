@@ -118,7 +118,7 @@ describe('FeaturesViewerTest', function() {
                 mixed: {label: 'Mixed peptide', tooltip: ''}
             };
 
-            Constants.addTrackName(tracksToAdd);
+            Constants.addTrackTypes(tracksToAdd);
             keys = _.keys(Constants.getTrackNames());
             assert.equal(howMany + 2, keys.length);
             assert.equal(Constants.getTrackNames().unique.label, label);
