@@ -40,6 +40,15 @@ var Category = function(name, data, type, fv, container) {
         .style('display','none');
 };
 
+Category.prototype.reset = function() {
+    var category = this;
+    _.each(category.tracks, function(track) {
+        if (track.reset) {
+            track.reset();
+        }
+    });
+};
+
 Category.prototype.addTrack = function(track) {
     this.tracks.push(track);
 };

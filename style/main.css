@@ -67,6 +67,10 @@ svg {
   margin-bottom: .7em;
 }
 
+.up_pftv_keepWithPrevious {
+    margin-top: 0px;
+}
+
 .up_ptfv_pp-container {
     display: inline-block;
     margin: 5em 0 0 0.5em;

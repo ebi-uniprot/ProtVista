@@ -147,7 +147,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
     variantViewer.margin = {top:20, bottom:10};
     variantViewer.features = features;
 
-    var filter = new VariantFilterDialog(titleContainer, variantViewer);
+    variantViewer.filter = new VariantFilterDialog(titleContainer, variantViewer);
 
     variantViewer.yScale = d3.scale.ordinal()
         .domain(aaList)
@@ -224,6 +224,11 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
     this.updateData = function(data) {
       dataSeries.datum(data);
       this.update();
+    };
+
+    this.reset = function() {
+        this.filter.reset();
+        this.updateData(this.features);
     };
 
     return this;
