@@ -6,6 +6,7 @@ var d3 = require("d3");
 var FeatureFactory = require("./FeatureFactory");
 var NonOverlappingLayout = require("./NonOverlappingLayout");
 var ViewerHelper = require("./ViewerHelper");
+var Constants = require("./Constants");
 
 var BasicViewer = function(catTitle, features, container, fv) {
     var height = 40;
@@ -31,6 +32,21 @@ var BasicViewer = function(catTitle, features, container, fv) {
                     })
                     .attr('class',function(d) {
                         return 'up_pftv_feature up_pftv_' + d.type.toLowerCase();
+                    })
+                ;
+                newShapes
+                    .filter(function(d) {
+                        return d.color || Constants.getTrackInfo(d.type).color;
+                    })
+                    .style('fill', function(d) {
+                        return d.color ? d.color
+                            : Constants.getTrackInfo(d.type).color ? Constants.getTrackInfo(d.type).color
+                            : 'black';
+                    })
+                    .style('stroke', function(d) {
+                        return d.color ? d.color
+                            : Constants.getTrackInfo(d.type).color ? Constants.getTrackInfo(d.type).color
+                            : 'black';
                     })
                 ;
 
