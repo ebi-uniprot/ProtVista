@@ -8,6 +8,7 @@
 
 // chai is an assertion library
 var chai = require('chai');
+var sinon = require('sinon');
 
 // @see http://chaijs.com/api/assert/
 var assert = chai.assert;
@@ -20,37 +21,55 @@ var yourDiv = document.getElementById('mocha');
 
 // requires your main app (specified in index.js)
 var FeaturesViewer = require('../..');
-var DataLoader = require('../../src/dataLoader');
+var Constants = require('../../src/Constants');
+var FeaturesData = require('./FeaturesData');
+var jQuery = require('jquery');
 
-/*describe('FeaturesViewerExclusionTest', function() {
+describe('FeaturesViewerExclusionTest', function() {
+    var instance;
+
+    before(function() {
+        sinon.stub(Constants, 'getDataSources', function() {
+            return [{
+                url: '',
+                type: 'basic'
+            }];
+        });
+        sinon.stub(jQuery, 'getJSON', function() {
+            var deferred = jQuery.Deferred();
+            setTimeout(function() {
+                return deferred.resolve(FeaturesData.features);
+            }, 5);
+            return deferred;
+        });
+    });
+
+    after(function() {
+        Constants.getDataSources.restore();
+        jQuery.getJSON.restore();
+    });
+
     it('should create 1 category container with 1 category "Domains and Sites"', function(done) {
         var opts = {
             el: yourDiv,
-            uniprotacc: 'nothing',
-            exclusions: ['moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'topology', 'mutagenesis', 'variants']
+            uniprotacc: '',
+            exclusions: ['MOLECULE_PROCESSING', 'PTM', 'SEQUENCE_INFORMATON', 'STRUCTURAL', 'TOPOLOGY', 'MUTAGENESIS']
         };
         var instance = new FeaturesViewer(opts);
 
-        instance.getDispatcher().on("noData", function() {
-            data = require('../../snippets/data/features.json');
-            data = DataLoader.processData(data);
-
-            instance.init(opts, data);
-        });
-
         instance.getDispatcher().on("ready", function() {
-            var catContainer = document.querySelectorAll('.up_pftv_container>.up_pftv_category-container');
+            var catContainer = document.querySelectorAll('.up_pftv_container .up_pftv_category-container');
             assert.equal(catContainer.length, 1, 'only one up_pftv_category-container');
             assert.equal(catContainer[0].childElementCount, 1, 'up_pftv_category-container children count');
 
-            var children = document.querySelectorAll('.up_pftv_category-container>.up_pftv_category');
+            var children = document.querySelectorAll('.up_pftv_category-container .up_pftv_category');
             assert.equal(children.length, 1, 'category count');
 
             var catTitle = document.querySelector('.up_pftv_category-container .up_pftv_category-name');
             assert.equal(catTitle.text.toUpperCase(), "DOMAINS & SITES", 'first category title');
 
             var categoryFeatures = document.querySelector('.up_pftv_category-container .up_pftv_category-viewer-group');
-            assert.equal(categoryFeatures.childElementCount, data.domainsAndSites.features.length, 'first category' +
+            assert.equal(categoryFeatures.childElementCount, instance.data[0][1].length, 'first category' +
                 ' features count');
             done();
         });
@@ -60,19 +79,12 @@ var DataLoader = require('../../src/dataLoader');
         var opts = {
             el: yourDiv,
             uniprotacc: 'P05067',
-            exclusions: ['domainsAndSites', 'moleculeProcessing', 'ptm', 'seqInfo', 'structural', 'variants']
+            exclusions: ['DOMAINS_AND_SITES', 'MOLECULE_PROCESSING', 'PTM', 'SEQUENCE_INFORMATON', 'STRUCTURAL']
         };
         var instance = new FeaturesViewer(opts);
 
-        instance.getDispatcher().on("noData", function() {
-            data = require('../../snippets/data/features.json');
-            data = DataLoader.processData(data);
-
-            instance.init(opts, data);
-        });
-
         instance.getDispatcher().on("ready", function() {
-            var children = document.querySelectorAll('.up_pftv_category-container>.up_pftv_category');
+            var children = document.querySelectorAll('.up_pftv_category-container .up_pftv_category');
             assert.equal(children.length, 2, 'category count');
 
             var catTitle = document.querySelectorAll('.up_pftv_category-container .up_pftv_category-name');
@@ -82,11 +94,11 @@ var DataLoader = require('../../src/dataLoader');
             var categoryFeatures = document.querySelectorAll('.up_pftv_category-container' +
                 ' .up_pftv_category-viewer-group');
             assert.equal(categoryFeatures.length, 5, 'category and type tracks number');
-            assert.equal(categoryFeatures[0].childElementCount, data.topology.features.length, 'second category' +
+            assert.equal(categoryFeatures[0].childElementCount, instance.data[0][1].length, 'second category' +
                 ' features count');
-            assert.equal(categoryFeatures[3].childElementCount, data.mutagenesis.features.length, 'first category' +
+            assert.equal(categoryFeatures[3].childElementCount, instance.data[1][1].length, 'first category' +
                 ' features count');
             done();
         });
     });
-});   */
+});
