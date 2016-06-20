@@ -18,12 +18,10 @@ var Constants = function() {
         type: 'basic'
       }, {
         url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
-        type: 'basic',
-          category: 'PROTEOMICS'
+        type: 'basic'
       }, {
         url: 'https://www.ebi.ac.uk/uniprot/api/variation/',
-        type: 'variant',
-          category: 'VARIATION'
+        type: 'variant'
       }];
       return sources;
     }, getCategoryNamesInOrder: function() {
