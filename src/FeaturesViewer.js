@@ -420,39 +420,46 @@ var FeaturesViewer = function(opts) {
             var delegate = jQuery.Deferred();
             delegates.push(delegate);
         });
-        _.each(dataSources, function(source, index){
-            var url = source.url + opts.uniprotacc;
-            var dataLoader = DataLoader.get(url);
-            loaders.push(dataLoader);
-            var container = fv.container.append('div');
-            dataLoader.done(function(d){
-                if (d instanceof Array) //Workaround to be removed
-                    d = d[0];
-                // First promise to resolve will set global parameters
-                if(!fv.sequence) {
-                    fv.loadZoom(d);
-                }
-                var features = d.features;
-                // group by categories
-                if(features.length > 0 && _.has(features[0],'category')){
-                    features = DataLoader.groupFeaturesByCategory(features);
-                } else if (features.length > 0 && features[0].type === 'VARIANT') {
-                    features = DataLoader.processVariants(features, d.sequence);
-                } else if (features.length > 0 && features[0].type === 'PROTEOMICS'){
-                    features = DataLoader.processProteomics(features);
-                } else if (features.length > 0) {
-                    features = DataLoader.processUngroupedFeatures(features);
-                }
-                if (features.length >= 0) {
-                    fv.drawCategories(features, source.type, fv, container);
-                    fv.data = fv.data.concat(features);
-                    fv.dispatcher.ready();
-                }
-            }).fail(function(e){
-                console.log(e);
-            }).complete(function () {
+        _.each(dataSources, function(source, index) {
+            if (!_.contains(opts.exclusions, source.category)) {
+                var url = source.url + opts.uniprotacc;
+                var dataLoader = DataLoader.get(url);
+                loaders.push(dataLoader);
+                var container = fv.container.append('div');
+                dataLoader.done(function (d) {
+                    if (d instanceof Array) //Workaround to be removed
+                        d = d[0];
+                    // First promise to resolve will set global parameters
+                    if (!fv.sequence) {
+                        fv.loadZoom(d);
+                    }
+                    var features = d.features;
+                    // group by categories
+                    if (features.length > 0 && _.has(features[0], 'category')) {
+                        features = DataLoader.groupFeaturesByCategory(features);
+                        features = _.filter(features, function (cat) {
+                            return !_.contains(opts.exclusions, cat[0]);
+                        });
+                    } else if (features.length > 0 && features[0].type === 'VARIANT') {
+                        features = DataLoader.processVariants(features, d.sequence);
+                    } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
+                        features = DataLoader.processProteomics(features);
+                    } else if (features.length > 0) {
+                        features = DataLoader.processUngroupedFeatures(features);
+                    }
+                    if (features.length >= 0) {
+                        fv.drawCategories(features, source.type, fv, container);
+                        fv.data = fv.data.concat(features);
+                        fv.dispatcher.ready();
+                    }
+                }).fail(function (e) {
+                    console.log(e);
+                }).always(function () {
+                    delegates[index].resolve();
+                });
+            } else {
                 delegates[index].resolve();
-            });
+            }
         });
 
         jQuery.when.apply(null, delegates).done(function () {
@@ -466,7 +473,7 @@ var FeaturesViewer = function(opts) {
                     d3.select(opts.el).text('Sorry, data could not be retrieved at this time, please try again later.');
                     fv.dispatcher.noDataRetrieved();
                 } else if (fv.data.length === 0) {
-                    d3.select(opts.el).text('There are no features for this protein.');
+                    d3.select(opts.el).text('There are no features available for this protein.');
                     fv.dispatcher.noDataAvailable();
                 }
             }
