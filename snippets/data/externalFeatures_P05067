@@ -1,0 +1,208 @@
+{
+  "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDSDPSGTKTCIDTKEGILQYCQEVYPELQITNVVEANQPVTIQNWCKRGRKQCKTHPHFVIPYRCLVGEFVSDALLVPDKCKFLHQERMDVCETHLHWHTVAKETCSEKSTNLHDYGMLLPCGIDKFRGVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDKVVEVAEEEEVAEVEEEEADDDEDDEDGDEVEEEAEEPYEEATERTTSIATTTTTTTESVEEVVREVCSEQAETGPCRAMISRWYFDVTEGKCAPFFYGGCGGNRNNFDTEEYCMAVCGSAMSQSLLKTTQEPLARDPVKLPTTAASTPDAVDKYLETPGDENEHAHFQKAKERLEAKHRERMSQVMREWEEAERQAKNLPKADKKAVIQHFQEKVESLEQEAANERQQLVETHMARVEAMLNDRRRLALENYITALQAVPPRPRHVFNMLKKYVRAEQKDRQHTLKHFEHVRMVDPKKAAQIRSQVMTHLRVIYERMNQSLSLLYNVPAVAEEIQDEVDELLQKEQNYSDDVLANMISEPRISYGNDALMPSLTETKTTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDARPAADRGLTTRPGSGLTNIKTEEISEVKMDAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIATVIVITLVMLKKKQYTSIHHGVVEVDAAVTPEERHLSKMQQNGYENPTYKFFEQMQN",
+  "features": [
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "17",
+      "end": "27",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "18",
+      "end": "770",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "18",
+      "end": "687",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "18",
+      "end": "671",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "N-APP",
+      "begin": "18",
+      "end": "286",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "672",
+      "end": "770",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "672",
+      "end": "713",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "672",
+      "end": "711",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "688",
+      "end": "770",
+      "color": "#00B88A"
+    },
+    {
+      "type": "NON_UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "96",
+      "end": "110",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "181",
+      "end": "188",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "391",
+      "end": "423",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "491",
+      "end": "522",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "523",
+      "end": "540",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "732",
+      "end": "751",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "147",
+      "end": "147"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "151",
+      "end": "151"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "168",
+      "end": "168"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "677",
+      "end": "677"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "681",
+      "end": "681"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "684",
+      "end": "684"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "685",
+      "end": "685"
+    },
+    {
+      "type": "NOVEL_FEATURE",
+      "category": "NOVELTIES",
+      "begin": "43",
+      "end": "45"
+    },
+    {
+      "type": "TURN",
+      "category": "STRUCTURAL",
+      "begin": "47",
+      "end": "49",
+      "color": "#00CCCC"
+    },
+    {
+      "type": "STRAND",
+      "category": "STRUCTURAL",
+      "begin": "52",
+      "end": "54",
+      "color": "#70E000"
+    },
+    {
+      "type": "STRAND",
+      "category": "STRUCTURAL",
+      "begin": "56",
+      "end": "58",
+      "color": "#70E000"
+    },
+    {
+      "type": "HELIX",
+      "category": "STRUCTURAL",
+      "begin": "66",
+      "end": "76",
+      "color": "#FF66FF"
+    }
+  ]
+}
