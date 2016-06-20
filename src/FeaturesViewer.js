@@ -9,7 +9,6 @@ var DataLoader = require("./DataLoader");
 var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
-var VariantFilterDialog = require("./VariantFilterDialog");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
 var TooltipFactory = require('./TooltipFactory');
 var jQuery = require('jquery');
@@ -102,6 +101,9 @@ var resetZoomAndSelection = function(fv) {
     }
     resetZoom(fv);
     updateZoomButton('icon-zoom-out', 'icon-zoom-in', 'Zoom in to sequence view');
+    _.each(fv.categories, function(category) {
+        category.reset();
+    });
 };
 
 var createZoom = function(fv) {
