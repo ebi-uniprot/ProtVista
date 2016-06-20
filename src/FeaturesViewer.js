@@ -9,7 +9,6 @@ var DataLoader = require("./DataLoader");
 var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
-var VariantFilterDialog = require("./VariantFilterDialog");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
 var TooltipFactory = require('./TooltipFactory');
 var jQuery = require('jquery');
@@ -394,6 +393,20 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
     return varLookup ? varLookup : lookup;
 };
 
+var init = function (opts) {
+    if (opts.defaultSources === false) {
+        Constants.cleanDataSources();
+    }
+    _.each(opts.customDataSources, function(dataSource) {
+        Constants.addSource(dataSource);
+    });
+    _.each(opts.customCategories, function(categoryType) {
+        Constants.addCategories(categoryType.sourceType, categoryType.categories);
+    });
+    Constants.addTrackTypes(opts.customTypes);
+
+};
+
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
@@ -404,13 +417,13 @@ var FeaturesViewer = function(opts) {
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
     fv.sequence = "";
-    // fv.filterTypes = fv.categoryOrderAndType.variants.ftTypes;
     fv.categories = [];
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
     fv.data = [];
 
     fv.load = function() {
+        init(opts);
         fv.initLayout(opts);
         var dataSources = Constants.getDataSources();
         var loaders = [], delegates = [];
@@ -544,7 +557,7 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
     var fv = this;
     //remove any previous text
     var globalContainer = d3.select(opts.el).text('');
-    fvContainer = globalContainer
+    var fvContainer = globalContainer
         .append('div')
         .attr('class', 'up_pftv_container')
         .on('mousedown', function() {
