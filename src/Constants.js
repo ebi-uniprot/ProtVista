@@ -135,7 +135,7 @@ var Constants = function() {
     },
     cleanDataSources: function() {
         sources = [];
-    },  
+    },
     getCategoryNamesInOrder: function() {
         var temp = [];
         _.each(categories, function(cat) {
@@ -177,8 +177,9 @@ var Constants = function() {
             }
         });
     },
-    getTrackInfo: function(name) {
-      return this.getTrackNames()[name] ? this.getTrackNames()[name] : {label: name, tooltip:''};
+    getTrackInfo: function(trackName) {
+        var name = trackName.toLowerCase();
+        return this.getTrackNames()[name] ? this.getTrackNames()[name] : {label: name, tooltip:''};
     }
   };
 }();
