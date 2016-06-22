@@ -14,8 +14,8 @@ var assert = chai.assert;
 
 // register alternative styles
 // @see http://chaijs.com/api/bdd/
-chai.expect();
-chai.should();
+var expect = chai.expect;
+var should = chai.should;
 
 // requires your main app
 var _ = require("underscore");
@@ -113,7 +113,7 @@ describe('FeaturesViewerTest', function() {
             var label = Constants.getTrackNames().unique.label;
 
             var tracksToAdd = {
-                only_unique: {label: 'Only unique peptide', tooltip: ''},
+                only_Unique: {label: 'Only unique peptide', tooltip: ''},
                 unique: {label: 'Unique peptide whose track already exist', tooltip: ''},
                 mixed: {label: 'Mixed peptide', tooltip: ''}
             };
@@ -122,16 +122,16 @@ describe('FeaturesViewerTest', function() {
             keys = _.keys(Constants.getTrackNames());
             assert.equal(howMany + 2, keys.length);
             assert.equal(Constants.getTrackNames().unique.label, label);
-            assert.deepEqual(Constants.getTrackNames().mixed, tracksToAdd.mixed);
-            assert.deepEqual(Constants.getTrackNames().only_unique, tracksToAdd.only_unique);
+            expect(Constants.getTrackNames().mixed).to.deep.equal(tracksToAdd.mixed);
+            expect(Constants.getTrackNames().only_unique).to.deep.equal(tracksToAdd.only_Unique);
         });
         it('should get existing track info', function() {
             var unique = {label:'Unique peptide',tooltip:''};
-            assert.deepEqual(unique, Constants.getTrackInfo('unique'));
+            expect(unique).to.deep.equal(Constants.getTrackInfo('unique'));
         });
         it('should get non-existing track info', function() {
-            var family_Domains = {label:'family_Domains', tooltip:''};
-            assert.deepEqual(family_Domains, Constants.getTrackInfo('family_Domains'));
+            var family_domains = {label:'family_domains', tooltip:''};
+            expect(family_domains).to.deep.equal(Constants.getTrackInfo('family_domains'));
         });
     });
 });

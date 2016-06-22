@@ -172,6 +172,7 @@ var Constants = function() {
     },
     addTrackTypes: function(tracksToAdd) {
         _.each(tracksToAdd, function(elem, key) {
+            key = key.toLowerCase();
             if (!trackNames[key]) {
                 trackNames[key] = elem;
             }
