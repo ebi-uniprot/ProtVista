@@ -407,7 +407,6 @@ var init = function (opts) {
         Constants.addCategories(categoryType.sourceType, categoryType.categories);
     });
     Constants.addTrackTypes(opts.customTypes);
-
 };
 
 var FeaturesViewer = function(opts) {
@@ -439,7 +438,6 @@ var FeaturesViewer = function(opts) {
                 var url = source.url + opts.uniprotacc;
                 var dataLoader = DataLoader.get(url);
                 loaders.push(dataLoader);
-                var container = fv.container.append('div');
                 dataLoader.done(function (d) {
                     if (d instanceof Array) //Workaround to be removed
                         d = d[0];
@@ -462,7 +460,7 @@ var FeaturesViewer = function(opts) {
                         features = DataLoader.processUngroupedFeatures(features);
                     }
                     if (features.length >= 0) {
-                        fv.drawCategories(features, source.type, fv, container);
+                        fv.drawCategories(features, source.type, fv);
                         fv.data = fv.data.concat(features);
                         fv.dispatcher.ready();
                     }
@@ -580,6 +578,11 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
         .append('div')
         .attr('class', 'up_pftv_category-container');
 
+    _.each(Constants.getCategoryNamesInOrder(), function(categoryName) {
+        key = _.keys(categoryName)[0];
+        fv.container.append('div').classed('up_pftv_category_' + key, true);
+    });
+
     fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
 };
 
@@ -603,8 +606,9 @@ FeaturesViewer.prototype.loadZoom = function(d) {
   updateZoomFromChart(fv);
 };
 
-FeaturesViewer.prototype.drawCategories = function(data, type, fv, container) {
+FeaturesViewer.prototype.drawCategories = function(data, type, fv) {
   _.each(data, function(category) {
+    var container = fv.container.select('.up_pftv_category_' + category[0]);
     var cat = CategoryFactory.createCategory(category[0], category[1], type, fv, container);
     fv.categories.push(cat);
   });
