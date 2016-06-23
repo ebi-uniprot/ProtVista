@@ -47,7 +47,7 @@ var Constants = function() {
             });
             return found;
         });
-        return exist === true ? result : {name: categoryName, label: categoryName, visualization: 'basic'};
+        return exist ? result : {name: categoryName, label: categoryName, visualization: 'basic'};
     },
     addCategories: function(categories) {
         _.each(categories, function(newCat) {

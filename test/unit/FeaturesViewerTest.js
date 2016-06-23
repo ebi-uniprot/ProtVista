@@ -128,6 +128,10 @@ describe('FeaturesViewerTest', function() {
             var family_domains = {name: 'family_domains', label: 'family_domains', visualization: 'basic'};
             expect(family_domains).to.deep.equal(Constants.getCategoryInfo('family_domains'));
         });
+        it('should get existing category info', function() {
+            var category = {name: 'DOMAINS_AND_SITES', label: 'Domains & sites', visualization: 'basic'};
+            expect(category).to.deep.equal(Constants.getCategoryInfo('DOMAINS_AND_SITES'));
+        });
         it('should add new tracks and modify existing ones', function() {
             var keys = _.keys(Constants.getTrackNames());
             var howMany = keys.length;
