@@ -578,9 +578,8 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
         .append('div')
         .attr('class', 'up_pftv_category-container');
 
-    _.each(Constants.getCategoryNamesInOrder(), function(categoryName) {
-        key = _.keys(categoryName)[0];
-        fv.container.append('div').classed('up_pftv_category_' + key, true);
+    _.each(Constants.getCategoryNamesInOrder(), function(catInfo) {
+        fv.container.append('div').classed('up_pftv_category_' + catInfo.name, true);
     });
 
     fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');

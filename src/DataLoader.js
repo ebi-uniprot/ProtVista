@@ -58,11 +58,11 @@ var DataLoader = function() {
             delete categories.VARIANTS;
             var orderedPairs = [];
             var categoriesNames = Constants.getCategoryNamesInOrder();
-            _.each(categoriesNames, function(name){
-                if(categories[_.keys(name)[0]]){
+            _.each(categoriesNames, function(catInfo){
+                if(categories[catInfo.name]){
                     orderedPairs.push([
-                        _.keys(name)[0],
-                        categories[_.keys(name)[0]]
+                        catInfo.name,
+                        categories[catInfo.name]
                     ]);
                 }
             });

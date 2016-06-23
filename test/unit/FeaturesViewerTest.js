@@ -81,7 +81,6 @@ describe('FeaturesViewerTest', function() {
     describe('Add external sources', function () {
         var source = {
             url: 'https://my.url.com',
-            type: 'basic',
             authority: 'my lab'
         };
         it ('should add a new source', function() {
@@ -90,24 +89,46 @@ describe('FeaturesViewerTest', function() {
             Constants.addSource(source);
             assert.equal(JSON.stringify(expectedSources), JSON.stringify(Constants.getDataSources()));
         });
-        it('should add only new categories', function() {
+        it('should add new categories and modify existing ones', function() {
             var expectedCategoryNamesInOrder = [
-                {DOMAINS_AND_SITES: 'Domains & sites'}, {MOLECULE_PROCESSING: 'Molecule processing'},
-                {PTM: 'Post translational modifications'}, {SEQUENCE_INFORMATON: 'Sequence information'} ,
-                {STRUCTURAL: 'Structural features'}, { TOPOLOGY: 'Topology'},
-                {MUTAGENESIS: 'Mutagenesis'}, {PROTEOMICS: 'Proteomics'},
-                {MY_DOMAINS: 'My domains'}, {CAT: 'My cat'},
-                {VARIATION: 'Variants'}
-            ];
+                { name: 'DOMAINS_AND_SITES', label: 'Domains & sites' },
+                { name: 'MOLECULE_PROCESSING', label: 'Alt molecule processing' },
+                { name: 'PTM', label: 'Post translational modifications' },
+                { name: 'SEQUENCE_INFORMATON', label: 'Sequence information' },
+                { name: 'STRUCTURAL', label: 'Structural features' },
+                { name: 'TOPOLOGY', label: 'Topology' },
+                { name: 'MUTAGENESIS', label: 'Mutagenesis' },
+                { name: 'PROTEOMICS', label: 'Proteomics' },
+                { name: 'MY_DOMAINS', label: 'My domains' },
+                { name: 'CAT', label: 'My cat' },
+                { name: 'VISUAL_CAT', label: 'New visual cat' },
+                { name: 'VARIATION', label: 'Variants' }
+             ];
 
             var categoriesToAdd = [
-                {MY_DOMAINS: 'My domains'}, {MOLECULE_PROCESSING: 'Molecule processing'}, {CAT: 'My cat'}
+                {
+                    visualization: 'basic',
+                    categoryNamesInOrder: [
+                        {name: 'MY_DOMAINS', label: 'My domains'},
+                        {name: 'MOLECULE_PROCESSING', label: 'Alt molecule processing'},
+                        {name: 'CAT', label: 'My cat'}
+                    ]
+                },
+                {
+                    visualization: 'new',
+                    categoryNamesInOrder: [
+                        {name: 'VISUAL_CAT', label: 'New visual cat' }
+                    ]
+                }
             ];
-            Constants.addCategories(source.type, categoriesToAdd);
-            assert.equal(JSON.stringify(expectedCategoryNamesInOrder),
-                JSON.stringify(Constants.getCategoryNamesInOrder()));
+            Constants.addCategories(categoriesToAdd);
+            expect(Constants.getCategoryNamesInOrder()).to.deep.equal(expectedCategoryNamesInOrder);
         });
-        it('should add only new tracks', function() {
+        it('should get non-existing category info', function() {
+            var family_domains = {name: 'family_domains', label: 'family_domains', visualization: 'basic'};
+            expect(family_domains).to.deep.equal(Constants.getCategoryInfo('family_domains'));
+        });
+        it('should add new tracks and modify existing ones', function() {
             var keys = _.keys(Constants.getTrackNames());
             var howMany = keys.length;
             var label = Constants.getTrackNames().unique.label;
@@ -121,12 +142,13 @@ describe('FeaturesViewerTest', function() {
             Constants.addTrackTypes(tracksToAdd);
             keys = _.keys(Constants.getTrackNames());
             assert.equal(howMany + 2, keys.length);
-            assert.equal(Constants.getTrackNames().unique.label, label);
+            assert.notEqual(Constants.getTrackNames().unique.label, label);
+            expect(Constants.getTrackNames().unique).to.deep.equal(tracksToAdd.unique);
             expect(Constants.getTrackNames().mixed).to.deep.equal(tracksToAdd.mixed);
             expect(Constants.getTrackNames().only_unique).to.deep.equal(tracksToAdd.only_Unique);
         });
         it('should get existing track info', function() {
-            var unique = {label:'Unique peptide',tooltip:''};
+            var unique = {label:'Unique peptide whose track already exist',tooltip:''};
             expect(unique).to.deep.equal(Constants.getTrackInfo('unique'));
         });
         it('should get non-existing track info', function() {
