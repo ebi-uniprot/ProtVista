@@ -11,12 +11,12 @@ var BasicViewer = require("./BasicViewer");
 var ViewerHelper = require("./ViewerHelper");
 var Constants = require("./Constants");
 
-var Category = function(name, data, type, fv, container) {
+var Category = function(name, data, catInfo, fv, container) {
     var category = this;
     category.name = name;
     category.tracks = [];
     category.data = data;
-    category.viewerType = type;
+    category.viewerType = catInfo.visualization;
     category.fv = fv;
     category.tracksCreated = false;
     category.categoryViewer = undefined;
@@ -26,7 +26,7 @@ var Category = function(name, data, type, fv, container) {
     category.header = category.categoryContainer.append('a')
         .attr('class', 'up_pftv_category-name up_pftv_arrow-right')
         .attr('title', category.name)
-        .text(Constants.getCategoryName(category.name))
+        .text(catInfo.label)
         .on('click', function() {
             category.toggle();
             category.propagateSelection();
@@ -179,17 +179,17 @@ Category.variant = function() {
 // Factory
 var CategoryFactory = function() {
     return {
-        createCategory: function(name, data, type, fv, container) {
+        createCategory: function(name, data, catInfo, fv, container) {
             var category;
 
             // error if the constructor doesn't exist
-            if (typeof Category[type] !== "function") {
+            if (typeof Category[catInfo.visualization] !== "function") {
                 console.log('WARNING: Category viewer type ' + type + " doesn't exist");
             }
 
             //inherit parent constructor
-            Category[type].prototype = new Category(name, data, type, fv, container);
-            category = new Category[type]();
+            Category[catInfo.visualization].prototype = new Category(name, data, catInfo, fv, container);
+            category = new Category[catInfo.visualization]();
 
             if(data.length > 0) {
                 category.buildTracks();

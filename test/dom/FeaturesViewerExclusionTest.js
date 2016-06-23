@@ -60,7 +60,10 @@ describe('FeaturesViewerExclusionTest', function() {
         instance.getDispatcher().on("ready", function() {
             var catContainer = document.querySelectorAll('.up_pftv_container .up_pftv_category-container');
             assert.equal(catContainer.length, 1, 'only one up_pftv_category-container');
-            assert.equal(catContainer[0].childElementCount, 9, 'up_pftv_category-container children count');
+            assert.equal(catContainer[0].childElementCount, 2, 'up_pftv_category-container children count');
+
+            assert.equal(catContainer[0].children[0].className, 'up_pftv_category_basic', 'one basic container');
+            assert.equal(catContainer[0].children[1].className, 'up_pftv_category_variant', 'one variant container');
 
             var children = document.querySelectorAll('.up_pftv_category-container .up_pftv_category');
             assert.equal(children.length, 1, 'category count');

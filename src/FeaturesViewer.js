@@ -460,7 +460,7 @@ var FeaturesViewer = function(opts) {
                         features = DataLoader.processUngroupedFeatures(features);
                     }
                     if (features.length >= 0) {
-                        fv.drawCategories(features, source.type, fv);
+                        fv.drawCategories(features, fv);
                         fv.data = fv.data.concat(features);
                         fv.dispatcher.ready();
                     }
@@ -578,8 +578,12 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
         .append('div')
         .attr('class', 'up_pftv_category-container');
 
-    _.each(Constants.getCategoryNamesInOrder(), function(catInfo) {
-        fv.container.append('div').classed('up_pftv_category_' + catInfo.name, true);
+    _.each(Constants.getCategories(), function(category) {
+        var visualContainer = fv.container.append('div')
+            .classed('up_pftv_category_' + category.visualization, true);
+        _.each(category.categoryNamesInOrder, function(catInfo) {
+            visualContainer.append('div').classed('up_pftv_category_' + catInfo.name, true);
+        });
     });
 
     fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
@@ -605,10 +609,11 @@ FeaturesViewer.prototype.loadZoom = function(d) {
   updateZoomFromChart(fv);
 };
 
-FeaturesViewer.prototype.drawCategories = function(data, type, fv) {
+FeaturesViewer.prototype.drawCategories = function(data, fv) {
   _.each(data, function(category) {
+    var catInfo = Constants.getCategoryInfo(category[0]);
     var container = fv.container.select('.up_pftv_category_' + category[0]);
-    var cat = CategoryFactory.createCategory(category[0], category[1], type, fv, container);
+    var cat = CategoryFactory.createCategory(category[0], category[1], catInfo, fv, container);
     fv.categories.push(cat);
   });
 };
