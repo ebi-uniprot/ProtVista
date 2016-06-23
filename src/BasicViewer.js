@@ -9,11 +9,12 @@ var ViewerHelper = require("./ViewerHelper");
 var Constants = require("./Constants");
 
 var BasicViewer = function(catTitle, features, container, fv) {
-    var height = 40;
+    var basicViewer = this;
+    basicViewer.height = 40;
     var width = fv.width;
 
-    var layout = new NonOverlappingLayout(features, height);
-    layout.calculate();
+    basicViewer.layout = new NonOverlappingLayout(features, basicViewer.height);
+    basicViewer.layout.calculate();
 
     var featurePlot = function() {
         var series,
@@ -55,11 +56,11 @@ var BasicViewer = function(catTitle, features, container, fv) {
                         return FeatureFactory.getFeature(
                             d.type,
                             fv.xScale(2) - fv.xScale(1),
-                            layout.getFeatureHeight(),
+                            basicViewer.layout.getFeatureHeight(),
                             (d.end) ? d.end - d.begin + 1 : 1);
                     })
                     .attr('transform',function(d) {
-                        return 'translate('+fv.xScale(d.begin)+ ',' + layout.getYPos(d) + ')';
+                        return 'translate('+fv.xScale(d.begin)+ ',' + basicViewer.layout.getYPos(d) + ')';
                     })
                 ;
                 ViewerHelper.addEventsClassAndTitle(catTitle, newShapes, fv, container);
@@ -70,7 +71,7 @@ var BasicViewer = function(catTitle, features, container, fv) {
     };
 
     var series = featurePlot();
-    var svg = ViewerHelper.createSVG(container, width, height, fv);
+    var svg = ViewerHelper.createSVG(container, width, basicViewer.height, fv);
 
     var drawArea = svg.append('g')
         .classed('up_pftv_category-viewer-group', true);
@@ -84,6 +85,14 @@ var BasicViewer = function(catTitle, features, container, fv) {
         if (fv.selectedFeature) {
             ViewerHelper.updateShadow(fv.selectedFeature, fv);
         }
+    };
+
+    this.updateData = function(data) {
+        var basicViewer = this;
+        basicViewer.layout = new NonOverlappingLayout(data, basicViewer.height);
+        basicViewer.layout.calculate();
+        dataSeries.datum(data);
+        this.update();
     };
 
     return this;

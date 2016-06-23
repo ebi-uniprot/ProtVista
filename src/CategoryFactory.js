@@ -18,7 +18,7 @@ var Category = function(name, data, catInfo, fv, container) {
     category.data = data;
     category.viewerType = catInfo.visualization;
     category.fv = fv;
-    category.tracksCreated = false;
+    category.tracksCreated = false; //TODO
     category.categoryViewer = undefined;
 
     category.categoryContainer = container.append('div')
@@ -47,6 +47,22 @@ Category.prototype.reset = function() {
             track.reset();
         }
     });
+};
+
+Category.prototype.repaint = function(data) {
+    var category = this;
+    category.data = _.union(category.data, data);
+
+    var catContainer = d3.select('.up_pftv_category_' + category.name);
+    var ftGroup = catContainer.select('.up_pftv_category-viewer-group');
+    ftGroup.selectAll('*').remove();
+    category.categoryViewer.updateData(category.data); //TODO will it work with variants?
+
+    var tracksContainer = catContainer.select('.up_pftv_category-tracks');
+    tracksContainer.selectAll('*').remove();
+    tracksContainer.html('');
+    category.tracks = [];
+    category.buildTracks();
 };
 
 Category.prototype.addTrack = function(track) {

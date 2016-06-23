@@ -5,7 +5,10 @@ var instance = new app(
         el: yourDiv, text: 'biojs',
         uniprotacc : 'P05067',
         customCategories: [
-            {sourceType: 'basic', categories: [{NOVELTIES: 'Novel features'}]}
+            {
+                visualization: 'basic',
+                categoryNamesInOrder: [{name: 'NOVELTIES', label: 'Novel features'}]
+            }
         ],
         customTypes: {
             catalytic_site: {label: 'Catalytic site', tooltip: '', 'color': '#806699'},
@@ -14,7 +17,6 @@ var instance = new app(
         customDataSources: [
             {
                 url: './data/externalFeatures_',
-                type: 'basic',
                 authority: 'myLab'
             }
         ]

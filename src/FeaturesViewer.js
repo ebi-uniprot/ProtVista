@@ -403,9 +403,7 @@ var init = function (opts) {
     _.each(opts.customDataSources, function(dataSource) {
         Constants.addSource(dataSource);
     });
-    _.each(opts.customCategories, function(categoryType) {
-        Constants.addCategories(categoryType.sourceType, categoryType.categories);
-    });
+    Constants.addCategories(opts.customCategories);
     Constants.addTrackTypes(opts.customTypes);
 };
 
@@ -611,10 +609,17 @@ FeaturesViewer.prototype.loadZoom = function(d) {
 
 FeaturesViewer.prototype.drawCategories = function(data, fv) {
   _.each(data, function(category) {
-    var catInfo = Constants.getCategoryInfo(category[0]);
-    var container = fv.container.select('.up_pftv_category_' + category[0]);
-    var cat = CategoryFactory.createCategory(category[0], category[1], catInfo, fv, container);
-    fv.categories.push(cat);
+    var found = _.find(fv.categories, function(cat) {
+        return cat.name === category[0];
+    });
+    if (!found) {
+        var catInfo = Constants.getCategoryInfo(category[0]);
+        var container = fv.container.select('.up_pftv_category_' + category[0]);
+        var cat = CategoryFactory.createCategory(category[0], category[1], catInfo, fv, container);
+        fv.categories.push(cat);
+    } else {
+        found.repaint(category[1]);
+    }
   });
 };
 
