@@ -18,7 +18,6 @@ var Category = function(name, data, catInfo, fv, container) {
     category.data = data;
     category.viewerType = catInfo.visualization;
     category.fv = fv;
-    category.tracksCreated = false; //TODO
     category.categoryViewer = undefined;
 
     category.categoryContainer = container.append('div')
@@ -51,7 +50,7 @@ Category.prototype.reset = function() {
 
 Category.prototype.repaint = function(data) {
     var category = this;
-    category.data = _.union(category.data, data);
+    category.data = _.union(category.data, data); //TODO should be different with variants!
 
     var catContainer = d3.select('.up_pftv_category_' + category.name);
     var ftGroup = catContainer.select('.up_pftv_category-viewer-group');
