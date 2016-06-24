@@ -2,7 +2,8 @@
   "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDSDPSGTKTCIDTKEGILQYCQEVYPELQITNVVEANQPVTIQNWCKRGRKQCKTHPHFVIPYRCLVGEFVSDALLVPDKCKFLHQERMDVCETHLHWHTVAKETCSEKSTNLHDYGMLLPCGIDKFRGVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDKVVEVAEEEEVAEVEEEEADDDEDDEDGDEVEEEAEEPYEEATERTTSIATTTTTTTESVEEVVREVCSEQAETGPCRAMISRWYFDVTEGKCAPFFYGGCGGNRNNFDTEEYCMAVCGSAMSQSLLKTTQEPLARDPVKLPTTAASTPDAVDKYLETPGDENEHAHFQKAKERLEAKHRERMSQVMREWEEAERQAKNLPKADKKAVIQHFQEKVESLEQEAANERQQLVETHMARVEAMLNDRRRLALENYITALQAVPPRPRHVFNMLKKYVRAEQKDRQHTLKHFEHVRMVDPKKAAQIRSQVMTHLRVIYERMNQSLSLLYNVPAVAEEIQDEVDELLQKEQNYSDDVLANMISEPRISYGNDALMPSLTETKTTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDARPAADRGLTTRPGSGLTNIKTEEISEVKMDAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIATVIVITLVMLKKKQYTSIHHGVVEVDAAVTPEERHLSKMQQNGYENPTYKFFEQMQN",
   "features": [
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "17",
@@ -10,7 +11,8 @@
       "color": "#00B88A"
     },
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "18",
@@ -18,7 +20,8 @@
       "color": "#00B88A"
     },
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "18",
@@ -26,7 +29,8 @@
       "color": "#00B88A"
     },
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "18",
@@ -34,7 +38,8 @@
       "color": "#00B88A"
     },
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "N-APP",
       "begin": "18",
@@ -42,7 +47,8 @@
       "color": "#00B88A"
     },
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "672",
@@ -50,7 +56,8 @@
       "color": "#00B88A"
     },
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "672",
@@ -58,7 +65,8 @@
       "color": "#00B88A"
     },
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "672",
@@ -66,7 +74,8 @@
       "color": "#00B88A"
     },
     {
-      "type": "UNIQUE",
+      "type": "UNIQUE_MAXQ",
+      "unique": true,
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "688",
@@ -74,7 +83,7 @@
       "color": "#00B88A"
     },
     {
-      "type": "NON_UNIQUE",
+      "type": "NON_UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "96",
@@ -82,7 +91,7 @@
       "color": "#FFCC33"
     },
     {
-      "type": "NON_UNIQUE",
+      "type": "NON_UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "181",
@@ -90,7 +99,7 @@
       "color": "#FFCC33"
     },
     {
-      "type": "NON_UNIQUE",
+      "type": "NON_UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "391",
@@ -98,7 +107,7 @@
       "color": "#FFCC33"
     },
     {
-      "type": "NON_UNIQUE",
+      "type": "NON_UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "491",
@@ -106,7 +115,7 @@
       "color": "#FFCC33"
     },
     {
-      "type": "NON_UNIQUE",
+      "type": "NON_UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "523",
@@ -114,7 +123,7 @@
       "color": "#FFCC33"
     },
     {
-      "type": "NON_UNIQUE",
+      "type": "NON_UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "732",
