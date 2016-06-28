@@ -5,8 +5,26 @@
 var _ = require('underscore');
 var Config = require('./config.json');
 
-var allVisualization = Config.visualization;
-var allSources = Config.sources;
+var visualizationTypes = {
+    basic: 'basic',
+    variant: 'variant'
+};
+var allSources = [
+    {
+        url: 'https://www.ebi.ac.uk/uniprot/api/features/',
+        authority: 'uniprot'
+    },
+    {
+        url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
+        authority: 'uniprot',
+        category: 'PROTEOMICS'
+    },
+    {
+        url: 'https://www.ebi.ac.uk/uniprot/api/variation/',
+        authority: 'uniprot',
+        category: 'VARIATION'
+    }
+];
 var allCategories = Config.categories;
 var allTrackNames = Config.trackNames;
 
@@ -17,6 +35,9 @@ var Constants = function() {
     },
     getNoBlastTypes: function() {
       return ['helix', 'strand', 'turn', 'disulfid', 'crosslnk', 'variant'];
+    },
+    getVisualizationTypes: function() {
+        return visualizationTypes;
     },
     getDataSources: function() {
       return allSources;
@@ -37,6 +58,11 @@ var Constants = function() {
         });
         return temp;
     },
+    convertNameToLabel: function(name) {
+        var label = name.replace(/_/g, ' ');
+        label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
+        return label;
+    },
     getCategoryInfo: function(categoryName) {
         var result = {name: categoryName, label: '', visualization: ''};
         var exist = _.find(allCategories, function(cat) {
@@ -47,7 +73,8 @@ var Constants = function() {
             });
             return found;
         });
-        return exist ? result : {name: categoryName, label: categoryName, visualization: 'basic'};
+        return exist ? result
+            : {name: categoryName, label: Constants.convertNameToLabel(categoryName), visualization: 'basic'};
     },
     addCategories: function(categories) {
         _.each(categories, function(newCat) {
@@ -81,7 +108,8 @@ var Constants = function() {
     },
     getTrackInfo: function(trackName) {
         var name = trackName.toLowerCase();
-        return this.getTrackNames()[name] ? this.getTrackNames()[name] : {label: name, tooltip:''};
+        return this.getTrackNames()[name] ? this.getTrackNames()[name]
+            : {label: Constants.convertNameToLabel(name), tooltip:''};
     }
   };
 }();
