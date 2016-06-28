@@ -14,31 +14,31 @@
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "18",
-      "end": "770",
+      "end": "29",
       "color": "#00B88A"
     },
     {
       "type": "UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
-      "begin": "18",
-      "end": "687",
+      "begin": "28",
+      "end": "33",
       "color": "#00B88A"
     },
     {
       "type": "UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
-      "begin": "18",
-      "end": "671",
+      "begin": "47",
+      "end": "59",
       "color": "#00B88A"
     },
     {
       "type": "UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "N-APP",
-      "begin": "18",
-      "end": "286",
+      "begin": "86",
+      "end": "97",
       "color": "#00B88A"
     },
     {
@@ -46,23 +46,23 @@
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "672",
-      "end": "770",
+      "end": "678",
       "color": "#00B88A"
     },
     {
       "type": "UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
-      "begin": "672",
-      "end": "713",
+      "begin": "72",
+      "end": "83",
       "color": "#00B88A"
     },
     {
       "type": "UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
-      "begin": "672",
-      "end": "711",
+      "begin": "52",
+      "end": "61",
       "color": "#00B88A"
     },
     {
@@ -70,7 +70,7 @@
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "688",
-      "end": "770",
+      "end": "697",
       "color": "#00B88A"
     },
     {
@@ -93,7 +93,7 @@
       "type": "NON_UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
-      "begin": "391",
+      "begin": "417",
       "end": "423",
       "color": "#FFCC33"
     },
@@ -101,8 +101,8 @@
       "type": "NON_UNIQUE_MAXQ",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
-      "begin": "491",
-      "end": "522",
+      "begin": "391",
+      "end": "402",
       "color": "#FFCC33"
     },
     {
@@ -110,7 +110,7 @@
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "523",
-      "end": "540",
+      "end": "530",
       "color": "#FFCC33"
     },
     {
@@ -118,7 +118,7 @@
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "732",
-      "end": "751",
+      "end": "741",
       "color": "#FFCC33"
     },
     {

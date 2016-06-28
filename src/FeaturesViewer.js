@@ -441,6 +441,7 @@ var FeaturesViewer = function(opts) {
         _.each(dataSources, function(source, index) {
             if (!_.contains(opts.exclusions, source.category)) {
                 var url = source.url + opts.uniprotacc;
+                url = source.useExtension === true ? url + '.json' : url; 
                 var dataLoader = DataLoader.get(url);
                 loaders.push(dataLoader);
                 dataLoader.done(function (d) {
