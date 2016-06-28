@@ -396,15 +396,21 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
     return varLookup ? varLookup : lookup;
 };
 
-var init = function (opts) {
+var initSources = function (opts) {
     if (opts.defaultSources === false) {
         Constants.cleanDataSources();
     }
     _.each(opts.customDataSources, function(dataSource) {
         Constants.addSource(dataSource);
     });
-    Constants.addCategories(opts.customCategories);
-    Constants.addTrackTypes(opts.customTypes);
+};
+
+var initConfiguration = function (opts) {
+    if (opts.customConfig) {
+        //TODO
+        /*Constants.addCategories(opts.customCategories);
+        Constants.addTrackTypes(opts.customTypes);*/
+    }
 };
 
 var FeaturesViewer = function(opts) {
@@ -423,7 +429,8 @@ var FeaturesViewer = function(opts) {
     fv.data = [];
 
     fv.load = function() {
-        init(opts);
+        initSources(opts);
+        initConfiguration(opts);
         fv.initLayout(opts);
         var dataSources = Constants.getDataSources();
         var loaders = [], delegates = [];
@@ -615,6 +622,10 @@ FeaturesViewer.prototype.drawCategories = function(data, fv) {
     if (!found) {
         var catInfo = Constants.getCategoryInfo(category[0]);
         var container = fv.container.select('.up_pftv_category_' + category[0]);
+        if (!container[0][0]) {
+            var visualContainer = fv.container.select('.up_pftv_category_basic');
+            container = visualContainer.append('div').classed('up_pftv_category_' + category[0], true);
+        }
         var cat = CategoryFactory.createCategory(category[0], category[1], catInfo, fv, container);
         fv.categories.push(cat);
     } else {

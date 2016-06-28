@@ -58,11 +58,28 @@ var DataLoader = function() {
             delete categories.VARIANTS;
             var orderedPairs = [];
             var categoriesNames = Constants.getCategoryNamesInOrder();
-            _.each(categoriesNames, function(catInfo){
-                if(categories[catInfo.name]){
+            categoriesNames = _.pluck(categoriesNames, 'name');
+            var newCategoryNames = {
+                visualization: 'basic',
+                categoryNamesInOrder: []
+            };
+            _.each(categories, function (catInfo, catKey) {
+                if (!_.contains(categoriesNames, catKey)) {
+                    newCategoryNames.categoryNamesInOrder.push({
+                        name: catKey, label: Constants.convertNameToLabel(catKey)
+                    });
+                }
+            });
+            if (newCategoryNames.categoryNamesInOrder.length !== 0) {
+                Constants.addCategories([newCategoryNames]);
+                categoriesNames = Constants.getCategoryNamesInOrder();
+                categoriesNames = _.pluck(categoriesNames, 'name');
+            }
+            _.each(categoriesNames, function(catName){
+                if(categories[catName]){
                     orderedPairs.push([
-                        catInfo.name,
-                        categories[catInfo.name]
+                        catName,
+                        categories[catName]
                     ]);
                 }
             });
