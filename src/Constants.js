@@ -51,6 +51,9 @@ var Constants = function() {
     getCategories: function() {
         return allCategories;
     },
+    setCategories: function(categories) {
+        allCategories = categories;
+    },  
     getCategoryNamesInOrder: function() {
         var temp = [];
         _.each(allCategories, function(cat) {
@@ -74,7 +77,8 @@ var Constants = function() {
             return found;
         });
         return exist ? result
-            : {name: categoryName, label: Constants.convertNameToLabel(categoryName), visualization: 'basic'};
+            : {name: categoryName, label: Constants.convertNameToLabel(categoryName), 
+            visualization: Constants.getVisualizationTypes().basic};
     },
     addCategories: function(categories) {
         _.each(categories, function(newCat) {
@@ -99,6 +103,9 @@ var Constants = function() {
     },
     getTrackNames: function() {
       return allTrackNames;
+    },
+    setTrackNames: function(trackNames) {
+        allTrackNames = trackNames;
     },
     addTrackTypes: function(tracksToAdd) {
         _.each(tracksToAdd, function(elem, key) {

@@ -28,28 +28,7 @@ var DataLoader = function() {
     return {
         get: function(url) {
           return $.getJSON(url);
-        }, // processData: function(d) {
-        //   var consecutive = 0;
-        //   _.each(d, function(datum) {
-        //     if (datum && datum.features) {
-        //       _.each(datum.features, function(feature) {
-        //         if (feature.variants) {
-        //           _.each(feature.variants, function(variant) {
-        //             variant.internalId = "ft_" + consecutive;
-        //             variant.type.label = variant.type.label.replace('_', ' ');
-        //             consecutive++;
-        //           });
-        //         } else {
-        //           feature.internalId = "ft_" + consecutive;
-        //           feature.type.label = feature.type.label.replace('_', ' ');
-        //           consecutive++;
-        //         }
-        //       });
-        //     }
-        //   });
-        //   d.totalFeatureCount = consecutive;
-        //   return d;
-        // },
+        }, 
         groupFeaturesByCategory: function(features) {
             features = groupEvidencesByCode(features);
             var categories = _.groupBy(features, function(d) {
@@ -60,7 +39,7 @@ var DataLoader = function() {
             var categoriesNames = Constants.getCategoryNamesInOrder();
             categoriesNames = _.pluck(categoriesNames, 'name');
             var newCategoryNames = {
-                visualization: 'basic',
+                visualization: Constants.getVisualizationTypes().basic,
                 categoryNamesInOrder: []
             };
             _.each(categories, function (catInfo, catKey) {

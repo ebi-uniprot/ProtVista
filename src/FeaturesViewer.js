@@ -407,16 +407,59 @@ var initSources = function (opts) {
 
 var initConfiguration = function (opts) {
     if (opts.customConfig) {
-        //TODO
-        /*Constants.addCategories(opts.customCategories);
-        Constants.addTrackTypes(opts.customTypes);*/
+
     }
+};
+
+var loadSources = function(opts, dataSources, loaders, delegates, fv) {
+    fv.initLayout(opts);
+    _.each(dataSources, function(source, index) {
+        if (!_.contains(opts.exclusions, source.category)) {
+            var url = source.url + opts.uniprotacc;
+            url = source.useExtension === true ? url + '.json' : url;
+            var dataLoader = DataLoader.get(url);
+            loaders.push(dataLoader);
+            dataLoader.done(function (d) {
+                if (d instanceof Array) //Workaround to be removed
+                    d = d[0];
+                // First promise to resolve will set global parameters
+                if (!fv.sequence) {
+                    fv.loadZoom(d);
+                }
+                var features = d.features;
+                // group by categories
+                if (features.length > 0 && _.has(features[0], 'category')) {
+                    features = DataLoader.groupFeaturesByCategory(features);
+                    features = _.filter(features, function (cat) {
+                        return !_.contains(opts.exclusions, cat[0]);
+                    });
+                } else if (features.length > 0 && features[0].type === 'VARIANT') {
+                    features = DataLoader.processVariants(features, d.sequence);
+                } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
+                    features = DataLoader.processProteomics(features);
+                } else if (features.length > 0) {
+                    features = DataLoader.processUngroupedFeatures(features);
+                }
+                if (features.length >= 0) {
+                    fv.drawCategories(features, fv);
+                    fv.data = fv.data.concat(features);
+                    fv.dispatcher.ready();
+                }
+            }).fail(function (e) {
+                console.log(e);
+            }).always(function () {
+                delegates[index].resolve();
+            });
+        } else {
+            delegates[index].resolve();
+        }
+    });
 };
 
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
-        "notFound");
+        "notFound", "notConfigRetrieved");
 
     fv.width = 760;
     fv.maxZoomSize = 30;
@@ -430,55 +473,28 @@ var FeaturesViewer = function(opts) {
 
     fv.load = function() {
         initSources(opts);
-        initConfiguration(opts);
-        fv.initLayout(opts);
         var dataSources = Constants.getDataSources();
         var loaders = [], delegates = [];
         _.each(dataSources, function (source) {
             var delegate = jQuery.Deferred();
             delegates.push(delegate);
         });
-        _.each(dataSources, function(source, index) {
-            if (!_.contains(opts.exclusions, source.category)) {
-                var url = source.url + opts.uniprotacc;
-                url = source.useExtension === true ? url + '.json' : url; 
-                var dataLoader = DataLoader.get(url);
-                loaders.push(dataLoader);
-                dataLoader.done(function (d) {
-                    if (d instanceof Array) //Workaround to be removed
-                        d = d[0];
-                    // First promise to resolve will set global parameters
-                    if (!fv.sequence) {
-                        fv.loadZoom(d);
-                    }
-                    var features = d.features;
-                    // group by categories
-                    if (features.length > 0 && _.has(features[0], 'category')) {
-                        features = DataLoader.groupFeaturesByCategory(features);
-                        features = _.filter(features, function (cat) {
-                            return !_.contains(opts.exclusions, cat[0]);
-                        });
-                    } else if (features.length > 0 && features[0].type === 'VARIANT') {
-                        features = DataLoader.processVariants(features, d.sequence);
-                    } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
-                        features = DataLoader.processProteomics(features);
-                    } else if (features.length > 0) {
-                        features = DataLoader.processUngroupedFeatures(features);
-                    }
-                    if (features.length >= 0) {
-                        fv.drawCategories(features, fv);
-                        fv.data = fv.data.concat(features);
-                        fv.dispatcher.ready();
-                    }
-                }).fail(function (e) {
-                    console.log(e);
-                }).always(function () {
-                    delegates[index].resolve();
-                });
-            } else {
-                delegates[index].resolve();
-            }
-        });
+
+        if (opts.customConfig) {
+            var configLoader = DataLoader.get(opts.customConfig);
+            configLoader.done(function(d) {
+                Constants.setCategories(d.categories);
+                Constants.setTrackNames(d.trackNames);
+                loadSources(opts, dataSources, loaders, delegates, fv);
+            })
+            .fail(function(e) {
+                d3.select(opts.el).text('The configuration file provided by external sources could not be retrieved');
+                fv.dispatcher.notConfigRetrieved({config: opts.customConfig});
+                console.log(e);
+            });
+        } else {
+            loadSources(opts, dataSources, loaders, delegates, fv);
+        }
 
         jQuery.when.apply(null, delegates).done(function () {
             var rejected = _.filter(loaders, function (loader) {

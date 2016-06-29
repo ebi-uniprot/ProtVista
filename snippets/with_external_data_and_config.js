@@ -10,6 +10,7 @@ new app(
                 authority: 'myLab',
                 useExtension: true
             }
-        ]
+        ],
+        customConfig: './data/externalConfig.json'
     }
 );
