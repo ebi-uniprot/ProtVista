@@ -24,7 +24,7 @@ title: User Guide
 ## Feature categories and types
 Feature types are grouped in categories. Here we present the list of the currently supported feature categories and types.
 
-**Category: Domains and sites**
+**Category name: DOMAIN_AND_SITES. Label: Domains & sites**
 
 **Type** | **Label** | **Description** | **Shape**
 --- | --- | --- | :---: |
@@ -43,7 +43,7 @@ Feature types are grouped in categories. Here we present the list of the current
 [site](http://www.uniprot.org/help/site) | Site | Any interesting single amino acid site on the sequence | ![chevron pointing down](./images/shape_site.gif "chevron") |
 
 
- **Category: Molecule processing**
+ **Category name: MOLECULE_PROCESSING. Label: Molecule processing**
 
  **Type** | **Label** | **Description** | **Shape**
  --- | --- | --- | :---: |
@@ -54,7 +54,7 @@ Feature types are grouped in categories. Here we present the list of the current
 [chain](http://www.uniprot.org/help/chain) | Chain | Extent of a polypeptide chain in the mature protein | rectangle
 [peptide](http://www.uniprot.org/help/peptide) | Peptide | Extent of an active peptide in the mature protein | rectangle
 
-**Category: Post translational modifications**
+**Category name: PTM. Label: Post translational modifications**
 
 **Type** | **Label** | **Description** | **Shape**
  --- | --- | --- | :---: |
@@ -64,7 +64,7 @@ Feature types are grouped in categories. Here we present the list of the current
 [disulfid](http://www.uniprot.org/help/disulfid) | Disulfide bond | Cysteine residues participating in disulfide bonds | ![either bridge or antenna](./images/shape_disulfide-bond.gif "bridge") |
 [crosslnk](http://www.uniprot.org/help/crosslnk) | Cross-link | Residues participating in covalent linkage(s) between proteins | ![either bridge or antenna](./images/shape_cross-link.gif "antenna") |
 
-**Category: Sequence information**
+**Category name: SEQUENCE_INFORMATION. Label: Sequence information**
 
 **Type** | **Label** | **Description** | **Shape**
  --- | --- | --- | :---: |
@@ -75,7 +75,7 @@ Feature types are grouped in categories. Here we present the list of the current
 [non_cons](http://www.uniprot.org/help/non_cons) | Non-adjacent residues | Indicates that two residues in a sequence are not consecutive | ![slash symbol](./images/shape_non-consecutive-residue.gif "slash") |
 [non_ter](http://www.uniprot.org/help/non_ter) | Non-terminal residue | The sequence is incomplete. Indicate that a residue is not the terminal residue of the complete protein | ![slash symbol](./images/shape_non-terminal-residue.gif "slash") |
 
-**Category: Structural features**
+**Category name: STRUCTURAL. Label: Structural features**
 
 **Type** | **Label** | **Description** | **Shape**
  --- | --- | --- | :---: |
@@ -83,7 +83,7 @@ Feature types are grouped in categories. Here we present the list of the current
 [turn](http://www.uniprot.org/help/turn) | Turn | Turns within the experimentally determined protein structure | rectangle
 [strand](http://www.uniprot.org/help/strand) | Beta strand | Beta strand regions within the experimentally determined protein structure | rectangle
 
-**Category: Topology**
+**Category name: TOPOLOGY. Label: Topology**
 
 **Type** | **Label** | **Description** | **Shape**
  --- | --- | --- | :---: |
@@ -91,20 +91,20 @@ Feature types are grouped in categories. Here we present the list of the current
 [transmem](http://www.uniprot.org/help/transmem) | Transmembrane | Extent of a membrane-spanning region | rectangle
 [intramem](http://www.uniprot.org/help/intramem) | Intramembrane | Extent of a region located in a membrane without crossing it | rectangle
 
-**Category: Mutagenesis**
+**Category name: MUTAGENESIS. Label: Mutagenesis**
 
 **Type** | **Label** | **Description** | **Shape**
  --- | --- | --- | :---: |
 [mutagen](http://www.uniprot.org/help/mutagen) | Mutagenesis | Site which has been experimentally altered by mutagenesis | rectangle
 
-**Category: Proteomics**
+**Category name: PROTEOMICS. Label: Proteomics**
 
 **Type** | **Label** | **Description** | **Shape**
  --- | --- | --- | :---: |
 [unique](ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomics_mapping/README) | Unique peptides | Unique peptides based on peptide evidence mapped from mass-spectrometry proteomics services (PeptideAtlas, EPD and MaxQB) to UniProtKB sequences | rectangle
 [non-unique](ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomics_mapping/README) | Non-unique peptides | Non-unique peptides based on peptide evidence mapped from mass-spectrometry proteomics services (PeptideAtlas, EPD and MaxQB) to UniProtKB sequences | rectangle
 
-**Category: Variation**
+**Category name: VARIATION. Label: Variants**
 
 **Type** | **Label** | **Description** | **Shape**
  --- | --- | --- | :---: |

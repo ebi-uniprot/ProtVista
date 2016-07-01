@@ -3,49 +3,478 @@ layout: blank_container
 title: Data sources and data format
 ---
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Default data sources](#default-data-sources)
+  - [Default categories and types](#default-categories-and-types)
+  - [Excluding categories](#excluding-categories)
+- [Adding your sources](#adding-your-sources)
+  - [Distinguishing your features](#distinguishing-your-features)
+    - [Using a color](#using-a-color)
+    - [Using customized categories or types](#using-customized-categories-or-types)
+  - [Further customization](#further-customization)
+- [Data format](#data-format)
+  - [**Basic** features](#basic-features)
+  - [**Variant** visualization type](#variant-visualization-type)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Default data sources
-By default, the Protein Feature Viewer uses three data RESTful sources provided by [UniProt](http://www.ebi.ac.uk/uniprot/api/doc/index.html). Particularly, it uses the feature source, the variation source and the proteomics source. 
-
-# Adding your own source
-You can add your own data source by using the dataSources option when instantiating the viewer. Please keep in mind that the response should follow the data format expected by the viewer. You will need to specify the URL and the type. Supported types are *basic* and *variant*.
-
-The protein accession will be added at the end of the URL, and the expected response format is JSON. Make sure you allow Cross-origin-resource-sharing.
-
-In the following example, we use the default UniProt data sources as well as an additional one. If the data source type is not specied, *basic* will be used as default.
+By default, the Protein Feature Viewer uses three data  [RESTful sources](http://www.ebi.ac.uk/uniprot/api/doc/index.html) provided by the Protein Function Development team. Particularly, it uses the feature data source, the variation data source and the proteomics data source.
+ 
+The default data sources can be avoided when instantiating the component. Just set defaultSources to false, any other value as well as the omission of this property-key will result in loading the default data sources. 
 
 ```html
 <div id='yourDiv'/>
 <script>
-    window.onload = function() {
-        var yourDiv = document.getElementById('yourDiv');
-        var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
-        var instance = new biojs_vis_proteinFeaturesViewer({
-            el: yourDiv,
-            uniprotacc: 'P05067',
-            defaultSources: true,
-            dataSources: [
-              {
-                url: 'https://mydomain/mysource/',
-                type: 'basic'
-              }
-            ]
-        });
-    }
+  window.onload = function() {
+    var yourDiv = document.getElementById('yourDiv');
+    var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
+    var instance = new biojs_vis_proteinFeaturesViewer({
+      el: yourDiv,
+      uniprotacc: 'P05067',
+            
+      //Default sources will **not** be included
+      defaultSources: false            
+    });
+  }
 </script>
 ```
 
-Things to keep in mind:
-* Get familiar with the [feature categories and types supported by the viewer](./userGuide.html#feature-categories-and-types)
-* If you use the same feature categories and types supported by the viewer, your features will be mixed with the UniProt default ones.
-* If you use the same features categories but different feature types, your features will be mixed with the default ones in the overview (category close) but will be displayed on their own track in the detailed view (category open).
-* If you use different feature categories, then your features will be visually separated from the default ones.
-* Whenever you use a supported feature type, the predefined shape and color for that type will be used. You can also specify the color as part of the feature data provided by your data source.
+## Default categories and types
+It is important to understand what feature categories and types are supported by default. Please get familiar with the [feature categories and types supported by the viewer](./userGuide.html#feature-categories-and-types)
+
+## Excluding categories
+You can always exclude those categories you are not interested in, for instance: 
+
+```html
+<div id='yourDiv'/>
+<script>
+  window.onload = function() {
+    var yourDiv = document.getElementById('yourDiv');
+    var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
+    var instance = new biojs_vis_proteinFeaturesViewer({
+      el: yourDiv,
+      uniprotacc: 'P05067',
+           
+      //These categories will **not** be rendered at all
+      exclusions: ['PROTEOMICS', 'MOLECULE_PROCESSING','SEQUENCE_INFORMATION', 'MUTAGENESIS', 'TOPOLOGY']      
+                  
+    });
+  }
+</script>
+```
+
+# Adding your sources
+You can add your own data source by using the customDataSources option when instantiating the viewer. Please keep in mind that the response should follow the data format expected by the viewer. You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call.
+
+The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by the viewer is JSON. Make sure you allow Cross-origin-resource-sharing.
+
+In the following example, we use the default UniProt data sources as well as an additional one. The additional data source call would look like https://mydomain/mysource/P05067.json
+
+```html
+<div id='yourDiv'/>
+<script>
+  window.onload = function() {
+    var yourDiv = document.getElementById('yourDiv');
+    var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
+    var instance = new biojs_vis_proteinFeaturesViewer({
+      el: yourDiv,
+            
+      //This will be **always** added at the end of your data source URL
+      uniprotacc: 'P05067',
+            
+      //Default sources will be included (even if this option is omitted)
+      defaultSources: true,
+            
+      //Your data sources are defined here
+      customDataSources: [
+        {
+          url: 'https://mydomain/mysource/',
+          authority: 'myLab',
+          //Should .json be added at the end of the request URL?
+          useExtension: true
+        }
+      ]
+    });
+  }
+</script>
+```
+
+## Distinguishing your features
+Regardless where the data come from, all features **must** have a category and a type. For instance, an "active site" in the category "Domains & sites" provided by your data source would look like
+
+```
+{
+  "type": "ACT_SITE",
+  "category": "DOMAINS_AND_TYPES",
+  "begin": 837,
+  "end": 837  
+}   
+```
+
+And it would be rendered with the default styling options, it would look like:
+![](./images/activeSite_837.png)
+
+You will want to able to distinguish your features from those coming from our default data sources (if used). There are different ways to achieve that.
+
+### Using a color
+You can reuse the default categories and types. If you do so, in order to distinguish your data, you could specify a color for each one of your features.
+
+```
+{
+  "type": "ACT_SITE",
+  "category": "DOMAINS_AND_TYPES",
+  "begin": 73,
+  "end": 73,
+  //Color used to distinguish from default data sources features
+  "color": "#33CCFF"  
+}   
+``` 
+
+So those two active sites would be rendered like:
+![](./images/activeSite_73_and_837.png)
+ 
+
+### Using customized categories or types
+Additional to colors, you can also use your own categories or types. Let's consider the following features, coming from an customized data source.
+
+```
+//Predefined category, new type. Type label will be rendered as "Catalytic 
+site", feature will be a "#33CCFF" rectangle.
+{
+  "type": "CATALYTIC_SITE",
+  "category": "DOMAINS_AND_SITES",
+  "begin": 73,
+  "end": 73,
+  "color": "#33CCFF"    
+},
+
+//Predefined category, new type. Type label will be rendered as "Tryptic 
+peptide", feature will be a "#B8008A" rectangle.
+{
+  "type": "TRYPTIC_PEPTIDE",
+  "category": "PROTEOMICS",
+  "begin": 13,
+  "end": 20,
+  "color": "#B8008A"  
+},
+ 
+//Predefined category, new type. Type label will be rendered as 
+"Non-tryptic peptide", feature will be a "green" 
+rectangle. 
+{
+  "type": "NON-TRYPTIC_PEPTIDE",
+  "category": "PROTEOMICS",
+  "begin": 127,
+  "end": 135,
+  "color": "green"
+},
+
+//Predefined category, new type. Type label will be rendered as "Tryptic 
+peptide", feature will be a "#B8008A" 
+rectangle.
+{
+  "type": "TRYPTIC_PEPTIDE",
+  "category": "PROTEOMICS",
+  "begin": 90,
+  "end": 101,
+  "color": "#B8008A"  
+},
+
+//New category, new type. Category label will be rendered as "Novel 
+category", type label will be rendered as "Novel feature", feature 
+will be a **grey** rectangle as no color was specified.
+{
+  "type": "NOVEL_FEATURE",
+  "category": "NOVEL_CATEGORY",
+  "begin": 10,
+  "end": 38
+},
+
+//New category, predefined type. Category label will be rendered 
+as "Modifications", type predefined label is "Glycosylation". 
+The predefined shape and color for CARBOHYD will be used.
+{
+  "type": "CARBOHYD",
+  "category": "MODIFICATIONS",
+  "begin": 101,
+  "end": 101  
+},
+
+//New category, predefined type. Category label will be rendered 
+as "Modifications", type predefined label is "Modified residue". 
+The predefined shape and color for MOD_RES will be used.
+{
+  "type": "MOD_RES",
+  "category": "MODIFICATIONS",
+  "begin": 711,
+  "end": 711  
+}   
+``` 
+
+If you omit the predefined data sources, this is how it would look like.
+![](./images/customCategoriesAndTypesNoDefault.png)
+
+
+If you do load the predefined data sources, this is how it would look like. Those features coming from the customized data source are circled in purple.
+![](./images/customCategoriesAndTypesWithDefault.png)
+
+## Further customization
+
+You will need to provide a configuration file if you want to:
+* Change the predefined category order (e.g., you want first proteomics, then PTM's, then your modifications)
+* Change the predefined labels for categories or types (e.g., you want to see "PTM's" rather than "Post translational modification")
+* Change the automatic labels for customized categories or types (e.g., you want to see "Novelties" rather than "Novel category" for the custom category "NOVEL_CATEGORY")
+* Change the predefined colors for types (e.g., you want to use #FF0000 rather than #FF0066 for "Helix")
+* Use a color for your own types without explicitly specifying them in the data source response (e.g., you want to specify "green" for all of yours "catalytic sites" only once)
+
+You can specify your configuration file as an option when instantiating the feature viewer.
+
+```html
+<div id='yourDiv'/>
+<script>
+  window.onload = function() {
+    var yourDiv = document.getElementById('yourDiv');
+    var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
+    var instance = new biojs_vis_proteinFeaturesViewer({
+      el: yourDiv,
+      uniprotacc: 'P05067',            
+      customDataSources: [
+        {
+          url: 'https://mydomain/mysource/',
+          authority: 'myLab',
+          useExtension: true
+        }
+      ],
+      customConfig: 'https://mydomain/mysource/myConfig.json'
+    });
+  }
+</script>
+``` 
+
+The default configuration file looks like this. You will need to include there all categories and types to be rendered.
+
+```
+{
+  "categories": [
+    {
+      "visualization": "basic",
+      "categoryNamesInOrder": [
+        {
+          "name": "DOMAINS_AND_SITES",
+          "label": "Domains & sites"
+        },
+        {
+          "name": "MOLECULE_PROCESSING",
+          "label": "Molecule processing"
+        },
+        {
+          "name": "PTM",
+          "label": "Post translational modifications"
+        },
+        {
+          "name": "SEQUENCE_INFORMATON",
+          "label": "Sequence information"
+        },
+        {
+          "name": "STRUCTURAL",
+          "label": "Structural features"
+        },
+        {
+          "name": "TOPOLOGY",
+          "label": "Topology"
+        },
+        {
+          "name": "MUTAGENESIS",
+          "label": "Mutagenesis"
+        },
+        {
+          "name": "PROTEOMICS",
+          "label": "Proteomics"
+        }
+      ]
+    },
+    {
+      "visualization": "variant",
+      "categoryNamesInOrder": [
+        {
+          "name": "VARIATION",
+          "label": "Variants"
+        }
+      ]
+    }
+  ],
+  "trackNames": {
+    "chain": {
+      "label": "Chain",
+      "tooltip": "(aka mature region). This describes the extent of a polypeptide chain in the mature protein following processing"
+    },
+    "transit": {
+      "label": "Transit peptide",
+      "tooltip": "This describes the extent of a transit peptide"
+    },
+    "init_met": {
+      "label": "Initiator methionine",
+      "tooltip": "This indicates that the initiator methionine is cleaved from the mature protein"
+    },
+    "propep": {
+      "label": "Propeptide",
+      "tooltip": "Part of a protein that is cleaved during maturation or activation"
+    },
+    "peptide": {
+      "label": "Peptide",
+      "tooltip": "The position and length of an active peptide in the mature protein"
+    },
+    "signal": {
+      "label": "Signal",
+      "tooltip": "N-terminal signal peptide"
+    },
+    "helix": {
+      "label": "Helix",
+      "tooltip": "The positions of experimentally determined helical regions"
+    },
+    "strand": {
+      "label": "Beta strand",
+      "tooltip": "The positions of experimentally determined beta strands"
+    },
+    "turn": {
+      "label": "Turn",
+      "tooltip": "The positions of experimentally determined hydrogen-bonded turns"
+    },
+    "disulfid": {
+      "label": "Disulfide bond",
+      "tooltip": "The positions of cysteine residues participating in disulphide bonds"
+    },
+    "crosslnk": {
+      "label": "Cross-link",
+      "tooltip": "Covalent linkages of various types formed between two proteins or between two parts of the same protein"
+    },
+    "region": {
+      "label": "Region",
+      "tooltip": "Regions in multifunctional enzymes or fusion proteins, or characteristics of a region, e.g., protein-protein interactions mediation"
+    },
+    "coiled": {
+      "label": "Coiled coil",
+      "tooltip": "Coiled coils are built by two or more alpha-helices that wind around each other to form a supercoil"
+    },
+    "motif": {
+      "label": "Motif",
+      "tooltip": "Short conserved sequence motif of biological significance"
+    },
+    "repeat": {
+      "label": "Repeat",
+      "tooltip": "Repeated sequence motifs or repeated domains within the protein"
+    },
+    "ca_bind": {
+      "label": "Calcium binding",
+      "tooltip": "Calcium-binding regions, such as the EF-hand motif"
+    },
+    "dna_bind": {
+      "label": "DNA binding",
+      "tooltip": "DNA-binding domains such as AP2/ERF domain, the ETS domain, the Fork-Head domain, the HMG box and the Myb domain"
+    },
+    "domain": {
+      "label": "Domain",
+      "tooltip": "Specific combination of secondary structures organized into a characteristic three-dimensional structure or fold"
+    },
+    "zn_fing": {
+      "label": "Zinc finger",
+      "tooltip": "Small, functional, independently folded domain that coordinates one or more zinc ions"
+    },
+    "np_bind": {
+      "label": "Nucleotide binding",
+      "tooltip": "(aka flavin-binding). Region in the protein which binds nucleotide phosphates"
+    },
+    "metal": {
+      "label": "Metal binding",
+      "tooltip": "Binding site for a metal ion"
+    },
+    "site": {
+      "label": "Site",
+      "tooltip": "Any interesting single amino acid site on the sequence"
+    },
+    "binding": {
+      "label": "Binding site",
+      "tooltip": "Binding site for any chemical group (co-enzyme, prosthetic group, etc.)"
+    },
+    "act_site": {
+      "label": "Active site",
+      "tooltip": "Amino acid(s) directly involved in the activity of an enzyme"
+    },
+    "mod_res": {
+      "label": "Modified residue",
+      "tooltip": "Modified residues such as phosphorylation, acetylation, acylation, methylation"
+    },
+    "lipid": {
+      "label": "Lipidation",
+      "tooltip": "Covalently attached lipid group(s)"
+    },
+    "carbohyd": {
+      "label": "Glycosylation",
+      "tooltip": "Covalently attached glycan group(s)"
+    },
+    "compbias": {
+      "label": "Compositional bias",
+      "tooltip": "Position of regions of compositional bias within the protein and the particular amino acids that are over-represented within those regions"
+    },
+    "conflict": {
+      "label": "Sequence conflict",
+      "tooltip": "Sequence discrepancies of unknown origin"
+    },
+    "non_cons": {
+      "label": "Non-adjacent residues",
+      "tooltip": "Indicates that two residues in a sequence are not consecutive and that there is an undetermined number of unsequenced residues between them"
+    },
+    "non_ter": {
+      "label": "Non-terminal residue",
+      "tooltip": "The sequence is incomplete. The residue is not the terminal residue of the complete protein"
+    },
+    "unsure": {
+      "label": "Sequence uncertainty",
+      "tooltip": "Regions of a sequence for which the authors are unsure about the sequence assignment"
+    },
+    "non_std": {
+      "label": "Non-standard residue",
+      "tooltip": "Non-standard amino acids (selenocysteine and pyrrolysine)"
+    },
+    "mutagen": {
+      "label": "Mutagenesis",
+      "tooltip": "Site which has been experimentally altered by mutagenesis"
+    },
+    "topo_dom": {
+      "label": "Topological domain",
+      "tooltip": "Location of non-membrane regions of membrane-spanning proteins"
+    },
+    "transmem": {
+      "label": "Transmembrane",
+      "tooltip": "Extent of a membrane-spanning region"
+    },
+    "intramem": {
+      "label": "Intramembrane",
+      "tooltip": "Extent of a region located in a membrane without crossing it"
+    },
+    "variant": {
+      "label": "Natural variant",
+      "tooltip": "Natural variant of the protein, including polymorphisms, variations between strains, isolates or cultivars, disease-associated mutations and RNA editing events"
+    },
+    "unique": {
+      "label": "Unique peptide",
+      "tooltip": ""
+    },
+    "non_unique": {
+      "label": "Non-unique peptide",
+      "tooltip": ""
+    }
+  }
+}
+``` 
 
 # Data format
 
 All data sources are expected to provide a sequence and a list of features. The sequence is mandatory so the sequence length can be loaded as soon as the first data source has been resolved. The sequence length is used for layout calculations.
-
-You can omit the sequence if you are using the default UniProt data sources as those will be loaded first. Otherwise you *must* provide the sequence.
 
 This is how a response with no features looks like:
 
@@ -56,9 +485,9 @@ This is how a response with no features looks like:
 }   
 ```
 
-## *Basic* data source type
+## Basic visualization
 
-The *basic* data source type is used for all sort of features but natural variants. Here is the data format for basic features.
+A basic visualization is used for all sort of features but natural variants. Here is the data format for basic features.
 
 ```
 {
@@ -85,7 +514,7 @@ The *basic* data source type is used for all sort of features but natural varian
 }   
 ```
 
-Examples of valid *basic* features:
+Examples of valid basic features:
 
 ```
 "features": [
@@ -156,9 +585,9 @@ Examples of valid *basic* features:
 ]
 ```
 
-## *Variant* data source type
+## Variant visualization
 
-The *variant* data source type is used only for natural variations. Using the *variant* data source type will result in [customized visualization for variants](./userGuide.html#natural-variant-track). If you want to add your own variants but do not want to use this visualization, use the *basic* data source type. Keep in mind that variants require more data than other features. 
+The variant visualization is used only for natural variations. Using the variant visualization will result in [customized visualization for variants](./userGuide.html#natural-variant-track). Keep in mind that variants require more data than other features. 
 
 Here is the data format for the variant features:
 
@@ -200,7 +629,7 @@ Here is the data format for the variant features:
 }   
 ```
 
-Examples of valid *variant* features:
+Examples of valid variant features:
 
 ```
 "features": [
