@@ -16,8 +16,8 @@ title: Data sources and data format
     - [Using customized categories or types](#using-customized-categories-or-types)
   - [Further customization](#further-customization)
 - [Data format](#data-format)
-  - [**Basic** features](#basic-features)
-  - [**Variant** visualization type](#variant-visualization-type)
+  - [Basic features](#basic-features)
+  - [Variant visualization type](#variant-visualization-type)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
