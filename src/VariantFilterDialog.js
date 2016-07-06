@@ -93,7 +93,7 @@ var VariantFilterDialog = function(container, variantViewer) {
 
     buttons.append('span')
         .style('visibility', 'hidden')
-        .attr('class','icon-ccw')
+        .attr('class','fv-icon-ccw')
         .attr('title','Reset all filters')
         .on('click', function(){
             variantFilterDialog.reset();
@@ -118,7 +118,7 @@ var VariantFilterDialog = function(container, variantViewer) {
             .on('click', function(filter) {
                 if(filter.on === true) {
                     clearOthers(filterSet, filter);
-                    container.select('.icon-ccw')
+                    container.select('.fv-icon-ccw')
                         .style('visibility', 'visible');
                 } else {
                     filter.on = true;
@@ -164,7 +164,7 @@ var VariantFilterDialog = function(container, variantViewer) {
                 filterCase.on = true;
             });
         });
-        container.select('.icon-ccw')
+        container.select('.fv-icon-ccw')
             .style('visibility', 'hidden');
         container.selectAll('.up_pftv_legend')
             .attr('style',function(filter){
@@ -182,7 +182,7 @@ var updateResetButton = function(container) {
         });
     });
     if (allOn === true) {
-        container.select('.icon-ccw')
+        container.select('.fv-icon-ccw')
             .style('visibility', 'hidden');
     }
 };

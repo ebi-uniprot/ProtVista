@@ -19,51 +19,51 @@
   }
 }
 */
- 
- [class^="icon-"]:before, [class*=" icon-"]:before {
+
+ [class^="fv-icon-"]:before, [class*=" fv-icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
   speak: none;
- 
+
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
- 
+
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
- 
+
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
- 
+
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
- 
+
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
- 
+
   /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
- 
-.icon-info-circled:before { content: '\e800'; } /* '' */
-.icon-pin:before { content: '\e801'; } /* '' */
-.icon-eye-off:before { content: '\e802'; } /* '' */
-.icon-trash:before { content: '\e803'; } /* '' */
-.icon-doc-text:before { content: '\e804'; } /* '' */
-.icon-cog:before { content: '\e805'; } /* '' */
-.icon-zoom-in:before { content: '\e806'; } /* '' */
-.icon-zoom-out:before { content: '\e807'; } /* '' */
-.icon-arrows-cw:before { content: '\e808'; } /* '' */
-.icon-table:before { content: '\e809'; } /* '' */
-.icon-chart-area:before { content: '\e80a'; } /* '' */
-.icon-ccw:before { content: '\e80b'; } /* '' */
+
+.fv-icon-info-circled:before { content: '\e800'; } /* '' */
+.fv-icon-pin:before { content: '\e801'; } /* '' */
+.fv-icon-eye-off:before { content: '\e802'; } /* '' */
+.fv-icon-trash:before { content: '\e803'; } /* '' */
+.fv-icon-doc-text:before { content: '\e804'; } /* '' */
+.fv-icon-cog:before { content: '\e805'; } /* '' */
+.fv-icon-zoom-in:before { content: '\e806'; } /* '' */
+.fv-icon-zoom-out:before { content: '\e807'; } /* '' */
+.fv-icon-arrows-cw:before { content: '\e808'; } /* '' */
+.fv-icon-table:before { content: '\e809'; } /* '' */
+.fv-icon-chart-area:before { content: '\e80a'; } /* '' */
+.fv-icon-ccw:before { content: '\e80b'; } /* '' */
