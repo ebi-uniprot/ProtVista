@@ -32,7 +32,7 @@ var Constants = function() {
       }, {
         PTM: 'Post translational modifications'
       }, {
-        SEQUENCE_INFORMATON: 'Sequence information'
+        SEQUENCE_INFORMATION: 'Sequence information'
       }, {
         STRUCTURAL: 'Structural features'
       }, {
