@@ -22,7 +22,7 @@ title: Data sources and data format
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Default data sources
-By default, the Protein Feature Viewer uses three data  [RESTful sources](http://www.ebi.ac.uk/uniprot/api/doc/index.html) provided by the Protein Function Development team. Particularly, it uses the feature data source, the variation data source and the proteomics data source.
+By default, ProtVista uses three data  [RESTful sources](http://www.ebi.ac.uk/uniprot/api/doc/index.html) provided by the Protein Function Development team. Particularly, it uses the feature data source, the variation data source and the proteomics data source.
  
 The default data sources can be avoided when instantiating the component. Just set defaultSources to false, any other value as well as the omission of this property-key will result in loading the default data sources. 
 
@@ -31,8 +31,8 @@ The default data sources can be avoided when instantiating the component. Just s
 <script>
   window.onload = function() {
     var yourDiv = document.getElementById('yourDiv');
-    var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
-    var instance = new biojs_vis_proteinFeaturesViewer({
+    var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+    var instance = new ProtVista({
       el: yourDiv,
       uniprotacc: 'P05067',
             
@@ -44,7 +44,7 @@ The default data sources can be avoided when instantiating the component. Just s
 ```
 
 ## Default categories and types
-It is important to understand what feature categories and types are supported by default. Please get familiar with the [feature categories and types supported by the viewer](./userGuide.html#feature-categories-and-types)
+It is important to understand what feature categories and types are supported by default. Please get familiar with the [feature categories and types supported by ProtVista](./userGuide.html#feature-categories-and-types)
 
 ## Excluding categories
 You can always exclude those categories you are not interested in, for instance: 
@@ -54,8 +54,8 @@ You can always exclude those categories you are not interested in, for instance:
 <script>
   window.onload = function() {
     var yourDiv = document.getElementById('yourDiv');
-    var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
-    var instance = new biojs_vis_proteinFeaturesViewer({
+    var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+    var instance = new ProtVista({
       el: yourDiv,
       uniprotacc: 'P05067',
            
@@ -68,9 +68,9 @@ You can always exclude those categories you are not interested in, for instance:
 ```
 
 # Adding your sources
-You can add your own data source by using the customDataSources option when instantiating the viewer. Please keep in mind that the response should follow the data format expected by the viewer. You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call.
+You can add your own data source by using the customDataSources option when instantiating ProtVista. Please keep in mind that the response should follow the data format expected by ProtVista. You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call.
 
-The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by the viewer is JSON. Make sure you allow Cross-origin-resource-sharing.
+The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by ProtVista is JSON. Make sure you allow Cross-origin-resource-sharing.
 
 In the following example, we use the default UniProt data sources as well as an additional one. The additional data source call would look like https://mydomain/mysource/P05067.json
 
@@ -79,8 +79,8 @@ In the following example, we use the default UniProt data sources as well as an 
 <script>
   window.onload = function() {
     var yourDiv = document.getElementById('yourDiv');
-    var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
-    var instance = new biojs_vis_proteinFeaturesViewer({
+    var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+    var instance = new ProtVista({
       el: yourDiv,
             
       //This will be **always** added at the end of your data source URL
@@ -231,15 +231,15 @@ You will need to provide a configuration file if you want to:
 * Change the predefined colors for types (e.g., you want to use #FF0000 rather than #FF0066 for "Helix")
 * Use a color for your own types without explicitly specifying them in the data source response (e.g., you want to specify "green" for all of yours "catalytic sites" only once)
 
-You can specify your configuration file as an option when instantiating the feature viewer.
+You can specify your configuration file as an option when instantiating ProtVista.
 
 ```html
 <div id='yourDiv'/>
 <script>
   window.onload = function() {
     var yourDiv = document.getElementById('yourDiv');
-    var biojs_vis_proteinFeaturesViewer = require('biojs-vis-proteinfeaturesviewer');
-    var instance = new biojs_vis_proteinFeaturesViewer({
+    var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+    var instance = new ProtVista({
       el: yourDiv,
       uniprotacc: 'P05067',            
       customDataSources: [

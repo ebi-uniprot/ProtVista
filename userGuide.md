@@ -3,9 +3,9 @@ layout: default
 title: User Guide
 ---
 
-# Feature viewer
+# ProtVista
 
-![Feature viewer](./images/ftViewerUP.png)
+![ProtVista](./images/ftViewerUP.png)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -112,7 +112,7 @@ Feature types are grouped in categories. Here we present the list of the current
 
 ## Feature tracks
 
-The Feature viewer presents sequence feature tracks under a ruler that represents sequence length for this protein. The track names are listed on the left hand side and the sequence features are shown in the horizontal track under the ruler.
+ProtVista presents sequence feature tracks under a ruler that represents sequence length for this protein. The track names are listed on the left hand side and the sequence features are shown in the horizontal track under the ruler.
 
 You can expand a feature track to view to view all the sub-category titles by clicking on the blue area with the track name. In the example below, 'Domains & Sites' expands into 'Domain', 'Binding site', Active site' and 'Nucleotide binding site.
 
