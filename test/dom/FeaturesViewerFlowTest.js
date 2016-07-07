@@ -156,10 +156,10 @@ describe('FeaturesViewerFlowTest', function() {
 
             var buttons = document.querySelectorAll('.up_pftv_buttons span');
             assert.equal(buttons.length, 4);
-            assert.equal(buttons[0].firstElementChild.getAttribute('class'), 'icon-info-circled', 'first button class');
-            assert.equal(buttons[1].getAttribute('class'), 'icon-cog', 'second button class');
-            assert.equal(buttons[2].getAttribute('class'), 'icon-arrows-cw', 'third button class');
-            assert.equal(buttons[3].getAttribute('class'), 'icon-zoom-in', 'fourth button class');
+            assert.equal(buttons[0].firstElementChild.getAttribute('class'), 'fv-icon-info-circled', 'first button class');
+            assert.equal(buttons[1].getAttribute('class'), 'fv-icon-cog', 'second button class');
+            assert.equal(buttons[2].getAttribute('class'), 'fv-icon-arrows-cw', 'third button class');
+            assert.equal(buttons[3].getAttribute('class'), 'fv-icon-zoom-in', 'fourth button class');
         });
 
         it('should create 2 aaViewers aa sequence', function() {
@@ -457,7 +457,7 @@ describe('FeaturesViewerFlowTest', function() {
 
     describe('Zooming with icon', function() {
         it('should zoom in with button to the middle of the selected ft', function() {
-            var zoomIn = document.querySelector('.icon-zoom-in');
+            var zoomIn = document.querySelector('.fv-icon-zoom-in');
             var evt = document.createEvent("MouseEvents");
             evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomIn);
             zoomIn.dispatchEvent(evt); //zoom in
@@ -472,10 +472,10 @@ describe('FeaturesViewerFlowTest', function() {
         });
 
         it('should display only zoom-out button', function() {
-            var zoomBtn = document.querySelectorAll('.icon-zoom-in');
+            var zoomBtn = document.querySelectorAll('.fv-icon-zoom-in');
             assert.equal(zoomBtn.length, 0, 'no zoom-in button');
 
-            zoomBtn = document.querySelectorAll('.icon-zoom-out');
+            zoomBtn = document.querySelectorAll('.fv-icon-zoom-out');
             assert.equal(zoomBtn.length, 1, 'only one zoom-out button');
         });
 
@@ -493,7 +493,7 @@ describe('FeaturesViewerFlowTest', function() {
 
     describe('Zooming-out with icon', function() {
         it('should zoom-out with button', function() {
-            var zoomOutButton = document.querySelector('.icon-zoom-out');
+            var zoomOutButton = document.querySelector('.fv-icon-zoom-out');
             var outEvent = document.createEvent("MouseEvents");
             outEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomOutButton);
             zoomOutButton.dispatchEvent(outEvent); //zoom out
@@ -544,7 +544,7 @@ describe('FeaturesViewerFlowTest', function() {
 
     describe('Reset view', function() {
         it('should reset view (zoom out and deselect features)', function() {
-            var resetButton = document.querySelector('.icon-arrows-cw');
+            var resetButton = document.querySelector('.fv-icon-arrows-cw');
             var evtReset = document.createEvent("MouseEvents");
             evtReset.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, resetButton);
             resetButton.dispatchEvent(evtReset); //zoom out
@@ -565,17 +565,17 @@ describe('FeaturesViewerFlowTest', function() {
         });
 
         it('should go back to zoom-in button', function() {
-            var zoomBtn = document.querySelectorAll('.icon-zoom-in');
+            var zoomBtn = document.querySelectorAll('.fv-icon-zoom-in');
             assert.equal(zoomBtn.length, 1, 'only 1 zoom-in button');
 
-            zoomBtn = document.querySelectorAll('.icon-zoom-out');
+            zoomBtn = document.querySelectorAll('.fv-icon-zoom-out');
             assert.equal(zoomBtn.length, 0, 'no zoom-out button');
         });
     });
 
     describe('Zooming when no feature is selected', function() {
         it('should zoom-in with button to position 1 when no ft is selected', function() {
-            var zoomInButton = document.querySelector('.icon-zoom-in');
+            var zoomInButton = document.querySelector('.fv-icon-zoom-in');
             var inEvent = document.createEvent("MouseEvents");
             inEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomInButton);
             zoomInButton.dispatchEvent(inEvent); //zoom in

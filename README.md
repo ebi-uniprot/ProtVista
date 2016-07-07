@@ -3,6 +3,18 @@
 [![NPM version](http://img.shields.io/npm/v/biojs-vis-proteinfeaturesviewer.svg)](https://www.npmjs.org/package/biojs-vis-proteinfeaturesviewer)
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer.png?branch=master)](http://travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
 
+### 2.0.1
+- Fix typo.
+- Fix shadow bug showing it slightly to the right on the bottom ruler.
+- Update css concat changes.
+- Update BLAST changes.
+- Add missing xrefs for LSS variants.
+- Reduce top margin for first filter title so reset button will be closer.
+- Implement reset filter behaviour.
+- Add BLAST option to tooltip.
+- Concat css files into one named main.css.
+- Allow category exclusion.
+
 ### 2.0.0
 - Addition of "Proteomics" track, showing unique and non-unique peptides
 - Updates to typography which was causing issues with some users

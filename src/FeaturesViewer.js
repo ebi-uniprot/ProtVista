@@ -73,7 +73,7 @@ var zoomIn = function(fv) {
     update(fv);
     updateViewportFromChart(fv);
     updateZoomFromChart(fv);
-    updateZoomButton('icon-zoom-in', 'icon-zoom-out', 'Zoom out to overview');
+    updateZoomButton('fv-icon-zoom-in', 'fv-icon-zoom-out', 'Zoom out to overview');
 };
 
 var resetZoom = function(fv) {
@@ -88,7 +88,7 @@ var zoomOut = function(fv) {
         fv.maxPos
     ]);
     resetZoom(fv);
-    updateZoomButton('icon-zoom-out', 'icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
 };
 
 var resetZoomAndSelection = function(fv) {
@@ -100,7 +100,7 @@ var resetZoomAndSelection = function(fv) {
         ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
     }
     resetZoom(fv);
-    updateZoomButton('icon-zoom-out', 'icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
     _.each(fv.categories, function(category) {
         category.reset();
     });
@@ -179,7 +179,7 @@ var createNavRuler = function(fv, container) {
         updateZoomFromChart(fv);
         var navigator = d3.select('.up_pftv_navruler .extent');
         if (+navigator.attr('width') >= fv.width - fv.padding.left - fv.padding.right) {
-            updateZoomButton('icon-zoom-out', 'icon-zoom-in', 'Zoom in to sequence view');
+            updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
         }
     });
 
@@ -239,27 +239,27 @@ var createButtons = function(fv, data, container) {
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
     buttons.append('span').append('a')
-        .attr('class','icon-info-circled')
+        .attr('class','fv-icon-info-circled')
         .attr('title','Help page')
         .attr('href', 'http://ebi-uniprot.github.io/biojs-vis-proteinFeaturesViewer/')
         .attr('target', '_blank');
     buttons.append('span')
-        .attr('class','icon-cog')
+        .attr('class','fv-icon-cog')
         .attr('title','Hide/Show tracks')
         .on('click', function(){
             CategoryFilterDialog.displayDialog(fv, buttons);
         });
     buttons.append('span')
-        .attr('class','icon-arrows-cw')
+        .attr('class','fv-icon-arrows-cw')
         .attr('title','Reset view')
         .on('click', function(){
             resetZoomAndSelection(fv);
         });
     buttons.append('span')
-        .attr('class','icon-zoom-in')
+        .attr('class','fv-icon-zoom-in')
         .attr('title','Zoom in to sequence view')
         .on('click', function(){
-            if ( d3.select(this).classed('icon-zoom-in')) {
+            if ( d3.select(this).classed('fv-icon-zoom-in')) {
                 zoomIn(fv);
             } else {
                 zoomOut(fv);
