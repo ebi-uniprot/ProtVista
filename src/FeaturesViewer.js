@@ -398,17 +398,11 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
 
 var initSources = function (opts) {
     if (opts.defaultSources === false) {
-        Constants.cleanDataSources();
+        Constants.clearDataSources();
     }
     _.each(opts.customDataSources, function(dataSource) {
         Constants.addSource(dataSource);
     });
-};
-
-var initConfiguration = function (opts) {
-    if (opts.customConfig) {
-
-    }
 };
 
 var loadSources = function(opts, dataSources, loaders, delegates, fv) {
@@ -483,7 +477,7 @@ var FeaturesViewer = function(opts) {
         if (opts.customConfig) {
             var configLoader = DataLoader.get(opts.customConfig);
             configLoader.done(function(d) {
-                Constants.setCategories(d.categories);
+                Constants.setCategoryNamesInOrder(d.categories);
                 Constants.setTrackNames(d.trackNames);
                 loadSources(opts, dataSources, loaders, delegates, fv);
             })
@@ -599,13 +593,11 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
     fv.container = fvContainer
         .append('div')
         .attr('class', 'up_pftv_category-container');
-
-    _.each(Constants.getCategories(), function(category) {
-        var visualContainer = fv.container.append('div')
-            .classed('up_pftv_category_' + category.visualization, true);
-        _.each(category.categoryNamesInOrder, function(catInfo) {
-            visualContainer.append('div').classed('up_pftv_category_' + catInfo.name, true);
-        });
+    
+    fv.ontheFlyContainer = fv.container.append('div').classed('up_pftv_category_on_the_fly', true); 
+    
+    _.each(Constants.getCategoryNamesInOrder(), function(catInfo) {
+        fv.container.append('div').classed('up_pftv_category_' + catInfo.name, true);
     });
 
     fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
@@ -640,8 +632,7 @@ FeaturesViewer.prototype.drawCategories = function(data, fv) {
         var catInfo = Constants.getCategoryInfo(category[0]);
         var container = fv.container.select('.up_pftv_category_' + category[0]);
         if (!container[0][0]) {
-            var visualContainer = fv.container.select('.up_pftv_category_basic');
-            container = visualContainer.append('div').classed('up_pftv_category_' + category[0], true);
+            container = fv.ontheFlyContainer.append('div').classed('up_pftv_category_' + category[0], true);
         }
         var cat = CategoryFactory.createCategory(category[0], category[1], catInfo, fv, container);
         fv.categories.push(cat);

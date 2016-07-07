@@ -45,21 +45,14 @@ var Constants = function() {
     addSource: function(source) {
         allSources.push(source);
     },
-    cleanDataSources: function() {
+    clearDataSources: function() {
         allSources = [];
     },
-    getCategories: function() {
+    getCategoryNamesInOrder: function() {
         return allCategories;
     },
-    setCategories: function(categories) {
+    setCategoryNamesInOrder: function(categories) {
         allCategories = categories;
-    },  
-    getCategoryNamesInOrder: function() {
-        var temp = [];
-        _.each(allCategories, function(cat) {
-            temp = _.union(temp, cat.categoryNamesInOrder);
-        });
-        return temp;
     },
     convertNameToLabel: function(name) {
         var label = name.replace(/_/g, ' ');
@@ -67,37 +60,25 @@ var Constants = function() {
         return label;
     },
     getCategoryInfo: function(categoryName) {
-        var result = {name: categoryName, label: '', visualization: ''};
         var exist = _.find(allCategories, function(cat) {
-            result.visualization = cat.visualization;
-            var found = _.find(cat.categoryNamesInOrder, function(catInfo) {
-                result.label = catInfo.label;
-                return catInfo.name === categoryName;
-            });
-            return found;
+            return cat.name === categoryName;
         });
-        return exist ? result
-            : {name: categoryName, label: Constants.convertNameToLabel(categoryName), 
-            visualization: Constants.getVisualizationTypes().basic};
+        return exist ? exist
+            : {name: categoryName, label: Constants.convertNameToLabel(categoryName),
+            visualizationType: Constants.getVisualizationTypes().basic};
     },
     addCategories: function(categories) {
-        _.each(categories, function(newCat) {
-            var catSameVisual = _.find(allCategories, function(otherCat) {
-                return otherCat.visualization === newCat.visualization;
+        var index = 0;
+        _.each(categories, function (newCat) {
+            var exist = _.find(allCategories, function(cat) {
+                return cat.name === newCat.name;
             });
-            if (!catSameVisual) {
-                allCategories.splice(allCategories.length-1, 0, newCat);
+            if (exist) {
+                exist.label = newCat.label;
+                exist.visualizationType = newCat.visualizationType;
             } else {
-                _.each(newCat.categoryNamesInOrder, function(newCatInfo) {
-                    var catSameName = _.find(catSameVisual.categoryNamesInOrder, function(otherCatInfo) {
-                        return otherCatInfo.name === newCatInfo.name;
-                    });
-                    if (!catSameName) {
-                        catSameVisual.categoryNamesInOrder.push(newCatInfo);
-                    } else {
-                        catSameName.label = newCatInfo.label;
-                    }
-                });
+                allCategories.splice(index, 0, newCat);
+                index++;
             }
         });
     },

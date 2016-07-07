@@ -1,51 +1,50 @@
 {
   "categories": [
-    {
-      "visualization": "basic",
-      "categoryNamesInOrder": [
         {
           "name": "DOMAINS_AND_SITES",
-          "label": "Domains & sites"
+          "label": "Domains & sites",
+          "visualizationType": "basic"
         },
         {
           "name": "MOLECULE_PROCESSING",
-          "label": "Molecule processing"
+          "label": "Molecule processing",
+          "visualizationType": "basic"
         },
         {
           "name": "PTM",
-          "label": "Post translational modifications"
+          "label": "Post translational modifications",
+          "visualizationType": "basic"
         },
         {
           "name": "SEQUENCE_INFORMATION",
-          "label": "Sequence information"
+          "label": "Sequence information",
+          "visualizationType": "basic"
         },
         {
           "name": "STRUCTURAL",
-          "label": "Structural features"
+          "label": "Structural features",
+          "visualizationType": "basic"
         },
         {
           "name": "TOPOLOGY",
-          "label": "Topology"
+          "label": "Topology",
+          "visualizationType": "basic"
         },
         {
           "name": "MUTAGENESIS",
-          "label": "Mutagenesis"
+          "label": "Mutagenesis",
+          "visualizationType": "basic"
         },
         {
           "name": "PROTEOMICS",
-          "label": "Proteomics"
-        }
-      ]
-    },
-    {
-      "visualization": "variant",
-      "categoryNamesInOrder": [
+          "label": "Proteomics",
+          "visualizationType": "basic"
+        },
         {
           "name": "VARIATION",
-          "label": "Variants"
+          "label": "Variants",
+          "visualizationType": "variant"
         }
-      ]
-    }
   ],
   "trackNames": {
     "chain": {

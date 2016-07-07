@@ -171,13 +171,14 @@ describe('FeaturesViewerFlowTest', function() {
             assert.equal(aaText.length, instance.sequence.length * 2, 'aa sequence length');
         });
 
-        it('should create 1 container with 2 subcontainers, first with 7 categories, second with 0', function() {
+        it('should create 1 container with 10 sub-containers', function() {
             var catContainer = document.querySelectorAll('.up_pftv_container .up_pftv_category-container');
             assert.equal(catContainer.length, 1, 'only one up_pftv_category-container');
-            assert.equal(catContainer[0].childElementCount, 2, 'up_pftv_category-container children count');
+            assert.equal(catContainer[0].childElementCount, Constants.getCategoryNamesInOrder().length + 1,
+                'up_pftv_category-container children count');
 
-            assert.equal(catContainer[0].children[0].className, 'up_pftv_category_basic', 'one basic container');
-            assert.equal(catContainer[0].children[1].className, 'up_pftv_category_variant', 'one variant container');
+            assert.equal(catContainer[0].children[0].className, 'up_pftv_category_on_the_fly', 'one for on the fly' +
+                ' categories');
 
             var children = document.querySelectorAll('.up_pftv_container .up_pftv_category');
             assert.equal(children.length, 7, 'category count');

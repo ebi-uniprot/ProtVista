@@ -91,45 +91,33 @@ describe('FeaturesViewerTest', function() {
         });
         it('should add new categories and modify existing ones', function() {
             var expectedCategoryNamesInOrder = [
-                { name: 'DOMAINS_AND_SITES', label: 'Domains & sites' },
-                { name: 'MOLECULE_PROCESSING', label: 'Alt molecule processing' },
-                { name: 'PTM', label: 'Post translational modifications' },
-                { name: 'SEQUENCE_INFORMATON', label: 'Sequence information' },
-                { name: 'STRUCTURAL', label: 'Structural features' },
-                { name: 'TOPOLOGY', label: 'Topology' },
-                { name: 'MUTAGENESIS', label: 'Mutagenesis' },
-                { name: 'PROTEOMICS', label: 'Proteomics' },
-                { name: 'MY_DOMAINS', label: 'My domains' },
-                { name: 'CAT', label: 'My cat' },
-                { name: 'VISUAL_CAT', label: 'New visual cat' },
-                { name: 'VARIATION', label: 'Variants' }
+                { name: 'MY_DOMAINS', label: 'My domains', visualizationType: 'basic' },
+                { name: 'CAT', label: 'My cat', visualizationType: 'basic' },
+                { name: 'DOMAINS_AND_SITES', label: 'Domains & sites', visualizationType: 'basic' },
+                { name: 'MOLECULE_PROCESSING', label: 'Alt molecule processing', visualizationType: 'basic' },
+                { name: 'PTM', label: 'Post translational modifications', visualizationType: 'basic' },
+                { name: 'SEQUENCE_INFORMATON', label: 'Sequence information', visualizationType: 'basic' },
+                { name: 'STRUCTURAL', label: 'Structural features', visualizationType: 'basic' },
+                { name: 'TOPOLOGY', label: 'Topology', visualizationType: 'basic' },
+                { name: 'MUTAGENESIS', label: 'Mutagenesis', visualizationType: 'basic' },
+                { name: 'PROTEOMICS', label: 'Proteomics', visualizationType: 'basic' },
+                { name: 'VARIATION', label: 'Variants', visualizationType: 'variant' }
              ];
 
             var categoriesToAdd = [
-                {
-                    visualization: 'basic',
-                    categoryNamesInOrder: [
-                        {name: 'MY_DOMAINS', label: 'My domains'},
-                        {name: 'MOLECULE_PROCESSING', label: 'Alt molecule processing'},
-                        {name: 'CAT', label: 'My cat'}
-                    ]
-                },
-                {
-                    visualization: 'new',
-                    categoryNamesInOrder: [
-                        {name: 'VISUAL_CAT', label: 'New visual cat' }
-                    ]
-                }
+                {name: 'MY_DOMAINS', label: 'My domains', visualizationType: 'basic'},
+                {name: 'MOLECULE_PROCESSING', label: 'Alt molecule processing', visualizationType: 'basic'},
+                {name: 'CAT', label: 'My cat', visualizationType: 'basic'}
             ];
             Constants.addCategories(categoriesToAdd);
             expect(Constants.getCategoryNamesInOrder()).to.deep.equal(expectedCategoryNamesInOrder);
         });
         it('should get non-existing category info', function() {
-            var family_domains = {name: 'family_domains', label: 'family_domains', visualization: 'basic'};
+            var family_domains = {name: 'family_domains', label: 'Family domains', visualizationType: 'basic'};
             expect(family_domains).to.deep.equal(Constants.getCategoryInfo('family_domains'));
         });
         it('should get existing category info', function() {
-            var category = {name: 'DOMAINS_AND_SITES', label: 'Domains & sites', visualization: 'basic'};
+            var category = {name: 'DOMAINS_AND_SITES', label: 'Domains & sites', visualizationType: 'basic'};
             expect(category).to.deep.equal(Constants.getCategoryInfo('DOMAINS_AND_SITES'));
         });
         it('should add new tracks and modify existing ones', function() {
@@ -156,7 +144,7 @@ describe('FeaturesViewerTest', function() {
             expect(unique).to.deep.equal(Constants.getTrackInfo('unique'));
         });
         it('should get non-existing track info', function() {
-            var family_domains = {label:'family_domains', tooltip:''};
+            var family_domains = {label:'Family domains', tooltip:''};
             expect(family_domains).to.deep.equal(Constants.getTrackInfo('family_domains'));
         });
     });

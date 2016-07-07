@@ -16,7 +16,7 @@ var Category = function(name, data, catInfo, fv, container) {
     category.name = name;
     category.tracks = [];
     category.data = data;
-    category.viewerType = catInfo.visualization;
+    category.viewerType = catInfo.visualizationType;
     category.fv = fv;
     category.categoryViewer = undefined;
 
@@ -198,13 +198,13 @@ var CategoryFactory = function() {
             var category;
 
             // error if the constructor doesn't exist
-            if (typeof Category[catInfo.visualization] !== "function") {
+            if (typeof Category[catInfo.visualizationType] !== "function") {
                 console.log('WARNING: Category viewer type ' + type + " doesn't exist");
             }
 
             //inherit parent constructor
-            Category[catInfo.visualization].prototype = new Category(name, data, catInfo, fv, container);
-            category = new Category[catInfo.visualization]();
+            Category[catInfo.visualizationType].prototype = new Category(name, data, catInfo, fv, container);
+            category = new Category[catInfo.visualizationType]();
 
             if(data.length > 0) {
                 category.buildTracks();
