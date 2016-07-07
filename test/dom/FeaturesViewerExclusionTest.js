@@ -53,7 +53,8 @@ describe('FeaturesViewerExclusionTest', function() {
         var opts = {
             el: yourDiv,
             uniprotacc: '',
-            exclusions: ['MOLECULE_PROCESSING', 'PTM', 'SEQUENCE_INFORMATON', 'STRUCTURAL', 'TOPOLOGY', 'MUTAGENESIS']
+            exclusions: ['MOLECULE_PROCESSING', 'PTM', 'SEQUENCE_INFORMATION', 'STRUCTURAL', 'TOPOLOGY',
+                'MUTAGENESIS', 'PROTEOMICS', 'VARIATION']
         };
         var instance = new FeaturesViewer(opts);
 
@@ -79,7 +80,8 @@ describe('FeaturesViewerExclusionTest', function() {
         var opts = {
             el: yourDiv,
             uniprotacc: 'P05067',
-            exclusions: ['DOMAINS_AND_SITES', 'MOLECULE_PROCESSING', 'PTM', 'SEQUENCE_INFORMATON', 'STRUCTURAL']
+            exclusions: ['DOMAINS_AND_SITES', 'MOLECULE_PROCESSING', 'PTM', 'SEQUENCE_INFORMATION', 'STRUCTURAL',
+                'VARIATION', 'PROTEOMICS']
         };
         var instance = new FeaturesViewer(opts);
 

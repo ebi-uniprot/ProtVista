@@ -277,14 +277,14 @@ var myTestData = {
         },
         {
             "type": "COMPBIAS",
-            "category": "SEQUENCE_INFORMATON",
+            "category": "SEQUENCE_INFORMATION",
             "description": "Asp/Glu-rich (acidic)",
             "begin": "230",
             "end": "260"
         },
         {
             "type": "COMPBIAS",
-            "category": "SEQUENCE_INFORMATON",
+            "category": "SEQUENCE_INFORMATION",
             "description": "Poly-Thr",
             "begin": "274",
             "end": "280"
@@ -2715,7 +2715,7 @@ var myTestData = {
         },
         {
             "type": "CONFLICT",
-            "category": "SEQUENCE_INFORMATON",
+            "category": "SEQUENCE_INFORMATION",
             "description": "in Ref. 3; CAA31830",
             "alternativeSequence": "VW",
             "begin": "15",
@@ -2728,7 +2728,7 @@ var myTestData = {
         },
         {
             "type": "CONFLICT",
-            "category": "SEQUENCE_INFORMATON",
+            "category": "SEQUENCE_INFORMATION",
             "description": "in Ref. 36; AAA51722",
             "alternativeSequence": "E",
             "begin": "647",
@@ -2741,7 +2741,7 @@ var myTestData = {
         },
         {
             "type": "CONFLICT",
-            "category": "SEQUENCE_INFORMATON",
+            "category": "SEQUENCE_INFORMATION",
             "description": "in Ref. 23; AAB26263/AAB26264",
             "alternativeSequence": "",
             "begin": "724",
@@ -2754,7 +2754,7 @@ var myTestData = {
         },
         {
             "type": "CONFLICT",
-            "category": "SEQUENCE_INFORMATON",
+            "category": "SEQUENCE_INFORMATION",
             "description": "in Ref. 23; AAB26263/AAB26264/ AAB26265",
             "alternativeSequence": "N",
             "begin": "731",
@@ -2767,7 +2767,7 @@ var myTestData = {
         },
         {
             "type": "CONFLICT",
-            "category": "SEQUENCE_INFORMATON",
+            "category": "SEQUENCE_INFORMATION",
             "description": "in Ref. 31; AAA35540",
             "alternativeSequence": "S",
             "begin": "757",
