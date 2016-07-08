@@ -7,7 +7,7 @@ var _ = require('underscore');
 var Constants = function() {
   return {
     getBlastURL: function() {
-        return 'http://www.uniprot.org/blast/?about='
+        return 'http://www.uniprot.org/blast/?about=';
     },
     getNoBlastTypes: function() {
       return ['helix', 'strand', 'turn', 'disulfid', 'crosslnk', 'variant'];
