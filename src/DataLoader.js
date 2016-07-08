@@ -28,7 +28,7 @@ var DataLoader = function() {
     return {
         get: function(url) {
           return $.getJSON(url);
-        }, 
+        },
         groupFeaturesByCategory: function(features) {
             features = groupEvidencesByCode(features);
             var categories = _.groupBy(features, function(d) {
@@ -38,19 +38,17 @@ var DataLoader = function() {
             var orderedPairs = [];
             var categoriesNames = Constants.getCategoryNamesInOrder();
             categoriesNames = _.pluck(categoriesNames, 'name');
-            var newCategoryNames = {
-                visualization: Constants.getVisualizationTypes().basic,
-                categoryNamesInOrder: []
-            };
+            var newCategoryNames = [];
             _.each(categories, function (catInfo, catKey) {
                 if (!_.contains(categoriesNames, catKey)) {
-                    newCategoryNames.categoryNamesInOrder.push({
-                        name: catKey, label: Constants.convertNameToLabel(catKey)
+                    newCategoryNames.push({
+                        name: catKey, label: Constants.convertNameToLabel(catKey),
+                        visualizationType: Constants.getVisualizationTypes().basic
                     });
                 }
             });
-            if (newCategoryNames.categoryNamesInOrder.length !== 0) {
-                Constants.addCategories([newCategoryNames]);
+            if (newCategoryNames.length !== 0) {
+                Constants.addCategories(newCategoryNames);
                 categoriesNames = Constants.getCategoryNamesInOrder();
                 categoriesNames = _.pluck(categoriesNames, 'name');
             }

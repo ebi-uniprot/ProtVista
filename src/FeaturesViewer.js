@@ -593,9 +593,9 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
     fv.container = fvContainer
         .append('div')
         .attr('class', 'up_pftv_category-container');
-    
-    fv.ontheFlyContainer = fv.container.append('div').classed('up_pftv_category_on_the_fly', true); 
-    
+
+    fv.ontheFlyContainer = fv.container.append('div').classed('up_pftv_category_on_the_fly', true);
+
     _.each(Constants.getCategoryNamesInOrder(), function(catInfo) {
         fv.container.append('div').classed('up_pftv_category_' + catInfo.name, true);
     });

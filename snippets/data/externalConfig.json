@@ -1,60 +1,61 @@
 {
   "categories": [
     {
-      "visualization": "basic",
-      "categoryNamesInOrder": [
-        {
-          "name": "DOMAINS_AND_SITES",
-          "label": "Domains & sites"
-        },
-        {
-          "name": "MOLECULE_PROCESSING",
-          "label": "Molecule processing"
-        },
-        {
-          "name": "PTM",
-          "label": "Post translational modifications"
-        },
-        {
-          "name": "NOVELTIES",
-          "label": "Novel features"
-        },
-        {
-          "name": "SEQUENCE_INFORMATON",
-          "label": "Sequence information"
-        },
-        {
-          "name": "STRUCTURAL",
-          "label": "Structural features"
-        },
-        {
-          "name": "TOPOLOGY",
-          "label": "Topology"
-        },
-        {
-          "name": "MUTAGENESIS",
-          "label": "Mutagenesis"
-        },
-        {
-          "name": "PROTEOMICS",
-          "label": "Proteomics"
-        }
-      ]
+      "name": "DOMAINS_AND_SITES",
+      "label": "Domains & sites",
+      "visualizationType": "basic"
     },
     {
-      "visualization": "variant",
-      "categoryNamesInOrder": [
-        {
-          "name": "VARIATION",
-          "label": "Variants"
-        }
-      ]
+      "name": "MOLECULE_PROCESSING",
+      "label": "Molecule processing",
+      "visualizationType": "basic"
+    },
+    {
+      "name": "PTM",
+      "label": "Post translational modifications",
+      "visualizationType": "basic"
+    },
+    {
+      "name": "NOVELTIES",
+      "label": "Novel features",
+      "visualizationType": "basic"
+    },
+    {
+      "name": "SEQUENCE_INFORMATION",
+      "label": "Sequence information",
+      "visualizationType": "basic"
+    },
+    {
+      "name": "STRUCTURAL",
+      "label": "Structural features",
+      "visualizationType": "basic"
+    },
+    {
+      "name": "TOPOLOGY",
+      "label": "Topology",
+      "visualizationType": "basic"
+    },
+    {
+      "name": "MUTAGENESIS",
+      "label": "Mutagenesis",
+      "visualizationType": "basic"
+    },
+    {
+      "name": "PROTEOMICS",
+      "label": "Proteomics",
+      "visualizationType": "basic"
+    },
+    {
+      "name": "VARIATION",
+      "label": "Variants",
+      "visualizationType": "variant"
     }
   ],
   "trackNames": {
     "chain": {
       "label": "Chain",
-      "tooltip": "(aka mature region). This describes the extent of a polypeptide chain in the mature protein following processing"
+      "tooltip": "(aka mature region). This describes the extent of a polypeptide chain in the mature protein following processing",
+      "color": "violet"
     },
     "transit": {
       "label": "Transit peptide",
@@ -213,7 +214,7 @@
       "tooltip": ""
     },
     "catalytic_site": {
-      "label": "Catalytic sit",
+      "label": "Catalytic site",
       "tooltip": "",
       "color": "#806699"},
     "novel_feature": {
