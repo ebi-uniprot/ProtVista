@@ -1,7 +1,7 @@
 // if you don't specify a html file, the sniper will generate a div
 var app = require("biojs-vis-proteinfeaturesviewer");
 var instance = new app({el: yourDiv, text: 'biojs', uniprotacc : 'P05067'
-, exclusions: ['PROTEOMICS', 'MOLECULE_PROCESSING','SEQUENCE_INFORMATION', 'MUTAGENESIS', 'TOPOLOGY', 'PTM', 'STRUCTURAL']
+, exclusions: ['PROTEOMICS', 'MOLECULE_PROCESSING','SEQUENCE_INFORMATION', 'MUTAGENESIS', 'TOPOLOGY', 'PTM', 'STRUCTURAL', 'VARIATION']
 });
 //P05067 most of the times, P21802 has a deletion
 
