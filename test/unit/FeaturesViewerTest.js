@@ -96,7 +96,7 @@ describe('FeaturesViewerTest', function() {
                 { name: 'DOMAINS_AND_SITES', label: 'Domains & sites', visualizationType: 'basic' },
                 { name: 'MOLECULE_PROCESSING', label: 'Alt molecule processing', visualizationType: 'basic' },
                 { name: 'PTM', label: 'Post translational modifications', visualizationType: 'basic' },
-                { name: 'SEQUENCE_INFORMATON', label: 'Sequence information', visualizationType: 'basic' },
+                { name: 'SEQUENCE_INFORMATION', label: 'Sequence information', visualizationType: 'basic' },
                 { name: 'STRUCTURAL', label: 'Structural features', visualizationType: 'basic' },
                 { name: 'TOPOLOGY', label: 'Topology', visualizationType: 'basic' },
                 { name: 'MUTAGENESIS', label: 'Mutagenesis', visualizationType: 'basic' },

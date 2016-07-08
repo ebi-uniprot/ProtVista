@@ -199,7 +199,7 @@ var CategoryFactory = function() {
 
             // error if the constructor doesn't exist
             if (typeof Category[catInfo.visualizationType] !== "function") {
-                console.log('WARNING: Category viewer type ' + type + " doesn't exist");
+                console.log('WARNING: Category viewer type ' + catInfo.visualizationType + " doesn't exist");
             }
 
             //inherit parent constructor

@@ -191,9 +191,8 @@ describe('FeaturesViewerFlowTest', function() {
 
             var typesCount = 0, catFtCount = 0;
             _.each(Constants.getCategoryNamesInOrder(), function (value, index) {
-                var key = _.keys(value)[0];
                 var category = _.find(data, function (datum) {
-                    return datum[0] === key;
+                    return datum[0] === value.name;
                 });
                 if (category) {
                     assert.equal(categoryFeatures[catFtCount].childElementCount, category[1].length,
