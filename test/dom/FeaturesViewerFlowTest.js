@@ -24,6 +24,7 @@ var FeaturesViewer = require('../..');
 var Constants = require('../../src/Constants');
 var FeaturesData = require('./FeaturesData');
 var jQuery = require('jquery');
+var _ = require('underscore');
 
 var verifyShadowAttributes = function(containerClass, path, exactPath, translate, height, x) {
     var categoryShadow = document.querySelector('.' + containerClass + ' .up_pftv_shadow');
@@ -181,34 +182,28 @@ describe('FeaturesViewerFlowTest', function() {
                 ' categories');
 
             var children = document.querySelectorAll('.up_pftv_container .up_pftv_category');
-            assert.equal(children.length, 7, 'category count');
+            assert.equal(children.length, data.length, 'category count');
         });
 
-        it('should create 1 category container with 7 category and type tracks', function() {
+        it('should create 1 category container with 6 category and type tracks', function() {
             var categoryFeatures = document.querySelectorAll('.up_pftv_category-container' +
                 ' .up_pftv_category-viewer-group');
-            assert.equal(categoryFeatures.length, 27, 'category and type tracks number, variants excluded');
-            assert.equal(categoryFeatures[0].childElementCount, data[0][1].length, 'first' +
-                ' category' +
-                ' features count');
-            assert.equal(categoryFeatures[6].childElementCount, data[1][1].length, 'second' +
-                ' category' +
-                ' features count');
-            assert.equal(categoryFeatures[10].childElementCount, data[2][1].length, 'third' +
-                ' category' +
-                ' features count');
-            assert.equal(categoryFeatures[15].childElementCount, data[3][1].length, 'fourth' +
-                ' category' +
-                ' features count');
-            assert.equal(categoryFeatures[18].childElementCount, data[4][1].length, 'fifth' +
-                ' category' +
-                ' features count');
-            assert.equal(categoryFeatures[22].childElementCount, data[5][1].length, 'sixth' +
-                ' category' +
-                ' features count');
-            assert.equal(categoryFeatures[25].childElementCount, data[6][1].length, 'seventh' +
-                ' category' +
-                ' features count');
+
+            var typesCount = 0, catFtCount = 0;
+            _.each(Constants.getCategoryNamesInOrder(), function (value, index) {
+                var key = _.keys(value)[0];
+                var category = _.find(data, function (datum) {
+                    return datum[0] === key;
+                });
+                if (category) {
+                    assert.equal(categoryFeatures[catFtCount].childElementCount, category[1].length,
+                        ' category features count ' + category[0]);
+                    typesCount += _.keys(_.groupBy(category[1], 'type')).length;
+                    catFtCount = typesCount + index + 1;
+                }
+            });
+            assert.equal(categoryFeatures.length, typesCount + data.length, 'category and type tracks number, ' +
+                'variants excluded');
         });
 
         it('should create a category track with title and features', function() {
