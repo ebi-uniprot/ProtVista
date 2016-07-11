@@ -40,7 +40,7 @@ var update = function(fv) {
     });
 };
 
-var updateZoomButton = function(currentClass, newClass, newTitle) {
+var updateZoomButton = function(fv, currentClass, newClass, newTitle) {
     try {
         var zoomBtn = fv.globalContainer.select('.' + currentClass);
         zoomBtn.classed(currentClass, false);
@@ -73,7 +73,7 @@ var zoomIn = function(fv) {
     update(fv);
     updateViewportFromChart(fv);
     updateZoomFromChart(fv);
-    updateZoomButton('fv-icon-zoom-in', 'fv-icon-zoom-out', 'Zoom out to overview');
+    updateZoomButton(fv, 'fv-icon-zoom-in', 'fv-icon-zoom-out', 'Zoom out to overview');
 };
 
 var resetZoom = function(fv) {
@@ -88,7 +88,7 @@ var zoomOut = function(fv) {
         fv.maxPos
     ]);
     resetZoom(fv);
-    updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
 };
 
 var resetZoomAndSelection = function(fv) {
@@ -100,7 +100,7 @@ var resetZoomAndSelection = function(fv) {
         ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
     }
     resetZoom(fv);
-    updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
     _.each(fv.categories, function(category) {
         category.reset();
     });
@@ -179,7 +179,7 @@ var createNavRuler = function(fv, container) {
         updateZoomFromChart(fv);
         var navigator = fv.globalContainer.select('.up_pftv_navruler .extent');
         if (+navigator.attr('width') >= fv.width - fv.padding.left - fv.padding.right) {
-            updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+            updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
         }
     });
 
