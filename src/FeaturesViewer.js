@@ -441,13 +441,21 @@ var FeaturesViewer = function(opts) {
                             return !_.contains(opts.exclusions, cat[0]);
                         });
                     } else if (features.length > 0 && features[0].type === 'VARIANT') {
-                        features = DataLoader.processVariants(features, d.sequence);
+                        if (_.contains(opts.exclusions, 'VARIATION')) {
+                            features = [];
+                        } else {
+                            features = DataLoader.processVariants(features, d.sequence);
+                        }
                     } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
-                        features = DataLoader.processProteomics(features);
+                        if (_.contains(opts.exclusions, 'PROTEOMICS')) {
+                            features = [];
+                        } else {
+                            features = DataLoader.processProteomics(features);
+                        }
                     } else if (features.length > 0) {
                         features = DataLoader.processUngroupedFeatures(features);
                     }
-                    if (features.length >= 0) {
+                    if (features.length > 0) {
                         fv.drawCategories(features, source.type, fv, container);
                         fv.data = fv.data.concat(features);
                         fv.dispatcher.ready();
