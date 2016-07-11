@@ -24,7 +24,7 @@ var populateDialog = function (fv, wrapper) {
                 .on('click', function() {
                     var elem = d3.select(this);
                     var myIndex = +elem.attr('index');
-                    var allCategory = d3.selectAll('.up_pftv_category');
+                    var allCategory = fv.globalContainer.selectAll('.up_pftv_category');
                     if (elem.property('checked')) {
                         d3.select(allCategory[0][myIndex]).style('display', 'block');
                         wrapper.selectAll('input:disabled').attr('disabled', null);
@@ -68,19 +68,18 @@ var createDialog = function (fv, container) {
 };
 
 var CategoryFilterDialog = function() {
-    var dialog;
     return {
         displayDialog: function(fv, container) {
-            if (!dialog) {
-                dialog = createDialog(fv, container);
+            if (!fv.categoryFilterDialog) {
+                fv.categoryFilterDialog = createDialog(fv, container);
             }
-            dialog.transition(20)
+            fv.categoryFilterDialog.transition(20)
                 .style('opacity',1)
                 .style('display','block');
         },
-        closeDialog: function() {
-            if (dialog) {
-                dialog.transition(20)
+        closeDialog: function(fv) {
+            if (fv.categoryFilterDialog) {
+                fv.categoryFilterDialog.transition(20)
                     .style('opacity', 0)
                     .style('display', 'none');
             }

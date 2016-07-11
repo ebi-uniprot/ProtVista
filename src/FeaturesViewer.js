@@ -133,7 +133,7 @@ var closeTooltipAndPopup = function(fv) {
         tooltipContainer.remove();
     }
     if (!fv.overCatFilterDialog) {
-        CategoryFilterDialog.closeDialog();
+        CategoryFilterDialog.closeDialog(fv);
     }
 };
 
@@ -560,8 +560,8 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
 FeaturesViewer.prototype.initLayout = function(opts, d) {
     var fv = this;
     //remove any previous text
-    var globalContainer = d3.select(opts.el).text('');
-    fvContainer = globalContainer
+    fv.globalContainer = d3.select(opts.el).text('');
+    var fvContainer = fv.globalContainer
         .append('div')
         .attr('class', 'up_pftv_container')
         .on('mousedown', function() {
