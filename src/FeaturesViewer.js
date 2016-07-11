@@ -28,7 +28,7 @@ var updateZoomFromChart = function(fv) {
 
 var updateViewportFromChart = function (fv) {
     fv.viewport.extent(fv.xScale.domain());
-    d3.select('.up_pftv_viewport').call(fv.viewport);
+    fv.globalContainer.select('.up_pftv_viewport').call(fv.viewport);
     fv.viewport.updateTrapezoid();
 };
 
@@ -42,7 +42,7 @@ var update = function(fv) {
 
 var updateZoomButton = function(currentClass, newClass, newTitle) {
     try {
-        var zoomBtn = d3.select('.' + currentClass);
+        var zoomBtn = fv.globalContainer.select('.' + currentClass);
         zoomBtn.classed(currentClass, false);
         zoomBtn.classed(newClass, true);
         zoomBtn.attr('title', newTitle);
@@ -177,7 +177,7 @@ var createNavRuler = function(fv, container) {
     });
     viewport.on("brushend", function () {
         updateZoomFromChart(fv);
-        var navigator = d3.select('.up_pftv_navruler .extent');
+        var navigator = fv.globalContainer.select('.up_pftv_navruler .extent');
         if (+navigator.attr('width') >= fv.width - fv.padding.left - fv.padding.right) {
             updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
         }
@@ -216,8 +216,8 @@ var createNavRuler = function(fv, container) {
         .attr("d", arc);
 
     viewport.updateTrapezoid = function() {
-        var begin = d3.select(".up_pftv_navruler .extent").attr("x");
-        var tWidth = d3.select(".up_pftv_navruler .extent").attr("width");
+        var begin = fv.globalContainer.select(".up_pftv_navruler .extent").attr("x");
+        var tWidth = fv.globalContainer.select(".up_pftv_navruler .extent").attr("width");
         var end = (+begin) + (+tWidth);
         var path =  "M0," + (navWithTrapezoid) + "L0" + "," + (navWithTrapezoid-2)
             + "L" + begin + "," + (navHeight-12) + "L" + begin + "," + navHeight
