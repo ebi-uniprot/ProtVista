@@ -31,7 +31,7 @@ The default data sources can be avoided when instantiating the component. Just s
 <script>
   window.onload = function() {
     var yourDiv = document.getElementById('yourDiv');
-    var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+    var ProtVista = require('ProtVista');
     var instance = new ProtVista({
       el: yourDiv,
       uniprotacc: 'P05067',
@@ -54,7 +54,7 @@ You can always exclude those categories you are not interested in, for instance:
 <script>
   window.onload = function() {
     var yourDiv = document.getElementById('yourDiv');
-    var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+    var ProtVista = require('ProtVista');
     var instance = new ProtVista({
       el: yourDiv,
       uniprotacc: 'P05067',
@@ -79,7 +79,7 @@ In the following example, we use the default UniProt data sources as well as an 
 <script>
   window.onload = function() {
     var yourDiv = document.getElementById('yourDiv');
-    var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+    var ProtVista = require('ProtVista');
     var instance = new ProtVista({
       el: yourDiv,
             
@@ -238,7 +238,7 @@ You can specify your configuration file as an option when instantiating ProtVist
 <script>
   window.onload = function() {
     var yourDiv = document.getElementById('yourDiv');
-    var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+    var ProtVista = require('ProtVista');
     var instance = new ProtVista({
       el: yourDiv,
       uniprotacc: 'P05067',            

@@ -3,7 +3,7 @@ layout: blank_container
 title: Developer Guide
 ---
 
-# ProtVista (biojs-vis-proteinFeaturesViewer)
+# ProtVista
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -50,7 +50,7 @@ We also archive previous versions, for instance:
 ```
 
 ### The node way
-`>npm install biojs-vis-proteinfeaturesviewer`
+`>npm install ProtVista`
 This is probably the preferred way if you are developing a new component or application that uses our feature viewer. It would be useful as well if you are modifying this component. Some more information about [node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/).
 
 ## Starting ProtVista
@@ -63,7 +63,7 @@ When creating the instance, you need to specify the object where the component w
 <script>
     window.onload = function() {
         var yourDiv = document.getElementById('yourDiv');
-        var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+        var ProtVista = require('ProtVista');
         var instance = new ProtVista({
             el: yourDiv,
             uniprotacc: 'P05067'
@@ -83,7 +83,7 @@ If you are not interested in all the categories supported by ProtVista, you can 
 <script>
     window.onload = function() {
         var yourDiv = document.getElementById('yourDiv');
-        var ProtVista = require('biojs-vis-proteinfeaturesviewer');
+        var ProtVista = require('ProtVista');
         var instance = new ProtVista({
             el: yourDiv,
             uniprotacc: 'P05067',
@@ -167,10 +167,10 @@ Triggered when the method **selectFeature** is used but no corresponding feature
 ```
 
 ## Contributing
-Please submit all issues and pull requests to the [ebi-uniprot/biojs-vis-proteinFeaturesViewer](http://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer) repository!
+Please submit all issues and pull requests to the [ebi-uniprot/ProtVista](http://github.com/ebi-uniprot/ProtVista) repository!
 
 ## Support
-If you have any problem or suggestion please open an issue [here](https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/issues).
+If you have any problem or suggestion please open an issue [here](https://github.com/ebi-uniprot/ProtVista/issues).
 
 ## License
 This software is licensed under the Apache 2 license, quoted below.
