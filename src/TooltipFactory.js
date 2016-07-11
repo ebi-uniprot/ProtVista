@@ -8,8 +8,8 @@ var _ = require("underscore");
 var Evidence = require('./Evidence');
 var Constants = require('./Constants');
 
-var createTooltipBox = function(container) {
-    d3.select('.up_pftv_tooltip-container').remove();
+var createTooltipBox = function(fv, container) {
+    fv.globalContainer.select('.up_pftv_tooltip-container').remove();
     var tooltipContainer = container.append('div')
         .attr('class','up_pftv_tooltip-container');
     tooltipContainer.append('span')
@@ -127,7 +127,7 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
     tooltip.accession = fv.accession;
     tooltip.tooltipViewer = undefined;
 
-    var tooltipContainer = createTooltipBox(container);
+    var tooltipContainer = createTooltipBox(fv, container);
 
     if (coordinates) {
         tooltipContainer.style('left', (coordinates.x + 10) + 'px')
@@ -143,9 +143,9 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
             .style('display','block');
     }
 
-    d3.select('.up_pftv_tooltip-container table').remove();
+    fv.globalContainer.select('.up_pftv_tooltip-container table').remove();
 
-    tooltip.table = d3.select('.up_pftv_tooltip-container').append('table');
+    tooltip.table = fv.globalContainer.select('.up_pftv_tooltip-container').append('table');
     tooltip.table
         .on('mousedown', function() { fv.overTooltip = true; })
         .on('mouseup', function() {  fv.overTooltip = false; });

@@ -126,7 +126,7 @@ var createZoom = function(fv) {
 
 var closeTooltipAndPopup = function(fv) {
     if (!fv.overFeature && !fv.overTooltip) {
-        var tooltipContainer = d3.selectAll('.up_pftv_tooltip-container')
+        var tooltipContainer = fv.globalContainer.selectAll('.up_pftv_tooltip-container')
             .transition(20)
             .style('opacity', 0)
             .style('display', 'none');
