@@ -76,7 +76,7 @@ That's it, you should now see ProtVista in your web page!
 
 ### Excluding some categories
 
-If you are not interested in all the categories supported by ProtVista, you can exclude some of them, make sure you use the right spelling and CAPITAL letters. The available categories are: DOMAINS_AND_SITES, MOLECULE_PROCESSING, PTM, SEQUENCE_INFORMATON, STRUCTURAL, TOPOLOGY, MUTAGENESIS, PROTEOMICS and VARIATION. For more information on features belongin to each category, please read the API section in this guide.
+If you are not interested in all the categories supported by ProtVista, you can exclude some of them, make sure you use the right spelling and CAPITAL letters. The available categories are: DOMAINS_AND_SITES, MOLECULE_PROCESSING, PTM, SEQUENCE_INFORMATION, STRUCTURAL, TOPOLOGY, MUTAGENESIS, PROTEOMICS and VARIATION. For more information on features belongin to each category, please read the API section in this guide.
  
 ```html
 <div id='yourDiv'/>
@@ -87,7 +87,7 @@ If you are not interested in all the categories supported by ProtVista, you can 
         var instance = new ProtVista({
             el: yourDiv,
             uniprotacc: 'P05067',
-            exclusions: ['SEQUENCE_INFORMATON', 'STRUCTURAL']
+            exclusions: ['SEQUENCE_INFORMATION', 'STRUCTURAL']
         });
     }
 </script>

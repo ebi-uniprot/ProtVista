@@ -276,7 +276,7 @@ The default configuration file looks like this. You will need to include there a
           "label": "Post translational modifications"
         },
         {
-          "name": "SEQUENCE_INFORMATON",
+          "name": "SEQUENCE_INFORMATION",
           "label": "Sequence information"
         },
         {
