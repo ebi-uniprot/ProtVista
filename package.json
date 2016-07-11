@@ -1,8 +1,8 @@
 {
-  "name": "biojs-vis-proteinfeaturesviewer",
-  "description": "A visualisation for protein features and variation",
-  "version": "2.0.0",
-  "homepage": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer",
+  "name": "ProtVista",
+  "description": "Protein feature viewer (uniprot annotation, variants, proteomics, ...)",
+  "version": "2.0.1",
+  "homepage": "https://github.com/ebi-uniprot/ProtVista",
   "author": "UniProt",
   "contributors": [
     {
@@ -16,15 +16,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer.git"
+    "url": "git://github.com/ebi-uniprot/ProtVista.git"
   },
   "bugs": {
-    "url": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/issues"
+    "url": "https://github.com/ebi-uniprot/ProtVista/issues"
   },
   "licenses": [
     {
       "type": "Apache 2",
-      "url": "https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/blob/master/LICENSE"
+      "url": "https://github.com/ebi-uniprot/ProtVista/blob/master/LICENSE"
     }
   ],
   "main": "src/FeaturesViewer",
@@ -79,13 +79,13 @@
   },
   "shields": {
     "test": {
-      "img": "https://travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer.svg?branch=master",
-      "href": "https://travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer"
+      "img": "https://travis-ci.org/ebi-uniprot/ProtVista.svg?branch=master",
+      "href": "https://travis-ci.org/ebi-uniprot/ProtVista"
     }
   },
   "sniper": {
     "js": [
-      "/build/featuresviewer.js"
+      "/build/protvista.js"
     ],
     "css": [
       "/build/css/main.css"
@@ -96,10 +96,14 @@
     "first": "simple_example"
   },
   "keywords": [
+    "feature viewer",
     "uniprot",
     "biojs",
     "protein features viewer",
     "protein feature viewer",
-    "variation"
+    "variation",
+    "proteomics",
+    "domains",
+    "protein"
   ]
 }

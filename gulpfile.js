@@ -1,6 +1,6 @@
 /*
- * Protein Features Viewer
- * https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer
+ * ProtVista
+ * https://github.com/ebi-uniprot/ProtVista
  *
  * Copyright (c) 2014 Xavier Watkins
  * Licensed under the Apache 2 license.
@@ -9,7 +9,7 @@
 
 // browserify build config
 var buildDir = "build";
-var outputFile = "featuresviewer";
+var outputFile = "protvista";
 
 // packages
 var gulp     = require('gulp');

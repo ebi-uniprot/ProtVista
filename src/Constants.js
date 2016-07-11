@@ -14,13 +14,13 @@ var Constants = function() {
     },
     getDataSources: function() {
       var sources = [{
-        url: 'https://www.ebi.ac.uk/uniprot/api/features/',
+        url: 'https://www.ebi.ac.uk/proteins/api/features/',
         type: 'basic'
       }, {
-        url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
+        url: 'https://www.ebi.ac.uk/proteins/api/proteomics/',
         type: 'basic'
       }, {
-        url: 'https://www.ebi.ac.uk/uniprot/api/variation/',
+        url: 'https://www.ebi.ac.uk/proteins/api/variation/',
         type: 'variant'
       }];
       return sources;

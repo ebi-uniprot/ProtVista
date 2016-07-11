@@ -1,6 +1,6 @@
 /*
- * biojs-vis-proteinFeaturesViewer
- * https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer
+ * ProtVista
+ * https://github.com/ebi-uniprot/ProtVista
  *
  * Copyright (c) 2014 ebi-uniprot
  * Licensed under the Apache 2 license.
