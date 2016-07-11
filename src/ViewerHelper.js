@@ -6,7 +6,6 @@ var d3 = require("d3");
 var _ = require("underscore");
 var TooltipFactory = require("./TooltipFactory");
 var FeatureFactory = require("./FeatureFactory");
-var VariantFilterDialog = require("./VariantFilterDialog");
 
 var ViewerHelper = function() {
     var mousedownXY = {x: -1, y: -1}, mouseupXY = {x: -2, y: -2};
