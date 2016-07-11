@@ -1,7 +1,8 @@
-# biojs-vis-proteinFeaturesViewer
+# ProtVista
+## Feature viewer for protein sequence annotation
 
-[![NPM version](http://img.shields.io/npm/v/biojs-vis-proteinfeaturesviewer.svg)](https://www.npmjs.org/package/biojs-vis-proteinfeaturesviewer)
-[![Build Status](https://secure.travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer.png?branch=master)](http://travis-ci.org/ebi-uniprot/biojs-vis-proteinFeaturesViewer)
+[![NPM version](http://img.shields.io/npm/v/ProtVista.svg)](https://www.npmjs.org/package/ProtVista)
+[![Build Status](https://secure.travis-ci.org/ebi-uniprot/ProtVista.png?branch=master)](http://travis-ci.org/ebi-uniprot/ProtVista)
 
 ### 2.0.1
 - Fix typo.
@@ -24,13 +25,13 @@
 - Improved tooltip for variants including more information related to cross-references
 
 ## Documentation
-[Developer documentation](http://ebi-uniprot.github.io/biojs-vis-proteinFeaturesViewer/developerGuide.html)
+[Developer documentation](http://ebi-uniprot.github.io/ProtVista/developerGuide.html)
 
 ## Contributing
-Please submit all issues and pull requests to the [ebi-uniprot/biojs-vis-proteinFeaturesViewer](http://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer) repository!
+Please submit all issues and pull requests to the [ebi-uniprot/ProtVista](http://github.com/ebi-uniprot/ProtVista) repository!
 
 ## Support
-If you have any problem or suggestion please open an issue [here](https://github.com/ebi-uniprot/biojs-vis-proteinFeaturesViewer/issues).
+If you have any problem or suggestion please open an issue [here](https://github.com/ebi-uniprot/ProtVista/issues).
 
 ## License
 This software is licensed under the Apache 2 license, quoted below.

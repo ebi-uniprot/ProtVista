@@ -241,7 +241,7 @@ var createButtons = function(fv, data, container) {
     buttons.append('span').append('a')
         .attr('class','fv-icon-info-circled')
         .attr('title','Help page')
-        .attr('href', 'http://ebi-uniprot.github.io/biojs-vis-proteinFeaturesViewer/')
+        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
         .attr('target', '_blank');
     buttons.append('span')
         .attr('class','fv-icon-cog')

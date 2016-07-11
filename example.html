@@ -1,12 +1,11 @@
 <meta charset="utf-8">
-<script src="build/biojs-vis-proteinFeaturesViewer.js"></script>
+<script src="build/ProtVista.js"></script>
 
 <div id=yourDiv></div>
 <script>
-// you can 
+// you can
 var yourDiv = document.getElementById("yourDiv");
-var biojs_vis_proteinFeaturesViewer = require('FeaturesViewer');
-var result = biojs_vis_proteinFeaturesViewer.hello('biojs');
+var ProtVista = require('ProtVista');
+var result = ProtVista.hello('biojs');
 yourDiv.textContent = result;
 </script>
-
