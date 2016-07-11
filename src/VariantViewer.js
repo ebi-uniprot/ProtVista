@@ -94,7 +94,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
     variantCircle.exit().remove();
 };
 
-var createDataSeries = function(variantViewer, svg, features, series) {
+var createDataSeries = function(fv, variantViewer, svg, features, series) {
     var mainChart = svg.append('g')
         .attr('transform','translate(0,' + variantViewer.margin.top + ')');
 
@@ -130,7 +130,7 @@ var createDataSeries = function(variantViewer, svg, features, series) {
         .attr('class','variation-y axis')
         .call(yAxis2);
 
-    d3.selectAll('g.variation-y g.tick').attr('class', function(d) {
+    fv.globalContainer.selectAll('g.variation-y g.tick').attr('class', function(d) {
         return 'tick up_pftv_aa_' + d;
     });
 
@@ -212,7 +212,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
         .xScale(variantViewer.xScale)
         .yScale(variantViewer.yScale);
 
-    var dataSeries = createDataSeries(variantViewer, svg, features, series);
+    var dataSeries = createDataSeries(fv, variantViewer, svg, features, series);
 
     this.update = function() {
         dataSeries.call(series);
