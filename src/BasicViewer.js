@@ -35,6 +35,7 @@ var BasicViewer = function(catTitle, features, container, fv) {
                         return 'up_pftv_feature up_pftv_' + d.type.toLowerCase();
                     })
                 ;
+
                 newShapes
                     .filter(function(d) {
                         return d.color || Constants.getTrackInfo(d.type).color;
@@ -51,7 +52,7 @@ var BasicViewer = function(catTitle, features, container, fv) {
                     })
                 ;
 
-                shapes
+                newShapes
                     .attr('d', function(d) {
                         return FeatureFactory.getFeature(
                             d.type,
@@ -63,6 +64,7 @@ var BasicViewer = function(catTitle, features, container, fv) {
                         return 'translate('+fv.xScale(d.begin)+ ',' + basicViewer.layout.getYPos(d) + ')';
                     })
                 ;
+
                 ViewerHelper.addEventsClassAndTitle(catTitle, newShapes, fv, container);
                 shapes.exit().remove();
             });
