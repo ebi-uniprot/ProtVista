@@ -87,6 +87,7 @@ var filters = [
 var VariantFilterDialog = function(container, variantViewer) {
     var variantFilterDialog = this;
     variantFilterDialog.variantViewer = variantViewer;
+    variantFilterDialog.filters = $.extend(true, {}, filters);
 
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
@@ -100,7 +101,7 @@ var VariantFilterDialog = function(container, variantViewer) {
             variantFilterDialog.variantViewer.updateData(variantFilterDialog.variantViewer.features);
         });
 
-    _.each(filters, function(filterSet, index) {
+    _.each(variantFilterDialog.filters, function(filterSet, index) {
         var filterTitle = container.append('h4').text(filterSet.label);
         if (index === 0) {
             filterTitle.classed('up_pftv_keepWithPrevious', true);
@@ -122,10 +123,10 @@ var VariantFilterDialog = function(container, variantViewer) {
                         .style('visibility', 'visible');
                 } else {
                     filter.on = true;
-                    updateResetButton(container);
+                    updateResetButton(variantFilterDialog.filters, container);
                 }
                 update();
-                var filteredData = filterData(variantFilterDialog.variantViewer.features);
+                var filteredData = filterData(variantFilterDialog.filters, variantFilterDialog.variantViewer.features);
                 variantFilterDialog.variantViewer.updateData(filteredData);
             });
 
@@ -159,7 +160,7 @@ var VariantFilterDialog = function(container, variantViewer) {
     });
 
     variantFilterDialog.reset = function() {
-        _.each(filters, function(filterset) {
+        _.each(variantFilterDialog.filters, function(filterset) {
             _.each(filterset.cases, function(filterCase) {
                 filterCase.on = true;
             });
@@ -175,7 +176,7 @@ var VariantFilterDialog = function(container, variantViewer) {
     return variantFilterDialog;
 };
 
-var updateResetButton = function(container) {
+var updateResetButton = function(filters, container) {
     var allOn = _.every(filters, function(filterset) {
         return _.every(filterset.cases, function(filterCase) {
             return filterCase.on === true;
@@ -201,7 +202,7 @@ var clearOthers = function(filterSet, filterCase) {
     });
 };
 
-var filterData = function(data) {
+var filterData = function(filters, data) {
     var newData = [];
     _.each(data, function(feature) {
         var filtered = _.filter(feature.variants, function(variant) {
