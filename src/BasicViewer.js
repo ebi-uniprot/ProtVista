@@ -26,7 +26,7 @@ var BasicViewer = function(catTitle, features, container, fv) {
                 shapes = series.selectAll('.up_pftv_feature')
                     .data(data);
 
-                var newShapes = shapes.enter().append('path')
+                shapes.enter().append('path')
                     .attr('name', function(d, index) {
                         d.internalId = d.internalId === undefined ? catTitle + '_' + index : d.internalId;
                         return d.internalId;
@@ -34,9 +34,6 @@ var BasicViewer = function(catTitle, features, container, fv) {
                     .attr('class',function(d) {
                         return 'up_pftv_feature up_pftv_' + d.type.toLowerCase();
                     })
-                ;
-
-                newShapes
                     .filter(function(d) {
                         return d.color || Constants.getTrackInfo(d.type).color;
                     })
@@ -64,8 +61,7 @@ var BasicViewer = function(catTitle, features, container, fv) {
                         return 'translate('+fv.xScale(d.begin)+ ',' + basicViewer.layout.getYPos(d) + ')';
                     })
                 ;
-
-                ViewerHelper.addEventsClassAndTitle(catTitle, newShapes, fv, container);
+                ViewerHelper.addEventsClassAndTitle(catTitle, shapes, fv, container);
                 shapes.exit().remove();
             });
         };
