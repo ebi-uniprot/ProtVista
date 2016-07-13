@@ -47,9 +47,6 @@ var BasicViewer = function(catTitle, features, container, fv) {
                             : Constants.getTrackInfo(d.type).color ? Constants.getTrackInfo(d.type).color
                             : 'black';
                     })
-                ;
-
-                newShapes
                     .attr('d', function(d) {
                         return FeatureFactory.getFeature(
                             d.type,
