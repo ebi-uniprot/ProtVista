@@ -84,7 +84,6 @@ var FeatureFactory = function() {
             gapRegion = aaWidth/2;
             // if the constructor doesn't exist, rectangle is used by default
             if (typeof Feature[featureType] !== 'function') {
-                console.log(type + ' doesn\'t exist');
                 featureType = 'rectangle';
             }
 
