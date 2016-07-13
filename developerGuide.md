@@ -37,16 +37,22 @@ You will need the ```featuresviewer.min.js``` which contains the minified JavaSc
 We host all our releases on Github, using Github pages as a CDN. The latest release is available here:
 
 ```
-<script src="http://ebi-uniprot.github.io/CDN/feature-viewer/featuresviewer.js"></script>
-<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/main.css" rel="stylesheet"/>   
+<script src="http://ebi-uniprot.github.io/CDN/protvista/protvista.js"></script>
+<link href="http://ebi-uniprot.github.io/CDN/protvista/css/main.css" rel="stylesheet"/>   
 ```
 
 We also archive previous versions, for instance:
 
 ```
-<script src="http://ebi-uniprot.github.io/CDN/feature-viewer/1.0.0/featuresviewer.js"></script>
-<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/1.0.0/css/main.css" rel="stylesheet"/>
-<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/1.0.0/css/fontello.css" rel="stylesheet"/>   
+<script src="http://ebi-uniprot.github.io/CDN/protvista/2.0.1/protvista.js"></script>
+<link href="http://ebi-uniprot.github.io/CDN/protvista/2.0.1/css/main.css" rel="stylesheet"/>
+```
+
+Our viewer was previously know as biojs-vis-proteinfeaturesviewer, that name is now **deprecated** and you **should not** use it. For legacy purposes, we keep the versions released under that name.
+  
+```
+<script src="http://ebi-uniprot.github.io/CDN/feature-viewer/featuresviewer.js"></script>
+<link href="http://ebi-uniprot.github.io/CDN/feature-viewer/css/main.css" rel="stylesheet"/>   
 ```
 
 ### The node way
