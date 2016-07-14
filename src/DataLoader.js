@@ -28,28 +28,7 @@ var DataLoader = function() {
     return {
         get: function(url) {
           return $.getJSON(url);
-        }, // processData: function(d) {
-        //   var consecutive = 0;
-        //   _.each(d, function(datum) {
-        //     if (datum && datum.features) {
-        //       _.each(datum.features, function(feature) {
-        //         if (feature.variants) {
-        //           _.each(feature.variants, function(variant) {
-        //             variant.internalId = "ft_" + consecutive;
-        //             variant.type.label = variant.type.label.replace('_', ' ');
-        //             consecutive++;
-        //           });
-        //         } else {
-        //           feature.internalId = "ft_" + consecutive;
-        //           feature.type.label = feature.type.label.replace('_', ' ');
-        //           consecutive++;
-        //         }
-        //       });
-        //     }
-        //   });
-        //   d.totalFeatureCount = consecutive;
-        //   return d;
-        // },
+        },
         groupFeaturesByCategory: function(features) {
             features = groupEvidencesByCode(features);
             var categories = _.groupBy(features, function(d) {
@@ -58,11 +37,26 @@ var DataLoader = function() {
             delete categories.VARIANTS;
             var orderedPairs = [];
             var categoriesNames = Constants.getCategoryNamesInOrder();
-            _.each(categoriesNames, function(name){
-                if(categories[_.keys(name)[0]]){
+            categoriesNames = _.pluck(categoriesNames, 'name');
+            var newCategoryNames = [];
+            _.each(categories, function (catInfo, catKey) {
+                if (!_.contains(categoriesNames, catKey)) {
+                    newCategoryNames.push({
+                        name: catKey, label: Constants.convertNameToLabel(catKey),
+                        visualizationType: Constants.getVisualizationTypes().basic
+                    });
+                }
+            });
+            if (newCategoryNames.length !== 0) {
+                Constants.addCategories(newCategoryNames);
+                categoriesNames = Constants.getCategoryNamesInOrder();
+                categoriesNames = _.pluck(categoriesNames, 'name');
+            }
+            _.each(categoriesNames, function(catName){
+                if(categories[catName]){
                     orderedPairs.push([
-                        _.keys(name)[0],
-                        categories[_.keys(name)[0]]
+                        catName,
+                        categories[catName]
                     ]);
                 }
             });

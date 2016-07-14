@@ -11,14 +11,13 @@ var BasicViewer = require("./BasicViewer");
 var ViewerHelper = require("./ViewerHelper");
 var Constants = require("./Constants");
 
-var Category = function(name, data, type, fv, container) {
+var Category = function(name, data, catInfo, fv, container) {
     var category = this;
     category.name = name;
     category.tracks = [];
     category.data = data;
-    category.viewerType = type;
+    category.viewerType = catInfo.visualizationType;
     category.fv = fv;
-    category.tracksCreated = false;
     category.categoryViewer = undefined;
 
     category.categoryContainer = container.append('div')
@@ -26,7 +25,7 @@ var Category = function(name, data, type, fv, container) {
     category.header = category.categoryContainer.append('a')
         .attr('class', 'up_pftv_category-name up_pftv_arrow-right')
         .attr('title', category.name)
-        .text(Constants.getCategoryName(category.name))
+        .text(catInfo.label)
         .on('click', function() {
             category.toggle();
             category.propagateSelection();
@@ -47,6 +46,22 @@ Category.prototype.reset = function() {
             track.reset();
         }
     });
+};
+
+Category.prototype.repaint = function(data) {
+    var category = this;
+    category.data = _.union(category.data, data); //TODO should be different with variants!
+
+    var catContainer = d3.select('.up_pftv_category_' + category.name);
+    var ftGroup = catContainer.select('.up_pftv_category-viewer-group');
+    ftGroup.selectAll('*').remove();
+    category.categoryViewer.updateData(category.data); //TODO will it work with variants?
+
+    var tracksContainer = catContainer.select('.up_pftv_category-tracks');
+    tracksContainer.selectAll('*').remove();
+    tracksContainer.html('');
+    category.tracks = [];
+    category.buildTracks();
 };
 
 Category.prototype.addTrack = function(track) {
@@ -179,17 +194,17 @@ Category.variant = function() {
 // Factory
 var CategoryFactory = function() {
     return {
-        createCategory: function(name, data, type, fv, container) {
+        createCategory: function(name, data, catInfo, fv, container) {
             var category;
 
             // error if the constructor doesn't exist
-            if (typeof Category[type] !== "function") {
-                console.log('WARNING: Category viewer type ' + type + " doesn't exist");
+            if (typeof Category[catInfo.visualizationType] !== "function") {
+                console.log('WARNING: Category viewer type ' + catInfo.visualizationType + " doesn't exist");
             }
 
             //inherit parent constructor
-            Category[type].prototype = new Category(name, data, type, fv, container);
-            category = new Category[type]();
+            Category[catInfo.visualizationType].prototype = new Category(name, data, catInfo, fv, container);
+            category = new Category[catInfo.visualizationType]();
 
             if(data.length > 0) {
                 category.buildTracks();

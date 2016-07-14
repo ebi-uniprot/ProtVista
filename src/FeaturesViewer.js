@@ -396,79 +396,107 @@ var findFeature = function(fv, ftType, begin, end, altSequence) {
     return varLookup ? varLookup : lookup;
 };
 
+var initSources = function (opts) {
+    if (opts.defaultSources === false) {
+        Constants.clearDataSources();
+    }
+    _.each(opts.customDataSources, function(dataSource) {
+        Constants.addSource(dataSource);
+    });
+};
+
+var loadSources = function(opts, dataSources, loaders, delegates, fv) {
+    fv.initLayout(opts);
+    _.each(dataSources, function(source, index) {
+        if (!_.contains(opts.exclusions, source.category)) {
+            var url = source.url + opts.uniprotacc;
+            url = source.useExtension === true ? url + '.json' : url;
+            var dataLoader = DataLoader.get(url);
+            loaders.push(dataLoader);
+            dataLoader.done(function (d) {
+                if (d instanceof Array) //Workaround to be removed
+                    d = d[0];
+                // First promise to resolve will set global parameters
+                if (!fv.sequence) {
+                    fv.loadZoom(d);
+                }
+                var features = d.features;
+                // group by categories
+                if (features.length > 0 && _.has(features[0], 'category')) {
+                    features = DataLoader.groupFeaturesByCategory(features);
+                    features = _.filter(features, function (cat) {
+                        return !_.contains(opts.exclusions, cat[0]);
+                    });
+                } else if (features.length > 0 && features[0].type === 'VARIANT') {
+                    if (_.contains(opts.exclusions, 'VARIATION')) {
+                        features = [];
+                    } else {
+                        features = DataLoader.processVariants(features, d.sequence);
+                    }
+                } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
+                    if (_.contains(opts.exclusions, 'PROTEOMICS')) {
+                        features = [];
+                    } else {
+                        features = DataLoader.processProteomics(features);
+                    }
+                } else if (features.length > 0) {
+                    features = DataLoader.processUngroupedFeatures(features);
+                }
+                if (features.length >= 0) {
+                    fv.drawCategories(features, fv);
+                    fv.data = fv.data.concat(features);
+                    fv.dispatcher.ready();
+                }
+            }).fail(function (e) {
+                console.log(e);
+            }).always(function () {
+                delegates[index].resolve();
+            });
+        } else {
+            delegates[index].resolve();
+        }
+    });
+};
+
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
-        "notFound");
+        "notFound", "notConfigRetrieved");
 
     fv.width = 760;
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
     fv.sequence = "";
-    // fv.filterTypes = fv.categoryOrderAndType.variants.ftTypes;
     fv.categories = [];
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
     fv.data = [];
 
     fv.load = function() {
-        fv.initLayout(opts);
+        initSources(opts);
         var dataSources = Constants.getDataSources();
         var loaders = [], delegates = [];
         _.each(dataSources, function (source) {
             var delegate = jQuery.Deferred();
             delegates.push(delegate);
         });
-        _.each(dataSources, function(source, index) {
-            if (!_.contains(opts.exclusions, source.category)) {
-                var url = source.url + opts.uniprotacc;
-                var dataLoader = DataLoader.get(url);
-                loaders.push(dataLoader);
-                var container = fv.container.append('div');
-                dataLoader.done(function (d) {
-                    if (d instanceof Array) //Workaround to be removed
-                        d = d[0];
-                    // First promise to resolve will set global parameters
-                    if (!fv.sequence) {
-                        fv.loadZoom(d);
-                    }
-                    var features = d.features;
-                    // group by categories
-                    if (features.length > 0 && _.has(features[0], 'category')) {
-                        features = DataLoader.groupFeaturesByCategory(features);
-                        features = _.filter(features, function (cat) {
-                            return !_.contains(opts.exclusions, cat[0]);
-                        });
-                    } else if (features.length > 0 && features[0].type === 'VARIANT') {
-                        if (_.contains(opts.exclusions, 'VARIATION')) {
-                            features = [];
-                        } else {
-                            features = DataLoader.processVariants(features, d.sequence);
-                        }
-                    } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
-                        if (_.contains(opts.exclusions, 'PROTEOMICS')) {
-                            features = [];
-                        } else {
-                            features = DataLoader.processProteomics(features);
-                        }
-                    } else if (features.length > 0) {
-                        features = DataLoader.processUngroupedFeatures(features);
-                    }
-                    if (features.length > 0) {
-                        fv.drawCategories(features, source.type, fv, container);
-                        fv.data = fv.data.concat(features);
-                        fv.dispatcher.ready();
-                    }
-                }).fail(function (e) {
-                    console.log(e);
-                }).always(function () {
-                    delegates[index].resolve();
-                });
-            } else {
-                delegates[index].resolve();
-            }
-        });
+
+        if (opts.customConfig) {
+            var configLoader = DataLoader.get(opts.customConfig);
+            configLoader.done(function(d) {
+                Constants.setCategoryNamesInOrder(d.categories);
+                Constants.setTrackNames(d.trackNames);
+                loadSources(opts, dataSources, loaders, delegates, fv);
+            })
+            .fail(function(e) {
+                d3.select(opts.el).text('The configuration file provided by external sources could not be retrieved');
+                fv.dispatcher.notConfigRetrieved({config: opts.customConfig});
+                console.log(e);
+            });
+        } else {
+            loadSources(opts, dataSources, loaders, delegates, fv);
+        }
 
         jQuery.when.apply(null, delegates).done(function () {
             var rejected = _.filter(loaders, function (loader) {
@@ -574,6 +602,12 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
         .append('div')
         .attr('class', 'up_pftv_category-container');
 
+    fv.ontheFlyContainer = fv.container.append('div').classed('up_pftv_category_on_the_fly', true);
+
+    _.each(Constants.getCategoryNamesInOrder(), function(catInfo) {
+        fv.container.append('div').classed('up_pftv_category_' + catInfo.name, true);
+    });
+
     fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
 };
 
@@ -597,10 +631,22 @@ FeaturesViewer.prototype.loadZoom = function(d) {
   updateZoomFromChart(fv);
 };
 
-FeaturesViewer.prototype.drawCategories = function(data, type, fv, container) {
+FeaturesViewer.prototype.drawCategories = function(data, fv) {
   _.each(data, function(category) {
-    var cat = CategoryFactory.createCategory(category[0], category[1], type, fv, container);
-    fv.categories.push(cat);
+    var found = _.find(fv.categories, function(cat) {
+        return cat.name === category[0];
+    });
+    if (!found) {
+        var catInfo = Constants.getCategoryInfo(category[0]);
+        var container = fv.container.select('.up_pftv_category_' + category[0]);
+        if (!container[0][0]) {
+            container = fv.ontheFlyContainer.append('div').classed('up_pftv_category_' + category[0], true);
+        }
+        var cat = CategoryFactory.createCategory(category[0], category[1], catInfo, fv, container);
+        fv.categories.push(cat);
+    } else {
+        found.repaint(category[1]);
+    }
   });
 };
 

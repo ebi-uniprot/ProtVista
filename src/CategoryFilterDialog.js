@@ -11,7 +11,7 @@ var Constants = require("./Constants");
 var populateDialog = function (fv, wrapper) {
     var index = 0;
     _.each(Constants.getCategoryNamesInOrder(), function(category) {
-        var catKey = _.keys(category)[0];
+        var catKey = category.name;
         var dataCategory = _.find(fv.data, function(catArray) {
             return catArray[0] === catKey;
         });
@@ -37,7 +37,7 @@ var populateDialog = function (fv, wrapper) {
                     }
                 });
             div.append('label')
-                .text(category[catKey]);
+                .text(category.label);
             index++;
         }
     });
