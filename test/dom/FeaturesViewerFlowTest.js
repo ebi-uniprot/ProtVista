@@ -499,7 +499,7 @@ describe('FeaturesViewerFlowTest', function() {
 
         it('should keep selection after zooming-out', function() {
             var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
-            assert.equal(selectedFeature.length, 1, 'feature still selected');
+            assert.equal(selectedFeature.length, 2, 'feature still selected in overview and hidden type track');
             expect(instance.selectedFeature).to.be.not.undefined;
         });
 
@@ -523,7 +523,7 @@ describe('FeaturesViewerFlowTest', function() {
             svgDiv.dispatchEvent(evtDiv);
 
             var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
-            assert.equal(selectedFeature.length, 1, 'feature still selected');
+            assert.equal(selectedFeature.length, 2, 'feature still selected in overview and hidden type track');
             expect(instance.selectedFeature).to.be.not.undefined;
 
             var featureMP = data[1][1][0];

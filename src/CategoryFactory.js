@@ -50,12 +50,12 @@ Category.prototype.reset = function() {
 
 Category.prototype.repaint = function(data) {
     var category = this;
-    category.data = _.union(category.data, data); //TODO should be different with variants!
+    category.data = _.union(category.data, data);
 
     var catContainer = d3.select('.up_pftv_category_' + category.name);
     var ftGroup = catContainer.select('.up_pftv_category-viewer-group');
     ftGroup.selectAll('*').remove();
-    category.categoryViewer.updateData(category.data); //TODO will it work with variants?
+    category.categoryViewer.updateData(category.data);
 
     var tracksContainer = catContainer.select('.up_pftv_category-tracks');
     tracksContainer.selectAll('*').remove();
