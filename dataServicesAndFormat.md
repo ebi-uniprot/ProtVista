@@ -68,6 +68,9 @@ You can always exclude those categories you are not interested in, for instance:
 ```
 
 # Adding your sources
+
+**Disclaimer: ** We currently support all feature types but variants for external sources. We are working on it but it is not ready yet.
+
 You can add your own data source by using the customDataSources option when instantiating ProtVista. Please keep in mind that the response should follow the data format expected by ProtVista. You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call.
 
 The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by ProtVista is JSON. Make sure you allow Cross-origin-resource-sharing.
@@ -215,11 +218,11 @@ The predefined shape and color for MOD_RES will be used.
 }
 ```
 
-If you omit the predefined data sources, this is how it would look like.
+If you omit the default data sources, this is how it would look like.
 ![](./images/customCategoriesAndTypesNoDefault.png)
 
 
-If you do load the predefined data sources, this is how it would look like. Those features coming from the customized data source are circled in purple.
+If you do load the default data sources, this is how it would look like. Those features coming from the customized data source are circled in purple.
 ![](./images/customCategoriesAndTypesWithDefault.png)
 
 ## Further customization
@@ -255,57 +258,58 @@ You can specify your configuration file as an option when instantiating ProtVist
 </script>
 ```
 
-The default configuration file looks like this. You will need to include there all categories and types to be rendered.
+The default configuration file looks like this. You will need to include there all categories and types to be configured.
+
+The "basic" visualization type is used for all features but variants. For variants we have a specialized matrix-based visualization type "variant". No other types are currently supported.
 
 ```
 {
   "categories": [
-    {
-      "visualization": "basic",
-      "categoryNamesInOrder": [
         {
           "name": "DOMAINS_AND_SITES",
-          "label": "Domains & sites"
+          "label": "Domains & sites",
+          "visualizationType": "basic"
         },
         {
           "name": "MOLECULE_PROCESSING",
-          "label": "Molecule processing"
+          "label": "Molecule processing",
+          "visualizationType": "basic"
         },
         {
           "name": "PTM",
-          "label": "Post translational modifications"
+          "label": "Post translational modifications",
+          "visualizationType": "basic"
         },
         {
           "name": "SEQUENCE_INFORMATION",
-          "label": "Sequence information"
+          "label": "Sequence information",
+          "visualizationType": "basic"
         },
         {
           "name": "STRUCTURAL",
-          "label": "Structural features"
+          "label": "Structural features",
+          "visualizationType": "basic"
         },
         {
           "name": "TOPOLOGY",
-          "label": "Topology"
+          "label": "Topology",
+          "visualizationType": "basic"
         },
         {
           "name": "MUTAGENESIS",
-          "label": "Mutagenesis"
+          "label": "Mutagenesis",
+          "visualizationType": "basic"
         },
         {
           "name": "PROTEOMICS",
-          "label": "Proteomics"
-        }
-      ]
-    },
-    {
-      "visualization": "variant",
-      "categoryNamesInOrder": [
+          "label": "Proteomics",
+          "visualizationType": "basic"
+        },
         {
           "name": "VARIATION",
-          "label": "Variants"
+          "label": "Variants",
+          "visualizationType": "variant"
         }
-      ]
-    }
   ],
   "trackNames": {
     "chain": {
@@ -471,6 +475,11 @@ The default configuration file looks like this. You will need to include there a
   }
 }
 ```
+
+If you want, for instance, to localize your custom category MODIFICATIONS below PTM and change the default yellow-brown-ish color to a pinky one for the feature type CHAIN, you would need to modify and provide a configuration file.
+
+You could get then a visualization like
+![](./images/customCategoriesAndTypesAndConfig.png)
 
 # Data format
 
