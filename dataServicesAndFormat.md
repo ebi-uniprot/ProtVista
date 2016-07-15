@@ -22,9 +22,9 @@ title: Data sources and data format
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Default data sources
-By default, ProtVista uses three data  [RESTful sources](http://www.ebi.ac.uk/uniprot/api/doc/index.html) provided by the Protein Function Development team. Particularly, it uses the feature data source, the variation data source and the proteomics data source.
- 
-The default data sources can be avoided when instantiating the component. Just set defaultSources to false, any other value as well as the omission of this property-key will result in loading the default data sources. 
+By default, ProtVista uses three data [RESTful sources](http://www.ebi.ac.uk/uniprot/api/doc/index.html) provided by the Protein Function Development team. Particularly, it uses the feature data source, the variation data source and the proteomics data source.
+
+The default data sources can be avoided when instantiating the component. Just set defaultSources to false, any other value as well as the omission of this property-key will result in loading the default data sources.
 
 ```html
 <div id='yourDiv'/>
@@ -35,9 +35,9 @@ The default data sources can be avoided when instantiating the component. Just s
     var instance = new ProtVista({
       el: yourDiv,
       uniprotacc: 'P05067',
-            
+
       //Default sources will **not** be included
-      defaultSources: false            
+      defaultSources: false
     });
   }
 </script>
@@ -47,7 +47,7 @@ The default data sources can be avoided when instantiating the component. Just s
 It is important to understand what feature categories and types are supported by default. Please get familiar with the [feature categories and types supported by ProtVista](./userGuide.html#feature-categories-and-types)
 
 ## Excluding categories
-You can always exclude those categories you are not interested in, for instance: 
+You can always exclude those categories you are not interested in, for instance:
 
 ```html
 <div id='yourDiv'/>
@@ -58,10 +58,10 @@ You can always exclude those categories you are not interested in, for instance:
     var instance = new ProtVista({
       el: yourDiv,
       uniprotacc: 'P05067',
-           
+
       //These categories will **not** be rendered at all
-      exclusions: ['PROTEOMICS', 'MOLECULE_PROCESSING','SEQUENCE_INFORMATION', 'MUTAGENESIS', 'TOPOLOGY']      
-                  
+      exclusions: ['PROTEOMICS', 'MOLECULE_PROCESSING','SEQUENCE_INFORMATION', 'MUTAGENESIS', 'TOPOLOGY']
+
     });
   }
 </script>
@@ -82,13 +82,13 @@ In the following example, we use the default UniProt data sources as well as an 
     var ProtVista = require('ProtVista');
     var instance = new ProtVista({
       el: yourDiv,
-            
+
       //This will be **always** added at the end of your data source URL
       uniprotacc: 'P05067',
-            
+
       //Default sources will be included (even if this option is omitted)
       defaultSources: true,
-            
+
       //Your data sources are defined here
       customDataSources: [
         {
@@ -111,8 +111,8 @@ Regardless where the data come from, all features **must** have a category and a
   "type": "ACT_SITE",
   "category": "DOMAINS_AND_TYPES",
   "begin": 837,
-  "end": 837  
-}   
+  "end": 837
+}
 ```
 
 And it would be rendered with the default styling options, it would look like:
@@ -130,41 +130,41 @@ You can reuse the default categories and types. If you do so, in order to distin
   "begin": 73,
   "end": 73,
   //Color used to distinguish from default data sources features
-  "color": "#33CCFF"  
-}   
-``` 
+  "color": "#33CCFF"
+}
+```
 
-So those two active sites would be rendered like:
+So the previous active site and this one together would be rendered like:
 ![](./images/activeSite_73_and_837.png)
- 
+
 
 ### Using customized categories or types
 Additional to colors, you can also use your own categories or types. Let's consider the following features, coming from an customized data source.
 
 ```
-//Predefined category, new type. Type label will be rendered as "Catalytic 
+//Predefined category, new type. Type label will be rendered as "Catalytic
 site", feature will be a "#33CCFF" rectangle.
 {
   "type": "CATALYTIC_SITE",
   "category": "DOMAINS_AND_SITES",
   "begin": 73,
   "end": 73,
-  "color": "#33CCFF"    
+  "color": "#33CCFF"
 },
 
-//Predefined category, new type. Type label will be rendered as "Tryptic 
+//Predefined category, new type. Type label will be rendered as "Tryptic
 peptide", feature will be a "#B8008A" rectangle.
 {
   "type": "TRYPTIC_PEPTIDE",
   "category": "PROTEOMICS",
   "begin": 13,
   "end": 20,
-  "color": "#B8008A"  
+  "color": "#B8008A"
 },
- 
-//Predefined category, new type. Type label will be rendered as 
-"Non-tryptic peptide", feature will be a "green" 
-rectangle. 
+
+//Predefined category, new type. Type label will be rendered as
+"Non-tryptic peptide", feature will be a "green"
+rectangle.
 {
   "type": "NON-TRYPTIC_PEPTIDE",
   "category": "PROTEOMICS",
@@ -173,19 +173,19 @@ rectangle.
   "color": "green"
 },
 
-//Predefined category, new type. Type label will be rendered as "Tryptic 
-peptide", feature will be a "#B8008A" 
+//Predefined category, new type. Type label will be rendered as "Tryptic
+peptide", feature will be a "#B8008A"
 rectangle.
 {
   "type": "TRYPTIC_PEPTIDE",
   "category": "PROTEOMICS",
   "begin": 90,
   "end": 101,
-  "color": "#B8008A"  
+  "color": "#B8008A"
 },
 
-//New category, new type. Category label will be rendered as "Novel 
-category", type label will be rendered as "Novel feature", feature 
+//New category, new type. Category label will be rendered as "Novel
+category", type label will be rendered as "Novel feature", feature
 will be a **grey** rectangle as no color was specified.
 {
   "type": "NOVEL_FEATURE",
@@ -194,26 +194,26 @@ will be a **grey** rectangle as no color was specified.
   "end": 38
 },
 
-//New category, predefined type. Category label will be rendered 
-as "Modifications", type predefined label is "Glycosylation". 
+//New category, predefined type. Category label will be rendered
+as "Modifications", type predefined label is "Glycosylation".
 The predefined shape and color for CARBOHYD will be used.
 {
   "type": "CARBOHYD",
   "category": "MODIFICATIONS",
   "begin": 101,
-  "end": 101  
+  "end": 101
 },
 
-//New category, predefined type. Category label will be rendered 
-as "Modifications", type predefined label is "Modified residue". 
+//New category, predefined type. Category label will be rendered
+as "Modifications", type predefined label is "Modified residue".
 The predefined shape and color for MOD_RES will be used.
 {
   "type": "MOD_RES",
   "category": "MODIFICATIONS",
   "begin": 711,
-  "end": 711  
-}   
-``` 
+  "end": 711
+}
+```
 
 If you omit the predefined data sources, this is how it would look like.
 ![](./images/customCategoriesAndTypesNoDefault.png)
@@ -241,7 +241,7 @@ You can specify your configuration file as an option when instantiating ProtVist
     var ProtVista = require('ProtVista');
     var instance = new ProtVista({
       el: yourDiv,
-      uniprotacc: 'P05067',            
+      uniprotacc: 'P05067',
       customDataSources: [
         {
           url: 'https://mydomain/mysource/',
@@ -253,7 +253,7 @@ You can specify your configuration file as an option when instantiating ProtVist
     });
   }
 </script>
-``` 
+```
 
 The default configuration file looks like this. You will need to include there all categories and types to be rendered.
 
@@ -470,7 +470,7 @@ The default configuration file looks like this. You will need to include there a
     }
   }
 }
-``` 
+```
 
 # Data format
 
@@ -482,7 +482,7 @@ This is how a response with no features looks like:
 {
   "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDS",
   "features": []
-}   
+}
 ```
 
 ## Basic visualization
@@ -499,11 +499,11 @@ A basic visualization is used for all sort of features but natural variants. Her
   "end": Integer string or integer - mandatory - it must be a valid position within the sequence
   "alternativeSequence": String - optional - useful for Mutagenesis and Conflict feature types
   "color": String - optional - will be used if provided, should be a valid color
-  "evidences": Array - optional 
+  "evidences": Array - optional
   [
     {
        "code": String - mandatory - should be a valid ECO code
-       "source": Object - optional 
+       "source": Object - optional
        {
          "name": String - mandatory
          "id": String - mandatory
@@ -511,83 +511,83 @@ A basic visualization is used for all sort of features but natural variants. Her
        }
     }
   ]
-}   
+}
 ```
 
 Examples of valid basic features:
 
 ```
 "features": [
-  {    
+  {
     "type": "TOPO_DOM",
     "category": "TOPOLOGY",
     "description": "Cytoplasmic",
     "begin": "724",
     "end": "770",
-    "evidences": [    
+    "evidences": [
       {
         "code": "ECO:0000255"
       }
-    ]    
+    ]
   },
-  {    
+  {
     "type": "TRANSMEM",
     "category": "TOPOLOGY",
     "begin": "700",
-    "end": "723"    
+    "end": "723"
   },
-  {    
+  {
     "type": "MY_TRANSMEM",
     "category": "TOPOLOGY",
     "begin": "708",
-    "end": "723"    
+    "end": "723"
   },
-  {    
+  {
     "type": "ACT_SITE",
     "category": "MY_CATEGORY",
     "begin": "600",
     "end": "600",
-    "color": "#00F5B8"        
+    "color": "#00F5B8"
   },
-  {    
+  {
     "type": "MY_REGIOM",
     "category": "MY_CATEGORY",
     "begin": "610",
     "end": "623",
-    "color": "#FF7094"        
-  },  
-  {    
+    "color": "#FF7094"
+  },
+  {
     "type": "SIGNAL",
     "category": "MOLECULE_PROCESSING",
     "description": "",
     "begin": "1",
     "end": "17",
     "color:" "#FF3366",
-    "evidences": [    
-      {    
+    "evidences": [
+      {
         "code": "ECO:0000269",
         "source": {
           "name": "PubMed",
           "id": "12665801",
           "url": "http://www.ncbi.nlm.nih.gov/pubmed/12665801"
-        }    
+        }
       },
-      {    
+      {
         "code": "ECO:0000269",
         "source": {
           "name": "PubMed",
           "id": "2900137",
-          "url": "http://www.ncbi.nlm.nih.gov/pubmed/2900137"          
-        }    
+          "url": "http://www.ncbi.nlm.nih.gov/pubmed/2900137"
+        }
       }
-    ]  
+    ]
   }
 ]
 ```
 
 ## Variant visualization
 
-The variant visualization is used only for natural variations. Using the variant visualization will result in [customized visualization for variants](./userGuide.html#natural-variant-track). Keep in mind that variants require more data than other features. 
+The variant visualization is used only for natural variations. Using the variant visualization will result in [customized visualization for variants](./userGuide.html#natural-variant-track). Keep in mind that variants require more data than other features.
 
 Here is the data format for the variant features:
 
@@ -606,11 +606,11 @@ Here is the data format for the variant features:
   "siftPrediction": String - optional
   "siftScore": double - optional - most probably present if siftPrediction is known
   "sourceType": "custom_data" - mandatory - other types are allowed for data provided by UniProt
-  "evidences": Array - optional 
+  "evidences": Array - optional
   [
     {
        "code": String - mandatory - should be a valid ECO code
-       "source": Object - optional 
+       "source": Object - optional
        {
          "name": String - mandatory
          "id": String - mandatory
@@ -619,21 +619,21 @@ Here is the data format for the variant features:
     }
   ],
   "xrefs": Array - optional
-  [  
+  [
     {
       "name": String - mandatory
       "id": String - mandatory
       "url": String - optional - should be a valid URL
-    }  
+    }
   ]
-}   
+}
 ```
 
 Examples of valid variant features:
 
 ```
 "features": [
-  {  
+  {
       "type": "VARIANT",
       "ftId": "VAR_010109",
       "alternativeSequence": "P",
@@ -643,12 +643,12 @@ Examples of valid variant features:
       "description": "missense, known association with Alzheimer disease",
       "sourceType": "custom_data"
   },
-  {  
+  {
       "type": "VARIANT",
       "alternativeSequence": "R",
       "begin": "71",
       "end": "71",
-      "xrefs": [  
+      "xrefs": [
         {
           "name": "ExAC",
           "id": "rs757264249",
@@ -662,22 +662,22 @@ Examples of valid variant features:
       "siftScore": ​0.02,
       "sourceType": "custom_data"
   },
-  {  
+  {
     "type": "VARIANT",
     "description": "primary tissue(s): large intestine",
     "alternativeSequence": "L",
     "begin": "727",
     "end": "727",
     "color": "violet",
-    "xrefs": [  
+    "xrefs": [
       {
         "name": "my_data curated",
         "id": "CUR1413494",
         "url": "http://mydomain/overview?id=1413494"
-      }  
+      }
     ],
-    "evidences": [  
-      {  
+    "evidences": [
+      {
         "code": "ECO:0000313",
         "source": {
           "name": "internal_study",
@@ -690,9 +690,9 @@ Examples of valid variant features:
     "polyphenPrediction": "benign",
     "polyphenScore": ​0.4,
     "siftPrediction": "deleterious",
-    "siftScore": ​0.04,    
-    "sourceType": "custom_data"  
-  }  
+    "siftScore": ​0.04,
+    "sourceType": "custom_data"
+  }
 ]
 ```
 
