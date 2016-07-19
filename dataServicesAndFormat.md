@@ -69,11 +69,15 @@ You can always exclude those categories you are not interested in, for instance:
 
 # Adding your sources
 
-**Disclaimer: ** We currently support all feature types but variants for external sources. This is work in progress.
+You can add your own data source by using the customDataSources option when instantiating ProtVista. Please keep in mind that the response should follow the data format expected by ProtVista.
 
-You can add your own data source by using the customDataSources option when instantiating ProtVista. Please keep in mind that the response should follow the data format expected by ProtVista. You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call.
+**Disclaimer:** We currently support all feature types but variants for external sources. This is work in progress.
 
-The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by ProtVista is JSON. Make sure you allow Cross-origin-resource-sharing.
+**Examples**
+In our GitHub repository, you can find a couple of examples working with external data. Please take a look at <https://github.com/ebi-uniprot/ProtVista/tree/master/snippets>. You can also find some further explanation in the [Data format](#data-format) section in this page.
+
+**Instantiation**
+You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call. The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by ProtVista is JSON. Make sure you allow Cross-origin-resource-sharing.
 
 In the following example, we use the default UniProt data sources as well as an additional one. The additional data source call would look like https://mydomain/mysource/P05067.json
 
@@ -258,9 +262,10 @@ You can specify your configuration file as an option when instantiating ProtVist
 </script>
 ```
 
-The default configuration file looks like this. You will need to include there all categories and types to be configured.
+**Default configuration**
+The default configuration file can be found at <https://github.com/ebi-uniprot/ProtVista/blob/master/src/config.json> . It is also provided inline here. Each category include a visualization type. The "basic" visualization type is used for all features but variants. For variants we have a specialized matrix-based visualization type "variant". No other types are currently supported.
 
-The "basic" visualization type is used for all features but variants. For variants we have a specialized matrix-based visualization type "variant". No other types are currently supported.
+If you need to use a configuration file, you will have to include there all categories and types to be configured.
 
 ```
 {
@@ -476,6 +481,7 @@ The "basic" visualization type is used for all features but variants. For varian
 }
 ```
 
+**Customized configuration**
 If you want, for instance, to localize your custom category MODIFICATIONS below PTM and change the default yellow-brown-ish color to a pinky one for the feature type CHAIN, you would need to modify and provide a configuration file.
 
 You could get then a visualization like
