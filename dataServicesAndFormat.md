@@ -22,9 +22,9 @@ title: Data sources and data format
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Default data sources
-By default, ProtVista uses three data [RESTful sources](http://www.ebi.ac.uk/uniprot/api/doc/index.html) provided by the Protein Function Development team. Particularly, it uses the feature data source, the variation data source and the proteomics data source.
+By default, ProtVista uses three [RESTful data sources](http://www.ebi.ac.uk/uniprot/api/doc/index.html) provided by the Protein Function Development team. Particularly, it uses the feature data source, the variation data source and the proteomics data source.
 
-The default data sources can be avoided when instantiating the component. Just set defaultSources to false, any other value as well as the omission of this property-key will result in loading the default data sources.
+The default data sources can be excluded when instantiating the component. Just set defaultSources to false, any other value as well as the omission of this property-key will result in loading the default data sources.
 
 ```html
 <div id='yourDiv'/>
@@ -44,7 +44,7 @@ The default data sources can be avoided when instantiating the component. Just s
 ```
 
 ## Default categories and types
-It is important to understand what feature categories and types are supported by default. Please get familiar with the [feature categories and types supported by ProtVista](./userGuide.html#feature-categories-and-types)
+It is important to understand which feature categories and types are supported by default. Please get familiar with the [feature categories and types supported by ProtVista](./userGuide.html#feature-categories-and-types)
 
 ## Excluding categories
 You can always exclude those categories you are not interested in, for instance:
@@ -69,7 +69,7 @@ You can always exclude those categories you are not interested in, for instance:
 
 # Adding your sources
 
-**Disclaimer: ** We currently support all feature types but variants for external sources. We are working on it but it is not ready yet.
+**Disclaimer: ** We currently support all feature types but variants for external sources. This is work in progress.
 
 You can add your own data source by using the customDataSources option when instantiating ProtVista. Please keep in mind that the response should follow the data format expected by ProtVista. You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call.
 
@@ -107,7 +107,7 @@ In the following example, we use the default UniProt data sources as well as an 
 ```
 
 ## Distinguishing your features
-Regardless where the data come from, all features **must** have a category and a type. For instance, an "active site" in the category "Domains & sites" provided by your data source would look like
+Regardless where the data come from, all features **must** have a category and a type. For instance, an "active site" in the category "Domains & sites" provided by your data source would look like:
 
 ```
 {
@@ -142,7 +142,7 @@ So the previous active site and this one together would be rendered like:
 
 
 ### Using customized categories or types
-Additional to colors, you can also use your own categories or types. Let's consider the following features, coming from an customized data source.
+In addition to colors, you can also use your own categories or types. Let's consider the following features, coming from a customized data source.
 
 ```
 //Predefined category, new type. Type label will be rendered as "Catalytic
@@ -218,11 +218,11 @@ The predefined shape and color for MOD_RES will be used.
 }
 ```
 
-If you omit the default data sources, this is how it would look like.
+If you omit the default data sources, this is how it would look.
 ![](./images/customCategoriesAndTypesNoDefault.png)
 
 
-If you do load the default data sources, this is how it would look like. Those features coming from the customized data source are circled in purple.
+If you do load the default data sources, this is how it would look. Those features coming from the customized data source are circled in purple.
 ![](./images/customCategoriesAndTypesWithDefault.png)
 
 ## Further customization
