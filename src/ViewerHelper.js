@@ -6,7 +6,6 @@ var d3 = require("d3");
 var _ = require("underscore");
 var TooltipFactory = require("./TooltipFactory");
 var FeatureFactory = require("./FeatureFactory");
-var VariantFilterDialog = require("./VariantFilterDialog");
 
 var ViewerHelper = function() {
     var mousedownXY = {x: -1, y: -1}, mouseupXY = {x: -2, y: -2};
@@ -73,7 +72,7 @@ ViewerHelper.shadowPath = function (feature, fv, height) {
 
 ViewerHelper.updateShadow = function(feature, fv) {
     var xTranslate = fv.xScale(feature.begin);
-    d3.selectAll('.up_pftv_shadow')
+    fv.globalContainer.selectAll('.up_pftv_shadow')
         .attr('d', function() {
             var height = d3.select(this).attr('height');
             return ViewerHelper.shadowPath(feature, fv, height);
@@ -87,7 +86,7 @@ ViewerHelper.selectFeature = function(feature, elem, fv) {
     if (feature === fv.selectedFeature) {
         fv.selectedFeature = undefined;
         fv.selectedFeatureElement = undefined;
-        d3.selectAll('.up_pftv_shadow')
+        fv.globalContainer.selectAll('.up_pftv_shadow')
             .attr('d', 'M-1,-1')
             .attr('transform', 'translate(-1,-1)');
     } else {
@@ -96,7 +95,7 @@ ViewerHelper.selectFeature = function(feature, elem, fv) {
         this.updateShadow(feature, fv);
     }
     var selectedPath = selectedElem.classed('up_pftv_activeFeature');
-    d3.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);
+    fv.globalContainer.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);
     //it is not active anymore
     selectedElem.classed('up_pftv_activeFeature', !selectedPath);
     fv.updateFeatureSelector();
@@ -124,7 +123,7 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
                 if (!elem.classed('up_pftv_activeFeature')) {
                     TooltipFactory.createTooltip(fv, catTitle, d, container);
                 } else {
-                    var tooltipContainer = d3.selectAll('.up_pftv_tooltip-container')
+                    var tooltipContainer = fv.globalContainer.selectAll('.up_pftv_tooltip-container')
                         .transition(20)
                         .style('opacity', 0)
                         .style('display', 'none');
@@ -137,14 +136,14 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
             fv.overFeature = true;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
-                d3.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 1);
+                fv.globalContainer.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 1);
             }
         })
         .on('mouseout', function(d) {
             fv.overFeature = false;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
-                d3.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 0.4);
+                fv.globalContainer.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 0.4);
             }
         });
 };

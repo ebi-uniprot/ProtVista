@@ -50,12 +50,12 @@ Category.prototype.reset = function() {
 
 Category.prototype.repaint = function(data) {
     var category = this;
-    category.data = _.union(category.data, data); //TODO should be different with variants!
+    category.data = _.union(category.data, data);
 
     var catContainer = d3.select('.up_pftv_category_' + category.name);
     var ftGroup = catContainer.select('.up_pftv_category-viewer-group');
     ftGroup.selectAll('*').remove();
-    category.categoryViewer.updateData(category.data); //TODO will it work with variants?
+    category.categoryViewer.updateData(category.data);
 
     var tracksContainer = catContainer.select('.up_pftv_category-tracks');
     tracksContainer.selectAll('*').remove();
@@ -97,7 +97,7 @@ Category.prototype.toggle = function() {
 
 Category.prototype.propagateSelection = function() {
     if (this.fv.selectedFeature) {
-        d3.selectAll('svg path[name=' + this.fv.selectedFeature.internalId + ']')
+        this.fv.globalContainer.selectAll('svg path[name=' + this.fv.selectedFeature.internalId + ']')
             .classed('up_pftv_activeFeature', true)
         ;
     }

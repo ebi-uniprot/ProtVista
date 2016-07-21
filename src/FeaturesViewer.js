@@ -28,7 +28,7 @@ var updateZoomFromChart = function(fv) {
 
 var updateViewportFromChart = function (fv) {
     fv.viewport.extent(fv.xScale.domain());
-    d3.select('.up_pftv_viewport').call(fv.viewport);
+    fv.globalContainer.select('.up_pftv_viewport').call(fv.viewport);
     fv.viewport.updateTrapezoid();
 };
 
@@ -40,9 +40,9 @@ var update = function(fv) {
     });
 };
 
-var updateZoomButton = function(currentClass, newClass, newTitle) {
+var updateZoomButton = function(fv, currentClass, newClass, newTitle) {
     try {
-        var zoomBtn = d3.select('.' + currentClass);
+        var zoomBtn = fv.globalContainer.select('.' + currentClass);
         zoomBtn.classed(currentClass, false);
         zoomBtn.classed(newClass, true);
         zoomBtn.attr('title', newTitle);
@@ -73,7 +73,7 @@ var zoomIn = function(fv) {
     update(fv);
     updateViewportFromChart(fv);
     updateZoomFromChart(fv);
-    updateZoomButton('fv-icon-zoom-in', 'fv-icon-zoom-out', 'Zoom out to overview');
+    updateZoomButton(fv, 'fv-icon-zoom-in', 'fv-icon-zoom-out', 'Zoom out to overview');
 };
 
 var resetZoom = function(fv) {
@@ -88,7 +88,7 @@ var zoomOut = function(fv) {
         fv.maxPos
     ]);
     resetZoom(fv);
-    updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
 };
 
 var resetZoomAndSelection = function(fv) {
@@ -100,7 +100,7 @@ var resetZoomAndSelection = function(fv) {
         ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
     }
     resetZoom(fv);
-    updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
     _.each(fv.categories, function(category) {
         category.reset();
     });
@@ -126,14 +126,14 @@ var createZoom = function(fv) {
 
 var closeTooltipAndPopup = function(fv) {
     if (!fv.overFeature && !fv.overTooltip) {
-        var tooltipContainer = d3.selectAll('.up_pftv_tooltip-container')
+        var tooltipContainer = fv.globalContainer.selectAll('.up_pftv_tooltip-container')
             .transition(20)
             .style('opacity', 0)
             .style('display', 'none');
         tooltipContainer.remove();
     }
     if (!fv.overCatFilterDialog) {
-        CategoryFilterDialog.closeDialog();
+        CategoryFilterDialog.closeDialog(fv);
     }
 };
 
@@ -177,9 +177,9 @@ var createNavRuler = function(fv, container) {
     });
     viewport.on("brushend", function () {
         updateZoomFromChart(fv);
-        var navigator = d3.select('.up_pftv_navruler .extent');
+        var navigator = fv.globalContainer.select('.up_pftv_navruler .extent');
         if (+navigator.attr('width') >= fv.width - fv.padding.left - fv.padding.right) {
-            updateZoomButton('fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+            updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
         }
     });
 
@@ -216,8 +216,8 @@ var createNavRuler = function(fv, container) {
         .attr("d", arc);
 
     viewport.updateTrapezoid = function() {
-        var begin = d3.select(".up_pftv_navruler .extent").attr("x");
-        var tWidth = d3.select(".up_pftv_navruler .extent").attr("width");
+        var begin = fv.globalContainer.select(".up_pftv_navruler .extent").attr("x");
+        var tWidth = fv.globalContainer.select(".up_pftv_navruler .extent").attr("width");
         var end = (+begin) + (+tWidth);
         var path =  "M0," + (navWithTrapezoid) + "L0" + "," + (navWithTrapezoid-2)
             + "L" + begin + "," + (navHeight-12) + "L" + begin + "," + navHeight
@@ -555,12 +555,12 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
         return undefined;
     }
 
-    var elem = d3.select('[name="' + feature.internalId + '"]');
+    var elem = fv.globalContainer.select('[name="' + feature.internalId + '"]');
     if (category && feature && elem && !elem.classed('up_pftv_variant_hidden')) {
         var container = category.viewerContainer.style('display') === 'none'
             ? category.tracksContainer : category.viewerContainer;
         if (elem.classed('up_pftv_variant')) {
-            var varTrack = d3.select('.up_pftv_category-name[title="' + catTitle + '"]');
+            var varTrack = fv.globalContainer.select('.up_pftv_category-name[title="' + catTitle + '"]');
             if (varTrack.classed('up_pftv_arrow-right')) {
                 category.toggle();
             }
@@ -588,8 +588,8 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
 FeaturesViewer.prototype.initLayout = function(opts, d) {
     var fv = this;
     //remove any previous text
-    var globalContainer = d3.select(opts.el).text('');
-    var fvContainer = globalContainer
+    fv.globalContainer = d3.select(opts.el).text('');
+    var fvContainer = fv.globalContainer
         .append('div')
         .attr('class', 'up_pftv_container')
         .on('mousedown', function() {
