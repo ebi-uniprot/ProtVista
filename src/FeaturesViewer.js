@@ -10,6 +10,7 @@ var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
+var HighlightRegionDialog = require("./HighlightRegionDialog");
 var TooltipFactory = require('./TooltipFactory');
 var jQuery = require('jquery');
 
@@ -23,7 +24,6 @@ var updateZoomFromChart = function(fv) {
     var minScale = currentDomain / fullDomain,
         maxScale = minScale * Math.floor(fv.sequence.length/fv.maxZoomSize);
     fv.zoom.scaleExtent([minScale, maxScale]);
-    //end remove
 };
 
 var updateViewportFromChart = function (fv) {
@@ -99,6 +99,9 @@ var resetZoomAndSelection = function(fv) {
     if (fv.selectedFeature) {
         ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
     }
+    if (fv.shadow) {
+        ViewerHelper.resetShadow(fv);
+    }
     resetZoom(fv);
     updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
     _.each(fv.categories, function(category) {
@@ -134,6 +137,9 @@ var closeTooltipAndPopup = function(fv) {
     }
     if (!fv.overCatFilterDialog) {
         CategoryFilterDialog.closeDialog(fv);
+    }
+    if (!fv.overHighlightRegionDialog) {
+        HighlightRegionDialog.closeDialog(fv);
     }
 };
 
@@ -256,6 +262,13 @@ var createButtons = function(fv, data, container) {
             resetZoomAndSelection(fv);
         });
     buttons.append('span')
+        .attr('class','fv-icon-pin')
+        .attr('title','Highlight region')
+        .on('click', function(){
+            HighlightRegionDialog.displayDialog(fv, buttons);
+            //fv.highlightRegion(10, 230);
+        });
+    buttons.append('span')
         .attr('class','fv-icon-zoom-in')
         .attr('title','Zoom in to sequence view')
         .on('click', function(){
@@ -356,6 +369,16 @@ var createAAViewer = function(fv, container, sequence) {
         } else {
             g.call(series);
             g.transition(50).style('opacity',1);
+        }
+    };
+
+    aaViewer.updateShadow = function() {
+        if (fv.shadow) {
+            selectorGroup.datum([{"feature": fv.shadow}]).call(selectorSeries);
+        } else {
+            if (!fv.selectedFeature) {
+                selectorGroup.datum([{"feature": {"begin": -10, "end": -10}}]).call(selectorSeries);
+            }
         }
     };
 
@@ -535,8 +558,21 @@ FeaturesViewer.prototype.updateFeatureSelector = function() {
     this.aaViewer2.selectFeature();
 };
 
+FeaturesViewer.prototype.updateShadowSelector = function() {
+    this.aaViewer.updateShadow();
+    this.aaViewer2.updateShadow();
+};
+
 FeaturesViewer.prototype.getDispatcher = function() {
     return this.dispatcher;
+};
+
+FeaturesViewer.prototype.deselectFeature = function() {
+    var fv = this;
+
+    if (fv.selectedFeature) {
+        ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
+    }
 };
 
 FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequence) {
@@ -583,6 +619,13 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
         fv.dispatcher.notFound({ftType: ftType, begin: start, end: end});
         return undefined;
     }
+};
+
+FeaturesViewer.prototype.highlightRegion = function(begin, end) {
+    var fv = this;
+    fv.deselectFeature();
+    fv.shadow = {begin: begin, end: end, type:'continuous'};
+    ViewerHelper.updateShadow(fv.shadow, fv);
 };
 
 FeaturesViewer.prototype.initLayout = function(opts, d) {

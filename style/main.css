@@ -343,6 +343,22 @@ svg {
     text-align: left;
 }
 
+.up_pftv_popupDialog-container table {
+    border: 0px;
+    background-color: #FFF;
+    width: 100%;
+}
+
+.up_pftv_popupDialog-container td {
+    padding: .2em;
+    margin: 0;
+}
+
+.up_pftv_popupDialog-container td:first-child {
+    font-weight: bold;
+    font-size: small;
+}
+
 .up_pftv_tooltip-container table {
     font-size: 13px;
     border: 2px solid #CCC;

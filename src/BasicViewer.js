@@ -82,6 +82,8 @@ var BasicViewer = function(catTitle, features, container, fv) {
         dataSeries.call(series);
         if (fv.selectedFeature) {
             ViewerHelper.updateShadow(fv.selectedFeature, fv);
+        } else if (fv.shadow) {
+            ViewerHelper.updateShadow(fv.shadow, fv);
         }
     };
 

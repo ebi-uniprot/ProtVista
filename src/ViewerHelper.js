@@ -78,17 +78,27 @@ ViewerHelper.updateShadow = function(feature, fv) {
             return ViewerHelper.shadowPath(feature, fv, height);
         })
         .attr('transform', 'translate(' + xTranslate + ',0)');
+    if (fv.shadow) {
+        fv.updateShadowSelector();
+    }
+};
+
+ViewerHelper.resetShadow = function(fv) {
+    fv.shadow = undefined;
+    fv.globalContainer.selectAll('.up_pftv_shadow')
+        .attr('d', 'M-1,-1')
+        .attr('transform', 'translate(-1,-1)');
+    fv.updateShadowSelector();
 };
 
 ViewerHelper.selectFeature = function(feature, elem, fv) {
+    fv.shadow = undefined;
     var selectedElem = d3.select(elem);
     var previousSelection = {feature: fv.selectedFeature, elem: fv.selectedFeatureElement};
     if (feature === fv.selectedFeature) {
         fv.selectedFeature = undefined;
         fv.selectedFeatureElement = undefined;
-        fv.globalContainer.selectAll('.up_pftv_shadow')
-            .attr('d', 'M-1,-1')
-            .attr('transform', 'translate(-1,-1)');
+        this.resetShadow(fv);
     } else {
         fv.selectedFeature = feature;
         fv.selectedFeatureElement = elem;
