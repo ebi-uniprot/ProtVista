@@ -262,7 +262,7 @@ var createButtons = function(fv, data, container) {
             resetZoomAndSelection(fv);
         });
     buttons.append('span')
-        .attr('class','fv-icon-pin')
+        .attr('class','fv-icon-eye')
         .attr('title','Highlight region')
         .on('click', function(){
             HighlightRegionDialog.displayDialog(fv, buttons);
