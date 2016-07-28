@@ -19,6 +19,7 @@ var addInputRow = function(table, text, id, value) {
 };
 
 var populateDialog = function (fv, wrapper) {
+    var warning = 'Invalid sequence positions.';
     var div = wrapper.append('div').style('display', 'table');
 
     var table = div.append('table');
@@ -27,36 +28,43 @@ var populateDialog = function (fv, wrapper) {
     addInputRow(table, 'End: ', 'up_pftv_highlight_end', 'e.g., ' + fv.sequence.length);
 
     var row = table.append('tr');
+    row.append('td').attr('colspan', '2').classed('up_pftv_popupDialog-warning', true);
+
     row = table.append('tr');
     row.append('td').attr('colspan', '2').style('text-align', 'right')
         .append('button').text('Apply')
         .on('click', function() {
-            var begin = d3.select('#up_pftv_highlight_start').property('value');
-            var end = d3.select('#up_pftv_highlight_end').property('value');
+            var begin = wrapper.select('#up_pftv_highlight_start').property('value');
+            var end = wrapper.select('#up_pftv_highlight_end').property('value');
             if (begin.length === 0) {
-                console.log('warning, no begin!!!');
+                table.select('.up_pftv_popupDialog-warning').text(warning);
             } else {
                 begin = +begin;
                 end = end.length === 0 ? begin : +end;
                 if (!isNaN(begin) && !isNaN(end)) {
-                    begin = Math.max(begin, 1);
-                    end = Math.min(end, fv.sequence.length);
-                    console.log(begin, end);
-                    fv.highlightRegion(begin, end);
-                    HighlightRegionDialog.closeDialog(fv);
+                    if (begin <= end) {
+                        begin = Math.max(begin, 1);
+                        end = Math.min(end, fv.sequence.length);
+                        fv.highlightRegion(begin, end);
+                        HighlightRegionDialog.closeDialog(fv);
+                    } else {
+                        table.select('.up_pftv_popupDialog-warning').text(warning);
+                    }
                 } else {
-                    console.log('warning, no numbers!!!');
+                    table.select('.up_pftv_popupDialog-warning').text(warning);
                 }
             }
         });
 };
 
-var clearValues = function() {
-    d3.select('#up_pftv_highlight_start')
+var clearValues = function(wrapper) {
+    wrapper.select('#up_pftv_highlight_start')
         .property('value', '');
 
-    d3.select('#up_pftv_highlight_end')
+    wrapper.select('#up_pftv_highlight_end')
         .property('value', '');
+
+    wrapper.select('.up_pftv_popupDialog-warning').text('');
 };
 
 var createDialog = function (fv, container) {
@@ -80,7 +88,7 @@ var createDialog = function (fv, container) {
                 .style('display','none');
         });
     populateDialog(fv, wrapper);
-    clearValues();
+    clearValues(wrapper);
     return wrapper;
 };
 
@@ -90,7 +98,7 @@ HighlightRegionDialog = function() {
             if (!fv.highlightRegionDialog) {
                 fv.highlightRegionDialog = createDialog(fv, container);
             } else {
-                clearValues();
+                clearValues(fv.highlightRegionDialog);
             }
             fv.highlightRegionDialog.transition(20)
                 .style('opacity',1)

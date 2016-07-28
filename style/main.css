@@ -355,8 +355,11 @@ svg {
 }
 
 .up_pftv_popupDialog-container td:first-child {
-    font-weight: bold;
     font-size: small;
+}
+
+.up_pftv_popupDialog-warning {
+
 }
 
 .up_pftv_tooltip-container table {
