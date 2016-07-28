@@ -360,7 +360,9 @@ var addAssociation = function(tooltip) {
 var addMutation = function(tooltip) {
     var mutRow = tooltip.table.append('tr');
     mutRow.append('td').text('Variant');
-    var text = (tooltip.data.wildType === '-' ? tooltip.sequence.charAt(+tooltip.data.begin): tooltip.data.wildType)
+    var text = (tooltip.data.wildType === '-'
+            ? tooltip.sequence.substring(+tooltip.data.begin, +tooltip.data.end+1)
+            : tooltip.data.wildType)
         + ' > ' +
         (tooltip.data.alternativeSequence === '-' ? 'del' : tooltip.data.alternativeSequence);
     mutRow.append('td').text(text);
