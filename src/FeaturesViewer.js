@@ -484,7 +484,7 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
-        "notFound", "notConfigRetrieved");
+        "notFound", "notConfigRetrieved", "regionHighlighted");
 
     fv.width = 760;
     fv.maxZoomSize = 30;
@@ -623,9 +623,16 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
 
 FeaturesViewer.prototype.highlightRegion = function(begin, end) {
     var fv = this;
-    fv.deselectFeature();
-    fv.shadow = {begin: begin, end: end, type:'continuous'};
-    ViewerHelper.updateShadow(fv.shadow, fv);
+    begin = begin < 1 ? 1: begin;
+    end = end
+        ? end > fv.sequence.length ? fv.sequence.length : end
+        : begin;
+    if ((1 <= begin) && (begin <= end) && (end <= fv.sequence.length)) {
+        fv.deselectFeature();
+        fv.shadow = {begin: begin, end: end, type:'continuous'};
+        ViewerHelper.updateShadow(fv.shadow, fv);
+        fv.dispatcher.regionHighlighted({begin: begin, end: end});
+    }
 };
 
 FeaturesViewer.prototype.initLayout = function(opts, d) {
