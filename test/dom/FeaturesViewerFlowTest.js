@@ -22,6 +22,7 @@ var yourDiv = document.getElementById('mocha');
 // requires your main app (specified in index.js)
 var FeaturesViewer = require('../..');
 var Constants = require('../../src/Constants');
+var ViewerHelper = require('../../src/ViewerHelper');
 var FeaturesData = require('./FeaturesData');
 var jQuery = require('jquery');
 var _ = require('underscore');
@@ -150,17 +151,18 @@ describe('FeaturesViewerFlowTest', function() {
             expect(+extent.getAttribute('width')).to.be.closeTo(740, 1);
         });
 
-        it('should create 1 up_pftv_buttons with 4 children', function() {
+        it('should create 1 up_pftv_buttons with 5 children', function() {
             var buttonsDiv = document.querySelectorAll('.up_pftv_container .up_pftv_buttons');
             assert.equal(buttonsDiv.length, 1, 'only one up_pftv_buttons');
-            assert.equal(buttonsDiv[0].childElementCount, 4, 'up_pftv_buttons children count');
+            assert.equal(buttonsDiv[0].childElementCount, 5, 'up_pftv_buttons children count');
 
             var buttons = document.querySelectorAll('.up_pftv_buttons span');
-            assert.equal(buttons.length, 4);
+            assert.equal(buttons.length, 5, 'number of buttons');
             assert.equal(buttons[0].firstElementChild.getAttribute('class'), 'fv-icon-info-circled', 'first button class');
             assert.equal(buttons[1].getAttribute('class'), 'fv-icon-cog', 'second button class');
             assert.equal(buttons[2].getAttribute('class'), 'fv-icon-arrows-cw', 'third button class');
-            assert.equal(buttons[3].getAttribute('class'), 'fv-icon-zoom-in', 'fourth button class');
+            assert.equal(buttons[3].getAttribute('class'), 'fv-icon-eye', 'fourth button class');
+            assert.equal(buttons[4].getAttribute('class'), 'fv-icon-zoom-in', 'fifth button class');
         });
 
         it('should create 2 aaViewers aa sequence', function() {
@@ -604,7 +606,7 @@ describe('FeaturesViewerFlowTest', function() {
         });
     });
 
-    describe('should allow selection of features by using the selectFeature method', function() {
+    describe('allow selection of features by using the selectFeature method', function() {
         var regionFeature;
         it('should select a REGION feature', function() {
             regionFeature = instance.selectFeature('REGION', 96, 110);
@@ -640,6 +642,89 @@ describe('FeaturesViewerFlowTest', function() {
         it('should still have only 1 tooltip after feature mutagen selection', function() {
             var tooltip = document.querySelectorAll('.up_pftv_tooltip-container');
             assert.equal(tooltip.length, 1, 'region tooltip exists');
+        });
+    });
+
+    describe('allow feature deselection with method', function() {
+        it('should deselect selected feature (whichever it is)', function() {
+            instance.deselectFeature();
+            var selected = document.querySelectorAll('.up_pftv_activeFeature');
+            assert.equal(selected.length, 0, 'nothing selected');
+            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+        });
+    });
+
+    describe('highlight region', function() {
+        it('should not highlight region if no input', function(){
+            instance.highlightRegion();
+            assert.equal(instance.shadow, undefined, 'begin, end undefined');
+            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+        });
+
+        it('should not highlight if no begin', function() {
+            instance.highlightRegion(undefined, 100);
+            assert.equal(instance.shadow, undefined, 'begin undefined, end does not matter');
+            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+        });
+
+        it('should not highlight if begin > end', function() {
+            instance.highlightRegion(100, 10);
+            assert.equal(instance.shadow, undefined, 'begin > end');
+            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+        });
+
+        it('should not highlight if non-numeric input', function() {
+            instance.highlightRegion('a', 'b');
+            assert.equal(instance.shadow, undefined, 'begin, end non-numeric');
+            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+        });
+
+        it('should highlight region with begin < 0 and end > sequence lenght', function () {
+            instance.highlightRegion(0, 1000);
+            expect(instance.shadow).to.be.not.undefined;
+            assert.equal(instance.shadow.begin, 1);
+            assert.equal(instance.shadow.end, instance.sequence.length);
+
+            verifyShadowAttributes('up_pftv_category-container', undefined,
+                ViewerHelper.shadowPath(instance.shadow, instance, 40),
+                'translate(' + instance.xScale(1) + ',0)', 40, -gapRegion);
+        });
+
+        it('should highlight region with only begin', function () {
+            instance.highlightRegion(10);
+            expect(instance.shadow).to.be.not.undefined;
+            assert.equal(instance.shadow.begin, 10);
+            assert.equal(instance.shadow.end, 10);
+        });
+
+        it('should de-highlight after feature selection', function() {
+            instance.selectFeature('region', 96, 110);
+            expect(instance.shadow).to.be.undefined;
+        });
+
+        it('should highlight region with valid begin < end', function () {
+            instance.highlightRegion(10, 100);
+            expect(instance.shadow).to.be.not.undefined;
+            assert.equal(instance.shadow.begin, 10);
+            assert.equal(instance.shadow.end, 100);
+        });
+
+        it('should deselect after the previous highlighting', function() {
+            var selected = document.querySelectorAll('.up_pftv_activeFeature');
+            assert.equal(selected.length, 0, 'nothing selected');
+        });
+
+        it('should de-highlight if clicking somewhere else', function() {
+            var svg = document.querySelector('.up_pftv_category-viewer svg');
+            var evtSVGDown = document.createEvent("MouseEvents");
+            evtSVGDown.initMouseEvent("mousedown", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, svg);
+            svg.dispatchEvent(evtSVGDown);
+            var evtSVGUp = document.createEvent("MouseEvents");
+            evtSVGUp.initMouseEvent("mouseup", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, svg);
+            svg.dispatchEvent(evtSVGUp);
+
+            expect(instance.shadow).to.be.undefined;
+            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
     });
 });
