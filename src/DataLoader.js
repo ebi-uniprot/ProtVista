@@ -24,17 +24,46 @@ var groupEvidencesByCode = function(features) {
     return features;
 };
 
+var setVariantData = function (authority, d) {
+    var datum = {};
+    if (authority && (authority !== Constants.getUniProtAuthority())) {
+        datum.begin = d.begin;
+        delete d.begin;
+        datum.end = d.end;
+        delete d.end;
+        datum.wildType = d.wildType;
+        delete d.wildType;
+        datum.alternativeSequence = d.alternativeSequence;
+        delete d.alternativeSequence;
+        datum.sourceType = d.sourceType;
+        delete d.sourceType;
+        datum.type = d.type;
+        delete d.type;
+        datum.externalData = {};
+        datum.externalData[authority] = d;
+    } else {
+        datum = d;
+    }
+    return datum;
+};
+
 var DataLoader = function() {
     return {
         get: function(url) {
           return $.getJSON(url);
         },
-        groupFeaturesByCategory: function(features) {
+        groupFeaturesByCategory: function(features, sequence, authority, includeVariants) {
             features = groupEvidencesByCode(features);
             var categories = _.groupBy(features, function(d) {
                 return d.category;
             });
-            delete categories.VARIANTS;
+            var variants;
+            if (authority && (authority !== Constants.getUniProtAuthority()) && (includeVariants === true)) {
+                variants = categories.VARIATION;
+                delete categories.VARIATION;
+            } else {
+                delete categories.VARIANTS;
+            }
             var orderedPairs = [];
             var categoriesNames = Constants.getCategoryNamesInOrder();
             categoriesNames = _.pluck(categoriesNames, 'name');
@@ -60,6 +89,10 @@ var DataLoader = function() {
                     ]);
                 }
             });
+            if (variants) {
+                var orderedVariantPairs = DataLoader.processVariants(variants, sequence, authority);
+                orderedPairs.push(orderedVariantPairs[0]);
+            }
             return orderedPairs;
         },
         processProteomics: function(features) {
@@ -77,7 +110,13 @@ var DataLoader = function() {
         processUngroupedFeatures: function(features) {
             return [[features[0].type, features]];
         },
-        processVariants: function(variants, sequence) {
+        processVariants: function(variants, sequence, authority) {
+            if (authority && (authority !== Constants.getUniProtAuthority())) {
+                _.each(variants, function(variant) {
+                    variant.sourceType = Evidence.variantSourceType.external;
+                    delete variant.category;
+                });
+            }
             variants = groupEvidencesByCode(variants);
             var mutationArray = [];
                 mutationArray.push({
@@ -104,12 +143,13 @@ var DataLoader = function() {
 
             _.each(variants, function(d) {
                 d.begin = +d.begin;
-                d.wildType = d.wildType ? d.wildType : mutationArray[d.begin].normal;
+                d.end = d.end ? +d.end : d.begin;
+                d.wildType = d.wildType ? d.wildType : sequence.substring(d.begin, d.end+1);
                 d.sourceType = d.sourceType.toLowerCase();
                 if ((1 <= d.begin) && (d.begin <= seq.length)) {
-                    mutationArray[d.begin].variants.push(d);
+                    mutationArray[d.begin].variants.push(setVariantData(authority, d));
                 } else if ((seq.length + 1) === d.begin) {
-                    mutationArray[d.begin - 1].variants.push(d);
+                    mutationArray[d.begin - 1].variants.push(setVariantData(authority, d));
                 }
             });
           return [['VARIATION', mutationArray]];

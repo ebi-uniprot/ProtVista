@@ -3,6 +3,7 @@
 "use strict";
 
 var d3 = require("d3");
+var $ = require('jquery');
 var _ = require("underscore");
 var TrackFactory = require("./TrackFactory");
 var FeatureFactory = require("./FeatureFactory");
@@ -10,6 +11,7 @@ var NonOverlappingLayout = require("./NonOverlappingLayout");
 var BasicViewer = require("./BasicViewer");
 var ViewerHelper = require("./ViewerHelper");
 var Constants = require("./Constants");
+var Evidence = require('./Evidence');
 
 var Category = function(name, data, catInfo, fv, container) {
     var category = this;
@@ -50,7 +52,37 @@ Category.prototype.reset = function() {
 
 Category.prototype.repaint = function(data) {
     var category = this;
-    category.data = _.union(category.data, data);
+    if (category.viewerType === Constants.getVisualizationTypes().basic) {
+        category.data = _.union(category.data, data);
+    } else { //TODO variants code
+        _.each(category.data, function (wildAAPosition, wildIndex) {
+            if ((data[wildIndex].variants.length !== 0)) {
+                if (wildAAPosition.variants.length !== 0) {
+                    _.each(data[wildIndex].variants, function(dataVariant) {
+                        var sameCatVariant = _.find(wildAAPosition.variants, function(variant) {
+                            return (variant.begin === dataVariant.begin) && (variant.end === dataVariant.end) &&
+                                (variant.wildType === dataVariant.wildType) &&
+                                (variant.alternativeSequence === dataVariant.alternativeSequence);
+                        });
+                        if (sameCatVariant) {
+                            var sourceType =
+                                (sameCatVariant.sourceType === Evidence.variantSourceType.external) &&
+                                (dataVariant.sourceType === Evidence.variantSourceType.external)
+                                    ? Evidence.variantSourceType.external
+                                    : Evidence.variantSourceType.externalMixed;
+
+                            $.extend(true, sameCatVariant, dataVariant);
+                            sameCatVariant.sourceType = sourceType;
+                        } else {
+                            wildAAPosition.variants.push(dataVariant);
+                        }
+                    });
+                } else {
+                    wildAAPosition.variants = data[wildIndex].variants;
+                }
+            }
+        });
+    }
 
     var catContainer = d3.select('.up_pftv_category_' + category.name);
     var ftGroup = catContainer.select('.up_pftv_category-viewer-group');
@@ -126,21 +158,23 @@ var BasicCategoryViewer = function(category) {
 };
 
 var VariantCategoryViewer = function(category) {
+    var varCatViewer = this;
+    varCatViewer.features = category.data;
+
     var height = 40;
-    var features = category.data,
-        container = category.viewerContainer,
+    var container = category.viewerContainer,
         xScale = category.fv.xScale,
         width = category.fv.width,
         zoom = category.fv.zoom;
 
-    var varChart = ViewerHelper.createSVG(container, width, height, category.fv, 'up_pftv_variation-chart');
+    varCatViewer.varChart = ViewerHelper.createSVG(container, width, height, category.fv, 'up_pftv_variation-chart');
 
-    var variationCountArray = _.map(features, function(d) {
+    varCatViewer.variationCountArray = _.map(varCatViewer.features, function(d) {
         return d.variants.length;
     });
 
     var varYScale = d3.scale.linear()
-                .domain([0,d3.max(variationCountArray)])
+                .domain([0,d3.max(varCatViewer.variationCountArray)])
                 .range([height, 0]);
 
     var line = d3.svg.line()
@@ -152,33 +186,53 @@ var VariantCategoryViewer = function(category) {
                 })
                 .interpolate('linear');
 
-    varChart.append("path")
-            .data(features)
+    this.init = function () {
+        var varCatViewer = this;
+        varCatViewer.varChart.append("path")
+            .data(varCatViewer.features)
             .attr("class","up_pftv_block-area")
-            .attr("d",line(variationCountArray))
+            .attr("d",line(varCatViewer.variationCountArray))
             .on('click', function(){
                 category.toggle();
             });
 
-    varChart.append("path")
-            .data(features)
+        varCatViewer.varChart.append("path")
+            .data(varCatViewer.features)
             .attr("class","up_pftv_line")
-            .attr("d",line(variationCountArray))
-                .on('click', function(){
+            .attr("d",line(varCatViewer.variationCountArray))
+            .on('click', function(){
                 category.toggle();
             });
+    };
+
+    this.init();
 
     this.update = function() {
-        varChart.selectAll(".up_pftv_block-area")
-            .data(features)
+        var varCatViewer = this;
+        varCatViewer.varChart.selectAll(".up_pftv_block-area")
+            .data(varCatViewer.features)
             .attr("class","up_pftv_block-area")
-            .attr("d",line(variationCountArray));
+            .attr("d",line(varCatViewer.variationCountArray));
 
-        varChart.selectAll(".up_pftv_line")
-            .data(features)
+        varCatViewer.varChart.selectAll(".up_pftv_line")
+            .data(varCatViewer.features)
             .attr("class","up_pftv_line")
-            .attr("d",line(variationCountArray));
+            .attr("d",line(varCatViewer.variationCountArray));
     };
+
+    this.updateData = function(data) {
+        var varCatViewer = this;
+        varCatViewer.features = data;
+
+        varCatViewer.variationCountArray = _.map(varCatViewer.features, function(d) {
+            return d.variants.length;
+        });
+
+        varCatViewer.varChart.selectAll(".up_pftv_block-area").remove();
+        varCatViewer.varChart.selectAll(".up_pftv_line").remove();
+        this.init();
+    };
+
     return this;
 };
 

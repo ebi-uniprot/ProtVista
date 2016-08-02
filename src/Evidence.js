@@ -33,7 +33,9 @@ var Evidence = function() {
         }, variantSourceType: {
             uniprot: 'uniprot',
             lss: 'large_scale_study',
-            mixed: 'mixed'
+            mixed: 'mixed',
+            external: 'external_study',
+            externalMixed: 'external_mixed'
         }, existAssociation: function(association) {
             if (association) {
                 if (association.length !== 0) {

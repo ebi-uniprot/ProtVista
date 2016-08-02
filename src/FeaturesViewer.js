@@ -423,7 +423,8 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
                 var features = d.features;
                 // group by categories
                 if (features.length > 0 && _.has(features[0], 'category')) {
-                    features = DataLoader.groupFeaturesByCategory(features);
+                    features = DataLoader.groupFeaturesByCategory(features, d.sequence, source.authority,
+                        !_.contains(opts.exclusions, 'VARIATION'));
                     features = _.filter(features, function (cat) {
                         return !_.contains(opts.exclusions, cat[0]);
                     });
@@ -431,7 +432,7 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
                     if (_.contains(opts.exclusions, 'VARIATION')) {
                         features = [];
                     } else {
-                        features = DataLoader.processVariants(features, d.sequence);
+                        features = DataLoader.processVariants(features, d.sequence, source.authority);
                     }
                 } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
                     if (_.contains(opts.exclusions, 'PROTEOMICS')) {
