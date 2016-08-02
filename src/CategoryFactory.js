@@ -65,11 +65,14 @@ Category.prototype.repaint = function(data) {
                                 (variant.alternativeSequence === dataVariant.alternativeSequence);
                         });
                         if (sameCatVariant) {
-                            var sourceType =
-                                (sameCatVariant.sourceType === Evidence.variantSourceType.external) &&
-                                (dataVariant.sourceType === Evidence.variantSourceType.external)
-                                    ? Evidence.variantSourceType.external
-                                    : Evidence.variantSourceType.externalMixed;
+                            var sourceType;
+                            if (!sameCatVariant.sourceType && !dataVariant.sourceType) {
+                                sourceType = undefined;
+                            } else if (!sameCatVariant.sourceType) {
+                                sourceType = dataVariant.sourceType;
+                            } else if (!dataVariant.sourceType) {
+                                sourceType = sameCatVariant.sourceType;
+                            }
 
                             $.extend(true, sameCatVariant, dataVariant);
                             sameCatVariant.sourceType = sourceType;
