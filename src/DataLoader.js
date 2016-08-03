@@ -90,7 +90,7 @@ var DataLoader = function() {
                 }
             });
             if (variants) {
-                var orderedVariantPairs = DataLoader.processVariants(variants, sequence, authority);
+                var orderedVariantPairs = DataLoader.processVariants(variants, sequence, authority, true);
                 orderedPairs.push(orderedVariantPairs[0]);
             }
             return orderedPairs;
@@ -110,13 +110,15 @@ var DataLoader = function() {
         processUngroupedFeatures: function(features) {
             return [[features[0].type, features]];
         },
-        processVariants: function(variants, sequence, authority) {
+        processVariants: function(variants, sequence, authority, evidenceAlreadyGrouped) {
             if (authority && (authority !== Constants.getUniProtAuthority())) {
                 _.each(variants, function(variant) {
                     delete variant.category;
                 });
             }
-            variants = groupEvidencesByCode(variants);
+            if (!evidenceAlreadyGrouped) {
+                variants = groupEvidencesByCode(variants);
+            }
             var mutationArray = [];
                 mutationArray.push({
                     'type': 'VARIANT',
