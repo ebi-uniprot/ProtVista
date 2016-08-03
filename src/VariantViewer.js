@@ -9,6 +9,7 @@ var ViewerHelper = require("./ViewerHelper");
 var LegendDialog = require("./VariantLegendDialog");
 var VariantFilterDialog = require("./VariantFilterDialog");
 var Evidence = require('./Evidence');
+var Constants = require("./Constants");
 
 //'G', 'A', 'V', 'L', 'I' aliphatic. 'S', 'T' hydroxyl. 'C', 'M' sulfur-containing. 'D', 'N', 'E', 'Q' acidic.
 // 'R', 'K', 'H' basic. 'F', 'Y', 'W' aromatic. 'P' imino. '*' stop gained or lost.
@@ -21,6 +22,27 @@ var aaList = ['G', 'A', 'V', 'L', 'I'
     , 'P'
     , '-', '*'];
 
+var getPredictionScore = function(siftScore, siftPrediction, polyphenScore, polyphenPrediction) {
+    var sift = false, polyphen = false;
+    if ((polyphenPrediction !== undefined) && (polyphenPrediction !== 'unknown')) {
+        polyphen = polyphenScore !== undefined ? true : false;
+    }
+    if (siftPrediction !== undefined) {
+        sift = siftScore !== undefined ? true : false;
+    }
+    if (sift && polyphen) {
+        return (siftScore + (1-polyphenScore))/2;
+    } else if (sift && !polyphen) {
+        return siftScore;
+    } else if (!sift && polyphen) {
+        return 1-polyphenScore;
+    } else if (polyphenPrediction === 'unknown') {
+        return 1;
+    } else {
+        return undefined;
+    }
+};
+
 var variantsFill = function(d, fv) {
     if((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
         return LegendDialog.othersColor;
@@ -32,23 +54,38 @@ var variantsFill = function(d, fv) {
             return LegendDialog.UPNonDiseaseColor;
         }
     } else {
-        var sift = false, polyphen = false;
-        if ((d.polyphenPrediction !== undefined) && (d.polyphenPrediction !== 'unknown')) {
-            polyphen = d.polyphenScore !== undefined ? true : false;
+        var externalPrediction;
+        if (d.externalData) {
+            _.each(d.externalData, function (extData)  {
+                var predictionScore = getPredictionScore(extData.siftScore, extData.siftPrediction,
+                    extData.polyphenScore, extData.polyphenPrediction);
+                if (predictionScore) {
+                    externalPrediction = externalPrediction ? externalPrediction + predictionScore : predictionScore;
+                }
+            });
+            externalPrediction = externalPrediction
+                ? externalPrediction / _.keys(d.externalData).length
+                : externalPrediction;
         }
-        if (d.siftPrediction !== undefined) {
-            sift = d.siftScore !== undefined ? true : false;
-        }
-        if (sift && polyphen) {
-            return LegendDialog.getPredictionColor((d.siftScore + (1-d.polyphenScore))/2);
-        } else if (sift && !polyphen) {
-            return LegendDialog.getPredictionColor(d.siftScore);
-        } else if (!sift && polyphen) {
-            return LegendDialog.getPredictionColor(1-d.polyphenScore);
-        } else if (d.polyphenPrediction === 'unknown') {
-            return LegendDialog.getPredictionColor(1);
+        if (externalPrediction !== undefined) {
+            return LegendDialog.getPredictionColor(externalPrediction);
         } else {
-            return LegendDialog.othersColor;
+            var predicitonScore = getPredictionScore(d.siftScore, d.siftPrediction, d.polyphenScore,
+                d.polyphenPrediction);
+            if (predicitonScore !== undefined) {
+                return LegendDialog.getPredictionColor(predicitonScore);
+            } else {
+                if (d.externalData) {
+                    var keys = _.keys(d.externalData);
+                    if (keys.length === 1) {
+                        return d.externalData[keys[0]].color || Constants.getTrackInfo(d.type).color || 'black';
+                    } else {
+                        return 'black';
+                    }
+                } else {
+                    return LegendDialog.othersColor;
+                }
+            }
         }
     }
 };
@@ -87,6 +124,16 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         })
         .attr('fill', function(d) {
             return variantsFill(d, fv);
+        })
+        .attr('stroke', function(d) {
+            if (d.externalData) {
+                var keys = _.keys(d.externalData);
+                if (keys.length != 0) {
+                    return 'black';
+                }
+            } else {
+                return '';
+            }
         })
     ;
 
@@ -218,6 +265,8 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
         dataSeries.call(series);
         if (fv.selectedFeature) {
             ViewerHelper.updateShadow(fv.selectedFeature, fv);
+        } else if (fv.shadow) {
+            ViewerHelper.updateShadow(fv.shadow, fv);
         }
     };
 

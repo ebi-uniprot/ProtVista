@@ -54,7 +54,7 @@ Category.prototype.repaint = function(data) {
     var category = this;
     if (category.viewerType === Constants.getVisualizationTypes().basic) {
         category.data = _.union(category.data, data);
-    } else { //TODO variants code
+    } else {
         _.each(category.data, function (wildAAPosition, wildIndex) {
             if ((data[wildIndex].variants.length !== 0)) {
                 if (wildAAPosition.variants.length !== 0) {

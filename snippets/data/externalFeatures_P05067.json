@@ -292,10 +292,7 @@
       "begin": "17",
       "end": "17",
       "wildType": "A",
-      "polyphenPrediction": "unknown",
-      "polyphenScore": 0.0,
-      "siftPrediction": "tolerated",
-      "siftScore": 0.97
+      "color": "violet"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -306,7 +303,8 @@
       "polyphenPrediction": "deleterious",
       "polyphenScore": 0.98,
       "siftPrediction": "tolerated",
-      "siftScore": 0.89
+      "siftScore": 0.89,
+      "color": "violet"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
