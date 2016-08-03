@@ -132,7 +132,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
                     return 'black';
                 }
             } else {
-                return '';
+                return 'none';
             }
         })
     ;
