@@ -22,7 +22,7 @@ var aaList = ['G', 'A', 'V', 'L', 'I'
     , 'P'
     , '-', '*'];
 
-var getPredictionScore = function(siftScore, siftPrediction, polyphenScore, polyphenPrediction) {
+var getPredictionColorScore = function(siftScore, siftPrediction, polyphenScore, polyphenPrediction) {
     var sift = false, polyphen = false;
     if ((polyphenPrediction !== undefined) && (polyphenPrediction !== 'unknown')) {
         polyphen = polyphenScore !== undefined ? true : false;
@@ -57,7 +57,7 @@ var variantsFill = function(d, fv) {
         var externalPrediction;
         if (d.externalData) {
             _.each(d.externalData, function (extData)  {
-                var predictionScore = getPredictionScore(extData.siftScore, extData.siftPrediction,
+                var predictionScore = getPredictionColorScore(extData.siftScore, extData.siftPrediction,
                     extData.polyphenScore, extData.polyphenPrediction);
                 if (predictionScore) {
                     externalPrediction = externalPrediction ? externalPrediction + predictionScore : predictionScore;
@@ -70,7 +70,7 @@ var variantsFill = function(d, fv) {
         if (externalPrediction !== undefined) {
             return LegendDialog.getPredictionColor(externalPrediction);
         } else {
-            var predicitonScore = getPredictionScore(d.siftScore, d.siftPrediction, d.polyphenScore,
+            var predicitonScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
                 d.polyphenPrediction);
             if (predicitonScore !== undefined) {
                 return LegendDialog.getPredictionColor(predicitonScore);
