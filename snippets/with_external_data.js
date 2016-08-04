@@ -9,6 +9,11 @@ new app(
                 url: './data/externalFeatures_',
                 authority: 'myLab',
                 useExtension: true
+            },
+            {
+                url: './data/externalVariants_',
+                authority: 'myOtherLab',
+                useExtension: true
             }
         ]
     }

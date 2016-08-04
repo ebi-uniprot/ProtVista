@@ -217,9 +217,9 @@
         }
       ],
       "wildType": "P",
-      "polyphenPrediction": "looking bad",
+      "polyphenPrediction": "looking good",
       "polyphenScore": 0.001,
-      "siftPrediction": "looking good",
+      "siftPrediction": "looking still good",
       "siftScore": 0.93
     },
     {
