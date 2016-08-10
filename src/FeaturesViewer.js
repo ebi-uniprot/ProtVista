@@ -99,9 +99,7 @@ var resetZoomAndSelection = function(fv) {
     if (fv.selectedFeature) {
         ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
     }
-    if (fv.highlight) {
-        ViewerHelper.resetHighlight(fv);
-    }
+    ViewerHelper.resetHighlight(fv);
     resetZoom(fv);
     updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
     _.each(fv.categories, function(category) {

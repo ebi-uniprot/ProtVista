@@ -34,9 +34,7 @@ var Category = function(name, data, catInfo, fv, container) {
     category.viewerContainer = category.categoryContainer.append('div')
         .attr('class', 'up_pftv_category-viewer')
         .on('mousedown', function() {
-            if (fv.highlight) {
-                ViewerHelper.resetHighlight(fv);
-            }
+            ViewerHelper.resetHighlight(fv);
         });
 
     category.tracksContainer = category.categoryContainer.append('div')
