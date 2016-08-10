@@ -7,6 +7,7 @@ var d3 = require("d3");
 var _ = require("underscore");
 var $ = require('jquery');
 var Evidence = require('./Evidence');
+var Constants = require("./Constants");
 
 var filters = [
     {
@@ -16,8 +17,8 @@ var filters = [
                 label: 'Disease',
                 on: true,
                 properties: {
-                    'association': function(associations){
-                      return _.some(associations, function(association){
+                    'association': function(variant){
+                      return _.some(variant.association, function(association){
                         return association.disease === true;
                       });
                     }
@@ -28,17 +29,27 @@ var filters = [
                 on: true,
                 properties: {
                     'alternativeSequence': /[^*]/,
-                    'sourceType':Evidence.variantSourceType.lss
+                    'sourceType': [Evidence.variantSourceType.lss, null],
+                    'externalData': function(variant){
+                        if (!variant.sourceType) {
+                            return _.some(variant.externalData, function (data) {
+                                return (data.polyphenPrediction && (data.polyphenPrediction !== '-')) ||
+                                    (data.siftPrediction && (data.siftPrediction !== '-'));
+                            });
+                        } else {
+                            return true;
+                        }
+                    }
                 },
                 colorRange: ['#ff3300','#009900']
             }, {
                 label: 'Non-disease',
                 on: true,
                 properties: {
-                    'association': function(associations){
-                        return _.every(associations, function(association){
+                    'association': function(variant){
+                        return _.every(variant.association, function(association){
                             return association.disease !== true;
-                        }) || (!associations);
+                        }) || (!variant.association);
                     },
                     'sourceType': [
                         Evidence.variantSourceType.uniprot,
@@ -53,6 +64,21 @@ var filters = [
                     'alternativeSequence': '*'
                 },
                 color: '#0033cc'
+            }, {
+                label: 'Unknown',
+                on: true,
+                properties: {
+                    'externalData': function(variant) {
+                        var noPrediction = !((variant.polyphenPrediction && (variant.polyphenPrediction !== '-')) ||
+                            (variant.siftPrediction && (variant.siftPrediction !== '-')));
+                        noPrediction = noPrediction &&_.every(variant.externalData, function(data) {
+                            return !((data.polyphenPrediction && (data.polyphenPrediction !== '-')) ||
+                                (data.siftPrediction && (data.siftPrediction !== '-')));
+                        });
+                        return variant.externalData && noPrediction;
+                    }
+                },
+                color: 'black'
             }
         ]
     },
@@ -84,11 +110,35 @@ var filters = [
     }
 ];
 
+var addSourceFilters = function() {
+    _.each(Constants.getDataSources(), function(dataSource) {
+        if (dataSource.authority !== Constants.getUniProtAuthority()) {
+            var exist = _.find(filters[1].cases, function(aCase) {
+                return aCase.label === dataSource.authority;
+            });
+            if (!exist) {
+                filters[1].cases.push({
+                    label: dataSource.authority,
+                    on: true,
+                    properties: {
+                        'externalData': function(variant, label) {
+                            var hasCustom = variant.externalData && (_.keys(variant.externalData).length !== 0);
+                            return label ? hasCustom && variant.externalData[label] : hasCustom;
+                        }
+                    },
+                    color: 'grey'
+                });
+            }
+        }
+    });
+};
+
 var VariantFilterDialog = function(container, variantViewer) {
+    addSourceFilters();
+
     var variantFilterDialog = this;
     variantFilterDialog.variantViewer = variantViewer;
-    variantFilterDialog.filters = $.extend(true, {}, filters);
-
+    variantFilterDialog.filters = $.extend(true, [], filters);
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
 
@@ -212,14 +262,14 @@ var filterData = function(filters, data) {
                     var allOfProps = _.every(_.keys(filter.properties), function(prop){
                         if(filter.properties[prop] instanceof Array) {
                             return _.some(filter.properties[prop], function(orProp){
-                                return variant[prop] === orProp;
+                                return variant[prop] == orProp;
                             });
                         } else if (typeof filter.properties[prop] === 'string') {
                             return filter.properties[prop] === variant[prop];
                         } else if (filter.properties[prop] instanceof RegExp) {
                             return filter.properties[prop].test(variant[prop]);
                         } else if (filter.properties[prop] instanceof Function) {
-                            return filter.properties[prop](variant[prop]);
+                            return filter.properties[prop](variant, filter.label);
                         } else {
                             return variant[prop] === filter.properties[prop];
                         }
