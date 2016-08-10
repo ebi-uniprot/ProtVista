@@ -93,13 +93,11 @@ ViewerHelper.updateHighlight = function(fv) {
 };
 
 ViewerHelper.resetHighlight = function(fv) {
-    //if (fv.highlight) {
         fv.highlight = undefined;
         fv.globalContainer.selectAll('.up_pftv_highlight')
             .attr('d', 'M-1,-1')
             .attr('transform', 'translate(-1,-1)');
         fv.updateHighlightSelector();
-    //}
 };
 
 ViewerHelper.selectFeature = function(feature, elem, fv) {
