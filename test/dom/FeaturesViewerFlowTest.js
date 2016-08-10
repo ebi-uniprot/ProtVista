@@ -27,27 +27,27 @@ var FeaturesData = require('./FeaturesData');
 var jQuery = require('jquery');
 var _ = require('underscore');
 
-var verifyShadowAttributes = function(containerClass, path, exactPath, translate, height, x) {
-    var categoryShadow = document.querySelector('.' + containerClass + ' .up_pftv_shadow');
+var verifyHighlightAttributes = function(containerClass, path, exactPath, translate, height, x) {
+    var categoryHighlight = document.querySelector('.' + containerClass + ' .up_pftv_highlight');
 
      if (path) {
          var transform = path.getAttribute('transform');
          transform = transform.substring(0, transform.indexOf(','));
-         assert.equal(categoryShadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
+         assert.equal(categoryHighlight.getAttribute('transform'), transform + ',0)', 'highlight translation');
      } else {
          if (translate) {
-             assert.equal(categoryShadow.getAttribute('transform'), translate, 'shadow translation');
+             assert.equal(categoryHighlight.getAttribute('transform'), translate, 'highlight translation');
          } else {
-            expect(categoryShadow.getAttribute('transform')).to.be.null;
+            expect(categoryHighlight.getAttribute('transform')).to.be.null;
          }
      }
 
      if (exactPath) {
-         assert.equal(categoryShadow.getAttribute('d'), exactPath, 'shadow path');
+         assert.equal(categoryHighlight.getAttribute('d'), exactPath, 'highlight path');
      } else {
-         var shadowPath = categoryShadow.getAttribute('d');
-         assert.equal(shadowPath.indexOf('M' + x + ','), 0, 'shadow initial x');
-         assert.notEqual(shadowPath.indexOf(',' + height + 'L'), -1, 'shadow height');
+         var highlightPath = categoryHighlight.getAttribute('d');
+         assert.equal(highlightPath.indexOf('M' + x + ','), 0, 'highlight initial x');
+         assert.notEqual(highlightPath.indexOf(',' + height + 'L'), -1, 'highlight height');
      }
 };
 
@@ -218,10 +218,10 @@ describe('FeaturesViewerFlowTest', function() {
         });
 
         it('should create one hidden vertical highlight on the category track', function() {
-            var categoryShadowGroup = document.querySelector('.up_pftv_category-container g');
-            assert.equal(categoryShadowGroup.childElementCount, 1, 'only one vertical shadow');
+            var categoryHighlightGroup = document.querySelector('.up_pftv_category-container g');
+            assert.equal(categoryHighlightGroup.childElementCount, 1, 'only one vertical highlight');
 
-            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            verifyHighlightAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
 
         it('should create 10 hidden type track elements on the category track', function() {
@@ -231,10 +231,10 @@ describe('FeaturesViewerFlowTest', function() {
         });
 
         it('should create a hidden vertical highlight on the type track', function() {
-            var typeShadow = document.querySelector('.up_pftv_track g');
-            assert.equal(typeShadow.childElementCount, 1, 'only one vertical shadow');
+            var typeHighlight = document.querySelector('.up_pftv_track g');
+            assert.equal(typeHighlight.childElementCount, 1, 'only one vertical highlight');
 
-            verifyShadowAttributes('up_pftv_track', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            verifyHighlightAttributes('up_pftv_track', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
 
         it('should create a metal in position 147', function() {
@@ -268,18 +268,18 @@ describe('FeaturesViewerFlowTest', function() {
             var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
             var svg = document.querySelector('.up_pftv_category svg');
 
-            verifyShadowAttributes('up_pftv_category', paths[0], undefined, undefined,
+            verifyHighlightAttributes('up_pftv_category', paths[0], undefined, undefined,
                 svg.getAttribute('height'), -gapRegion);
         });
 
         it('should adjust vertical highlight for type tracks', function() {
-            var typeShadow = document.querySelector('.up_pftv_track g');
-            assert.equal(typeShadow.childElementCount, 1, 'only one vertical shadow');
+            var typeHighlight = document.querySelector('.up_pftv_track g');
+            assert.equal(typeHighlight.childElementCount, 1, 'only one vertical highlight');
 
             var feature = data[0][1][firstMetalPosition];
             var paths = document.querySelectorAll("[name='" + feature.internalId + "']");
 
-            verifyShadowAttributes('up_pftv_track', paths[0], undefined, undefined,
+            verifyHighlightAttributes('up_pftv_track', paths[0], undefined, undefined,
                 document.querySelector('.up_pftv_track svg').getAttribute('height'), -gapRegion);
         });
 
@@ -320,11 +320,11 @@ describe('FeaturesViewerFlowTest', function() {
         });
 
         it('should deactivate category vertical highlight after feature deselection @147', function() {
-            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            verifyHighlightAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
 
         it('should deactivate type vertical highlight after feature deselection @147', function() {
-            verifyShadowAttributes('up_pftv_track', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            verifyHighlightAttributes('up_pftv_track', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
     });
 
@@ -371,11 +371,11 @@ describe('FeaturesViewerFlowTest', function() {
             var transform = paths[0].getAttribute('transform');
             transform = transform.substring(0, transform.indexOf(','));
 
-            var shadows = document.querySelectorAll('.up_pftv_shadow');
-            for (var i = 0; i < shadows.length; i++) {
-                var shadow = shadows[i];
-                assert.equal(shadow.getAttribute('transform'), transform + ',0)', 'shadow translation');
-                assert.equal(shadow.getAttribute('d').indexOf('M' + (-gapRegion) + ','), 0, 'shadow initial x');
+            var highlights = document.querySelectorAll('.up_pftv_highlight');
+            for (var i = 0; i < highlights.length; i++) {
+                var highlight = highlights[i];
+                assert.equal(highlight.getAttribute('transform'), transform + ',0)', 'highlight translation');
+                assert.equal(highlight.getAttribute('d').indexOf('M' + (-gapRegion) + ','), 0, 'highlight initial x');
             }
         });
     });
@@ -436,7 +436,7 @@ describe('FeaturesViewerFlowTest', function() {
             var shapePath = paths[0].getAttribute('d');
             var x = shapePath.substring(1, shapePath.indexOf(','));
 
-            verifyShadowAttributes('up_pftv_category-container', paths[0], undefined, undefined,
+            verifyHighlightAttributes('up_pftv_category-container', paths[0], undefined, undefined,
                 svg.getAttribute('height'), x);
         });
 
@@ -447,7 +447,7 @@ describe('FeaturesViewerFlowTest', function() {
             var shapePath = paths[0].getAttribute('d');
             var x = shapePath.substring(1, shapePath.indexOf(','));
 
-            verifyShadowAttributes('up_pftv_track', paths[0], undefined, undefined,
+            verifyHighlightAttributes('up_pftv_track', paths[0], undefined, undefined,
                 document.querySelector('.up_pftv_track svg').getAttribute('height'), x);
         });
     });
@@ -483,7 +483,7 @@ describe('FeaturesViewerFlowTest', function() {
             var shapePath = paths[0].getAttribute('d');
             var x = shapePath.substring(1, shapePath.indexOf(','));
 
-            verifyShadowAttributes('up_pftv_category', paths[0], undefined, undefined,
+            verifyHighlightAttributes('up_pftv_category', paths[0], undefined, undefined,
                 document.querySelector('.up_pftv_category svg').getAttribute('height'), x);
         });
     });
@@ -505,14 +505,14 @@ describe('FeaturesViewerFlowTest', function() {
             expect(instance.selectedFeature).to.be.not.undefined;
         });
 
-        it('should keep shadow after zooming-out', function() {
+        it('should keep highlight after zooming-out', function() {
             var featureMP = data[1][1][0];
             var paths = document.querySelectorAll("[name='" + featureMP.internalId + "']");
 
             var shapePath = paths[0].getAttribute('d');
             var x = shapePath.substring(1, shapePath.indexOf(','));
 
-            verifyShadowAttributes('up_pftv_category', paths[0], undefined, undefined,
+            verifyHighlightAttributes('up_pftv_category', paths[0], undefined, undefined,
                 document.querySelector('.up_pftv_category svg').getAttribute('height'), x);
         });
     });
@@ -534,7 +534,7 @@ describe('FeaturesViewerFlowTest', function() {
             var shapePath = paths[0].getAttribute('d');
             var x = shapePath.substring(1, shapePath.indexOf(','));
 
-            verifyShadowAttributes('up_pftv_category', paths[0], undefined, undefined,
+            verifyHighlightAttributes('up_pftv_category', paths[0], undefined, undefined,
                 document.querySelector('.up_pftv_category svg').getAttribute('height'), x);
         });
     });
@@ -553,7 +553,7 @@ describe('FeaturesViewerFlowTest', function() {
             assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
             expect(instance.selectedFeature).to.be.undefined;
 
-            verifyShadowAttributes('up_pftv_category', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            verifyHighlightAttributes('up_pftv_category', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
 
         it('should keep tooltip open', function() {
@@ -602,7 +602,7 @@ describe('FeaturesViewerFlowTest', function() {
             assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
             expect(instance.selectedFeature).to.be.undefined;
 
-            verifyShadowAttributes('up_pftv_category', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            verifyHighlightAttributes('up_pftv_category', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
     });
 
@@ -650,63 +650,63 @@ describe('FeaturesViewerFlowTest', function() {
             instance.deselectFeature();
             var selected = document.querySelectorAll('.up_pftv_activeFeature');
             assert.equal(selected.length, 0, 'nothing selected');
-            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            verifyHighlightAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
     });
 
     describe('highlight region', function() {
         it('should not highlight region if no input', function(){
             instance.highlightRegion();
-            assert.equal(instance.shadow, undefined, 'begin, end undefined');
-            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            assert.equal(instance.highlight, undefined, 'begin, end undefined');
+            verifyHighlightAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
 
         it('should not highlight if no begin', function() {
             instance.highlightRegion(undefined, 100);
-            assert.equal(instance.shadow, undefined, 'begin undefined, end does not matter');
-            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            assert.equal(instance.highlight, undefined, 'begin undefined, end does not matter');
+            verifyHighlightAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
 
         it('should not highlight if begin > end', function() {
             instance.highlightRegion(100, 10);
-            assert.equal(instance.shadow, undefined, 'begin > end');
-            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            assert.equal(instance.highlight, undefined, 'begin > end');
+            verifyHighlightAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
 
         it('should not highlight if non-numeric input', function() {
             instance.highlightRegion('a', 'b');
-            assert.equal(instance.shadow, undefined, 'begin, end non-numeric');
-            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            assert.equal(instance.highlight, undefined, 'begin, end non-numeric');
+            verifyHighlightAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
 
         it('should highlight region with begin < 0 and end > sequence lenght', function () {
             instance.highlightRegion(0, 1000);
-            expect(instance.shadow).to.be.not.undefined;
-            assert.equal(instance.shadow.begin, 1);
-            assert.equal(instance.shadow.end, instance.sequence.length);
+            expect(instance.highlight).to.be.not.undefined;
+            assert.equal(instance.highlight.begin, 1);
+            assert.equal(instance.highlight.end, instance.sequence.length);
 
-            verifyShadowAttributes('up_pftv_category-container', undefined,
-                ViewerHelper.shadowPath(instance.shadow, instance, 40),
+            verifyHighlightAttributes('up_pftv_category-container', undefined,
+                ViewerHelper.highlightPath(instance.highlight, instance, 40),
                 'translate(' + instance.xScale(1) + ',0)', 40, -gapRegion);
         });
 
         it('should highlight region with only begin', function () {
             instance.highlightRegion(10);
-            expect(instance.shadow).to.be.not.undefined;
-            assert.equal(instance.shadow.begin, 10);
-            assert.equal(instance.shadow.end, 10);
+            expect(instance.highlight).to.be.not.undefined;
+            assert.equal(instance.highlight.begin, 10);
+            assert.equal(instance.highlight.end, 10);
         });
 
         it('should de-highlight after feature selection', function() {
             instance.selectFeature('region', 96, 110);
-            expect(instance.shadow).to.be.undefined;
+            expect(instance.highlight).to.be.undefined;
         });
 
         it('should highlight region with valid begin < end', function () {
             instance.highlightRegion(10, 100);
-            expect(instance.shadow).to.be.not.undefined;
-            assert.equal(instance.shadow.begin, 10);
-            assert.equal(instance.shadow.end, 100);
+            expect(instance.highlight).to.be.not.undefined;
+            assert.equal(instance.highlight.begin, 10);
+            assert.equal(instance.highlight.end, 100);
         });
 
         it('should deselect after the previous highlighting', function() {
@@ -723,8 +723,8 @@ describe('FeaturesViewerFlowTest', function() {
             evtSVGUp.initMouseEvent("mouseup", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, svg);
             svg.dispatchEvent(evtSVGUp);
 
-            expect(instance.shadow).to.be.undefined;
-            verifyShadowAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
+            expect(instance.highlight).to.be.undefined;
+            verifyHighlightAttributes('up_pftv_category-container', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
         });
     });
 });
