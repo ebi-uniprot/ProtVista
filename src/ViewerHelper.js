@@ -98,36 +98,42 @@ ViewerHelper.resetHighlight = function(fv) {
             .attr('d', 'M-1,-1')
             .attr('transform', 'translate(-1,-1)');
         fv.updateHighlightSelector();
+};                         ViewerHelper.deselectFeature
+
+ViewerHelper.deselectFeature = function(fv) {
+    this.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
 };
 
 ViewerHelper.selectFeature = function(feature, elem, fv) {
-    fv.highlight = undefined;
-    var selectedElem = d3.select(elem);
-    var previousSelection = {feature: fv.selectedFeature, elem: fv.selectedFeatureElement};
-    if (feature === fv.selectedFeature) {
-        fv.selectedFeature = undefined;
-        fv.selectedFeatureElement = undefined;
-        this.resetHighlight(fv);
-    } else {
-        fv.selectedFeature = feature;
-        fv.selectedFeatureElement = elem;
-        this.updateHighlight(fv);
-    }
-    var selectedPath = selectedElem.classed('up_pftv_activeFeature');
-    fv.globalContainer.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);
-    //it is not active anymore
-    selectedElem.classed('up_pftv_activeFeature', !selectedPath);
-    fv.updateFeatureSelector();
-    if (previousSelection.feature) {
-        fv.dispatcher.featureDeselected(
-            {feature: previousSelection.feature, color: d3.select(previousSelection.elem).style("fill")}
-        );
-    }
-    if (feature !== previousSelection.feature) {
-        if (previousSelection.elem) {
-            d3.select(previousSelection.elem).classed('up_pftv_activeFeature', false);
+    if (feature && elem) {
+        fv.highlight = undefined;
+        var selectedElem = d3.select(elem);
+        var previousSelection = {feature: fv.selectedFeature, elem: fv.selectedFeatureElement};
+        if (feature === fv.selectedFeature) {
+            fv.selectedFeature = undefined;
+            fv.selectedFeatureElement = undefined;
+            this.resetHighlight(fv);
+        } else {
+            fv.selectedFeature = feature;
+            fv.selectedFeatureElement = elem;
+            this.updateHighlight(fv);
         }
-        fv.dispatcher.featureSelected({feature: fv.selectedFeature, color: selectedElem.style("fill")});
+        var selectedPath = selectedElem.classed('up_pftv_activeFeature');
+        fv.globalContainer.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);
+        //it is not active anymore
+        selectedElem.classed('up_pftv_activeFeature', !selectedPath);
+        fv.updateFeatureSelector();
+        if (previousSelection.feature) {
+            fv.dispatcher.featureDeselected(
+                {feature: previousSelection.feature, color: d3.select(previousSelection.elem).style("fill")}
+            );
+        }
+        if (feature !== previousSelection.feature) {
+            if (previousSelection.elem) {
+                d3.select(previousSelection.elem).classed('up_pftv_activeFeature', false);
+            }
+            fv.dispatcher.featureSelected({feature: fv.selectedFeature, color: selectedElem.style("fill")});
+        }
     }
 };
 

@@ -96,9 +96,7 @@ var resetZoomAndSelection = function(fv) {
         1,
         fv.maxPos
     ]);
-    if (fv.selectedFeature) {
-        ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
-    }
+    ViewerHelper.deselectFeature(fv);
     ViewerHelper.resetHighlight(fv);
     resetZoom(fv);
     updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
@@ -566,10 +564,7 @@ FeaturesViewer.prototype.getDispatcher = function() {
 
 FeaturesViewer.prototype.deselectFeature = function() {
     var fv = this;
-
-    if (fv.selectedFeature) {
-        ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
-    }
+    ViewerHelper.deselectFeature(fv);
 };
 
 FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequence) {
