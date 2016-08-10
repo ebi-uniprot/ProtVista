@@ -308,7 +308,7 @@ var addPredictions = function(tooltip, data) {
     }
 };
 
-var havePredictions = function(data) {
+var hasPredictions = function(data) {
     var response = false;
     if (data.frequency && (data.frequency !== 0)) {
         response = true;
@@ -410,7 +410,7 @@ var addUPSection = function(tooltip, upEvidences, upXrefs) {
 var addSection = function(tooltip, data, description, evidences, xrefs, sectionTitle) {
     var hasEvidences = evidences && _.keys(evidences).length !== 0;
     xrefs = xrefs ? xrefs : [];
-    if (description || (hasEvidences) || havePredictions(data) || (xrefs.length !== 0)) {
+    if (description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0)) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         lssRow.append('td').attr('colspan',2).text(sectionTitle);
         addDescription(tooltip, description);
