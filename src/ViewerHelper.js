@@ -33,7 +33,7 @@ var ViewerHelper = function() {
                 svg.attr('class', clazz);
             }
             svg.append('g').append('path')
-                .classed('up_pftv_shadow', true)
+                .classed('up_pftv_highlight', true)
                 .attr('d', 'M-1,-1')
                 .attr('transform', 'translate(-1,-1)')
                 .attr('height', height);
@@ -43,7 +43,7 @@ var ViewerHelper = function() {
     };
 }();
 
-ViewerHelper.shadowPath = function (feature, fv, height) {
+ViewerHelper.highlightPath = function (feature, fv, height) {
     var aaWidth = fv.xScale(2) - fv.xScale(1);
     var gapRegion = aaWidth/2;
     var width = aaWidth * (feature.end ? feature.end - feature.begin + 1 : 1);
@@ -70,39 +70,39 @@ ViewerHelper.shadowPath = function (feature, fv, height) {
     return path;
 };
 
-ViewerHelper.updateShadow = function(feature, fv) {
+ViewerHelper.updateHighlight = function(feature, fv) {
     var xTranslate = fv.xScale(feature.begin);
-    fv.globalContainer.selectAll('.up_pftv_shadow')
+    fv.globalContainer.selectAll('.up_pftv_highlight')
         .attr('d', function() {
             var height = d3.select(this).attr('height');
-            return ViewerHelper.shadowPath(feature, fv, height);
+            return ViewerHelper.highlightPath(feature, fv, height);
         })
         .attr('transform', 'translate(' + xTranslate + ',0)');
-    if (fv.shadow) {
-        fv.updateShadowSelector();
+    if (fv.highlight) {
+        fv.updateHighlightSelector();
     }
 };
 
-ViewerHelper.resetShadow = function(fv) {
-    fv.shadow = undefined;
-    fv.globalContainer.selectAll('.up_pftv_shadow')
+ViewerHelper.resetHighlight = function(fv) {
+    fv.highlight = undefined;
+    fv.globalContainer.selectAll('.up_pftv_highlight')
         .attr('d', 'M-1,-1')
         .attr('transform', 'translate(-1,-1)');
-    fv.updateShadowSelector();
+    fv.updateHighlightSelector();
 };
 
 ViewerHelper.selectFeature = function(feature, elem, fv) {
-    fv.shadow = undefined;
+    fv.highlight = undefined;
     var selectedElem = d3.select(elem);
     var previousSelection = {feature: fv.selectedFeature, elem: fv.selectedFeatureElement};
     if (feature === fv.selectedFeature) {
         fv.selectedFeature = undefined;
         fv.selectedFeatureElement = undefined;
-        this.resetShadow(fv);
+        this.resetHighlight(fv);
     } else {
         fv.selectedFeature = feature;
         fv.selectedFeatureElement = elem;
-        this.updateShadow(feature, fv);
+        this.updateHighlight(feature, fv);
     }
     var selectedPath = selectedElem.classed('up_pftv_activeFeature');
     fv.globalContainer.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);

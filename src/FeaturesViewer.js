@@ -99,8 +99,8 @@ var resetZoomAndSelection = function(fv) {
     if (fv.selectedFeature) {
         ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
     }
-    if (fv.shadow) {
-        ViewerHelper.resetShadow(fv);
+    if (fv.highlight) {
+        ViewerHelper.resetHighlight(fv);
     }
     resetZoom(fv);
     updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
@@ -266,7 +266,6 @@ var createButtons = function(fv, data, container) {
         .attr('title','Highlight region')
         .on('click', function(){
             HighlightRegionDialog.displayDialog(fv, buttons);
-            //fv.highlightRegion(10, 230);
         });
     buttons.append('span')
         .attr('class','fv-icon-zoom-in')
@@ -299,7 +298,7 @@ var createAAViewer = function(fv, container, sequence) {
                 aminoAcids.enter().append('path');
                 aminoAcids
                     .attr('d', function(d) {
-                        return ViewerHelper.shadowPath(d.feature, fv, aaViewHeight);
+                        return ViewerHelper.highlightPath(d.feature, fv, aaViewHeight);
                     })
                     .attr('transform', function(d) {
                         return 'translate(' + fv.xScale(d.feature.begin) + ',0)';
@@ -372,9 +371,9 @@ var createAAViewer = function(fv, container, sequence) {
         }
     };
 
-    aaViewer.updateShadow = function() {
-        if (fv.shadow) {
-            selectorGroup.datum([{"feature": fv.shadow}]).call(selectorSeries);
+    aaViewer.updateHighlight = function() {
+        if (fv.highlight) {
+            selectorGroup.datum([{"feature": fv.highlight}]).call(selectorSeries);
         } else {
             if (!fv.selectedFeature) {
                 selectorGroup.datum([{"feature": {"begin": -10, "end": -10}}]).call(selectorSeries);
@@ -558,9 +557,9 @@ FeaturesViewer.prototype.updateFeatureSelector = function() {
     this.aaViewer2.selectFeature();
 };
 
-FeaturesViewer.prototype.updateShadowSelector = function() {
-    this.aaViewer.updateShadow();
-    this.aaViewer2.updateShadow();
+FeaturesViewer.prototype.updateHighlightSelector = function() {
+    this.aaViewer.updateHighlight();
+    this.aaViewer2.updateHighlight();
 };
 
 FeaturesViewer.prototype.getDispatcher = function() {
@@ -629,8 +628,8 @@ FeaturesViewer.prototype.highlightRegion = function(begin, end) {
         : begin;
     if ((1 <= begin) && (begin <= end) && (end <= fv.sequence.length)) {
         fv.deselectFeature();
-        fv.shadow = {begin: begin, end: end, type:'continuous'};
-        ViewerHelper.updateShadow(fv.shadow, fv);
+        fv.highlight = {begin: begin, end: end, type:'continuous'};
+        ViewerHelper.updateHighlight(fv.highlight, fv);
         fv.dispatcher.regionHighlighted({begin: begin, end: end});
     }
 };
