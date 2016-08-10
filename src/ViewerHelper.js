@@ -70,7 +70,16 @@ ViewerHelper.highlightPath = function (feature, fv, height) {
     return path;
 };
 
-ViewerHelper.updateHighlight = function(feature, fv) {
+ViewerHelper.updateHighlight = function(fv) {
+    var feature;
+    if (fv.selectedFeature) {
+        feature = fv.selectedFeature;
+    } else if (fv.highlight) {
+        feature = fv.highlight;
+    } else {
+        return;
+    }
+
     var xTranslate = fv.xScale(feature.begin);
     fv.globalContainer.selectAll('.up_pftv_highlight')
         .attr('d', function() {
@@ -102,7 +111,7 @@ ViewerHelper.selectFeature = function(feature, elem, fv) {
     } else {
         fv.selectedFeature = feature;
         fv.selectedFeatureElement = elem;
-        this.updateHighlight(feature, fv);
+        this.updateHighlight(fv);
     }
     var selectedPath = selectedElem.classed('up_pftv_activeFeature');
     fv.globalContainer.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);

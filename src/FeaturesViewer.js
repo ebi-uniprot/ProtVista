@@ -629,7 +629,7 @@ FeaturesViewer.prototype.highlightRegion = function(begin, end) {
     if ((1 <= begin) && (begin <= end) && (end <= fv.sequence.length)) {
         fv.deselectFeature();
         fv.highlight = {begin: begin, end: end, type:'continuous'};
-        ViewerHelper.updateHighlight(fv.highlight, fv);
+        ViewerHelper.updateHighlight(fv);
         fv.dispatcher.regionHighlighted({begin: begin, end: end});
     }
 };

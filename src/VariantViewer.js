@@ -216,11 +216,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
 
     this.update = function() {
         dataSeries.call(series);
-        if (fv.selectedFeature) {
-            ViewerHelper.updateHighlight(fv.selectedFeature, fv);
-        } else if (fv.highlight) {
-            ViewerHelper.updateHighlight(fv.highlight, fv);
-        }
+        ViewerHelper.updateHighlight(fv);
     };
 
     this.updateData = function(data) {
