@@ -3,7 +3,6 @@
 "use strict" ;
 
 var d3 = require("d3");
-var _ = require("underscore");
 var TooltipFactory = require("./TooltipFactory");
 var FeatureFactory = require("./FeatureFactory");
 
@@ -70,6 +69,16 @@ ViewerHelper.highlightPath = function (feature, fv, height) {
     return path;
 };
 
+ViewerHelper.updateFeatureHighlightSelector = function(fv) {
+    if (fv.selectedFeature) {
+        fv.updateFeatureHighlightSelector(fv.selectedFeature.begin, fv.selectedFeature.end);
+    } else if (fv.highlight) {
+        fv.updateFeatureHighlightSelector(fv.highlight.begin, fv.highlight.end);
+    } else {
+        fv.updateFeatureHighlightSelector(-10, -10);
+    }
+};
+
 ViewerHelper.updateHighlight = function(fv) {
     var feature;
     if (fv.selectedFeature) {
@@ -87,9 +96,7 @@ ViewerHelper.updateHighlight = function(fv) {
             return ViewerHelper.highlightPath(feature, fv, height);
         })
         .attr('transform', 'translate(' + xTranslate + ',0)');
-    if (fv.highlight) {
-        fv.updateHighlightSelector();
-    }
+    this.updateFeatureHighlightSelector(fv);
 };
 
 ViewerHelper.resetHighlight = function(fv) {
@@ -97,8 +104,8 @@ ViewerHelper.resetHighlight = function(fv) {
         fv.globalContainer.selectAll('.up_pftv_highlight')
             .attr('d', 'M-1,-1')
             .attr('transform', 'translate(-1,-1)');
-        fv.updateHighlightSelector();
-};                         ViewerHelper.deselectFeature
+        this.updateFeatureHighlightSelector(fv);
+};
 
 ViewerHelper.deselectFeature = function(fv) {
     this.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
@@ -122,7 +129,6 @@ ViewerHelper.selectFeature = function(feature, elem, fv) {
         fv.globalContainer.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);
         //it is not active anymore
         selectedElem.classed('up_pftv_activeFeature', !selectedPath);
-        fv.updateFeatureSelector();
         if (previousSelection.feature) {
             fv.dispatcher.featureDeselected(
                 {feature: previousSelection.feature, color: d3.select(previousSelection.elem).style("fill")}

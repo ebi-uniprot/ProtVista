@@ -367,23 +367,10 @@ var createAAViewer = function(fv, container, sequence) {
         }
     };
 
-    aaViewer.updateHighlight = function() {
-        if (fv.highlight) {
-            selectorGroup.datum([{"feature": fv.highlight}]).call(selectorSeries);
-        } else {
-            if (!fv.selectedFeature) {
-                selectorGroup.datum([{"feature": {"begin": -10, "end": -10}}]).call(selectorSeries);
-            }
-        }
+    aaViewer.updateFeatureHighlightSelector = function(begin, end) {
+        selectorGroup.datum([{"feature": {"begin": begin, "end": end}}]).call(selectorSeries);
     };
 
-    aaViewer.selectFeature = function() {
-        if (fv.selectedFeature) {
-            selectorGroup.datum([{"feature": fv.selectedFeature}]).call(selectorSeries);
-        } else {
-            selectorGroup.datum([{"feature": {"begin": -10, "end": -10}}]).call(selectorSeries);
-        }
-    };
     return aaViewer;
 };
 
@@ -548,14 +535,9 @@ FeaturesViewer.prototype.getCategoryTitle = function(type) {
     return category ? category[0] : undefined;
 };
 
-FeaturesViewer.prototype.updateFeatureSelector = function() {
-    this.aaViewer.selectFeature();
-    this.aaViewer2.selectFeature();
-};
-
-FeaturesViewer.prototype.updateHighlightSelector = function() {
-    this.aaViewer.updateHighlight();
-    this.aaViewer2.updateHighlight();
+FeaturesViewer.prototype.updateFeatureHighlightSelector = function(begin, end) {
+    this.aaViewer.updateFeatureHighlightSelector(begin, end);
+    this.aaViewer2.updateFeatureHighlightSelector(begin, end);
 };
 
 FeaturesViewer.prototype.getDispatcher = function() {
