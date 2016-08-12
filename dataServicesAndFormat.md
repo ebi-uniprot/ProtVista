@@ -10,14 +10,16 @@ title: Data sources and data format
 - [Default data sources](#default-data-sources)
   - [Default categories and types](#default-categories-and-types)
   - [Excluding categories](#excluding-categories)
+- [Data format](#data-format)
+  - [Basic visualization](#basic-visualization)
+  - [Variant visualization](#variant-visualization)
 - [Adding your sources](#adding-your-sources)
   - [Distinguishing your features](#distinguishing-your-features)
     - [Using a color](#using-a-color)
     - [Using customized categories or types](#using-customized-categories-or-types)
   - [Further customization](#further-customization)
-- [Data format](#data-format)
-  - [Basic visualization](#basic-visualization)
-  - [Variant visualization](#variant-visualization)
+    - [Defatult configuration](#default-configuration)
+    - [Customized configuration](#customized-configuration)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -65,6 +67,230 @@ You can always exclude those categories you are not interested in, for instance:
     });
   }
 </script>
+```
+
+# Data format
+
+All data sources are expected to provide a sequence and a list of features. The sequence is mandatory so the sequence length can be loaded as soon as the first data source has been resolved. The sequence length is used for layout calculations.
+
+This is how a response with no features looks like:
+
+```
+{
+  "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDS",
+  "features": []
+}
+```
+
+## Basic visualization
+
+A basic visualization is used for all sort of features but natural variants. Here is the data format for basic features.
+
+```
+{
+  "type": String - mandatory
+  "category": String - mandatory - no spaces, use _ instead
+  "ftId": String - optional
+  "description": String - optional
+  "begin": Integer string or integer - mandatory - it must be a valid position within the sequence
+  "end": Integer string or integer - mandatory - it must be a valid position within the sequence
+  "alternativeSequence": String - optional - to be used for Mutagenesis and Conflict feature types
+  "color": String - optional - will be used if provided, should be a valid color
+  "evidences": Array - optional
+  [
+    {
+       "code": String - mandatory - should be a valid ECO code
+       "source": Object - optional
+       {
+         "name": String - mandatory
+         "id": String - mandatory
+         "url": String - optional - should be a valid URL
+       }
+    }
+  ]
+}
+```
+
+Examples of valid basic features:
+
+```
+"features": [
+  {
+    "type": "TOPO_DOM",
+    "category": "TOPOLOGY",
+    "description": "Cytoplasmic",
+    "begin": "724",
+    "end": "770",
+    "evidences": [
+      {
+        "code": "ECO:0000255"
+      }
+    ]
+  },
+  {
+    "type": "TRANSMEM",
+    "category": "TOPOLOGY",
+    "begin": "700",
+    "end": "723"
+  },
+  {
+    "type": "MY_TRANSMEM",
+    "category": "TOPOLOGY",
+    "begin": "708",
+    "end": "723"
+  },
+  {
+    "type": "ACT_SITE",
+    "category": "MY_CATEGORY",
+    "begin": "600",
+    "end": "600",
+    "color": "#00F5B8"
+  },
+  {
+    "type": "MY_REGIOM",
+    "category": "MY_CATEGORY",
+    "begin": "610",
+    "end": "623",
+    "color": "#FF7094"
+  },
+  {
+    "type": "SIGNAL",
+    "category": "MOLECULE_PROCESSING",
+    "description": "",
+    "begin": "1",
+    "end": "17",
+    "color:" "#FF3366",
+    "evidences": [
+      {
+        "code": "ECO:0000269",
+        "source": {
+          "name": "PubMed",
+          "id": "12665801",
+          "url": "http://www.ncbi.nlm.nih.gov/pubmed/12665801"
+        }
+      },
+      {
+        "code": "ECO:0000269",
+        "source": {
+          "name": "PubMed",
+          "id": "2900137",
+          "url": "http://www.ncbi.nlm.nih.gov/pubmed/2900137"
+        }
+      }
+    ]
+  }
+]
+```
+
+## Variant visualization
+
+The variant visualization is used only for natural variations. Using the variant visualization will result in [customized visualization for variants](./userGuide.html#natural-variant-track). Keep in mind that variants require more data than other features.
+
+Here is the data format for the variant features:
+
+```
+{
+  "category": "VARIATION" - mandatory
+  "type": "VARIANT" - mandatory
+  "ftId": String - optional
+  "description": String - optional
+  "begin": Integer string or integer - mandatory - it must be a valid position within the sequence
+  "end": Integer string or integer - mandatory - it must be a valid position within the sequence
+  "alternativeSequence": String - mandatory - '-' must be used for deletions, '*' for stop gained and stop lost
+  "wildType": String - mandatory
+  "color": String - optional - will be used if provided and no prediction is available and no other external source is defined, should be a valid color
+  "polyphenPrediction": String - optional
+  "polyphenScore": ​double - optional - most probably present if polyphenPrediction is known
+  "siftPrediction": String - optional
+  "siftScore": double - optional - most probably present if siftPrediction is known
+  "evidences": Array - optional
+  [
+    {
+       "code": String - mandatory - should be a valid ECO code
+       "source": Object - optional
+       {
+         "name": String - mandatory
+         "id": String - mandatory
+         "url": String - optional - should be a valid URL
+       }
+    }
+  ],
+  "xrefs": Array - optional
+  [
+    {
+      "name": String - mandatory
+      "id": String - mandatory
+      "url": String - optional - should be a valid URL
+    }
+  ]
+}
+```
+
+Examples of valid variant features:
+
+```
+"features": [
+  {
+      "category": "VARIATION",
+      "type": "VARIANT",
+      "ftId": "MYVAR_010109",
+      "alternativeSequence": "P",
+      "begin": "723",
+      "end": "723",
+      "wildType": "L",
+      "description": "missense, known association with Alzheimer disease"
+  },
+  {
+      "category": "VARIATION",
+      "type": "VARIANT",
+      "alternativeSequence": "R",
+      "begin": "71",
+      "end": "71",
+      "xrefs": [
+        {
+          "name": "ExAC",
+          "id": "rs757264249",
+          "url": "http://exac.broadinstitute.org/dbsnp/rs757264249"
+        }
+      ],
+      "wildType": "Q",
+      "polyphenPrediction": "benign",
+      "polyphenScore": ​0.0,
+      "siftPrediction": "deleterious",
+      "siftScore": ​0.02
+  },
+  {
+    "category": "VARIATION",
+    "type": "VARIANT",
+    "description": "primary tissue(s): large intestine",
+    "alternativeSequence": "L",
+    "begin": "727",
+    "end": "727",
+    "color": "violet",
+    "xrefs": [
+      {
+        "name": "my_data curated",
+        "id": "CUR1413494",
+        "url": "http://mydomain/overview?id=1413494"
+      }
+    ],
+    "evidences": [
+      {
+        "code": "ECO:0000313",
+        "source": {
+          "name": "internal_study",
+          "id": "STUDY:376",
+          "url": "http://mydomain/overview?study_id=376"
+        }
+      }
+    ],
+    "wildType": "Q",
+    "polyphenPrediction": "benign",
+    "polyphenScore": ​0.4,
+    "siftPrediction": "deleterious",
+    "siftScore": ​0.04
+  }
+]
 ```
 
 # Adding your sources
@@ -262,7 +488,7 @@ You can specify your configuration file as an option when instantiating ProtVist
 </script>
 ```
 
-**Default configuration**
+### Default configuration
 The default configuration file can be found at <https://github.com/ebi-uniprot/ProtVista/blob/master/src/config.json> . It is also provided inline here. Each category include a visualization type. The "basic" visualization type is used for all features but variants. For variants we have a specialized matrix-based visualization type "variant". No other types are currently supported.
 
 If you need to use a configuration file, you will have to include there all categories and types to be configured.
@@ -481,233 +707,8 @@ If you need to use a configuration file, you will have to include there all cate
 }
 ```
 
-**Customized configuration**
+### Customized configuration
 If you want, for instance, to localize your custom category MODIFICATIONS below PTM and change the default yellow-brown-ish color to a pinky one for the feature type CHAIN, you would need to modify and provide a configuration file.
 
 You could get then a visualization like
 ![](./images/customCategoriesAndTypesAndConfig.png)
-
-# Data format
-
-All data sources are expected to provide a sequence and a list of features. The sequence is mandatory so the sequence length can be loaded as soon as the first data source has been resolved. The sequence length is used for layout calculations.
-
-This is how a response with no features looks like:
-
-```
-{
-  "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDS",
-  "features": []
-}
-```
-
-## Basic visualization
-
-A basic visualization is used for all sort of features but natural variants. Here is the data format for basic features.
-
-```
-{
-  "type": String - mandatory
-  "category": String - mandatory - no spaces, use _ instead
-  "ftId": String - optional
-  "description": String - optional
-  "begin": Integer string or integer - mandatory - it must be a valid position within the sequence
-  "end": Integer string or integer - mandatory - it must be a valid position within the sequence
-  "alternativeSequence": String - optional - useful for Mutagenesis and Conflict feature types
-  "color": String - optional - will be used if provided, should be a valid color
-  "evidences": Array - optional
-  [
-    {
-       "code": String - mandatory - should be a valid ECO code
-       "source": Object - optional
-       {
-         "name": String - mandatory
-         "id": String - mandatory
-         "url": String - optional - should be a valid URL
-       }
-    }
-  ]
-}
-```
-
-Examples of valid basic features:
-
-```
-"features": [
-  {
-    "type": "TOPO_DOM",
-    "category": "TOPOLOGY",
-    "description": "Cytoplasmic",
-    "begin": "724",
-    "end": "770",
-    "evidences": [
-      {
-        "code": "ECO:0000255"
-      }
-    ]
-  },
-  {
-    "type": "TRANSMEM",
-    "category": "TOPOLOGY",
-    "begin": "700",
-    "end": "723"
-  },
-  {
-    "type": "MY_TRANSMEM",
-    "category": "TOPOLOGY",
-    "begin": "708",
-    "end": "723"
-  },
-  {
-    "type": "ACT_SITE",
-    "category": "MY_CATEGORY",
-    "begin": "600",
-    "end": "600",
-    "color": "#00F5B8"
-  },
-  {
-    "type": "MY_REGIOM",
-    "category": "MY_CATEGORY",
-    "begin": "610",
-    "end": "623",
-    "color": "#FF7094"
-  },
-  {
-    "type": "SIGNAL",
-    "category": "MOLECULE_PROCESSING",
-    "description": "",
-    "begin": "1",
-    "end": "17",
-    "color:" "#FF3366",
-    "evidences": [
-      {
-        "code": "ECO:0000269",
-        "source": {
-          "name": "PubMed",
-          "id": "12665801",
-          "url": "http://www.ncbi.nlm.nih.gov/pubmed/12665801"
-        }
-      },
-      {
-        "code": "ECO:0000269",
-        "source": {
-          "name": "PubMed",
-          "id": "2900137",
-          "url": "http://www.ncbi.nlm.nih.gov/pubmed/2900137"
-        }
-      }
-    ]
-  }
-]
-```
-
-## Variant visualization
-
-The variant visualization is used only for natural variations. Using the variant visualization will result in [customized visualization for variants](./userGuide.html#natural-variant-track). Keep in mind that variants require more data than other features.
-
-Here is the data format for the variant features:
-
-```
-{
-  "type": "VARIANT" - mandatory
-  "ftId": String - optional
-  "description": String - optional
-  "begin": Integer string or integer - mandatory - it must be a valid position within the sequence
-  "end": Integer string or integer - mandatory - it must be a valid position within the sequence
-  "alternativeSequence": String - mandatory - '-' must be used for deletions, '*' for stop gained and stop lost
-  "wildType": String - mandatory
-  "color": String - optional - will be used if provided, should be a valid color
-  "polyphenPrediction": String - optional
-  "polyphenScore": ​double - optional - most probably present if polyphenPrediction is known
-  "siftPrediction": String - optional
-  "siftScore": double - optional - most probably present if siftPrediction is known
-  "sourceType": "custom_data" - mandatory - other types are allowed for data provided by UniProt
-  "evidences": Array - optional
-  [
-    {
-       "code": String - mandatory - should be a valid ECO code
-       "source": Object - optional
-       {
-         "name": String - mandatory
-         "id": String - mandatory
-         "url": String - optional - should be a valid URL
-       }
-    }
-  ],
-  "xrefs": Array - optional
-  [
-    {
-      "name": String - mandatory
-      "id": String - mandatory
-      "url": String - optional - should be a valid URL
-    }
-  ]
-}
-```
-
-Examples of valid variant features:
-
-```
-"features": [
-  {
-      "type": "VARIANT",
-      "ftId": "VAR_010109",
-      "alternativeSequence": "P",
-      "begin": "723",
-      "end": "723",
-      "wildType": "L",
-      "description": "missense, known association with Alzheimer disease",
-      "sourceType": "custom_data"
-  },
-  {
-      "type": "VARIANT",
-      "alternativeSequence": "R",
-      "begin": "71",
-      "end": "71",
-      "xrefs": [
-        {
-          "name": "ExAC",
-          "id": "rs757264249",
-          "url": "http://exac.broadinstitute.org/dbsnp/rs757264249"
-        }
-      ],
-      "wildType": "Q",
-      "polyphenPrediction": "benign",
-      "polyphenScore": ​0.0,
-      "siftPrediction": "deleterious",
-      "siftScore": ​0.02,
-      "sourceType": "custom_data"
-  },
-  {
-    "type": "VARIANT",
-    "description": "primary tissue(s): large intestine",
-    "alternativeSequence": "L",
-    "begin": "727",
-    "end": "727",
-    "color": "violet",
-    "xrefs": [
-      {
-        "name": "my_data curated",
-        "id": "CUR1413494",
-        "url": "http://mydomain/overview?id=1413494"
-      }
-    ],
-    "evidences": [
-      {
-        "code": "ECO:0000313",
-        "source": {
-          "name": "internal_study",
-          "id": "STUDY:376",
-          "url": "http://mydomain/overview?study_id=376"
-        }
-      }
-    ],
-    "wildType": "Q",
-    "polyphenPrediction": "benign",
-    "polyphenScore": ​0.4,
-    "siftPrediction": "deleterious",
-    "siftScore": ​0.04,
-    "sourceType": "custom_data"
-  }
-]
-```
-
