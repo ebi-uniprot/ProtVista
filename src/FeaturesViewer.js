@@ -368,7 +368,7 @@ var createAAViewer = function(fv, container, sequence) {
     };
 
     aaViewer.updateFeatureHighlightSelector = function(begin, end) {
-        selectorGroup.datum([{"feature": {"begin": begin, "end": end}}]).call(selectorSeries);
+        selectorGroup.datum([{"feature": {"begin": begin, "end": end, "type": 'continuous'}}]).call(selectorSeries);
     };
 
     return aaViewer;
