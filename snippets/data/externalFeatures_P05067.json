@@ -3,6 +3,7 @@
   "features": [
     {
       "type": "UNIQUE_MAXQ",
+      "ftId": "this is my id",
       "category": "PROTEOMICS",
       "description": "MaxQuant",
       "begin": "17",

@@ -104,11 +104,11 @@ var parseVariantDescription = function(data) {
     }
 };
 
-var addFtId = function(tooltip) {
-    if (tooltip.data.ftId) {
+var addFtId = function(tooltip, ftId) {
+    if (ftId) {
         var dataId = tooltip.table.append('tr');
         dataId.append('td').text('Feature ID');
-        dataId.append('td').text(tooltip.data.ftId);
+        dataId.append('td').text(ftId);
     }
 };
 
@@ -161,26 +161,29 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
         var dataSource = tooltip.table.append('tr');
         dataSource.append('td').text('Source');
         var sourceText = '';
+        var isUniProt = false, isLSS = false;
         if (tooltip.data.sourceType === Evidence.variantSourceType.mixed) {
             sourceText = keys ? 'UniProt, large scale studies and custom data (' + keys + ')'
                 : 'UniProt and large scale studies';
         } else if (tooltip.data.sourceType === Evidence.variantSourceType.uniprot) {
+            isUniProt = true;
             sourceText = keys ? 'UniProt and custom data (' + keys + ')' : 'UniProt';
-        } else if (tooltip.data.sourceType === Evidence.variantSourceType.lss){
+        } else if (tooltip.data.sourceType === Evidence.variantSourceType.lss) {
+            isLSS = true;
             sourceText = keys ? 'Large scale studies and custom data (' + keys + ')' : 'Large scale studies';
         } else {
             sourceText = 'Custom data (' + keys + ')';
         }
         dataSource.append('td').text(sourceText);
         parseVariantDescription(tooltip.data);
-        if (sourceText === 'UniProt') {
-            addFtId(tooltip);
+        if (isUniProt) {
+            addFtId(tooltip, tooltip.data.ftId);
             addDescription(tooltip, tooltip.data.up_description, 'up_description');
-        } else if (sourceText === 'Large scale studies'){
+        } else if (isLSS){
             addDescription(tooltip, tooltip.data.lss_description, 'lss_description');
         }
     } else {
-        addFtId(tooltip);
+        addFtId(tooltip, tooltip.data.ftId);
         addDescription(tooltip, tooltip.data.description, 'description');
     }
 };
@@ -399,7 +402,7 @@ var addUPSection = function(tooltip, upEvidences, upXrefs) {
     if (tooltip.data.ftId || tooltip.data.up_description || (upEvidences.length !== 0) || tooltip.data.association) {
         var upRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         upRow.append('td').attr('colspan',2).text('UniProt');
-        addFtId(tooltip);
+        addFtId(tooltip, tooltip.data.ftId);
         addDescription(tooltip, tooltip.data.up_description, 'up_description');
         tooltip.addEvidences(upEvidences);
         addXRefs(tooltip, upXrefs);
@@ -407,12 +410,13 @@ var addUPSection = function(tooltip, upEvidences, upXrefs) {
     }
 };
 
-var addSection = function(tooltip, data, description, evidences, xrefs, sectionTitle) {
+var addSection = function(tooltip, data, ftId, description, evidences, xrefs, sectionTitle) {
     var hasEvidences = evidences && _.keys(evidences).length !== 0;
     xrefs = xrefs ? xrefs : [];
-    if (description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0)) {
+    if (data.ftId || description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0)) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         lssRow.append('td').attr('colspan',2).text(sectionTitle);
+        addFtId(tooltip, ftId);
         addDescription(tooltip, description);
         addPredictions(tooltip, data);
         tooltip.addEvidences(evidences);
@@ -440,7 +444,8 @@ var VariantTooltipViewer = function(tooltip) {
         });
         addMutation(tooltip);
         addUPSection(tooltip, upEvidences, upXrefs);
-        addSection(tooltip, tooltip.data, tooltip.data.lss_description, lssEvidences, lssXrefs, 'Large Scale Studies');
+        addSection(tooltip, tooltip.data, undefined, tooltip.data.lss_description, lssEvidences, lssXrefs, 'Large' +
+            ' Scale Studies');
     } else {
         addMutation(tooltip);
         addPredictions(tooltip, tooltip.data);
@@ -449,7 +454,7 @@ var VariantTooltipViewer = function(tooltip) {
         addAssociation(tooltip);
     }
     _.each(tooltip.data.externalData, function(data, key) {
-        addSection(tooltip, data, data.description, data.evidences, data.xrefs, key);
+        addSection(tooltip, data, data.ftId, data.description, data.evidences, data.xrefs, key);
     });
 };
 
