@@ -20,8 +20,7 @@ var ViewerHelper = function() {
                 })
                 .on('mouseup', function() {
                     mouseupXY = {x: d3.event.pageX, y: d3.event.pageY};
-                    if ((mousedownXY.x === mouseupXY.x) && (mousedownXY.y === mouseupXY.y)
-                        && !fv.overFeature) {
+                    if ((mousedownXY.x === mouseupXY.x) && (mousedownXY.y === mouseupXY.y) && !fv.overFeature) {
                         if (fv.selectedFeature) {
                             ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
                         } else if (fv.highlight) {
