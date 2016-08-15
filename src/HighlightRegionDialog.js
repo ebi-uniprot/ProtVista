@@ -82,7 +82,7 @@ var createDialog = function (fv, container) {
         .text('x')
         .attr('class','up_pftv_tooltip-close')
         .on('click',function(){
-            fv.overCatFilterDialog = false;
+            fv.overHighlightRegionDialog = false;
             wrapper.transition(20)
                 .style('opacity',0)
                 .style('display','none');
