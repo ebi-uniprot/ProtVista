@@ -465,7 +465,8 @@ describe('FeaturesViewerFlowTest', function() {
             assert.equal(path.getAttribute('transform'), 'translate(' + instance.xScale(+feature.begin) + ',5)'
                 , 'translated metal');
 
-            verifyViewPortAttributes(true, false, 'M0,50L0,48L10,28L10,40L38.86866059817945,40L38.86866059817945,28L760,48L760,50Z', 1);
+            verifyViewPortAttributes(true, false,
+                'M0,50L0,48L10,28L10,40L39.83094928478544,40L39.83094928478544,28L760,48L760,50Z', 1);
         });
 
         it('should display only zoom-out button', function() {
@@ -578,7 +579,8 @@ describe('FeaturesViewerFlowTest', function() {
             zoomInButton.dispatchEvent(inEvent); //zoom in
             flushAllD3Transitions();
 
-            verifyViewPortAttributes(false, false, 'M0,50L0,48L10,28L10,40L37.90637191157347,40L37.90637191157347,28L760,48L760,50Z', 1);
+            verifyViewPortAttributes(false, false,
+                'M0,50L0,48L10,28L10,40L38.86866059817945,40L38.86866059817945,28L760,48L760,50Z', 1);
         });
     });
 
