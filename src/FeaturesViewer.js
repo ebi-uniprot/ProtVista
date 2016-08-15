@@ -54,22 +54,9 @@ var updateZoomButton = function(fv, currentClass, newClass, newTitle) {
 var zoomIn = function(fv) {
     fv.xScale.domain([
         1,
-        fv.maxZoomSize
+        fv.maxZoomSize + 1
     ]);
-    if (fv.selectedFeature) {
-        var domain = fv.xScale.domain();
-        var max = domain[domain.length-1];
-        var ftMiddle = +fv.selectedFeature.begin +
-            (fv.selectedFeature.end ? Math.floor((+fv.selectedFeature.end - +fv.selectedFeature.begin)/2) : 0);
-        var init = (ftMiddle - max/2) < 1 ? 1 : ftMiddle - max/2;
-        if ((init + max) > fv.sequence.length) {
-            init = fv.sequence.length - max;
-        }
-        fv.xScale.domain([
-            init,
-            init + max
-        ]);
-    }
+    ViewerHelper.centerToHighlightedSelection(fv);
     update(fv);
     updateViewportFromChart(fv);
     updateZoomFromChart(fv);
@@ -108,7 +95,6 @@ var resetZoomAndSelection = function(fv) {
 var createZoom = function(fv) {
     var zoom = d3.behavior.zoom()
         .x(fv.xScale)
-        // .scaleExtent([1,1])
         .on('zoom', function() {
             if (fv.xScale.domain()[0] < 1) {
                 var tempX = zoom.translate()[0] - fv.xScale(1) + fv.xScale.range()[0];
@@ -604,6 +590,10 @@ FeaturesViewer.prototype.highlightRegion = function(begin, end) {
     if ((1 <= begin) && (begin <= end) && (end <= fv.sequence.length)) {
         fv.deselectFeature();
         fv.highlight = {begin: begin, end: end, type:'continuous'};
+        if ((fv.xScale(fv.xScale.domain()[0]) > fv.xScale(begin)) ||
+            (fv.xScale(end) > fv.xScale(fv.xScale.domain()[1]))) {
+            zoomOut(fv);
+        }
         ViewerHelper.updateHighlight(fv);
         fv.dispatcher.regionHighlighted({begin: begin, end: end});
     }

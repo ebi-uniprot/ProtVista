@@ -147,6 +147,30 @@ ViewerHelper.selectFeature = function(feature, elem, fv) {
     }
 };
 
+ViewerHelper.centerToHighlightedSelection = function(fv) {
+    var feature;
+
+    if (fv.selectedFeature) {
+        feature = fv.selectedFeature;
+    } else if (fv.highlight) {
+        feature = fv.highlight;
+    }
+    if (feature) {
+        var domain = fv.xScale.domain();
+        var max = domain[domain.length-1];
+        var ftMiddle = +feature.begin +
+            (feature.end ? Math.floor((+feature.end - +feature.begin)/2) : 0);
+        var init = (ftMiddle - max/2) < 1 ? 1 : ftMiddle - max/2;
+        if ((init + max) > fv.sequence.length) {
+            init = fv.sequence.length - max;
+        }
+        fv.xScale.domain([
+            init,
+            init + max
+        ]);
+    }
+};
+
 ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container) {
     elements
         .classed('up_pftv_activeFeature', function(d) {
