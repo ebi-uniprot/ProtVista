@@ -248,7 +248,7 @@ var createButtons = function(fv, data, container) {
         .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
         .attr('target', '_blank');
     buttons.append('span')
-        .attr('class','fv-icon-cog')
+        .attr('class','fv-icon-download')
         .attr('title','Download data')
         .on('click', function(){
             DownloadDialog.displayDialog(fv, buttons);
