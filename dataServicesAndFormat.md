@@ -17,8 +17,9 @@ title: Data sources and data format
   - [Distinguishing your features](#distinguishing-your-features)
     - [Using a color](#using-a-color)
     - [Using customized categories or types](#using-customized-categories-or-types)
+  - [Variants](#variants)  
   - [Further customization](#further-customization)
-    - [Defatult configuration](#default-configuration)
+    - [Default configuration](#default-configuration)
     - [Customized configuration](#customized-configuration)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -297,10 +298,11 @@ Examples of valid variant features:
 
 You can add your own data source by using the customDataSources option when instantiating ProtVista. Please keep in mind that the response should follow the data format expected by ProtVista.
 
-**Disclaimer:** We currently support all feature types but variants for external sources. This is work in progress.
-
 **Examples**
-In our GitHub repository, you can find a couple of examples working with external data. Please take a look at <https://github.com/ebi-uniprot/ProtVista/tree/master/snippets>. You can also find some further explanation in the [Data format](#data-format) section in this page.
+In our GitHub repository, you can find a couple of examples working with external data. Please take a look at <https://github.com/ebi-uniprot/ProtVista/tree/master/snippets>, look for those examples containing "external_data".
+
+**Data format**
+Make sure you understand the [data format](#data-format) that is required in ProtVista.
 
 **Instantiation**
 You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call. The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by ProtVista is JSON. Make sure you allow Cross-origin-resource-sharing.
@@ -454,6 +456,21 @@ If you omit the default data sources, this is how it would look.
 
 If you do load the default data sources, this is how it would look. Those features coming from the customized data source are circled in purple.
 ![](./images/customCategoriesAndTypesWithDefault.png)
+
+## Variants
+Natural variants have a [tailored visualization](#variant-visualization) explain earlier in this document. In order to visually distinguish what variant data comes from an external source, i.e., sources you have added to the default ones, we use a black circumference.
+![](./images/external_sources_black_circumference.png)
+
+Variants could also come with some more information than that one allowed for other type of features. This means, some special rules are taken into consideration when rendering variants.
+
+**Rules**
+
+* If the position, the wild type and the alternative sequence are the same, we are talking about the same variant regardless it has information reported by different sources. 
+**Example**: If two data sources have a variant V86I, only one circle will be used to represent the variable. The information coming from each data source will be available via tooltip.
+![](./images/same_variant.png)
+  
+* We color variants according to its consequence (burgundy for disease, from red-ish for deleterious to green-ish for benign, and light green for non-disease). However, you can also specify a color for your variants, we cannot guarantee that such a color will always be used.
+
 
 ## Further customization
 
