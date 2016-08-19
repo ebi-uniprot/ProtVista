@@ -10,6 +10,7 @@ var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
+var DownloadDialog = require("./DownloadDialog");
 var TooltipFactory = require('./TooltipFactory');
 var jQuery = require('jquery');
 
@@ -135,6 +136,9 @@ var closeTooltipAndPopup = function(fv) {
     if (!fv.overCatFilterDialog) {
         CategoryFilterDialog.closeDialog(fv);
     }
+    if (!fv.overDownloadDialog) {
+        DownloadDialog.closeDialog(fv);
+    }
 };
 
 var createNavRuler = function(fv, container) {
@@ -243,6 +247,12 @@ var createButtons = function(fv, data, container) {
         .attr('title','Help page')
         .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
         .attr('target', '_blank');
+    buttons.append('span')
+        .attr('class','fv-icon-cog')
+        .attr('title','Download data')
+        .on('click', function(){
+            DownloadDialog.displayDialog(fv, buttons);
+        });
     buttons.append('span')
         .attr('class','fv-icon-cog')
         .attr('title','Hide/Show tracks')

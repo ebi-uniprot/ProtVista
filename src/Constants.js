@@ -27,6 +27,7 @@ var allSources = [
 ];
 var allCategories = Config.categories;
 var allTrackNames = Config.trackNames;
+var downloadFormats = ['JSON', 'XML', 'GFF'];
 
 var Constants = function() {
   return {
@@ -38,6 +39,9 @@ var Constants = function() {
     },
     getVisualizationTypes: function() {
         return visualizationTypes;
+    },
+    getDownloadFormats: function() {
+        return downloadFormats;
     },
     getDataSources: function() {
       return allSources;
