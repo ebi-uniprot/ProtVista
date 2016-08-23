@@ -17,7 +17,7 @@ title: Data sources and data format
   - [Distinguishing your features](#distinguishing-your-features)
     - [Using a color](#using-a-color)
     - [Using customized categories or types](#using-customized-categories-or-types)
-  - [Variants](#variants)  
+  - [Variants](#variants)
   - [Further customization](#further-customization)
     - [Default configuration](#default-configuration)
     - [Customized configuration](#customized-configuration)
@@ -458,19 +458,39 @@ If you do load the default data sources, this is how it would look. Those featur
 ![](./images/customCategoriesAndTypesWithDefault.png)
 
 ## Variants
-Natural variants have a [tailored visualization](#variant-visualization) explain earlier in this document. In order to visually distinguish what variant data comes from an external source, i.e., sources you have added to the default ones, we use a black circumference.
-![](./images/external_sources_black_circumference.png)
+Natural variants have a [tailored visualization](#variant-visualization) explained earlier in this document. In order to visually distinguish what variant data comes from an external source, i.e., sources you have added to the default ones, we use a black circumference.
+![](./images/extSrc_black_circumference.png)
 
 Variants could also come with some more information than that one allowed for other type of features. This means, some special rules are taken into consideration when rendering variants.
 
 **Rules**
 
-* If the position, the wild type and the alternative sequence are the same, we are talking about the same variant regardless it has information reported by different sources. 
+* If the position, the wild type and the alternative sequence are the same, we are talking about the same variant regardless it has information reported by different data sources.
 **Example**: If two data sources have a variant V86I, only one circle will be used to represent the variable. The information coming from each data source will be available via tooltip.
-![](./images/same_variant.png)
-  
-* We color variants according to its consequence (burgundy for disease, from red-ish for deleterious to green-ish for benign, and light green for non-disease). However, you can also specify a color for your variants, we cannot guarantee that such a color will always be used.
+![](./images/extSrc_same_variant.png)
 
+* We color variants according to its consequence (burgundy for disease, from red-ish for deleterious to green-ish for benign, and light green for non-disease). However, you can also specify a color for your variants, we cannot guarantee that such a color will always be used.
+  * If a variant is reported by one and only one external, such a variant has no prediction data, and a color is specified, then that specified color will be used.
+  **Example**: MyLab, and no other data source, reports a pink variant with no prediction data thus the variant looks is depicted in pink.
+  ![](./images/extSrc_pink_variant.png)
+
+  * If a variant with no prediction data is reported by more than one external data source or no color is specified, 'black' will be used.
+  **Example**: The same variant A17V is reported by MyLab and myOtherLab, and no prediction data is available. Regardless any color specified by the data sources, the variant will be depicted in black.
+  ![](./images/extSrc_black_variant.png)
+
+  * If a variant is reported by an external source with no prediction information but the default data sources do have prediction data, such a prediction will be used to color the variant.
+  **Example**: The variant V86I is reported by myLab but no prediction is specified; however, the default data sources provide prediction data (polyphen, unknown, 0 and SIFT, deleterious, 0.04). Based on the default data sources prediction, the variant is depicted in a dark orange
+  ![](./images/extSrc_default_prediction.png)
+
+  * If a variant is reported by one or more external data sources including prediction information, any prediction coming from the default data sources will be discarded. Predictions coming from external data sources will be average in order to assign a color.
+  **Example**: MyLab reports a variant including prediction data, reported predictions are used to assign an orange-ish color to the variant.
+    ![](./images/extSrc_external_single_prediction.png)
+  **Example**: Both MyLab and MyOtherLab report a variant including prediction data. All of the prediction data is averaged to assign a green-ish color.
+  ![](./images/extSrc_external_multiple_prediction.png)
+
+  * If a variant has a disease association, regardless any prediction data, burgundy will be used to color this variant.
+  **Example**: MyLab reports a variant that, according to default data sources, is known to be associated to a disease.
+    ![](./images/extSrc_disease_association.png)
 
 ## Further customization
 
