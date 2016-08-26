@@ -11,23 +11,49 @@ svg {
     position: relative;
 }
 
+.up_pftv_nav_buttons {
+    display: inline-block;
+    padding: 0.1em 0.1em;
+    vertical-align: bottom;
+    position: relative;
+    color: red;
+}
+
 .up_pftv_buttons a {
     color: inherit;
     text-decoration: none;
 }
-.up_pftv_buttons span {
+
+.up_pftv_buttons span, .up_pftv_nav_buttons span {
     cursor: pointer;
     font-size: 18px;
     opacity: 0.8;
+    color: #557071;
 }
 
-.up_pftv_buttons span:hover {
+.up_pftv_buttons span:hover, .up_pftv_nav_buttons span:hover {
     opacity: 1;
 }
 
-/*.up_pftv_buttons span:hover {
-    color: #3C4043;
-} */
+.up_pftv_nav_buttons table {
+    border: 0px;
+    background-color: #FFF;
+    width: 100%;
+    font-size: 11px !important;
+}
+
+.up_pftv_nav_buttons td {
+    padding: .2em;
+    margin: 0;
+}
+
+.up_pftv_nav_buttons input {
+    width: 65px;
+}
+
+.up_pftv_nav_buttons-warning {
+
+}
 
 .up_pftv_aaviewer {
 }
@@ -78,7 +104,8 @@ svg {
 }
 
 .up_pftv_navruler {
-    margin-left: 195px;
+    margin-left: 15px;
+    display: inline-block;
 }
 
 .up_pftv_navruler svg {
@@ -341,25 +368,6 @@ svg {
     padding: 0.5em;
     min-width: 210px;
     text-align: left;
-}
-
-.up_pftv_popupDialog-container table {
-    border: 0px;
-    background-color: #FFF;
-    width: 100%;
-}
-
-.up_pftv_popupDialog-container td {
-    padding: .2em;
-    margin: 0;
-}
-
-.up_pftv_popupDialog-container td:first-child {
-    font-size: small;
-}
-
-.up_pftv_popupDialog-warning {
-
 }
 
 .up_pftv_tooltip-container table {

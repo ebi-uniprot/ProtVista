@@ -79,6 +79,7 @@ ViewerHelper.updateFeatureHighlightSelector = function(fv) {
         fv.updateFeatureHighlightSelector(fv.highlight.begin, fv.highlight.end);
     } else {
         fv.updateFeatureHighlightSelector(-10, -10);
+        fv.zoomToRegion.clearValues();
     }
 };
 
@@ -86,6 +87,7 @@ ViewerHelper.updateHighlight = function(fv) {
     var feature;
     if (fv.selectedFeature) {
         feature = fv.selectedFeature;
+        fv.zoomToRegion.updateValues(feature);
     } else if (fv.highlight) {
         feature = fv.highlight;
     } else {

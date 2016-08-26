@@ -10,104 +10,10 @@ var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
-var HighlightRegionDialog = require("./HighlightRegionDialog");
+var ZoomToRegionFactory = require("./ZoomToRegionFactory");
 var TooltipFactory = require('./TooltipFactory');
+var ZoomingBehaviour = require('./ZoomingBehaviour');
 var jQuery = require('jquery');
-
-var updateZoomFromChart = function(fv) {
-    fv.zoom.x(fv.xScale);
-
-    // remove if no zoom
-    var fullDomain = fv.maxPos - 1,
-        currentDomain = fv.xScale.domain()[1] - fv.xScale.domain()[0];
-
-    var minScale = currentDomain / fullDomain,
-        maxScale = minScale * Math.floor(fv.sequence.length/fv.maxZoomSize);
-    fv.zoom.scaleExtent([minScale, maxScale]);
-};
-
-var updateViewportFromChart = function (fv) {
-    fv.viewport.extent(fv.xScale.domain());
-    fv.globalContainer.select('.up_pftv_viewport').call(fv.viewport);
-    fv.viewport.updateTrapezoid();
-};
-
-var update = function(fv) {
-    fv.aaViewer.update();
-    fv.aaViewer2.update();
-    _.each(fv.categories, function(category) {
-        category.update();
-    });
-};
-
-var updateZoomButton = function(fv, currentClass, newClass, newTitle) {
-    try {
-        var zoomBtn = fv.globalContainer.select('.' + currentClass);
-        zoomBtn.classed(currentClass, false);
-        zoomBtn.classed(newClass, true);
-        zoomBtn.attr('title', newTitle);
-    } catch(er) {
-        console.log('updateZoomButton error: ' + er);
-    }
-};
-
-var zoomIn = function(fv) {
-    fv.xScale.domain([
-        1,
-        fv.maxZoomSize + 1
-    ]);
-    ViewerHelper.centerToHighlightedSelection(fv);
-    update(fv);
-    updateViewportFromChart(fv);
-    updateZoomFromChart(fv);
-    updateZoomButton(fv, 'fv-icon-zoom-in', 'fv-icon-zoom-out', 'Zoom out to overview');
-};
-
-var resetZoom = function(fv) {
-    update(fv);
-    updateViewportFromChart(fv);
-    updateZoomFromChart(fv);
-};
-
-var zoomOut = function(fv) {
-    fv.xScale.domain([
-        1,
-        fv.maxPos
-    ]);
-    resetZoom(fv);
-    updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
-};
-
-var resetZoomAndSelection = function(fv) {
-    fv.xScale.domain([
-        1,
-        fv.maxPos
-    ]);
-    ViewerHelper.deselectFeature(fv);
-    ViewerHelper.resetHighlight(fv);
-    resetZoom(fv);
-    updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
-    _.each(fv.categories, function(category) {
-        category.reset();
-    });
-};
-
-var createZoom = function(fv) {
-    var zoom = d3.behavior.zoom()
-        .x(fv.xScale)
-        .on('zoom', function() {
-            if (fv.xScale.domain()[0] < 1) {
-                var tempX = zoom.translate()[0] - fv.xScale(1) + fv.xScale.range()[0];
-                zoom.translate([tempX, 0]);
-            } else if (fv.xScale.domain()[1] > fv.maxPos) {
-                var translatedX = zoom.translate()[0] - fv.xScale(fv.maxPos) + fv.xScale.range()[1];
-                zoom.translate([translatedX, 0]);
-            }
-            update(fv);
-            updateViewportFromChart(fv);
-        });
-    return zoom;
-};
 
 var closeTooltipAndPopup = function(fv) {
     if (!fv.overFeature && !fv.overTooltip) {
@@ -119,9 +25,6 @@ var closeTooltipAndPopup = function(fv) {
     }
     if (!fv.overCatFilterDialog) {
         CategoryFilterDialog.closeDialog(fv);
-    }
-    if (!fv.overHighlightRegionDialog) {
-        HighlightRegionDialog.closeDialog(fv);
     }
 };
 
@@ -157,17 +60,17 @@ var createNavRuler = function(fv, container) {
                 d3.event.target(d3.select(this));
             }
             fv.xScale.domain(viewport.empty() ? navXScale.domain() : viewport.extent());
-            update(fv);
+            ZoomingBehaviour.update(fv);
             viewport.updateTrapezoid();
         });
     viewport.on("brushstart", function () {
         closeTooltipAndPopup(fv);
     });
     viewport.on("brushend", function () {
-        updateZoomFromChart(fv);
+        ZoomingBehaviour.updateZoomFromChart(fv);
         var navigator = fv.globalContainer.select('.up_pftv_navruler .extent');
         if (+navigator.attr('width') >= fv.width - fv.padding.left - fv.padding.right) {
-            updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+            ZoomingBehaviour.updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
         }
     });
 
@@ -241,23 +144,7 @@ var createButtons = function(fv, data, container) {
         .attr('class','fv-icon-arrows-cw')
         .attr('title','Reset view')
         .on('click', function(){
-            resetZoomAndSelection(fv);
-        });
-    buttons.append('span')
-        .attr('class','fv-icon-eye')
-        .attr('title','Highlight region')
-        .on('click', function(){
-            HighlightRegionDialog.displayDialog(fv, buttons);
-        });
-    buttons.append('span')
-        .attr('class','fv-icon-zoom-in')
-        .attr('title','Zoom in to sequence view')
-        .on('click', function(){
-            if ( d3.select(this).classed('fv-icon-zoom-in')) {
-                zoomIn(fv);
-            } else {
-                zoomOut(fv);
-            }
+            ZoomingBehaviour.resetZoomAndSelection(fv);
         });
 };
 
@@ -592,7 +479,7 @@ FeaturesViewer.prototype.highlightRegion = function(begin, end) {
         fv.highlight = {begin: begin, end: end, type:'continuous'};
         if ((fv.xScale(fv.xScale.domain()[0]) > fv.xScale(begin)) ||
             (fv.xScale(end) > fv.xScale(fv.xScale.domain()[1]))) {
-            zoomOut(fv);
+            ZoomingBehaviour.zoomOut(fv);
         }
         ViewerHelper.updateHighlight(fv);
         fv.dispatcher.regionHighlighted({begin: begin, end: end});
@@ -635,14 +522,16 @@ FeaturesViewer.prototype.loadZoom = function(d) {
       .domain([1, d.sequence.length + 1])
       .range([fv.padding.left, fv.width - fv.padding.right]);
 
+  ZoomToRegionFactory.createZoomZone(fv, fv.header);
   fv.viewport = createNavRuler(fv, fv.header);
   createButtons(fv, d, fv.header);
   fv.aaViewer = createAAViewer(fv, fv.header, d.sequence);
-  fv.zoom = createZoom(fv);
+
+  fv.zoom = ZoomingBehaviour.createZoom(fv);
 
   fv.aaViewer2 = createAAViewer(fv, fv.footer, d.sequence);
-  updateViewportFromChart(fv);
-  updateZoomFromChart(fv);
+  ZoomingBehaviour.updateViewportFromChart(fv);
+  ZoomingBehaviour.updateZoomFromChart(fv);
 };
 
 FeaturesViewer.prototype.drawCategories = function(data, fv) {
