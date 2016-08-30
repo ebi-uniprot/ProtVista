@@ -42,10 +42,12 @@ var populateDialog = function (fv, wrapper) {
                 end = end.length === 0 ? begin : +end;
                 if (!isNaN(begin) && !isNaN(end)) {
                     if ((1 <= begin) && (begin <= end) && (end <= fv.sequence.length)) {
-                        fv.highlightRegion(begin, end);
+                        if (!(fv.selectedFeature && (+fv.selectedFeature.begin === begin) &&
+                            (+fv.selectedFeature.end === end))) {
+                            fv.highlightRegion(begin, end);
+                        }
                         ZoomingBehaviour.zoomIn(fv);
-                        //TODO: do not highlight but zoom and jump to region
-                        //Expose method with parameters so it can be used from outside
+                        //TODO Expose method with parameters so it can be used from outside
                     } else {
                         warning(table);
                     }

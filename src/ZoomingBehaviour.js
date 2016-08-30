@@ -64,13 +64,23 @@ var ZoomingBehaviour = function() {
             }
         },
 
-        zoomIn: function(fv) { //TODO do not zoom to aa level if selection does not fit
+        zoomIn: function(fv) {
             var zooming = this;
-            fv.xScale.domain([ //TODO
+
+            var feature;
+            if (fv.selectedFeature) {
+                feature = fv.selectedFeature;
+            } else if (fv.highlight) {
+                feature = fv.highlight;
+            }
+
+            var upperDomain = feature ? Math.max(fv.maxZoomSize + 1, +feature.end - +feature.begin +11)
+                : fv.maxZoomSize + 1;
+            fv.xScale.domain([
                 1,
-                fv.maxZoomSize + 1
+                upperDomain
             ]);
-            ViewerHelper.centerToHighlightedSelection(fv);   //TODO
+            ViewerHelper.centerToHighlightedSelection(fv);
             zooming.update(fv);
             zooming.updateViewportFromChart(fv);
             zooming.updateZoomFromChart(fv);
