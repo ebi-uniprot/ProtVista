@@ -47,7 +47,6 @@ var populateDialog = function (fv, wrapper) {
                             fv.highlightRegion(begin, end);
                         }
                         ZoomingBehaviour.zoomIn(fv);
-                        //TODO Expose method with parameters so it can be used from outside
                     } else {
                         warning(table);
                     }
