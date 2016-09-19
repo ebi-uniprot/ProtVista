@@ -7,6 +7,7 @@ var d3 = require("d3");
 var _ = require("underscore");
 var ViewerHelper = require("./ViewerHelper");
 var Constants = require("./Constants");
+var DownloadDataLoader = require("./DownloadDataLoader");
 
 var populateDialog = function (fv, wrapper) {
     var selected = true;
@@ -29,6 +30,7 @@ var populateDialog = function (fv, wrapper) {
                 return d3.select(this).property('checked');
             });
             console.log(selected.attr('value'));
+            DownloadDataLoader.get(selected.attr('value'));
         });
 };
 
