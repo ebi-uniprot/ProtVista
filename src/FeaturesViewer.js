@@ -400,9 +400,9 @@ var initSources = function (opts) {
     if (opts.defaultSources === false) {
         Constants.clearDataSources();
     }
-    _.each(opts.customDataSources, function(dataSource) {
-        Constants.addSource(dataSource);
-    });
+    if (opts.customDataSource) {
+        Constants.addSource(opts.customDataSource);
+    }
 };
 
 var loadSources = function(opts, dataSources, loaders, delegates, fv) {

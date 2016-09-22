@@ -3,13 +3,11 @@ var app = require("ProtVista");
 var instance = new app({
     el: yourDiv,
     uniprotacc : 'P05067',
-    customDataSources: [
-        {
-            url: './data/externalFeatures_',
-            authority: 'myLab',
-            useExtension: true
-        }
-    ],
+    customDataSource: {
+        url: './data/externalFeatures_',
+        authority: 'myLab',
+        useExtension: true
+    },
     defaultSources: true,
     customConfig: './data/externalConfig.json',
     exclusions: ['PROTEOMICS', 'MOLECULE_PROCESSING','SEQUENCE_INFORMATION', 'MUTAGENESIS', 'TOPOLOGY', 'PTM',

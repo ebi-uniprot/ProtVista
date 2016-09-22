@@ -4,17 +4,10 @@ new app(
     {
         el: yourDiv, text: 'biojs',
         uniprotacc : 'P05067',
-        customDataSources: [
-            {
-                url: './data/externalFeatures_',
-                authority: 'myLab',
-                useExtension: true
-            },
-            {
-                url: './data/externalVariants_',
-                authority: 'myOtherLab',
-                useExtension: true
-            }
-        ]
+        customDataSource: {
+            url: './data/externalFeatures_',
+            authority: 'myLab',
+            useExtension: true
+        }
     }
 );
