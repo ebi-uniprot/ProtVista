@@ -10,35 +10,41 @@ var FileSaver = require('file-saver');
 
     var DownloadDataLoader = function() {
     return {
-        get: function(format) {
-            console.log('get format', format);
+        get: function(accession, format) {
             if (format === 'JSON') {
-                this.getJSON();
+                this.getJSON(accession);
             }
         },
-        getJSON: function() {
-          console.log('getJSON');
-          var zip = new JSZip();
-          var loaders = [];
-          _.each(Constants.getUniProtDataSources(), function(source) {
-                var loader = $.getJSON(source.url + 'P05067'); //TODO get it from FV opts
+        getJSON: function(accession) {
+            var zip = new JSZip();
+            //zip.file("Hello.txt", "Hello World\n");   //TODO Maybe a readme?
+            var loaders = [];
+            _.each(Constants.getUniProtDataSources(), function(source) {
+                //TODO decision should we support 3-party data sources download?
+                //TODO decision if 3-party data sources do not support gff/xml, check the response headers and inform
+                //TODO load only categories that are displayed... but that might not work for 3-party sources... we
+                // would still need the filtering code
+                var loader = $.getJSON(source.url + accession);
                 loaders.push(loader);
                 loader.done(function(d) {
-                    console.log('done', d.features);
-                    zip.file(source.category + '.json', d.features);
+                    if (source.category === 'GENERAL') { //TODO get rid of hardcoded here
+                        d.features = _.filter(d.features, function(feature) {
+                            return feature.category !== 'VARIANTS';
+                        });
+                    }
+                    zip.file(source.authority + source.category + '.json', JSON.stringify(d));
                 }).fail(function (e) {
                      console.log('DownloadDataLoader', e);
                 });
-          });
-          //when all done
-          $.when.apply(null, loaders).done(function () {
-            console.log('all done');
-            zip.generateAsync({type:"blob"})
-              .then(function(content) {
-                  // see FileSaver.js
-                  FileSaver.saveAs(content, "data.zip");
-              });
-          });
+            });
+            //when all done
+            $.when.apply(null, loaders).done(function () {
+                zip.generateAsync({type:"blob"})
+                .then(function(content) {
+                    // TODO FileSaver does not necessarily work in Safari
+                    FileSaver.saveAs(content, "data.zip");
+                });
+            });
         },
         getXML: function() {
 

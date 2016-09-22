@@ -482,6 +482,7 @@ var FeaturesViewer = function(opts) {
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
     fv.data = [];
+    fv.uniprotacc = opts.uniprotacc;
 
     fv.load = function() {
         initSources(opts);

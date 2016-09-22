@@ -29,8 +29,7 @@ var populateDialog = function (fv, wrapper) {
             var selected = wrapper.selectAll('input').filter(function() {
                 return d3.select(this).property('checked');
             });
-            console.log(selected.attr('value'));
-            DownloadDataLoader.get(selected.attr('value'));
+            DownloadDataLoader.get(fv.uniprotacc, selected.attr('value'));
         });
 };
 
