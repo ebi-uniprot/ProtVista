@@ -8,6 +8,7 @@ new app(
             url: './data/externalFeatures_',
             authority: 'myLab',
             useExtension: true
-        }
+        },
+        overwritePredictions: true
     }
 );
