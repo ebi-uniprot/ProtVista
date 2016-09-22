@@ -14,7 +14,7 @@ var filters = [
         label: 'Filter consequence',
         cases: [
             {
-                label: 'Disease',
+                label: 'Disease (reviewed)',
                 on: true,
                 properties: {
                     'association': function(variant){
@@ -43,7 +43,7 @@ var filters = [
                 },
                 colorRange: ['#ff3300','#009900']
             }, {
-                label: 'Non-disease',
+                label: 'Non-disease (reviewed)',
                 on: true,
                 properties: {
                     'association': function(variant){
