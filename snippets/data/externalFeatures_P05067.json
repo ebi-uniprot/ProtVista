@@ -204,7 +204,9 @@
       "begin": "66",
       "end": "76",
       "color": "#FF66FF"
-    },{
+    },
+
+    {
       "type": "VARIANT", "category": "VARIATION",
       "description": "Same mutation, opposite predictions, same xrefs",
       "alternativeSequence": "S",
@@ -254,7 +256,7 @@
       "wildType": "L",
       "polyphenPrediction": "unknown",
       "polyphenScore": 0.0,
-      "siftPrediction": "tolerated",
+      "siftPrediction": "not tolerated, low value",
       "siftScore": 0.13
     },
     {
@@ -292,8 +294,7 @@
       "alternativeSequence": "V",
       "begin": "17",
       "end": "17",
-      "wildType": "A",
-      "color": "violet"
+      "wildType": "A"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -304,8 +305,7 @@
       "polyphenPrediction": "deleterious",
       "polyphenScore": 0.98,
       "siftPrediction": "tolerated",
-      "siftScore": 0.89,
-      "color": "violet"
+      "siftScore": 0.89
     },
     {
       "type": "VARIANT", "category": "VARIATION",

@@ -54,38 +54,30 @@ var variantsFill = function(d, fv) {
             return LegendDialog.UPNonDiseaseColor;
         }
     } else {
-        var externalPrediction;
+        var externalPrediction, extDatum = {};
         if (d.externalData) {
-            _.each(d.externalData, function (extData)  {
-                var predictionScore = getPredictionColorScore(extData.siftScore, extData.siftPrediction,
-                    extData.polyphenScore, extData.polyphenPrediction);
-                if (predictionScore) {
-                    externalPrediction = externalPrediction ? externalPrediction + predictionScore : predictionScore;
-                }
-            });
-            externalPrediction = externalPrediction
-                ? externalPrediction / _.keys(d.externalData).length
-                : externalPrediction;
+            var keys = _.keys(d.externalData);
+            extDatum = d.externalData[keys[0]];
+            externalPrediction = getPredictionColorScore(extDatum.siftScore, extDatum.siftPrediction,
+                extDatum.polyphenScore, extDatum.polyphenPrediction);
+            extDatum.siftInUse = false;
+            extDatum.polyphenInUse = false;
         }
-        if (externalPrediction !== undefined) {
+        var predicitonScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
+            d.polyphenPrediction);
+
+        if ((externalPrediction !== undefined) && (fv.overwritePredictions)) {
+            d.siftInUse = false;
+            d.polyphenInUse = false;
+            extDatum.siftInUse = true;
+            extDatum.polyphenInUse = true;
             return LegendDialog.getPredictionColor(externalPrediction);
+        } else if (predicitonScore !== undefined) {
+            return LegendDialog.getPredictionColor(predicitonScore);
+        } else if (d.externalData) {
+            return extDatum.color || Constants.getTrackInfo(d.type).color || 'black';
         } else {
-            var predicitonScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
-                d.polyphenPrediction);
-            if (predicitonScore !== undefined) {
-                return LegendDialog.getPredictionColor(predicitonScore);
-            } else {
-                if (d.externalData) {
-                    var keys = _.keys(d.externalData);
-                    if (keys.length === 1) {
-                        return d.externalData[keys[0]].color || Constants.getTrackInfo(d.type).color || 'black';
-                    } else {
-                        return 'black';
-                    }
-                } else {
-                    return LegendDialog.othersColor;
-                }
-            }
+            return LegendDialog.othersColor;
         }
     }
 };

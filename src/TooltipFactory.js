@@ -293,7 +293,7 @@ var addPredictions = function(tooltip, data) {
             .attr('target', '_blank').text('Frequency (MAF)');
         freqRow.append('td').text(data.frequency);
     }
-    if (data.polyphenPrediction && (data.polyphenPrediction !== '-')) {
+    if (data.polyphenPrediction && (data.polyphenPrediction !== '-') && (data.polyphenInUse !== false)) {
         var polyRow = tooltip.table.append('tr');
         polyRow.append('td').append('span').append('a')
             .attr('href', 'http://genetics.bwh.harvard.edu/pph2/dokuwiki/about')
@@ -301,7 +301,7 @@ var addPredictions = function(tooltip, data) {
         var text = data.polyphenPrediction + ', score ' + data.polyphenScore;
         polyRow.append('td').text(text);
     }
-    if (data.siftPrediction && (data.siftPrediction !== '-')) {
+    if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
         var siftRow = tooltip.table.append('tr');
         siftRow.append('td').append('span').append('a')
             .attr('href', 'http://sift.jcvi.org/')
@@ -317,11 +317,11 @@ var hasPredictions = function(data) {
         response = true;
     }
     if (data.polyphenPrediction && (data.polyphenPrediction !== '-')
-        && (data.polyphenPrediction !== 'unknown')) {
+        && (data.polyphenPrediction !== 'unknown') && (data.polyphenInUse !== false)) {
         response = true;
     }
     if (data.siftPrediction && (data.siftPrediction !== '-')
-        && (data.siftPrediction !== 'unknown')) {
+        && (data.siftPrediction !== 'unknown') && (data.siftInUse !== false)) {
         response = true;
     }
     return response;
@@ -453,6 +453,7 @@ var VariantTooltipViewer = function(tooltip) {
         addXRefs(tooltip, tooltip.data.xrefs);
         addAssociation(tooltip);
     }
+    //There is only one external data source but we do not know the key name
     _.each(tooltip.data.externalData, function(data, key) {
         addSection(tooltip, data, data.ftId, data.description, data.evidences, data.xrefs, key);
     });
