@@ -66,15 +66,29 @@ var variantsFill = function(d, fv) {
         var predicitonScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
             d.polyphenPrediction);
 
-        if ((externalPrediction !== undefined) && (fv.overwritePredictions)) {
-            d.siftInUse = false;
-            d.polyphenInUse = false;
-            extDatum.siftInUse = true;
-            extDatum.polyphenInUse = true;
-            return LegendDialog.getPredictionColor(externalPrediction);
-        } else if (predicitonScore !== undefined) {
-            return LegendDialog.getPredictionColor(predicitonScore);
-        } else if (d.externalData) {
+        if (fv.overwritePredictions) {
+            if (externalPrediction !== undefined) {
+                d.siftInUse = false;
+                d.polyphenInUse = false;
+                extDatum.siftInUse = true;
+                extDatum.polyphenInUse = true;
+                return LegendDialog.getPredictionColor(externalPrediction);
+            } else if (predicitonScore !== undefined) {
+                return LegendDialog.getPredictionColor(predicitonScore);
+            }
+        } else {
+            if (predicitonScore !== undefined) {
+                return LegendDialog.getPredictionColor(predicitonScore);
+            } else if (externalPrediction !== undefined) {
+                d.siftInUse = false;
+                d.polyphenInUse = false;
+                extDatum.siftInUse = true;
+                extDatum.polyphenInUse = true;
+                return LegendDialog.getPredictionColor(externalPrediction);
+            }
+        }
+
+        if (d.externalData) {
             return extDatum.color || Constants.getTrackInfo(d.type).color || 'black';
         } else {
             return LegendDialog.othersColor;
