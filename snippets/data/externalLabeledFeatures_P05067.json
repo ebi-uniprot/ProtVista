@@ -1,0 +1,328 @@
+{
+  "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDSDPSGTKTCIDTKEGILQYCQEVYPELQITNVVEANQPVTIQNWCKRGRKQCKTHPHFVIPYRCLVGEFVSDALLVPDKCKFLHQERMDVCETHLHWHTVAKETCSEKSTNLHDYGMLLPCGIDKFRGVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDKVVEVAEEEEVAEVEEEEADDDEDDEDGDEVEEEAEEPYEEATERTTSIATTTTTTTESVEEVVREVCSEQAETGPCRAMISRWYFDVTEGKCAPFFYGGCGGNRNNFDTEEYCMAVCGSAMSQSLLKTTQEPLARDPVKLPTTAASTPDAVDKYLETPGDENEHAHFQKAKERLEAKHRERMSQVMREWEEAERQAKNLPKADKKAVIQHFQEKVESLEQEAANERQQLVETHMARVEAMLNDRRRLALENYITALQAVPPRPRHVFNMLKKYVRAEQKDRQHTLKHFEHVRMVDPKKAAQIRSQVMTHLRVIYERMNQSLSLLYNVPAVAEEIQDEVDELLQKEQNYSDDVLANMISEPRISYGNDALMPSLTETKTTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDARPAADRGLTTRPGSGLTNIKTEEISEVKMDAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIATVIVITLVMLKKKQYTSIHHGVVEVDAAVTPEERHLSKMQQNGYENPTYKFFEQMQN",
+  "features": [
+    {
+      "type": "UNIQUE_MAXQ",
+      "ftId": "this is my id",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "17",
+      "end": "27",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "18",
+      "end": "29",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "28",
+      "end": "33",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "47",
+      "end": "59",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "N-APP",
+      "begin": "86",
+      "end": "97",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "672",
+      "end": "678",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "72",
+      "end": "83",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "52",
+      "end": "61",
+      "color": "#00B88A"
+    },
+    {
+      "type": "UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "688",
+      "end": "697",
+      "color": "#00B88A"
+    },
+    {
+      "type": "NON_UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "96",
+      "end": "110",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "181",
+      "end": "188",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "417",
+      "end": "423",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "391",
+      "end": "402",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "523",
+      "end": "530",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "NON_UNIQUE_MAXQ",
+      "category": "PROTEOMICS",
+      "description": "MaxQuant",
+      "begin": "732",
+      "end": "741",
+      "color": "#FFCC33"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "147",
+      "end": "147"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "151",
+      "end": "151"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "168",
+      "end": "168"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "677",
+      "end": "677"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "681",
+      "end": "681"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "684",
+      "end": "684"
+    },
+    {
+      "type": "CATALYTIC_SITE",
+      "category": "DOMAINS_AND_SITES",
+      "description": "Inherited through a sequence alignment",
+      "begin": "685",
+      "end": "685"
+    },
+    {
+      "type": "NOVEL_FEATURE",
+      "category": "NOVELTIES",
+      "begin": "43",
+      "end": "45"
+    },
+    {
+      "type": "TURN",
+      "category": "STRUCTURAL",
+      "begin": "47",
+      "end": "49",
+      "color": "#00CCCC"
+    },
+    {
+      "type": "STRAND",
+      "category": "STRUCTURAL",
+      "begin": "52",
+      "end": "54",
+      "color": "#70E000"
+    },
+    {
+      "type": "STRAND",
+      "category": "STRUCTURAL",
+      "begin": "56",
+      "end": "58",
+      "color": "#70E000"
+    },
+    {
+      "type": "HELIX",
+      "category": "STRUCTURAL",
+      "begin": "66",
+      "end": "76",
+      "color": "#FF66FF"
+    },
+
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "Same mutation, opposite predictions, same xrefs",
+      "alternativeSequence": "S",
+      "begin": "91",
+      "end": "91",
+      "xrefs": [
+        {
+          "name": "ExAC",
+          "id": "rs747355134",
+          "url": "http://exac.broadinstitute.org/dbsnp/rs747355134"
+        }
+      ],
+      "wildType": "P",
+      "polyphenPrediction": "looking good",
+      "polyphenScore": 0.001,
+      "siftPrediction": "looking still good",
+      "siftScore": 0.93
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "different position, originally in 8, less evidences, different made-up xref",
+      "alternativeSequence": "I",
+      "begin": "18",
+      "end": "18",
+      "xrefs": [
+        {
+          "name": "ExAC",
+          "id": "rs1234567",
+          "url": "http://exac.broadinstitute.org/dbsnp/rs1234567"
+        },
+        {
+          "name": "OtherXRef",
+          "id": "oxr:1234"
+        }
+      ],
+      "evidences": [
+        {
+          "code": "ECO:0000313",
+          "source": {
+            "name": "PubMed",
+            "id": "23292937",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/23292937",
+            "alternativeUrl": "http://europepmc.org/abstract/MED/23292937"
+          }
+        }
+      ],
+      "wildType": "L",
+      "polyphenPrediction": "unknown",
+      "polyphenScore": 0.0,
+      "siftPrediction": "not tolerated, low value",
+      "siftScore": 0.13
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "Same mutation, no predictions, no xref",
+      "alternativeSequence": "I",
+      "begin": "86",
+      "end": "86",
+      "wildType": "V",
+      "consequence": "Frequent",
+      "color": "#B8008A"
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "alternativeSequence": "S",
+      "begin": "184",
+      "end": "184",
+      "wildType": "F",
+      "polyphenPrediction": "unknown",
+      "polyphenScore": 0.0,
+      "siftPrediction": "deleterious",
+      "siftScore": 0.04
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "alternativeSequence": "T",
+      "begin": "17",
+      "end": "17",
+      "wildType": "A",
+      "polyphenPrediction": "benign",
+      "polyphenScore": 0.11111,
+      "siftPrediction": "tolerated",
+      "siftScore": 0.99999
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "alternativeSequence": "V",
+      "begin": "17",
+      "end": "17",
+      "wildType": "A",
+      "consequence": "Frequent",
+      "color": "#B8008A"
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "alternativeSequence": "KKK",
+      "begin": "17",
+      "end": "18",
+      "wildType": "AL",
+      "polyphenPrediction": "deleterious",
+      "polyphenScore": 0.98,
+      "siftPrediction": "tolerated",
+      "siftScore": 0.89
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "same UP mutation, additional ftid",
+      "ftId": "XYZ_010109",
+      "alternativeSequence": "P",
+      "begin": "723",
+      "end": "723",
+      "wildType": "L",
+      "polyphenPrediction": "looking bad",
+      "polyphenScore": 0.0301,
+      "siftPrediction": "tolerated",
+      "siftScore": 0.67
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+// if you don't specify a html file, the sniper will generate a div
+var app = require("ProtVista");
+new app(
+    {
+        el: yourDiv, text: 'biojs',
+        uniprotacc : 'P05067',
+        customDataSource: {
+            url: './data/externalLabeledFeatures_',
+            authority: 'myLab',
+            useExtension: true
+        },
+        overwritePredictions: true
+    }
+);

@@ -120,9 +120,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         .attr('stroke', function(d) {
             if (d.externalData) {
                 var keys = _.keys(d.externalData);
-                if (keys.length != 0) {
-                    return 'black';
-                }
+                return d.externalData[keys[0]].color || Constants.getTrackInfo(d.type).color || 'black';
             } else {
                 return 'none';
             }

@@ -530,7 +530,9 @@ svg .up_pftv_carbohyd {
     fill: #CC3366;
 }
 
-svg .up_pftv_variant {}
+svg .up_pftv_variant {
+    stroke-width: 2;
+}
 
 svg .up_pftv_compbias {
     stroke: #FF3366;
