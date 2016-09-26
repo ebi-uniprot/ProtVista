@@ -293,12 +293,46 @@
     },
     {
       "type": "VARIANT", "category": "VARIATION",
+      "description": "new external variant with prediction",
+      "alternativeSequence": "L",
+      "begin": "15",
+      "end": "15",
+      "wildType": "A",
+      "polyphenPrediction": "benign",
+      "polyphenScore": 0.08,
+      "siftPrediction": "tolerated",
+      "siftScore": 0.89
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "new external variant with prediction and consequence",
+      "alternativeSequence": "K",
+      "begin": "15",
+      "end": "15",
+      "wildType": "A",
+      "polyphenPrediction": "benign",
+      "polyphenScore": 0.08,
+      "siftPrediction": "tolerated",
+      "siftScore": 0.89,
+      "consequence": "Rare",
+      "color": "#008AB8"
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
       "alternativeSequence": "V",
       "begin": "17",
       "end": "17",
       "wildType": "A",
       "consequence": "Frequent",
       "color": "#B8008A"
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "just a variant, no consequence, no prediction",
+      "alternativeSequence": "M",
+      "begin": "10",
+      "end": "10",
+      "wildType": "L"
     },
     {
       "type": "VARIANT", "category": "VARIATION",

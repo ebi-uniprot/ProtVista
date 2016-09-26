@@ -9,6 +9,6 @@ new app(
             authority: 'myLab',
             useExtension: true
         },
-        overwritePredictions: true
+        overwritePredictions: false
     }
 );
