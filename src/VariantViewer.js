@@ -66,7 +66,7 @@ var variantsFill = function(d, fv) {
         var predicitonScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
             d.polyphenPrediction);
 
-        if (fv.overwritePredictions) {
+        if (fv.overwritePredictions === true) {
             if (externalPrediction !== undefined) {
                 d.siftInUse = false;
                 d.polyphenInUse = false;
