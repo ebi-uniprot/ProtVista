@@ -264,7 +264,6 @@ var clearOthers = function(filterSet, filterCase) {
 
 var filterData = function(filters, data) {
     var newData = [];
-    console.log(data);
     _.each(data, function(feature) {
         var filtered = _.filter(feature.variants, function(variant) {
             var returnValue = _.every(filters, function(filterSet) {
