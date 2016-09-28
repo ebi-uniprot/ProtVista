@@ -64,21 +64,6 @@ var filters = [
                     'alternativeSequence': '*'
                 },
                 color: '#0033cc'
-            }, {
-                label: 'Unknown',
-                on: true,
-                properties: {
-                    'externalData': function(variant) {
-                        var noPrediction = !((variant.polyphenPrediction && (variant.polyphenPrediction !== '-')) ||
-                            (variant.siftPrediction && (variant.siftPrediction !== '-')));
-                        noPrediction = noPrediction &&_.every(variant.externalData, function(data) {
-                            return !((data.polyphenPrediction && (data.polyphenPrediction !== '-')) ||
-                                (data.siftPrediction && (data.siftPrediction !== '-')));
-                        });
-                        return variant.externalData && noPrediction;
-                    }
-                },
-                color: 'black'
             }
         ]
     },
@@ -122,6 +107,9 @@ var addSourceFilters = function() {
                     on: true,
                     properties: {
                         'externalData': function(variant, label) {
+                            /*if (variant.externalData) {
+                                console.log(variant, label);
+                            } */
                             var hasCustom = variant.externalData && (_.keys(variant.externalData).length !== 0);
                             return label ? hasCustom && variant.externalData[label] : hasCustom;
                         }
@@ -133,7 +121,29 @@ var addSourceFilters = function() {
     });
 };
 
+var addConsequenceTypes = function() {
+    _.each(Constants.getConsequenceTypes(), function(color, consequenceKey) {
+        var exist = _.find(filters[0].cases, function(aCase) {
+            return aCase.label === consequenceKey;
+        });
+        if (!exist) {
+            filters[0].cases.push({
+                label: consequenceKey,
+                on: true,
+                properties: {
+                    'consequence': function(variant) {
+                        var keys = _.keys(variant.externalData);
+                        return (keys.length > 0) ? variant.externalData[keys[0]].consequence === consequenceKey : false;
+                    }
+                },
+                color: color
+            });
+        }
+    });
+};
+
 var VariantFilterDialog = function(container, variantViewer) {
+    addConsequenceTypes();
     addSourceFilters();
 
     var variantFilterDialog = this;
@@ -254,10 +264,14 @@ var clearOthers = function(filterSet, filterCase) {
 
 var filterData = function(filters, data) {
     var newData = [];
+    console.log(data);
     _.each(data, function(feature) {
         var filtered = _.filter(feature.variants, function(variant) {
             var returnValue = _.every(filters, function(filterSet) {
                 var activeFilters = _.filter(filterSet.cases, 'on');
+                if (activeFilters.length === filterSet.cases.length) {
+                    return true;
+                }
                 var anyOfSet = _.some(activeFilters, function(filter){
                     var allOfProps = _.every(_.keys(filter.properties), function(prop){
                         if(filter.properties[prop] instanceof Array) {
