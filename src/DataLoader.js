@@ -152,8 +152,11 @@ var DataLoader = function() {
                 } else if ((seq.length + 1) === d.begin) {
                     mutationArray[d.begin - 1].variants.push(setVariantData(authority, d));
                 }
+                if (d.consequence && d.color) {
+                    Constants.addConsequenceType(d.consequence, d.color);
+                }
             });
-          return [['VARIATION', mutationArray]];
+            return [['VARIATION', mutationArray]];
         }
     };
 }();
