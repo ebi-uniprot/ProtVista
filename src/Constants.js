@@ -28,6 +28,7 @@ var allSources = [
 ];
 var allCategories = Config.categories;
 var allTrackNames = Config.trackNames;
+var consequenceTypes = {};
 
 var Constants = function() {
   return {
@@ -48,6 +49,12 @@ var Constants = function() {
     },
     addSource: function(source) {
         allSources.push(source);
+    },
+    addConsequenceType: function(consequence, color) {
+        consequenceTypes[consequence] = color;
+    },
+    getConsequenceTypes: function() {
+        return consequenceTypes;
     },
     clearDataSources: function() {
         allSources = [];
