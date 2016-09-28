@@ -357,6 +357,16 @@
       "polyphenScore": 0.0301,
       "siftPrediction": "tolerated",
       "siftScore": 0.67
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "variant coinciding with disease",
+      "alternativeSequence": "G",
+      "begin": "717",
+      "end": "717",
+      "wildType": "V",
+      "consequence": "Rare",
+      "color": "#008AB8"
     }
   ]
 }
