@@ -152,8 +152,8 @@ var DataLoader = function() {
                 } else if ((seq.length + 1) === d.begin) {
                     mutationArray[d.begin - 1].variants.push(setVariantData(authority, d));
                 }
-                if (d.consequence && d.color) {
-                    Constants.addConsequenceType(d.consequence, d.color);
+                if (d.consequence) {
+                    Constants.addConsequenceType(d.consequence);
                 }
             });
             return [['VARIATION', mutationArray]];

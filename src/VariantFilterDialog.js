@@ -8,6 +8,7 @@ var _ = require("underscore");
 var $ = require('jquery');
 var Evidence = require('./Evidence');
 var Constants = require("./Constants");
+var LegendDialog = require("./VariantLegendDialog");
 
 var filters = [
     {
@@ -107,9 +108,6 @@ var addSourceFilters = function() {
                     on: true,
                     properties: {
                         'externalData': function(variant, label) {
-                            /*if (variant.externalData) {
-                                console.log(variant, label);
-                            } */
                             var hasCustom = variant.externalData && (_.keys(variant.externalData).length !== 0);
                             return label ? hasCustom && variant.externalData[label] : hasCustom;
                         }
@@ -122,21 +120,21 @@ var addSourceFilters = function() {
 };
 
 var addConsequenceTypes = function() {
-    _.each(Constants.getConsequenceTypes(), function(color, consequenceKey) {
+    _.each(Constants.getConsequenceTypes(), function(consequence, index) {
         var exist = _.find(filters[0].cases, function(aCase) {
-            return aCase.label === consequenceKey;
+            return aCase.label === consequence;
         });
         if (!exist) {
             filters[0].cases.push({
-                label: consequenceKey,
+                label: consequence,
                 on: true,
                 properties: {
                     'consequence': function(variant) {
                         var keys = _.keys(variant.externalData);
-                        return (keys.length > 0) ? variant.externalData[keys[0]].consequence === consequenceKey : false;
+                        return (keys.length > 0) ? variant.externalData[keys[0]].consequence === consequence : false;
                     }
                 },
-                color: color
+                color: LegendDialog.consequenceColors[index % LegendDialog.consequenceColors.length]
             });
         }
     });

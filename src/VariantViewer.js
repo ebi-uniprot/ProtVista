@@ -89,7 +89,12 @@ var variantsFill = function(d, fv) {
         }
 
         if (d.externalData) {
-            return extDatum.color || Constants.getTrackInfo(d.type).color || 'black';
+            if (extDatum.consequence) {
+                var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
+                return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+            } else {
+                return 'black';
+            }
         } else {
             return LegendDialog.othersColor;
         }
@@ -134,7 +139,13 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         .attr('stroke', function(d) {
             if (d.externalData) {
                 var keys = _.keys(d.externalData);
-                return d.externalData[keys[0]].color || Constants.getTrackInfo(d.type).color || 'black';
+                var extDatum = d.externalData[keys[0]];
+                if (extDatum.consequence) {
+                    var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
+                    return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+                } else {
+                    return 'black';
+                }
             } else {
                 return 'none';
             }
