@@ -266,8 +266,7 @@
       "begin": "86",
       "end": "86",
       "wildType": "V",
-      "consequence": "Frequent",
-      "color": "#B8008A"
+      "consequence": "Frequent"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -314,8 +313,7 @@
       "polyphenScore": 0.08,
       "siftPrediction": "tolerated",
       "siftScore": 0.89,
-      "consequence": "Rare",
-      "color": "#008AB8"
+      "consequence": "Rare"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -323,8 +321,7 @@
       "begin": "17",
       "end": "17",
       "wildType": "A",
-      "consequence": "Frequent",
-      "color": "#B8008A"
+      "consequence": "Frequent"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -365,8 +362,7 @@
       "begin": "717",
       "end": "717",
       "wildType": "V",
-      "consequence": "Rare",
-      "color": "#008AB8"
+      "consequence": "Rare"
     }
   ]
 }
