@@ -112,6 +112,14 @@ var addFtId = function(tooltip, ftId) {
     }
 };
 
+var addConsequence = function(tooltip, consequence) {
+    if (consequence) {
+        var dataId = tooltip.table.append('tr');
+        dataId.append('td').text('Consequence');
+        dataId.append('td').text(consequence);
+    }
+};
+
 var addDescription = function(tooltip, description){
     if (description) {
         var dataDes = tooltip.table.append('tr');
@@ -413,11 +421,13 @@ var addUPSection = function(tooltip, upEvidences, upXrefs) {
 var addSection = function(tooltip, data, ftId, description, evidences, xrefs, sectionTitle) {
     var hasEvidences = evidences && _.keys(evidences).length !== 0;
     xrefs = xrefs ? xrefs : [];
-    if (data.ftId || description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0)) {
+    if (data.ftId || description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0) ||
+        data.consequence) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         lssRow.append('td').attr('colspan',2).text(sectionTitle);
         addFtId(tooltip, ftId);
         addDescription(tooltip, description);
+        addConsequence(tooltip, data.consequence);
         addPredictions(tooltip, data);
         tooltip.addEvidences(evidences);
         addXRefs(tooltip, xrefs);
