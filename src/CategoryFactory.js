@@ -50,39 +50,45 @@ Category.prototype.reset = function() {
     });
 };
 
+var findSourceType = function(sameCatVariant, dataVariant) {
+    var sourceType;
+    if (!sameCatVariant.sourceType && !dataVariant.sourceType) {
+        sourceType = undefined;
+    } else if (!sameCatVariant.sourceType) {
+        sourceType = dataVariant.sourceType;
+    } else if (!dataVariant.sourceType) {
+        sourceType = sameCatVariant.sourceType;
+    }
+
+    $.extend(true, sameCatVariant, dataVariant);
+    sameCatVariant.sourceType = sourceType;
+};
+
+var repaintVariantsInPosition = function (wildAAPosition, wildIndex) {
+    _.each(data[wildIndex].variants, function(dataVariant) {
+        var sameCatVariant = _.find(wildAAPosition.variants, function(variant) {
+            return (variant.begin === dataVariant.begin) && (variant.end === dataVariant.end) &&
+                (variant.wildType === dataVariant.wildType) &&
+                (variant.alternativeSequence === dataVariant.alternativeSequence);
+        });
+        if (sameCatVariant) {
+            findSourceType(sameCatVariant, dataVariant);
+        } else {
+            wildAAPosition.variants.push(dataVariant);
+        }
+    });
+};
+
 Category.prototype.repaint = function(data) {
     var category = this;
     if (category.viewerType === Constants.getVisualizationTypes().basic) {
         category.data = _.union(category.data, data);
     } else {
         _.each(category.data, function (wildAAPosition, wildIndex) {
-            if ((data[wildIndex].variants.length !== 0)) {
-                if (wildAAPosition.variants.length !== 0) {
-                    _.each(data[wildIndex].variants, function(dataVariant) {
-                        var sameCatVariant = _.find(wildAAPosition.variants, function(variant) {
-                            return (variant.begin === dataVariant.begin) && (variant.end === dataVariant.end) &&
-                                (variant.wildType === dataVariant.wildType) &&
-                                (variant.alternativeSequence === dataVariant.alternativeSequence);
-                        });
-                        if (sameCatVariant) {
-                            var sourceType;
-                            if (!sameCatVariant.sourceType && !dataVariant.sourceType) {
-                                sourceType = undefined;
-                            } else if (!sameCatVariant.sourceType) {
-                                sourceType = dataVariant.sourceType;
-                            } else if (!dataVariant.sourceType) {
-                                sourceType = sameCatVariant.sourceType;
-                            }
-
-                            $.extend(true, sameCatVariant, dataVariant);
-                            sameCatVariant.sourceType = sourceType;
-                        } else {
-                            wildAAPosition.variants.push(dataVariant);
-                        }
-                    });
-                } else {
-                    wildAAPosition.variants = data[wildIndex].variants;
-                }
+            if ((data[wildIndex].variants.length !== 0) && (wildAAPosition.variants.length !== 0)) {
+                repaintVariantsInPosition(wildAAPosition, wildIndex);
+            } else if ((data[wildIndex].variants.length !== 0)) {
+                wildAAPosition.variants = data[wildIndex].variants;
             }
         });
     }
