@@ -65,7 +65,7 @@ var findSourceType = function(sameCatVariant, dataVariant) {
     sameCatVariant.sourceType = sourceType;
 };
 
-var repaintVariantsInPosition = function (wildAAPosition, wildIndex) {
+var repaintVariantsInPosition = function (data, wildAAPosition, wildIndex) {
     _.each(data[wildIndex].variants, function(dataVariant) {
         var sameCatVariant = _.find(wildAAPosition.variants, function(variant) {
             return (variant.begin === dataVariant.begin) && (variant.end === dataVariant.end) &&
@@ -87,7 +87,7 @@ Category.prototype.repaint = function(data) {
     } else {
         _.each(category.data, function (wildAAPosition, wildIndex) {
             if ((data[wildIndex].variants.length !== 0) && (wildAAPosition.variants.length !== 0)) {
-                repaintVariantsInPosition(wildAAPosition, wildIndex);
+                repaintVariantsInPosition(data, wildAAPosition, wildIndex);
             } else if ((data[wildIndex].variants.length !== 0)) {
                 wildAAPosition.variants = data[wildIndex].variants;
             }
