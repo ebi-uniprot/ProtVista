@@ -13,16 +13,16 @@ var uniprotSource = 'uniprot';
 var allSources = [
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/features/',
-        authority: uniprotSource
+        source: uniprotSource
     },
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
-        authority: uniprotSource,
+        source: uniprotSource,
         category: 'PROTEOMICS'
     },
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/variation/',
-        authority: uniprotSource,
+        source: uniprotSource,
         category: 'VARIATION'
     }
 ];
