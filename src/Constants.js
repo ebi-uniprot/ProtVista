@@ -9,20 +9,20 @@ var visualizationTypes = {
     basic: 'basic',
     variant: 'variant'
 };
-var uniprotAuthority = 'uniprot';
+var uniprotSource = 'uniprot';
 var allSources = [
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/features/',
-        authority: uniprotAuthority
+        authority: uniprotSource
     },
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
-        authority: uniprotAuthority,
+        authority: uniprotSource,
         category: 'PROTEOMICS'
     },
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/variation/',
-        authority: uniprotAuthority,
+        authority: uniprotSource,
         category: 'VARIATION'
     }
 ];
@@ -44,8 +44,8 @@ var Constants = function() {
     getDataSources: function() {
       return allSources;
     },
-    getUniProtAuthority: function() {
-        return uniprotAuthority;
+    getUniProtSource: function() {
+        return uniprotSource;
     },
     addSource: function(source) {
         allSources.push(source);

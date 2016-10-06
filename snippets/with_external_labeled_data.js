@@ -6,7 +6,7 @@ new app(
         uniprotacc : 'P05067',
         customDataSource: {
             url: './data/externalLabeledFeatures_',
-            authority: 'myLab',
+            source: 'myLab',
             useExtension: true
         },
         overwritePredictions: false

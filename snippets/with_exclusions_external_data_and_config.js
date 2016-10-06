@@ -5,7 +5,7 @@ var instance = new app({
     uniprotacc : 'P05067',
     customDataSource: {
         url: './data/externalFeatures_',
-        authority: 'myLab',
+        source: 'myLab',
         useExtension: true
     },
     defaultSources: true,

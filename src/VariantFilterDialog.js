@@ -98,13 +98,13 @@ var filters = [
 
 var addSourceFilters = function() {
     _.each(Constants.getDataSources(), function(dataSource) {
-        if (dataSource.authority !== Constants.getUniProtAuthority()) {
+        if (dataSource.source !== Constants.getUniProtSource()) {
             var exist = _.find(filters[1].cases, function(aCase) {
-                return aCase.label === dataSource.authority;
+                return aCase.label === dataSource.source;
             });
             if (!exist) {
                 filters[1].cases.push({
-                    label: dataSource.authority,
+                    label: dataSource.source,
                     on: true,
                     properties: {
                         'externalData': function(variant, label) {
