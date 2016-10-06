@@ -474,6 +474,7 @@ var FeaturesViewer = function(opts) {
     fv.padding = {top:2, right:10, bottom:2, left:10};
     fv.data = [];
     fv.overwritePredictions = opts.overwritePredictions;
+    fv.defaultSource = opts.defaultSources !== undefined ? opts.defaultSources : true;
 
     fv.load = function() {
         initSources(opts);

@@ -10,91 +10,110 @@ var Evidence = require('./Evidence');
 var Constants = require("./Constants");
 var LegendDialog = require("./VariantLegendDialog");
 
-var filters = [
-    {
-        label: 'Filter consequence',
-        cases: [
-            {
-                label: 'Disease (reviewed)',
-                on: true,
-                properties: {
-                    'association': function(variant){
-                      return _.some(variant.association, function(association){
-                        return association.disease === true;
-                      });
-                    }
-                },
-                color: '#990000'
-            }, {
-                label: ['Predicted deleterious', 'Predicted benign'],
-                on: true,
-                properties: {
-                    'alternativeSequence': /[^*]/,
-                    'sourceType': [Evidence.variantSourceType.lss, null],
-                    'externalData': function(variant){
-                        if (!variant.sourceType) {
-                            return _.some(variant.externalData, function (data) {
-                                return (data.polyphenPrediction && (data.polyphenPrediction !== '-')) ||
-                                    (data.siftPrediction && (data.siftPrediction !== '-'));
-                            });
-                        } else {
-                            return true;
-                        }
-                    }
-                },
-                colorRange: ['#ff3300','#009900']
-            }, {
-                label: 'Non-disease (reviewed)',
-                on: true,
-                properties: {
-                    'association': function(variant){
-                        return _.every(variant.association, function(association){
-                            return association.disease !== true;
-                        }) || (!variant.association);
-                    },
-                    'sourceType': [
-                        Evidence.variantSourceType.uniprot,
-                        Evidence.variantSourceType.mixed
-                    ]
-                },
-                color: '#99cc00'
-            }, {
-                label: 'Init, stop loss or gain',
-                on: true,
-                properties: {
-                    'alternativeSequence': '*'
-                },
-                color: '#0033cc'
+var defaultFilterCaseDisease = {
+    label: 'Disease (reviewed)',
+    on: true,
+    properties: {
+        'association': function(variant){
+            return _.some(variant.association, function(association){
+                return association.disease === true;
+            });
+        }
+    },
+    color: '#990000'
+};
+var defaultFilterCasePrediction = {
+    label: ['Predicted deleterious', 'Predicted benign'],
+    on: true,
+    properties: {
+        'alternativeSequence': /[^*]/,
+        'sourceType': [Evidence.variantSourceType.lss, null],
+        'externalData': function(variant){
+            if (!variant.sourceType) {
+                return _.some(variant.externalData, function (data) {
+                    return (data.polyphenPrediction && (data.polyphenPrediction !== '-')) ||
+                        (data.siftPrediction && (data.siftPrediction !== '-'));
+                });
+            } else {
+                return true;
             }
+        }
+    },
+    colorRange: ['#ff3300','#009900']
+};
+var defaultFilterCaseNonDisease = {
+    label: 'Non-disease (reviewed)',
+    on: true,
+    properties: {
+        'association': function(variant){
+            return _.every(variant.association, function(association){
+                    return association.disease !== true;
+                }) || (!variant.association);
+        },
+        'sourceType': [
+            Evidence.variantSourceType.uniprot,
+            Evidence.variantSourceType.mixed
         ]
     },
-    {
-        label: 'Filter data source',
-        cases: [
-            {
-                label: 'UniProt reviewed',
-                on: true,
-                properties: {
-                    'sourceType': [
-                        Evidence.variantSourceType.uniprot,
-                        Evidence.variantSourceType.mixed
-                    ]
-                },
-                color: 'grey'
-            }, {
-                label: 'Large scale studies',
-                on: true,
-                properties: {
-                    'sourceType': [
-                        Evidence.variantSourceType.lss,
-                        Evidence.variantSourceType.mixed
-                    ]
-                },
-                color: 'grey'
-            }
+    color: '#99cc00'
+};
+var defaultFilterCaseOthers = {
+    label: 'Init, stop loss or gain',
+    on: true,
+    properties: {
+        'alternativeSequence': '*'
+    },
+    color: '#0033cc'
+};
+var defaultFilterConsequence = {
+    label: 'Filter consequence',
+    cases: []
+};
+
+var defaultFilterCaseUP = {
+    label: 'UniProt reviewed',
+    on: true,
+    properties: {
+        'sourceType': [
+            Evidence.variantSourceType.uniprot,
+            Evidence.variantSourceType.mixed
         ]
+    },
+    color: 'grey'
+};
+var defaultFilterCaseLSS = {
+    label: 'Large scale studies',
+    on: true,
+    properties: {
+        'sourceType': [
+            Evidence.variantSourceType.lss,
+            Evidence.variantSourceType.mixed
+        ]
+    },
+    color: 'grey'
+};
+var defaultFilterSource = {
+    label: 'Filter data source',
+    cases: []
+};
+
+var filters = [];
+
+var populateFilters = function(fv) {
+    if (fv.defaultSource === true) {
+        defaultFilterConsequence.cases.push(defaultFilterCaseDisease);
+        defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
+        defaultFilterConsequence.cases.push(defaultFilterCaseNonDisease);
+        defaultFilterConsequence.cases.push(defaultFilterCaseOthers);
+        filters.push(defaultFilterConsequence);
+        defaultFilterSource.cases.push(defaultFilterCaseUP);
+        defaultFilterSource.cases.push(defaultFilterCaseLSS);
+        filters.push(defaultFilterSource);
+    } else {
+        defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
+        filters.push(defaultFilterConsequence);
     }
-];
+};
 
 var addSourceFilters = function() {
     _.each(Constants.getDataSources(), function(dataSource) {
@@ -140,7 +159,8 @@ var addConsequenceTypes = function() {
     });
 };
 
-var VariantFilterDialog = function(container, variantViewer) {
+var VariantFilterDialog = function(fv, container, variantViewer) {
+    populateFilters(fv);
     addConsequenceTypes();
     addSourceFilters();
 

@@ -43,6 +43,41 @@ var getPredictionColorScore = function(siftScore, siftPrediction, polyphenScore,
     }
 };
 
+var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predictionScore) {
+    if (fv.overwritePredictions === true) {
+        if (externalPrediction !== undefined) {
+            d.siftInUse = false;
+            d.polyphenInUse = false;
+            extDatum.siftInUse = true;
+            extDatum.polyphenInUse = true;
+            return LegendDialog.getPredictionColor(externalPrediction);
+        } else if (predictionScore !== undefined) {
+            return LegendDialog.getPredictionColor(predictionScore);
+        }
+    } else {
+        if (predictionScore !== undefined) {
+            return LegendDialog.getPredictionColor(predictionScore);
+        } else if (externalPrediction !== undefined) {
+            d.siftInUse = false;
+            d.polyphenInUse = false;
+            extDatum.siftInUse = true;
+            extDatum.polyphenInUse = true;
+            return LegendDialog.getPredictionColor(externalPrediction);
+        }
+    }
+
+    if (d.externalData) {
+        if (extDatum.consequence) {
+            var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
+            return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+        } else {
+            return 'black';
+        }
+    } else {
+        return LegendDialog.othersColor;
+    }
+};
+
 var variantsFill = function(d, fv) {
     if((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
         return LegendDialog.othersColor;
@@ -63,41 +98,10 @@ var variantsFill = function(d, fv) {
             extDatum.siftInUse = false;
             extDatum.polyphenInUse = false;
         }
-        var predicitonScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
+        var predictionScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
             d.polyphenPrediction);
 
-        if (fv.overwritePredictions === true) {
-            if (externalPrediction !== undefined) {
-                d.siftInUse = false;
-                d.polyphenInUse = false;
-                extDatum.siftInUse = true;
-                extDatum.polyphenInUse = true;
-                return LegendDialog.getPredictionColor(externalPrediction);
-            } else if (predicitonScore !== undefined) {
-                return LegendDialog.getPredictionColor(predicitonScore);
-            }
-        } else {
-            if (predicitonScore !== undefined) {
-                return LegendDialog.getPredictionColor(predicitonScore);
-            } else if (externalPrediction !== undefined) {
-                d.siftInUse = false;
-                d.polyphenInUse = false;
-                extDatum.siftInUse = true;
-                extDatum.polyphenInUse = true;
-                return LegendDialog.getPredictionColor(externalPrediction);
-            }
-        }
-
-        if (d.externalData) {
-            if (extDatum.consequence) {
-                var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
-                return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
-            } else {
-                return 'black';
-            }
-        } else {
-            return LegendDialog.othersColor;
-        }
+        return getVariantsFillColor(fv, d, extDatum, externalPrediction, predictionScore);
     }
 };
 
@@ -209,7 +213,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
     variantViewer.margin = {top:20, bottom:10};
     variantViewer.features = features;
 
-    variantViewer.filter = new VariantFilterDialog(titleContainer, variantViewer);
+    variantViewer.filter = new VariantFilterDialog(fv, titleContainer, variantViewer);
 
     variantViewer.yScale = d3.scale.ordinal()
         .domain(aaList)
