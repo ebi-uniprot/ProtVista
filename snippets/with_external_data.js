@@ -9,6 +9,7 @@ new app(
             source: 'myLab',
             useExtension: true
         },
-        overwritePredictions: true
+        overwritePredictions: true,
+        defaultSources: false
     }
 );
