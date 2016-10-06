@@ -112,6 +112,7 @@ var populateFilters = function(fv) {
     } else {
         defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
         filters.push(defaultFilterConsequence);
+        filters.push(defaultFilterSource);
     }
 };
 
