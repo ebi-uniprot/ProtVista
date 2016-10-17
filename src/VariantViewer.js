@@ -131,7 +131,7 @@ var createDataSeries = function(fv, variantViewer, svg, features, series) {
         .call(yAxis2);
 
     fv.globalContainer.selectAll('g.variation-y g.tick').attr('class', function(d) {
-        return 'tick up_pftv_aa_' + d;
+        return 'tick up_pftv_aa_' + (d === '*' ? 'loss' : d === '-' ? 'deletion' : d);
     });
 
     return dataSeries;

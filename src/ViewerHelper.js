@@ -136,6 +136,7 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
             fv.overFeature = true;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
+                initial = initial === '*' ? 'loss' : initial === '-' ? 'deletion' : initial;
                 fv.globalContainer.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 1);
             }
         })
@@ -143,6 +144,7 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
             fv.overFeature = false;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
+                initial = initial === '*' ? 'loss' : initial === '-' ? 'deletion' : initial;
                 fv.globalContainer.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 0.4);
             }
         });
