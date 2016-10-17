@@ -5,10 +5,10 @@ new app(
         el: yourDiv, text: 'biojs',
         uniprotacc : 'P05067',
         customDataSource: {
-            url: './data/externalFeatures_',
+            url: './data/externalLabeledFeatures_',
             source: 'myLab',
             useExtension: true
         },
-        customConfig: './data/externalConfig.json'
+        overwritePredictions: false
     }
 );

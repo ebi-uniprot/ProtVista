@@ -104,11 +104,19 @@ var parseVariantDescription = function(data) {
     }
 };
 
-var addFtId = function(tooltip) {
-    if (tooltip.data.ftId) {
+var addFtId = function(tooltip, ftId) {
+    if (ftId) {
         var dataId = tooltip.table.append('tr');
         dataId.append('td').text('Feature ID');
-        dataId.append('td').text(tooltip.data.ftId);
+        dataId.append('td').text(ftId);
+    }
+};
+
+var addConsequence = function(tooltip, consequence) {
+    if (consequence) {
+        var dataId = tooltip.table.append('tr');
+        dataId.append('td').text('Consequence');
+        dataId.append('td').text(consequence);
     }
 };
 
@@ -156,27 +164,34 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
         (tooltip.data.end ? '-' + tooltip.data.end : '');
     descRow.append('th').attr('colspan',2).text(tooltipTitle);
 
-    if (tooltip.data.sourceType !== undefined) {
+    var keys = tooltip.data.externalData ? _.keys(tooltip.data.externalData).join(', ') : undefined;
+    if (keys || (tooltip.data.sourceType !== undefined)) {
         var dataSource = tooltip.table.append('tr');
         dataSource.append('td').text('Source');
         var sourceText = '';
+        var isUniProt = false, isLSS = false;
         if (tooltip.data.sourceType === Evidence.variantSourceType.mixed) {
-            sourceText = 'UniProt and large scale studies';
+            sourceText = keys ? 'UniProt, large scale studies and custom data (' + keys + ')'
+                : 'UniProt and large scale studies';
         } else if (tooltip.data.sourceType === Evidence.variantSourceType.uniprot) {
-            sourceText = 'UniProt';
+            isUniProt = true;
+            sourceText = keys ? 'UniProt and custom data (' + keys + ')' : 'UniProt';
+        } else if (tooltip.data.sourceType === Evidence.variantSourceType.lss) {
+            isLSS = true;
+            sourceText = keys ? 'Large scale studies and custom data (' + keys + ')' : 'Large scale studies';
         } else {
-            sourceText = 'Large scale studies';
+            sourceText = 'Custom data (' + keys + ')';
         }
         dataSource.append('td').text(sourceText);
         parseVariantDescription(tooltip.data);
-        if (sourceText === 'UniProt') {
-            addFtId(tooltip);
+        if (isUniProt) {
+            addFtId(tooltip, tooltip.data.ftId);
             addDescription(tooltip, tooltip.data.up_description, 'up_description');
-        } else if (sourceText === 'Large scale studies'){
+        } else if (isLSS){
             addDescription(tooltip, tooltip.data.lss_description, 'lss_description');
         }
     } else {
-        addFtId(tooltip);
+        addFtId(tooltip, tooltip.data.ftId);
         addDescription(tooltip, tooltip.data.description, 'description');
     }
 };
@@ -278,43 +293,43 @@ var AlternativeTooltipViewer = function(tooltip, change, field) {
     tooltip.addBlast();
 };
 
-var addPredictions = function(tooltip) {
-    if (tooltip.data.frequency && (tooltip.data.frequency !== 0)) {
+var addPredictions = function(tooltip, data) {
+    if (data.frequency && (data.frequency !== 0)) {
         var freqRow = tooltip.table.append('tr');
         freqRow.append('td').append('span').append('a')
             .attr('href', 'http://www.ncbi.nlm.nih.gov/projects/SNP/docs/rs_attributes.html#gmaf')
             .attr('target', '_blank').text('Frequency (MAF)');
-        freqRow.append('td').text(tooltip.data.frequency);
+        freqRow.append('td').text(data.frequency);
     }
-    if (tooltip.data.polyphenPrediction && (tooltip.data.polyphenPrediction !== '-')) {
+    if (data.polyphenPrediction && (data.polyphenPrediction !== '-') && (data.polyphenInUse !== false)) {
         var polyRow = tooltip.table.append('tr');
         polyRow.append('td').append('span').append('a')
             .attr('href', 'http://genetics.bwh.harvard.edu/pph2/dokuwiki/about')
             .attr('target', '_blank').text('Polyphen');
-        var text = tooltip.data.polyphenPrediction + ', score ' + tooltip.data.polyphenScore;
+        var text = data.polyphenPrediction + ', score ' + data.polyphenScore;
         polyRow.append('td').text(text);
     }
-    if (tooltip.data.siftPrediction && (tooltip.data.siftPrediction !== '-')) {
+    if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
         var siftRow = tooltip.table.append('tr');
         siftRow.append('td').append('span').append('a')
             .attr('href', 'http://sift.jcvi.org/')
             .attr('target', '_blank').text('SIFT');
-        var predictionText = tooltip.data.siftPrediction + ', score ' + tooltip.data.siftScore;
+        var predictionText = data.siftPrediction + ', score ' + data.siftScore;
         siftRow.append('td').text(predictionText);
     }
 };
 
-var havePredictions = function(data) {
+var hasPredictions = function(data) {
     var response = false;
     if (data.frequency && (data.frequency !== 0)) {
         response = true;
     }
     if (data.polyphenPrediction && (data.polyphenPrediction !== '-')
-        && (data.polyphenPrediction !== 'unknown')) {
+        && (data.polyphenPrediction !== 'unknown') && (data.polyphenInUse !== false)) {
         response = true;
     }
     if (data.siftPrediction && (data.siftPrediction !== '-')
-        && (data.siftPrediction !== 'unknown')) {
+        && (data.siftPrediction !== 'unknown') && (data.siftInUse !== false)) {
         response = true;
     }
     return response;
@@ -390,11 +405,12 @@ var addXRefs = function(tooltip, xrefs) {
         });
     }
 };
+
 var addUPSection = function(tooltip, upEvidences, upXrefs) {
     if (tooltip.data.ftId || tooltip.data.up_description || (upEvidences.length !== 0) || tooltip.data.association) {
         var upRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         upRow.append('td').attr('colspan',2).text('UniProt');
-        addFtId(tooltip);
+        addFtId(tooltip, tooltip.data.ftId);
         addDescription(tooltip, tooltip.data.up_description, 'up_description');
         tooltip.addEvidences(upEvidences);
         addXRefs(tooltip, upXrefs);
@@ -402,14 +418,19 @@ var addUPSection = function(tooltip, upEvidences, upXrefs) {
     }
 };
 
-var addLSSSection = function(tooltip, lssEvidences, lssXrefs) {
-    if (tooltip.data.lss_description || (lssEvidences.length !== 0) || havePredictions(tooltip.data)) {
+var addSection = function(tooltip, data, ftId, description, evidences, xrefs, sectionTitle) {
+    var hasEvidences = evidences && _.keys(evidences).length !== 0;
+    xrefs = xrefs ? xrefs : [];
+    if (data.ftId || description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0) ||
+        data.consequence) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
-        lssRow.append('td').attr('colspan',2).text('Large Scale Studies');
-        addDescription(tooltip, tooltip.data.lss_description, 'lss_description');
-        addPredictions(tooltip);
-        tooltip.addEvidences(lssEvidences);
-        addXRefs(tooltip, lssXrefs);
+        lssRow.append('td').attr('colspan',2).text(sectionTitle);
+        addFtId(tooltip, ftId);
+        addDescription(tooltip, description);
+        addConsequence(tooltip, data.consequence);
+        addPredictions(tooltip, data);
+        tooltip.addEvidences(evidences);
+        addXRefs(tooltip, xrefs);
     }
 };
 
@@ -433,14 +454,19 @@ var VariantTooltipViewer = function(tooltip) {
         });
         addMutation(tooltip);
         addUPSection(tooltip, upEvidences, upXrefs);
-        addLSSSection(tooltip, lssEvidences, lssXrefs);
+        addSection(tooltip, tooltip.data, undefined, tooltip.data.lss_description, lssEvidences, lssXrefs, 'Large' +
+            ' Scale Studies');
     } else {
         addMutation(tooltip);
-        addPredictions(tooltip);
+        addPredictions(tooltip, tooltip.data);
         tooltip.addEvidences(tooltip.data.evidences);
         addXRefs(tooltip, tooltip.data.xrefs);
         addAssociation(tooltip);
     }
+    //There is only one external data source but we do not know the key name
+    _.each(tooltip.data.externalData, function(data, key) {
+        addSection(tooltip, data, data.ftId, data.description, data.evidences, data.xrefs, key);
+    });
 };
 
 Tooltip.basic = function() {
