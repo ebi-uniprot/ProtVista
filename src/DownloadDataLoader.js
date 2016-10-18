@@ -12,54 +12,52 @@ var FileSaver = require('file-saver');
     return {
         get: function(accession, format) {
             var zip = new JSZip();
-            zip.file("Hello.txt", "Hello World\n");   //TODO Maybe a readme?
+            zip.file('readme', 'Protein sequence features for ' + accession + '\n\n' +
+                'This zipped file contains protein sequence features provided by different data sources (' +
+                _.pluck(Constants.getDataSources(), 'url').join() + '). \n\nCurrently, all download formats (' +
+                _.pluck(Constants.getDownloadFormats(), 'text').join() + ') are supported for UniProt data sources' +
+                ' while only JSON is guaranteed for any other data source. \n\nWe cannot guarantee the availability ' +
+                'of any data source at the download time.');
+
             var loaders = [];
-            _.each(Constants.getUniProtDataSources(), function(source) {
-                //TODO decision should we support 3-party data sources download?
-                //TODO decision if 3-party data sources do not support gff/xml, check the response headers and inform
-                //TODO load only categories that are displayed... but that might not work for 3-party sources... we
-                // would still need the filtering code
-                //var loader = $.getJSON(source.url + accession);
-                var extension = '';
-                var loader = $.get({
-                    url: source.url + accession + extension,
-                    dataType: format === 'XML' ? 'xml' : (format === 'JSON') ? 'json' : 'text'
+            _.each(Constants.getDataSources(), function(source, index) {
+                var loader = $.ajax({
+                    accepts: { gff: 'text/x-gff', json: 'application/json', xml: 'application/xml' },
+                    converters: {
+                        'text gff': function(result) { return result; },
+                        'text json': function(result) { return result; },
+                        'text xml': function(result) { return result; }
+                    },
+                    dataType: format,
+                    url: source.url + accession
                 });
                 loaders.push(loader);
                 loader.done(function(d) {
-                    if (source.category === 'GENERAL') { //TODO get rid of hardcoded here
-                        d.features = _.filter(d.features, function(feature) {
-                            return feature.category !== 'VARIANTS';
-                        });
+                    if (loader.getResponseHeader('Content-type').indexOf(format) !== -1) {
+                        zip.file(source.source + source.category + '.' + format, d);
+                    } else {
+                        zip.file('warning' + index + '.txt', source.url + ' response does not correspond to the' +
+                            ' required format ' + format + '. Data has not been processed.');
                     }
-                    if (format === 'JSON') {
-                        zip.file(source.authority + source.category + '.json', JSON.stringify(d));
-                    }
+                    /*if ((format === 'json') && (loader.getResponseHeader('Content-type').indexOf('json') !== -1)) {
+                        zip.file(source.source + source.category + '.json', JSON.stringify(d));
+                    } else if ((format === 'xml') && (loader.getResponseHeader('Content-type').indexOf('xml') !== -1)) {
 
+                    } else if ((format === 'gff') && (loader.getResponseHeader('Content-type').indexOf('gff') !== -1)) {
+                        zip.file(source.source + source.category + '.gff', d);
+                    } */
                 }).fail(function (e) {
-                    console.log('DownloadDataLoader', e);
+                    console.log('DownloadDataLoader-Error', e, this.url);
                 });
             });
             //when all done
             $.when.apply(null, loaders).done(function () {
                 zip.generateAsync({type:"blob"})
                     .then(function(content) {
-                        // TODO FileSaver does not necessarily work in Safari
-                        FileSaver.saveAs(content, "data.zip");
+                        // TODO FileSaver does not necessarily work in Safari -- see content type
+                        FileSaver.saveAs(content, "protVistaData.zip");
                     });
             });
-            if (format === 'JSON') {
-                this.getJSON(accession);
-            }
-        },
-        getJSON: function(accession) {
-
-        },
-        getXML: function() {
-
-        },
-        getGFF: function() {
-
         }
     };
 }();

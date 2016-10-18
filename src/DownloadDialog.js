@@ -16,10 +16,10 @@ var populateDialog = function (fv, wrapper) {
         radioDiv.append('input')
             .attr('type', 'radio')
             .attr('name', 'upfv_radio_format')
-            .attr('value', format)
+            .attr('value', format.type)
             .property('checked', selected);
         radioDiv.append('label')
-            .text(format);
+            .text(format.text);
         selected = false;
     });
     wrapper.append('div').style('text-align', 'right')

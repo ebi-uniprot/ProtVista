@@ -9,27 +9,29 @@ var visualizationTypes = {
     basic: 'basic',
     variant: 'variant'
 };
+var uniprotSource = 'uniprot';
 var uniprotSources = [
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/features/',
-        authority: 'uniprot',
+        source: uniprotSource,
         category: 'GENERAL'
     },
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
-        authority: 'uniprot',
+        source: uniprotSource,
         category: 'PROTEOMICS'
     },
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/variation/',
-        authority: 'uniprot',
+        source: uniprotSource,
         category: 'VARIATION'
     }
 ];
 var allSources = uniprotSources.slice(0);
 var allCategories = Config.categories;
 var allTrackNames = Config.trackNames;
-var downloadFormats = ['JSON', 'XML', 'GFF'];
+var downloadFormats = [{text: 'JSON', type: 'json'}, {text: 'XML', type: 'xml'},
+    {text: 'GFF', type: 'gff'}];
 var consequenceTypes = [];
 
 var Constants = function() {
@@ -51,6 +53,9 @@ var Constants = function() {
     },
     getUniProtDataSources: function() {
       return uniprotSources;
+    },
+    getUniProtSource: function() {
+      return uniprotSource;
     },
     addSource: function(source) {
         allSources.push(source);
