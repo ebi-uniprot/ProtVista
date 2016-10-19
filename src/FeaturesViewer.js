@@ -491,7 +491,7 @@ var FeaturesViewer = function(opts) {
         initSources(opts);
         var dataSources = Constants.getDataSources();
         var loaders = [], delegates = [];
-        _.each(dataSources, function (source) {
+        _.each(dataSources, function () {
             var delegate = jQuery.Deferred();
             delegates.push(delegate);
         });
