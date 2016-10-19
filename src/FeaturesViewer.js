@@ -400,9 +400,9 @@ var initSources = function (opts) {
     if (opts.defaultSources === false) {
         Constants.clearDataSources();
     }
-    _.each(opts.customDataSources, function(dataSource) {
-        Constants.addSource(dataSource);
-    });
+    if (opts.customDataSource) {
+        Constants.addSource(opts.customDataSource);
+    }
 };
 
 var loadSources = function(opts, dataSources, loaders, delegates, fv) {
@@ -423,7 +423,8 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
                 var features = d.features;
                 // group by categories
                 if (features.length > 0 && _.has(features[0], 'category')) {
-                    features = DataLoader.groupFeaturesByCategory(features);
+                    features = DataLoader.groupFeaturesByCategory(features, d.sequence, source.source,
+                        !_.contains(opts.exclusions, 'VARIATION'));
                     features = _.filter(features, function (cat) {
                         return !_.contains(opts.exclusions, cat[0]);
                     });
@@ -431,7 +432,7 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
                     if (_.contains(opts.exclusions, 'VARIATION')) {
                         features = [];
                     } else {
-                        features = DataLoader.processVariants(features, d.sequence);
+                        features = DataLoader.processVariants(features, d.sequence, source.source);
                     }
                 } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
                     if (_.contains(opts.exclusions, 'PROTEOMICS')) {
@@ -472,6 +473,8 @@ var FeaturesViewer = function(opts) {
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
     fv.data = [];
+    fv.overwritePredictions = opts.overwritePredictions;
+    fv.defaultSource = opts.defaultSources !== undefined ? opts.defaultSources : true;
 
     fv.load = function() {
         initSources(opts);
