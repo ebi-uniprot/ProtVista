@@ -19,8 +19,13 @@ var FileSaver = require('file-saver');
                 ' while only JSON is guaranteed for any other data source. \n\nWe cannot guarantee the availability ' +
                 'of any data source at the download time.');
 
-            var loaders = [];
+            var delegates = [];
+            _.each(Constants.getDataSources(), function() {
+                var delegate = $.Deferred();
+                delegates.push(delegate);
+            });
             _.each(Constants.getDataSources(), function(source, index) {
+                var extension = source.source === Constants.getUniProtSource() ? '' : '.' + format;
                 var loader = $.ajax({
                     accepts: { gff: 'text/x-gff', json: 'application/json', xml: 'application/xml' },
                     converters: {
@@ -29,29 +34,24 @@ var FileSaver = require('file-saver');
                         'text xml': function(result) { return result; }
                     },
                     dataType: format,
-                    url: source.url + accession
-                });
-                loaders.push(loader);
-                loader.done(function(d) {
+                    url: source.url + accession + extension
+                }).done(function(d) {
                     if (loader.getResponseHeader('Content-type').indexOf(format) !== -1) {
-                        zip.file(source.source + source.category + '.' + format, d);
+                        var fileName = source.source + (source.category ? source.category : '') + '.' + format;
+                        zip.file(fileName, d);
                     } else {
-                        zip.file('warning' + index + '.txt', source.url + ' response does not correspond to the' +
-                            ' required format ' + format + '. Data has not been processed.');
+                        zip.file('warning_' + index + '.txt', source.url + ' response does not correspond to the ' +
+                            'required format ' + format + '. Data has not been processed.');
                     }
-                    /*if ((format === 'json') && (loader.getResponseHeader('Content-type').indexOf('json') !== -1)) {
-                        zip.file(source.source + source.category + '.json', JSON.stringify(d));
-                    } else if ((format === 'xml') && (loader.getResponseHeader('Content-type').indexOf('xml') !== -1)) {
-
-                    } else if ((format === 'gff') && (loader.getResponseHeader('Content-type').indexOf('gff') !== -1)) {
-                        zip.file(source.source + source.category + '.gff', d);
-                    } */
                 }).fail(function (e) {
-                    console.log('DownloadDataLoader-Error', e, this.url);
+                    zip.file('error_' + index + '.txt', source.url + ' responded with an error code for the ' +
+                        'required format ' + format + '. Data has not been retrieved.');
+                }).always(function() {
+                    delegates[index].resolve();
                 });
             });
             //when all done
-            $.when.apply(null, loaders).done(function () {
+            $.when.apply(null, delegates).always(function () {
                 zip.generateAsync({type:"blob"})
                     .then(function(content) {
                         // TODO FileSaver does not necessarily work in Safari -- see content type
