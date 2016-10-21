@@ -11,6 +11,8 @@ var FileSaver = require('file-saver');
     var DownloadDataLoader = function() {
     return {
         get: function(accession, format) {
+            var isSafari = navigator.vendor.indexOf("Apple")==0 && /\sSafari\//.test(navigator.userAgent);
+
             var zip = new JSZip();
             zip.file('readme', 'Protein sequence features for ' + accession + '\n\n' +
                 'This zipped file contains protein sequence features provided by different data sources (' +
@@ -49,13 +51,19 @@ var FileSaver = require('file-saver');
                     delegates[index].resolve();
                 });
             });
-            //when all done
-            //TODO async download does not work in safari
             $.when.apply(null, delegates).always(function () {
-                zip.generateAsync({type:'blob'})
-                    .then(function(content) {
-                        FileSaver.saveAs(content, "protVistaData.zip");
+                if (!isSafari) {
+                    zip.generateAsync({type:'blob'})
+                        .then(function(content) {
+                            FileSaver.saveAs(content, "protVistaData.zip");
+                        });
+                } else {
+                    zip.generateAsync({type:"base64"}).then(function (base64) {
+                        window.location = "data:application/zip;base64," + base64;
+                    }, function (err) {
+                        console.log('Error: ', err)
                     });
+                }
             });
         }
     };
