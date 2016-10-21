@@ -18,7 +18,6 @@ var FileSaver = require('file-saver');
                 _.pluck(Constants.getDownloadFormats(), 'text').join() + ') are supported for UniProt data sources' +
                 ' while only JSON is guaranteed for any other data source. \n\nWe cannot guarantee the availability ' +
                 'of any data source at the download time.');
-
             var delegates = [];
             _.each(Constants.getDataSources(), function() {
                 var delegate = $.Deferred();
@@ -51,10 +50,10 @@ var FileSaver = require('file-saver');
                 });
             });
             //when all done
+            //TODO async download does not work in safari
             $.when.apply(null, delegates).always(function () {
-                zip.generateAsync({type:"blob"})
+                zip.generateAsync({type:'blob'})
                     .then(function(content) {
-                        // TODO FileSaver does not necessarily work in Safari -- see content type
                         FileSaver.saveAs(content, "protVistaData.zip");
                     });
             });
