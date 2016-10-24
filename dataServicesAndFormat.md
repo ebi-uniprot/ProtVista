@@ -199,7 +199,7 @@ Here is the data format for the variant features:
   "end": Integer string or integer - mandatory - it must be a valid position within the sequence
   "alternativeSequence": String - mandatory - '-' must be used for deletions, '*' for stop gained and stop lost
   "wildType": String - mandatory
-  "color": String - optional - will be used if provided and no prediction is available and no other external source is defined, should be a valid color
+  "consequence": String - optional - will be used if provided, consequences will be added to the left side filter
   "polyphenPrediction": String - optional
   "polyphenScore": ​double - optional - most probably present if polyphenPrediction is known
   "siftPrediction": String - optional
@@ -289,7 +289,8 @@ Examples of valid variant features:
     "polyphenPrediction": "benign",
     "polyphenScore": ​0.4,
     "siftPrediction": "deleterious",
-    "siftScore": ​0.04
+    "siftScore": ​0.04,
+    "consequence": "missense"
   }
 ]
 ```
@@ -455,39 +456,79 @@ If you do load the default data sources, this is how it would look. Those featur
 ![](./images/customCategoriesAndTypesWithDefault.png)
 
 ## Variants
-Natural variants have a [tailored visualization](#variant-visualization) explained earlier in this document. In order to visually distinguish what variant data comes from an external source, i.e., sources you have added to the default ones, we use a black circumference.
+Natural variants have a [tailored visualization](#variant-visualization) explained earlier in this document. In order to visually distinguish what variant data comes from an external source, i.e., sources you have added to the default ones, we use a thick colored circumference. The circumference color is given by the consequence reported on the external data source or black if none reported.
 ![](./images/extSrc_black_circumference.png)
 
-Variants could also come with some more information than that one allowed for other type of features. This means, some special rules are taken into consideration when rendering variants.
+**Instantiation**
 
-**Rules**
+Both sources, the default and the external one, can report SIFT or Polyphen predictions. It is therefore **necessary** to specify at instantiation whether or not the default predictions should be overwritten.
 
-* If the position, the wild type and the alternative sequence are the same, we are talking about the same variant regardless it has information reported by different data sources.
-**Example**: If two data sources have a variant V86I, only one circle will be used to represent the variable. The information coming from each data source will be available via tooltip.
+The overwrite rules are like follows: If **overwritePredictions: false**, the predictions from the default data sources will be used whenever possible. If not available, then the predictions coming from the external data source will be used. The rules for **overwritePredictions: true** are similar but then the external data source has priority.
+
+```
+<div id='yourDiv'/>
+<script>
+  window.onload = function() {
+    var yourDiv = document.getElementById('yourDiv');
+    var ProtVista = require('ProtVista');
+    var instance = new ProtVista({
+      el: yourDiv,
+
+      //This will be **always** added at the end of your data source URL
+      uniprotacc: 'P05067',
+
+      //Default sources will be included (even if this option is omitted)
+      defaultSources: true,
+
+      //Your data sources are defined here
+      customDataSource: {
+        url: 'https://mydomain/mysource/',
+        source: 'myLab',
+        //Should .json be added at the end of the request URL?
+        useExtension: true
+      },
+      //Predictions defined in the default data sources will have priority over external sources
+      overwritePredictions: false
+    });
+  }
+</script>
+```
+
+**Position, prediction and coloring**
+
+* If the position, the wild type and the alternative sequence are the same, we are talking about the same variant with information reported by different data sources.
+**Example**: If two data sources report a variant P91S, only one circle will be used to represent the variable. The information coming from each data source will be available via tooltip.
 ![](./images/extSrc_same_variant.png)
 
-* We color variants according to its consequence (burgundy for disease, from red-ish for deleterious to green-ish for benign, and light green for non-disease). However, you can also specify a color for your variants, we cannot guarantee that such a color will always be used.
-  * If a variant is reported by one and only one external, such a variant has no prediction data, and a color is specified, then that specified color will be used.
-  **Example**: MyLab, and no other data source, reports a pink variant with no prediction data thus the variant looks is depicted in pink.
-  ![](./images/extSrc_pink_variant.png)
+* We color variants according to its consequence (burgundy for disease, from red-ish for deleterious to green-ish for benign, and light green for non-disease). External sources can also report consequences for their variants; we will automatically assign a color to them.  All the reported consequences will be added to the consequence filter on the left. Please be aware that due to space limitations we cannot accommodate more than five consequence in addition to the default ones.
+  
+  * If the same variant is reported by the default and the external data source and the predictions reported by the default source have priority (**overwritePredictions: false**), only those predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the circumference is black.
+  **Example**: Variant P91S reported by both default and MyLab sources, default predictions have priority.
+  ![](./images/extSrc_defaultPredicted_variant.png)
 
-  * If a variant with no prediction data is reported by more than one external data source or no color is specified, 'black' will be used.
-  **Example**: The same variant A17V is reported by MyLab and myOtherLab, and no prediction data is available. Regardless any color specified by the data sources, the variant will be depicted in black.
-  ![](./images/extSrc_black_variant.png)
+  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the circumference is black. 
+  **Example**: Variant P91S reported by both default and MyLab sources, external predictions have priority.
+  ![](./images/extSrc_externalPredicted_variant.png)
+  
+  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. The consequence reported by the external data is used for the circumference color. 
+  **Example**: Variant P91S reported by both default and MyLab sources, external predictions have priority, external source reports a consequence.
+  ![](./images/extSrc_externalPredictedWithConsequence_variant.png)
 
-  * If a variant is reported by an external source with no prediction information but the default data sources do have prediction data, such a prediction will be used to color the variant.
-  **Example**: The variant V86I is reported by myLab but no prediction is specified; however, the default data sources provide prediction data (polyphen, unknown, 0 and SIFT, deleterious, 0.04). Based on the default data sources prediction, the variant is depicted in a dark orange
-  ![](./images/extSrc_default_prediction.png)
+  * If a variant is reported by an external source with no prediction information but with a consequence, a color will be assigned to the consequence.
+  **Example**: Variant A17del is reported by an external data source, the consequence is "deletion".
+  ![](./images/extSrc_externalConsequence_prediction.png)
 
-  * If a variant is reported by one or more external data sources including prediction information, any prediction coming from the default data sources will be discarded. Predictions coming from external data sources will be average in order to assign a color.
-  **Example**: MyLab reports a variant including prediction data, reported predictions are used to assign an orange-ish color to the variant.
-    ![](./images/extSrc_external_single_prediction.png)
-  **Example**: Both MyLab and MyOtherLab report a variant including prediction data. All of the prediction data is averaged to assign a green-ish color.
-  ![](./images/extSrc_external_multiple_prediction.png)
-
+  * If a variant is reported by an external data source with no prediction nor consequence, black will be used to color such a variant.
+  **Example**: Variant L10M reported by MyLab with no prediction nor consequence.
+  ![](./images/extSrc_externalUnknownConsequence.png)
+    
   * If a variant has a disease association, regardless any prediction data, burgundy will be used to color this variant.
   **Example**: MyLab reports a variant that, according to default data sources, is known to be associated to a disease.
-    ![](./images/extSrc_disease_association.png)
+  ![](./images/extSrc_disease_association.png)
+  
+  * Blue is used for initiator codons and stop loss and gained.
+  **Example**: Stop gained variant.
+  ![](./images/extSrc_stopGained.png)
 
 ## Further customization
 
