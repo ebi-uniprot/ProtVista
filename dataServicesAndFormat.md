@@ -305,7 +305,7 @@ In our GitHub repository, you can find a couple of examples working with externa
 Make sure you understand the [data format](#data-format) that is required in ProtVista.
 
 **Instantiation**
-You will need to specify the URL, the authority and whether or not ".json" file extension is expected at the end of the data source call. The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by ProtVista is JSON. Make sure you allow Cross-origin-resource-sharing.
+You will need to specify the URL, the source name and whether or not ".json" file extension is expected at the end of the data source call. The protein accession will be added at the end of the URL and before the ".json" file extension (if used). The only data format supported by ProtVista is JSON. Make sure you allow Cross-origin-resource-sharing.
 
 In the following example, we use the default UniProt data sources as well as an additional one. The additional data source call would look like https://mydomain/mysource/P05067.json
 
@@ -316,23 +316,20 @@ In the following example, we use the default UniProt data sources as well as an 
     var yourDiv = document.getElementById('yourDiv');
     var ProtVista = require('ProtVista');
     var instance = new ProtVista({
-      el: yourDiv,
+       el: yourDiv,
 
-      //This will be **always** added at the end of your data source URL
-      uniprotacc: 'P05067',
+       //This will be **always** added at the end of your data source URL but before the extension
+       uniprotacc: 'P05067',
 
-      //Default sources will be included (even if this option is omitted)
-      defaultSources: true,
+       //Default sources will be included (even if this option is omitted)
+       defaultSources: true,
 
-      //Your data sources are defined here
-      customDataSources: [
-        {
-          url: 'https://mydomain/mysource/',
-          authority: 'myLab',
-          //Should .json be added at the end of the request URL?
-          useExtension: true
-        }
-      ]
+       //Your data sources are defined here
+       customDataSource: {
+         url: './data/externalFeatures_',
+         source: 'myLab',
+         useExtension: true
+       }
     });
   }
 </script>
