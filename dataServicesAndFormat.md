@@ -512,7 +512,7 @@ You can specify your configuration file as an option when instantiating ProtVist
       customDataSources: [
         {
           url: 'https://mydomain/mysource/',
-          authority: 'myLab',
+          source: 'myLab',
           useExtension: true
         }
       ],
