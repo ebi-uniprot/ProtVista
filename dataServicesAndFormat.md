@@ -267,7 +267,6 @@ Examples of valid variant features:
     "alternativeSequence": "L",
     "begin": "727",
     "end": "727",
-    "color": "violet",
     "xrefs": [
       {
         "name": "my_data curated",
@@ -501,16 +500,16 @@ The overwrite rules are like follows: If **overwritePredictions: false**, the pr
 ![](./images/extSrc_same_variant.png)
 
 * We color variants according to its consequence (burgundy for disease, from red-ish for deleterious to green-ish for benign, and light green for non-disease). External sources can also report consequences for their variants; we will automatically assign a color to them.  All the reported consequences will be added to the consequence filter on the left. Please be aware that due to space limitations we cannot accommodate more than five consequence in addition to the default ones.
-  
+
   * If the same variant is reported by the default and the external data source and the predictions reported by the default source have priority (**overwritePredictions: false**), only those predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the circumference is black.
   **Example**: Variant P91S reported by both default and MyLab sources, default predictions have priority.
   ![](./images/extSrc_defaultPredicted_variant.png)
 
-  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the circumference is black. 
+  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the circumference is black.
   **Example**: Variant P91S reported by both default and MyLab sources, external predictions have priority.
   ![](./images/extSrc_externalPredicted_variant.png)
-  
-  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. The consequence reported by the external data is used for the circumference color. 
+
+  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. The consequence reported by the external data is used for the circumference color.
   **Example**: Variant P91S reported by both default and MyLab sources, external predictions have priority, external source reports a consequence.
   ![](./images/extSrc_externalPredictedWithConsequence_variant.png)
 
@@ -521,11 +520,11 @@ The overwrite rules are like follows: If **overwritePredictions: false**, the pr
   * If a variant is reported by an external data source with no prediction nor consequence, black will be used to color such a variant.
   **Example**: Variant L10M reported by MyLab with no prediction nor consequence.
   ![](./images/extSrc_externalUnknownConsequence.png)
-    
+
   * If a variant has a disease association, regardless any prediction data, burgundy will be used to color this variant.
   **Example**: MyLab reports a variant that, according to default data sources, is known to be associated to a disease.
   ![](./images/extSrc_disease_association.png)
-  
+
   * Blue is used for initiator codons and stop loss and gained.
   **Example**: Stop gained variant.
   ![](./images/extSrc_stopGained.png)
