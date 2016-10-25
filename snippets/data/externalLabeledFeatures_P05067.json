@@ -262,11 +262,11 @@
     {
       "type": "VARIANT", "category": "VARIATION",
       "description": "Same mutation, no predictions, no xref",
-      "alternativeSequence": "I",
+      "alternativeSequence": "-",
       "begin": "86",
       "end": "86",
       "wildType": "V",
-      "consequence": "Frequent"
+      "consequence": "Deletion"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -277,7 +277,8 @@
       "polyphenPrediction": "unknown",
       "polyphenScore": 0.0,
       "siftPrediction": "deleterious",
-      "siftScore": 0.04
+      "siftScore": 0.04,
+      "consequence": "Missense"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -313,15 +314,15 @@
       "polyphenScore": 0.08,
       "siftPrediction": "tolerated",
       "siftScore": 0.89,
-      "consequence": "Rare"
+      "consequence": "Missense"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
-      "alternativeSequence": "V",
+      "alternativeSequence": "-",
       "begin": "17",
       "end": "17",
       "wildType": "A",
-      "consequence": "Frequent"
+      "consequence": "Deletion"
     },
     {
       "type": "VARIANT", "category": "VARIATION",

@@ -10,6 +10,7 @@ var Evidence = require('./Evidence');
 var Constants = require("./Constants");
 var LegendDialog = require("./VariantLegendDialog");
 
+var populated = false;
 var defaultFilterCaseDisease = {
     label: 'Disease (reviewed)',
     on: true,
@@ -100,19 +101,22 @@ var defaultFilterSource = {
 var filters = [];
 
 var populateFilters = function(fv) {
-    if (fv.defaultSource === true) {
-        defaultFilterConsequence.cases.push(defaultFilterCaseDisease);
-        defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
-        defaultFilterConsequence.cases.push(defaultFilterCaseNonDisease);
-        defaultFilterConsequence.cases.push(defaultFilterCaseOthers);
-        filters.push(defaultFilterConsequence);
-        defaultFilterSource.cases.push(defaultFilterCaseUP);
-        defaultFilterSource.cases.push(defaultFilterCaseLSS);
-        filters.push(defaultFilterSource);
-    } else {
-        defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
-        filters.push(defaultFilterConsequence);
-        filters.push(defaultFilterSource);
+    if (!populated) {
+        if (fv.defaultSource === true) {
+            defaultFilterConsequence.cases.push(defaultFilterCaseDisease);
+            defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
+            defaultFilterConsequence.cases.push(defaultFilterCaseNonDisease);
+            defaultFilterConsequence.cases.push(defaultFilterCaseOthers);
+            filters.push(defaultFilterConsequence);
+            defaultFilterSource.cases.push(defaultFilterCaseUP);
+            defaultFilterSource.cases.push(defaultFilterCaseLSS);
+            filters.push(defaultFilterSource);
+        } else {
+            defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
+            filters.push(defaultFilterConsequence);
+            filters.push(defaultFilterSource);
+        }
+        populated = true;
     }
 };
 
