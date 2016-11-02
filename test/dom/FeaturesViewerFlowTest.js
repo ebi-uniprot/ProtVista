@@ -607,7 +607,7 @@ describe('FeaturesViewerFlowTest', function() {
     describe('should allow selection of features by using the selectFeature method', function() {
         var regionFeature;
         it('should select a REGION feature', function() {
-            regionFeature = instance.selectFeature('REGION', 96, 110);
+            regionFeature = instance.selectFeature({type: 'REGION', begin: 96, end: 110});
             var activeFeature = document.querySelector('.up_pftv_activeFeature');
 
             assert.equal(instance.selectedFeature.begin, 96, 'begin selected region feature');
@@ -622,7 +622,7 @@ describe('FeaturesViewerFlowTest', function() {
         });
 
         it('should select a MUTAGENESIS feature', function() {
-            instance.selectFeature('MUTAGEN', 198, 198, 'A');
+            instance.selectFeature({type: 'MUTAGEN', begin: 198, end: 198, alternativeSequence: 'A'});
             var activeFeature = document.querySelector('.up_pftv_activeFeature');
 
             assert.equal(instance.selectedFeature.begin, 198, 'begin selected mutagen feature');
