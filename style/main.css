@@ -11,6 +11,16 @@ svg {
     position: relative;
 }
 
+.up_pftv_credit_buttons {
+    text-align: left;
+    padding: 0 1em 0 0;
+    vertical-align: top;
+}
+
+.up_pftv_credit_text {
+    font-size: 10px !important;
+}
+
 .up_pftv_buttons a {
     color: inherit;
     text-decoration: none;
@@ -25,15 +35,7 @@ svg {
     opacity: 1;
 }
 
-/*.up_pftv_buttons span:hover {
-    color: #3C4043;
-} */
-
 .up_pftv_aaviewer {
-}
-
-.bottom-aa-container {
-    padding-left: 193px;
 }
 
 .up_pftv_category-container {

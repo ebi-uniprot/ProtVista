@@ -226,11 +226,6 @@ var createNavRuler = function(fv, container) {
 var createButtons = function(fv, data, container) {
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
-    buttons.append('span').append('a')
-        .attr('class','fv-icon-info-circled')
-        .attr('title','Help page')
-        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
-        .attr('target', '_blank');
     buttons.append('span')
         .attr('class','fv-icon-location')
         .attr('title','Highlight region')
@@ -247,6 +242,17 @@ var createButtons = function(fv, data, container) {
                 zoomOut(fv);
             }
         });
+};
+
+var createCreditButtons = function(fv, data, container) {
+    var buttons = container.append('div')
+        .attr('class','up_pftv_buttons up_pftv_credit_buttons');
+    buttons.append('span').classed('up_pftv_credit_text', true).append('a')
+        .attr('class','fv-icon-info-circled')
+        .attr('title','Help page')
+        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
+        .attr('target', '_blank')
+        .text('ProtVista');
 };
 
 var createAAViewer = function(fv, container, sequence) {
@@ -613,7 +619,7 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
         fv.container.append('div').classed('up_pftv_category_' + catInfo.name, true);
     });
 
-    fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
+    fv.footer = fvContainer.append('div');
 };
 
 FeaturesViewer.prototype.loadZoom = function(d) {
@@ -631,6 +637,7 @@ FeaturesViewer.prototype.loadZoom = function(d) {
   fv.aaViewer = createAAViewer(fv, fv.header, d.sequence);
   fv.zoom = createZoom(fv);
 
+  createCreditButtons(fv, d, fv.footer);
   fv.aaViewer2 = createAAViewer(fv, fv.footer, d.sequence);
   updateViewportFromChart(fv);
   updateZoomFromChart(fv);
