@@ -151,18 +151,17 @@ describe('FeaturesViewerFlowTest', function() {
             expect(+extent.getAttribute('width')).to.be.closeTo(740, 1);
         });
 
-        it('should create 1 up_pftv_buttons with 5 children', function() {
+        it('should create 1 up_pftv_buttons with 3 children', function() {
             var buttonsDiv = document.querySelectorAll('.up_pftv_container .up_pftv_buttons');
             assert.equal(buttonsDiv.length, 1, 'only one up_pftv_buttons');
-            assert.equal(buttonsDiv[0].childElementCount, 5, 'up_pftv_buttons children count');
+            assert.equal(buttonsDiv[0].childElementCount, 3, 'up_pftv_buttons children count');
 
             var buttons = document.querySelectorAll('.up_pftv_buttons span');
-            assert.equal(buttons.length, 5, 'number of buttons');
-            assert.equal(buttons[0].firstElementChild.getAttribute('class'), 'fv-icon-info-circled', 'first button class');
-            assert.equal(buttons[1].getAttribute('class'), 'fv-icon-cog', 'second button class');
-            assert.equal(buttons[2].getAttribute('class'), 'fv-icon-arrows-cw', 'third button class');
-            assert.equal(buttons[3].getAttribute('class'), 'fv-icon-eye', 'fourth button class');
-            assert.equal(buttons[4].getAttribute('class'), 'fv-icon-zoom-in', 'fifth button class');
+            assert.equal(buttons.length, 3, 'number of buttons');
+            assert.equal(buttons[0].firstElementChild.getAttribute('class'), 'fv-icon-info-circled', 'info button' +
+                ' class');
+            assert.equal(buttons[1].getAttribute('class'), 'fv-icon-location', 'location button class');
+            assert.equal(buttons[2].getAttribute('class'), 'fv-icon-zoom-in', 'zoom-in button class');
         });
 
         it('should create 2 aaViewers aa sequence', function() {
@@ -540,37 +539,6 @@ describe('FeaturesViewerFlowTest', function() {
         });
     });
 
-    describe('Reset view', function() {
-        it('should reset view (zoom out and deselect features)', function() {
-            var resetButton = document.querySelector('.fv-icon-arrows-cw');
-            var evtReset = document.createEvent("MouseEvents");
-            evtReset.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, resetButton);
-            resetButton.dispatchEvent(evtReset); //zoom out
-            flushAllD3Transitions();
-
-            verifyViewPortAttributes(false, true, 'M0,50L0,48L10,28L10,40L750,40L750,28L760,48L760,50Z', 0);
-
-            var selectedFeature = document.querySelectorAll('.up_pftv_activeFeature');
-            assert.equal(selectedFeature.length, 0, 'no feature selected anymore');
-            expect(instance.selectedFeature).to.be.undefined;
-
-            verifyHighlightAttributes('up_pftv_category', undefined, 'M-1,-1', 'translate(-1,-1)', 0, 0);
-        });
-
-        it('should keep tooltip open', function() {
-            var tooltip = document.querySelectorAll('.up_pftv_tooltip-container');
-            assert.equal(tooltip.length, 1, 'tooltip still exists');
-        });
-
-        it('should go back to zoom-in button', function() {
-            var zoomBtn = document.querySelectorAll('.fv-icon-zoom-in');
-            assert.equal(zoomBtn.length, 1, 'only 1 zoom-in button');
-
-            zoomBtn = document.querySelectorAll('.fv-icon-zoom-out');
-            assert.equal(zoomBtn.length, 0, 'no zoom-out button');
-        });
-    });
-
     describe('Zooming when no feature is selected', function() {
         it('should zoom-in with button to position 1 when no ft is selected', function() {
             var zoomInButton = document.querySelector('.fv-icon-zoom-in');
@@ -580,7 +548,7 @@ describe('FeaturesViewerFlowTest', function() {
             flushAllD3Transitions();
 
             verifyViewPortAttributes(false, false,
-                'M0,50L0,48L10,28L10,40L38.86866059817945,40L38.86866059817945,28L760,48L760,50Z', 1);
+                'M0,50L0,48L10,28L10,40L39.83094928478544,40L39.83094928478544,28L760,48L760,50Z', 1);
         });
     });
 

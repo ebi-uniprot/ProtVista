@@ -232,19 +232,7 @@ var createButtons = function(fv, data, container) {
         .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
         .attr('target', '_blank');
     buttons.append('span')
-        .attr('class','fv-icon-cog')
-        .attr('title','Hide/Show tracks')
-        .on('click', function(){
-            CategoryFilterDialog.displayDialog(fv, buttons);
-        });
-    buttons.append('span')
-        .attr('class','fv-icon-arrows-cw')
-        .attr('title','Reset view')
-        .on('click', function(){
-            resetZoomAndSelection(fv);
-        });
-    buttons.append('span')
-        .attr('class','fv-icon-eye')
+        .attr('class','fv-icon-location')
         .attr('title','Highlight region')
         .on('click', function(){
             HighlightRegionDialog.displayDialog(fv, buttons);
