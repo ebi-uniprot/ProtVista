@@ -283,9 +283,9 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
     this.update = function() {
         dataSeries.call(series);
         if (fv.selectedFeature) {
-            ViewerHelper.updateShadow(fv.selectedFeature, fv);
-        } else if (fv.shadow) {
-            ViewerHelper.updateShadow(fv.shadow, fv);
+            ViewerHelper.updateHighlight(fv);
+        } else if (fv.highlight) {
+            ViewerHelper.updateHighlight(fv);
         }
     };
 
