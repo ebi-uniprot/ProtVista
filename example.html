@@ -1,11 +1,11 @@
 <meta charset="utf-8">
 <script src="build/ProtVista.js"></script>
+<link href="build/css/main.css" rel="stylesheet"/>
 
 <div id=yourDiv></div>
 <script>
 // you can
 var yourDiv = document.getElementById("yourDiv");
 var ProtVista = require('ProtVista');
-var result = ProtVista.hello('biojs');
-yourDiv.textContent = result;
+new ProtVista({el: yourDiv, uniprotacc : 'P05067'});
 </script>

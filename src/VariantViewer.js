@@ -9,6 +9,7 @@ var ViewerHelper = require("./ViewerHelper");
 var LegendDialog = require("./VariantLegendDialog");
 var VariantFilterDialog = require("./VariantFilterDialog");
 var Evidence = require('./Evidence');
+var Constants = require("./Constants");
 
 //'G', 'A', 'V', 'L', 'I' aliphatic. 'S', 'T' hydroxyl. 'C', 'M' sulfur-containing. 'D', 'N', 'E', 'Q' acidic.
 // 'R', 'K', 'H' basic. 'F', 'Y', 'W' aromatic. 'P' imino. '*' stop gained or lost.
@@ -21,6 +22,62 @@ var aaList = ['G', 'A', 'V', 'L', 'I'
     , 'P'
     , '-', '*'];
 
+var getPredictionColorScore = function(siftScore, siftPrediction, polyphenScore, polyphenPrediction) {
+    var sift = false, polyphen = false;
+    if ((polyphenPrediction !== undefined) && (polyphenPrediction !== 'unknown')) {
+        polyphen = polyphenScore !== undefined ? true : false;
+    }
+    if (siftPrediction !== undefined) {
+        sift = siftScore !== undefined ? true : false;
+    }
+    if (sift && polyphen) {
+        return (siftScore + (1-polyphenScore))/2;
+    } else if (sift && !polyphen) {
+        return siftScore;
+    } else if (!sift && polyphen) {
+        return 1-polyphenScore;
+    } else if (polyphenPrediction === 'unknown') {
+        return 1;
+    } else {
+        return undefined;
+    }
+};
+
+var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predictionScore) {
+    if (fv.overwritePredictions === true) {
+        if (externalPrediction !== undefined) {
+            d.siftInUse = false;
+            d.polyphenInUse = false;
+            extDatum.siftInUse = true;
+            extDatum.polyphenInUse = true;
+            return LegendDialog.getPredictionColor(externalPrediction);
+        } else if (predictionScore !== undefined) {
+            return LegendDialog.getPredictionColor(predictionScore);
+        }
+    } else {
+        if (predictionScore !== undefined) {
+            return LegendDialog.getPredictionColor(predictionScore);
+        } else if (externalPrediction !== undefined) {
+            d.siftInUse = false;
+            d.polyphenInUse = false;
+            extDatum.siftInUse = true;
+            extDatum.polyphenInUse = true;
+            return LegendDialog.getPredictionColor(externalPrediction);
+        }
+    }
+
+    if (d.externalData) {
+        if (extDatum.consequence) {
+            var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
+            return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+        } else {
+            return 'black';
+        }
+    } else {
+        return LegendDialog.othersColor;
+    }
+};
+
 var variantsFill = function(d, fv) {
     if((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
         return LegendDialog.othersColor;
@@ -32,24 +89,19 @@ var variantsFill = function(d, fv) {
             return LegendDialog.UPNonDiseaseColor;
         }
     } else {
-        var sift = false, polyphen = false;
-        if ((d.polyphenPrediction !== undefined) && (d.polyphenPrediction !== 'unknown')) {
-            polyphen = d.polyphenScore !== undefined ? true : false;
+        var externalPrediction, extDatum = {};
+        if (d.externalData) {
+            var keys = _.keys(d.externalData);
+            extDatum = d.externalData[keys[0]];
+            externalPrediction = getPredictionColorScore(extDatum.siftScore, extDatum.siftPrediction,
+                extDatum.polyphenScore, extDatum.polyphenPrediction);
+            extDatum.siftInUse = false;
+            extDatum.polyphenInUse = false;
         }
-        if (d.siftPrediction !== undefined) {
-            sift = d.siftScore !== undefined ? true : false;
-        }
-        if (sift && polyphen) {
-            return LegendDialog.getPredictionColor((d.siftScore + (1-d.polyphenScore))/2);
-        } else if (sift && !polyphen) {
-            return LegendDialog.getPredictionColor(d.siftScore);
-        } else if (!sift && polyphen) {
-            return LegendDialog.getPredictionColor(1-d.polyphenScore);
-        } else if (d.polyphenPrediction === 'unknown') {
-            return LegendDialog.getPredictionColor(1);
-        } else {
-            return LegendDialog.othersColor;
-        }
+        var predictionScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
+            d.polyphenPrediction);
+
+        return getVariantsFillColor(fv, d, extDatum, externalPrediction, predictionScore);
     }
 };
 
@@ -87,6 +139,20 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         })
         .attr('fill', function(d) {
             return variantsFill(d, fv);
+        })
+        .attr('stroke', function(d) {
+            if (d.externalData) {
+                var keys = _.keys(d.externalData);
+                var extDatum = d.externalData[keys[0]];
+                if (extDatum.consequence) {
+                    var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
+                    return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+                } else {
+                    return 'black';
+                }
+            } else {
+                return 'none';
+            }
         })
     ;
 
@@ -131,7 +197,7 @@ var createDataSeries = function(fv, variantViewer, svg, features, series) {
         .call(yAxis2);
 
     fv.globalContainer.selectAll('g.variation-y g.tick').attr('class', function(d) {
-        return 'tick up_pftv_aa_' + d;
+        return 'tick up_pftv_aa_' + (d === '*' ? 'loss' : d === '-' ? 'deletion' : d);
     });
 
     return dataSeries;
@@ -147,7 +213,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
     variantViewer.margin = {top:20, bottom:10};
     variantViewer.features = features;
 
-    variantViewer.filter = new VariantFilterDialog(titleContainer, variantViewer);
+    variantViewer.filter = new VariantFilterDialog(fv, titleContainer, variantViewer);
 
     variantViewer.yScale = d3.scale.ordinal()
         .domain(aaList)
@@ -216,7 +282,11 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
 
     this.update = function() {
         dataSeries.call(series);
-        ViewerHelper.updateHighlight(fv);
+        if (fv.selectedFeature) {
+            ViewerHelper.updateShadow(fv.selectedFeature, fv);
+        } else if (fv.shadow) {
+            ViewerHelper.updateShadow(fv.shadow, fv);
+        }
     };
 
     this.updateData = function(data) {

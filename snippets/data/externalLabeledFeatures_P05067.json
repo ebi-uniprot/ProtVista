@@ -262,10 +262,11 @@
     {
       "type": "VARIANT", "category": "VARIATION",
       "description": "Same mutation, no predictions, no xref",
-      "alternativeSequence": "I",
+      "alternativeSequence": "-",
       "begin": "86",
       "end": "86",
-      "wildType": "V"
+      "wildType": "V",
+      "consequence": "Deletion"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -276,7 +277,8 @@
       "polyphenPrediction": "unknown",
       "polyphenScore": 0.0,
       "siftPrediction": "deleterious",
-      "siftScore": 0.04
+      "siftScore": 0.04,
+      "consequence": "Missense"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -291,10 +293,44 @@
     },
     {
       "type": "VARIANT", "category": "VARIATION",
-      "alternativeSequence": "V",
+      "description": "new external variant with prediction",
+      "alternativeSequence": "L",
+      "begin": "15",
+      "end": "15",
+      "wildType": "A",
+      "polyphenPrediction": "benign",
+      "polyphenScore": 0.08,
+      "siftPrediction": "tolerated",
+      "siftScore": 0.89
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "new external variant with prediction and consequence",
+      "alternativeSequence": "K",
+      "begin": "15",
+      "end": "15",
+      "wildType": "A",
+      "polyphenPrediction": "benign",
+      "polyphenScore": 0.08,
+      "siftPrediction": "tolerated",
+      "siftScore": 0.89,
+      "consequence": "Missense"
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "alternativeSequence": "-",
       "begin": "17",
       "end": "17",
-      "wildType": "A"
+      "wildType": "A",
+      "consequence": "Deletion"
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "just a variant, no consequence, no prediction",
+      "alternativeSequence": "M",
+      "begin": "10",
+      "end": "10",
+      "wildType": "L"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -319,6 +355,15 @@
       "polyphenScore": 0.0301,
       "siftPrediction": "tolerated",
       "siftScore": 0.67
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "description": "variant coinciding with disease",
+      "alternativeSequence": "G",
+      "begin": "717",
+      "end": "717",
+      "wildType": "V",
+      "consequence": "Missense"
     }
   ]
 }
