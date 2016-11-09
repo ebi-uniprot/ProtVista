@@ -227,13 +227,13 @@ var createButtons = function(fv, data, container) {
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
     buttons.append('span')
-        .attr('class','fv-icon-location')
+        .attr('class','fv-icon-location up_pftv_icon-frame')
         .attr('title','Highlight region')
         .on('click', function(){
             HighlightRegionDialog.displayDialog(fv, buttons);
         });
     buttons.append('span')
-        .attr('class','fv-icon-zoom-in')
+        .attr('class','fv-icon-zoom-in up_pftv_icon-frame')
         .attr('title','Zoom in to sequence view')
         .on('click', function(){
             if ( d3.select(this).classed('fv-icon-zoom-in')) {

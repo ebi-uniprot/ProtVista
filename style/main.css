@@ -312,6 +312,15 @@ svg {
     padding: 4px 10px 0 0;
 }
 
+.up_pftv_icon-frame {
+    border-radius: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid;
+    margin: .2em;
+}
+
 .up_pftv_iconContainer-unpinned {
     background-color: lightgrey !important;
     color: black !important;
