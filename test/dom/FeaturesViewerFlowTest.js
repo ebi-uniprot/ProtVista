@@ -159,8 +159,10 @@ describe('FeaturesViewerFlowTest', function() {
 
             var buttons = document.querySelectorAll('.up_pftv_buttons span');
             assert.equal(buttons.length, 3, 'number of buttons');
-            assert.equal(buttons[0].getAttribute('class'), 'fv-icon-location', 'location button class');
-            assert.equal(buttons[1].getAttribute('class'), 'fv-icon-zoom-in', 'zoom-in button class');
+            assert.equal(buttons[0].getAttribute('class'), 'fv-icon-location up_pftv_icon-frame',
+                'location button class');
+            assert.equal(buttons[1].getAttribute('class'), 'fv-icon-zoom-in up_pftv_icon-frame',
+                'zoom-in button class');
             assert.equal(buttons[2].firstElementChild.getAttribute('class'), 'fv-icon-info-circled', 'info button' +
                 ' class');
         });
