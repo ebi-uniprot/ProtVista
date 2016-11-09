@@ -479,7 +479,7 @@ describe('FeaturesViewerFlowTest', function() {
                 , 'translated metal');
 
             verifyViewPortAttributes(true, false,
-                'M0,50L0,48L10,28L10,40L39.83094928478544,40L39.83094928478544,28L760,48L760,50Z', 1);
+                'M0,50L0,48L10,28L10,40L38.86866059817945,40L38.86866059817945,28L760,48L760,50Z', 1);
         });
 
         it('should display only zoom-out button', function() {
@@ -562,7 +562,7 @@ describe('FeaturesViewerFlowTest', function() {
             flushAllD3Transitions();
 
             verifyViewPortAttributes(false, false,
-                'M0,50L0,48L10,28L10,40L39.83094928478544,40L39.83094928478544,28L760,48L760,50Z', 1);
+                'M0,50L0,48L10,28L10,40L38.86866059817945,40L38.86866059817945,28L760,48L760,50Z', 1);
         });
     });
 
@@ -682,7 +682,7 @@ describe('FeaturesViewerFlowTest', function() {
         });
 
         it('should de-highlight after feature selection', function() {
-            instance.selectFeature('region', 96, 110);
+            instance.selectFeature({type: 'REGION', begin: 96, end: 110});
             expect(instance.highlight).to.be.undefined;
         });
 

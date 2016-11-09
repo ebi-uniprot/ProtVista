@@ -535,8 +535,8 @@ FeaturesViewer.prototype.deselectFeature = function() {
 
 FeaturesViewer.prototype.selectFeature = function(selection) {
     var fv = this;
-    ftType = ftType.toUpperCase();
-    altSequence = altSequence ? altSequence.toUpperCase() : altSequence;
+    selection.type = selection.type.toUpperCase();
+    selection.altSequence = selection.altSequence ? selection.altSequence.toUpperCase() : selection.altSequence;
 
     var catTitle = fv.getCategoryTitle(selection.type);
     var category = _.find(fv.categories, function(cat) {
