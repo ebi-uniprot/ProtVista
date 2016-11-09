@@ -572,7 +572,9 @@ FeaturesViewer.prototype.selectFeature = function(selection) {
         }
         var elemRect = elem.node().getBoundingClientRect();
         var contRect = container.node().getBoundingClientRect();
-        var coordinates = {x: elemRect.x - contRect.x, y: elemRect.y - contRect.y};
+        var coordinates = {x: elemRect.x - contRect.x, y: elemRect.y - contRect.y + elemRect.height};
+        coordinates.x = isNaN(coordinates.x) ? elemRect.left - contRect.left : coordinates.x;
+        coordinates.y = isNaN(coordinates.y) ? elemRect.top - contRect.top + elemRect.height : coordinates.y;
         if (fv.selectedFeature) {
             if (fv.selectedFeature.internalId !== feature.internalId) {
                 ViewerHelper.selectFeature(feature, elem.node(), fv);
