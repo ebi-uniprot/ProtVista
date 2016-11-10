@@ -455,7 +455,7 @@ If you do load the default data sources, this is how it would look. Those featur
 ![](./images/customCategoriesAndTypesWithDefault.png)
 
 ## Variants
-Natural variants have a [tailored visualization](#variant-visualization) explained earlier in this document. In order to visually distinguish what variant data comes from an external source, i.e., sources you have added to the default ones, we use a thick colored circumference. The circumference color is given by the consequence reported on the external data source or black if none reported.
+Natural variants have a [tailored visualization](#variant-visualization) explained earlier in this document. In order to visually distinguish what variant data comes from an external source, i.e., sources you have added to the default ones, we use a thick colored border. The border color is given by the consequence reported on the external data source or black if none reported.
 ![](./images/extSrc_black_circumference.png)
 
 **Instantiation**
@@ -501,15 +501,15 @@ The overwrite rules are like follows: If **overwritePredictions: false**, the pr
 
 * We color variants according to its consequence (burgundy for disease, from red-ish for deleterious to green-ish for benign, and light green for non-disease). External sources can also report consequences for their variants; we will automatically assign a color to them.  All the reported consequences will be added to the consequence filter on the left. Please be aware that due to space limitations we cannot accommodate more than five consequence in addition to the default ones.
 
-  * If the same variant is reported by the default and the external data source and the predictions reported by the default source have priority (**overwritePredictions: false**), only those predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the circumference is black.
+  * If the same variant is reported by the default and the external data source and the predictions reported by the default source have priority (**overwritePredictions: false**), only those predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the border is black.
   **Example**: Variant P91S reported by both default and MyLab sources, default predictions have priority.
   ![](./images/extSrc_defaultPredicted_variant.png)
 
-  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the circumference is black.
+  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. As the external data source has not reported a consequence, the border is black.
   **Example**: Variant P91S reported by both default and MyLab sources, external predictions have priority.
   ![](./images/extSrc_externalPredicted_variant.png)
 
-  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. The consequence reported by the external data is used for the circumference color.
+  * If the same variant is reported by the default and the external data source and the predictions reported by the default are overwritten (**overwritePredictions: true**), only the external predictions will be used to assign a color and will be shown in the tooltip. The consequence reported by the external data is used for the border color.
   **Example**: Variant P91S reported by both default and MyLab sources, external predictions have priority, external source reports a consequence.
   ![](./images/extSrc_externalPredictedWithConsequence_variant.png)
 
