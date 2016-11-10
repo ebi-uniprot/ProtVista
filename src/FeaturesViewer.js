@@ -379,26 +379,25 @@ var createAAViewer = function(fv, container, sequence) {
     return aaViewer;
 };
 
-var findFeature = function(fv, ftType, begin, end, altSequence) {
+var findFeature = function(fv, selection) {
     var lookup, varLookup;
     _.find(fv.data, function(category) {
         lookup =  _.find(category[1], function(feature) {
             var ftEnd = feature.end ? feature.end : feature.begin;
-            if (feature.variants && (feature.type === 'VARIANT')) {
+            if (feature.variants && (feature.type === 'VARIANT') && (feature.type === selection.type)) {
                 varLookup = _.find(feature.variants, function(variant) {
                     var varEnd = variant.end ? variant.end : variant.begin;
-                    return (+variant.begin === +begin) && (+varEnd === +end)
-                        && (variant.alternativeSequence === altSequence);
+                    return (+variant.begin === +selection.begin) && (+varEnd === +selection.end)
+                        && (variant.alternativeSequence === selection.alternativeSequence);
                 });
                 return varLookup;
-            } else if (feature.type === 'CONFLICT'){
-                return (+feature.begin === +begin) && (+ftEnd === +end)
-                    && (feature.alternativeSequence === altSequence);
-            } else if (feature.type === 'MUTAGEN') {
-                return (+feature.begin === +begin) && (+ftEnd === +end)
-                    && (feature.alternativeSequence === altSequence);
+            } else if ((feature.type === 'CONFLICT') || (feature.type === 'MUTAGEN')){
+                return (+feature.begin === +selection.begin) && (+ftEnd === +selection.end)
+                    && (feature.alternativeSequence === selection.alternativeSequence) &&
+                    (feature.type === selection.type);
             } else {
-                return (feature.type === ftType) && (+feature.begin === +begin) && (+ftEnd === +end);
+                return (feature.type === selection.type) && (+feature.begin === +selection.begin) &&
+                    (+ftEnd === +selection.end);
             }
         });
         return lookup;
@@ -526,6 +525,8 @@ var FeaturesViewer = function(opts) {
                     d3.select(opts.el).text('There are no features available for this protein.');
                     fv.dispatcher.noDataAvailable();
                 }
+            } else if (opts.selectedFeature){
+                fv.selectFeature(opts.selectedFeature);
             }
         });
     };
@@ -553,19 +554,20 @@ FeaturesViewer.prototype.getDispatcher = function() {
     return this.dispatcher;
 };
 
-FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequence) {
+FeaturesViewer.prototype.selectFeature = function(selection) {
     var fv = this;
-    ftType = ftType.toUpperCase();
-    altSequence = altSequence ? altSequence.toUpperCase() : altSequence;
+    selection.type = selection.type.toUpperCase();
+    selection.alternativeSequence = selection.alternativeSequence ?
+        selection.alternativeSequence.toUpperCase() : selection.alternativeSequence;
 
-    var catTitle = fv.getCategoryTitle(ftType);
+    var catTitle = fv.getCategoryTitle(selection.type);
     var category = _.find(fv.categories, function(cat) {
         return cat.name === catTitle;
     });
 
-    var feature = findFeature(fv, ftType, +start, +end, altSequence);
+    var feature = findFeature(fv, selection);
     if (!feature) {
-        fv.dispatcher.notFound({ftType: ftType, begin: start, end: end});
+        fv.dispatcher.notFound(selection);
         return undefined;
     }
 
@@ -581,7 +583,9 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
         }
         var elemRect = elem.node().getBoundingClientRect();
         var contRect = container.node().getBoundingClientRect();
-        var coordinates = {x: elemRect.x - contRect.x, y: elemRect.y - contRect.y};
+        var coordinates = {x: elemRect.x - contRect.x, y: elemRect.y - contRect.y + elemRect.height};
+        coordinates.x = isNaN(coordinates.x) ? elemRect.left - contRect.left : coordinates.x;
+        coordinates.y = isNaN(coordinates.y) ? elemRect.top - contRect.top + elemRect.height : coordinates.y;
         if (fv.selectedFeature) {
             if (fv.selectedFeature.internalId !== feature.internalId) {
                 ViewerHelper.selectFeature(feature, elem.node(), fv);
@@ -594,7 +598,7 @@ FeaturesViewer.prototype.selectFeature = function(ftType, start, end, altSequenc
         TooltipFactory.createTooltip(fv, catTitle, feature, container, coordinates);
         return feature;
     } else {
-        fv.dispatcher.notFound({ftType: ftType, begin: start, end: end});
+        fv.dispatcher.notFound(selection);
         return undefined;
     }
 };

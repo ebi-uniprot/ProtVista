@@ -27,9 +27,10 @@ input.append('button').text('Select')
     .on('click', function() {
         var altSeq = d3.select('#atlSeq').node().value.toUpperCase();
         altSeq = altSeq.length === 0 ? undefined : altSeq;
-        instance.selectFeature(
-            d3.select('#ftType').node().value.toUpperCase(),
-            d3.select('#ftBegin').node().value,
-            d3.select('#ftEnd').node().value,
-            altSeq);
+        instance.selectFeature({
+            type: d3.select('#ftType').node().value.toUpperCase(),
+            begin: d3.select('#ftBegin').node().value,
+            end: d3.select('#ftEnd').node().value,
+            alternativeSequence: altSeq
+        });
     });
