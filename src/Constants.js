@@ -28,10 +28,11 @@ var uniprotSources = [
     }
 ];
 var allSources = uniprotSources.slice(0);
+var externalSource;
 var allCategories = Config.categories;
 var allTrackNames = Config.trackNames;
-var downloadFormats = [{text: 'JSON', type: 'json'}, {text: 'XML', type: 'xml'},
-    {text: 'GFF', type: 'gff'}];
+var downloadFormats = [{text: 'JSON', type: 'json', all: true}, {text: 'XML', type: 'xml', all: false},
+    {text: 'GFF', type: 'gff', all: false}];
 var consequenceTypes = [];
 
 var Constants = function() {
@@ -54,11 +55,15 @@ var Constants = function() {
     getUniProtDataSources: function() {
       return uniprotSources;
     },
+    getExternalDataSource: function() {
+      return externalSource;
+    },
     getUniProtSource: function() {
       return uniprotSource;
     },
     addSource: function(source) {
         allSources.push(source);
+        externalSource = source;
     },
     addConsequenceType: function(consequence) {
         consequenceTypes.push(consequence);

@@ -8,18 +8,40 @@ var Constants = require('./Constants');
 var JSZip = require('jszip');
 var FileSaver = require('file-saver');
 
-    var DownloadDataLoader = function() {
-    return {
-        get: function(accession, format) {
-            var isSafari = navigator.vendor.indexOf("Apple")==0 && /\sSafari\//.test(navigator.userAgent);
+var getFileName = function(source, format) {
+    return source.source + (source.category ? source.category : '') + '.' + format;
+};
 
+var readmeText = function(accession, format) {
+    var onlyUniProt = Constants.getDataSources().length === Constants.getUniProtDataSources().length;
+    var onlyExternal = Constants.getDataSources().length === 1;
+    var text = 'Protein sequence features for ' + accession + '. \n\n';
+
+    if (onlyUniProt) {
+        text += 'This zipped file contains UniProt protein sequence features split in ' +
+        Constants.getUniProtDataSources().length + ' sets. \n\n';
+    } else if (onlyExternal) {
+        text += 'This zipped file contains ' + Constants.getExternalDataSource().source +  ' protein sequence' +
+        ' features. \n\n';
+    } else {
+        text += 'This zipped file contains UniProt protein sequence features split in ' +
+            Constants.getUniProtDataSources().length + ' sets. \n\nIt also contains protein sequence features ' +
+            'provided by one additional data source (' + Constants.getExternalDataSource().source + '). \n\n';
+    }
+
+    text += 'Zipped files provided in this download: \n* readme.txt \n';
+    _.each(Constants.getDataSources(), function(source) {
+        text += '* ' + getFileName(source, format) + ' \n'
+    });
+    text += '\nIf any of the files listed above is not provided in the zipped file, please try again later as data ' +
+        'services could be down at the moment.';
+    return text;
+};
+var DownloadDataLoader = function() {
+    return {
+        get: function(accession, format, isSafari) {
             var zip = new JSZip();
-            zip.file('readme', 'Protein sequence features for ' + accession + '\n\n' +
-                'This zipped file contains protein sequence features provided by different data sources (' +
-                _.pluck(Constants.getDataSources(), 'url').join() + '). \n\nCurrently, all download formats (' +
-                _.pluck(Constants.getDownloadFormats(), 'text').join() + ') are supported for UniProt data sources' +
-                ' while only JSON is guaranteed for any other data source. \n\nWe cannot guarantee the availability ' +
-                'of any data source at the download time.');
+            zip.file('readme.txt', readmeText(accession, format));
             var delegates = [];
             _.each(Constants.getDataSources(), function() {
                 var delegate = $.Deferred();
@@ -38,8 +60,7 @@ var FileSaver = require('file-saver');
                     url: source.url + accession + extension
                 }).done(function(d) {
                     if (loader.getResponseHeader('Content-type').indexOf(format) !== -1) {
-                        var fileName = source.source + (source.category ? source.category : '') + '.' + format;
-                        zip.file(fileName, d);
+                        zip.file(getFileName(source, format), d);
                     } else {
                         zip.file('warning_' + index + '.txt', source.url + ' response does not correspond to the ' +
                             'required format ' + format + '. Data has not been processed.');

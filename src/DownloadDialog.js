@@ -10,8 +10,15 @@ var Constants = require("./Constants");
 var DownloadDataLoader = require("./DownloadDataLoader");
 
 var populateDialog = function (fv, wrapper) {
+    var isSafari = navigator.vendor.indexOf("Apple")==0 && /\sSafari\//.test(navigator.userAgent);
+
     var selected = true;
-    _.each(Constants.getDownloadFormats(), function(format) {
+    var allFormats = Constants.getExternalDataSource() === undefined
+        ? Constants.getDownloadFormats()
+        : _.filter(Constants.getDownloadFormats(), function(format) {
+            return format.all;
+        });
+    _.each(allFormats, function(format) {
         var radioDiv = wrapper.append('div');
         radioDiv.append('input')
             .attr('type', 'radio')
@@ -22,6 +29,13 @@ var populateDialog = function (fv, wrapper) {
             .text(format.text);
         selected = false;
     });
+
+    if (isSafari) {
+        var warning = wrapper.append('div').classed('up_pftv_message_wrapper', true);
+        warning.append('span').attr('class', 'up_pftv_icon up_pftv_warning');
+        warning.append('span').text('  Please add the extension .zip to the downloaded file.');
+    }
+
     wrapper.append('div').style('text-align', 'right')
         .append('button')
         .text('Download')
@@ -29,7 +43,7 @@ var populateDialog = function (fv, wrapper) {
             var selected = wrapper.selectAll('input').filter(function() {
                 return d3.select(this).property('checked');
             });
-            DownloadDataLoader.get(fv.uniprotacc, selected.attr('value'));
+            DownloadDataLoader.get(fv.uniprotacc, selected.attr('value'), isSafari);
         });
 };
 
