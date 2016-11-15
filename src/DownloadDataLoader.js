@@ -8,40 +8,15 @@ var Constants = require('./Constants');
 var JSZip = require('jszip');
 var FileSaver = require('file-saver');
 
-var getFileName = function(source, format) {
-    return source.source + (source.category ? source.category : '') + '.' + format;
+var getFileName = function(accession, source, format) {
+    return source.source + '_' + accession +
+        (source.category ? '_' + source.category.toLowerCase() : '') + '.' + format;
 };
 
-var readmeText = function(accession, format) {
-    var onlyUniProt = Constants.getDataSources().length === Constants.getUniProtDataSources().length;
-    var onlyExternal = Constants.getDataSources().length === 1;
-    var text = 'Protein sequence features for ' + accession + '. \n\n';
-
-    if (onlyUniProt) {
-        text += 'This zipped file contains UniProt protein sequence features split in ' +
-        Constants.getUniProtDataSources().length + ' sets. \n\n';
-    } else if (onlyExternal) {
-        text += 'This zipped file contains ' + Constants.getExternalDataSource().source +  ' protein sequence' +
-        ' features. \n\n';
-    } else {
-        text += 'This zipped file contains UniProt protein sequence features split in ' +
-            Constants.getUniProtDataSources().length + ' sets. \n\nIt also contains protein sequence features ' +
-            'provided by one additional data source (' + Constants.getExternalDataSource().source + '). \n\n';
-    }
-
-    text += 'Zipped files provided in this download: \n* readme.txt \n';
-    _.each(Constants.getDataSources(), function(source) {
-        text += '* ' + getFileName(source, format) + ' \n'
-    });
-    text += '\nIf any of the files listed above is not provided in the zipped file, please try again later as data ' +
-        'services could be down at the moment.';
-    return text;
-};
 var DownloadDataLoader = function() {
     return {
         get: function(accession, format, isSafari) {
             var zip = new JSZip();
-            zip.file('readme.txt', readmeText(accession, format));
             var delegates = [];
             _.each(Constants.getDataSources(), function() {
                 var delegate = $.Deferred();
@@ -60,14 +35,14 @@ var DownloadDataLoader = function() {
                     url: source.url + accession + extension
                 }).done(function(d) {
                     if (loader.getResponseHeader('Content-type').indexOf(format) !== -1) {
-                        zip.file(getFileName(source, format), d);
+                        zip.file(getFileName(accession, source, format), d);
                     } else {
-                        zip.file('warning_' + index + '.txt', source.url + ' response does not correspond to the ' +
-                            'required format ' + format + '. Data has not been processed.');
+                        zip.file(getFileName(accession, source, format), 'Unable to retrieve the data in the required' +
+                            'format ' + format + '.');
                     }
                 }).fail(function (e) {
-                    zip.file('error_' + index + '.txt', source.url + ' responded with an error code for the ' +
-                        'required format ' + format + '. Data has not been retrieved.');
+                    zip.file(getFileName(accession, source, format), 'Unable to retrieve the data at this time.' +
+                        ' Please try again later.');
                 }).always(function() {
                     delegates[index].resolve();
                 });

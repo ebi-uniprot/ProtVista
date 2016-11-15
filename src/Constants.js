@@ -12,9 +12,9 @@ var visualizationTypes = {
 var uniprotSource = 'uniprot';
 var uniprotSources = [
     {
-        url: 'https://www.ebi.ac.uk/uniprot/api/features/',
+        url: 'https://www.ebi.ac.uk/uniprot/api/featuress/',
         source: uniprotSource,
-        category: 'GENERAL'
+        category: 'FEATURES'
     },
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
