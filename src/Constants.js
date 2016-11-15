@@ -12,7 +12,7 @@ var visualizationTypes = {
 var uniprotSource = 'uniprot';
 var uniprotSources = [
     {
-        url: 'https://www.ebi.ac.uk/uniprot/api/featuress/',
+        url: 'https://www.ebi.ac.uk/uniprot/api/features/',
         source: uniprotSource,
         category: 'FEATURES'
     },
