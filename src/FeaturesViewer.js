@@ -231,8 +231,7 @@ var createButtons = function(fv, data, container) {
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
     buttons.append('span')
-        .attr('class','fv-icon-download  ' +
-            'up_pftv_icon-frame')
+        .attr('class','fv-icon-download up_pftv_icon-frame')
         .attr('title','Download data')
         .on('click', function(){
             DownloadDialog.displayDialog(fv, buttons);
