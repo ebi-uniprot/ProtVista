@@ -10,6 +10,7 @@ var CategoryFactory = require("./CategoryFactory");
 var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
+var DownloadDialog = require("./DownloadDialog");
 var HighlightRegionDialog = require("./HighlightRegionDialog");
 var TooltipFactory = require('./TooltipFactory');
 var jQuery = require('jquery');
@@ -120,6 +121,9 @@ var closeTooltipAndPopup = function(fv) {
     if (!fv.overCatFilterDialog) {
         CategoryFilterDialog.closeDialog(fv);
     }
+    if (!fv.overDownloadDialog) {
+        DownloadDialog.closeDialog(fv);
+    }
     if (!fv.overHighlightRegionDialog) {
         HighlightRegionDialog.closeDialog(fv);
     }
@@ -226,6 +230,12 @@ var createNavRuler = function(fv, container) {
 var createButtons = function(fv, data, container) {
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
+    buttons.append('span')
+        .attr('class','fv-icon-download')
+        .attr('title','Download data')
+        .on('click', function(){
+            DownloadDialog.displayDialog(fv, buttons);
+        });
     buttons.append('span')
         .attr('class','fv-icon-location up_pftv_icon-frame')
         .attr('title','Highlight region')
@@ -457,6 +467,7 @@ var FeaturesViewer = function(opts) {
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
     fv.data = [];
+    fv.uniprotacc = opts.uniprotacc;
     fv.overwritePredictions = opts.overwritePredictions;
     fv.defaultSource = opts.defaultSources !== undefined ? opts.defaultSources : true;
 
@@ -464,7 +475,7 @@ var FeaturesViewer = function(opts) {
         initSources(opts);
         var dataSources = Constants.getDataSources();
         var loaders = [], delegates = [];
-        _.each(dataSources, function (source) {
+        _.each(dataSources, function () {
             var delegate = jQuery.Deferred();
             delegates.push(delegate);
         });
@@ -536,7 +547,8 @@ FeaturesViewer.prototype.deselectFeature = function() {
 FeaturesViewer.prototype.selectFeature = function(selection) {
     var fv = this;
     selection.type = selection.type.toUpperCase();
-    selection.altSequence = selection.altSequence ? selection.altSequence.toUpperCase() : selection.altSequence;
+    selection.alternativeSequence = selection.alternativeSequence ?
+        selection.alternativeSequence.toUpperCase() : selection.alternativeSequence;
 
     var catTitle = fv.getCategoryTitle(selection.type);
     var category = _.find(fv.categories, function(cat) {
@@ -622,7 +634,7 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
         fv.container.append('div').classed('up_pftv_category_' + catInfo.name, true);
     });
 
-    fv.footer = fvContainer.append('div');
+    fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
 };
 
 FeaturesViewer.prototype.loadZoom = function(d) {

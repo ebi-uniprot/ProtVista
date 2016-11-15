@@ -2,7 +2,7 @@
 var app = require("ProtVista");
 new app(
     {
-        el: yourDiv, text: 'biojs',
+        el: yourDiv,
         uniprotacc : 'P05067',
         customDataSource: {
             url: './data/externalLabeledFeatures_',

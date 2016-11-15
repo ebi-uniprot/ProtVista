@@ -10,10 +10,11 @@ var visualizationTypes = {
     variant: 'variant'
 };
 var uniprotSource = 'uniprot';
-var allSources = [
+var uniprotSources = [
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/features/',
-        source: uniprotSource
+        source: uniprotSource,
+        category: 'FEATURES'
     },
     {
         url: 'https://www.ebi.ac.uk/uniprot/api/proteomics/',
@@ -26,8 +27,12 @@ var allSources = [
         category: 'VARIATION'
     }
 ];
+var allSources = uniprotSources.slice(0);
+var externalSource;
 var allCategories = Config.categories;
 var allTrackNames = Config.trackNames;
+var downloadFormats = [{text: 'JSON', type: 'json', all: true}, {text: 'XML', type: 'xml', all: false},
+    {text: 'GFF', type: 'gff', all: false}];
 var consequenceTypes = [];
 
 var Constants = function() {
@@ -41,14 +46,24 @@ var Constants = function() {
     getVisualizationTypes: function() {
         return visualizationTypes;
     },
+    getDownloadFormats: function() {
+        return downloadFormats;
+    },
     getDataSources: function() {
       return allSources;
     },
+    getUniProtDataSources: function() {
+      return uniprotSources;
+    },
+    getExternalDataSource: function() {
+      return externalSource;
+    },
     getUniProtSource: function() {
-        return uniprotSource;
+      return uniprotSource;
     },
     addSource: function(source) {
         allSources.push(source);
+        externalSource = source;
     },
     addConsequenceType: function(consequence) {
         consequenceTypes.push(consequence);

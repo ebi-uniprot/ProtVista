@@ -25,13 +25,13 @@ svg {
     color: inherit;
     text-decoration: none;
 }
-.up_pftv_buttons span {
+.up_pftv_buttons > span {
     cursor: pointer;
     font-size: 18px;
     opacity: 0.8;
 }
 
-.up_pftv_buttons span:hover {
+.up_pftv_buttons > span:hover {
     opacity: 1;
 }
 
@@ -347,11 +347,12 @@ svg {
 }
 
 .up_pftv_popupDialog-container {
-    border: 1px solid #000;
+    border: 1px solid #557071;
     background-color: #ffffff;
     padding: 0.5em;
     min-width: 210px;
     text-align: left;
+    font-size: 13px;
 }
 
 .up_pftv_popupDialog-container table {
@@ -675,4 +676,58 @@ svg .up_pftv_non_unique {
 .up_pftv_dialog_checkboxLabel:hover {
     cursor: pointer;
     opacity: 1;
+}
+
+.up_pftv_message_wrapper {
+    margin: .7em;
+}
+
+/*Taken from http://www.karimnassar.com/code/web/css-icons/*/
+.up_pftv_icon, .up_pftv_icon::before, .up_pftv_icon::after
+{
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+.up_pftv_icon {
+    font-size: 20px;
+    color: transparent;
+}
+.up_pftv_icon.up_pftv_warning {
+    display: inline-block;
+    top: 0.225em;
+    width: 1.15em;
+    height: 1.15em;
+    overflow: hidden;
+    border: none;
+    background-color: transparent;
+    border-radius: 0.625em;
+}
+
+.up_pftv_icon.up_pftv_warning::before {
+    content: "";
+    display: block;
+    top: -0.08em;
+    left: 0.0em;
+    position: absolute;
+    border: transparent 0.6em solid;
+    border-bottom-color: #fd3;
+    border-bottom-width: 1em;
+    border-top-width: 0;
+    box-shadow: #999 0 1px 1px;
+}
+
+.up_pftv_icon.up_pftv_warning::after {
+    display: block;
+    position: absolute;
+    top: 0.3em;
+    left: 0;
+    width: 100%;
+    padding: 0 1px;
+    text-align: center;
+    content: "!";
+    font-size: 0.65em;
+    font-weight: bold;
+    color: #333;
 }
