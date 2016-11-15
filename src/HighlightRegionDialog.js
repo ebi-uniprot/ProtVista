@@ -42,9 +42,9 @@ var populateDialog = function (fv, wrapper) {
                 begin = +begin;
                 end = end.length === 0 ? begin : +end;
                 if (!isNaN(begin) && !isNaN(end)) {
-                    if (begin <= end) {
-                        begin = Math.max(begin, 1);
-                        end = Math.min(end, fv.sequence.length);
+                    if ((begin < 1) || (end > fv.sequence.length)) {
+                        table.select('.up_pftv_popupDialog-warning').text(warning);
+                    } else if (begin <= end) {
                         fv.highlightRegion(begin, end);
                         HighlightRegionDialog.closeDialog(fv);
                     } else {
