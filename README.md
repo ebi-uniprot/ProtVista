@@ -4,6 +4,13 @@
 [![NPM version](http://img.shields.io/npm/v/ProtVista.svg)](https://www.npmjs.org/package/ProtVista)
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/ProtVista.png?branch=master)](http://travis-ci.org/ebi-uniprot/ProtVista)
 
+### 2.0.3
+- Added possibility to display your variants.
+- Added download functionality (XML/JSON/GFF).
+
+### 2.0.2
+- Added possibility to display your own data (except variants).
+
 ### 2.0.1
 - Fix typo.
 - Fix shadow bug showing it slightly to the right on the bottom ruler.
