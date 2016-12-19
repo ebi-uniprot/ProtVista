@@ -495,6 +495,9 @@ var FeaturesViewer = function(opts) {
             delegates.push(delegate);
         });
 
+        if (opts.categoryOrder) {
+            Constants.setOrderForCategoryNames(opts.categoryOrder);
+        }
         if (opts.customConfig) {
             var configLoader = DataLoader.get(opts.customConfig);
             configLoader.done(function(d) {

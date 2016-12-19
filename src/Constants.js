@@ -80,6 +80,21 @@ var Constants = function() {
     setCategoryNamesInOrder: function(categories) {
         allCategories = categories;
     },
+    setOrderForCategoryNames: function(categoryNames) {
+        var orderedCategories = [];
+        _.each(categoryNames, function(name) {
+            var position = 0;
+            var category = _.find(allCategories, function(cat, index) {
+                position = index;
+                return cat.name.toUpperCase() === name.toUpperCase();
+            });
+            if (category) {
+                orderedCategories.push(category);
+                allCategories.splice(position, 1);
+            }
+        });
+        allCategories = orderedCategories.concat(allCategories);
+    },
     convertNameToLabel: function(name) {
         var label = name.replace(/_/g, ' ');
         label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
