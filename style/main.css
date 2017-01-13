@@ -591,6 +591,11 @@ svg .up_pftv_non_unique {
     fill: #5a60fb;
 }
 
+svg .up_pftv_antigen {
+   stroke: #996699;
+   fill: #996699;
+}
+
 /* Variation */
 .up_pftv_variants-svg .axis path {
     display: none;

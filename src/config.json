@@ -41,6 +41,11 @@
           "visualizationType": "basic"
         },
         {
+          "name": "ANTIGEN",
+          "label": "Antigenic sequences",
+          "visualizationType": "basic"
+        },
+        {
           "name": "VARIATION",
           "label": "Variants",
           "visualizationType": "variant"
@@ -205,6 +210,10 @@
     },
     "non_unique": {
       "label": "Non-unique peptide",
+      "tooltip": ""
+    },
+    "antigen": {
+      "label": "Antibody binding sequences",
       "tooltip": ""
     }
   }

@@ -274,6 +274,7 @@ Tooltip.prototype.addBlast = function() {
 
 var BasicTooltipViewer = function(tooltip) {
     tooltip.addEvidences(tooltip.data.evidences);
+    addXRefs(tooltip, tooltip.data.xrefs);
     tooltip.addBlast();
 };
 
@@ -290,6 +291,7 @@ var AlternativeTooltipViewer = function(tooltip, change, field) {
             });
     }
     tooltip.addEvidences(tooltip.data.evidences);
+    addXRefs(tooltip, tooltip.data.xrefs);
     tooltip.addBlast();
 };
 

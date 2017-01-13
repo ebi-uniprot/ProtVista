@@ -108,6 +108,7 @@ var DataLoader = function() {
             return [['PROTEOMICS',types]];
         },
         processUngroupedFeatures: function(features) {
+            features = groupEvidencesByCode(features);
             return [[features[0].type, features]];
         },
         processVariants: function(variants, sequence, source, evidenceAlreadyGrouped) {
