@@ -38,15 +38,15 @@ var LegendDialog = function() {
     };
 
     return {
-        UPDiseaseColor: '#990000',
-        deleteriousColor: '#ff3300',
+        UPDiseaseColor: '#850042',
+        deleteriousColor: '#FF0582',
         benignColor: '#009900',
-        UPNonDiseaseColor: '#99cc00',
-        othersColor: '#0033cc',
+        UPNonDiseaseColor: '#7AFFA2',
+        othersColor: '#FFCC00',
         consequenceColors: ["#66c2a5","#8da0cb","#e78ac3","#ffd92f","#b3b3b3","#e5c494","#a6d854","#fc8d62"],
         getPredictionColor: d3.scale.linear()
             .domain([0,1])
-            .range(['#ff3300','#009900']),
+            .range(['#FF0582','#009900']),
         createLegendDialog: function(container, fv) {
             this.dialog = container.append('div')
                 .attr('class','up_pftv_dialog-container');
