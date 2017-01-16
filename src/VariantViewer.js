@@ -10,6 +10,7 @@ var LegendDialog = require("./VariantLegendDialog");
 var VariantFilterDialog = require("./VariantFilterDialog");
 var Evidence = require('./Evidence');
 var Constants = require("./Constants");
+var FeatureFactory = require("./FeatureFactory");
 
 //'G', 'A', 'V', 'L', 'I' aliphatic. 'S', 'T' hydroxyl. 'C', 'M' sulfur-containing. 'D', 'N', 'E', 'Q' acidic.
 // 'R', 'K', 'H' basic. 'F', 'Y', 'W' aromatic. 'P' imino. '*' stop gained or lost.
@@ -112,7 +113,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         });
 
     var newCircles = variantCircle.enter().append('circle')
-        .attr('r', function(d) {
+        .attr('r', function() {
             return frequency(0);
         })
     ;
@@ -158,6 +159,25 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
 
     ViewerHelper.addEventsClassAndTitle(catTitle, newCircles, fv, container);
     variantCircle.exit().remove();
+};
+
+var drawPointers = function(variantViewer, bars, fv) {
+    var variantPointer = bars.selectAll('circle')
+        .data(function(d) {
+            return [d];
+        });
+    variantPointer.enter().append('circle')
+        .attr('r', 2);
+    variantPointer
+        .attr('class', 'up_pftv_variant_pointer')
+        .attr('cx', function(d) {
+            return variantViewer.xScale(Math.min(d.pos, fv.sequence.length));
+        })
+        .attr('cy', function(d) {
+            return variantViewer.yScale(d.normal.charAt(0));
+        })
+    ;
+    variantPointer.exit().remove();
 };
 
 var createDataSeries = function(fv, variantViewer, svg, features, series) {
@@ -229,14 +249,18 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
             .range([5, 10]);
 
         var variationPlot = function(selection) {
-            var series, bars;
+            var series, bars, pointerBars;
 
             selection.each(function(data) {
                 // Generate chart
                 series = d3.select(this);
 
+                var withVariants = _.filter(data, function (elem) {
+                    return elem.variants.length !== 0;
+                });
+
                 bars = series.selectAll('.up_pftv_var-series')
-                    .data(data, function(d) {
+                    .data(withVariants, function(d) {
                         return d.pos;
                     });
 
@@ -247,8 +271,19 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
                     .attr('class','up_pftv_var-series');
 
                 drawVariants(variantViewer, bars, frequency, fv, container, catTitle);
-
                 bars.exit().transition().duration(250).remove();
+
+                pointerBars = series.selectAll('.up_pftv_var-pointerSeries')
+                    .data(withVariants, function(d) {
+                        return d.pos;
+                    });
+
+                pointerBars.enter()
+                    .append('g')
+                    .attr('class','up_pftv_var-pointerSeries');
+
+                drawPointers(variantViewer, pointerBars, fv);
+                pointerBars.exit().remove();
             });
         };
 
