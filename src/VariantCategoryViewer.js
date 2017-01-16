@@ -18,6 +18,7 @@ var VariantCategoryViewer = function(category) {
         zoom = category.fv.zoom;
 
     varCatViewer.varChart = ViewerHelper.createSVG(container, width, height, category.fv, 'up_pftv_variation-chart');
+    varCatViewer.varChart.append('title').text('Number of variants per position');
 
     varCatViewer.variationCountArray = _.map(varCatViewer.features, function(d) {
         return d.variants.length;
