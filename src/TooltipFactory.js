@@ -160,7 +160,8 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
 
     var descRow = tooltip.table.append('tr');
 
-    var tooltipTitle = tooltip.data.type + ' ' + tooltip.data.begin +
+    var tooltipTitle = (tooltip.data.isWildType !== true ? tooltip.data.type : 'WILD TYPE') +
+        ' ' + tooltip.data.begin +
         (tooltip.data.end ? '-' + tooltip.data.end : '');
     descRow.append('th').attr('colspan',2).text(tooltipTitle);
 
@@ -457,11 +458,13 @@ var VariantTooltipViewer = function(tooltip) {
         addSection(tooltip, tooltip.data, undefined, tooltip.data.lss_description, lssEvidences, lssXrefs, 'Large' +
             ' Scale Studies');
     } else {
-        addMutation(tooltip);
-        addPredictions(tooltip, tooltip.data);
-        tooltip.addEvidences(tooltip.data.evidences);
-        addXRefs(tooltip, tooltip.data.xrefs);
-        addAssociation(tooltip);
+        if (tooltip.data.isWildType !== true) {
+            addMutation(tooltip);
+            addPredictions(tooltip, tooltip.data);
+            tooltip.addEvidences(tooltip.data.evidences);
+            addXRefs(tooltip, tooltip.data.xrefs);
+            addAssociation(tooltip);
+        }
     }
     //There is only one external data source but we do not know the key name
     _.each(tooltip.data.externalData, function(data, key) {

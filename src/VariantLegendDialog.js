@@ -38,6 +38,7 @@ var LegendDialog = function() {
     };
 
     return {
+        wildTypeColor: '#4D9900',
         UPDiseaseColor: '#002594',
         deleteriousColor: '#0F4BFF',
         benignColor: '#14C4FF',
