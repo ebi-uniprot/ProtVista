@@ -1,12 +1,17 @@
 ---
-layout: default
+layout: demo
 title: UniProt Protein Feature Viewer, a BioJS component
 ---
 <div>
   <p>
-    Feature Viewer is a BioJS widget that lays out, maps, orients, and renders position-based annotations for
+    ProtVista is a BioJS widget that lays out, maps, orients, and renders position-based annotations for
     sequences. The result is a powerful visualization tool that can be easily integrated into web applications.
   </p>
 
-  <img src="./images/ftViewer.png" alt="Feature Viewer"/>
+  <div id="basicDemo" style="margin-top: 10px"></div>
+  <div style="visibility: hidden">
+    <img src="./images/icon_download.png" onload="loadData(
+      'basicDemo', {uniprotacc: 'P05067'}
+    );">
+  </div>
 </div>
