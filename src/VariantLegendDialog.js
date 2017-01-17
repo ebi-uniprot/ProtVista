@@ -38,16 +38,16 @@ var LegendDialog = function() {
     };
 
     return {
-        wildTypeColor: '#4D9900',
-        UPDiseaseColor: '#002594',
-        deleteriousColor: '#0F4BFF',
-        benignColor: '#14C4FF',
-        UPNonDiseaseColor: '#8FE3FF',
+        UPDiseaseColor: '#990000',
+        deleteriousColor: '#002594',
+        benignColor: '#8FE3FF',
+        UPNonDiseaseColor: '#99cc00',
         othersColor: '#FFCC00',
         consequenceColors: ["#66c2a5","#8da0cb","#e78ac3","#ffd92f","#b3b3b3","#e5c494","#a6d854","#fc8d62"],
+        //ffd92f if yellow is used for others, b3b3b3 is grey, a6d854 is similar to the other green for non-disease
         getPredictionColor: d3.scale.linear()
             .domain([0,1])
-            .range(['#0F4BFF','#14C4FF']),
+            .range(['#002594','#8FE3FF']),
         createLegendDialog: function(container, fv) {
             this.dialog = container.append('div')
                 .attr('class','up_pftv_dialog-container');
