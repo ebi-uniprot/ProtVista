@@ -1,9 +1,7 @@
 ---
-layout: default
+layout: demo
 title: User Guide
 ---
-
-# ProtVista
 
 ![ProtVista](./images/ftViewerUP.png)
 
@@ -16,7 +14,7 @@ title: User Guide
   - [Shapes and colors of features](#shapes-and-colors-of-features)
   - [Getting more information on track names and features](#getting-more-information-on-track-names-and-features)
   - [Customize](#customize)
-  - [Natural variant track](#natural-variant-track)
+  - [Natural variants track](#natural-variants-track)
 - [Feature categories and types](#feature-categories-and-types)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -61,7 +59,7 @@ You can customize the tracks that you see by clicking on the ![settings](./image
 
 <img alt="Customise tracks" src="./images/customise.png" width="60%" height = "60%">
 
-### Natural variant track
+### Natural variants track
 
 The natural variants track shows natural variants from UniProt annotations as well as Large Scale Studies ([COSMIC](http://cancer.sanger.ac.uk/cosmic), [1000 Genomes](http://www.1000genomes.org/), [Exome Sequencing Project](http://evs.gs.washington.edu/EVS/), [ExAC](http://exac.broadinstitute.org/)). The default track view shows a summary chart indicating the number of variants at each sequence position. For example, the peaks show areas of high variation.
 
