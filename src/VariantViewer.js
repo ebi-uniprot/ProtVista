@@ -79,9 +79,7 @@ var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predict
 };
 
 var variantsFill = function(d, fv) {
-    if (d.isWildType === true) {
-        return LegendDialog.wildTypeColor;
-    } else if((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
+    if((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
         return LegendDialog.othersColor;
     } else if((d.sourceType === Evidence.variantSourceType.uniprot) ||
         (d.sourceType === Evidence.variantSourceType.mixed)) {
@@ -115,7 +113,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
 
     var newCircles = variantCircle.enter().append('circle')
         .attr('r', function(d) {
-            return d.isWildType === true ? 2 : frequency(0);
+            return frequency(0);
         })
     ;
 

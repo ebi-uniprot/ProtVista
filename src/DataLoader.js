@@ -156,15 +156,6 @@ var DataLoader = function() {
                     Constants.addConsequenceType(d.consequence);
                 }
             });
-
-            _.each(mutationArray, function (varPos) {
-                if (varPos.variants.length !== 0) {
-                    varPos.variants.push({
-                        isWildType: true, begin: varPos.pos, end: varPos.pos, type: varPos.type,
-                        wildType: varPos.normal, alternativeSequence: varPos.normal
-                    });
-                }
-            });
             return [['VARIATION', mutationArray]];
         }
     };
