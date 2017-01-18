@@ -43,8 +43,7 @@ var LegendDialog = function() {
         benignColor: '#8FE3FF',
         UPNonDiseaseColor: '#99cc00',
         othersColor: '#FFCC00',
-        consequenceColors: ["#66c2a5","#8da0cb","#e78ac3","#ffd92f","#b3b3b3","#e5c494","#a6d854","#fc8d62"],
-        //ffd92f if yellow is used for others, b3b3b3 is grey, a6d854 is similar to the other green for non-disease
+        consequenceColors: ["#66c2a5","#8da0cb","#e78ac3","#e5c494","#fc8d62","#ffd92f","#a6d854","#b3b3b3"],
         getPredictionColor: d3.scale.linear()
             .domain([0,1])
             .range(['#002594','#8FE3FF']),
