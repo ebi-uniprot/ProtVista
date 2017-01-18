@@ -70,10 +70,23 @@ Our viewer was previously know as biojs-vis-proteinfeaturesviewer, that name is 
 
 ### The node way
 `>npm install ProtVista`
-This is probably the preferred way if you are developing a new component or application that uses our feature viewer. It would be useful as well if you are modifying this component. Some more information about [node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/).
+This is probably the preferred way if you are developing a new component or application that uses our feature viewer. It would be useful as well if you are modifying this component. Some more information about [node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/). 
 
 ## Starting ProtVista
 In order to use this component, you need an HTML element such as <div\> or <span\> or anything else that can act as a container where ProtVista will be located. In the following lines, we use a DIV element identified as *yourDiv*, it could have any other name.
+  
+<div style="display: table">
+  <div style="display: table-row">
+      <div style="display: table-cell">
+        <img src="./images/warningSymbol.png" alt="Warning!" style="margin: 0; padding-right:5px; border-style: none"/>
+      </div>
+      
+      <div style="display: inline-block">
+        Please be aware that directly opening an HTML page in a browser (file:///) might not work in all computers. It 
+       depends on OS and security configuration.
+      </div>
+  </div>
+</div> 
 
 ### Basic
 When creating the instance, you need to specify the object where the component will be located, *el*, as well as the UniProt accession whose sequence annotations will be visualized, *uniprotacc*. We are supposing here that you will instantiate the component as soon as the window has been loaded, i.e., window.onload function.
