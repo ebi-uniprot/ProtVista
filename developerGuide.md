@@ -82,7 +82,7 @@ In order to use this component, you need an HTML element such as <div\> or <span
       </div>
       
       <div style="display: inline-block">
-        Please be aware that directly opening an HTML page in a browser (file:///) might not work in all computers. It 
+        Please be aware that directly opening a HTML page in a browser (file:///) might not work in all computers. It 
        depends on OS and security configuration.
       </div>
   </div>
