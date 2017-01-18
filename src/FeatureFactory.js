@@ -62,7 +62,6 @@ var symbolSize = 10,
         stop_lost:'variant',//CHECK
         stop_gained:'variant',//CHECK
         init_codon:'variant',//CHECK
-        wild_type:'pointer',
         //proteomics
         unique:'rectangle',
         non_unique:'rectangle'
@@ -85,7 +84,6 @@ var FeatureFactory = function() {
             gapRegion = aaWidth/2;
             // if the constructor doesn't exist, rectangle is used by default
             if (typeof Feature[featureType] !== 'function') {
-                console.log('NOT FOUND!');
                 featureType = 'rectangle';
             }
 
@@ -251,16 +249,6 @@ Feature.doubleBar = function(width, height, length) {
     return length !== 1
         ? shape + 'L' + gapShape + ',0' + getMiddleLine(symbolSize/2, width) + 'Z'
         : shape + 'Z';
-};
-
-Feature.pointer = function(width, height, length) {
-    var centerx = symbolSize/2;
-    var shape = 'M' + gapShape + ',0'
-        + 'L' + (-centerx+gapShape) + ',' + (-symbolSize/2)
-        + 'L' + (centerx+gapShape) + ',' + (-symbolSize/2)
-        + 'Z';
-    console.log(shape);
-    return shape;
 };
 
 Feature.variant = function() {
