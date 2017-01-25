@@ -21,7 +21,7 @@ var defaultFilterCaseDisease = {
             });
         }
     },
-    color: '#990000'
+    color: LegendDialog.UPDiseaseColor
 };
 var defaultFilterCasePrediction = {
     label: ['Predicted deleterious', 'Predicted benign'],
@@ -40,7 +40,7 @@ var defaultFilterCasePrediction = {
             }
         }
     },
-    colorRange: ['#ff3300','#009900']
+    colorRange: [LegendDialog.deleteriousColor,LegendDialog.benignColor]
 };
 var defaultFilterCaseNonDisease = {
     label: 'Non-disease (reviewed)',
@@ -56,7 +56,7 @@ var defaultFilterCaseNonDisease = {
             Evidence.variantSourceType.mixed
         ]
     },
-    color: '#99cc00'
+    color: LegendDialog.UPNonDiseaseColor
 };
 var defaultFilterCaseOthers = {
     label: 'Init, stop loss or gain',
@@ -64,7 +64,7 @@ var defaultFilterCaseOthers = {
     properties: {
         'alternativeSequence': '*'
     },
-    color: '#0033cc'
+    color: LegendDialog.othersColor
 };
 var defaultFilterConsequence = {
     label: 'Filter consequence',
