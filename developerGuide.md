@@ -578,7 +578,7 @@ Regardless where the data come from, all features **must** have a category and a
 ```
 {
   "type": "ACT_SITE",
-  "category": "DOMAINS_AND_TYPES",
+  "category": "DOMAINS_AND_SITES",
   "begin": 837,
   "end": 837
 }
@@ -595,7 +595,7 @@ You can reuse the default categories and types. If you do so, in order to distin
 ```
 {
   "type": "ACT_SITE",
-  "category": "DOMAINS_AND_TYPES",
+  "category": "DOMAINS_AND_SITES",
   "begin": 73,
   "end": 73,
   //Color used to distinguish from default data sources features
