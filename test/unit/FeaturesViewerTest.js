@@ -101,6 +101,7 @@ describe('FeaturesViewerTest', function() {
                 { name: 'TOPOLOGY', label: 'Topology', visualizationType: 'basic' },
                 { name: 'MUTAGENESIS', label: 'Mutagenesis', visualizationType: 'basic' },
                 { name: 'PROTEOMICS', label: 'Proteomics', visualizationType: 'basic' },
+                { name: 'ANTIGEN', label: 'Antigenic sequences', visualizationType: 'basic' },
                 { name: 'VARIATION', label: 'Variants', visualizationType: 'variant' }
              ];
 
