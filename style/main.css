@@ -362,6 +362,11 @@ svg {
     line-height: 2em;
     padding: 0 .7em;
     color: #FFF;
+    text-align: center;
+}
+
+.up_pftv_tooltip-container table a {
+    text-decoration: underline !important;
 }
 
 .up_pftv_tooltip-container table td {
