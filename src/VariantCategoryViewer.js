@@ -44,7 +44,8 @@ var VariantCategoryViewer = function(category) {
             .attr("d",line(varCatViewer.variationCountArray))
             .on('click', function(){
                 category.toggle();
-            });
+            })
+            .append('title').text('Number of variants per position');
 
         varCatViewer.varChart.append("path")
             .data(varCatViewer.features)
@@ -52,7 +53,8 @@ var VariantCategoryViewer = function(category) {
             .attr("d",line(varCatViewer.variationCountArray))
             .on('click', function(){
                 category.toggle();
-            });
+            })
+            .append('title').text('Number of variants per position');
     };
 
     this.init();

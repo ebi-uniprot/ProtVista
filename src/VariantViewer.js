@@ -235,8 +235,12 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
                 // Generate chart
                 series = d3.select(this);
 
+                var withVariants = _.filter(data, function (elem) {
+                    return elem.variants.length !== 0;
+                });
+
                 bars = series.selectAll('.up_pftv_var-series')
-                    .data(data, function(d) {
+                    .data(withVariants, function(d) {
                         return d.pos;
                     });
 
@@ -247,7 +251,6 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
                     .attr('class','up_pftv_var-series');
 
                 drawVariants(variantViewer, bars, frequency, fv, container, catTitle);
-
                 bars.exit().transition().duration(250).remove();
             });
         };
