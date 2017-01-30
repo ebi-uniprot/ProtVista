@@ -61,7 +61,7 @@ var zoomIn = function(fv) {
     update(fv);
     updateViewportFromChart(fv);
     updateZoomFromChart(fv);
-    updateZoomButton(fv, 'icon-zoom-in', 'icon-zoom-out', 'Zoom out to overview');
+    updateZoomButton(fv, 'up_pftv_icon-zoom-in', 'up_pftv_icon-zoom-out', 'Zoom out to overview');
 };
 
 var resetZoom = function(fv) {
@@ -76,7 +76,7 @@ var zoomOut = function(fv) {
         fv.maxPos
     ]);
     resetZoom(fv);
-    updateZoomButton(fv, 'icon-zoom-out', 'icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton(fv, 'up_pftv_icon-zoom-out', 'up_pftv_icon-zoom-in', 'Zoom in to sequence view');
 };
 
 var resetZoomAndSelection = function(fv) {
@@ -87,7 +87,7 @@ var resetZoomAndSelection = function(fv) {
     ViewerHelper.deselectFeature(fv);
     ViewerHelper.resetHighlight(fv);
     resetZoom(fv);
-    updateZoomButton(fv, 'icon-zoom-out', 'icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton(fv, 'up_pftv_icon-zoom-out', 'up_pftv_icon-zoom-in', 'Zoom in to sequence view');
     _.each(fv.categories, function(category) {
         category.reset();
     });
@@ -171,7 +171,7 @@ var createNavRuler = function(fv, container) {
         updateZoomFromChart(fv);
         var navigator = fv.globalContainer.select('.up_pftv_navruler .extent');
         if (+navigator.attr('width') >= fv.width - fv.padding.left - fv.padding.right) {
-            updateZoomButton(fv, 'icon-zoom-out', 'icon-zoom-in', 'Zoom in to sequence view');
+            updateZoomButton(fv, 'up_pftv_icon-zoom-out', 'up_pftv_icon-zoom-in', 'Zoom in to sequence view');
         }
     });
 
@@ -231,25 +231,25 @@ var createButtons = function(fv, data, container) {
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
     buttons.append('a')
-        .attr('class','icon-button icon-download')
+        .attr('class','up_pftv_icon-button up_pftv_icon-download')
         .attr('title','Download data')
         .attr('href','#')
         .on('click', function(){
             DownloadDialog.displayDialog(fv, buttons);
         });
     buttons.append('a')
-        .attr('class','icon-button icon-location')
+        .attr('class','up_pftv_icon-button up_pftv_icon-location')
         .attr('title','Highlight region')
         .attr('href','#')
         .on('click', function(){
             HighlightRegionDialog.displayDialog(fv, buttons);
         });
     buttons.append('a')
-        .attr('class','icon-button icon-zoom-in')
+        .attr('class','up_pftv_icon-button up_pftv_icon-zoom-in')
         .attr('title','Zoom in to sequence view')
         .attr('href','#')
         .on('click', function(){
-            if ( d3.select(this).classed('icon-zoom-in')) {
+            if ( d3.select(this).classed('up_pftv_icon-zoom-in')) {
                 zoomIn(fv);
             } else {
                 zoomOut(fv);
@@ -260,8 +260,14 @@ var createButtons = function(fv, data, container) {
 var createCreditButtons = function(fv, data, container) {
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons up_pftv_credit_buttons');
-    buttons.append('span').classed('up_pftv_credit_text', true).append('a')
-        .attr('class','fv-icon-info-circled')
+    buttons.append('div').classed('up_pftv_credit_icon', true)
+        .append('a')
+        .attr('class','up_pftv_icon-button up_pftv_icon-info')
+        .attr('title','Help page')
+        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
+        .attr('target', '_blank');
+    buttons.append('div').classed('up_pftv_credit_text', true)
+        .append('a')
         .attr('title','Help page')
         .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
         .attr('target', '_blank')

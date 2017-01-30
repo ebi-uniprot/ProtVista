@@ -19,6 +19,14 @@ svg {
 
 .up_pftv_credit_text {
     font-size: 10px !important;
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 0.3em;
+}
+
+.up_pftv_credit_icon {
+    font-size: 6px !important;
+    display: table-cell;
 }
 
 .up_pftv_category-container {
@@ -716,7 +724,11 @@ svg .up_pftv_non_unique {
 }
 
 /* ICONS */
-.icon-button {
+a.up_pftv_icon-button:hover {
+    border: 1px solid #9CA8B4 !important;
+}
+
+.up_pftv_icon-button {
   border: 1px solid #D7DCE0 !important;
   border-radius: 2.5em;
   display: inline-block;
@@ -729,18 +741,26 @@ svg .up_pftv_non_unique {
   margin: .2em;
 }
 
-.icon-download {
+.up_pftv_icon-download {
   background: url(../SVG/download.svg);
 }
 
-.icon-location {
+.up_pftv_icon-location {
   background: url(../SVG/location.svg);
 }
 
-.icon-zoom-in {
+.up_pftv_icon-zoom-in {
   background: url(../SVG/zoom-in.svg);
 }
 
-.icon-zoom-out {
+.up_pftv_icon-zoom-out {
   background: url(../SVG/zoom-out.svg);
+}
+
+.up_pftv_icon-reset {
+    background: url(../SVG/reset.svg);
+}
+
+.up_pftv_icon-info {
+    background: url(../SVG/info.svg);
 }
