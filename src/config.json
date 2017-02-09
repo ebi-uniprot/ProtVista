@@ -12,7 +12,7 @@
         },
         {
           "name": "PTM",
-          "label": "Post translational modifications",
+          "label": "PTM",
           "visualizationType": "basic"
         },
         {
@@ -68,7 +68,7 @@
       "tooltip": "The position and length of an active peptide in the mature protein"
     },
     "signal": {
-      "label": "Signal",
+      "label": "Signal peptide",
       "tooltip": "N-terminal signal peptide"
     },
     "helix": {
