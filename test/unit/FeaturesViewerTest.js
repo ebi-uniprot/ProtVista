@@ -95,7 +95,7 @@ describe('FeaturesViewerTest', function() {
                 { name: 'CAT', label: 'My cat', visualizationType: 'basic' },
                 { name: 'DOMAINS_AND_SITES', label: 'Domains & sites', visualizationType: 'basic' },
                 { name: 'MOLECULE_PROCESSING', label: 'Alt molecule processing', visualizationType: 'basic' },
-                { name: 'PTM', label: 'Post translational modifications', visualizationType: 'basic' },
+                { name: 'PTM', label: 'PTM', visualizationType: 'basic' },
                 { name: 'SEQUENCE_INFORMATION', label: 'Sequence information', visualizationType: 'basic' },
                 { name: 'STRUCTURAL', label: 'Structural features', visualizationType: 'basic' },
                 { name: 'TOPOLOGY', label: 'Topology', visualizationType: 'basic' },
