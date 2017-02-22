@@ -11,22 +11,27 @@ svg {
     position: relative;
 }
 
-.up_pftv_credit_buttons {
-    text-align: left;
-    padding: 0 1em 0 0;
-    vertical-align: top;
+.up_pftv_credit_container {
+  display: inline-block;
+  vertical-align: top;
+  width: 180px;
+  padding: 0 0.5em;
 }
 
-.up_pftv_credit_text {
-    font-size: 10px !important;
-    display: table-cell;
-    vertical-align: middle;
-    padding-left: 0.3em;
+.up_pftv_credit {
+  float: right;
+  font-size: .9em;
+  color: grey;
 }
 
-.up_pftv_credit_icon {
-    font-size: 6px !important;
-    display: table-cell;
+.up_pftv_credit:after {
+  content: "";
+  background: url(../SVG/info.svg);
+  background-size: .9em .9em;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
 }
 
 .up_pftv_category-container {

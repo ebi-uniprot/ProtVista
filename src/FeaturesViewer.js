@@ -245,6 +245,13 @@ var createButtons = function(fv, data, container) {
             HighlightRegionDialog.displayDialog(fv, buttons);
         });
     buttons.append('a')
+        .attr('class','up_pftv_icon-button up_pftv_icon-reset')
+        .attr('title','Reset')
+        .attr('href','#')
+        .on('click', function(){
+            resetZoomAndSelection(fv);
+        });
+    buttons.append('a')
         .attr('class','up_pftv_icon-button up_pftv_icon-zoom-in')
         .attr('title','Zoom in to sequence view')
         .attr('href','#')
@@ -258,20 +265,14 @@ var createButtons = function(fv, data, container) {
 };
 
 var createCreditButtons = function(fv, data, container) {
-    var buttons = container.append('div')
-        .attr('class','up_pftv_buttons up_pftv_credit_buttons');
-    buttons.append('div').classed('up_pftv_credit_icon', true)
-        .append('a')
-        .attr('class','up_pftv_icon-button up_pftv_icon-info')
-        .attr('title','Help page')
-        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
-        .attr('target', '_blank');
-    buttons.append('div').classed('up_pftv_credit_text', true)
-        .append('a')
-        .attr('title','Help page')
-        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
-        .attr('target', '_blank')
-        .text('ProtVista');
+  var linkContainer = container.append('div').attr('class','up_pftv_credit_container');
+
+  var link = linkContainer.append('a')
+                        .attr('title','Help page')
+                        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
+                        .attr('target', '_blank')
+                        .attr('class', 'up_pftv_credit')
+                        .text('ProtVista');
 };
 
 var createAAViewer = function(fv, container, sequence) {
@@ -666,6 +667,7 @@ FeaturesViewer.prototype.loadZoom = function(d) {
 
   createCreditButtons(fv, d, fv.footer);
   fv.aaViewer2 = createAAViewer(fv, fv.footer, d.sequence);
+
   updateViewportFromChart(fv);
   updateZoomFromChart(fv);
 };
