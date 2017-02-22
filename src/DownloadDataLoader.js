@@ -57,7 +57,7 @@ var DownloadDataLoader = function() {
                     zip.generateAsync({type:"base64"}).then(function (base64) {
                         window.location = "data:application/zip;base64," + base64;
                     }, function (err) {
-                        console.log('Error: ', err)
+                        console.log('Error: ', err);
                     });
                 }
             });

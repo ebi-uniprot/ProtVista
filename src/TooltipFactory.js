@@ -274,6 +274,21 @@ Tooltip.prototype.addBlast = function() {
 
 var BasicTooltipViewer = function(tooltip) {
     tooltip.addEvidences(tooltip.data.evidences);
+    addXRefs(tooltip, tooltip.data.xrefs);
+    tooltip.addBlast();
+};
+
+var AntigenTooltipViewer = function(tooltip) {
+    if (tooltip.data.matchScore) {
+        var seqRow = tooltip.table.append('tr');
+        seqRow.append('td').text('Alignment score');
+        seqRow.append('td')
+            .text(function() {
+                return tooltip.data.matchScore + '%';
+            });
+    }
+    tooltip.addEvidences(tooltip.data.evidences);
+    addXRefs(tooltip, tooltip.data.xrefs);
     tooltip.addBlast();
 };
 
@@ -290,6 +305,7 @@ var AlternativeTooltipViewer = function(tooltip, change, field) {
             });
     }
     tooltip.addEvidences(tooltip.data.evidences);
+    addXRefs(tooltip, tooltip.data.xrefs);
     tooltip.addBlast();
 };
 
@@ -471,6 +487,9 @@ var VariantTooltipViewer = function(tooltip) {
 
 Tooltip.basic = function() {
     this.tooltipViewer = new BasicTooltipViewer(this);
+};
+Tooltip.antigen = function() {
+    this.tooltipViewer = new AntigenTooltipViewer(this);
 };
 Tooltip.mutagen = function() {
     this.tooltipViewer = new AlternativeTooltipViewer(this, 'Mutation', 'alternativeSequence');

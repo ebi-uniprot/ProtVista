@@ -25,6 +25,11 @@ var uniprotSources = [
         url: 'https://www.ebi.ac.uk/proteins/api/variation/',
         source: uniprotSource,
         category: 'VARIATION'
+    },
+    {
+        url: 'https://www.ebi.ac.uk/proteins/api/antigen/',
+        source: uniprotSource,
+        category: 'ANTIGEN'
     }
 ];
 var allSources = uniprotSources.slice(0);
