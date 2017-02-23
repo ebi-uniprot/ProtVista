@@ -108,15 +108,16 @@ var resetZoomAndSelection = function(fv) {
 };
 
 var createZoom = function(fv) {
+    var scale = fv.xZoomScale;
     var zoom = d3.behavior.zoom()
-        .x(fv.xScale)
+        .x(scale)
         // .scaleExtent([1,1])
         .on('zoom', function() {
-            if (fv.xScale.domain()[0] < 1) {
-                var tempX = zoom.translate()[0] - fv.xScale(1) + fv.xScale.range()[0];
+            if (scale.domain()[0] < 1) {
+                var tempX = zoom.translate()[0] - scale(1) + scale.range()[0];
                 zoom.translate([tempX, 0]);
-            } else if (fv.xScale.domain()[1] > fv.maxPos) {
-                var translatedX = zoom.translate()[0] - fv.xScale(fv.maxPos) + fv.xScale.range()[1];
+            } else if (scale.domain()[1] > fv.maxPos) {
+                var translatedX = zoom.translate()[0] - scale(fv.maxPos) + scale.range()[1];
                 zoom.translate([translatedX, 0]);
             }
             update(fv);
@@ -142,11 +143,13 @@ var closeTooltipAndPopup = function(fv) {
 };
 
 var createNavRuler = function(fv, container) {
-    var navHeight = 40, navWithTrapezoid = 50;
-
-    var navXScale = d3.scale.linear()
-        .domain([1,fv.maxPos])
-        .range([fv.padding.left, fv.width - fv.padding.right]);
+    var navHeight = 30, 
+      trapezoidHeight = 40, 
+      navdragHandleWidth = 10, 
+      navdragHandleHeight = 30,
+      trapezoidCurveOffset = 30, 
+      extentHeight = 6,
+      resizeLabelWidth = 15;
 
     var svg = container
         .append('div')
@@ -154,18 +157,22 @@ var createNavRuler = function(fv, container) {
         .append('svg')
         .attr('id','up_pftv_svg-navruler')
         .attr('width', fv.width)
-        .attr('height', (navWithTrapezoid));
+        .attr('height', trapezoidHeight + (navdragHandleHeight/2));
+        
+    var defs = svg.append('defs');
+    var gradient = defs.append('linearGradient').attr({id: "fv-zoom-gradient", x1: 0, x2: 0, y1: 0, y2: 1});
+    gradient.append('stop').attr('class', 'fv-zoom-gradient-start').attr('offset', '0%');
+    gradient.append('stop').attr('class', 'fv-zoom-gradient-end').attr('offset', '90%');
+
+    // move everything down to give space for brush handles
+    var canvas = svg.append('g').attr('transform', 'translate(0,'+navdragHandleHeight/2+')');
 
     var navXAxis = d3.svg.axis()
-        .scale(fv.xScale)
+        .scale(fv.xZoomScale)
         .orient('bottom');
 
-    svg.append('g')
-        .attr('class', 'x axis')
-        .call(navXAxis);
-
     var viewport = d3.svg.brush()
-        .x(navXScale)
+        .x(fv.xZoomScale)
         .on("brush", function() {
             var s = d3.event.target.extent();
             if((s[1] - s[0]) < fv.maxZoomSize) {
@@ -182,51 +189,66 @@ var createNavRuler = function(fv, container) {
     viewport.on("brushend", function () {
         updateZoomFromChart(fv);
         var navigator = fv.globalContainer.select('.up_pftv_navruler .extent');
-        if (+navigator.attr('width') >= fv.width - fv.padding.left - fv.padding.right) {
+        if (+navigator.attr('width') >= fv.width - fv.zoomMargin.left - fv.zoomMargin.right) {
             updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
         }
     });
 
-    var arc = d3.svg.arc()
-        .outerRadius(navHeight / 4)
-        .startAngle(0)
-        .endAngle(function(d, i) { return i ? -Math.PI : Math.PI; });
-
-    svg.append("g")
+    var vp = canvas.append("g")
         .attr("class", "up_pftv_viewport")
-        .call(viewport)
-        .selectAll("rect")
+        .call(viewport);
+    
+    var handles = vp.selectAll('.resize');
+    
+    vp.selectAll("rect")
         .attr("height", navHeight);
 
-    viewport.trapezoid = svg.append("g")
-        .selectAll("path")
-        .data([0]).enter().append("path")
-        .classed("up_pftv_trapezoid", true);
+    // add axis to the background
+    vp.insert('g', ':first-child')
+        .attr('class', 'x axis')
+        .call(navXAxis);
 
-    viewport.domainStartLabel = svg.append("text")
-        .attr('class', 'domain-label')
-        .attr('x',0)
-        .attr('y',navHeight);
+    // then add 'background' to the background 
+    viewport.trapezoid = vp.insert("path", ":first-child")
+        .attr("fill", "url(#fv-zoom-gradient)")
+        .classed("trapezoid", true);
 
-    viewport.domainEndLabel = svg.append("text")
-        .attr('class', 'domain-label')
-        .attr('x',fv.width)
-        .attr('y',navHeight)
-        .attr('text-anchor','end');
+    var resizeLabels = vp.selectAll('.resize').append("text")
+      .attr('class', 'domain-label');
 
-    svg.selectAll(".resize").append("path")
-        .attr("transform", "translate(0," +  ((navHeight / 2) - 5) + ")")
-        .attr('class','handle')
-        .attr("d", arc);
-
+    viewport.domainStartLabel = vp.select('.resize.w .domain-label')
+      .attr('text-anchor', 'end')
+      .attr('transform', 'translate(' + (-(navdragHandleWidth+2)) + ',-3)');
+      
+    viewport.domainEndLabel = vp.select('.resize.e .domain-label')
+      .attr('text-anchor', 'start')
+      .attr('transform', 'translate(' + (navdragHandleWidth+2) + ',-3)');
+            
+    handles.select('rect')
+      .classed('handle', true)
+      .attr('x', -(navdragHandleWidth/2))
+      .attr('y', -(navdragHandleHeight/2))
+      .attr('width', navdragHandleWidth )
+      .attr('height', navdragHandleHeight )
+      .style({visibility: 'visible'});
+    
+    vp.select('.extent')
+      .attr('height', extentHeight)
+      .attr('transform', 'translate(0,'+(-extentHeight/2)+')');
+    
     viewport.updateTrapezoid = function() {
         var begin = fv.globalContainer.select(".up_pftv_navruler .extent").attr("x");
         var tWidth = fv.globalContainer.select(".up_pftv_navruler .extent").attr("width");
+        
         var end = (+begin) + (+tWidth);
-        var path =  "M0," + (navWithTrapezoid) + "L0" + "," + (navWithTrapezoid-2)
-            + "L" + begin + "," + (navHeight-12) + "L" + begin + "," + navHeight
-            + "L" + end + "," + navHeight + "L" + end + "," + (navHeight-12)
-            + "L" + fv.width + "," + (navWithTrapezoid-2) + "L" + fv.width + "," + (navWithTrapezoid) + "Z";
+        
+        var path =  "M" + [0,trapezoidHeight].join(',') 
+            // C x1 y1 x2 y2 x y
+            + "C" + [0,trapezoidHeight-trapezoidCurveOffset, begin,0+trapezoidCurveOffset, begin,0 ].join(',') // left
+            + "L" + [end,0].join(',') // top
+            + "C" + [end,0+trapezoidCurveOffset, fv.width,trapezoidHeight-trapezoidCurveOffset, fv.width,trapezoidHeight ].join(',') // right
+            + "L" + [0,trapezoidHeight].join(',') // bottom
+            + "Z";
         this.trapezoid.attr("d", path);
         this.domainStartLabel.text(Math.round(fv.xScale.domain()[0]));
         this.domainEndLabel.text(Math.min(Math.round(fv.xScale.domain()[1]), fv.maxPos));
@@ -278,7 +300,8 @@ var createButtons = function(fv, data, container) {
 };
 
 var createAAViewer = function(fv, container, sequence) {
-    var aaViewer = {}, aaViewWidth = fv.width, aaViewHeight = 30;
+    var aaViewer = {}, aaViewWidth = fv.width, aaViewHeight = 30, aaViewFontSize=12;
+    
     var svg = container
         .append('div')
         .attr('class','up_pftv_aaviewer')
@@ -286,6 +309,11 @@ var createAAViewer = function(fv, container, sequence) {
         .attr('width', aaViewWidth)
         .attr('height',aaViewHeight);
 
+    svg.append('rect')
+      .attr("width", aaViewWidth)
+      .attr("height", aaViewHeight)
+      .classed('background', true);
+      
     //amino acids selector
     var aaSelectorPlot = function(){
         var series, aminoAcids;
@@ -310,17 +338,20 @@ var createAAViewer = function(fv, container, sequence) {
 
     var selectorSeries = aaSelectorPlot();
     var selectorGroup = svg.append('g')
-        .attr('clip-path','url(#aaSelectorViewClip)')
+        //.attr('clip-path','url(#aaSelectorViewClip)')
         .style('opacity',1);
     selectorGroup.datum([{"feature": {"begin": -10, "end": -10}}])
         .call(selectorSeries);
     //scale
+
     var xAxis = d3.svg.axis()
-        .scale(fv.xScale);
+        .scale(fv.xScale)
+        .orient( 'bottom' );
+
     var gAxis = svg.append("g")
-                .attr("class", "x axis")
-                .attr('transform','translate(0, -7)')
-                .call(xAxis);
+        .attr("class", "x axis")
+        .call(xAxis);
+
     //amino acids
     var aaPlot = function(){
         var series, aminoAcids;
@@ -330,7 +361,6 @@ var createAAViewer = function(fv, container, sequence) {
                 aminoAcids = series.selectAll('.up_pftv_amino-acid').data(data);
                 aminoAcids.enter().append('text')
                     .style('text-anchor','middle')
-                    .attr('y', aaViewHeight / 2)
                     .text(function(d) {
                         return d.toUpperCase();
                     })
@@ -353,7 +383,7 @@ var createAAViewer = function(fv, container, sequence) {
     var g = svg.append('g')
         .attr('class','up_pftv_aa-text')
         .attr('clip-path','url(#aaViewClip)')
-        .attr('transform','translate(0,' + aaViewHeight/5 +  ')')
+        .attr('transform','translate(0,' + aaViewHeight + ')')
         .style('opacity',0);
     g.datum(sequence.split('')).call(series);
 
@@ -473,18 +503,22 @@ var FeaturesViewer = function(opts) {
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
         "notFound", "notConfigRetrieved");
 
-    fv.width = 760;
+    fv.width = opts.width !== undefined && opts.width >= 760 ? opts.width : 760;
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
     fv.sequence = "";
     fv.categories = [];
     fv.filterCategories = [];
-    fv.padding = {top:2, right:10, bottom:2, left:10};
+    fv.margin = {top:0, right:0, bottom:0, left:0};
+    fv.zoomMargin = {top:10, right:50, bottom:10, left:50};
     fv.data = [];
     fv.uniprotacc = opts.uniprotacc;
     fv.overwritePredictions = opts.overwritePredictions;
     fv.defaultSource = opts.defaultSources !== undefined ? opts.defaultSources : true;
+
+    fv.xScale = d3.scale.linear();
+    fv.xZoomScale = d3.scale.linear();
 
     fv.load = function() {
         initSources(opts);
