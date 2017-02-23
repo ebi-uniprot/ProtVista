@@ -34,22 +34,14 @@ var VariantCategoryViewer = function(category) {
         .y(function(d) {
             return varYScale(d);
         })
-        .interpolate('linear');
+        .interpolate('step-after');
 
     this.init = function () {
         var varCatViewer = this;
+                
         varCatViewer.varChart.append("path")
             .data(varCatViewer.features)
-            .attr("class","up_pftv_block-area")
-            .attr("d",line(varCatViewer.variationCountArray))
-            .on('click', function(){
-                category.toggle();
-            })
-            .append('title').text('Number of variants per position');
-
-        varCatViewer.varChart.append("path")
-            .data(varCatViewer.features)
-            .attr("class","up_pftv_line")
+            .attr("class","up_pftv_block-area up_pftv_line")
             .attr("d",line(varCatViewer.variationCountArray))
             .on('click', function(){
                 category.toggle();
