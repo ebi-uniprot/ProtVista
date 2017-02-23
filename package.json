@@ -88,7 +88,9 @@
   },
   "sniper": {
     "js": [
-      "/build/protvista.js"
+      "/build/protvista.js",
+      "/node_modules/d3/d3.js",
+      "/node_modules/jquery/dist/jquery.min.js"
     ],
     "css": [
       "/build/css/main.css"
