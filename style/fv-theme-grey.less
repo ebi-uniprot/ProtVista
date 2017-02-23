@@ -1,30 +1,33 @@
 /*
+specific colours
+*/
+@c_helix:  #FF0066;
+@c_strand: #FFCC00;
+@c_turn:   #0571AF;
+
+/*
 d3.scale.category20()
 */
-@c_helix:  #FF0066
-@c_strand: #FFCC00
-@c_turn:   #0571AF
-
-@c1: #1f77b4
-@c2: #aec7e8
-@c3: #ff7f0e
-@c4: #ffbb78
-@c5: #2ca02c
-@c6: #98df8a
-@c7: #d62728
-@c8: #ff9896
-@c9: #9467bd
-@c10: #c5b0d5
-@c11: #8c564b
-@c12: #c49c94
-@c13: #e377c2
-@c14: #f7b6d2
-@c15: #7f7f7f
-@c16: #c7c7c7
-@c17: #bcbd22
-@c18: #dbdb8d
-@c19: #17becf
-@c20: #9edae5
+@c1: #1f77b4;
+@c2: #aec7e8;
+@c3: #ff7f0e;
+@c4: #ffbb78;
+@c5: #2ca02c;
+@c6: #98df8a;
+@c7: #d62728;
+@c8: #ff9896;
+@c9: #9467bd;
+@c10: #c5b0d5;
+@c11: #8c564b;
+@c12: #c49c94;
+@c13: #e377c2;
+@c14: #f7b6d2;
+@c15: #7f7f7f;
+@c16: #c7c7c7;
+@c17: #bcbd22;
+@c18: #dbdb8d;
+@c19: #17becf;
+@c20: #9edae5;
 
 .pv-theme-grey {
   .up_pftv_navruler svg {
@@ -106,101 +109,20 @@ d3.scale.category20()
   svg .up_pftv_variant           { stroke: @c7;  fill: @c7; }
   svg .up_pftv_compbias          { stroke: @c8;  fill: @c8; }
   svg .up_pftv_mutagen           { stroke: @c9;  fill: @c9; }
+  svg .up_pftv_conflict          { stroke: @c10; fill: @c10; }
+  svg .up_pftv_non_cons          { stroke: @c11; fill: @c11; }
+  svg .up_pftv_non_ter           { stroke: @c12; fill: @c12; }
+  svg .up_pftv_unsure            { stroke: @c13; fill: @c13; }
+  svg .up_pftv_non_std           { stroke: @c14; fill: @c14; }
+  svg .up_pftv_topo_dom          { stroke: @c15; fill: @c15; }
+  svg .up_pftv_transmem          { stroke: @c16; fill: @c16; }  
+  svg .up_pftv_intramem          { stroke: @c17; fill: @c17; }
+  svg .up_pftv_unique            { stroke: @c18; fill: @c18; }
+  svg .up_pftv_non_unique        { stroke: @c19; fill: @c19; }
 
   svg .up_pftv_turn              { stroke: @c_turn;   fill: @c_turn; }
   svg .up_pftv_strand            { stroke: @c_strand; fill: @c_strand; }
   svg .up_pftv_helix             { stroke: @c_helix;  fill: @c_helix;  }
-
 }
-
-svg .up_pftv_binding {
-  stroke: #aec7e8;
-  fill: #aec7e8;
-}
-
-svg .up_pftv_act_site {
-  stroke: #17becf;
-  fill: #17becf;
-}
-
-svg .up_pftv_mod_res {
-  stroke: #0571AF;
-  fill: #0571AF;
-}
-
-svg .up_pftv_lipid {
-  stroke: #d62728;
-  fill: #d62728;
-}
-
-svg .up_pftv_carbohyd {
-  stroke: #aec7e8;
-  fill: #aec7e8;
-}
-
-svg .up_pftv_variant {
-    stroke-width: 2;
-}
-
-svg .up_pftv_compbias {
-  stroke: #0571AF;
-  fill: #0571AF;
-}
-
-svg .up_pftv_mutagen {
-  stroke: #98df8a;
-  fill: #98df8a;
-}
-
-svg .up_pftv_conflict {
-  stroke: #2ca02c;
-  fill: #2ca02c;
-}
-
-svg .up_pftv_non_cons {
-  stroke: #ffbb78;
-  fill: #ffbb78;
-}
-
-svg .up_pftv_non_ter {
-  stroke: #ff7f0e;
-  fill: #ff7f0e;
-}
-
-svg .up_pftv_unsure {
-  stroke: #f7b6d2;
-  fill: #f7b6d2;
-}
-
-svg .up_pftv_non_std {
-  stroke: #ffbb78;
-  fill: #ffbb78;
-}
-
-svg .up_pftv_topo_dom {
-  stroke: #ff7f0e;
-  fill: #ff7f0e;
-}
-
-svg .up_pftv_transmem {
-  stroke: #aec7e8;
-  fill: #aec7e8;
-}
-
-svg .up_pftv_intramem {
-  stroke: #1f77b4;
-  fill: #1f77b4;
-}
-
-svg .up_pftv_unique {
-  stroke: #f7b6d2;
-  fill: #f7b6d2;
-}
-
-svg .up_pftv_non_unique {
-  stroke: #bcbd22;
-  fill: #bcbd22;
-}
-
 
 
