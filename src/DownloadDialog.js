@@ -10,7 +10,7 @@ var Constants = require("./Constants");
 var DownloadDataLoader = require("./DownloadDataLoader");
 
 var populateDialog = function (fv, wrapper) {
-    var isSafari = navigator.vendor.indexOf("Apple")==0 && /\sSafari\//.test(navigator.userAgent);
+    var isSafari = navigator.vendor.indexOf("Apple") === 0 && /\sSafari\//.test(navigator.userAgent);
 
     var selected = true;
     var allFormats = Constants.getExternalDataSource() === undefined
