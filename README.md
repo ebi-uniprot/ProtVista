@@ -4,6 +4,11 @@
 [![NPM version](http://img.shields.io/npm/v/ProtVista.svg)](https://www.npmjs.org/package/ProtVista)
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/ProtVista.png?branch=master)](http://travis-ci.org/ebi-uniprot/ProtVista)
 
+### 2.0.5
+- New icons
+- New antigen track
+- Automatically highlight predefined region
+
 ### 2.0.4
 - Changed colour scale for SIFT/Polyphen variant predictions.
 - Minor improvements.
