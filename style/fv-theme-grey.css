@@ -1,0 +1,282 @@
+
+.up_pftv_navruler svg {
+  background-color: transparent;
+}
+
+.up_pftv_aaviewer .background, .up_pftv_viewport .background {
+  fill: white;
+}
+
+.up_pftv_container text.domain-label {
+  font-size: 12px !important;
+}
+
+.up_pftv_container, .up_pftv_aaviewer text {
+  font-family: Helvetica, sans-serif;
+}
+
+.up_pftv_container .up_pftv_navruler .resize {
+  font-size: 20px;
+  fill: #999;
+  fill-opacity: 1.0;
+}
+
+.up_pftv_category-container {
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
+.up_pftv_category {
+  border-bottom-color: #ddd;
+}
+
+.up_pftv_category-name {
+  background-color: #eee;
+  text-transform: uppercase; 
+}
+
+.up_pftv_category a:hover {
+    background-color: #eeeeee;
+}
+
+.up_pftv_track-header {
+  background-color: #f3f3f3;  
+  text-align: right;
+  text-transform: uppercase; 
+}
+
+.up_pftv_track {
+  border-top: 1px solid #eee;
+}
+
+.up_pftv_disulphid {
+}
+
+
+
+/*
+d3.scale.category20()
+#1f77b4
+#aec7e8
+#ff7f0e
+#ffbb78
+#2ca02c
+#98df8a
+#d62728
+#ff9896
+#9467bd
+#c5b0d5
+#8c564b
+#c49c94
+#e377c2
+#f7b6d2
+#7f7f7f
+#c7c7c7
+#bcbd22
+#dbdb8d
+#17becf
+#9edae5
+*/
+
+/* Features */
+svg .up_pftv_chain {
+    stroke: #1f77b4;
+    fill: #1f77b4;
+}
+
+svg .up_pftv_transit {
+    stroke: #aec7e8;
+    fill: #aec7e8;
+}
+
+svg .up_pftv_init_met {
+    stroke: #ff7f0e;
+    fill: #ff7f0e;
+}
+
+svg .up_pftv_propep {
+    stroke: #ffbb78;
+    fill: #ffbb78;
+}
+
+svg .up_pftv_peptide {
+    stroke: #2ca02c;
+    fill: #2ca02c;
+}
+
+svg .up_pftv_signal {
+    stroke: #98df8a;
+    fill: #98df8a;
+}
+
+svg .up_pftv_turn {
+    stroke: #0571AF;
+    fill: #0571AF;
+}
+
+svg .up_pftv_strand {
+    stroke: #FFCC00;
+    fill: #FFCC00;
+}
+
+svg .up_pftv_helix {
+    stroke: #FF0066;
+    fill: #FF0066;
+}
+
+svg .up_pftv_crosslnk {
+    stroke: #d62728;
+    fill: #d62728;
+}
+
+svg .up_pftv_disulfid {
+    stroke: #ff9896;
+    fill: #ff9896;
+}
+
+svg .up_pftv_region {
+    stroke: #9467bd;
+    fill: #9467bd;
+}
+
+svg .up_pftv_coiled {
+    stroke: #9edae5;
+    fill: #9edae5;
+}
+
+svg .up_pftv_motif {
+    stroke: #17becf;
+    fill: #17becf;
+}
+
+svg .up_pftv_repeat {
+    stroke: #bcbd22;
+    fill: #bcbd22;
+}
+
+svg .up_pftv_ca_bind {
+    stroke: #f7b6d2;
+    fill: #f7b6d2;
+}
+
+svg .up_pftv_dna_bind {
+    stroke: #1f77b4;
+    fill: #1f77b4;
+}
+
+svg .up_pftv_domain {
+    stroke: #aec7e8;
+    fill: #aec7e8;
+}
+
+svg .up_pftv_zn_fing {
+    stroke: #ff7f0e;
+    fill: #ff7f0e;
+}
+
+svg .up_pftv_np_bind {
+    stroke: #ffbb78;
+    fill: #ffbb78;
+}
+
+svg .up_pftv_metal {
+  stroke: #f7b6d2;
+  fill: #f7b6d2;
+}
+
+svg .up_pftv_site {
+  stroke: #1f77b4;
+  fill: #1f77b4;
+}
+
+svg .up_pftv_binding {
+  stroke: #aec7e8;
+  fill: #aec7e8;
+}
+
+svg .up_pftv_act_site {
+  stroke: #17becf;
+  fill: #17becf;
+}
+
+svg .up_pftv_mod_res {
+  stroke: #0571AF;
+  fill: #0571AF;
+}
+
+svg .up_pftv_lipid {
+  stroke: #d62728;
+  fill: #d62728;
+}
+
+svg .up_pftv_carbohyd {
+  stroke: #aec7e8;
+  fill: #aec7e8;
+}
+
+svg .up_pftv_variant {
+    stroke-width: 2;
+}
+
+svg .up_pftv_compbias {
+  stroke: #0571AF;
+  fill: #0571AF;
+}
+
+svg .up_pftv_mutagen {
+  stroke: #98df8a;
+  fill: #98df8a;
+}
+
+svg .up_pftv_conflict {
+  stroke: #2ca02c;
+  fill: #2ca02c;
+}
+
+svg .up_pftv_non_cons {
+  stroke: #ffbb78;
+  fill: #ffbb78;
+}
+
+svg .up_pftv_non_ter {
+  stroke: #ff7f0e;
+  fill: #ff7f0e;
+}
+
+svg .up_pftv_unsure {
+  stroke: #f7b6d2;
+  fill: #f7b6d2;
+}
+
+svg .up_pftv_non_std {
+  stroke: #ffbb78;
+  fill: #ffbb78;
+}
+
+svg .up_pftv_topo_dom {
+  stroke: #ff7f0e;
+  fill: #ff7f0e;
+}
+
+svg .up_pftv_transmem {
+  stroke: #aec7e8;
+  fill: #aec7e8;
+}
+
+svg .up_pftv_intramem {
+  stroke: #1f77b4;
+  fill: #1f77b4;
+}
+
+svg .up_pftv_unique {
+  stroke: #f7b6d2;
+  fill: #f7b6d2;
+}
+
+svg .up_pftv_non_unique {
+  stroke: #bcbd22;
+  fill: #bcbd22;
+}
+
+
+
