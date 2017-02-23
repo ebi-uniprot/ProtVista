@@ -3,7 +3,6 @@
 "use strict" ;
 
 var d3 = require("d3");
-var _ = require("underscore");
 var TooltipFactory = require("./TooltipFactory");
 var FeatureFactory = require("./FeatureFactory");
 
@@ -21,9 +20,12 @@ var ViewerHelper = function() {
                 })
                 .on('mouseup', function() {
                     mouseupXY = {x: d3.event.pageX, y: d3.event.pageY};
-                    if ((mousedownXY.x === mouseupXY.x) && (mousedownXY.y === mouseupXY.y)
-                        && !fv.overFeature && fv.selectedFeature ) {
-                        ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
+                    if ((mousedownXY.x === mouseupXY.x) && (mousedownXY.y === mouseupXY.y) && !fv.overFeature) {
+                        if (fv.selectedFeature) {
+                            ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
+                        } else if (fv.highlight) {
+                            ViewerHelper.resetHighlight(fv);
+                        }
                     }
                     mousedownXY = {x: -1, y: -1};
                 })
@@ -33,7 +35,7 @@ var ViewerHelper = function() {
                 svg.attr('class', clazz);
             }
             svg.append('g').append('path')
-                .classed('up_pftv_shadow', true)
+                .classed('up_pftv_highlight', true)
                 .attr('d', 'M-1,-1')
                 .attr('transform', 'translate(-1,-1)')
                 .attr('height', height);
@@ -43,7 +45,7 @@ var ViewerHelper = function() {
     };
 }();
 
-ViewerHelper.shadowPath = function (feature, fv, height) {
+ViewerHelper.highlightPath = function (feature, fv, height) {
     var aaWidth = fv.xScale(2) - fv.xScale(1);
     var gapRegion = aaWidth/2;
     var width = aaWidth * (feature.end ? feature.end - feature.begin + 1 : 1);
@@ -70,45 +72,101 @@ ViewerHelper.shadowPath = function (feature, fv, height) {
     return path;
 };
 
-ViewerHelper.updateShadow = function(feature, fv) {
+ViewerHelper.updateFeatureHighlightSelector = function(fv) {
+    if (fv.selectedFeature) {
+        fv.updateFeatureHighlightSelector(fv.selectedFeature.begin, fv.selectedFeature.end);
+    } else if (fv.highlight) {
+        fv.updateFeatureHighlightSelector(fv.highlight.begin, fv.highlight.end);
+    } else {
+        fv.updateFeatureHighlightSelector(-10, -10);
+    }
+};
+
+ViewerHelper.updateHighlight = function(fv) {
+    var feature;
+    if (fv.selectedFeature) {
+        feature = fv.selectedFeature;
+    } else if (fv.highlight) {
+        feature = fv.highlight;
+    } else {
+        return;
+    }
+
     var xTranslate = fv.xScale(feature.begin);
-    fv.globalContainer.selectAll('.up_pftv_shadow')
+    fv.globalContainer.selectAll('.up_pftv_highlight')
         .attr('d', function() {
             var height = d3.select(this).attr('height');
-            return ViewerHelper.shadowPath(feature, fv, height);
+            return ViewerHelper.highlightPath(feature, fv, height);
         })
         .attr('transform', 'translate(' + xTranslate + ',0)');
+    this.updateFeatureHighlightSelector(fv);
+};
+
+ViewerHelper.resetHighlight = function(fv) {
+        fv.highlight = undefined;
+        fv.globalContainer.selectAll('.up_pftv_highlight')
+            .attr('d', 'M-1,-1')
+            .attr('transform', 'translate(-1,-1)');
+        this.updateFeatureHighlightSelector(fv);
+};
+
+ViewerHelper.deselectFeature = function(fv) {
+    this.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
 };
 
 ViewerHelper.selectFeature = function(feature, elem, fv) {
-    var selectedElem = d3.select(elem);
-    var previousSelection = {feature: fv.selectedFeature, elem: fv.selectedFeatureElement};
-    if (feature === fv.selectedFeature) {
-        fv.selectedFeature = undefined;
-        fv.selectedFeatureElement = undefined;
-        fv.globalContainer.selectAll('.up_pftv_shadow')
-            .attr('d', 'M-1,-1')
-            .attr('transform', 'translate(-1,-1)');
-    } else {
-        fv.selectedFeature = feature;
-        fv.selectedFeatureElement = elem;
-        this.updateShadow(feature, fv);
-    }
-    var selectedPath = selectedElem.classed('up_pftv_activeFeature');
-    fv.globalContainer.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);
-    //it is not active anymore
-    selectedElem.classed('up_pftv_activeFeature', !selectedPath);
-    fv.updateFeatureSelector();
-    if (previousSelection.feature) {
-        fv.dispatcher.featureDeselected(
-            {feature: previousSelection.feature, color: d3.select(previousSelection.elem).style("fill")}
-        );
-    }
-    if (feature !== previousSelection.feature) {
-        if (previousSelection.elem) {
-            d3.select(previousSelection.elem).classed('up_pftv_activeFeature', false);
+    if (feature && elem) {
+        fv.highlight = undefined;
+        var selectedElem = d3.select(elem);
+        var previousSelection = {feature: fv.selectedFeature, elem: fv.selectedFeatureElement};
+        if (feature === fv.selectedFeature) {
+            fv.selectedFeature = undefined;
+            fv.selectedFeatureElement = undefined;
+            this.resetHighlight(fv);
+        } else {
+            fv.selectedFeature = feature;
+            fv.selectedFeatureElement = elem;
+            this.updateHighlight(fv);
         }
-        fv.dispatcher.featureSelected({feature: fv.selectedFeature, color: selectedElem.style("fill")});
+        var selectedPath = selectedElem.classed('up_pftv_activeFeature');
+        fv.globalContainer.selectAll('svg path.up_pftv_activeFeature').classed('up_pftv_activeFeature', false);
+        //it is not active anymore
+        selectedElem.classed('up_pftv_activeFeature', !selectedPath);
+        if (previousSelection.feature) {
+            fv.dispatcher.featureDeselected(
+                {feature: previousSelection.feature, color: d3.select(previousSelection.elem).style("fill")}
+            );
+        }
+        if (feature !== previousSelection.feature) {
+            if (previousSelection.elem) {
+                d3.select(previousSelection.elem).classed('up_pftv_activeFeature', false);
+            }
+            fv.dispatcher.featureSelected({feature: fv.selectedFeature, color: selectedElem.style("fill")});
+        }
+    }
+};
+
+ViewerHelper.centerToHighlightedSelection = function(fv) {
+    var feature;
+
+    if (fv.selectedFeature) {
+        feature = fv.selectedFeature;
+    } else if (fv.highlight) {
+        feature = fv.highlight;
+    }
+    if (feature) {
+        var domain = fv.xScale.domain();
+        var max = domain[domain.length-1];
+        var ftMiddle = +feature.begin +
+            (feature.end ? Math.floor((+feature.end - +feature.begin)/2) : 0);
+        var init = (ftMiddle - max/2) < 1 ? 1 : ftMiddle - max/2;
+        if ((init + max) > fv.sequence.length) {
+            init = fv.sequence.length - max;
+        }
+        fv.xScale.domain([
+            init,
+            init + max
+        ]);
     }
 };
 

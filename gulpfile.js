@@ -137,8 +137,8 @@ gulp.task('init', ['clean'], function() {
 });
 
 gulp.task('copy-resources', ['init'], function() {
-    gulp.src(["./font/**/*.*"])
-            .pipe(gulp.dest(buildDir + '/font/'));
+    gulp.src(["./SVG/**/*.*"])
+            .pipe(gulp.dest(buildDir + '/SVG/'));
     return gulp.src("./style/*.css")
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(concat('main.css'))

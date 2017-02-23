@@ -11,25 +11,26 @@ svg {
     position: relative;
 }
 
-.up_pftv_buttons a {
-    color: inherit;
-    text-decoration: none;
-}
-.up_pftv_buttons > span {
-    cursor: pointer;
-    font-size: 18px;
-    opacity: 0.8;
+.up_pftv_credit_container {
+  display: inline-block;
+  vertical-align: top;
+  width: 180px;
+  padding: 0 0.5em;
 }
 
-.up_pftv_buttons > span:hover {
-    opacity: 1;
+.up_pftv_credit {
+  font-size: .9em;
+  color: grey;
 }
 
-.up_pftv_aaviewer {
-}
-
-.bottom-aa-container {
-    padding-left: 193px;
+.up_pftv_credit:after {
+  content: "";
+  background: url(../SVG/info.svg);
+  background-size: .9em .9em;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
 }
 
 .up_pftv_category-container {
@@ -49,11 +50,6 @@ svg {
     font-family: 'Helvetica neue', Helvetica, Arial, sans-serif !important;
     font-size: 13px !important;
     line-height: 1.5 !important;
-}
-
-.up_pftv_container a {
-  color:#557071 !important;
-  border:none !important;
 }
 
 .up_pftv_container h4 {
@@ -195,7 +191,7 @@ svg {
     stroke: none;
 }
 
-.up_pftv_shadow, .up_pftv_amino_acid_selector {
+.up_pftv_highlight, .up_pftv_amino_acid_selector {
     fill: #FFE999;
     fill-opacity: 1;
 }
@@ -306,6 +302,15 @@ svg {
     padding: 4px 10px 0 0;
 }
 
+/*.up_pftv_icon-frame {
+    border-radius: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid;
+    margin: .2em;
+}*/
+
 .up_pftv_iconContainer-unpinned {
     background-color: lightgrey !important;
     color: black !important;
@@ -338,6 +343,25 @@ svg {
     min-width: 210px;
     text-align: left;
     font-size: 13px;
+}
+
+.up_pftv_popupDialog-container table {
+    border: 0px;
+    background-color: #FFF;
+    width: 100%;
+}
+
+.up_pftv_popupDialog-container td {
+    padding: .2em;
+    margin: 0;
+}
+
+.up_pftv_popupDialog-container td:first-child {
+    font-size: small;
+}
+
+.up_pftv_popupDialog-warning {
+
 }
 
 .up_pftv_tooltip-container table {
@@ -706,4 +730,46 @@ svg .up_pftv_antigen {
     font-size: 0.65em;
     font-weight: bold;
     color: #333;
+}
+
+/* ICONS */
+a.up_pftv_icon-button:hover {
+    border: 1px solid #9CA8B4 !important;
+}
+
+.up_pftv_icon-button {
+  border: 1px solid #D7DCE0 !important;
+  border-radius: 2.5em;
+  display: inline-block;
+  text-indent: -9999px;
+  width: 2.5em;
+  height: 2.5em;
+  background-size: 1.3em 1.3em !important;
+  background-repeat: no-repeat !important;
+  background-position: .6em .6em !important;
+  margin: .2em;
+}
+
+.up_pftv_icon-download {
+  background: url(../SVG/download.svg);
+}
+
+.up_pftv_icon-location {
+  background: url(../SVG/location.svg);
+}
+
+.up_pftv_icon-zoom-in {
+  background: url(../SVG/zoom-in.svg);
+}
+
+.up_pftv_icon-zoom-out {
+  background: url(../SVG/zoom-out.svg);
+}
+
+.up_pftv_icon-reset {
+    background: url(../SVG/reset.svg);
+}
+
+.up_pftv_icon-info {
+    background: url(../SVG/info.svg);
 }

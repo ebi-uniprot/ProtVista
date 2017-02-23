@@ -80,9 +80,7 @@ var BasicViewer = function(catTitle, features, container, fv) {
 
     this.update = function() {
         dataSeries.call(series);
-        if (fv.selectedFeature) {
-            ViewerHelper.updateShadow(fv.selectedFeature, fv);
-        }
+        ViewerHelper.updateHighlight(fv);
     };
 
     this.updateData = function(data) {

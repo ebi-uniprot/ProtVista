@@ -11,6 +11,7 @@ var ViewerHelper = require("./ViewerHelper");
 var FeatureFactory = require("./FeatureFactory");
 var CategoryFilterDialog = require("./CategoryFilterDialog");
 var DownloadDialog = require("./DownloadDialog");
+var HighlightRegionDialog = require("./HighlightRegionDialog");
 var TooltipFactory = require('./TooltipFactory');
 var jQuery = require('jquery');
 
@@ -24,7 +25,6 @@ var updateZoomFromChart = function(fv) {
     var minScale = currentDomain / fullDomain,
         maxScale = minScale * Math.floor(fv.sequence.length/fv.maxZoomSize);
     fv.zoom.scaleExtent([minScale, maxScale]);
-    //end remove
 };
 
 var updateViewportFromChart = function (fv) {
@@ -57,24 +57,11 @@ var zoomIn = function(fv) {
         1,
         fv.maxZoomSize
     ]);
-    if (fv.selectedFeature) {
-        var domain = fv.xScale.domain();
-        var max = domain[domain.length-1];
-        var ftMiddle = +fv.selectedFeature.begin +
-            (fv.selectedFeature.end ? Math.floor((+fv.selectedFeature.end - +fv.selectedFeature.begin)/2) : 0);
-        var init = (ftMiddle - max/2) < 1 ? 1 : ftMiddle - max/2;
-        if ((init + max) > fv.sequence.length) {
-            init = fv.sequence.length - max;
-        }
-        fv.xScale.domain([
-            init,
-            init + max
-        ]);
-    }
+    ViewerHelper.centerToHighlightedSelection(fv);
     update(fv);
     updateViewportFromChart(fv);
     updateZoomFromChart(fv);
-    updateZoomButton(fv, 'fv-icon-zoom-in', 'fv-icon-zoom-out', 'Zoom out to overview');
+    updateZoomButton(fv, 'up_pftv_icon-zoom-in', 'up_pftv_icon-zoom-out', 'Zoom out to overview');
 };
 
 var resetZoom = function(fv) {
@@ -89,7 +76,7 @@ var zoomOut = function(fv) {
         fv.maxPos
     ]);
     resetZoom(fv);
-    updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton(fv, 'up_pftv_icon-zoom-out', 'up_pftv_icon-zoom-in', 'Zoom in to sequence view');
 };
 
 var resetZoomAndSelection = function(fv) {
@@ -97,11 +84,10 @@ var resetZoomAndSelection = function(fv) {
         1,
         fv.maxPos
     ]);
-    if (fv.selectedFeature) {
-        ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
-    }
+    ViewerHelper.deselectFeature(fv);
+    ViewerHelper.resetHighlight(fv);
     resetZoom(fv);
-    updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+    updateZoomButton(fv, 'up_pftv_icon-zoom-out', 'up_pftv_icon-zoom-in', 'Zoom in to sequence view');
     _.each(fv.categories, function(category) {
         category.reset();
     });
@@ -110,7 +96,6 @@ var resetZoomAndSelection = function(fv) {
 var createZoom = function(fv) {
     var zoom = d3.behavior.zoom()
         .x(fv.xScale)
-        // .scaleExtent([1,1])
         .on('zoom', function() {
             if (fv.xScale.domain()[0] < 1) {
                 var tempX = zoom.translate()[0] - fv.xScale(1) + fv.xScale.range()[0];
@@ -138,6 +123,9 @@ var closeTooltipAndPopup = function(fv) {
     }
     if (!fv.overDownloadDialog) {
         DownloadDialog.closeDialog(fv);
+    }
+    if (!fv.overHighlightRegionDialog) {
+        HighlightRegionDialog.closeDialog(fv);
     }
 };
 
@@ -183,7 +171,7 @@ var createNavRuler = function(fv, container) {
         updateZoomFromChart(fv);
         var navigator = fv.globalContainer.select('.up_pftv_navruler .extent');
         if (+navigator.attr('width') >= fv.width - fv.padding.left - fv.padding.right) {
-            updateZoomButton(fv, 'fv-icon-zoom-out', 'fv-icon-zoom-in', 'Zoom in to sequence view');
+            updateZoomButton(fv, 'up_pftv_icon-zoom-out', 'up_pftv_icon-zoom-in', 'Zoom in to sequence view');
         }
     });
 
@@ -242,39 +230,49 @@ var createNavRuler = function(fv, container) {
 var createButtons = function(fv, data, container) {
     var buttons = container.append('div')
         .attr('class','up_pftv_buttons');
-    buttons.append('span').append('a')
-        .attr('class','fv-icon-info-circled')
-        .attr('title','Help page')
-        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
-        .attr('target', '_blank');
-    buttons.append('span')
-        .attr('class','fv-icon-download')
+    buttons.append('a')
+        .attr('class','up_pftv_icon-button up_pftv_icon-download')
         .attr('title','Download data')
+        .attr('href','#')
         .on('click', function(){
             DownloadDialog.displayDialog(fv, buttons);
         });
-    buttons.append('span')
-        .attr('class','fv-icon-cog')
-        .attr('title','Hide/Show tracks')
+    buttons.append('a')
+        .attr('class','up_pftv_icon-button up_pftv_icon-location')
+        .attr('title','Highlight region')
+        .attr('href','#')
         .on('click', function(){
-            CategoryFilterDialog.displayDialog(fv, buttons);
+            HighlightRegionDialog.displayDialog(fv, buttons);
         });
-    buttons.append('span')
-        .attr('class','fv-icon-arrows-cw')
-        .attr('title','Reset view')
+    buttons.append('a')
+        .attr('class','up_pftv_icon-button up_pftv_icon-reset')
+        .attr('title','Reset')
+        .attr('href','#')
         .on('click', function(){
             resetZoomAndSelection(fv);
         });
-    buttons.append('span')
-        .attr('class','fv-icon-zoom-in')
+    buttons.append('a')
+        .attr('class','up_pftv_icon-button up_pftv_icon-zoom-in')
         .attr('title','Zoom in to sequence view')
+        .attr('href','#')
         .on('click', function(){
-            if ( d3.select(this).classed('fv-icon-zoom-in')) {
+            if ( d3.select(this).classed('up_pftv_icon-zoom-in')) {
                 zoomIn(fv);
             } else {
                 zoomOut(fv);
             }
         });
+};
+
+var createCreditButtons = function(fv, data, container) {
+  var linkContainer = container.append('div').attr('class','up_pftv_credit_container');
+
+  var link = linkContainer.append('a')
+                        .attr('title','Help page')
+                        .attr('href', 'http://ebi-uniprot.github.io/ProtVista/')
+                        .attr('target', '_blank')
+                        .attr('class', 'up_pftv_credit')
+                        .text('ProtVista');
 };
 
 var createAAViewer = function(fv, container, sequence) {
@@ -296,7 +294,7 @@ var createAAViewer = function(fv, container, sequence) {
                 aminoAcids.enter().append('path');
                 aminoAcids
                     .attr('d', function(d) {
-                        return ViewerHelper.shadowPath(d.feature, fv, aaViewHeight);
+                        return ViewerHelper.highlightPath(d.feature, fv, aaViewHeight);
                     })
                     .attr('transform', function(d) {
                         return 'translate(' + fv.xScale(d.feature.begin) + ',0)';
@@ -369,13 +367,10 @@ var createAAViewer = function(fv, container, sequence) {
         }
     };
 
-    aaViewer.selectFeature = function() {
-        if (fv.selectedFeature) {
-            selectorGroup.datum([{"feature": fv.selectedFeature}]).call(selectorSeries);
-        } else {
-            selectorGroup.datum([{"feature": {"begin": -10, "end": -10}}]).call(selectorSeries);
-        }
+    aaViewer.updateFeatureHighlightSelector = function(begin, end) {
+        selectorGroup.datum([{"feature": {"begin": begin, "end": end, "type": 'continuous'}}]).call(selectorSeries);
     };
+
     return aaViewer;
 };
 
@@ -471,7 +466,7 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
-        "notFound", "notConfigRetrieved");
+        "notFound", "notConfigRetrieved", "regionHighlighted");
 
     fv.width = 760;
     fv.maxZoomSize = 30;
@@ -548,13 +543,18 @@ FeaturesViewer.prototype.getCategoryTitle = function(type) {
     return category ? category[0] : undefined;
 };
 
-FeaturesViewer.prototype.updateFeatureSelector = function() {
-    this.aaViewer.selectFeature();
-    this.aaViewer2.selectFeature();
+FeaturesViewer.prototype.updateFeatureHighlightSelector = function(begin, end) {
+    this.aaViewer.updateFeatureHighlightSelector(begin, end);
+    this.aaViewer2.updateFeatureHighlightSelector(begin, end);
 };
 
 FeaturesViewer.prototype.getDispatcher = function() {
     return this.dispatcher;
+};
+
+FeaturesViewer.prototype.deselectFeature = function() {
+    var fv = this;
+    ViewerHelper.deselectFeature(fv);
 };
 
 FeaturesViewer.prototype.selectFeature = function(selection) {
@@ -606,6 +606,24 @@ FeaturesViewer.prototype.selectFeature = function(selection) {
     }
 };
 
+FeaturesViewer.prototype.highlightRegion = function(begin, end) {
+    var fv = this;
+    begin = begin < 1 ? 1: begin;
+    end = end
+        ? end > fv.sequence.length ? fv.sequence.length : end
+        : begin;
+    if ((1 <= begin) && (begin <= end) && (end <= fv.sequence.length)) {
+        fv.deselectFeature();
+        fv.highlight = {begin: begin, end: end, type:'continuous'};
+        if ((fv.xScale(fv.xScale.domain()[0]) > fv.xScale(begin)) ||
+            (fv.xScale(end) > fv.xScale(fv.xScale.domain()[1]))) {
+            zoomOut(fv);
+        }
+        ViewerHelper.updateHighlight(fv);
+        fv.dispatcher.regionHighlighted({begin: begin, end: end});
+    }
+};
+
 FeaturesViewer.prototype.initLayout = function(opts, d) {
     var fv = this;
     //remove any previous text
@@ -647,7 +665,9 @@ FeaturesViewer.prototype.loadZoom = function(d) {
   fv.aaViewer = createAAViewer(fv, fv.header, d.sequence);
   fv.zoom = createZoom(fv);
 
+  createCreditButtons(fv, d, fv.footer);
   fv.aaViewer2 = createAAViewer(fv, fv.footer, d.sequence);
+
   updateViewportFromChart(fv);
   updateZoomFromChart(fv);
 };
