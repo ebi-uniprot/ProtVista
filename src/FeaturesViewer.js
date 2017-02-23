@@ -617,19 +617,19 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
             closeTooltipAndPopup(fv);
         });
 
-    fv.header = fvContainer.append('div');
+    fv.header = fvContainer.append('div')
+      .classed('up_pftv_header up_pftv_row', true);
 
-    fv.container = fvContainer
-        .append('div')
-        .attr('class', 'up_pftv_category-container');
+    fv.container = fvContainer.append('div')
+      .classed('up_pftv_category-container', true);
 
     fv.ontheFlyContainer = fv.container.append('div').classed('up_pftv_category_on_the_fly', true);
 
     _.each(Constants.getCategoryNamesInOrder(), function(catInfo) {
-        fv.container.append('div').classed('up_pftv_category_' + catInfo.name, true);
+        fv.container.append('div').classed('up_pftv_category_row up_pftv_category_' + catInfo.name, true);
     });
 
-    fv.footer = fvContainer.append('div').attr('class','bottom-aa-container');
+    fv.footer = fvContainer.append('div').attr('class', 'up_pftv_footer up_pftv_row');
 };
 
 FeaturesViewer.prototype.loadZoom = function(d) {
@@ -640,14 +640,22 @@ FeaturesViewer.prototype.loadZoom = function(d) {
 
   fv.xScale = d3.scale.linear()
       .domain([1, d.sequence.length + 1])
-      .range([fv.padding.left, fv.width - fv.padding.right]);
+      .range([fv.margin.left, fv.width - fv.margin.right]);
 
-  fv.viewport = createNavRuler(fv, fv.header);
-  createButtons(fv, d, fv.header);
-  fv.aaViewer = createAAViewer(fv, fv.header, d.sequence);
+  fv.xZoomScale = d3.scale.linear()
+      .domain([1, d.sequence.length + 1])
+      .range([fv.zoomMargin.left, fv.width - fv.zoomMargin.right]);
+
+  var buttonsContainer     = fv.header.append('div').classed('up_pftv_leftpanel', true);
+  var scaleContainer       = fv.header.append('div').classed('up_pftv_mainpanel', true);
+  var bottomScaleContainer = fv.footer.append('div').classed('up_pftv_mainpanel', true);
+
+  fv.viewport = createNavRuler(fv, scaleContainer);
+  createButtons(fv, d, buttonsContainer);
+  fv.aaViewer = createAAViewer(fv, scaleContainer, d.sequence);
   fv.zoom = createZoom(fv);
 
-  fv.aaViewer2 = createAAViewer(fv, fv.footer, d.sequence);
+  fv.aaViewer2 = createAAViewer(fv, bottomScaleContainer, d.sequence);
   updateViewportFromChart(fv);
   updateZoomFromChart(fv);
 };

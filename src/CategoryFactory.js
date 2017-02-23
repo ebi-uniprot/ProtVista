@@ -24,8 +24,11 @@ var Category = function(name, data, catInfo, fv, container) {
     category.categoryViewer = undefined;
 
     category.categoryContainer = container.append('div')
-        .attr('class', 'up_pftv_category');
-    category.header = category.categoryContainer.append('a')
+        .attr('class', 'up_pftv_row up_pftv_category');
+    
+    category.header = category.categoryContainer.append('div')
+        .attr('class', 'up_pftv_leftpanel')
+        .append('a')
         .attr('class', 'up_pftv_category-name up_pftv_arrow-right')
         .attr('title', category.name)
         .text(catInfo.label)
@@ -35,9 +38,13 @@ var Category = function(name, data, catInfo, fv, container) {
         });
 
     category.viewerContainer = category.categoryContainer.append('div')
+        .attr('class', 'up_pftv_mainpanel')
+        .append('div')
         .attr('class', 'up_pftv_category-viewer');
 
     category.tracksContainer = category.categoryContainer.append('div')
+        .attr('class', 'up_pftv_row')
+        .append('div')
         .attr('class', 'up_pftv_category-tracks')
         .style('display','none');
 };
