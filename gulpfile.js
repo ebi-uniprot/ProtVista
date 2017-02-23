@@ -20,6 +20,7 @@ var watchify = require('watchify');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var concat = require('gulp-concat');
+var less = require('gulp-less');
 
 // testing
 var mocha = require('gulp-mocha');
@@ -120,7 +121,7 @@ gulp.task('build-test',['init'], function() {
 });
 
 gulp.task('test-watch', function() {
-     gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js', './style/main.css'], ['test']);
+     gulp.watch(['./src/**/*.js','./lib/**/*.js', './test/**/*.js', './less/**/*.less', './style/main.css'], ['test']);
 });
 
 //build tasks
@@ -136,17 +137,34 @@ gulp.task('init', ['clean'], function() {
     });
 });
 
+gulp.task('compile-css', ['init'], function() {
+    return gulp.src("./less/*.less")
+        .pipe(less({
+          paths: [ path.join(__dirname, 'less', 'includes') ]
+        }))
+        .pipe(gulp.dest('./style/'));
+});
+
 gulp.task('copy-resources', ['init'], function() {
     gulp.src(["./font/**/*.*"])
             .pipe(gulp.dest(buildDir + '/font/'));
-    return gulp.src("./style/*.css")
-        .pipe(minifyCss({compatibility: 'ie8'}))
-        .pipe(concat('main.css'))
-        .pipe(gulp.dest(buildDir + '/css/'));
+});
+
+gulp.task('build-css', ['copy-resources', 'compile-css'], function() {
+  return gulp.src(["./style/main.css", "./style/fontello.css"])
+      .pipe(minifyCss({compatibility: 'ie8'}))
+      .pipe(concat('main.css'))
+      .pipe(gulp.dest(buildDir + '/css/'));
+});
+
+gulp.task('build-css-theme', ['compile-css'], function() {
+  return gulp.src(["./style/*theme*.css"])
+      .pipe(minifyCss({compatibility: 'ie8'}))
+      .pipe(gulp.dest(buildDir + '/css/'));
 });
 
 // browserify debug
-gulp.task('build-browser',['copy-resources'], function() {
+gulp.task('build-browser',['init', 'build-css', 'build-css-theme'], function() {
     var b = browserify({debug: true,hasExports: true});
     exposeBundles(b);
     return b.bundle()

@@ -1,9 +1,4 @@
-/*
-specific colours
-*/
-@c_helix:  #FF0066;
-@c_strand: #FFCC00;
-@c_turn:   #0571AF;
+@import "includes/defaults";
 
 /*
 d3.scale.category20()
@@ -29,15 +24,67 @@ d3.scale.category20()
 @c19: #17becf;
 @c20: #9edae5;
 
+@c_chain:    @c1;
+@c_transit:  @c2;
+@c_init_met: @c3;
+@c_propep:   @c4;
+@c_peptide:  @c5;
+@c_signal:   @c6;
+@c_turn:     @c7;
+@c_strand:   @c8;
+@c_helix:    @c9;
+@c_crosslnk: @c10;
+@c_disulfid: @c11;
+@c_region:   @c12;
+@c_coiled:   @c13;
+@c_motif:    @c14;
+@c_repeat:   @c15;
+@c_ca_bind:  @c16;
+@c_dna_bind: @c17;
+@c_domain:   @c18;
+@c_zn_fing:  @c19;
+@c_np_bind:  @c20;
+@c_metal:    @c1;
+@c_site:     @c2;
+@c_binding:  @c3;
+@c_act_site: @c4;
+@c_mod_res:  @c5;
+@c_lipid:    @c6;
+@c_carbohyd: @c7;
+@c_compbias: @c8;
+@c_mutagen:  @c9;
+@c_conflict: @c10;
+@c_non_cons: @c11;
+@c_non_ter:  @c12;
+@c_unsure:   @c13;
+@c_non_std:  @c14;
+@c_topo_dom: @c15;
+@c_transmem: @c16;
+@c_intramem: @c17;
+
 .pv-theme-grey {
   .up_pftv_navruler svg {
     background-color: transparent;
   }
 
   .up_pftv_buttons {
-    border: 1px solid #eee;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .up_pftv_buttons span {
+    background-color: #eee;
+    border: 1px solid #ccc;
     border-radius: 3px 3px;
-    padding: 5px;
+    padding: 2px;
+    margin: 2px;
+  }
+
+  .up_pftv_buttons span:hover {
+    background-color: #fff;
+    border-color: #999;
   }
 
   .up_pftv_aaviewer .background, .up_pftv_viewport .background {
@@ -64,7 +111,8 @@ d3.scale.category20()
   }
 
   .up_pftv_category {
-    border-bottom-color: #ddd;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
   }
 
   .up_pftv_category-name {
@@ -73,62 +121,57 @@ d3.scale.category20()
   }
 
   .up_pftv_category a:hover {
-      background-color: #eeeeee;
+      background-color: #ddd;
   }
 
   .up_pftv_track-header {
     background-color: #f3f3f3;  
     text-align: right;
-    text-transform: uppercase; 
+    text-transform: uppercase;
+    font-size: 12px;
+    font-style: italic;
   }
 
   .up_pftv_track {
     border-top: 1px solid #eee;
   }
 
+  .up_pftv_navruler path.trapezoid {
+  }
+
+  .up_pftv_container .up_pftv_navruler .axis .tick, .up_pftv_container .up_pftv_navruler .axis .domain {
+      stroke: black;
+  }
+  .up_pftv_container .up_pftv_navruler .axis text {
+      stroke: none;
+      fill: black;
+  }
+
+  .up_pftv_navruler .extent {
+      fill: steelblue;
+      stroke: none;
+  }
+
+  .up_pftv_navruler .handle {
+      fill: #eee;
+      fill-opacity: 1.0;
+      stroke: #999;
+      stroke-opacity: 1.0;
+      stroke-width: 1;
+  }
+
+  .up_pftv_navruler text.domain-label {
+    fill: black;
+  }
+
+  .up_pftv_navruler .handle:hover {
+      fill: #ccc;
+  }
+
   .up_pftv_disulphid {
   }
 
-  svg .up_pftv_chain             { stroke: @c1;  fill: @c1;  }
-  svg .up_pftv_transit           { stroke: @c2;  fill: @c2;  }
-  svg .up_pftv_init_met          { stroke: @c3;  fill: @c3;  }
-  svg .up_pftv_propep            { stroke: @c4;  fill: @c4;  }
-  svg .up_pftv_peptide           { stroke: @c5;  fill: @c5;  }
-  svg .up_pftv_signal            { stroke: @c6;  fill: @c6;  }
-  svg .up_pftv_crosslnk          { stroke: @c10; fill: @c10; }
-  svg .up_pftv_disulfid          { stroke: @c11; fill: @c11; }
-  svg .up_pftv_region            { stroke: @c12; fill: @c12; }
-  svg .up_pftv_coiled            { stroke: @c13; fill: @c13; }
-  svg .up_pftv_motif             { stroke: @c14; fill: @c14; }
-  svg .up_pftv_repeat            { stroke: @c15; fill: @c15; }
-  svg .up_pftv_ca_bind           { stroke: @c16; fill: @c16; }
-  svg .up_pftv_dna_bind          { stroke: @c17; fill: @c17; }
-  svg .up_pftv_domain            { stroke: @c18; fill: @c18; }
-  svg .up_pftv_zn_fing           { stroke: @c19; fill: @c19; }
-  svg .up_pftv_np_bind           { stroke: @c20; fill: @c20; }
-  svg .up_pftv_metal             { stroke: @c1;  fill: @c1; }
-  svg .up_pftv_binding           { stroke: @c2;  fill: @c2; }
-  svg .up_pftv_act_site          { stroke: @c3;  fill: @c3; }
-  svg .up_pftv_mod_res           { stroke: @c4;  fill: @c4; }
-  svg .up_pftv_lipid             { stroke: @c5;  fill: @c5; }
-  svg .up_pftv_carbohyd          { stroke: @c6;  fill: @c6; }
-  svg .up_pftv_variant           { stroke: @c7;  fill: @c7; }
-  svg .up_pftv_compbias          { stroke: @c8;  fill: @c8; }
-  svg .up_pftv_mutagen           { stroke: @c9;  fill: @c9; }
-  svg .up_pftv_conflict          { stroke: @c10; fill: @c10; }
-  svg .up_pftv_non_cons          { stroke: @c11; fill: @c11; }
-  svg .up_pftv_non_ter           { stroke: @c12; fill: @c12; }
-  svg .up_pftv_unsure            { stroke: @c13; fill: @c13; }
-  svg .up_pftv_non_std           { stroke: @c14; fill: @c14; }
-  svg .up_pftv_topo_dom          { stroke: @c15; fill: @c15; }
-  svg .up_pftv_transmem          { stroke: @c16; fill: @c16; }  
-  svg .up_pftv_intramem          { stroke: @c17; fill: @c17; }
-  svg .up_pftv_unique            { stroke: @c18; fill: @c18; }
-  svg .up_pftv_non_unique        { stroke: @c19; fill: @c19; }
-
-  svg .up_pftv_turn              { stroke: @c_turn;   fill: @c_turn; }
-  svg .up_pftv_strand            { stroke: @c_strand; fill: @c_strand; }
-  svg .up_pftv_helix             { stroke: @c_helix;  fill: @c_helix;  }
+  @svg_features();
 }
 
 
