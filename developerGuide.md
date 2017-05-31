@@ -27,7 +27,7 @@ title: Developer Guide
   - [Data format](#data-format)
     - [Basic visualization](#basic-visualization)
     - [Variant visualization](#variant-visualization)  
-- [Adding your own sources](#adding-your-sources)
+- [Adding your own sources](#adding-your-own-sources)
   - [Distinguishing your features](#distinguishing-your-features)
     - [Using a color](#using-a-color)
     - [Using customized categories or types](#using-customized-categories-or-types)
