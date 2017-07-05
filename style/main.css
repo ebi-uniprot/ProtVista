@@ -52,6 +52,16 @@ svg {
     line-height: 1.5 !important;
 }
 
+.up_pftv_container a,
+.up_pftv_container a:link,
+.up_pftv_container a:hover,
+.up_pftv_container a:active,
+.up_pftv_container a:visited {
+  color:#557071 !important;
+  border:none;
+  text-decoration: none !important;
+}
+
 .up_pftv_container h4 {
   font-size: 1em !important;
   font-weight: 500 !important;
@@ -79,7 +89,7 @@ svg {
 }
 
 .up_pftv_navruler svg {
-    background-color: #FDF7EF;
+    /*background-color: #FDF7EF;*/
 }
 
 /*Category and type tracks*/
@@ -180,14 +190,14 @@ svg {
 }
 
 .up_pftv_navruler .up_pftv_viewport {
-    fill: grey;
-    fill-opacity: 0.2;
+    fill: #D7DCE0;
+    fill-opacity: 0.4;
 }
 
 .up_pftv_navruler path.up_pftv_trapezoid {
-    fill: grey;
+    fill: #D7DCE0;
     stroke: none;
-    fill-opacity: 0.2;
+    fill-opacity: 0.4;
     stroke: none;
 }
 
@@ -197,8 +207,8 @@ svg {
 }
 
 .up_pftv_navruler .handle {
-    fill: #666;
-    fill-opacity: .8;
+    fill: #D7DCE0;
+    fill-opacity: 1;
     stroke: #000;
     stroke-width: 1px;
 }
