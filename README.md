@@ -4,6 +4,8 @@
 [![NPM version](http://img.shields.io/npm/v/ProtVista.svg)](https://www.npmjs.org/package/ProtVista)
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/ProtVista.png?branch=master)](http://travis-ci.org/ebi-uniprot/ProtVista)
 
+How to cite us: **ProtVista: visualization of protein sequence annotations** (doi: [10.1093/bioinformatics/btx120](https://doi.org/10.1093/bioinformatics/btx120))
+
 ### 2.0.4
 - Changed colour scale for SIFT/Polyphen variant predictions.
 - Minor improvements.
