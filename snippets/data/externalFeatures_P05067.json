@@ -265,7 +265,8 @@
       "alternativeSequence": "I",
       "begin": "86",
       "end": "86",
-      "wildType": "V"
+      "wildType": "V",
+      "consequence": "mutation"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -294,7 +295,8 @@
       "alternativeSequence": "V",
       "begin": "17",
       "end": "17",
-      "wildType": "A"
+      "wildType": "A",
+      "consequence": "missense"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
