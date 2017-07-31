@@ -43,7 +43,7 @@ var LegendDialog = function() {
         benignColor: '#8FE3FF',
         UPNonDiseaseColor: '#99cc00',
         othersColor: '#FFCC00',
-        consequenceColors: ["#66c2a5","#8da0cb","#e78ac3","#e5c494","#fc8d62","#ffd92f","#a6d854","#b3b3b3"],
+        consequenceColors: ["#e78ac3","#fc8d62","#e5c494", "#762A83", "#B35806"],
         getPredictionColor: d3.scale.linear()
             .domain([0,1])
             .range(['#002594','#8FE3FF']),
