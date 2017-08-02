@@ -701,4 +701,25 @@ FeaturesViewer.prototype.drawCategories = function(data, fv) {
   });
 };
 
+FeaturesViewer.prototype.addData = function(accession, data, sourceName) {
+    var fv = this;
+    if (fv.data.length === 0) {
+        fv.setData(accession, data, sourceName);
+    } else {
+        //TODO, add some basic verification to the added info, e.g., same accession, same sequence.
+        //TODO, why colors in data are not working?
+        processData(data, sourceName, fv);
+    }
+};
+
+FeaturesViewer.prototype.setData = function(accession, data, sourceName) {
+    //TODO: working only if no data existed, replacing existing data no working yet.
+    var fv = this;
+    fv.data = [];
+    fv.uniprotacc = accession;
+
+    fv.initLayout();
+    processData(data, sourceName, fv);
+};
+
 module.exports = FeaturesViewer;
