@@ -409,49 +409,52 @@ var initSources = function (opts) {
     }
 };
 
-var loadSources = function(opts, dataSources, loaders, delegates, fv) {
-    fv.initLayout(opts);
+var processData = function(data, sourceName, fv) {
+    if (data instanceof Array) //Workaround to be removed
+        data = data[0];
+    // First promise to resolve will set global parameters
+    if (!fv.sequence) {
+        fv.loadZoom(data);
+    }
+    var features = data.features;
+    // group by categories
+    if (features.length > 0 && _.has(features[0], 'category')) {
+        features = DataLoader.groupFeaturesByCategory(features, data.sequence, sourceName,
+            !_.contains(fv.exclusions, 'VARIATION'));
+        features = _.filter(features, function (cat) {
+            return !_.contains(fv.exclusions, cat[0]);
+        });
+    } else if (features.length > 0 && features[0].type === 'VARIANT') {
+        if (_.contains(fv.exclusions, 'VARIATION')) {
+            features = [];
+        } else {
+            features = DataLoader.processVariants(features, data.sequence, sourceName);
+        }
+    } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
+        if (_.contains(fv.exclusions, 'PROTEOMICS')) {
+            features = [];
+        } else {
+            features = DataLoader.processProteomics(features);
+        }
+    } else if (features.length > 0) {
+        features = DataLoader.processUngroupedFeatures(features);
+    }
+    if (features.length >= 0) {
+        fv.drawCategories(features, fv);
+        fv.data = fv.data.concat(features);
+        fv.dispatcher.ready();
+    }
+};
+
+var loadSources = function(dataSources, loaders, delegates, fv) {
     _.each(dataSources, function(source, index) {
-        if (!_.contains(opts.exclusions, source.category)) {
-            var url = source.url + opts.uniprotacc;
+        if (!_.contains(fv.exclusions, source.category)) {
+            var url = source.url + fv.uniprotacc;
             url = source.useExtension === true ? url + '.json' : url;
             var dataLoader = DataLoader.get(url);
             loaders.push(dataLoader);
             dataLoader.done(function (d) {
-                if (d instanceof Array) //Workaround to be removed
-                    d = d[0];
-                // First promise to resolve will set global parameters
-                if (!fv.sequence) {
-                    fv.loadZoom(d);
-                }
-                var features = d.features;
-                // group by categories
-                if (features.length > 0 && _.has(features[0], 'category')) {
-                    features = DataLoader.groupFeaturesByCategory(features, d.sequence, source.source,
-                        !_.contains(opts.exclusions, 'VARIATION'));
-                    features = _.filter(features, function (cat) {
-                        return !_.contains(opts.exclusions, cat[0]);
-                    });
-                } else if (features.length > 0 && features[0].type === 'VARIANT') {
-                    if (_.contains(opts.exclusions, 'VARIATION')) {
-                        features = [];
-                    } else {
-                        features = DataLoader.processVariants(features, d.sequence, source.source);
-                    }
-                } else if (features.length > 0 && features[0].type === 'PROTEOMICS') {
-                    if (_.contains(opts.exclusions, 'PROTEOMICS')) {
-                        features = [];
-                    } else {
-                        features = DataLoader.processProteomics(features);
-                    }
-                } else if (features.length > 0) {
-                    features = DataLoader.processUngroupedFeatures(features);
-                }
-                if (features.length >= 0) {
-                    fv.drawCategories(features, fv);
-                    fv.data = fv.data.concat(features);
-                    fv.dispatcher.ready();
-                }
+                processData(d, source.source, fv);
             }).fail(function (e) {
                 console.log(e);
             }).always(function () {
@@ -465,6 +468,7 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
 
 var FeaturesViewer = function(opts) {
     var fv = this;
+
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
         "notFound", "notConfigRetrieved", "regionHighlighted");
 
@@ -472,7 +476,7 @@ var FeaturesViewer = function(opts) {
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
-    fv.sequence = "";
+    fv.sequence = '';
     fv.categories = [];
     fv.filterCategories = [];
     fv.padding = {top:2, right:10, bottom:2, left:10};
@@ -480,9 +484,17 @@ var FeaturesViewer = function(opts) {
     fv.uniprotacc = opts.uniprotacc;
     fv.overwritePredictions = opts.overwritePredictions;
     fv.defaultSource = opts.defaultSources !== undefined ? opts.defaultSources : true;
+    fv.exclusions = opts.exclusions;
+    fv.el = opts.el;
 
     fv.load = function() {
         initSources(opts);
+
+        if (opts.categoryOrder) {
+            Constants.setOrderForCategoryNames(opts.categoryOrder);
+        }
+        fv.initLayout();
+
         var dataSources = Constants.getDataSources();
         var loaders = [], delegates = [];
         _.each(dataSources, function () {
@@ -490,23 +502,20 @@ var FeaturesViewer = function(opts) {
             delegates.push(delegate);
         });
 
-        if (opts.categoryOrder) {
-            Constants.setOrderForCategoryNames(opts.categoryOrder);
-        }
         if (opts.customConfig) {
             var configLoader = DataLoader.get(opts.customConfig);
             configLoader.done(function(d) {
                 Constants.setCategoryNamesInOrder(d.categories);
                 Constants.setTrackNames(d.trackNames);
-                loadSources(opts, dataSources, loaders, delegates, fv);
+                loadSources(dataSources, loaders, delegates, fv);
             })
             .fail(function(e) {
-                d3.select(opts.el).text('The configuration file provided by external sources could not be retrieved');
+                d3.select(fv.el).text('The configuration file provided by external sources could not be retrieved');
                 fv.dispatcher.notConfigRetrieved({config: opts.customConfig});
                 console.log(e);
             });
         } else {
-            loadSources(opts, dataSources, loaders, delegates, fv);
+            loadSources(dataSources, loaders, delegates, fv);
         }
 
         jQuery.when.apply(null, delegates).done(function () {
@@ -514,15 +523,16 @@ var FeaturesViewer = function(opts) {
                 return loader.state() === 'rejected';
             });
             if ((rejected.length === loaders.length) || (fv.data.length === 0)) {
-                d3.select(opts.el).selectAll('*').remove();
-                d3.select(opts.el).html('');
+                d3.select(fv.el).selectAll('*').remove();
+                d3.select(fv.el).html('');
                 if (rejected.length === loaders.length) {
-                    d3.select(opts.el).text('Sorry, data could not be retrieved at this time, please try again later.');
+                    d3.select(fv.el).text('Sorry, data could not be retrieved at this time, please try again later.');
                     fv.dispatcher.noDataRetrieved();
                 } else if (fv.data.length === 0) {
-                    d3.select(opts.el).text('There are no features available for this protein.');
+                    d3.select(fv.el).text('There are no features available for this protein.');
                     fv.dispatcher.noDataAvailable();
                 }
+                fv.data = [];
             } else if (opts.selectedFeature){
                 fv.selectFeature(opts.selectedFeature);
             }
@@ -624,10 +634,10 @@ FeaturesViewer.prototype.highlightRegion = function(begin, end) {
     }
 };
 
-FeaturesViewer.prototype.initLayout = function(opts, d) {
+FeaturesViewer.prototype.initLayout = function() {
     var fv = this;
     //remove any previous text
-    fv.globalContainer = d3.select(opts.el).text('');
+    fv.globalContainer = d3.select(fv.el).text('');
     var fvContainer = fv.globalContainer
         .append('div')
         .attr('class', 'up_pftv_container')
