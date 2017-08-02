@@ -707,7 +707,7 @@ FeaturesViewer.prototype.addData = function(accession, data, sourceName) {
         fv.setData(accession, data, sourceName);
     } else {
         //TODO, add some basic verification to the added info, e.g., same accession, same sequence.
-        //TODO, why colors in data are not working?
+        //TODO Re-add data does nothing, is that ok?
         processData(data, sourceName, fv);
     }
 };

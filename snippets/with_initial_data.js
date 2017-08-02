@@ -15,7 +15,7 @@ var data = {
                 "type": "PROTEOMICS",
                 "begin": "64",
                 "end": "70",
-                "color": "B0B0B0",
+                "color": "#006699",
                 "peptide": "DTKEGIL",
                 "unique": false
             },
@@ -23,7 +23,7 @@ var data = {
                 "type": "PROTEOMICS",
                 "begin": "464",
                 "end": "470",
-                "color": "A0A0A0",
+                "color": "#990066",
                 "xrefs":
                     [
                         {
@@ -50,7 +50,7 @@ var data = {
                 "type": "PROTEOMICS",
                 "begin": "725",
                 "end": "736",
-                "color": "A0A0A0",
+                "color": "#990066",
                 "xrefs":
                     [
                         {
