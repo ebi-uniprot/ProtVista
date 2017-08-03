@@ -470,7 +470,7 @@ var FeaturesViewer = function(opts) {
     var fv = this;
 
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
-        "notFound", "notConfigRetrieved", "regionHighlighted");
+        "notFound", "notConfigRetrieved", "regionHighlighted", "noMatchingData");
 
     fv.width = 760;
     fv.maxZoomSize = 30;
@@ -636,7 +636,7 @@ FeaturesViewer.prototype.highlightRegion = function(begin, end) {
 
 FeaturesViewer.prototype.initLayout = function() {
     var fv = this;
-    //remove any previous text
+    d3.select(fv.el).selectAll('*').remove();
     fv.globalContainer = d3.select(fv.el).text('');
     var fvContainer = fv.globalContainer
         .append('div')
@@ -701,25 +701,33 @@ FeaturesViewer.prototype.drawCategories = function(data, fv) {
   });
 };
 
-FeaturesViewer.prototype.addData = function(accession, data, sourceName) {
+FeaturesViewer.prototype.addData = function(data, sourceName) {
     var fv = this;
     if (fv.data.length === 0) {
-        fv.setData(accession, data, sourceName);
+        fv.setData(data, sourceName);
     } else {
-        //TODO, add some basic verification to the added info, e.g., same accession, same sequence.
-        //TODO Re-add data does nothing, is that ok?
-        processData(data, sourceName, fv);
+        if ((data.accession !== fv.uniprotacc) || (!data.sequence) || (data.sequence !== fv.sequence)) {
+            fv.dispatcher.noMatchingData(
+                {currentAccession: fv.uniprotacc, currentSequence: fv.sequence, data: data}
+            );
+        } else {
+            var staticData = JSON.stringify(data);
+            processData(JSON.parse(staticData), sourceName, fv);
+        }
     }
 };
 
-FeaturesViewer.prototype.setData = function(accession, data, sourceName) {
-    //TODO: working only if no data existed, replacing existing data no working yet.
+FeaturesViewer.prototype.setData = function(data, sourceName) {
     var fv = this;
+    fv.uniprotacc = data.accession;
+    fv.sequence = undefined;
+    fv.categories = [];
+    fv.filterCategories = [];
     fv.data = [];
-    fv.uniprotacc = accession;
 
+    var staticData = JSON.stringify(data);
     fv.initLayout();
-    processData(data, sourceName, fv);
+    processData(JSON.parse(staticData), sourceName, fv);
 };
 
 module.exports = FeaturesViewer;

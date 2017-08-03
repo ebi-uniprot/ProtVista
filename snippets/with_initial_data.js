@@ -9,98 +9,122 @@ var data = {
     "sequence": "MLPGLALLLLAAWTARALEVPTDGNAGLLAEPQIAMFCGRLNMHMNVQNGKWDSDPSGTKTCIDTKEGILQYCQEVYPELQITNVVEANQPVTIQNWCKRGRKQCKTHPHFVIPYRCLVGEFVSDALLVPDKCKFLHQERMDVCETHLHWHTVAKETCSEKSTNLHDYGMLLPCGIDKFRGVEFVCCPLAEESDNVDSADAEEDDSDVWWGGADTDYADGSEDKVVEVAEEEEVAEVEEEEADDDEDDEDGDEVEEEAEEPYEEATERTTSIATTTTTTTESVEEVVREVCSEQAETGPCRAMISRWYFDVTEGKCAPFFYGGCGGNRNNFDTEEYCMAVCGSAMSQSLLKTTQEPLARDPVKLPTTAASTPDAVDKYLETPGDENEHAHFQKAKERLEAKHRERMSQVMREWEEAERQAKNLPKADKKAVIQHFQEKVESLEQEAANERQQLVETHMARVEAMLNDRRRLALENYITALQAVPPRPRHVFNMLKKYVRAEQKDRQHTLKHFEHVRMVDPKKAAQIRSQVMTHLRVIYERMNQSLSLLYNVPAVAEEIQDEVDELLQKEQNYSDDVLANMISEPRISYGNDALMPSLTETKTTVELLPVNGEFSLDDLQPWHSFGADSVPANTENEVEPVDARPAADRGLTTRPGSGLTNIKTEEISEVKMDAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIATVIVITLVMLKKKQYTSIHHGVVEVDAAVTPEERHLSKMQQNGYENPTYKFFEQMQN",
     "sequenceChecksum": "A12EE761403740F5",
     "taxid" : 9606,
-    "features":
-        [
-            {
-                "type": "PROTEOMICS",
-                "begin": "64",
-                "end": "70",
-                "color": "#006699",
-                "peptide": "DTKEGIL",
-                "unique": false
-            },
-            {
-                "type": "PROTEOMICS",
-                "begin": "464",
-                "end": "470",
-                "color": "#990066",
-                "xrefs":
-                    [
-                        {
-                            "name": "Proteomes",
-                            "id": "UP000005640"
-                        }
-                    ],
-                "evidences":
-                    [
-                        {
-                            "code": "ECO:0000213",
-                            "source":
+    "features": [
+        {
+            "type": "PROTEOMICS",
+            "begin": "64",
+            "end": "70",
+            "color": "#006699",
+            "peptide": "DTKEGIL",
+            "unique": false
+        },
+        {
+            "type": "PROTEOMICS",
+            "begin": "464",
+            "end": "470",
+            "color": "#990066",
+            "xrefs":
+                [
+                    {
+                        "name": "Proteomes",
+                        "id": "UP000005640"
+                    }
+                ],
+            "evidences":
+                [
+                    {
+                        "code": "ECO:0000213",
+                        "source":
 
-                                {
-                                    "name": "PeptideAtlas",
-                                    "id": "P05067"
-                                }
-                        }
-                    ],
-                "peptide": "MLNDRRR",
-                "unique": true
-            },
-            {
-                "type": "PROTEOMICS",
-                "begin": "725",
-                "end": "736",
-                "color": "#990066",
-                "xrefs":
-                    [
-                        {
-                            "name": "Proteomes",
-                            "id": "UP000005640"
-                        }
-                    ],
-                "evidences":
-                    [
-                        {
-                            "code": "ECO:0000213",
-                            "source":
-                                {
-                                    "name": "PeptideAtlas",
-                                    "id": "P05067"
-                                }
-                        },
-                        {
-                            "code": "ECO:0000213",
-                            "source":
-                                {
-                                    "name": "MaxQB",
-                                    "id": "P05067"
-                                }
-                        },
-                        {
-                            "code": "ECO:0000213",
-                            "source":
-                                {
-                                    "name": "EPD",
-                                    "id": "P05067"
-                                }
-                        }
-                    ],
-                "peptide": "KKQYTSIHHGVV",
-                "unique": true
+                            {
+                                "name": "PeptideAtlas",
+                                "id": "P05067"
+                            }
+                    }
+                ],
+            "peptide": "MLNDRRR",
+            "unique": true
+        },
+        {
+            "type": "PROTEOMICS",
+            "begin": "725",
+            "end": "736",
+            "color": "#990066",
+            "xrefs":
+                [
+                    {
+                        "name": "Proteomes",
+                        "id": "UP000005640"
+                    }
+                ],
+            "evidences":
+                [
+                    {
+                        "code": "ECO:0000213",
+                        "source":
+                            {
+                                "name": "PeptideAtlas",
+                                "id": "P05067"
+                            }
+                    },
+                    {
+                        "code": "ECO:0000213",
+                        "source":
+                            {
+                                "name": "MaxQB",
+                                "id": "P05067"
+                            }
+                    },
+                    {
+                        "code": "ECO:0000213",
+                        "source":
+                            {
+                                "name": "EPD",
+                                "id": "P05067"
+                            }
+                    }
+                ],
+            "peptide": "KKQYTSIHHGVV",
+            "unique": true
 
-            }
-        ]
+        }
+    ]
+};
+
+var wrongData = {
+    "accession": "P05067",
+    "entryName": "A4_HUMAN",
+    "sequenceChecksum": "A12EE761403740F5",
+    "taxid": 9606,
+    "features": [
+        {
+            "type": "PROTEOMICS",
+            "begin": "64",
+            "end": "70",
+            "color": "#006699",
+            "peptide": "DTKEGIL",
+            "unique": false
+        }
+    ]
 };
 
 var input = d3.select('body').append('div');
 input.append('button').text('Add data')
     .on('click', function() {
-        myInstance.addData('P05067', data, 'MyJustCreatedData');
+        myInstance.addData(data, 'MyJustCreatedData');
     });
 
-input.append('button').text('Replace data')
+input.append('button').text('Add wrong data')
     .on('click', function() {
-        myInstance.setData('P05067', data, 'MyJustCreatedData');
+        myInstance.addData(wrongData, 'MyJustCreatedData');
     });
 
+input.append('button').text('Set/Replace data')
+    .on('click', function() {
+        myInstance.setData(data, 'MyJustCreatedData');
+    });
+
+myInstance.getDispatcher().on("noMatchingData", function(d) {
+    console.log('No matching data', d);
+});
 
