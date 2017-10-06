@@ -50,7 +50,9 @@ var setVariantData = function (source, d) {
 var DataLoader = function() {
     return {
         get: function(url) {
-          return $.getJSON(url);
+            //IE does not support data URI, therefore such data sources need to be parsed directly
+            return url.indexOf("data:") == 0 ? $.Deferred().resolve(JSON.parse(decodeURI(url).replace(/[^,]*,/, ''))) : $.getJSON(url);
+          // return $.getJSON(url);
         },
         groupFeaturesByCategory: function(features, sequence, source, includeVariants) {
             features = groupEvidencesByCode(features);

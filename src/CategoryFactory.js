@@ -25,7 +25,7 @@ var Category = function(name, data, catInfo, fv, container) {
 
     category.categoryContainer = container.append('div')
         .attr('class', 'up_pftv_category');
-    let headerRow = category.categoryContainer.append('div')
+    var headerRow = category.categoryContainer.append('div')
         .style('display', 'table-caption')
         .append('div')
             .style('display', 'table')
