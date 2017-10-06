@@ -212,6 +212,10 @@ svg {
     stroke: black;
 }
 
+.up_pftv_aaviewer path {
+    display: none;
+}
+
 .up_pftv_navruler .up_pftv_viewport {
     fill: #D7DCE0;
     fill-opacity: 0.4;
