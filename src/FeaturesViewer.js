@@ -467,16 +467,25 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
     });
 };
 
+var getFvWidth = function(fv){
+    var divCategoryName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
+    var width = jQuery(fv.parentElement).width() - divCategoryName.outerWidth(true);
+    divCategoryName.remove();
+    return width;
+}
+
+var getFvXScaleRange =  function(fv) {
+    return [fv.padding.left, fv.width - fv.padding.right];
+}
 
 var FeaturesViewer = function(opts) {
+
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
         "notFound", "notConfigRetrieved", "regionHighlighted");
 
-    var divCategoryName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
-    fv.width = jQuery(opts.el).width() - divCategoryName.outerWidth(true);
-    divCategoryName.remove();
-
+    fv.parentElement = opts.el;
+    fv.width = getFvWidth(fv);
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
@@ -488,6 +497,16 @@ var FeaturesViewer = function(opts) {
     fv.uniprotacc = opts.uniprotacc;
     fv.overwritePredictions = opts.overwritePredictions;
     fv.defaultSource = opts.defaultSources !== undefined ? opts.defaultSources : true;
+
+    jQuery(window).on("resize", function(){
+        fv.width = getFvWidth(fv);
+
+        fv.xScale.range(getFvXScaleRange(fv));
+
+        fv.categories.forEach(function (cat){
+            cat.update();
+        });
+    });
 
     fv.load = function() {
         initSources(opts);
@@ -666,7 +685,7 @@ FeaturesViewer.prototype.loadZoom = function(d) {
 
   fv.xScale = d3.scale.linear()
       .domain([1, d.sequence.length + 1])
-      .range([fv.padding.left, fv.width - fv.padding.right]);
+      .range(getFvXScaleRange(fv));
 
   fv.viewport = createNavRuler(fv, fv.header);
   fv.header = fv.header.append('div')
