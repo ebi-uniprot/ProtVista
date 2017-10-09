@@ -213,7 +213,7 @@ svg {
 }
 
 .up_pftv_aaviewer path {
-    display: none;
+    display: no;
 }
 
 .up_pftv_navruler .up_pftv_viewport {

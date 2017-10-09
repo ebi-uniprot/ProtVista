@@ -142,8 +142,8 @@ var createNavRuler = function(fv, container) {
         .append('svg')
         .attr('id','up_pftv_svg-navruler')
         .attr('width', "100%")
-        .attr('height', (navWithTrapezoid))
-        .attr('viewBox', function(){return "0,0," + fv.width + "," + navWithTrapezoid;});
+        .attr('height', (navWithTrapezoid));
+        // .attr('viewBox', function(){return "0,0," + fv.width + "," + navWithTrapezoid;});
 
     var navXAxis = d3.svg.axis()
         .scale(fv.xScale)
@@ -283,8 +283,8 @@ var createAAViewer = function(fv, container, sequence) {
         .attr('class','up_pftv_aaviewer')
         .append('svg')
         .attr('width', "100%")
-        .attr('height',aaViewHeight)
-        .attr('viewBox', function(){return "0,0," + aaViewWidth + "," + aaViewHeight;});
+        .attr('height',aaViewHeight);
+        // .attr('viewBox', function(){return "0,0," + aaViewWidth + "," + aaViewHeight;});
 
     //amino acids selector
     var aaSelectorPlot = function(){
@@ -467,12 +467,16 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
     });
 };
 
+
 var FeaturesViewer = function(opts) {
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
         "notFound", "notConfigRetrieved", "regionHighlighted");
 
-    fv.width = jQuery(opts.el).width()-1;
+    var divCategoryName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
+    fv.width = jQuery(opts.el).width() - divCategoryName.outerWidth(true);
+    divCategoryName.remove();
+
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
