@@ -13,17 +13,11 @@ var Constants = require("./Constants");
 
 //'G', 'A', 'V', 'L', 'I' aliphatic. 'S', 'T' hydroxyl. 'C', 'M' sulfur-containing. 'D', 'N', 'E', 'Q' acidic.
 // 'R', 'K', 'H' basic. 'F', 'Y', 'W' aromatic. 'P' imino. '*' stop gained or lost.
-var aaList = ['G', 'A', 'V', 'L', 'I'
-    , 'S', 'T'
-    , 'C', 'M'
-    , 'D', 'N', 'E', 'Q'
-    , 'R', 'K', 'H'
-    , 'F', 'Y', 'W'
-    , 'P'
-    , '-', '*'];
+var aaList = ['G', 'A', 'V', 'L', 'I', 'S', 'T', 'C', 'M', 'D', 'N', 'E', 'Q', 'R', 'K', 'H', 'F', 'Y', 'W', 'P', 'd', '*'];
 
 var getPredictionColorScore = function(siftScore, siftPrediction, polyphenScore, polyphenPrediction) {
-    var sift = false, polyphen = false;
+    var sift = false,
+        polyphen = false;
     if ((polyphenPrediction !== undefined) && (polyphenPrediction !== 'unknown')) {
         polyphen = polyphenScore !== undefined ? true : false;
     }
@@ -31,11 +25,11 @@ var getPredictionColorScore = function(siftScore, siftPrediction, polyphenScore,
         sift = siftScore !== undefined ? true : false;
     }
     if (sift && polyphen) {
-        return (siftScore + (1-polyphenScore))/2;
+        return (siftScore + (1 - polyphenScore)) / 2;
     } else if (sift && !polyphen) {
         return siftScore;
     } else if (!sift && polyphen) {
-        return 1-polyphenScore;
+        return 1 - polyphenScore;
     } else if (polyphenPrediction === 'unknown') {
         return 1;
     } else {
@@ -69,7 +63,7 @@ var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predict
     if (d.externalData) {
         if (extDatum.consequence) {
             var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
-            return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+            return pos !== -1 ? LegendDialog.consequenceColors[pos % LegendDialog.consequenceColors.length] : 'black';
         } else {
             return 'black';
         }
@@ -79,9 +73,9 @@ var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predict
 };
 
 var variantsFill = function(d, fv) {
-    if((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
+    if ((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
         return LegendDialog.othersColor;
-    } else if((d.sourceType === Evidence.variantSourceType.uniprot) ||
+    } else if ((d.sourceType === Evidence.variantSourceType.uniprot) ||
         (d.sourceType === Evidence.variantSourceType.mixed)) {
         if (Evidence.existAssociation(d.association)) {
             return LegendDialog.UPDiseaseColor;
@@ -114,8 +108,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
     var newCircles = variantCircle.enter().append('circle')
         .attr('r', function(d) {
             return frequency(0);
-        })
-    ;
+        });
 
     variantCircle
         .attr('class', function(d) {
@@ -133,7 +126,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         })
         .attr('name', function(d) {
             var mutation = d.alternativeSequence === '*' ? 'STOP' :
-                d.alternativeSequence === '-' ? 'DEL' : d.alternativeSequence;
+                d.alternativeSequence;
             d.internalId = 'var_' + d.wildType + d.begin + mutation;
             return d.internalId;
         })
@@ -146,20 +139,18 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
                 var extDatum = d.externalData[keys[0]];
                 if (extDatum.consequence) {
                     var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
-                    return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+                    return pos !== -1 ? LegendDialog.consequenceColors[pos % LegendDialog.consequenceColors.length] : 'black';
                 } else {
                     return 'black';
                 }
             } else {
                 return 'none';
             }
-        })
-    ;
+        });
 
     ViewerHelper.addEventsClassAndTitle(catTitle, newCircles, fv, container);
     variantCircle.exit().remove();
 };
-
 
 var updateChartArea = function(variantViewer){
     variantViewer.svg.select('#plotAreaClip rect')
@@ -218,7 +209,7 @@ var createDataSeries = function(fv, variantViewer, features, series) {
         .call(yAxis2);
 
     fv.globalContainer.selectAll('g.variation-y g.tick').attr('class', function(d) {
-        return 'tick up_pftv_aa_' + (d === '*' ? 'loss' : d === '-' ? 'deletion' : d);
+        return 'tick up_pftv_aa_' + (d === '*' ? 'loss' : d === 'del' ? 'deletion' : d);
     });
 
     return dataSeries;
@@ -231,7 +222,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
     variantViewer.showManual = true;
     variantViewer.showAutomatic = true;
     variantViewer.xScale = fv.xScale;
-    variantViewer.margin = {top:20, bottom:10};
+    variantViewer.margin = { top: 20, bottom: 10 };
     variantViewer.features = features;
 
     variantViewer.filter = new VariantFilterDialog(fv, titleContainer, variantViewer);
@@ -256,7 +247,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
                 // Generate chart
                 series = d3.select(this);
 
-                var withVariants = _.filter(data, function (elem) {
+                var withVariants = _.filter(data, function(elem) {
                     return elem.variants.length !== 0;
                 });
 
@@ -269,7 +260,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
                     .append('g')
                     .transition()
                     .duration(250)
-                    .attr('class','up_pftv_var-series');
+                    .attr('class', 'up_pftv_var-series');
 
                 drawVariants(variantViewer, bars, frequency, fv, container, catTitle);
                 bars.exit().transition().duration(250).remove();
@@ -316,8 +307,8 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
     };
 
     this.updateData = function(data) {
-      dataSeries.datum(data);
-      this.update();
+        dataSeries.datum(data);
+        this.update();
     };
 
     this.reset = function() {

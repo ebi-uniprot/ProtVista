@@ -1,111 +1,108 @@
 {
-  "name": "ProtVista",
-  "description": "Protein feature viewer (uniprot annotation, variants, proteomics, ...)",
-  "version": "2.0.5",
-  "homepage": "https://github.com/ebi-uniprot/ProtVista",
-  "author": "UniProt",
-  "contributors": [
-    {
-      "name": "Leyla Jael Garcia Castro",
-      "email": "ljgarcia@ebi.ac.uk"
+    "name": "ProtVista",
+    "description": "Protein feature viewer (uniprot annotation, variants, proteomics, ...)",
+    "version": "2.0.6",
+    "homepage": "https://github.com/ebi-uniprot/ProtVista",
+    "author": "UniProt",
+    "contributors": [{
+            "name": "Leyla Jael Garcia Castro",
+            "email": "ljgarcia@ebi.ac.uk"
+        },
+        {
+            "name": "Xavier Watkins",
+            "email": "xwatkins@ebi.ac.uk"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ebi-uniprot/ProtVista.git"
     },
-    {
-      "name": "Xavier Watkins",
-      "email": "xwatkins@ebi.ac.uk"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ebi-uniprot/ProtVista.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ebi-uniprot/ProtVista/issues"
-  },
-  "licenses": [
-    {
-      "type": "Apache 2",
-      "url": "https://github.com/ebi-uniprot/ProtVista/blob/master/LICENSE"
-    }
-  ],
-  "main": "src/FeaturesViewer",
-  "config": {
-    "classname": "FeaturesViewerTest",
-    "outputfile": "reports/TEST-FeaturesViewerTest.xml"
-  },
-  "scripts": {
-    "test": "gulp test",
-    "build": "gulp build",
-    "build-browser": "gulp build-browser",
-    "build-browser-min": "gulp build-browser-gzip",
-    "prepublish": "gulp",
-    "sniper": "sniper .",
-    "watch": "gulp watch"
-  },
-  "dependencies": {
-    "d3": "^3.4.13",
-    "file-saver": "^1.3.2",
-    "jquery": "^2.1.4",
-    "jszip": "^3.1.2",
-    "underscore": "^1.7.0"
-  },
-  "devDependencies": {
-    "browserify": "^10.2.4",
-    "chai": "^1.9.1",
-    "coveralls": "^2.11.4",
-    "del": "^0.1.3",
-    "gulp": "^3.9.0",
-    "gulp-chmod": "^1.1.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-env": "^0.2.0",
-    "gulp-gzip": "0.0.8",
-    "gulp-istanbul": "^0.10.0",
-    "gulp-jshint": "^1.8.4",
-    "gulp-minify-css": "^1.2.0",
-    "gulp-mocha": "^1.0.0",
-    "gulp-mocha-phantomjs": "^0.5.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^1.3.2",
-    "gulp-streamify": "0.0.5",
-    "gulp-uglify": "^1.2.x",
-    "gulp-util": "^3.0.6",
-    "gulp-watch": "^4.2.4",
-    "mkdirp": "^0.5.0",
-    "mocha": "~1.20.1",
-    "mocha-sonar-reporter": "^0.1.2",
-    "phantomjs": "^1.9.1",
-    "sinon": "^1.17.3",
-    "sniper": "^0.2.16",
-    "vinyl-source-stream": "^1.0.0",
-    "watchify": "^3.2.3",
-    "xunit-file": "0.0.6"
-  },
-  "shields": {
-    "test": {
-      "img": "https://travis-ci.org/ebi-uniprot/ProtVista.svg?branch=master",
-      "href": "https://travis-ci.org/ebi-uniprot/ProtVista"
-    }
-  },
-  "sniper": {
-    "js": [
-      "/build/protvista.js"
-    ],
-    "css": [
-      "/build/css/main.css"
-    ],
-    "snippets": [
-      "snippets"
-    ],
-    "first": "simple_example"
-  },
-  "keywords": [
-    "feature viewer",
-    "uniprot",
-    "biojs",
-    "protein features viewer",
-    "protein feature viewer",
-    "variation",
-    "proteomics",
-    "domains",
-    "protein"
-  ]
+    "bugs": {
+        "url": "https://github.com/ebi-uniprot/ProtVista/issues"
+    },
+    "licenses": [{
+        "type": "Apache 2",
+        "url": "https://github.com/ebi-uniprot/ProtVista/blob/master/LICENSE"
+    }],
+    "main": "src/FeaturesViewer",
+    "config": {
+        "classname": "FeaturesViewerTest",
+        "outputfile": "reports/TEST-FeaturesViewerTest.xml"
+    },
+    "scripts": {
+        "test": "gulp test",
+        "build": "gulp build",
+        "build-browser": "gulp build-browser",
+        "build-browser-min": "gulp build-browser-gzip",
+        "prepublish": "gulp",
+        "sniper": "sniper .",
+        "watch": "gulp watch"
+    },
+    "dependencies": {
+        "d3": "^3.4.13",
+        "file-saver": "^1.3.2",
+        "jquery": "^2.1.4",
+        "jszip": "^3.1.2",
+        "underscore": "^1.7.0"
+    },
+    "devDependencies": {
+        "browserify": "^10.2.4",
+        "chai": "^1.9.1",
+        "coveralls": "^2.11.4",
+        "del": "^0.1.3",
+        "gulp": "^3.9.0",
+        "gulp-chmod": "^1.1.1",
+        "gulp-concat": "^2.6.0",
+        "gulp-env": "^0.2.0",
+        "gulp-gzip": "0.0.8",
+        "gulp-istanbul": "^0.10.0",
+        "gulp-jshint": "^1.8.4",
+        "gulp-minify-css": "^1.2.0",
+        "gulp-mocha": "^1.0.0",
+        "gulp-mocha-phantomjs": "^0.5.0",
+        "gulp-rename": "^1.2.0",
+        "gulp-sass": "^1.3.2",
+        "gulp-streamify": "0.0.5",
+        "gulp-uglify": "^1.2.x",
+        "gulp-util": "^3.0.6",
+        "gulp-watch": "^4.2.4",
+        "mkdirp": "^0.5.0",
+        "mocha": "~1.20.1",
+        "mocha-sonar-reporter": "^0.1.2",
+        "phantomjs": "^1.9.1",
+        "sinon": "^1.17.3",
+        "sniper": "^0.2.16",
+        "vinyl-source-stream": "^1.0.0",
+        "watchify": "^3.2.3",
+        "xunit-file": "0.0.6"
+    },
+    "shields": {
+        "test": {
+            "img": "https://travis-ci.org/ebi-uniprot/ProtVista.svg?branch=master",
+            "href": "https://travis-ci.org/ebi-uniprot/ProtVista"
+        }
+    },
+    "sniper": {
+        "js": [
+            "/build/protvista.js"
+        ],
+        "css": [
+            "/build/css/main.css"
+        ],
+        "snippets": [
+            "snippets"
+        ],
+        "first": "simple_example"
+    },
+    "keywords": [
+        "feature viewer",
+        "uniprot",
+        "biojs",
+        "protein features viewer",
+        "protein feature viewer",
+        "variation",
+        "proteomics",
+        "domains",
+        "protein"
+    ]
 }
