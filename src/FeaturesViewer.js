@@ -134,7 +134,7 @@ var createNavRuler = function(fv, container) {
 
     var navXScale = d3.scale.linear()
         .domain([1,fv.maxPos])
-        .range([fv.padding.left, fv.width - fv.padding.right]);
+        .range(getFvXScaleRange(fv, true));
 
     var svg = container
         .append('div')
@@ -146,16 +146,20 @@ var createNavRuler = function(fv, container) {
         // .attr('viewBox', function(){return "0,0," + fv.width + "," + navWithTrapezoid;});
 
     var navXAxis = d3.svg.axis()
-        .scale(fv.xScale)
+        .scale(d3.scale.linear()
+            .domain(fv.xScale.domain())
+            .range(getFvXScaleRange(fv, true)))
         .orient('bottom');
 
-    svg.append('g')
-        .attr('class', 'x axis')
-        .call(navXAxis);
+    var xAxis = svg.append('g')
+        .attr('class', 'x axis');
+
+    xAxis.call(navXAxis);
 
     var viewport = d3.svg.brush()
         .x(navXScale)
         .on("brush", function() {
+            console.log("brush");
             var s = d3.event.target.extent();
             if((s[1] - s[0]) < fv.maxZoomSize) {
                 d3.event.target.extent([s[0],s[0] + fv.maxZoomSize]);
@@ -165,6 +169,10 @@ var createNavRuler = function(fv, container) {
             update(fv);
             viewport.updateTrapezoid();
         });
+
+    viewport.xAxis = xAxis;
+    viewport.navXAxis = navXAxis;
+
     viewport.on("brushstart", function () {
         closeTooltipAndPopup(fv);
     });
@@ -210,9 +218,9 @@ var createNavRuler = function(fv, container) {
 
     viewport.updateTrapezoid = function() {
         var begin = fv.globalContainer.select(".up_pftv_navruler .extent").attr("x");
-        var tWidth = fv.globalContainer.select(".up_pftv_navruler .extent").attr("width");
+        var tWidth = jQuery(".up_pftv_navruler .extent").attr("width");
         var end = (+begin) + (+tWidth);
-        var path =  "M0," + (navWithTrapezoid) + "L0" + "," + (navWithTrapezoid-2)
+        var path =  "M0," + (navWithTrapezoid) + "L0" + "," + (navWithTrapezoid)
             + "L" + begin + "," + (navHeight-12) + "L" + begin + "," + navHeight
             + "L" + end + "," + navHeight + "L" + end + "," + (navHeight-12)
             + "L" + fv.width + "," + (navWithTrapezoid-2) + "L" + fv.width + "," + (navWithTrapezoid) + "Z";
@@ -469,13 +477,14 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
 
 var getFvWidth = function(fv){
     var divCategoryName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
-    var width = jQuery(fv.parentElement).width() - divCategoryName.outerWidth(true);
+    var width = jQuery(fv.parentElement).width() - divCategoryName.outerWidth(false);
     divCategoryName.remove();
     return width;
 }
 
-var getFvXScaleRange =  function(fv) {
-    return [fv.padding.left, fv.width - fv.padding.right];
+var getFvXScaleRange =  function(fv, padding) {
+    return padding ? [fv.padding.left, fv.width - fv.padding.right] : [0, fv.width];
+
 }
 
 var FeaturesViewer = function(opts) {
@@ -503,9 +512,17 @@ var FeaturesViewer = function(opts) {
 
         fv.xScale.range(getFvXScaleRange(fv));
 
-        fv.categories.forEach(function (cat){
-            cat.update();
-        });
+        fv.viewport.x().range(getFvXScaleRange(fv, true));
+        fv.viewport.domainEndLabel.attr('x',fv.width);
+        fv.viewport.xAxis.selectAll("*").remove();
+        fv.viewport.navXAxis.scale().range(getFvXScaleRange(fv, true));
+        fv.viewport.xAxis.call(fv.viewport.navXAxis);
+
+
+        update(fv);
+        // fv.viewport.updateTrapezoid();
+        updateZoomFromChart(fv);
+        updateViewportFromChart(fv);
     });
 
     fv.load = function() {
