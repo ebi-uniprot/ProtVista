@@ -154,7 +154,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
 
 var updateChartArea = function(variantViewer){
     variantViewer.svg.select('#plotAreaClip rect')
-        .attr("width", function(){return getClipPathWidth(variantViewer)});
+        .attr("width", function(){return getClipPathWidth(variantViewer);});
 
     variantViewer.svg.selectAll('.variation-y.axis.left line')
         .attr('x2', getAxisLength(variantViewer));
@@ -162,15 +162,15 @@ var updateChartArea = function(variantViewer){
     variantViewer.svg.selectAll('.variation-y.axis.right')
         .attr('transform','translate(' + getAxisLength(variantViewer) + ', 0)');
 
-}
+};
 
 var getClipPathWidth = function(variantViewer) {
     return variantViewer.width - 20;
-}
+};
 
 var getAxisLength = function(variantViewer) {
     return variantViewer.width - 18;
-}
+};
 
 var createDataSeries = function(fv, variantViewer, features, series) {
     var mainChart = variantViewer.svg.append('g')

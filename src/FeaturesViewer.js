@@ -479,12 +479,12 @@ var getFvWidth = function(fv){
     var width = jQuery(fv.parentElement).width() - divCategoryName.outerWidth(false);
     divCategoryName.remove();
     return width;
-}
+};
 
 var getFvXScaleRange =  function(fv, padding) {
     return padding ? [fv.padding.left, fv.width - fv.padding.right] : [0, fv.width];
 
-}
+};
 
 var FeaturesViewer = function(opts) {
 
@@ -756,6 +756,6 @@ FeaturesViewer.prototype.resize = function() {
     update(fv);
     updateZoomFromChart(fv);
     updateViewportFromChart(fv);
-}
+};
 
 module.exports = FeaturesViewer;

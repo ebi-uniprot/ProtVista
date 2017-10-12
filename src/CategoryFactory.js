@@ -29,7 +29,7 @@ var Category = function(name, data, catInfo, fv, container) {
         .style('display', 'table-caption')
         .append('div')
             .style('display', 'table')
-            .style('width', '100%')
+            .style('width', '100%');
 
     category.header = headerRow.append('a')
         .attr('class', 'up_pftv_category-name up_pftv_arrow-right')
