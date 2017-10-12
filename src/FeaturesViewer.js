@@ -422,9 +422,7 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
     fv.initLayout(opts);
     _.each(dataSources, function(source, index) {
         if (!_.contains(opts.exclusions, source.category)) {
-            var url = source.url;
-            if (url.indexOf("data:") != 0)
-                url += opts.uniprotacc;
+            var url = source.url + opts.uniprotacc;
             url = source.useExtension === true ? url + '.json' : url;
             var dataLoader = DataLoader.get(url);
             loaders.push(dataLoader);
