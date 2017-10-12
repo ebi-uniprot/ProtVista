@@ -159,7 +159,6 @@ var createNavRuler = function(fv, container) {
     var viewport = d3.svg.brush()
         .x(navXScale)
         .on("brush", function() {
-            console.log("brush");
             var s = d3.event.target.extent();
             if((s[1] - s[0]) < fv.maxZoomSize) {
                 d3.event.target.extent([s[0],s[0] + fv.maxZoomSize]);
@@ -218,7 +217,7 @@ var createNavRuler = function(fv, container) {
 
     viewport.updateTrapezoid = function() {
         var begin = fv.globalContainer.select(".up_pftv_navruler .extent").attr("x");
-        var tWidth = jQuery(".up_pftv_navruler .extent").attr("width");
+        var tWidth = fv.globalContainer.select(".up_pftv_navruler .extent").attr("width");
         var end = (+begin) + (+tWidth);
         var path =  "M0," + (navWithTrapezoid) + "L0" + "," + (navWithTrapezoid)
             + "L" + begin + "," + (navHeight-12) + "L" + begin + "," + navHeight
@@ -476,6 +475,8 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
 };
 
 var getFvWidth = function(fv){
+    if (fv.fixedWidth) return fv.fixedWidth;
+
     var divCategoryName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
     var width = jQuery(fv.parentElement).width() - divCategoryName.outerWidth(false);
     divCategoryName.remove();
@@ -494,6 +495,7 @@ var FeaturesViewer = function(opts) {
         "notFound", "notConfigRetrieved", "regionHighlighted");
 
     fv.parentElement = opts.el;
+    fv.minWidth = opts.minWidth ? opts.minWidth : 0;
     fv.width = getFvWidth(fv);
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
@@ -506,24 +508,6 @@ var FeaturesViewer = function(opts) {
     fv.uniprotacc = opts.uniprotacc;
     fv.overwritePredictions = opts.overwritePredictions;
     fv.defaultSource = opts.defaultSources !== undefined ? opts.defaultSources : true;
-
-    jQuery(window).on("resize", function(){
-        fv.width = getFvWidth(fv);
-
-        fv.xScale.range(getFvXScaleRange(fv));
-
-        fv.viewport.x().range(getFvXScaleRange(fv, true));
-        fv.viewport.domainEndLabel.attr('x',fv.width);
-        fv.viewport.xAxis.selectAll("*").remove();
-        fv.viewport.navXAxis.scale().range(getFvXScaleRange(fv, true));
-        fv.viewport.xAxis.call(fv.viewport.navXAxis);
-
-
-        update(fv);
-        // fv.viewport.updateTrapezoid();
-        updateZoomFromChart(fv);
-        updateViewportFromChart(fv);
-    });
 
     fv.load = function() {
         initSources(opts);
@@ -570,6 +554,21 @@ var FeaturesViewer = function(opts) {
             } else if (opts.selectedFeature){
                 fv.selectFeature(opts.selectedFeature);
             }
+
+            return fv;
+        });
+
+        var iframe = document.createElement('iframe');
+        iframe.id = "resize-listener";
+        iframe.style.cssText = 'height: 0; background-color: transparent; margin: 0; padding: 0; overflow: hidden; border-width: 0; position: absolute; width: 100%;';
+        iframe.onload = function() {
+            iframe.contentWindow.addEventListener('resize', function() {
+                fv.resize();
+            });
+        };
+        fv.getDispatcher().on('ready', function () {
+            opts.el.appendChild(iframe);
+            fv.resize();
         });
     };
 
@@ -739,5 +738,26 @@ FeaturesViewer.prototype.drawCategories = function(data, fv) {
     }
   });
 };
+
+FeaturesViewer.prototype.resize = function() {
+    fv = this;
+
+    var widthAux = fv.width;
+    fv.width = Math.max(getFvWidth(fv), fv.minWidth);
+
+    if (fv.width <= fv.minWidth || widthAux == fv.width) return;
+
+    fv.xScale.range(getFvXScaleRange(fv));
+
+    fv.viewport.x().range(getFvXScaleRange(fv, true));
+    fv.viewport.domainEndLabel.attr('x',fv.width);
+    fv.viewport.xAxis.selectAll("*").remove();
+    fv.viewport.navXAxis.scale().range(getFvXScaleRange(fv, true));
+    fv.viewport.xAxis.call(fv.viewport.navXAxis);
+
+    update(fv);
+    updateZoomFromChart(fv);
+    updateViewportFromChart(fv);
+}
 
 module.exports = FeaturesViewer;
