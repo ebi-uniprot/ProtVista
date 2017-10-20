@@ -392,9 +392,7 @@ var addAssociation = function(tooltip) {
 var addMutation = function(tooltip) {
     var mutRow = tooltip.table.append('tr');
     mutRow.append('td').text('Variant');
-    var text = (tooltip.data.wildType === 'del' ?
-            tooltip.sequence.substring(+tooltip.data.begin, +tooltip.data.end + 1) :
-            tooltip.data.wildType) +
+    var text = tooltip.data.wildType +
         ' > ' +
         tooltip.data.alternativeSequence;
     mutRow.append('td').text(text);
