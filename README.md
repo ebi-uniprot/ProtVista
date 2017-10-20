@@ -6,6 +6,9 @@
 
 How to cite us: **ProtVista: visualization of protein sequence annotations** (doi: [10.1093/bioinformatics/btx120](https://doi.org/10.1093/bioinformatics/btx120))
 
+### 2.0.7
+- (re)Introduce support for null predictions coming as '-' from the data services
+
 ### 2.0.6
 - Updated '-' to 'del' for variants to reflect data service change
 - Bug fixes
