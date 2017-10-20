@@ -193,7 +193,8 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
             fv.overFeature = true;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
-                initial = initial === '*' ? 'loss' : initial === 'del' ? 'deletion' : initial;
+                initial = initial === '*' ? 'loss' : initial;
+                initial = d.alternativeSequence === 'del' ? 'deletion' : initial;
                 fv.globalContainer.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 1);
             }
         })
