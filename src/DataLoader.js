@@ -128,7 +128,7 @@ var DataLoader = function() {
             var mutationArray = [];
             mutationArray.push({
                 'type': 'VARIANT',
-                'normal': 'del',
+                'normal': '-',
                 'pos': 0,
                 'variants': []
             });
@@ -143,7 +143,7 @@ var DataLoader = function() {
             });
             mutationArray.push({
                 'type': 'VARIANT',
-                'normal': 'del',
+                'normal': '-',
                 'pos': seq.length + 1,
                 'variants': []
             });
@@ -162,6 +162,7 @@ var DataLoader = function() {
                     Constants.addConsequenceType(d.consequence);
                 }
             });
+            console.log(mutationArray);
             return [
                 ['VARIATION', mutationArray]
             ];
