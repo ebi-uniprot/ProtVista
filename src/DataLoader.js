@@ -162,7 +162,6 @@ var DataLoader = function() {
                     Constants.addConsequenceType(d.consequence);
                 }
             });
-            console.log(mutationArray);
             return [
                 ['VARIATION', mutationArray]
             ];
