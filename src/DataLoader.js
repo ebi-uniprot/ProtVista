@@ -35,7 +35,7 @@ var groupEvidencesByCode = function(features) {
     return features;
 };
 
-var setVariantData = function (source, d) {
+var setVariantData = function(source, d) {
     var datum = {};
     if (source && (source !== Constants.getUniProtSource())) {
         datum.begin = d.begin;
@@ -61,7 +61,7 @@ var setVariantData = function (source, d) {
 var DataLoader = function() {
     return {
         get: function(url) {
-          return $.getJSON(url);
+            return $.getJSON(url);
         },
         groupFeaturesByCategory: function(features, sequence, source, includeVariants) {
             features = groupEvidencesByCode(features);
@@ -79,10 +79,11 @@ var DataLoader = function() {
             var categoriesNames = Constants.getCategoryNamesInOrder();
             categoriesNames = _.pluck(categoriesNames, 'name');
             var newCategoryNames = [];
-            _.each(categories, function (catInfo, catKey) {
+            _.each(categories, function(catInfo, catKey) {
                 if (!_.contains(categoriesNames, catKey)) {
                     newCategoryNames.push({
-                        name: catKey, label: Constants.convertNameToLabel(catKey),
+                        name: catKey,
+                        label: Constants.convertNameToLabel(catKey),
                         visualizationType: Constants.getVisualizationTypes().basic
                     });
                 }
@@ -92,8 +93,8 @@ var DataLoader = function() {
                 categoriesNames = Constants.getCategoryNamesInOrder();
                 categoriesNames = _.pluck(categoriesNames, 'name');
             }
-            _.each(categoriesNames, function(catName){
-                if(categories[catName]){
+            _.each(categoriesNames, function(catName) {
+                if (categories[catName]) {
                     orderedPairs.push([
                         catName,
                         categories[catName]
@@ -108,7 +109,7 @@ var DataLoader = function() {
         },
         processProteomics: function(features) {
             features = groupEvidencesByCode(features);
-            var types = _.map(features, function(d){
+            var types = _.map(features, function(d) {
                 if (d.unique) {
                     d.type = 'unique';
                 } else {
@@ -116,11 +117,15 @@ var DataLoader = function() {
                 }
                 return d;
             });
-            return [['PROTEOMICS',types]];
+            return [
+                ['PROTEOMICS', types]
+            ];
         },
         processUngroupedFeatures: function(features) {
             features = groupEvidencesByCode(features);
-            return [[features[0].type, features]];
+            return [
+                [features[0].type, features]
+            ];
         },
         processVariants: function(variants, sequence, source, evidenceAlreadyGrouped) {
             if (source && (source !== Constants.getUniProtSource())) {
@@ -132,12 +137,12 @@ var DataLoader = function() {
                 variants = groupEvidencesByCode(variants);
             }
             var mutationArray = [];
-                mutationArray.push({
-                    'type': 'VARIANT',
-                    'normal': '-',
-                    'pos': 0,
-                    'variants': []
-                });
+            mutationArray.push({
+                'type': 'VARIANT',
+                'normal': 'del',
+                'pos': 0,
+                'variants': []
+            });
             var seq = sequence.split('');
             _.each(seq, function(d, i) {
                 mutationArray.push({
@@ -149,7 +154,7 @@ var DataLoader = function() {
             });
             mutationArray.push({
                 'type': 'VARIANT',
-                'normal': '-',
+                'normal': 'del',
                 'pos': seq.length + 1,
                 'variants': []
             });
@@ -157,7 +162,7 @@ var DataLoader = function() {
             _.each(variants, function(d) {
                 d.begin = +d.begin;
                 d.end = d.end ? +d.end : d.begin;
-                d.wildType = d.wildType ? d.wildType : sequence.substring(d.begin, d.end+1);
+                d.wildType = d.wildType ? d.wildType : sequence.substring(d.begin, d.end + 1);
                 d.sourceType = d.sourceType ? d.sourceType.toLowerCase() : d.sourceType;
                 if ((1 <= d.begin) && (d.begin <= seq.length)) {
                     mutationArray[d.begin].variants.push(setVariantData(source, d));
@@ -168,7 +173,9 @@ var DataLoader = function() {
                     Constants.addConsequenceType(d.consequence);
                 }
             });
-            return [['VARIATION', mutationArray]];
+            return [
+                ['VARIATION', mutationArray]
+            ];
         }
     };
 }();

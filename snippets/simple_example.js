@@ -1,6 +1,6 @@
 // if you don't specify a html file, the sniper will generate a div
 var app = require("ProtVista");
-var instance = new app({el: yourDiv, text: 'biojs', uniprotacc : 'P05067'});
+var instance = new app({ el: yourDiv, text: 'biojs', uniprotacc: 'P21802' });
 //P05067 most of the times, P21802 has a deletion
 instance.getDispatcher().on("ready", function() {
     // console.log('ready');

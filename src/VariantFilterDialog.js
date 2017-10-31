@@ -15,8 +15,8 @@ var defaultFilterCaseDisease = {
     label: 'Disease (reviewed)',
     on: true,
     properties: {
-        'association': function(variant){
-            return _.some(variant.association, function(association){
+        'association': function(variant) {
+            return _.some(variant.association, function(association) {
                 return association.disease === true;
             });
         }
@@ -29,27 +29,27 @@ var defaultFilterCasePrediction = {
     properties: {
         'alternativeSequence': /[^*]/,
         'sourceType': [Evidence.variantSourceType.lss, null],
-        'externalData': function(variant){
+        'externalData': function(variant) {
             if (!variant.sourceType) {
-                return _.some(variant.externalData, function (data) {
-                    return (data.polyphenPrediction && (data.polyphenPrediction !== '-')) ||
-                        (data.siftPrediction && (data.siftPrediction !== '-'));
+                return _.some(variant.externalData, function(data) {
+                    return (data.polyphenPrediction && (data.polyphenPrediction !== 'del')) ||
+                        (data.siftPrediction && (data.siftPrediction !== 'del'));
                 });
             } else {
                 return true;
             }
         }
     },
-    colorRange: [LegendDialog.deleteriousColor,LegendDialog.benignColor]
+    colorRange: [LegendDialog.deleteriousColor, LegendDialog.benignColor]
 };
 var defaultFilterCaseNonDisease = {
     label: 'Non-disease (reviewed)',
     on: true,
     properties: {
-        'association': function(variant){
-            return _.every(variant.association, function(association){
-                    return association.disease !== true;
-                }) || (!variant.association);
+        'association': function(variant) {
+            return _.every(variant.association, function(association) {
+                return association.disease !== true;
+            }) || (!variant.association);
         },
         'sourceType': [
             Evidence.variantSourceType.uniprot,
@@ -173,16 +173,16 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
     variantFilterDialog.variantViewer = variantViewer;
     variantFilterDialog.filters = $.extend(true, [], filters);
     var buttons = container.append('div')
-        .attr('class','up_pftv_buttons');
+        .attr('class', 'up_pftv_buttons');
 
     buttons.append('span')
         .style('visibility', 'hidden')
         .classed('up_pftv_inner-icon-container', true)
         .append('a')
-        .attr('class','up_pftv_icon-button up_pftv_icon-reset')
-        .attr('title','Reset all filters')
-        .attr('href','#')
-        .on('click', function(){
+        .attr('class', 'up_pftv_icon-button up_pftv_icon-reset')
+        .attr('title', 'Reset all filters')
+        .attr('href', '#')
+        .on('click', function() {
             variantFilterDialog.reset();
             variantFilterDialog.variantViewer.updateData(variantFilterDialog.variantViewer.features);
         });
@@ -196,14 +196,14 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
             .attr('class', 'up_pftv_dialog-container');
 
         var li = ul
-          .selectAll('li')
-          .data(filterSet.cases)
-          .enter()
-          .append('li');
+            .selectAll('li')
+            .data(filterSet.cases)
+            .enter()
+            .append('li');
 
         var anchor = li.append('a')
             .on('click', function(filter) {
-                if(filter.on === true) {
+                if (filter.on === true) {
                     clearOthers(filterSet, filter);
                     container.select('.up_pftv_inner-icon-container')
                         .style('visibility', 'visible');
@@ -224,24 +224,24 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
                     return 'up_pftv_legend';
                 }
             })
-            .attr('style',function(filter){
-              return getBackground(filter);
+            .attr('style', function(filter) {
+                return getBackground(filter);
             });
 
         anchor.append('span')
             .attr('class', 'up_pftv_legend_text')
-            .html(function(filter){
-              if (filter.label instanceof Array) {
-                   return filter.label.join('<br/>');
-              } else {
-                  return filter.label;
-              }
+            .html(function(filter) {
+                if (filter.label instanceof Array) {
+                    return filter.label.join('<br/>');
+                } else {
+                    return filter.label;
+                }
             });
 
-        var update = function(){
-          anchor.select('div').attr('style',function(filter){
-              return getBackground(filter);
-          });
+        var update = function() {
+            anchor.select('div').attr('style', function(filter) {
+                return getBackground(filter);
+            });
         };
     });
 
@@ -254,7 +254,7 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
         container.select('.up_pftv_inner-icon-container')
             .style('visibility', 'hidden');
         container.selectAll('.up_pftv_legend')
-            .attr('style',function(filter){
+            .attr('style', function(filter) {
                 return getBackground(filter);
             });
     };
@@ -275,7 +275,7 @@ var updateResetButton = function(filters, container) {
 };
 
 var getBackground = function(filter) {
-    if(filter.colorRange) {
+    if (filter.colorRange) {
         return 'background:' + (filter.on ? 'linear-gradient(' + filter.colorRange + ');' : '#ffffff');
     } else {
         return 'background-color:' + (filter.on ? filter.color : '#ffffff');
@@ -297,10 +297,10 @@ var filterData = function(filters, data) {
                 if (activeFilters.length === filterSet.cases.length) {
                     return true;
                 }
-                var anyOfSet = _.some(activeFilters, function(filter){
-                    var allOfProps = _.every(_.keys(filter.properties), function(prop){
-                        if(filter.properties[prop] instanceof Array) {
-                            return _.some(filter.properties[prop], function(orProp){
+                var anyOfSet = _.some(activeFilters, function(filter) {
+                    var allOfProps = _.every(_.keys(filter.properties), function(prop) {
+                        if (filter.properties[prop] instanceof Array) {
+                            return _.some(filter.properties[prop], function(orProp) {
                                 return variant[prop] == orProp;
                             });
                         } else if (typeof filter.properties[prop] === 'string') {

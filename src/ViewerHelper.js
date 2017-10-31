@@ -1,13 +1,14 @@
 /*jslint node: true */
 /*jshint laxbreak: true */
-"use strict" ;
+"use strict";
 
 var d3 = require("d3");
 var TooltipFactory = require("./TooltipFactory");
 var FeatureFactory = require("./FeatureFactory");
 
 var ViewerHelper = function() {
-    var mousedownXY = {x: -1, y: -1}, mouseupXY = {x: -2, y: -2};
+    var mousedownXY = { x: -1, y: -1 },
+        mouseupXY = { x: -2, y: -2 };
     return {
         createSVG: function(container, width, height, fv, clazz) {
             var svg = container
@@ -15,11 +16,11 @@ var ViewerHelper = function() {
                 .attr('width', width)
                 .attr('height', height)
                 .on('mousedown', function() {
-                    mousedownXY = {x: d3.event.pageX, y: d3.event.pageY};
-                    mouseupXY = {x: -2, y: -2};
+                    mousedownXY = { x: d3.event.pageX, y: d3.event.pageY };
+                    mouseupXY = { x: -2, y: -2 };
                 })
                 .on('mouseup', function() {
-                    mouseupXY = {x: d3.event.pageX, y: d3.event.pageY};
+                    mouseupXY = { x: d3.event.pageX, y: d3.event.pageY };
                     if ((mousedownXY.x === mouseupXY.x) && (mousedownXY.y === mouseupXY.y) && !fv.overFeature) {
                         if (fv.selectedFeature) {
                             ViewerHelper.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
@@ -27,7 +28,7 @@ var ViewerHelper = function() {
                             ViewerHelper.resetHighlight(fv);
                         }
                     }
-                    mousedownXY = {x: -1, y: -1};
+                    mousedownXY = { x: -1, y: -1 };
                 })
                 .call(fv.zoom);
 
@@ -45,29 +46,29 @@ var ViewerHelper = function() {
     };
 }();
 
-ViewerHelper.highlightPath = function (feature, fv, height) {
+ViewerHelper.highlightPath = function(feature, fv, height) {
     var aaWidth = fv.xScale(2) - fv.xScale(1);
-    var gapRegion = aaWidth/2;
+    var gapRegion = aaWidth / 2;
     var width = aaWidth * (feature.end ? feature.end - feature.begin + 1 : 1);
     var path;
     if (!feature.type) {
         path = 'M-1,-1';
     } else if (FeatureFactory.isContinuous(feature.type)) {
-        path = 'M' + -(gapRegion) + ',0'
-            + 'L' + (-gapRegion+width) + ',0'
-            + 'L' + (-gapRegion+width) + ',' + height
-            + 'L' + -(gapRegion) + ',' + height
-            + 'Z';
+        path = 'M' + -(gapRegion) + ',0' +
+            'L' + (-gapRegion + width) + ',0' +
+            'L' + (-gapRegion + width) + ',' + height +
+            'L' + -(gapRegion) + ',' + height +
+            'Z';
     } else {
-        path = 'M' + -(gapRegion) + ',0'
-            + 'L' + (-gapRegion+width) + ',0'
-            + 'L' + (-gapRegion+width) + ',' + height
-            + 'L' + (-gapRegion+width-aaWidth) + ',' + height
-            + 'L' + (-gapRegion+width-aaWidth) + ',0'
-            + 'L' + (-gapRegion+aaWidth) + ',0'
-            + 'L' + (-gapRegion+aaWidth) + ',' + height
-            + 'L' + (-gapRegion) + ',' + height
-            + 'Z';
+        path = 'M' + -(gapRegion) + ',0' +
+            'L' + (-gapRegion + width) + ',0' +
+            'L' + (-gapRegion + width) + ',' + height +
+            'L' + (-gapRegion + width - aaWidth) + ',' + height +
+            'L' + (-gapRegion + width - aaWidth) + ',0' +
+            'L' + (-gapRegion + aaWidth) + ',0' +
+            'L' + (-gapRegion + aaWidth) + ',' + height +
+            'L' + (-gapRegion) + ',' + height +
+            'Z';
     }
     return path;
 };
@@ -103,11 +104,11 @@ ViewerHelper.updateHighlight = function(fv) {
 };
 
 ViewerHelper.resetHighlight = function(fv) {
-        fv.highlight = undefined;
-        fv.globalContainer.selectAll('.up_pftv_highlight')
-            .attr('d', 'M-1,-1')
-            .attr('transform', 'translate(-1,-1)');
-        this.updateFeatureHighlightSelector(fv);
+    fv.highlight = undefined;
+    fv.globalContainer.selectAll('.up_pftv_highlight')
+        .attr('d', 'M-1,-1')
+        .attr('transform', 'translate(-1,-1)');
+    this.updateFeatureHighlightSelector(fv);
 };
 
 ViewerHelper.deselectFeature = function(fv) {
@@ -118,7 +119,7 @@ ViewerHelper.selectFeature = function(feature, elem, fv) {
     if (feature && elem) {
         fv.highlight = undefined;
         var selectedElem = d3.select(elem);
-        var previousSelection = {feature: fv.selectedFeature, elem: fv.selectedFeatureElement};
+        var previousSelection = { feature: fv.selectedFeature, elem: fv.selectedFeatureElement };
         if (feature === fv.selectedFeature) {
             fv.selectedFeature = undefined;
             fv.selectedFeatureElement = undefined;
@@ -133,15 +134,13 @@ ViewerHelper.selectFeature = function(feature, elem, fv) {
         //it is not active anymore
         selectedElem.classed('up_pftv_activeFeature', !selectedPath);
         if (previousSelection.feature) {
-            fv.dispatcher.featureDeselected(
-                {feature: previousSelection.feature, color: d3.select(previousSelection.elem).style("fill")}
-            );
+            fv.dispatcher.featureDeselected({ feature: previousSelection.feature, color: d3.select(previousSelection.elem).style("fill") });
         }
         if (feature !== previousSelection.feature) {
             if (previousSelection.elem) {
                 d3.select(previousSelection.elem).classed('up_pftv_activeFeature', false);
             }
-            fv.dispatcher.featureSelected({feature: fv.selectedFeature, color: selectedElem.style("fill")});
+            fv.dispatcher.featureSelected({ feature: fv.selectedFeature, color: selectedElem.style("fill") });
         }
     }
 };
@@ -156,10 +155,10 @@ ViewerHelper.centerToHighlightedSelection = function(fv) {
     }
     if (feature) {
         var domain = fv.xScale.domain();
-        var max = domain[domain.length-1];
+        var max = domain[domain.length - 1];
         var ftMiddle = +feature.begin +
-            (feature.end ? Math.floor((+feature.end - +feature.begin)/2) : 0);
-        var init = (ftMiddle - max/2) < 1 ? 1 : ftMiddle - max/2;
+            (feature.end ? Math.floor((+feature.end - +feature.begin) / 2) : 0);
+        var init = (ftMiddle - max / 2) < 1 ? 1 : ftMiddle - max / 2;
         if ((init + max) > fv.sequence.length) {
             init = fv.sequence.length - max;
         }
@@ -175,7 +174,7 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
         .classed('up_pftv_activeFeature', function(d) {
             return d === fv.selectedFeature;
         })
-        .on('click', function(d){
+        .on('click', function(d) {
             var elem = d3.select(this);
             if (!elem.classed('up_pftv_variant_hidden')) {
                 if (!elem.classed('up_pftv_activeFeature')) {
@@ -194,7 +193,7 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
             fv.overFeature = true;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
-                initial = initial === '*' ? 'loss' : initial === '-' ? 'deletion' : initial;
+                initial = initial === '*' ? 'loss' : initial === 'del' ? 'deletion' : initial;
                 fv.globalContainer.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 1);
             }
         })
@@ -202,7 +201,7 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
             fv.overFeature = false;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
-                initial = initial === '*' ? 'loss' : initial === '-' ? 'deletion' : initial;
+                initial = initial === '*' ? 'loss' : initial === 'del' ? 'deletion' : initial;
                 fv.globalContainer.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 0.4);
             }
         });

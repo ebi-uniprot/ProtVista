@@ -6,6 +6,10 @@
 
 How to cite us: **ProtVista: visualization of protein sequence annotations** (doi: [10.1093/bioinformatics/btx120](https://doi.org/10.1093/bioinformatics/btx120))
 
+### 2.0.6
+- Updated '-' to 'del' for variants to reflect data service change
+- Bug fixes
+
 ### 2.0.5
 - Added antigen track
 - New icons
