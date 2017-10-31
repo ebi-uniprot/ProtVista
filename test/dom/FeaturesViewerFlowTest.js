@@ -26,6 +26,7 @@ var ViewerHelper = require('../../src/ViewerHelper');
 var FeaturesData = require('./FeaturesData');
 var jQuery = require('jquery');
 var _ = require('underscore');
+var d3 = require('d3');
 
 var verifyHighlightAttributes = function(containerClass, path, exactPath, translate, height, x) {
     var categoryHighlight = document.querySelector('.' + containerClass + ' .up_pftv_highlight');
