@@ -318,7 +318,7 @@ var addPredictions = function(tooltip, data) {
             .attr('target', '_blank').text('Frequency (MAF)');
         freqRow.append('td').text(data.frequency);
     }
-    if (data.polyphenPrediction && (data.polyphenPrediction !== 'del') && (data.polyphenInUse !== false)) {
+    if (data.polyphenPrediction && (data.polyphenPrediction !== '-') && (data.polyphenInUse !== false)) {
         var polyRow = tooltip.table.append('tr');
         polyRow.append('td').append('span').append('a')
             .attr('href', 'http://genetics.bwh.harvard.edu/pph2/dokuwiki/about')
@@ -326,7 +326,7 @@ var addPredictions = function(tooltip, data) {
         var text = data.polyphenPrediction + ', score ' + data.polyphenScore;
         polyRow.append('td').text(text);
     }
-    if (data.siftPrediction && (data.siftPrediction !== 'del') && (data.siftInUse !== false)) {
+    if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
         var siftRow = tooltip.table.append('tr');
         siftRow.append('td').append('span').append('a')
             .attr('href', 'http://sift.jcvi.org/')
@@ -341,11 +341,11 @@ var hasPredictions = function(data) {
     if (data.frequency && (data.frequency !== 0)) {
         response = true;
     }
-    if (data.polyphenPrediction && (data.polyphenPrediction !== 'del') &&
+    if (data.polyphenPrediction && (data.polyphenPrediction !== '-') &&
         (data.polyphenPrediction !== 'unknown') && (data.polyphenInUse !== false)) {
         response = true;
     }
-    if (data.siftPrediction && (data.siftPrediction !== 'del') &&
+    if (data.siftPrediction && (data.siftPrediction !== '-') &&
         (data.siftPrediction !== 'unknown') && (data.siftInUse !== false)) {
         response = true;
     }
@@ -395,9 +395,7 @@ var addAssociation = function(tooltip) {
 var addMutation = function(tooltip) {
     var mutRow = tooltip.table.append('tr');
     mutRow.append('td').text('Variant');
-    var text = (tooltip.data.wildType === 'del' ?
-            tooltip.sequence.substring(+tooltip.data.begin, +tooltip.data.end + 1) :
-            tooltip.data.wildType) +
+    var text = tooltip.data.wildType +
         ' > ' +
         tooltip.data.alternativeSequence;
     mutRow.append('td').text(text);
