@@ -11,14 +11,14 @@ var Constants = require('./Constants');
 var createTooltipBox = function(fv, container) {
     fv.globalContainer.select('.up_pftv_tooltip-container').remove();
     var tooltipContainer = container.append('div')
-        .attr('class','up_pftv_tooltip-container');
+        .attr('class', 'up_pftv_tooltip-container');
     tooltipContainer.append('span')
         .text('x')
-        .attr('class','up_pftv_tooltip-close')
-        .on('click',function(){
+        .attr('class', 'up_pftv_tooltip-close')
+        .on('click', function() {
             tooltipContainer.transition(20)
-                .style('opacity',0)
-                .style('display','none');
+                .style('opacity', 0)
+                .style('display', 'none');
             tooltipContainer.remove();
         });
     return tooltipContainer;
@@ -26,8 +26,8 @@ var createTooltipBox = function(fv, container) {
 
 var getEvidenceText = function(tooltip, code, sources) {
     var acronym = Evidence.acronym[code];
-    var publications = _.where(sources, {name: 'PubMed'}).length;
-    publications += _.where(sources, {name: 'Citation'}).length;
+    var publications = _.where(sources, { name: 'PubMed' }).length;
+    publications += _.where(sources, { name: 'Citation' }).length;
     var evidenceText = '';
     if ((acronym === 'EXP') || (acronym === 'NAS')) {
         publications += _.filter(sources, function(s) {
@@ -41,37 +41,37 @@ var getEvidenceText = function(tooltip, code, sources) {
         }).length;
         evidenceText = publications + (publications > 1 ? ' Publications' : ' Publication');
     } else if (acronym === 'IC') {
-        evidenceText = publications === 0
-            ? 'Curated'
-            : publications + (publications > 1 ? ' Publications' : ' Publication');
+        evidenceText = publications === 0 ?
+            'Curated' :
+            publications + (publications > 1 ? ' Publications' : ' Publication');
     } else if (acronym === 'ISS') {
         evidenceText = 'By similarity';
     } else if (acronym === 'ISM') {
-        evidenceText = !sources || sources.length === 0 ? 'Sequence Analysis': sources[0].name + ' annotation';
+        evidenceText = !sources || sources.length === 0 ? 'Sequence Analysis' : sources[0].name + ' annotation';
     } else if ((acronym === 'MIXM') || (acronym === 'MIXA')) {
         evidenceText = 'Combined sources';
-    } else if ((acronym === 'MI') || (acronym === 'AI')){
+    } else if ((acronym === 'MI') || (acronym === 'AI')) {
         evidenceText = 'Imported';
     } else if (acronym === 'AA') {
-        var unirule = sources
-            ? _.find(sources, function(source) {
+        var unirule = sources ?
+            _.find(sources, function(source) {
                 return source.url && (source.url.indexOf('unirule') !== -1);
-            })
-            : false;
-        var saas = sources
-            ? _.find(sources, function(source) {
+            }) :
+            false;
+        var saas = sources ?
+            _.find(sources, function(source) {
                 return source.url && (source.url.indexOf('SAAS') !== -1);
-            })
-            : false;
-        var interpro = sources
-            ? _.find(sources, function(source) {
+            }) :
+            false;
+        var interpro = sources ?
+            _.find(sources, function(source) {
                 return source.name === 'Pfam';
-            })
-            : false;
-        evidenceText =  unirule ? 'UniRule annotation'
-            : saas ? 'SAAS annotation'
-            : interpro ? 'InterPro annotation'
-            : sources ? sources[0].name + ' annotation' : 'Automatic annotation';
+            }) :
+            false;
+        evidenceText = unirule ? 'UniRule annotation' :
+            saas ? 'SAAS annotation' :
+            interpro ? 'InterPro annotation' :
+            sources ? sources[0].name + ' annotation' : 'Automatic annotation';
     } else {
         evidenceText = code;
     }
@@ -83,21 +83,21 @@ var parseVariantDescription = function(data) {
     if (data.description) {
         var descriptionArray = data.description.split(/\[LSS_|\[SWP]: /g);
         descriptionArray = _.groupBy(descriptionArray, function(desc) {
-            return desc.length === 0 ? 'NOTHING'
-                : desc.indexOf(']: ') !== -1 ? 'LSS' : 'UP';
+            return desc.length === 0 ? 'NOTHING' :
+                desc.indexOf(']: ') !== -1 ? 'LSS' : 'UP';
         });
         data.up_description = descriptionArray.UP ? descriptionArray.UP.join('; ') : undefined;
-        data.lss_description = descriptionArray.LSS
-            ? descriptionArray.LSS.join('; ').replace(/]: /g, ': ') : undefined;
+        data.lss_description = descriptionArray.LSS ?
+            descriptionArray.LSS.join('; ').replace(/]: /g, ': ') : undefined;
     }
     if (Evidence.existAssociation(data.association)) {
         _.each(data.association, function(association) {
             if (association.description) {
                 var index = association.description.indexOf('Ftid: ');
                 if (index !== -1) {
-                    data.ftId = association.description.substr(index+6, 10);
-                    association.description = (association.description.slice(0, index)
-                    + association.description.slice(index+16)).trim();
+                    data.ftId = association.description.substr(index + 6, 10);
+                    association.description = (association.description.slice(0, index) +
+                        association.description.slice(index + 16)).trim();
                 }
             }
         });
@@ -120,7 +120,7 @@ var addConsequence = function(tooltip, consequence) {
     }
 };
 
-var addDescription = function(tooltip, description){
+var addDescription = function(tooltip, description) {
     if (description) {
         var dataDes = tooltip.table.append('tr');
         dataDes.append('td').text('Description');
@@ -141,14 +141,14 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
         tooltipContainer.style('left', (coordinates.x + 10) + 'px')
             .style('top', coordinates.y + 'px')
             .transition(200)
-            .style('opacity',1)
-            .style('display','block');
+            .style('opacity', 1)
+            .style('display', 'block');
     } else {
         tooltipContainer.style('left', (d3.mouse(container.node())[0] + 10) + 'px')
             .style('top', d3.mouse(container.node())[1] + 'px')
             .transition(200)
-            .style('opacity',1)
-            .style('display','block');
+            .style('opacity', 1)
+            .style('display', 'block');
     }
 
     fv.globalContainer.select('.up_pftv_tooltip-container table').remove();
@@ -156,23 +156,24 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
     tooltip.table = fv.globalContainer.select('.up_pftv_tooltip-container').append('table');
     tooltip.table
         .on('mousedown', function() { fv.overTooltip = true; })
-        .on('mouseup', function() {  fv.overTooltip = false; });
+        .on('mouseup', function() { fv.overTooltip = false; });
 
     var descRow = tooltip.table.append('tr');
 
     var tooltipTitle = tooltip.data.type + ' ' + tooltip.data.begin +
         (tooltip.data.end && (tooltip.data.end !== tooltip.data.begin) ? '-' + tooltip.data.end : '');
-    descRow.append('th').attr('colspan',2).text(tooltipTitle);
+    descRow.append('th').attr('colspan', 2).text(tooltipTitle);
 
     var keys = tooltip.data.externalData ? _.keys(tooltip.data.externalData).join(', ') : undefined;
     if (keys || (tooltip.data.sourceType !== undefined)) {
         var dataSource = tooltip.table.append('tr');
         dataSource.append('td').text('Source');
         var sourceText = '';
-        var isUniProt = false, isLSS = false;
+        var isUniProt = false,
+            isLSS = false;
         if (tooltip.data.sourceType === Evidence.variantSourceType.mixed) {
-            sourceText = keys ? 'UniProt, large scale studies and custom data (' + keys + ')'
-                : 'UniProt and large scale studies';
+            sourceText = keys ? 'UniProt, large scale studies and custom data (' + keys + ')' :
+                'UniProt and large scale studies';
         } else if (tooltip.data.sourceType === Evidence.variantSourceType.uniprot) {
             isUniProt = true;
             sourceText = keys ? 'UniProt and custom data (' + keys + ')' : 'UniProt';
@@ -187,7 +188,7 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
         if (isUniProt) {
             addFtId(tooltip, tooltip.data.ftId);
             addDescription(tooltip, tooltip.data.up_description, 'up_description');
-        } else if (isLSS){
+        } else if (isLSS) {
             addDescription(tooltip, tooltip.data.lss_description, 'lss_description');
         }
     } else {
@@ -199,7 +200,7 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
 var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
     if (!sourceRow) {
         sourceRow = tooltip.table.append('tr')
-            .attr('class','up_pftv_evidence-source');
+            .attr('class', 'up_pftv_evidence-source');
 
         sourceRow.append('td')
             .text('');
@@ -207,7 +208,7 @@ var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
 
     var list = sourceRow.append('td').text(info.index + ' ');
     _.each(info.elem, function(el, i) {
-        var url = info.alternative === true ? el.alternativeUrl: el.url;
+        var url = info.alternative === true ? el.alternativeUrl : el.url;
         list.append('span').append('a')
             .attr('href', url)
             .attr('target', '_blank')
@@ -218,7 +219,7 @@ var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
                     return el.id;
                 }
             });
-        if (i !== (info.elem.length-1)) {
+        if (i !== (info.elem.length - 1)) {
             list.append('span').text(' | ');
         }
     });
@@ -227,12 +228,12 @@ var addEvidenceXRefLinks = function(tooltip, sourceRow, info) {
 Tooltip.prototype.addEvidences = function(evidences) {
     var tooltip = this;
     _.each(evidences, function(sources, eco) {
-        sources = _.filter(sources, function (source) {
+        sources = _.filter(sources, function(source) {
             return source !== undefined;
         });
 
         var typeRow = tooltip.table.append('tr')
-            .attr('class','up_pftv_evidence-col');
+            .attr('class', 'up_pftv_evidence-col');
         typeRow.append('td')
             .text('Evidence');
         var evidenceText = getEvidenceText(tooltip, eco, sources);
@@ -243,9 +244,9 @@ Tooltip.prototype.addEvidences = function(evidences) {
         delete groupedSources['undefined'];
 
         _.each(groupedSources, function(elem, index) {
-            addEvidenceXRefLinks(tooltip, undefined, {elem: elem, index: index});
+            addEvidenceXRefLinks(tooltip, undefined, { elem: elem, index: index });
             if (index === 'PubMed') {
-                addEvidenceXRefLinks(tooltip, undefined, {elem: elem, index: 'EuropePMC', alternative: true});
+                addEvidenceXRefLinks(tooltip, undefined, { elem: elem, index: 'EuropePMC', alternative: true });
             }
         });
     });
@@ -340,12 +341,12 @@ var hasPredictions = function(data) {
     if (data.frequency && (data.frequency !== 0)) {
         response = true;
     }
-    if (data.polyphenPrediction && (data.polyphenPrediction !== '-')
-        && (data.polyphenPrediction !== 'unknown') && (data.polyphenInUse !== false)) {
+    if (data.polyphenPrediction && (data.polyphenPrediction !== '-') &&
+        (data.polyphenPrediction !== 'unknown') && (data.polyphenInUse !== false)) {
         response = true;
     }
-    if (data.siftPrediction && (data.siftPrediction !== '-')
-        && (data.siftPrediction !== 'unknown') && (data.siftInUse !== false)) {
+    if (data.siftPrediction && (data.siftPrediction !== '-') &&
+        (data.siftPrediction !== 'unknown') && (data.siftInUse !== false)) {
         response = true;
     }
     return response;
@@ -354,8 +355,8 @@ var hasPredictions = function(data) {
 var addAssociation = function(tooltip) {
     if (Evidence.existAssociation(tooltip.data.association)) {
         var assocRow = tooltip.table.append('tr');
-        assocRow.append('td').attr('colspan', 2).classed('up_pftv_subsection',true).text('Disease Association');
-        _.each(tooltip.data.association, function(association){
+        assocRow.append('td').attr('colspan', 2).classed('up_pftv_subsection', true).text('Disease Association');
+        _.each(tooltip.data.association, function(association) {
             if (association.name) {
                 var diseaseRow = tooltip.table.append('tr');
                 diseaseRow.append('td').text('Disease');
@@ -384,6 +385,9 @@ var addAssociation = function(tooltip) {
                     });
                 });
             }
+            if (association.evidences) {
+                tooltip.addEvidences(association.evidences);
+            }
         });
     }
 };
@@ -391,11 +395,9 @@ var addAssociation = function(tooltip) {
 var addMutation = function(tooltip) {
     var mutRow = tooltip.table.append('tr');
     mutRow.append('td').text('Variant');
-    var text = (tooltip.data.wildType === '-'
-            ? tooltip.sequence.substring(+tooltip.data.begin, +tooltip.data.end+1)
-            : tooltip.data.wildType)
-        + ' > ' +
-        (tooltip.data.alternativeSequence === '-' ? 'del' : tooltip.data.alternativeSequence);
+    var text = tooltip.data.wildType +
+        ' > ' +
+        tooltip.data.alternativeSequence;
     mutRow.append('td').text(text);
 };
 
@@ -411,12 +413,12 @@ var addXRefs = function(tooltip, xrefs) {
         delete groupedSources['undefined'];
 
         var first = true;
-        _.each(groupedSources, function (elem, key) {
+        _.each(groupedSources, function(elem, key) {
             if (first) {
-                addEvidenceXRefLinks(tooltip, sourceRow, {elem: elem, index: key, textAttr: 'name'});
+                addEvidenceXRefLinks(tooltip, sourceRow, { elem: elem, index: key, textAttr: 'name' });
                 first = false;
             } else {
-                addEvidenceXRefLinks(tooltip, undefined, {elem: elem, index: key, textAttr: 'name'});
+                addEvidenceXRefLinks(tooltip, undefined, { elem: elem, index: key, textAttr: 'name' });
             }
         });
     }
@@ -425,7 +427,7 @@ var addXRefs = function(tooltip, xrefs) {
 var addUPSection = function(tooltip, upEvidences, upXrefs) {
     if (tooltip.data.ftId || tooltip.data.up_description || (upEvidences.length !== 0) || tooltip.data.association) {
         var upRow = tooltip.table.append('tr').classed('up_pftv_section', true);
-        upRow.append('td').attr('colspan',2).text('UniProt');
+        upRow.append('td').attr('colspan', 2).text('UniProt');
         addFtId(tooltip, tooltip.data.ftId);
         addDescription(tooltip, tooltip.data.up_description, 'up_description');
         tooltip.addEvidences(upEvidences);
@@ -440,7 +442,7 @@ var addSection = function(tooltip, data, ftId, description, evidences, xrefs, se
     if (data.ftId || description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0) ||
         data.consequence) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
-        lssRow.append('td').attr('colspan',2).text(sectionTitle);
+        lssRow.append('td').attr('colspan', 2).text(sectionTitle);
         addFtId(tooltip, ftId);
         addDescription(tooltip, description);
         addConsequence(tooltip, data.consequence);
@@ -452,7 +454,8 @@ var addSection = function(tooltip, data, ftId, description, evidences, xrefs, se
 
 var VariantTooltipViewer = function(tooltip) {
     if (tooltip.data.sourceType === Evidence.variantSourceType.mixed) {
-        var upEvidences = {}, lssEvidences = {};
+        var upEvidences = {},
+            lssEvidences = {};
         _.each(tooltip.data.evidences, function(sources, eco) {
             if (_.contains(Evidence.manual, eco)) {
                 upEvidences[eco] = tooltip.data.evidences[eco];
@@ -460,7 +463,8 @@ var VariantTooltipViewer = function(tooltip) {
                 lssEvidences[eco] = tooltip.data.evidences[eco];
             }
         });
-        var upXrefs = [], lssXrefs = [];
+        var upXrefs = [],
+            lssXrefs = [];
         _.each(tooltip.data.xrefs, function(xref) {
             if (xref.reviewed === true) {
                 upXrefs.push(xref);
@@ -522,8 +526,7 @@ Tooltip.variant = function() {
 var TooltipFactory = function() {
     return {
         createTooltip: function(fv, catTitle, data, container, coordinates) {
-            var tooltip
-                , type = data.type.toLowerCase();
+            var tooltip, type = data.type.toLowerCase();
             // error if the constructor doesn't exist
             if (typeof Tooltip[type] !== "function") {
                 Tooltip.basic.prototype = new Tooltip(fv, catTitle, data, container, coordinates);
