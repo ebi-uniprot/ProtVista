@@ -385,6 +385,9 @@ var addAssociation = function(tooltip) {
                     });
                 });
             }
+            if (association.evidences) {
+                tooltip.addEvidences(association.evidences);
+            }
         });
     }
 };

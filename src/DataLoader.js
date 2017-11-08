@@ -7,18 +7,29 @@ var _ = require('underscore');
 var Evidence = require('./Evidence');
 var Constants = require('./Constants');
 
+var evidenceGrouping = function (ftEvidences) {
+    var evidences = {};
+    _.each(ftEvidences, function(ev) {
+        if (evidences[ev.code]) {
+            evidences[ev.code].push(ev.source);
+        } else {
+            evidences[ev.code] = [ev.source];
+        }
+    });
+    return evidences;
+};
+
 var groupEvidencesByCode = function(features) {
     _.each(features, function(ft) {
         if (ft.evidences) {
-            var evidences = {};
-            _.each(ft.evidences, function(ev) {
-                if (evidences[ev.code]) {
-                    evidences[ev.code].push(ev.source);
-                } else {
-                    evidences[ev.code] = [ev.source];
+            ft.evidences = evidenceGrouping(ft.evidences);
+        }
+        if (ft.association) {
+            _.each(ft.association, function(disease) {
+                if (disease.evidences) {
+                    disease.evidences = evidenceGrouping(disease.evidences);
                 }
             });
-            ft.evidences = evidences;
         }
     });
     return features;

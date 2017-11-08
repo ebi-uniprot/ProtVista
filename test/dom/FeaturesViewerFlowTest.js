@@ -26,6 +26,7 @@ var ViewerHelper = require('../../src/ViewerHelper');
 var FeaturesData = require('./FeaturesData');
 var jQuery = require('jquery');
 var _ = require('underscore');
+var d3 = require('d3');
 
 var verifyHighlightAttributes = function(containerClass, path, exactPath, translate, height, x) {
     var categoryHighlight = document.querySelector('.' + containerClass + ' .up_pftv_highlight');
@@ -151,33 +152,32 @@ describe('FeaturesViewerFlowTest', function() {
             expect(+extent.getAttribute('width')).to.be.closeTo(740, 1);
         });
 
-        it('should create 2 up_pftv_buttons one with 3 children, one with 1 child', function() {
+        it('should create 1 up_pftv_buttons with 4 children', function() {
             var buttonsDiv = document.querySelectorAll('.up_pftv_container .up_pftv_buttons');
-            assert.equal(buttonsDiv.length, 2, 'two up_pftv_buttons');
-            assert.equal(buttonsDiv[0].childElementCount, 3, 'up_pftv_buttons children count');
-            assert.equal(buttonsDiv[1].childElementCount, 1, 'credits up_pftv_buttons children count');
+            assert.equal(buttonsDiv.length, 1, 'one up_pftv_buttons');
+            assert.equal(buttonsDiv[0].childElementCount, 4, 'up_pftv_buttons children count');
 
-            var buttons = document.querySelectorAll('.up_pftv_buttons span');
+            var buttons = document.querySelectorAll('.up_pftv_buttons a');
             assert.equal(buttons.length, 4, 'number of buttons');
-            assert.equal(buttons[0].getAttribute('class'), 'fv-icon-download up_pftv_icon-frame',
+            assert.equal(buttons[0].getAttribute('class'), 'up_pftv_icon-button up_pftv_icon-download',
                 'download button class');
-            assert.equal(buttons[1].getAttribute('class'), 'fv-icon-location up_pftv_icon-frame',
+            assert.equal(buttons[1].getAttribute('class'), 'up_pftv_icon-button up_pftv_icon-location',
                 'location button class');
-            assert.equal(buttons[2].getAttribute('class'), 'fv-icon-zoom-in up_pftv_icon-frame',
+            assert.equal(buttons[2].getAttribute('class'), 'up_pftv_icon-button up_pftv_icon-reset',
+                'reset button class');
+            assert.equal(buttons[3].getAttribute('class'), 'up_pftv_icon-button up_pftv_icon-zoom-in',
                 'zoom-in button class');
-            assert.equal(buttons[3].firstElementChild.getAttribute('class'), 'fv-icon-info-circled', 'info button' +
-                ' class');
         });
 
-        it('should create 1 up_pftv_credit_buttons with 1 child', function() {
-            var buttonsDiv = document.querySelectorAll('.up_pftv_container .up_pftv_credit_buttons');
-            assert.equal(buttonsDiv.length, 1, 'only one up_pftv_credit_buttons');
-            assert.equal(buttonsDiv[0].childElementCount, 1, 'up_pftv_buttons children count');
+        it('should create 1 up_pftv_credit_buttons with no child', function() {
+            var buttonsDiv = document.querySelectorAll('.up_pftv_container .up_pftv_credit');
+            assert.equal(buttonsDiv.length, 1, 'only one up_pftv_credit');
+            assert.equal(buttonsDiv[0].childElementCount, 0, 'up_pftv_credit children count');
 
-            var buttons = document.querySelectorAll('.up_pftv_credit_buttons span');
+            /*var buttons = document.querySelectorAll('.up_pftv_credit_buttons span');
             assert.equal(buttons.length, 1, 'number of credit buttons');
             assert.equal(buttons[0].firstElementChild.getAttribute('class'), 'fv-icon-info-circled', 'info button' +
-                ' class');
+                ' class');*/
         });
 
         it('should create 2 aaViewers aa sequence', function() {
@@ -469,7 +469,7 @@ describe('FeaturesViewerFlowTest', function() {
 
     describe('Zooming with icon', function() {
         it('should zoom in with button to the middle of the selected ft', function() {
-            var zoomIn = document.querySelector('.fv-icon-zoom-in');
+            var zoomIn = document.querySelector('.up_pftv_icon-zoom-in');
             var evt = document.createEvent("MouseEvents");
             evt.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomIn);
             zoomIn.dispatchEvent(evt); //zoom in
@@ -485,10 +485,10 @@ describe('FeaturesViewerFlowTest', function() {
         });
 
         it('should display only zoom-out button', function() {
-            var zoomBtn = document.querySelectorAll('.fv-icon-zoom-in');
+            var zoomBtn = document.querySelectorAll('.up_pftv_icon-zoom-in');
             assert.equal(zoomBtn.length, 0, 'no zoom-in button');
 
-            zoomBtn = document.querySelectorAll('.fv-icon-zoom-out');
+            zoomBtn = document.querySelectorAll('.up_pftv_icon-zoom-out');
             assert.equal(zoomBtn.length, 1, 'only one zoom-out button');
         });
 
@@ -506,7 +506,7 @@ describe('FeaturesViewerFlowTest', function() {
 
     describe('Zooming-out with icon', function() {
         it('should zoom-out with button', function() {
-            var zoomOutButton = document.querySelector('.fv-icon-zoom-out');
+            var zoomOutButton = document.querySelector('.up_pftv_icon-zoom-out');
             var outEvent = document.createEvent("MouseEvents");
             outEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomOutButton);
             zoomOutButton.dispatchEvent(outEvent); //zoom out
@@ -557,7 +557,7 @@ describe('FeaturesViewerFlowTest', function() {
 
     describe('Zooming when no feature is selected', function() {
         it('should zoom-in with button to position 1 when no ft is selected', function() {
-            var zoomInButton = document.querySelector('.fv-icon-zoom-in');
+            var zoomInButton = document.querySelector('.up_pftv_icon-zoom-in');
             var inEvent = document.createEvent("MouseEvents");
             inEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, zoomInButton);
             zoomInButton.dispatchEvent(inEvent); //zoom in
