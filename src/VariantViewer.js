@@ -38,6 +38,11 @@ var getPredictionColorScore = function(siftScore, siftPrediction, polyphenScore,
 };
 
 var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predictionScore) {
+    if (d.externalData && extDatum.consequence) {
+        var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
+        return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+    }
+
     if (fv.overwritePredictions === true) {
         if (externalPrediction !== undefined) {
             d.siftInUse = false;
@@ -61,12 +66,7 @@ var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predict
     }
 
     if (d.externalData) {
-        if (extDatum.consequence) {
-            var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
-            return pos !== -1 ? LegendDialog.consequenceColors[pos % LegendDialog.consequenceColors.length] : 'black';
-        } else {
-            return 'black';
-        }
+        return 'black';
     } else {
         return LegendDialog.othersColor;
     }
@@ -135,14 +135,7 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
         })
         .attr('stroke', function(d) {
             if (d.externalData) {
-                var keys = _.keys(d.externalData);
-                var extDatum = d.externalData[keys[0]];
-                if (extDatum.consequence) {
-                    var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
-                    return pos !== -1 ? LegendDialog.consequenceColors[pos % LegendDialog.consequenceColors.length] : 'black';
-                } else {
-                    return 'black';
-                }
+                return 'black';
             } else {
                 return 'none';
             }

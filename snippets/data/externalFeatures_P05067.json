@@ -265,7 +265,8 @@
       "alternativeSequence": "I",
       "begin": "86",
       "end": "86",
-      "wildType": "V"
+      "wildType": "V",
+      "consequence": "mutation"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -294,7 +295,8 @@
       "alternativeSequence": "V",
       "begin": "17",
       "end": "17",
-      "wildType": "A"
+      "wildType": "A",
+      "consequence": "missense"
     },
     {
       "type": "VARIANT", "category": "VARIATION",
@@ -319,6 +321,21 @@
       "polyphenScore": 0.0301,
       "siftPrediction": "tolerated",
       "siftScore": 0.67
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "alternativeSequence": "G",
+      "begin": "717",
+      "end": "717",
+      "wildType": "V",
+      "consequence": "missense"
+    },
+    {
+      "type": "VARIANT", "category": "VARIATION",
+      "alternativeSequence": "G",
+      "begin": "737",
+      "end": "737",
+      "wildType": "V"
     }
   ]
 }

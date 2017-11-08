@@ -136,7 +136,8 @@ var addSourceFilters = function() {
                             return label ? hasCustom && variant.externalData[label] : hasCustom;
                         }
                     },
-                    color: 'grey'
+                    color: 'grey',
+                    border: '2px solid black'
                 });
             }
         }
@@ -225,7 +226,7 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
                 }
             })
             .attr('style', function(filter) {
-                return getBackground(filter);
+                return getBackgroundAndBorder(filter);
             });
 
         anchor.append('span')
@@ -240,7 +241,7 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
 
         var update = function() {
             anchor.select('div').attr('style', function(filter) {
-                return getBackground(filter);
+                return getBackgroundAndBorder(filter);
             });
         };
     });
@@ -255,7 +256,7 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
             .style('visibility', 'hidden');
         container.selectAll('.up_pftv_legend')
             .attr('style', function(filter) {
-                return getBackground(filter);
+                return getBackgroundAndBorder(filter);
             });
     };
 
@@ -274,11 +275,13 @@ var updateResetButton = function(filters, container) {
     }
 };
 
-var getBackground = function(filter) {
+var getBackgroundAndBorder = function(filter) {
     if (filter.colorRange) {
         return 'background:' + (filter.on ? 'linear-gradient(' + filter.colorRange + ');' : '#ffffff');
     } else {
-        return 'background-color:' + (filter.on ? filter.color : '#ffffff');
+        var background = 'background-color:' + (filter.on ? filter.color : '#ffffff');
+        var border = filter.border ? 'border: ' + filter.border : '';
+        return background + ';' + border;
     }
 };
 
