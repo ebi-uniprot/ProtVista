@@ -13,8 +13,10 @@ var ViewerHelper = function() {
         createSVG: function(container, width, height, fv, clazz) {
             var svg = container
                 .append('svg')
-                .attr('width', width)
+                .attr('width', '100%')
                 .attr('height', height)
+                // .attr('viewBox', function(){return "0,0," + width + "," + height;})
+                // .attr('preserveAspectRatio', 'none')
                 .on('mousedown', function() {
                     mousedownXY = { x: d3.event.pageX, y: d3.event.pageY };
                     mouseupXY = { x: -2, y: -2 };

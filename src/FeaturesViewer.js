@@ -134,23 +134,27 @@ var createNavRuler = function(fv, container) {
 
     var navXScale = d3.scale.linear()
         .domain([1,fv.maxPos])
-        .range([fv.padding.left, fv.width - fv.padding.right]);
+        .range(getFvXScaleRange(fv, true));
 
     var svg = container
         .append('div')
         .attr('class', 'up_pftv_navruler')
         .append('svg')
         .attr('id','up_pftv_svg-navruler')
-        .attr('width', fv.width)
+        .attr('width', "100%")
         .attr('height', (navWithTrapezoid));
+        // .attr('viewBox', function(){return "0,0," + fv.width + "," + navWithTrapezoid;});
 
     var navXAxis = d3.svg.axis()
-        .scale(fv.xScale)
+        .scale(d3.scale.linear()
+            .domain(fv.xScale.domain())
+            .range(getFvXScaleRange(fv, true)))
         .orient('bottom');
 
-    svg.append('g')
-        .attr('class', 'x axis')
-        .call(navXAxis);
+    var xAxis = svg.append('g')
+        .attr('class', 'x axis');
+
+    xAxis.call(navXAxis);
 
     var viewport = d3.svg.brush()
         .x(navXScale)
@@ -164,6 +168,10 @@ var createNavRuler = function(fv, container) {
             update(fv);
             viewport.updateTrapezoid();
         });
+
+    viewport.xAxis = xAxis;
+    viewport.navXAxis = navXAxis;
+
     viewport.on("brushstart", function () {
         closeTooltipAndPopup(fv);
     });
@@ -211,7 +219,7 @@ var createNavRuler = function(fv, container) {
         var begin = fv.globalContainer.select(".up_pftv_navruler .extent").attr("x");
         var tWidth = fv.globalContainer.select(".up_pftv_navruler .extent").attr("width");
         var end = (+begin) + (+tWidth);
-        var path =  "M0," + (navWithTrapezoid) + "L0" + "," + (navWithTrapezoid-2)
+        var path =  "M0," + (navWithTrapezoid) + "L0" + "," + (navWithTrapezoid)
             + "L" + begin + "," + (navHeight-12) + "L" + begin + "," + navHeight
             + "L" + end + "," + navHeight + "L" + end + "," + (navHeight-12)
             + "L" + fv.width + "," + (navWithTrapezoid-2) + "L" + fv.width + "," + (navWithTrapezoid) + "Z";
@@ -281,8 +289,9 @@ var createAAViewer = function(fv, container, sequence) {
         .append('div')
         .attr('class','up_pftv_aaviewer')
         .append('svg')
-        .attr('width', aaViewWidth)
+        .attr('width', "100%")
         .attr('height',aaViewHeight);
+        // .attr('viewBox', function(){return "0,0," + aaViewWidth + "," + aaViewHeight;});
 
     //amino acids selector
     var aaSelectorPlot = function(){
@@ -465,12 +474,41 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
     });
 };
 
+var getFvWidth = function(fv){
+    if (fv.fixedWidth) return fv.fixedWidth;
+
+    var divCategoryName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
+    var width = jQuery(fv.parentElement).width() - divCategoryName.outerWidth(false);
+    divCategoryName.remove();
+    return width;
+};
+
+var getFvXScaleRange =  function(fv, padding) {
+    return padding ? [fv.padding.left, fv.width - fv.padding.right] : [0, fv.width];
+
+};
+
+var addIframe = function (opts, fv) {
+    var iframe = document.createElement('iframe');
+    iframe.class = "pv-resize-listener";
+    iframe.style.cssText = 'height: 0; background-color: transparent; margin: 0; padding: 0; overflow: hidden; border-width: 0; position: absolute; width: 100%;';
+    iframe.onload = function() {
+        iframe.contentWindow.addEventListener('resize', function() {
+            fv.resize();
+        });
+    };
+    opts.el.appendChild(iframe);
+};
+
 var FeaturesViewer = function(opts) {
+
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
         "notFound", "notConfigRetrieved", "regionHighlighted");
 
-    fv.width = 760;
+    fv.parentElement = opts.el;
+    fv.minWidth = opts.minWidth ? opts.minWidth : 0;
+    fv.width = getFvWidth(fv);
     fv.maxZoomSize = 30;
     fv.selectedFeature = undefined;
     fv.selectedFeatureElement = undefined;
@@ -528,7 +566,12 @@ var FeaturesViewer = function(opts) {
             } else if (opts.selectedFeature){
                 fv.selectFeature(opts.selectedFeature);
             }
+
+            addIframe(opts, fv);
+
+            return fv;
         });
+
     };
 
     fv.load();
@@ -660,9 +703,14 @@ FeaturesViewer.prototype.loadZoom = function(d) {
 
   fv.xScale = d3.scale.linear()
       .domain([1, d.sequence.length + 1])
-      .range([fv.padding.left, fv.width - fv.padding.right]);
+      .range(getFvXScaleRange(fv));
 
   fv.viewport = createNavRuler(fv, fv.header);
+  fv.header = fv.header.append('div')
+      .style('display', 'table')
+      .style('width', '100%')
+      .append('div')
+        .style('display', 'table-row');
   createButtons(fv, d, fv.header);
   fv.aaViewer = createAAViewer(fv, fv.header, d.sequence);
   fv.zoom = createZoom(fv);
@@ -691,6 +739,27 @@ FeaturesViewer.prototype.drawCategories = function(data, fv) {
         found.repaint(category[1]);
     }
   });
+};
+
+FeaturesViewer.prototype.resize = function() {
+    fv = this;
+
+    var widthAux = fv.width;
+    fv.width = Math.max(getFvWidth(fv), fv.minWidth);
+
+    if (fv.width <= fv.minWidth || widthAux == fv.width) return;
+
+    fv.xScale.range(getFvXScaleRange(fv));
+
+    fv.viewport.x().range(getFvXScaleRange(fv, true));
+    fv.viewport.domainEndLabel.attr('x',fv.width);
+    fv.viewport.xAxis.selectAll("*").remove();
+    fv.viewport.navXAxis.scale().range(getFvXScaleRange(fv, true));
+    fv.viewport.xAxis.call(fv.viewport.navXAxis);
+
+    update(fv);
+    updateZoomFromChart(fv);
+    updateViewportFromChart(fv);
 };
 
 module.exports = FeaturesViewer;

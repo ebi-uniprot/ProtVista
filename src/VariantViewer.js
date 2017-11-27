@@ -152,9 +152,29 @@ var drawVariants = function(variantViewer, bars, frequency, fv, container, catTi
     variantCircle.exit().remove();
 };
 
-var createDataSeries = function(fv, variantViewer, svg, features, series) {
-    var mainChart = svg.append('g')
-        .attr('transform', 'translate(0,' + variantViewer.margin.top + ')');
+var updateChartArea = function(variantViewer){
+    variantViewer.svg.select('#plotAreaClip rect')
+        .attr("width", function(){return getClipPathWidth(variantViewer);});
+
+    variantViewer.svg.selectAll('.variation-y.axis.left line')
+        .attr('x2', getAxisLength(variantViewer));
+
+    variantViewer.svg.selectAll('.variation-y.axis.right')
+        .attr('transform','translate(' + getAxisLength(variantViewer) + ', 0)');
+
+};
+
+var getClipPathWidth = function(variantViewer) {
+    return variantViewer.width - 20;
+};
+
+var getAxisLength = function(variantViewer) {
+    return variantViewer.width - 18;
+};
+
+var createDataSeries = function(fv, variantViewer, features, series) {
+    var mainChart = variantViewer.svg.append('g')
+        .attr('transform','translate(0,' + variantViewer.margin.top + ')');
 
     var chartArea = mainChart.append('g')
         .attr('clip-path', 'url(#plotAreaClip)');
@@ -162,8 +182,8 @@ var createDataSeries = function(fv, variantViewer, svg, features, series) {
     mainChart.append('clipPath')
         .attr('id', 'plotAreaClip')
         .append('rect')
-        .attr({ width: (variantViewer.width - 20), height: variantViewer.height })
-        .attr('transform', 'translate(10, -10)');
+        .attr({ width: (getClipPathWidth(variantViewer)) , height: variantViewer.height})
+        .attr('transform','translate(10, -10)');
 
     var dataSeries = chartArea
         .datum(features)
@@ -179,13 +199,13 @@ var createDataSeries = function(fv, variantViewer, svg, features, series) {
         .orient('right');
 
     mainChart.append('g')
-        .attr('transform', 'translate(12 ,0)')
-        .attr('class', 'variation-y axis')
+        .attr('transform','translate(12 ,0)')
+        .attr('class','variation-y axis left')
         .call(yAxis);
 
     mainChart.append('g')
-        .attr('transform', 'translate(' + (variantViewer.width - 18) + ', 0)')
-        .attr('class', 'variation-y axis')
+        .attr('transform','translate(' + getAxisLength(variantViewer) + ', 0)')
+        .attr('class','variation-y axis right')
         .call(yAxis2);
 
     fv.globalContainer.selectAll('g.variation-y g.tick').attr('class', function(d) {
@@ -266,16 +286,18 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
         return variationPlot;
     };
 
-    var svg = ViewerHelper.createSVG(container, variantViewer.width, variantViewer.height, fv, 'up_pftv_variants-svg');
+    variantViewer.svg = ViewerHelper.createSVG(container, variantViewer.width, variantViewer.height, fv, 'up_pftv_variants-svg');
 
     // Data series
     var series = variationPlot()
         .xScale(variantViewer.xScale)
         .yScale(variantViewer.yScale);
 
-    var dataSeries = createDataSeries(fv, variantViewer, svg, features, series);
+    var dataSeries = createDataSeries(fv, variantViewer, features, series);
 
     this.update = function() {
+        variantViewer.width = fv.width;
+        updateChartArea(variantViewer);
         dataSeries.call(series);
         if (fv.selectedFeature) {
             ViewerHelper.updateHighlight(fv);

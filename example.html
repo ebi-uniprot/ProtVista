@@ -2,10 +2,45 @@
 <script src="build/ProtVista.js"></script>
 <link href="build/css/main.css" rel="stylesheet"/>
 
-<div id=yourDiv></div>
+<style>
+    h2 {
+        text-align: center;
+        padding-top: 10px;
+    }
+</style>
+
+<h2>Fixed width</h2>
+<div style="margin: 10px">
+    For fixed width, the PV containing div needs to have a set width.
+</div>
+<div id="yourDivFixed" style="width: 800px"></div>
+
+<h2>Dynamic size</h2>
+<div style="margin: 10px">
+    Without set width, a DIV elemebt takes 100% of width of the parent element (window in this case).
+    Because ProtVista plugin is listening to its embedded iframe window resize event, it scales accordingly.
+</div>
+<div id="yourDivDynamic"></div>
+
+<h2>Dynamic size with minimal width</h2>
+<div style="margin: 10px">
+    It is possible to set a minimal width which the ProtVista plugin can take (600px here).
+</div>
+<div id="yourDivDynamicMin"></div>
+
+
 <script>
 // you can
-var yourDiv = document.getElementById("yourDiv");
 var ProtVista = require('ProtVista');
-new ProtVista({el: yourDiv, uniprotacc : 'P05067'});
+
+var yourDivFixed = document.getElementById("yourDivFixed");
+new ProtVista({el: yourDivFixed, uniprotacc : 'P05067'});
+
+var yourDivDynamic = document.getElementById("yourDivDynamic");
+new ProtVista({el: yourDivDynamic, uniprotacc : 'P05067'});
+
+var yourDivDynamicMin = document.getElementById("yourDivDynamicMin");
+new ProtVista({el: yourDivDynamicMin, uniprotacc : 'P05067', minWidth : 600});
+
+
 </script>

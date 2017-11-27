@@ -3,7 +3,7 @@ svg {
 }
 
 .up_pftv_buttons {
-    display: inline-block;
+    display: table-cell;
     padding: 0 .5em 0 .5em;
     width: 180px;
     text-align: right;
@@ -11,8 +11,13 @@ svg {
     position: relative;
 }
 
+.bottom-aa-container {
+    display: table;
+    width: 100%;
+}
+
 .up_pftv_credit_container {
-  display: inline-block;
+  display: table-cell;
   vertical-align: top;
   width: 180px;
   padding: 0 0.5em;
@@ -45,7 +50,7 @@ svg {
 
 .up_pftv_container {
     position: relative;
-    width: 960px;
+    /*width: 960px;*/
     color:#557071 !important;
     font-family: 'Helvetica neue', Helvetica, Arial, sans-serif !important;
     font-size: 13px !important;
@@ -96,15 +101,16 @@ svg {
 .up_pftv_category {
     margin-bottom: .1em;
     border-bottom: .1em solid #b2f5ff;
+    display: table;
+    width: 100%;
 }
 
 .up_pftv_category-name, .up_pftv_track-header {
     font-weight: 400;
     line-height: 2.1em;
-    display: inline-block;
     width: 180px;
     vertical-align: bottom;
-    padding: .485em;
+    padding: .5em;
     border: none;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -113,6 +119,8 @@ svg {
 
 .up_pftv_category-name {
     background-color: #b2f5ff;
+    display: table-cell;
+
 }
 
 .up_pftv_category a:hover {
@@ -122,6 +130,7 @@ svg {
 }
 
 .up_pftv_track-header {
+    display: table-cell;
     background-color: #d9faff;
     /*line-height: 1.6em;
     margin: .05em 0;*/
@@ -129,9 +138,19 @@ svg {
 
 .up_pftv_category-viewer, .up_pftv_track, .up_pftv_aaviewer {
     position: relative;
-    display: inline-block;
     vertical-align: bottom;
-    width: 760px;
+    /*width: 760px;*/
+}
+.up_pftv_track {
+    display: table-cell;
+}
+
+.up_pftv_aaviewer {
+    display: table-cell;
+}
+
+.up_pftv_category-viewer {
+    display: table-cell;
 }
 
 .up_pftv_category-viewer svg, .up_pftv_track svg, .up_pftv_aaviewer svg {
@@ -146,6 +165,10 @@ svg {
     vertical-align: top;
     margin-top: 1px;
     background-color: #D9FAFF;
+}
+
+.up_pftv_category-tracks {
+    display: table-row;
 }
 
 .up_pftv_track {
@@ -187,6 +210,10 @@ svg {
 .up_pftv_navruler line, .up_pftv_navruler path {
     fill: none;
     stroke: black;
+}
+
+.up_pftv_aaviewer path {
+    display: no;
 }
 
 .up_pftv_navruler .up_pftv_viewport {
@@ -782,4 +809,8 @@ a.up_pftv_icon-button:hover {
 
 .up_pftv_icon-info {
     background: url(../SVG/info.svg);
+}
+
+.up_pftv-clear {
+    clear:both;
 }

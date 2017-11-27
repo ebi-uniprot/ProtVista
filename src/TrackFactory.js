@@ -19,10 +19,18 @@ var Track = function(typeFeatures, category) {
     track.category = category;
     track.id = track.type + '_track';
 
-    track.titleContainer = category.tracksContainer.append('div').style('display', 'inline-block');
+    var tab = category.tracksContainer.append('div').style("display", "table").style("width", "100%");
+    var row = tab.append('div').style("display", "table-row");
 
-    track.trackContainer = category.tracksContainer.append('div')
+    track.titleContainer = row.append('div').style('display', 'table-cell');
+
+    track.trackContainer = row.append('div')
         .attr('class', 'up_pftv_track');
+
+    // category.tracksContainer.append('div').attr("class", "up_pftv-clear");
+
+
+
 };
 
 Track.prototype.update = function() {
