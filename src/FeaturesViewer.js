@@ -486,6 +486,18 @@ var getFvXScaleRange =  function(fv, padding) {
 
 };
 
+var addIframe = function (opts, fv) {
+    var iframe = document.createElement('iframe');
+    iframe.class = "pv-resize-listener";
+    iframe.style.cssText = 'height: 0; background-color: transparent; margin: 0; padding: 0; overflow: hidden; border-width: 0; position: absolute; width: 100%;';
+    iframe.onload = function() {
+        iframe.contentWindow.addEventListener('resize', function() {
+            fv.resize();
+        });
+    };
+    opts.el.appendChild(iframe);
+};
+
 var FeaturesViewer = function(opts) {
 
     var fv = this;
@@ -553,21 +565,11 @@ var FeaturesViewer = function(opts) {
                 fv.selectFeature(opts.selectedFeature);
             }
 
+            addIframe(opts, fv);
+
             return fv;
         });
 
-        var iframe = document.createElement('iframe');
-        iframe.id = "resize-listener";
-        iframe.style.cssText = 'height: 0; background-color: transparent; margin: 0; padding: 0; overflow: hidden; border-width: 0; position: absolute; width: 100%;';
-        iframe.onload = function() {
-            iframe.contentWindow.addEventListener('resize', function() {
-                fv.resize();
-            });
-        };
-        fv.getDispatcher().on('ready', function () {
-            opts.el.appendChild(iframe);
-            fv.resize();
-        });
     };
 
     fv.load();
