@@ -498,6 +498,7 @@ var addIframe = function (opts, fv) {
         });
     };
     opts.el.appendChild(iframe);
+    fv.resize(); //sometimes needed after adding iframe
 };
 
 var FeaturesViewer = function(opts) {
