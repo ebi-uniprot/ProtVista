@@ -704,7 +704,7 @@ FeaturesViewer.prototype.loadZoom = function(d) {
 
   fv.xScale = d3.scale.linear()
       .domain([1, d.sequence.length + 1])
-      .range(getFvXScaleRange(fv));
+      .range(getFvXScaleRange(fv, true));
 
   fv.viewport = createNavRuler(fv, fv.header);
   fv.header = fv.header.append('div')
