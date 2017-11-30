@@ -750,7 +750,7 @@ FeaturesViewer.prototype.resize = function() {
 
     if (fv.width <= fv.minWidth || widthAux == fv.width) return;
 
-    fv.xScale.range(getFvXScaleRange(fv));
+    fv.xScale.range(getFvXScaleRange(fv, true));
 
     fv.viewport.x().range(getFvXScaleRange(fv, true));
     fv.viewport.domainEndLabel.attr('x',fv.width);
