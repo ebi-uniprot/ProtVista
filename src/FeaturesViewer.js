@@ -477,10 +477,17 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
 var getFvWidth = function(fv){
     if (fv.fixedWidth) return fv.fixedWidth;
 
-    var divCategoryName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
-    var width = jQuery(fv.parentElement).width() - divCategoryName.outerWidth(false);
-    divCategoryName.remove();
-    return width;
+    var divCatName = jQuery('.up_pftv_category-name');
+    var catNameWidth;
+    if (divCatName.length === 0){
+        divCatName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
+        catNameWidth = divCatName.outerWidth(false);
+        divCatName.remove();
+    } else {
+        catNameWidth = divCatName.outerWidth(false);
+    }
+
+    return jQuery(fv.parentElement).width() - catNameWidth;
 };
 
 var getFvXScaleRange =  function(fv, padding) {
