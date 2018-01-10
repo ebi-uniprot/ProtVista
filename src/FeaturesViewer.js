@@ -474,20 +474,21 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
     });
 };
 
+var catNameWidth = 0;
 var getFvWidth = function(fv){
+
     if (fv.fixedWidth) return fv.fixedWidth;
 
-    var divCatName = jQuery('.up_pftv_category-name');
-    var catNameWidth;
-    if (divCatName.length === 0){
-        divCatName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
+    if (catNameWidth === 0){
+        var divCatName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
         catNameWidth = divCatName.outerWidth(false);
         divCatName.remove();
-    } else {
-        catNameWidth = divCatName.outerWidth(false);
     }
 
-    return jQuery(fv.parentElement).width() - catNameWidth;
+    var parent = jQuery(fv.parentElement);
+    var container = parent.children('.up_pftv_container');
+
+    return container.length > 0 ? container.width() - catNameWidth : parent.width() - catNameWidth;
 };
 
 var getFvXScaleRange =  function(fv, padding) {
@@ -504,7 +505,8 @@ var addIframe = function (opts, fv) {
             fv.resize();
         });
     };
-    opts.el.appendChild(iframe);
+    // opts.el.appendChild(iframe);
+    jQuery(opts.el).children('.up_pftv_container').append(iframe); //child of up_pftv_container so that it can respond to scrollbar (dis)appearance
     fv.resize(); //sometimes needed after adding iframe
 };
 
@@ -755,7 +757,7 @@ FeaturesViewer.prototype.resize = function() {
     var widthAux = fv.width;
     fv.width = Math.max(getFvWidth(fv), fv.minWidth);
 
-    if (fv.width <= fv.minWidth || widthAux == fv.width) return;
+    if (fv.width <= fv.minWidth || widthAux === fv.width) return;
 
     fv.xScale.range(getFvXScaleRange(fv, true));
 
