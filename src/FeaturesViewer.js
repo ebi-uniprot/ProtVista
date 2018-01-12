@@ -752,7 +752,7 @@ FeaturesViewer.prototype.drawCategories = function(data, fv) {
 };
 
 FeaturesViewer.prototype.resize = function() {
-    fv = this;
+    var fv = this;
 
     var widthAux = fv.width;
     fv.width = Math.max(getFvWidth(fv), fv.minWidth);
