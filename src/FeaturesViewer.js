@@ -410,12 +410,20 @@ var findFeature = function(fv, selection) {
 };
 
 var initSources = function (opts) {
+    Constants.initSources();
     if (opts.defaultSources === false) {
         Constants.clearDataSources();
     }
     if (opts.customDataSource) {
         Constants.addSource(opts.customDataSource);
     }
+
+    if (opts.customDataSources) {
+        _.each(opts.customDataSources, function(source) {
+            Constants.addSource(source);
+        });
+    }
+
 };
 
 var loadSources = function(opts, dataSources, loaders, delegates, fv) {
