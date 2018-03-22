@@ -714,6 +714,9 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
 };
 
 FeaturesViewer.prototype.loadZoom = function(d) {
+    // First promise to be resolved wil ressolve global paramaters, but it does not need to be call to UniProt,
+    // but rather a call to custom data source which does not need to have accession set
+    if (!d.accession) return;
   var fv = this;
   fv.sequence = d.sequence;
   fv.accession = d.accession;
