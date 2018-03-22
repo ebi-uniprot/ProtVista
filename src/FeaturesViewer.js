@@ -443,6 +443,8 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
                 if (!fv.sequence) {
                     fv.loadZoom(d);
                 }
+                // If data of the first promise did not have accession field, it would not be set
+                if (!fv.accession && d.accession) fv.accession = d.accession;
                 var features = d.features;
                 // group by categories
                 if (features.length > 0 && _.has(features[0], 'category')) {
@@ -714,9 +716,6 @@ FeaturesViewer.prototype.initLayout = function(opts, d) {
 };
 
 FeaturesViewer.prototype.loadZoom = function(d) {
-    // First promise to be resolved wil ressolve global paramaters, but it does not need to be call to UniProt,
-    // but rather a call to custom data source which does not need to have accession set
-    if (!d.accession) return;
   var fv = this;
   fv.sequence = d.sequence;
   fv.accession = d.accession;
