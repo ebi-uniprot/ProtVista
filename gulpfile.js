@@ -162,7 +162,9 @@ gulp.task('build-browser-min',['copy-resources'], function() {
     return b.bundle()
         .pipe(source(outputFile + ".min.js"))
         .pipe(chmod(644))
-        .pipe(streamify(uglify()))
+        .pipe(streamify(uglify().on('error', function(e){
+            console.log(e);
+        })))
         .pipe(gulp.dest(buildDir));
 });
 
