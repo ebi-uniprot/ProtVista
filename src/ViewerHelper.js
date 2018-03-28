@@ -6,20 +6,20 @@ var d3 = require("d3");
 var TooltipFactory = require("./TooltipFactory");
 var FeatureFactory = require("./FeatureFactory");
 
-var ViewerHelper = function() {
+var ViewerHelper = function () {
     var mousedownXY = { x: -1, y: -1 },
         mouseupXY = { x: -2, y: -2 };
     return {
-        createSVG: function(container, width, height, fv, clazz) {
+        createSVG: function (container, width, height, fv, clazz) {
             var svg = container
                 .append('svg')
                 .attr('width', width)
                 .attr('height', height)
-                .on('mousedown', function() {
+                .on('mousedown', function () {
                     mousedownXY = { x: d3.event.pageX, y: d3.event.pageY };
                     mouseupXY = { x: -2, y: -2 };
                 })
-                .on('mouseup', function() {
+                .on('mouseup', function () {
                     mouseupXY = { x: d3.event.pageX, y: d3.event.pageY };
                     if ((mousedownXY.x === mouseupXY.x) && (mousedownXY.y === mouseupXY.y) && !fv.overFeature) {
                         if (fv.selectedFeature) {
@@ -46,7 +46,7 @@ var ViewerHelper = function() {
     };
 }();
 
-ViewerHelper.highlightPath = function(feature, fv, height) {
+ViewerHelper.highlightPath = function (feature, fv, height) {
     var aaWidth = fv.xScale(2) - fv.xScale(1);
     var gapRegion = aaWidth / 2;
     var width = aaWidth * (feature.end ? feature.end - feature.begin + 1 : 1);
@@ -73,7 +73,7 @@ ViewerHelper.highlightPath = function(feature, fv, height) {
     return path;
 };
 
-ViewerHelper.updateFeatureHighlightSelector = function(fv) {
+ViewerHelper.updateFeatureHighlightSelector = function (fv) {
     if (fv.selectedFeature) {
         fv.updateFeatureHighlightSelector(fv.selectedFeature.begin, fv.selectedFeature.end);
     } else if (fv.highlight) {
@@ -83,7 +83,7 @@ ViewerHelper.updateFeatureHighlightSelector = function(fv) {
     }
 };
 
-ViewerHelper.updateHighlight = function(fv) {
+ViewerHelper.updateHighlight = function (fv) {
     var feature;
     if (fv.selectedFeature) {
         feature = fv.selectedFeature;
@@ -95,7 +95,7 @@ ViewerHelper.updateHighlight = function(fv) {
 
     var xTranslate = fv.xScale(feature.begin);
     fv.globalContainer.selectAll('.up_pftv_highlight')
-        .attr('d', function() {
+        .attr('d', function () {
             var height = d3.select(this).attr('height');
             return ViewerHelper.highlightPath(feature, fv, height);
         })
@@ -103,7 +103,7 @@ ViewerHelper.updateHighlight = function(fv) {
     this.updateFeatureHighlightSelector(fv);
 };
 
-ViewerHelper.resetHighlight = function(fv) {
+ViewerHelper.resetHighlight = function (fv) {
     fv.highlight = undefined;
     fv.globalContainer.selectAll('.up_pftv_highlight')
         .attr('d', 'M-1,-1')
@@ -111,11 +111,11 @@ ViewerHelper.resetHighlight = function(fv) {
     this.updateFeatureHighlightSelector(fv);
 };
 
-ViewerHelper.deselectFeature = function(fv) {
+ViewerHelper.deselectFeature = function (fv) {
     this.selectFeature(fv.selectedFeature, fv.selectedFeatureElement, fv);
 };
 
-ViewerHelper.selectFeature = function(feature, elem, fv) {
+ViewerHelper.selectFeature = function (feature, elem, fv) {
     if (feature && elem) {
         fv.highlight = undefined;
         var selectedElem = d3.select(elem);
@@ -135,17 +135,37 @@ ViewerHelper.selectFeature = function(feature, elem, fv) {
         selectedElem.classed('up_pftv_activeFeature', !selectedPath);
         if (previousSelection.feature) {
             fv.dispatcher.featureDeselected({ feature: previousSelection.feature, color: d3.select(previousSelection.elem).style("fill") });
+            elem.dispatchEvent(
+                new CustomEvent('change', {
+                    detail: {
+                        highlightend: undefined,
+                        highlightstart: undefined
+                    },
+                    bubbles: true,
+                    cancelable: true
+                })
+            );
         }
         if (feature !== previousSelection.feature) {
             if (previousSelection.elem) {
                 d3.select(previousSelection.elem).classed('up_pftv_activeFeature', false);
             }
             fv.dispatcher.featureSelected({ feature: fv.selectedFeature, color: selectedElem.style("fill") });
+            elem.dispatchEvent(
+                new CustomEvent('change', {
+                    detail: {
+                        highlightend: fv.selectedFeature.end,
+                        highlightstart: fv.selectedFeature.begin
+                    },
+                    bubbles: true,
+                    cancelable: true
+                })
+            );
         }
     }
 };
 
-ViewerHelper.centerToHighlightedSelection = function(fv) {
+ViewerHelper.centerToHighlightedSelection = function (fv) {
     var feature;
 
     if (fv.selectedFeature) {
@@ -169,12 +189,12 @@ ViewerHelper.centerToHighlightedSelection = function(fv) {
     }
 };
 
-ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container) {
+ViewerHelper.addEventsClassAndTitle = function (catTitle, elements, fv, container) {
     elements
-        .classed('up_pftv_activeFeature', function(d) {
+        .classed('up_pftv_activeFeature', function (d) {
             return d === fv.selectedFeature;
         })
-        .on('click', function(d) {
+        .on('click', function (d) {
             var elem = d3.select(this);
             if (!elem.classed('up_pftv_variant_hidden')) {
                 if (!elem.classed('up_pftv_activeFeature')) {
@@ -189,7 +209,7 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
                 ViewerHelper.selectFeature(d, this, fv);
             }
         })
-        .on('mouseover', function(d) {
+        .on('mouseover', function (d) {
             fv.overFeature = true;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
@@ -198,7 +218,7 @@ ViewerHelper.addEventsClassAndTitle = function(catTitle, elements, fv, container
                 fv.globalContainer.selectAll('g.up_pftv_aa_' + initial + ' line').style('opacity', 1);
             }
         })
-        .on('mouseout', function(d) {
+        .on('mouseout', function (d) {
             fv.overFeature = false;
             if (d3.select(this).classed('up_pftv_variant')) {
                 var initial = d.alternativeSequence.charAt(0);
