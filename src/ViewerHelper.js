@@ -154,8 +154,7 @@ ViewerHelper.selectFeature = function (feature, elem, fv) {
             elem.dispatchEvent(
                 new CustomEvent('change', {
                     detail: {
-                        highlightend: fv.selectedFeature.end,
-                        highlightstart: fv.selectedFeature.begin
+                        highlight: fv.selectedFeature.begin + ',' + fv.selectedFeature.end
                     },
                     bubbles: true,
                     cancelable: true
