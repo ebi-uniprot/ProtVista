@@ -5,10 +5,11 @@ svg {
 .up_pftv_buttons {
     display: table-cell;
     padding: 0 .5em 0 .5em;
-    width: 180px;
+    width: 193px;
     text-align: right;
     vertical-align: bottom;
     position: relative;
+    box-sizing: border-box;
 }
 
 .bottom-aa-container {
@@ -108,7 +109,7 @@ svg {
 .up_pftv_category-name, .up_pftv_track-header {
     font-weight: 400;
     line-height: 2.1em;
-    width: 198px;
+    width: 193px;
     vertical-align: bottom;
     padding: .5em;
     border: none;
@@ -132,6 +133,7 @@ svg {
 .up_pftv_track-header {
     display: table-cell;
     background-color: #d9faff;
+    box-sizing: border-box;
     /*line-height: 1.6em;
     margin: .05em 0;*/
 }
