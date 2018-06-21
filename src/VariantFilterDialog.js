@@ -28,7 +28,9 @@ var defaultFilterCasePrediction = {
     on: true,
     properties: {
         'alternativeSequence': /[^*]/,
-        'sourceType': [Evidence.variantSourceType.lss, null],
+        'sourceType': function(variant) {
+            return Evidence.getSourceType(variant.xrefs).hasLSS;
+        },
         'externalData': function(variant) {
             if (!variant.sourceType) {
                 return _.some(variant.externalData, function(data) {
@@ -51,10 +53,11 @@ var defaultFilterCaseNonDisease = {
                 return association.disease !== true;
             }) || (!variant.association);
         },
-        'sourceType': [
-            Evidence.variantSourceType.uniprot,
-            Evidence.variantSourceType.mixed
-        ]
+        'sourceType': function(variant) {
+            return Evidence.getSourceType(variant.xrefs).hasUniProt 
+            || Evidence.getSourceType(variant.xrefs).hasClinVar;
+        },
+
     },
     color: LegendDialog.UPNonDiseaseColor
 };
@@ -75,21 +78,31 @@ var defaultFilterCaseUP = {
     label: 'UniProt reviewed',
     on: true,
     properties: {
-        'sourceType': [
-            Evidence.variantSourceType.uniprot,
-            Evidence.variantSourceType.mixed
-        ]
+        'sourceType': function(variant) {
+            return Evidence.getSourceType(variant.xrefs).hasUniProt;
+        }
     },
     color: 'grey'
 };
+
+var defaultFilterCaseClinvar = {
+    label: 'ClinVar',
+    on: true,
+    properties: {
+        'sourceType': function(variant) {
+            return Evidence.getSourceType(variant.xrefs).hasClinVar;
+        }
+    },
+    color: 'grey'
+};
+
 var defaultFilterCaseLSS = {
     label: 'Large scale studies',
     on: true,
     properties: {
-        'sourceType': [
-            Evidence.variantSourceType.lss,
-            Evidence.variantSourceType.mixed
-        ]
+        'sourceType': function(variant) {
+            return Evidence.getSourceType(variant.xrefs).hasLSS;
+        }
     },
     color: 'grey'
 };
@@ -109,6 +122,7 @@ var populateFilters = function(fv) {
             defaultFilterConsequence.cases.push(defaultFilterCaseOthers);
             filters.push(defaultFilterConsequence);
             defaultFilterSource.cases.push(defaultFilterCaseUP);
+            defaultFilterSource.cases.push(defaultFilterCaseClinvar);
             defaultFilterSource.cases.push(defaultFilterCaseLSS);
             filters.push(defaultFilterSource);
         } else {

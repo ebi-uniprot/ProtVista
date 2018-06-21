@@ -30,11 +30,20 @@ var Evidence = function() {
             return _.some(evidences, function(evidence) {
                 return _.contains(Evidence.automatic, evidence.code);
             });
-        }, variantSourceType: {
-            uniprot: 'uniprot',
-            lss: 'large_scale_study',
-            mixed: 'mixed'
-        }, existAssociation: function(association) {
+        }, getSourceType: function(xrefs){
+            return {
+                hasUniProt: _.some(xrefs, function(xref) { return xref.name === 'UniProt'}),
+                hasClinVar: _.some(xrefs, function(xref) { return xref.name === 'clinvar'}),
+                hasLSS: _.some(xrefs, function(xref) { 
+                    return xref.name === 'Ensembl' 
+                    || xref.name === 'dbSNP' 
+                    || xref.name === 'cosmic curated' 
+                    || xref.name === '1000Genomes'
+                    || xref.name === 'ExAC'
+                    || xref.name === 'ESP'
+                })
+            }
+        },existAssociation: function(association) {
             if (association) {
                 if (association.length !== 0) {
                     if ((association[0].moreInfo && (association[0].moreInfo.length !== 0))

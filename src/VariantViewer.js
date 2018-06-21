@@ -75,8 +75,7 @@ var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predict
 var variantsFill = function(d, fv) {
     if ((d.alternativeSequence === '*') || (d.begin > fv.maxPos)) {
         return LegendDialog.othersColor;
-    } else if ((d.sourceType === Evidence.variantSourceType.uniprot) ||
-        (d.sourceType === Evidence.variantSourceType.mixed)) {
+    } else if (Evidence.getSourceType(d.xrefs).hasUniProt || Evidence.getSourceType(d.xrefs).hasClinVar) {
         if (Evidence.existAssociation(d.association)) {
             return LegendDialog.UPDiseaseColor;
         } else {

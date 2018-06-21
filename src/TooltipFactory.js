@@ -168,27 +168,28 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
     if (keys || (tooltip.data.sourceType !== undefined)) {
         var dataSource = tooltip.table.append('tr');
         dataSource.append('td').text('Source');
+        var sourceTypes = Evidence.getSourceType(tooltip.data.xrefs);
         var sourceText = '';
         var isUniProt = false,
             isLSS = false;
-        if (tooltip.data.sourceType === Evidence.variantSourceType.mixed) {
-            sourceText = keys ? 'UniProt, large scale studies and custom data (' + keys + ')' :
-                'UniProt and large scale studies';
-        } else if (tooltip.data.sourceType === Evidence.variantSourceType.uniprot) {
-            isUniProt = true;
-            sourceText = keys ? 'UniProt and custom data (' + keys + ')' : 'UniProt';
-        } else if (tooltip.data.sourceType === Evidence.variantSourceType.lss) {
-            isLSS = true;
-            sourceText = keys ? 'Large scale studies and custom data (' + keys + ')' : 'Large scale studies';
-        } else {
-            sourceText = 'Custom data (' + keys + ')';
+        if (sourceTypes.hasUniProt ) {
+            sourceText = 'UniProt';
+        } 
+        if (sourceTypes.hasClinVar ) {
+            sourceText += sourceText.length > 0 ? ', ' : '';
+            sourceText += 'Clinvar';
+        } 
+        if (sourceTypes.hasLSS ) {
+            sourceText += sourceText.length > 0 ? ', ' : '';
+            sourceText += 'large scale studies';
         }
+        sourceText += keys ? ' and custom data (' + keys + ')' : '';
         dataSource.append('td').text(sourceText);
         parseVariantDescription(tooltip.data);
-        if (isUniProt) {
+        if (sourceTypes.hasUniProt) {
             addFtId(tooltip, tooltip.data.ftId);
             addDescription(tooltip, tooltip.data.up_description, 'up_description');
-        } else if (isLSS) {
+        } else if (sourceTypes.hasLSS) {
             addDescription(tooltip, tooltip.data.lss_description, 'lss_description');
         }
     } else {
@@ -453,7 +454,10 @@ var addSection = function(tooltip, data, ftId, description, evidences, xrefs, se
 };
 
 var VariantTooltipViewer = function(tooltip) {
-    if (tooltip.data.sourceType === Evidence.variantSourceType.mixed) {
+    if (
+        Evidence.getSourceType(tooltip.data.xrefs).hasUniProt
+        && Evidence.getSourceType(tooltip.data.xrefs).hasLSS
+    ) {
         var upEvidences = {},
             lssEvidences = {};
         _.each(tooltip.data.evidences, function(sources, eco) {

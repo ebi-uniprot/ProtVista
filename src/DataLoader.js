@@ -163,7 +163,6 @@ var DataLoader = function() {
                 d.begin = +d.begin;
                 d.end = d.end ? +d.end : d.begin;
                 d.wildType = d.wildType ? d.wildType : sequence.substring(d.begin, d.end + 1);
-                d.sourceType = d.sourceType ? d.sourceType.toLowerCase() : d.sourceType;
                 if ((1 <= d.begin) && (d.begin <= seq.length)) {
                     mutationArray[d.begin].variants.push(setVariantData(source, d));
                 } else if ((seq.length + 1) === d.begin) {

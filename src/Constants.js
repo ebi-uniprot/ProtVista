@@ -22,7 +22,7 @@ var uniprotSources = [
         category: 'PROTEOMICS'
     },
     {
-        url: 'https://www.ebi.ac.uk/proteins/api/variation/',
+        url: 'https://wwwdev.ebi.ac.uk/proteins/api/variation/',
         source: uniprotSource,
         category: 'VARIATION'
     },
