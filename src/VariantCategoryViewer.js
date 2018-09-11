@@ -23,21 +23,31 @@ var VariantCategoryViewer = function(category) {
         return d.variants.length;
     });
 
-    var varYScale = d3.scale.linear()
-        .domain([0,d3.max(varCatViewer.variationCountArray)])
+
+    varCatViewer.yScale = d3.scale.linear()
         .range([height, 0]);
+
+    this.updateYScaleDomain = function() {
+        varCatViewer = this;
+
+        varCatViewer.yScale.domain([0,d3.max(varCatViewer.variationCountArray)]);
+    };
+    this.updateYScaleDomain();
 
     var line = d3.svg.line()
         .x(function(d,i) {
             return xScale(i);
         })
         .y(function(d) {
-            return varYScale(d);
+            return varCatViewer.yScale(d);
         })
         .interpolate('linear');
 
     this.init = function () {
         var varCatViewer = this;
+
+        varCatViewer.updateYScaleDomain();
+
         varCatViewer.varChart.append("path")
             .data(varCatViewer.features)
             .attr("class","up_pftv_block-area")
