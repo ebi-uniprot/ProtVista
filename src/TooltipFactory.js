@@ -124,7 +124,7 @@ var addDescription = function(tooltip, description) {
     if (description) {
         var dataDes = tooltip.table.append('tr');
         dataDes.append('td').text('Description');
-        dataDes.append('td').text(description);
+        dataDes.append('td').html(description);
     }
 };
 
