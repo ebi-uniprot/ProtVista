@@ -215,7 +215,7 @@ var createDataSeries = function(fv, variantViewer, features, series) {
     return dataSeries;
 };
 
-var VariantViewer = function(catTitle, features, container, fv, variantHeight, titleContainer) {
+var VariantViewer = function(catTitle, features, container, fv, category, variantHeight, titleContainer) {
     var variantViewer = this;
     variantViewer.height = variantHeight;
     variantViewer.width = fv.width;
@@ -308,6 +308,7 @@ var VariantViewer = function(catTitle, features, container, fv, variantHeight, t
 
     this.updateData = function(data) {
         dataSeries.datum(data);
+        category.categoryViewer.updateData(data);
         this.update();
     };
 

@@ -46,7 +46,7 @@ var BasicTrackViewer = function(track) {
 
 var VariantTrackViewer = function(track) {
     return new VariantViewer(
-        track.category.name, track.data, track.trackContainer, track.category.fv, track.variantHeight
+        track.category.name, track.data, track.trackContainer, track.category.fv, track.category, track.variantHeight
         , track.titleContainer
     );
 };
