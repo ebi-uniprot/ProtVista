@@ -7,9 +7,16 @@ var _ = require('underscore');
 var Evidence = require('./Evidence');
 var Constants = require('./Constants');
 
+var updatePubMedEvidenceSpelling = function(source) {
+    if (source && source.name && (source.name.toUpperCase() === 'PUBMED')) {
+        source.name = 'PubMed';
+    }
+};
+
 var evidenceGrouping = function (ftEvidences) {
     var evidences = {};
     _.each(ftEvidences, function(ev) {
+        updatePubMedEvidenceSpelling(ev.source);
         if (evidences[ev.code]) {
             evidences[ev.code].push(ev.source);
         } else {
