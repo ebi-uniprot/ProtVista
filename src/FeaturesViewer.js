@@ -524,7 +524,7 @@ var FeaturesViewer = function(opts) {
 
     var fv = this;
     fv.dispatcher = d3.dispatch("featureSelected", "featureDeselected", "ready", "noDataAvailable", "noDataRetrieved",
-        "notFound", "notConfigRetrieved", "regionHighlighted");
+        "notFound", "notConfigRetrieved", "regionHighlighted", "variantDataUpdated");
 
     fv.parentElement = opts.el;
     fv.minWidth = opts.minWidth ? opts.minWidth : 0;

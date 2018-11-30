@@ -310,6 +310,7 @@ var VariantViewer = function(catTitle, features, container, fv, category, varian
         dataSeries.datum(data);
         category.categoryViewer.updateData(data);
         this.update();
+        fv.dispatcher.variantDataUpdated();
     };
 
     this.reset = function() {
