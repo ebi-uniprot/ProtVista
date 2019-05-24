@@ -4,9 +4,8 @@
 [![NPM version](http://img.shields.io/npm/v/ProtVista.svg)](https://www.npmjs.org/package/ProtVista)
 [![Build Status](https://secure.travis-ci.org/ebi-uniprot/ProtVista.png?branch=master)](http://travis-ci.org/ebi-uniprot/ProtVista)
 
-**NOTE**
-We are developing the next version of ProtVista as a collection of web components (custom elements v1). If you're thinking of using ProtVista in your own resource, it might be worth checking out https://github.com/ebi-webcomponents/ or getting in touch.
-**/NOTE**
+**DEPRECATED**
+This version of ProtVista is not maintained anymore. Head over to https://github.com/ebi-webcomponents/nightingale for the new version.
 
 How to cite us: **ProtVista: visualization of protein sequence annotations** (doi: [10.1093/bioinformatics/btx120](https://doi.org/10.1093/bioinformatics/btx120))
 
