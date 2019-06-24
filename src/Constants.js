@@ -12,22 +12,22 @@ var visualizationTypes = {
 var uniprotSource = 'uniprot';
 var uniprotSources = [
     {
-        url: 'https://www.ebi.ac.uk/proteins/api/features/',
+        url: 'https://www.ebi.ac.uk/proteins/api/features?accession=',
         source: uniprotSource,
         category: 'FEATURES'
     },
     {
-        url: 'https://www.ebi.ac.uk/proteins/api/proteomics/',
+        url: 'https://www.ebi.ac.uk/proteins/api/proteomics?accession=',
         source: uniprotSource,
         category: 'PROTEOMICS'
     },
     {
-        url: 'https://www.ebi.ac.uk/proteins/api/variation/',
+        url: 'https://www.ebi.ac.uk/proteins/api/variation?accession=',
         source: uniprotSource,
         category: 'VARIATION'
     },
     {
-        url: 'https://www.ebi.ac.uk/proteins/api/antigen/',
+        url: 'https://www.ebi.ac.uk/proteins/api/antigen?accession=',
         source: uniprotSource,
         category: 'ANTIGEN'
     }

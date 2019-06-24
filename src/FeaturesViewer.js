@@ -418,8 +418,13 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
             var dataLoader = DataLoader.get(url);
             loaders.push(dataLoader);
             dataLoader.done(function (d) {
-                if (d instanceof Array) //Workaround to be removed
-                    d = d[0];
+                if (d instanceof Array) {
+                    if (d.length === 0) {
+                        return;
+                    } else {
+                        d = d[0]; //Workaround to be removed
+                    }
+                }
                 // First promise to resolve will set global parameters
                 if (!fv.sequence) {
                     fv.loadZoom(d);
