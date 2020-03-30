@@ -4,7 +4,8 @@
     "version": "2.0.6",
     "homepage": "https://github.com/ebi-uniprot/ProtVista",
     "author": "UniProt",
-    "contributors": [{
+    "contributors": [
+        {
             "name": "Leyla Jael Garcia Castro",
             "email": "ljgarcia@ebi.ac.uk"
         },
@@ -20,10 +21,12 @@
     "bugs": {
         "url": "https://github.com/ebi-uniprot/ProtVista/issues"
     },
-    "licenses": [{
-        "type": "Apache 2",
-        "url": "https://github.com/ebi-uniprot/ProtVista/blob/master/LICENSE"
-    }],
+    "licenses": [
+        {
+            "type": "Apache 2",
+            "url": "https://github.com/ebi-uniprot/ProtVista/blob/master/LICENSE"
+        }
+    ],
     "main": "src/FeaturesViewer",
     "config": {
         "classname": "FeaturesViewerTest",

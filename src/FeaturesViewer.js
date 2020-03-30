@@ -490,9 +490,8 @@ var getFvWidth = function(fv){
     if (fv.fixedWidth) return fv.fixedWidth;
 
     if (catNameWidth === 0){
-        var divCatName = jQuery('<div class="up_pftv_category-name"></div>').appendTo(jQuery("body"));
+        var divCatName = jQuery('<div class="up_pftv_category-name"></div>');
         catNameWidth = divCatName.outerWidth(false);
-        divCatName.remove();
     }
 
     var parent = jQuery(fv.parentElement);
