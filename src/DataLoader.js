@@ -54,7 +54,7 @@ var DataLoader = function() {
             return url.indexOf("data:") == 0 ? $.Deferred().resolve(JSON.parse(decodeURI(url).replace(/[^,]*,/, ''))) : $.getJSON(url);
             // return $.getJSON(url);
         },
-        post: function(url, data, contentType) {
+        post: function(url, data, contentType, unpack) {
             var settings = {
                 url: url,
                 data: data
@@ -62,7 +62,13 @@ var DataLoader = function() {
             if (contentType !== undefined){
                 settings.contentType = contentType;
             }
-            return $.post(settings);
+            return $.post(settings).then(function (data) {
+                if (unpack === undefined){
+                    return $.Deferred().resolve(data);
+                } else {
+                    return unpack(data);
+                }
+            });
         },
         groupFeaturesByCategory: function(features, sequence, source, includeVariants) {
             features = groupEvidencesByCode(features);

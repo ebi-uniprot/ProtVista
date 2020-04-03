@@ -438,7 +438,7 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
                 url = source.useExtension === true ? url + '.json' : url;
                 dataLoader = DataLoader.get(url);
             } else {
-                dataLoader = DataLoader.post(source.url, source.payload, source.contentType);
+                dataLoader = DataLoader.post(source.url, source.payload, source.contentType, source.unpack);
             }
 
             loaders.push(dataLoader);
