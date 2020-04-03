@@ -54,6 +54,16 @@ var DataLoader = function() {
             return url.indexOf("data:") == 0 ? $.Deferred().resolve(JSON.parse(decodeURI(url).replace(/[^,]*,/, ''))) : $.getJSON(url);
             // return $.getJSON(url);
         },
+        post: function(url, data, dataType) {
+            var settings = {
+                url: url,
+                data: data
+            };
+            if (dataType !== undefined){
+                settings.dataType = dataType;
+            }
+            return $.post(settings);
+        },
         groupFeaturesByCategory: function(features, sequence, source, includeVariants) {
             features = groupEvidencesByCode(features);
             var categories = _.groupBy(features, function(d) {

@@ -431,10 +431,16 @@ var loadSources = function(opts, dataSources, loaders, delegates, fv) {
     _.each(dataSources, function(source, index) {
         if (!_.contains(opts.exclusions, source.category)) {
             var url = source.url;
-            if (url.indexOf("data:") != 0)
-                url += opts.uniprotacc;
-            url = source.useExtension === true ? url + '.json' : url;
-            var dataLoader = DataLoader.get(url);
+            var dataLoader;
+            if (source.payload == undefined) {
+                if (url.indexOf("data:") != 0)
+                    url += opts.uniprotacc;
+                url = source.useExtension === true ? url + '.json' : url;
+                dataLoader = DataLoader.get(url);
+            } else {
+                dataLoader = DataLoader.post(source.url, source.payload, source.dataType);
+            }
+
             loaders.push(dataLoader);
             dataLoader.done(function (d) {
                 if (d instanceof Array) //Workaround to be removed
