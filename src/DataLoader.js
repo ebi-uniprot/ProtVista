@@ -59,7 +59,7 @@ var DataLoader = function() {
                 url: url,
                 data: data
             };
-            if (dataType !== undefined){
+            if (contentType !== undefined){
                 settings.contentType = contentType;
             }
             return $.post(settings);
