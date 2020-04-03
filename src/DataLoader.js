@@ -54,13 +54,13 @@ var DataLoader = function() {
             return url.indexOf("data:") == 0 ? $.Deferred().resolve(JSON.parse(decodeURI(url).replace(/[^,]*,/, ''))) : $.getJSON(url);
             // return $.getJSON(url);
         },
-        post: function(url, data, dataType) {
+        post: function(url, data, contentType) {
             var settings = {
                 url: url,
                 data: data
             };
             if (dataType !== undefined){
-                settings.dataType = dataType;
+                settings.contentType = contentType;
             }
             return $.post(settings);
         },
