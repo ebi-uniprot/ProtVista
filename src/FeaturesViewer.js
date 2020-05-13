@@ -496,8 +496,13 @@ var getFvWidth = function(fv){
     if (fv.fixedWidth) return fv.fixedWidth;
 
     if (catNameWidth === 0){
-        var divCatName = jQuery('<div class="up_pftv_category-name"></div>');
-        catNameWidth = divCatName.outerWidth(false);
+        //TODO: fix the following which currently results in catNameWidth. If the divCatName is appended
+        // to jQuery("body") the size differs in Chrome and FF in cases when the category is created before
+        // the rest of the components are ready. This can happen when user provides, her own custom category
+        // which does not need to be retrieved from an external resource, but is passed as an object
+        // var divCatName = jQuery('<div class="up_pftv_category-name"></div>');
+        // catNameWidth = divCatName.outerWidth(false);
+        catNameWidth = 198;
     }
 
     var parent = jQuery(fv.parentElement);
