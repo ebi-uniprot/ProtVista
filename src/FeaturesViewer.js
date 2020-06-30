@@ -632,6 +632,11 @@ FeaturesViewer.prototype.deselectFeature = function() {
     ViewerHelper.deselectFeature(fv);
 };
 
+FeaturesViewer.prototype.resetHighlight = function() {
+    var fv = this;
+    ViewerHelper.resetHighlight(fv);
+};
+
 FeaturesViewer.prototype.selectFeature = function(selection) {
     var fv = this;
     selection.type = selection.type.toUpperCase();
