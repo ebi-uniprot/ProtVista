@@ -778,6 +778,10 @@ FeaturesViewer.prototype.drawCategories = function(data, fv) {
   });
 };
 
+FeaturesViewer.prototype.zoomIn = function() {
+    zoomIn(this)
+};
+
 FeaturesViewer.prototype.resize = function() {
     var fv = this;
 
