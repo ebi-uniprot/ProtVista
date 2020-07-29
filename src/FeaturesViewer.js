@@ -686,7 +686,7 @@ FeaturesViewer.prototype.selectFeature = function(selection) {
     }
 };
 
-FeaturesViewer.prototype.highlightRegion = function(begin, end) {
+FeaturesViewer.prototype.highlightRegion = function(begin, end, zoomout) {
     var fv = this;
     begin = begin < 1 ? 1: begin;
     end = end
@@ -695,8 +695,10 @@ FeaturesViewer.prototype.highlightRegion = function(begin, end) {
     if ((1 <= begin) && (begin <= end) && (end <= fv.sequence.length)) {
         fv.deselectFeature();
         fv.highlight = {begin: begin, end: end, type:'continuous'};
-        if ((fv.xScale(fv.xScale.domain()[0]) > fv.xScale(begin)) ||
-            (fv.xScale(end) > fv.xScale(fv.xScale.domain()[1]))) {
+        if (zoomout && (
+            (fv.xScale(fv.xScale.domain()[0]) > fv.xScale(begin)) ||
+            (fv.xScale(end) > fv.xScale(fv.xScale.domain()[1]))
+        )) {
             zoomOut(fv);
         }
         ViewerHelper.updateHighlight(fv);
