@@ -54,9 +54,9 @@ var setVariantData = function(source, d) {
  */
 var fixVariants = function(variants)
 {
-    variants.forEach(v => {
+    variants.forEach(function(v){
         if (v.predictions) {
-            v.predictions.forEach(p => {
+            v.predictions.forEach(function(p){
                 if (p.predAlgorithmNameType == 'PolyPhen'){
                     v.polyphenPrediction = p.predictionValType;
                     v.polyphenScore = p.score;
