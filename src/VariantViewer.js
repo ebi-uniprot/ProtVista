@@ -82,6 +82,8 @@ var variantsFill = function(d, fv) {
         } else {
             return LegendDialog.UPNonDiseaseColor;
         }
+    } else if (d.sourceType === Evidence.variantSourceType.lss && Evidence.existAssociation(d.association)){
+        return LegendDialog.UPDiseaseColor;
     } else {
         var externalPrediction, extDatum = {};
         if (d.externalData) {
@@ -94,6 +96,10 @@ var variantsFill = function(d, fv) {
         }
         var predictionScore = getPredictionColorScore(d.siftScore, d.siftPrediction, d.polyphenScore,
             d.polyphenPrediction);
+
+        if (d.sourceType === Evidence.variantSourceType.lss && predictionScore === undefined) {
+            return LegendDialog.unknownColor;
+        }
 
         return getVariantsFillColor(fv, d, extDatum, externalPrediction, predictionScore);
     }

@@ -47,6 +47,33 @@ var setVariantData = function(source, d) {
     return datum;
 };
 
+/***
+ * Sometimes in October 2020, the variation API changed. The purpose of this method is to reformat
+ * the variants in such a way that the rest of the applications gets the data in the expected format.
+ * @param variants
+ */
+var fixVariants = function(variants)
+{
+    variants.forEach(v => {
+        if (v.predictions) {
+            v.predictions.forEach(p => {
+                if (p.predAlgorithmNameType == 'PolyPhen'){
+                    v.polyphenPrediction = p.predictionValType;
+                    v.polyphenScore = p.score;
+                } else if (p.predAlgorithmNameType == 'SIFT') {
+                    v.siftPrediction = p.predictionValType;
+                    v.siftScore = p.score;
+                }
+            })
+        }
+
+        if (v.alternativeSequence === undefined) {
+            v.alternativeSequence = "*";
+            console.warn("Variant alternative sequence changed to * as no alternative sequence provided by the API", v);
+        }
+    })
+}
+
 var DataLoader = function() {
     return {
         get: function(url) {
@@ -135,6 +162,7 @@ var DataLoader = function() {
             ];
         },
         processVariants: function(variants, sequence, source, evidenceAlreadyGrouped) {
+            fixVariants(variants);
             if (source && (source !== Constants.getUniProtSource())) {
                 _.each(variants, function(variant) {
                     delete variant.category;

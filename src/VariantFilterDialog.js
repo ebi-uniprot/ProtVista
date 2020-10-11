@@ -66,6 +66,21 @@ var defaultFilterCaseOthers = {
     },
     color: LegendDialog.othersColor
 };
+var defaultFilterCaseUnknown = {
+    label: 'Unknown',
+    on: true,
+    properties: {
+        'type': function (variant) {
+            //this is rather a hack as I need to test that some properties are not present in the object
+            return variant.siftPrediction === undefined &&
+                variant.polyphenPrediction === undefined &&
+                variant.association === undefined;
+        },
+        'alternativeSequence': /[^*]/,
+        'sourceType': Evidence.variantSourceType.lss
+    },
+    color: LegendDialog.unknownColor
+};
 var defaultFilterConsequence = {
     label: 'Filter consequence',
     cases: []
@@ -107,6 +122,7 @@ var populateFilters = function(fv) {
             defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
             defaultFilterConsequence.cases.push(defaultFilterCaseNonDisease);
             defaultFilterConsequence.cases.push(defaultFilterCaseOthers);
+            defaultFilterConsequence.cases.push(defaultFilterCaseUnknown);
             filters.push(defaultFilterConsequence);
             defaultFilterSource.cases.push(defaultFilterCaseUP);
             defaultFilterSource.cases.push(defaultFilterCaseLSS);
