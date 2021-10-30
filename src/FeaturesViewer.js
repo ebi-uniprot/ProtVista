@@ -550,6 +550,7 @@ var FeaturesViewer = function(opts) {
     fv.uniprotacc = opts.uniprotacc;
     fv.overwritePredictions = opts.overwritePredictions;
     fv.defaultSource = opts.defaultSources !== undefined ? opts.defaultSources : true;
+    fv.variantFilterDefaultBehavior = opts.variantFilterDefaultBehavior === undefined ? true : opts.variantFilterDefaultBehavior;
 
     fv.load = function() {
         initSources(opts);

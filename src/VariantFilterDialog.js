@@ -220,7 +220,7 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
         var anchor = li.append('a')
             .on('click', function(filter) {
                 if (filter.on === true) {
-                    clearOthers(filterSet, filter);
+                    fv.variantFilterDefaultBehavior ? clearOthers(filterSet, filter) : filter.on = false;
                     container.select('.up_pftv_inner-icon-container')
                         .style('visibility', 'visible');
                 } else {
