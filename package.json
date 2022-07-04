@@ -62,7 +62,7 @@
         "gulp-jshint": "^1.8.4",
         "gulp-minify-css": "^1.2.0",
         "gulp-mocha": "^1.0.0",
-        "gulp-mocha-phantomjs": "^0.5.0",
+        "gulp-mocha-phantomjs": "^0.12.2",
         "gulp-rename": "^1.2.0",
         "gulp-sass": "^1.3.2",
         "gulp-streamify": "0.0.5",
@@ -72,13 +72,16 @@
         "mkdirp": "^0.5.0",
         "mocha": "~1.20.1",
         "mocha-sonar-reporter": "^0.1.2",
-        "phantomjs": "^1.9.1",
+        "phantomjs-prebuilt": "^2.1.4",    
         "sinon": "^1.17.3",
         "sniper": "^0.2.16",
         "vinyl-source-stream": "^1.0.0",
         "watchify": "^3.2.3",
         "xunit-file": "0.0.6"
     },
+    "overrides": {
+        "graceful-fs": "^4.2.9"
+    },     
     "shields": {
         "test": {
             "img": "https://travis-ci.org/ebi-uniprot/ProtVista.svg?branch=master",
